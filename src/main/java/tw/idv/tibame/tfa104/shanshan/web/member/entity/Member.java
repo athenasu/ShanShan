@@ -1,137 +1,188 @@
 package tw.idv.tibame.tfa104.shanshan.web.member.entity;
 
-import java.sql.Timestamp;
+import java.io.Serializable;
+import java.sql.Date;
+import java.util.List;
+
+//import java.sql.Blob;
+//import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table; // is it this one?
+import javax.persistence.Transient;
 
-import tw.idv.tibame.tfa104.shanshan.core.pojo.Core;
+import tw.idv.tibame.tfa104.shanshan.web.Product.entity.Product;
+import tw.idv.tibame.tfa104.shanshan.web.wishlistEvent.entity.WishlistEvent;
 
 @Entity
-@Table
-public class Member extends Core {
-	private static final long serialVersionUID = 1062017833925367218L;
+@Table(name = "member")
+public class Member implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	private Integer memberId;
+	private String memberName;
+	private String memberEmail;
+	private String memberPassword;
+	private String memberUsername;
+	private String memberPhoneNum;
+	private Date memberRegisterDate;
+	private byte[] memberProfilePic;
+	private String memberIntro;
+	private Integer memberStatus;
+	private Integer memberSumPoints;
+	private Integer memberSubscription;
+	private String picStr;
+	private List<WishlistEvent> wishlistEvents;
+	private List<Product> wishlistProducts;
+
+	@ManyToMany
+	@JoinTable(joinColumns = @JoinColumn(referencedColumnName = "member_id", name = "member_id"),
+				name = "wishlist_product", 
+				inverseJoinColumns = @JoinColumn(referencedColumnName = "product_id", name = "product_id"))
+	public List<Product> getWishlistProducts() {
+		return wishlistProducts;
+	}
+
+	public void setWishlistProducts(List<Product> wishlistProducts) {
+		this.wishlistProducts = wishlistProducts;
+	}
+
+	@JoinColumn(name = "member_id", referencedColumnName = "member_id")
+	@OneToMany
+	public List<WishlistEvent> getWishlistEvents() {
+		return wishlistEvents;
+	}
+
+	public void setWishlistEvents(List<WishlistEvent> wishlistEvents) {
+		this.wishlistEvents = wishlistEvents;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column
-	private Integer id;
-	@Column
-	private String username;
-	@Column
-	private String password;
-	@Column
-	private String nickname;
-	@Column(insertable = false)
-	private Boolean pass;
-	@Column(name = "ROLE_ID")
-	private Integer roleId;
-	@Column(insertable = false)
-	private String creator;
-	@Column(name = "CREATED_DATE", insertable = false)
-	private Timestamp createdDate;
-	@Column
-	private String updater;
-	@Column(name = "LAST_UPDATED_DATE")
-	private Timestamp lastUpdatedDate;
-
-	public Member() {
+	@Column(name = "member_id")
+	public Integer getMemberId() {
+		return memberId;
 	}
 
-	public Member(Integer id, String username, String password, String nickname, Boolean pass, Integer roleId,
-			String creator, Timestamp createdDate, String updater, Timestamp lastUpdatedDate) {
-		this.id = id;
-		this.username = username;
-		this.password = password;
-		this.nickname = nickname;
-		this.pass = pass;
-		this.roleId = roleId;
-		this.creator = creator;
-		this.createdDate = createdDate;
-		this.updater = updater;
-		this.lastUpdatedDate = lastUpdatedDate;
+	public void setMemberId(Integer memberId) {
+		this.memberId = memberId;
 	}
 
-	public Integer getId() {
-		return id;
+	@Column(name = "member_name")
+	public String getMemberName() {
+		return memberName;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
 	}
 
-	public String getUsername() {
-		return username;
+	@Column(name = "member_email", updatable = false)
+	public String getMemberEmail() {
+		return memberEmail;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setMemberEmail(String memberEmail) {
+		this.memberEmail = memberEmail;
 	}
 
-	public String getPassword() {
-		return password;
+	@Column(name = "member_password")
+	public String getMemberPassword() {
+		return memberPassword;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setMemberPassword(String memberPassword) {
+		this.memberPassword = memberPassword;
 	}
 
-	public String getNickname() {
-		return nickname;
+	@Column(name = "member_username")
+	public String getMemberUsername() {
+		return memberUsername;
 	}
 
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
+	public void setMemberUsername(String memberUsername) {
+		this.memberUsername = memberUsername;
 	}
 
-	public Boolean getPass() {
-		return pass;
+	@Column(name = "member_phone_num")
+	public String getMemberPhoneNum() {
+		return memberPhoneNum;
 	}
 
-	public void setPass(Boolean pass) {
-		this.pass = pass;
+	public void setMemberPhoneNum(String memberPhoneNum) {
+		this.memberPhoneNum = memberPhoneNum;
 	}
 
-	public Integer getRoleId() {
-		return roleId;
+	@Column(name = "member_register_date")
+	public Date getMemberRegisterDate() {
+		return memberRegisterDate;
 	}
 
-	public void setRoleId(Integer roleId) {
-		this.roleId = roleId;
+	public void setMemberRegisterDate(Date memberRegisterDate) {
+		this.memberRegisterDate = memberRegisterDate;
 	}
 
-	public String getCreator() {
-		return creator;
+	@Column(name = "member_profile_pic", columnDefinition = "LONGBLOB")
+	public byte[] getMemberProfilePic() {
+		return memberProfilePic;
 	}
 
-	public void setCreator(String creator) {
-		this.creator = creator;
+	public void setMemberProfilePic(byte[] memberProfilePic) {
+		this.memberProfilePic = memberProfilePic;
 	}
 
-	public Timestamp getCreatedDate() {
-		return createdDate;
+	@Column(name = "member_intro", columnDefinition = "TEXT")
+	public String getMemberIntro() {
+		return memberIntro;
 	}
 
-	public void setCreatedDate(Timestamp createdDate) {
-		this.createdDate = createdDate;
+	public void setMemberIntro(String memberIntro) {
+		this.memberIntro = memberIntro;
 	}
 
-	public String getUpdater() {
-		return updater;
+	@Column(name = "member_status", insertable = false)
+	public Integer getMemberStatus() {
+		return memberStatus;
 	}
 
-	public void setUpdater(String updater) {
-		this.updater = updater;
+	public void setMemberStatus(Integer memberStatus) {
+		this.memberStatus = memberStatus;
 	}
 
-	public Timestamp getLastUpdatedDate() {
-		return lastUpdatedDate;
+	@Column(name = "member_sum_points")
+	public Integer getMemberSumPoints() {
+		return memberSumPoints;
 	}
 
-	public void setLastUpdatedDate(Timestamp lastUpdatedDate) {
-		this.lastUpdatedDate = lastUpdatedDate;
+	public void setMemberSumPoints(Integer memberSumPoints) {
+		this.memberSumPoints = memberSumPoints;
 	}
+
+	@Column(name = "member_subscription", columnDefinition = "int default 0")
+	public Integer getMemberSubscription() {
+		return memberSubscription;
+	}
+
+	public void setMemberSubscription(Integer memberSubscription) {
+		this.memberSubscription = memberSubscription;
+	}
+
+	@Transient
+	public String getPicStr() {
+		return picStr;
+	}
+
+	public void setPicStr(String picStr) {
+		this.picStr = picStr;
+	}
+
 }
