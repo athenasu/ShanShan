@@ -10,7 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import tw.idv.tibame.tfa104.shanshan.Core;
-import tw.idv.tibame.tfa104.shanshan.web.event.entity.Event;
+import tw.idv.tibame.tfa104.shanshan.web.Event.entity.Event;
 
 @Entity
 @Table(name = "wishlist_event")

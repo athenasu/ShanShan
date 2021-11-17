@@ -5,7 +5,7 @@ import java.sql.Date;
 
 
 public class CompanyVO implements Serializable{
-	
+	private static final long serialVersionUID = 1L;
 	private Integer companyId;
 	private String companyName;
 	private String companyEmail;

@@ -1,4 +1,4 @@
-package tw.idv.tibame.tfa104.shanshan.web.product.entity;
+package tw.idv.tibame.tfa104.shanshan.web.Product.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

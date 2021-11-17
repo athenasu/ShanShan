@@ -1,4 +1,4 @@
-package tw.idv.tibame.tfa104.shanshan.web.event.entity;
+package tw.idv.tibame.tfa104.shanshan.web.Event.entity;
 
 import java.sql.Timestamp;
 import java.util.Date;
