@@ -19,7 +19,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table; // is it this one?
 import javax.persistence.Transient;
 
-import tw.idv.tibame.tfa104.shanshan.web.testingProduct.entity.Product;
+import tw.idv.tibame.tfa104.shanshan.web.product.entity.Product;
 import tw.idv.tibame.tfa104.shanshan.web.wishlistEvent.entity.WishlistEvent;
 
 @Entity
