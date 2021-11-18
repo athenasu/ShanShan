@@ -1,0 +1,60 @@
+package tw.idv.tibame.tfa104.shanshan.web.articleReport.entity;
+
+import java.sql.Date;
+
+public class ArticleReportVO {
+	private Integer article_report_id;
+	private Integer member_id;
+	private Integer article_no;
+	private Integer article_report_status;
+	private Integer article_report_reason;
+	private Date article_report_date ;
+	private Date case_done ;
+	
+	public Integer getArticle_report_id() {
+		return article_report_id;
+	}
+	public void setArticle_report_id(Integer article_report_id) {
+		this.article_report_id = article_report_id;
+	}
+	public Integer getMember_id() {
+		return member_id;
+	}
+	public void setMember_id(Integer member_id) {
+		this.member_id = member_id;
+	}
+	public Integer getArticle_no() {
+		return article_no;
+	}
+	public void setArticle_no(Integer article_no) {
+		this.article_no = article_no;
+	}
+	public Integer getArticle_report_status() {
+		return article_report_status;
+	}
+	public void setArticle_report_status(Integer article_report_status) {
+		this.article_report_status = article_report_status;
+	}
+	public Integer getArticle_report_reason() {
+		return article_report_reason;
+	}
+	public void setArticle_report_reason(Integer article_report_reason) {
+		this.article_report_reason = article_report_reason;
+	}
+	public Date getArticle_report_date() {
+		return article_report_date;
+	}
+	public void setArticle_report_date(Date article_report_date) {
+		this.article_report_date = article_report_date;
+	}
+	public Date getCase_done() {
+		return case_done;
+	}
+	public void setCase_done(Date case_done) {
+		this.case_done = case_done;
+	}
+	
+	
+	
+
+}
