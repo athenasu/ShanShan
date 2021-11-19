@@ -6,7 +6,7 @@
 
 	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
 		<property name="resourceRef" value="true" />
-		<property name="jndiName" value="jdbc/db" />
+		<property name="jndiName" value="jdbc/ShanShan" />
 	</bean>
 
 </beans>

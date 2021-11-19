@@ -10,13 +10,15 @@
 		http://www.springframework.org/schema/context
 		http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<context:component-scan base-package="tw.idv.tibame.tfa104.shanshan.web.*.controller,tw.idv.tibame.tfa104.shanshan.web.*.*.impl" />
+	<context:component-scan
+		base-package="tw.idv.tibame.tfa104.shanshan.web.*.controller,tw.idv.tibame.tfa104.shanshan.web.*.*.impl" />
 
-	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
 
 	<mvc:annotation-driven />
-
+	<mvc:default-servlet-handler />
 </beans>

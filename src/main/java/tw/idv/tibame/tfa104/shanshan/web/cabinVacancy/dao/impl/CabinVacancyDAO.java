@@ -1,7 +1,5 @@
 package tw.idv.tibame.tfa104.shanshan.web.cabinVacancy.dao.impl;
 
-import java.util.List;
-
 import tw.idv.tibame.tfa104.shanshan.web.cabinVacancy.dao.CabinVacancyDAO_interface;
 import tw.idv.tibame.tfa104.shanshan.web.cabinVacancy.entity.CabinVacancyVO;
 

@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/img/favicon.png" />
+    <link rel="stylesheet" href="css/header_footer.css" />
+    <title>會員中心｜訂單</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/member_order_details.css" />
+  </head>
+  <body>
+    <header>
+      <div id="logo">
+        <a href="index.html"><img src="img/logo.png" class="img" /></a>
+      </div>
+      <nav id="navlist">
+        <ul>
+          <li><a href="#">找山友</a></li>
+          <li><a href="#">山友日誌</a></li>
+          <li><a href="#">攻山小物</a></li>
+          <li><a href="#">登山資訊</a></li>
+          <li><a href="#">會員中心</a></li>
+        </ul>
+      </nav>
+      <div id="memcheck">
+        <div id="ball"><i class="fas fa-bell"></i></div>
+        <div id="login"><a href="#">登入</a></div>
+        <div id="register"><a href="#">註冊</a></div>
+      </div>
+    </header>
+    <main class="member-main">
+      <section class="glass">
+        <div class="dashboard">
+          <div class="user">
+            <img
+              class="member-profile"
+              src="member_imgs/IMG_0075.JPG"
+              alt="user_pic"
+            />
+            <div class="user-info">
+              <h2>Buster</h2>
+              <p>Bestest Cat</p>
+              <p>您總共有＿＿＿點數</p>
+            </div>
+          </div>
+          <div class="links">
+            <div class="link">
+              <button>
+                <a href="member.html"><h3>會員首頁</h3></a>
+              </button>
+            </div>
+            <div class="link">
+              <button>
+                <a href="member_update.html"><h3>修改會員資料</h3></a>
+              </button>
+            </div>
+            <div class="link">
+              <ul class="side-bar-event">
+                <li>
+                  <button class="link-btn-event">
+                    <a href="member_article_details.html"><h3>文章紀錄</h3></a>
+                  </button>
+                  <ul class="second-menu-event">
+                    <li><a href="#">揪團紀錄</a></li>
+                    <li><a href="#">參團紀錄</a></li>
+                    <li><a href="#">發文紀錄</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+            <div class="link">
+              <button>
+                <a href="member_order_details.html"><h3>訂單記錄</h3></a>
+              </button>
+            </div>
+            <div class="link">
+              <ul class="side-bar-wishlist">
+                <li>
+                  <button class="link-btn-wishlist">
+                    <a href="#"><h3>收藏紀錄</h3></a>
+                  </button>
+                  <ul class="second-menu-wishlist">
+                    <li><a href="#">揪團</a></li>
+                    <li><a href="#">參團</a></li>
+                    <li><a href="#">商品</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="link">
+            <button>
+              <a href="member_points.html"><h3>點數記錄</h3></a>
+            </button>
+          </div>
+        </div>
+        <div class="events">
+          <div class="event-input">
+            <h1>訂單紀錄</h1>
+          </div>
+          <div class="sort-buttons">
+            <button class="sort-button"><a href="#">已完成</a></button>
+            <button class="sort-button"><a href="#">配送中</a></button>
+            <button class="sort-button"><a href="#">退貨</a></button>
+            <div class="search-bar">
+              <i class="fas fa-search"></i
+              ><input class="search-input" type="text" placeholder="搜尋" />
+            </div>
+          </div>
+          <div class="cards">
+            <div class="card-1">
+              <div class="order-status">
+                <p>狀態: 已完成</p>
+              </div>
+              <div class="order-no">
+                <p>訂單編號: 123456</p>
+              </div>
+              <div class="order-date">
+                <p>訂購日期: 2021/10/24</p>
+              </div>
+              <div class="order-sum">
+                <p>購物金額: 888 元</p>
+              </div>
+              <div class="order-details">
+                <button class="btn--show-modal-done">詳情</button>
+              </div>
+            </div>
+            <div class="card-2">
+              <div class="order-status">
+                <p>狀態: 配送中</p>
+              </div>
+              <div class="order-no">
+                <p>訂單編號: 123456</p>
+              </div>
+              <div class="order-date">
+                <p>訂購日期: 2021/10/24</p>
+              </div>
+              <div class="order-sum">
+                <p>購物金額: 888 元</p>
+              </div>
+              <div class="order-details">
+                <button class="btn--show-modal-intransit">詳情</button>
+              </div>
+            </div>
+            <div class="card-1">
+              <div class="order-status">
+                <p>狀態: 已退貨</p>
+              </div>
+              <div class="order-no">
+                <p>訂單編號: 123456</p>
+              </div>
+              <div class="order-date">
+                <p>訂購日期: 2021/10/24</p>
+              </div>
+              <div class="order-sum">
+                <p>購物金額: 888 元</p>
+              </div>
+              <div class="order-details">
+                <button class="btn--show-modal-returned">詳情</button>
+              </div>
+            </div>
+            <div class="card-2">
+              <div class="order-status">
+                <p>狀態: 待確認</p>
+              </div>
+              <div class="order-no">
+                <p>訂單編號: 123456</p>
+              </div>
+              <div class="order-date">
+                <p>訂購日期: 2021/10/24</p>
+              </div>
+              <div class="order-sum">
+                <p>購物金額: 888 元</p>
+              </div>
+              <div class="order-details">
+                <button class="btn--show-modal">詳情</button>
+              </div>
+            </div>
+            <div class="card-1">
+              <div class="order-status">
+                <p>狀態: 待確認</p>
+              </div>
+              <div class="order-no">
+                <p>訂單編號: 123456</p>
+              </div>
+              <div class="order-date">
+                <p>訂購日期: 2021/10/24</p>
+              </div>
+              <div class="order-sum">
+                <p>購物金額: 888 元</p>
+              </div>
+              <div class="order-details">
+                <button class="btn--show-modal">詳情</button>
+              </div>
+            </div>
+            <div class="card-2">
+              <div class="order-status">
+                <p>狀態: 待確認</p>
+              </div>
+              <div class="order-no">
+                <p>訂單編號: 123456</p>
+              </div>
+              <div class="order-date">
+                <p>訂購日期: 2021/10/24</p>
+              </div>
+              <div class="order-sum">
+                <p>購物金額: 888 元</p>
+              </div>
+              <div class="order-details">
+                <button class="btn--show-modal">詳情</button>
+              </div>
+            </div>
+            <div class="card-1">
+              <div class="order-status">
+                <p>狀態: 待確認</p>
+              </div>
+              <div class="order-no">
+                <p>訂單編號: 123456</p>
+              </div>
+              <div class="order-date">
+                <p>訂購日期: 2021/10/24</p>
+              </div>
+              <div class="order-sum">
+                <p>購物金額: 888 元</p>
+              </div>
+              <div class="order-details">
+                <button class="btn--show-modal">詳情</button>
+              </div>
+            </div>
+            <div class="card-2">
+              <div class="order-status">
+                <p>狀態: 待確認</p>
+              </div>
+              <div class="order-no">
+                <p>訂單編號: 123456</p>
+              </div>
+              <div class="order-date">
+                <p>訂購日期: 2021/10/24</p>
+              </div>
+              <div class="order-sum">
+                <p>購物金額: 888 元</p>
+              </div>
+              <div class="order-details">
+                <button class="btn--show-modal">詳情</button>
+              </div>
+            </div>
+            <div class="card-1">
+              <div class="order-status">
+                <p>狀態: 待確認</p>
+              </div>
+              <div class="order-no">
+                <p>訂單編號: 123456</p>
+              </div>
+              <div class="order-date">
+                <p>訂購日期: 2021/10/24</p>
+              </div>
+              <div class="order-sum">
+                <p>購物金額: 888 元</p>
+              </div>
+              <div class="order-details">
+                <button class="btn--show-modal">詳情</button>
+              </div>
+            </div>
+            <div class="card-2">
+              <div class="order-status">
+                <p>狀態: 待確認</p>
+              </div>
+              <div class="order-no">
+                <p>訂單編號: 123456</p>
+              </div>
+              <div class="order-date">
+                <p>訂購日期: 2021/10/24</p>
+              </div>
+              <div class="order-sum">
+                <p>購物金額: 888 元</p>
+              </div>
+              <div class="order-details">
+                <button class="btn--show-modal">詳情</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- MODAL AREA-->
+
+    <!-- DONE CASES AREA -->
+    <div class="modal-done hidden">
+      <button class="btn--close-modal-done">&times;</button>
+      <h2 class="modal__header">訂單詳情</h2>
+      <p class="modal-sub-header">狀態：已完成</p>
+      <div class="modal__container">
+        <div class="modal-box1">
+          <ul class="modal-event-details">
+            <li>訂單編號：123456</li>
+            <li>訂購日期：2021/11/06</li>
+            <li>購買商品：</li>
+            <div class="order-list">
+              <div class="order-item">
+                <ul class="item-1">
+                  <li class="item-name">品名：登山大背包</li>
+                  <li class="item-size">規格：棕色Ｍ</li>
+                  <li class="item-quantity">數量：1</li>
+                  <li class="item-price">單價：1000 元</li>
+                </ul>
+              </div>
+              <div class="order-item">
+                <ul class="item-2">
+                  <li class="item-name">品名：登山大背包</li>
+                  <li class="item-size">規格：棕色Ｍ</li>
+                  <li class="item-quantity">數量：1</li>
+                  <li class="item-price">單價：1000 元</li>
+                </ul>
+              </div>
+              <div class="order-item">
+                <ul class="item-1">
+                  <li class="item-name">品名：登山大背包</li>
+                  <li class="item-size">規格：棕色Ｍ</li>
+                  <li class="item-quantity">數量：1</li>
+                  <li class="item-price">單價：1000 元</li>
+                </ul>
+              </div>
+              <div class="order-item">
+                <ul class="item-2">
+                  <li class="item-name">品名：登山大背包</li>
+                  <li class="item-size">規格：棕色Ｍ</li>
+                  <li class="item-quantity">數量：1</li>
+                  <li class="item-price">單價：1000 元</li>
+                </ul>
+              </div>
+              <div class="order-item">
+                <ul class="item-1">
+                  <li class="item-name">品名：登山大背包</li>
+                  <li class="item-size">規格：棕色Ｍ</li>
+                  <li class="item-quantity">數量：1</li>
+                  <li class="item-price">單價：1000 元</li>
+                </ul>
+              </div>
+              <div class="order-item">
+                <ul class="item-2">
+                  <li class="item-name">品名：登山大背包</li>
+                  <li class="item-size">規格：棕色Ｍ</li>
+                  <li class="item-quantity">數量：1</li>
+                  <li class="item-price">單價：1000 元</li>
+                </ul>
+              </div>
+              <div class="order-item">
+                <ul class="item-1">
+                  <li class="item-name">品名：登山大背包</li>
+                  <li class="item-size">規格：棕色Ｍ</li>
+                  <li class="item-quantity">數量：1</li>
+                  <li class="item-price">單價：1000 元</li>
+                </ul>
+              </div>
+              <div class="order-item">
+                <ul class="item-2">
+                  <li class="item-name">品名：登山大背包</li>
+                  <li class="item-size">規格：棕色Ｍ</li>
+                  <li class="item-quantity">數量：1</li>
+                  <li class="item-price">單價：1000 元</li>
+                </ul>
+              </div>
+            </div>
+            <div class="modal-order-sum">總金額：3000 元</div>
+          </ul>
+          <div class="box2">
+            <div class="shipping-info">
+              <div class="cancel-title">
+                <ul>
+                  <li>出貨日期：2021/11/10</li>
+                  <li>配送單號：AB1234567890</li>
+                  <li>到貨日期：2021/11/13</li>
+                  <!-- 這個要怎麼算？ -->
+                  <ul class="notes">
+                    <li>若須申請退貨，請於收到商品7天內申請</li>
+                    <li>最晚退貨日期：2021/11/20</li>
+                  </ul>
+                </ul>
+              </div>
+            </div>
+            <div class="confirm-buttons-container">
+              <div class="submit-button">
+                <button type="submit" class="submit-cancel-event">
+                  確定付款
+                </button>
+              </div>
+              <div class="submit-button">
+                <button type="submit" class="submit-confirm-event">
+                  申請退貨
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="overlay-done hidden"></div>
+
+    <!-- INTRANSIT CASES -->
+    <div class="modal-intransit hidden">
+      <button class="btn--close-modal-intransit">&times;</button>
+      <h2 class="modal__header">訂單詳情</h2>
+      <p class="modal-sub-header">狀態：配送中</p>
+      <div class="modal__container">
+        <div class="modal-box1">
+          <ul class="modal-event-details">
+            <li>訂單編號：123456</li>
+            <li>訂購日期：2021/11/06</li>
+            <li>購買商品：</li>
+            <div class="order-list">
+              <div class="order-item">
+                <ul class="item-1">
+                  <li class="item-name">品名：登山大背包</li>
+                  <li class="item-size">規格：棕色Ｍ</li>
+                  <li class="item-quantity">數量：1</li>
+                  <li class="item-price">單價：1000 元</li>
+                </ul>
+              </div>
+              <div class="order-item">
+                <ul class="item-2">
+                  <li class="item-name">品名：登山大背包</li>
+                  <li class="item-size">規格：棕色Ｍ</li>
+                  <li class="item-quantity">數量：1</li>
+                  <li class="item-price">單價：1000 元</li>
+                </ul>
+              </div>
+              <div class="order-item">
+                <ul class="item-1">
+                  <li class="item-name">品名：登山大背包</li>
+                  <li class="item-size">規格：棕色Ｍ</li>
+                  <li class="item-quantity">數量：1</li>
+                  <li class="item-price">單價：1000 元</li>
+                </ul>
+              </div>
+              <div class="order-item">
+                <ul class="item-2">
+                  <li class="item-name">品名：登山大背包</li>
+                  <li class="item-size">規格：棕色Ｍ</li>
+                  <li class="item-quantity">數量：1</li>
+                  <li class="item-price">單價：1000 元</li>
+                </ul>
+              </div>
+              <div class="order-item">
+                <ul class="item-1">
+                  <li class="item-name">品名：登山大背包</li>
+                  <li class="item-size">規格：棕色Ｍ</li>
+                  <li class="item-quantity">數量：1</li>
+                  <li class="item-price">單價：1000 元</li>
+                </ul>
+              </div>
+              <div class="order-item">
+                <ul class="item-2">
+                  <li class="item-name">品名：登山大背包</li>
+                  <li class="item-size">規格：棕色Ｍ</li>
+                  <li class="item-quantity">數量：1</li>
+                  <li class="item-price">單價：1000 元</li>
+                </ul>
+              </div>
+              <div class="order-item">
+                <ul class="item-1">
+                  <li class="item-name">品名：登山大背包</li>
+                  <li class="item-size">規格：棕色Ｍ</li>
+                  <li class="item-quantity">數量：1</li>
+                  <li class="item-price">單價：1000 元</li>
+                </ul>
+              </div>
+              <div class="order-item">
+                <ul class="item-2">
+                  <li class="item-name">品名：登山大背包</li>
+                  <li class="item-size">規格：棕色Ｍ</li>
+                  <li class="item-quantity">數量：1</li>
+                  <li class="item-price">單價：1000 元</li>
+                </ul>
+              </div>
+            </div>
+            <div class="modal-order-sum">總金額：3000 元</div>
+          </ul>
+          <div class="box2">
+            <div class="shipping-info">
+              <div class="cancel-title">
+                <ul>
+                  <li>出貨日期：2021/11/10</li>
+                  <li>配送單號：AB1234567890</li>
+                </ul>
+              </div>
+            </div>
+            <div class="confirm-buttons-container">
+              <div class="submit-button">
+                <button type="submit" class="submit-cancel-event">
+                  確定收貨
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="overlay-intransit hidden"></div>
+
+    <!-- RETURNED CASES -->
+    <div class="modal-returned hidden">
+      <button class="btn--close-modal-returned">&times;</button>
+      <h2 class="modal__header">訂單詳情</h2>
+      <p class="modal-sub-header">狀態：已退貨</p>
+      <div class="modal__container">
+        <div class="modal-box1">
+          <ul class="modal-event-details">
+            <li>訂單編號：123456</li>
+            <li>訂購日期：2021/11/06</li>
+            <li>購買商品：</li>
+            <div class="order-list">
+              <div class="order-item">
+                <ul class="item-1">
+                  <li class="item-name">品名：登山大背包</li>
+                  <li class="item-size">規格：棕色Ｍ</li>
+                  <li class="item-quantity">數量：1</li>
+                  <li class="item-price">單價：1000 元</li>
+                </ul>
+              </div>
+              <div class="order-item">
+                <ul class="item-2">
+                  <li class="item-name">品名：登山大背包</li>
+                  <li class="item-size">規格：棕色Ｍ</li>
+                  <li class="item-quantity">數量：1</li>
+                  <li class="item-price">單價：1000 元</li>
+                </ul>
+              </div>
+              <div class="order-item">
+                <ul class="item-1">
+                  <li class="item-name">品名：登山大背包</li>
+                  <li class="item-size">規格：棕色Ｍ</li>
+                  <li class="item-quantity">數量：1</li>
+                  <li class="item-price">單價：1000 元</li>
+                </ul>
+              </div>
+              <div class="order-item">
+                <ul class="item-2">
+                  <li class="item-name">品名：登山大背包</li>
+                  <li class="item-size">規格：棕色Ｍ</li>
+                  <li class="item-quantity">數量：1</li>
+                  <li class="item-price">單價：1000 元</li>
+                </ul>
+              </div>
+              <div class="order-item">
+                <ul class="item-1">
+                  <li class="item-name">品名：登山大背包</li>
+                  <li class="item-size">規格：棕色Ｍ</li>
+                  <li class="item-quantity">數量：1</li>
+                  <li class="item-price">單價：1000 元</li>
+                </ul>
+              </div>
+              <div class="order-item">
+                <ul class="item-2">
+                  <li class="item-name">品名：登山大背包</li>
+                  <li class="item-size">規格：棕色Ｍ</li>
+                  <li class="item-quantity">數量：1</li>
+                  <li class="item-price">單價：1000 元</li>
+                </ul>
+              </div>
+              <div class="order-item">
+                <ul class="item-1">
+                  <li class="item-name">品名：登山大背包</li>
+                  <li class="item-size">規格：棕色Ｍ</li>
+                  <li class="item-quantity">數量：1</li>
+                  <li class="item-price">單價：1000 元</li>
+                </ul>
+              </div>
+              <div class="order-item">
+                <ul class="item-2">
+                  <li class="item-name">品名：登山大背包</li>
+                  <li class="item-size">規格：棕色Ｍ</li>
+                  <li class="item-quantity">數量：1</li>
+                  <li class="item-price">單價：1000 元</li>
+                </ul>
+              </div>
+            </div>
+            <div class="modal-order-sum">總金額：3000 元</div>
+          </ul>
+          <div class="box2">
+            <div class="shipping-info">
+              <div class="cancel-title">
+                <ul>
+                  <li>出貨日期：2021/11/10</li>
+                  <li>配送單號：AB1234567890</li>
+                  <li>到貨日期：2021/11/13</li>
+                  <!-- 這個要怎麼算？ -->
+                  <li>申請退貨日期：2021/11/13</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="overlay-returned hidden"></div>
+
+    <script src="./vendors/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
+    <script src="./js/header.js"></script>
+    <script src="./js/member_order_details.js"></script>
+  </body>
+</html>

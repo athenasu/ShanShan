@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/img/favicon.png" />
+    <link rel="stylesheet" href="css/header_footer.css" />
+    <title>會員中心</title>
+    <link rel="stylesheet" href="css/member.css" />
+  </head>
+  <body>
+    <header>
+      <div id="logo">
+        <a href="index.html"><img  src="img/logo.png" class="img" /></a>
+      </div>
+      <nav id="navlist">
+        <ul>
+          <li><a href="#">找山友</a></li>
+          <li><a href="#">山友日誌</a></li>
+          <li><a href="#">攻山小物</a></li>
+          <li><a href="#">登山資訊</a></li>
+          <li><a href="#">會員中心</a></li>
+        </ul>
+      </nav>
+      <div id="memcheck">
+        <div id="ball"><i class="fas fa-bell"></i></div>
+        <div id="login"><a href="#">登入</a></div>
+        <div id="register"><a href="#">註冊</a></div>
+      </div>
+    </header>
+    <main class = "member_main">    
+        <section class="glass">
+          <div class="dashboard">
+            <div class="user">
+              <img
+                class="member_profile"
+                src="member_imgs/IMG_0075.JPG"
+                alt="user_pic"
+              />
+              <div class="user-info">
+                <h2>Buster</h2>
+                <p>Bestest Cat</p>
+                <p>您總共有＿＿＿點數</p>
+              </div>
+            </div>
+            <div class="links">
+              <div class="link">
+                <button>
+                  <a href="member.html"><h3>會員首頁</h3></a>
+                </button>
+              </div>
+              <div class="link">
+                <button>
+                  <a href="member_update.html"><h3>修改會員資料</h3></a>
+                </button>
+              </div>
+              <div class="link">
+                <ul class="side-bar-event">
+                  <li>
+                    <button class="link-btn-event">
+                      <a href="member_article_details.html"><h3>文章紀錄</h3></a>
+                    </button>
+                    <ul class="second-menu-event">
+                      <li><a href="#">揪團紀錄</a></li>
+                      <li><a href="#">參團紀錄</a></li>
+                      <li><a href="#">發文紀錄</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              <div class="link">
+                <button>
+                  <a href="member_order_details.html"><h3>訂單記錄</h3></a>
+                </button>
+              </div>
+              <div class="link">
+                <ul class="side-bar-wishlist">
+                  <li>
+                    <button class="link-btn-wishlist">
+                      <a href="#"><h3>收藏紀錄</h3></a>
+                    </button>
+                    <ul class="second-menu-wishlist">
+                      <li><a href="#">揪團</a></li>
+                      <li><a href="#">參團</a></li>
+                      <li><a href="#">商品</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="link">
+              <button>
+                <a href="member_points.html"><h3>點數記錄</h3></a>
+              </button>
+            </div>
+          </div>
+          <div class="events">
+            <div class = "calendar-map">
+              <div class="icons">
+                <div class = "icon1"><a href=#><i class="far fa-calendar-alt fa-lg"></i></a></div>
+                <div class = "icon2"><a href=#><i class="fas fa-map-marked-alt fa-lg"></i></a></div>
+              </div>
+              <img class = "calendar" src="./img/calendar-sample.png" alt="calendar_sample" />
+            </div>
+          </div>
+    </main>
+    <div class="square1"></div>
+    <div class="square2">
+      <ul>
+        <li class = "date"><span><h2>10月31日</h2></span></li>
+        <li class = "event-name"><span><h3>團名：大家一同去陽明山</h3></span></li>
+        <li class = "event-location"><span><h3>登山：陽明山</h3></span></li>
+        <li class = "event-time"><span><h3>集合時間：上午7：00</h3></span></li>
+      </ul>
+      <div class="details">
+         <button class = "btn--show-modal">詳情</button>
+      </div>
+    </div>
+<!-- MODAL -->
+<div class="modal hidden">
+  <button class="btn--close-modal">&times;</button>
+  <h2 class="modal__header">揪團詳情</h2>
+  <p class="modal-sub-header">狀態：揪團中</p>
+  <div class = "modal__container">
+    <div class = "modal-box1">
+      <form class = "confirm-event" action="GET">
+        <ul class = "modal-event-details">
+          <li>揪團編號：123456</li>
+          <li>團名：大家一同去陽明山</li>
+          <li>出團日期：2021年12月31日</li>
+          <li>預計截團日期：2021年11月30日</li>
+          <li>目前參與人數：5 位</li>
+          <li>成團人數：20 位</li>
+          <div class ="submit-button"><button type= "submit" class = "submit-confirm-event">確定成團</button></div>
+        </ul>
+      </form>
+      <div class = "cancel-event">
+        <div class = "cancel-title"><h3>取消原因</h3><p>若欲取消開團，請點選原因</p></div>
+        <form class = "form-cancel-reason" action ="GET">
+            <div class= "reason group1">
+              <label><input type="radio" name="cancel-reason" value="weather">天氣關係</label>
+              <label><input type="radio" name="cancel-reason" value="people">人數不足</label>
+            </div>
+            <div class= "reason group2">
+              <label><input type="radio" name="cancel-reason" value="sick">身體不適</label>
+              <label><input type="radio" name="cancel-reason" value="other">其他因素</label>
+            </div>
+          <div class ="submit-button"><button type= "submit" class = "submit-cancel-event">確定取消</button></div>
+        </form>
+      </div>
+    </div>
+    <div class = "modal-box2">
+      <h4>參加人員</h4>
+      <div class = "attendee-list">
+      <div class = "attendee-item">
+        <ul class = "attendee-1">
+          <li class = "attendee-img"><img class = "member-profile" src="member_imgs/IMG_0075.JPG" alt="user_pic" /></li>
+          <li class = "attendee-name">Buster</li>
+          <li class = "attendee-email">buster123@google.com</li>
+        </ul>
+      </div>
+      <div class = "attendee-item">
+        <ul class = "attendee-2">
+          <li class = "attendee-img"><img class = "member-profile" src="member_imgs/IMG_0075.JPG" alt="user_pic" /></li>
+          <li class = "attendee-name">Buster</li>
+          <li class = "attendee-email">buster123@google.com</li>
+        </ul>
+      </div>
+      <div class = "attendee-item">
+        <ul class = "attendee-1">
+          <li class = "attendee-img"><img class = "member-profile" src="member_imgs/IMG_0075.JPG" alt="user_pic" /></li>
+          <li class = "attendee-name">Buster</li>
+          <li class = "attendee-email">buster123@google.com</li>
+        </ul>
+      </div>
+      <div class = "attendee-item">
+        <ul class = "attendee-2">
+          <li class = "attendee-img"><img class = "member-profile" src="member_imgs/IMG_0075.JPG" alt="user_pic" /></li>
+          <li class = "attendee-name">Buster</li>
+          <li class = "attendee-email">buster123@google.com</li>
+        </ul>
+      </div>
+      <div class = "attendee-item">
+        <ul class = "attendee-1">
+          <li class = "attendee-img"><img class = "member-profile" src="member_imgs/IMG_0075.JPG" alt="user_pic" /></li>
+          <li class = "attendee-name">Buster</li>
+          <li class = "attendee-email">buster123@google.com</li>
+        </ul>
+      </div>
+      <div class = "attendee-item">
+        <ul class = "attendee-2">
+          <li class = "attendee-img"><img class = "member-profile" src="member_imgs/IMG_0075.JPG" alt="user_pic" /></li>
+          <li class = "attendee-name">Buster</li>
+          <li class = "attendee-email">buster123@google.com</li>
+        </ul>
+      </div>
+      <div class = "attendee-item">
+        <ul class = "attendee-1">
+          <li class = "attendee-img"><img class = "member-profile" src="member_imgs/IMG_0075.JPG" alt="user_pic" /></li>
+          <li class = "attendee-name">Buster</li>
+          <li class = "attendee-email">buster123@google.com</li>
+        </ul>
+      </div>
+      <div class = "attendee-item">
+        <ul class = "attendee-2">
+          <li class = "attendee-img"><img class = "member-profile" src="member_imgs/IMG_0075.JPG" alt="user_pic" /></li>
+          <li class = "attendee-name">Buster</li>
+          <li class = "attendee-email">buster123@google.com</li>
+        </ul>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+<div class="overlay hidden"></div>
+       
+
+
+    <script src="./vendors/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
+    <script src="script.js"></script>
+    <script  src="./js/member_main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    mountainDistrict<input id="text1" type="text" /> mountainLongitude<input
+      id="text2"
+      type="text"
+    />
+    mountainLatitude<input id="text3" type="text" /> mountainName<input
+      id="text4"
+      type="text"
+    />
+    <input id="file-upload" type="file" />
+
+    <button>Submit</button>
+    <script>
+      const btn = document.querySelector("button");
+      const fileUpload = document.querySelector("#file-upload");
+
+      btn.addEventListener("click", function () {
+        const text1 = document.querySelector("#text1").value;
+        const text2 = document.querySelector("#text2").value;
+        const text3 = document.querySelector("#text3").value;
+        const text4 = document.querySelector("#text4").value;
+
+        const file = fileUpload.files[0];
+        const fileReader = new FileReader();
+        fileReader.onload = function (e) {
+          const base64str = btoa(e.target.result);
+          fetch("mountain/addMountain", {
+            method: "POST",
+            headers: {
+              // we're telling Java what kind of file we're sending
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              mountainPic: base64str,
+              mountainDistrict: text1,
+              mountainLongitude: text2,
+              mountainLatitude: text3,
+              mountainName: text4,
+            }),
+          });
+        };
+        fileReader.readAsBinaryString(file);
+      });
+    </script>
+  </body>
+</html>

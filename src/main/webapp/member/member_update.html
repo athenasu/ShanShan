@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/img/favicon.png" />
+    <link rel="stylesheet" href="css/header_footer.css" />
+    <title>會員中心｜基本資料</title>
+    <link rel="stylesheet" href="css/member_update.css" />
+  </head>
+  <body>
+    <header>
+      <div id="logo">
+        <a href="index.html"><img src="img/logo.png" class="img" /></a>
+      </div>
+      <nav id="navlist">
+        <ul>
+          <li><a href="#">找山友</a></li>
+          <li><a href="#">山友日誌</a></li>
+          <li><a href="#">攻山小物</a></li>
+          <li><a href="#">登山資訊</a></li>
+          <li><a href="#">會員中心</a></li>
+        </ul>
+      </nav>
+      <div id="memcheck">
+        <div id="ball"><i class="fas fa-bell"></i></div>
+        <div id="login"><a href="#">登入</a></div>
+        <div id="register"><a href="#">註冊</a></div>
+      </div>
+    </header>
+    <main class="member_main">
+      <section class="glass">
+        <div class="dashboard">
+          <div class="user">
+            <div class="member_profile">
+              <img
+                class="member_profile_pic"
+                src="./member_imgs/IMG_0075.JPG"
+                alt="user_pic"
+              />
+            </div>
+            <div class="user-info">
+              <h2 class="member-name-dashboard">Buster</h2>
+              <p class="member-username-dashboard">Bestest Cat</p>
+              <p>您總共有＿＿＿點數</p>
+            </div>
+          </div>
+          <div class="links">
+            <div class="link">
+              <button>
+                <a href="member.html"><h3>會員首頁</h3></a>
+              </button>
+            </div>
+            <div class="link">
+              <button>
+                <a href="member_update.html"><h3>修改會員資料</h3></a>
+              </button>
+            </div>
+            <div class="link">
+              <ul class="side-bar-event">
+                <li>
+                  <button class="link-btn-event">
+                    <a href="member_article_details.html"><h3>文章紀錄</h3></a>
+                  </button>
+                  <ul class="second-menu-event">
+                    <li><a href="#">揪團紀錄</a></li>
+                    <li><a href="#">參團紀錄</a></li>
+                    <li><a href="#">發文紀錄</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+            <div class="link">
+              <button>
+                <a href="member_order_details.html"><h3>訂單記錄</h3></a>
+              </button>
+            </div>
+            <div class="link">
+              <ul class="side-bar-wishlist">
+                <li>
+                  <button class="link-btn-wishlist">
+                    <a href="#"><h3>收藏紀錄</h3></a>
+                  </button>
+                  <ul class="second-menu-wishlist">
+                    <li><a href="#">揪團</a></li>
+                    <li><a href="#">參團</a></li>
+                    <li><a href="#">商品</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="link">
+            <button>
+              <a href="member_points.html"><h3>點數記錄</h3></a>
+            </button>
+          </div>
+        </div>
+        <div class="events">
+          <div><h1>修改會員資料</h1></div>
+          <div class="containers">
+            <div class="left-container">
+              <!-- will i be able to set this? -->
+              <div><input type="hidden-id" hidden /></div>
+              <div>
+                <h3>名字<input class="member-name" type="text" /></h3>
+              </div>
+              <div>
+                <h3>暱稱<input class="member-username" type="text" /></h3>
+              </div>
+              <div>
+                <h3>email帳號<input class="member-email" type="text" /></h3>
+              </div>
+              <div>
+                <h3>密碼<input class="member-password" type="text" /></h3>
+              </div>
+              <div>
+                <h3>
+                  確認密碼<input class="member-password-confirm" type="text" />
+                </h3>
+              </div>
+            </div>
+            <div class="right-container">
+              <!-- drag & drop -->
+              <div class="drag-area"></div>
+              <button class="browse_btn">
+                <i class="fas fa-cloud-upload-alt"></i>上傳照片
+              </button>
+              <input class="hidden_input" type="file" hidden />
+              <!-- <input id="upload-member-img" type="file" /> -->
+            </div>
+          </div>
+          <div class="bottom-container">
+            <div class="member-intro">
+              <h3>簡介</h3>
+              <textarea
+                class="member-intro-text"
+                name="member-intro-text"
+                rows="7"
+                cols="70"
+              ></textarea>
+            </div>
+          </div>
+          <div class="btn-div">
+            <button class="submit-btn" type="submit">確定修改</button>
+            <button class="cancel-btn" type="submit">取消修改</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="./vendors/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
+    <script src="./js/member_update.js"></script>
+  </body>
+</html>

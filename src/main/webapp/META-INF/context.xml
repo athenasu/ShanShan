@@ -2,7 +2,7 @@
 <!DOCTYPE xml>
 <Context>
 
-    <Resource name="jdbc/db" type="javax.sql.DataSource"
+    <Resource name="jdbc/ShanShan" type="javax.sql.DataSource"
         url="jdbc:mysql://localhost:3306/ShanShan"
         username="root"
         password="Macbook2020"

@@ -21,7 +21,6 @@ public class WishlistEvent extends Core {
 	private Integer wishlistEventId;
 	private Integer memberId;
 	private Integer eventId;
-	private boolean favorite_status;
 	private Event event;
 
 	@ManyToOne
@@ -62,15 +61,6 @@ public class WishlistEvent extends Core {
 
 	public void setEventId(Integer eventId) {
 		this.eventId = eventId;
-	}
-
-	@Column(name = "favorite_status")
-	public boolean getFavorite_status() {
-		return favorite_status;
-	}
-
-	public void setFavorite_status(boolean favorite_status) {
-		this.favorite_status = favorite_status;
 	}
 
 }

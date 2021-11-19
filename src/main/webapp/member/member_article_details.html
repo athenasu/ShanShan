@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/img/favicon.png" />
+    <link rel="stylesheet" href="css/header_footer.css" />
+    <title>會員中心</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/member_details.css" />
+  </head>
+  <body>
+    <header>
+      <div id="logo">
+        <a href="index.html"><img  src="img/logo.png" class="img" /></a>
+      </div>
+      <nav id="navlist">
+        <ul>
+          <li><a href="#">找山友</a></li>
+          <li><a href="#">山友日誌</a></li>
+          <li><a href="#">攻山小物</a></li>
+          <li><a href="#">登山資訊</a></li>
+          <li><a href="#">會員中心</a></li>
+        </ul>
+      </nav>
+      <div id="memcheck">
+        <div id="ball"><i class="fas fa-bell"></i></div>
+        <div id="login"><a href="#">登入</a></div>
+        <div id="register"><a href="#">註冊</a></div>
+      </div>
+    </header>
+    <main class = "member-main">
+      <section class="glass">
+        <div class="dashboard">
+          <div class="user">
+            <img class = "member-profile" src="member_imgs/IMG_0075.JPG" alt="user_pic" />
+            <div class="user-info">
+              <h2>Buster</h2>
+              <p>Bestest Cat</p>
+              <p>您總共有＿＿＿點數</p>
+            </div>
+          </div>
+          <div class="links">
+              <div class="link">
+                <button><a href="member.html"><h3>會員首頁</h3></a></button>
+              </div>
+              <div class="link">
+                <button><a href="member_update.html"><h3>修改會員資料</h3></a></button>
+              </div>
+              <div class="link">
+                <ul class = "side-bar-event">
+                  <li>
+                  <button class = "link-btn-event"><a href="member_article_details.html"><h3>文章紀錄</h3></a></button>
+                  <ul class = "second-menu-event">
+                    <li><a href="#">揪團紀錄</a></li>
+                    <li><a href="#">參團紀錄</a></li>
+                    <li><a href="#">發文紀錄</a></li>
+                  </ul>
+                </li>
+                </ul>
+              </div>
+              <div class="link">
+                <button><a href="member_order_details.html"><h3>訂單記錄</h3></a></button>
+              </div>
+              <div class="link">
+                <ul class = "side-bar-wishlist">
+                  <li>
+                  <button class = "link-btn-wishlist"><a href="#"><h3>收藏紀錄</h3></a></button>
+                  <ul class = "second-menu-wishlist">
+                    <li><a href="#">揪團</a></li>
+                    <li><a href="#">參團</a></li>
+                    <li><a href="#">商品</a></li>
+                  </ul>
+                </li>
+                </ul>
+              </div>
+            </div>
+            <div class="link">
+              <button>
+                <a href="member_points.html"><h3>點數記錄</h3></a>
+              </button>
+            </div>
+        </div>
+        <div class="events">
+          <div class="event-input">
+            <h1>揪團紀錄</h1>
+          </div>
+          <div class = "sort-buttons">
+            <button class = "sort-button"><a href="#">揪團狀態</a></button>
+            <button class = "sort-button"><a href="#">揪團編號</a></button>
+            <button class = "sort-button"><a href="#">揪團日期</a></button>
+            <div class = "search-bar">
+              <i class="fas fa-search"></i><input class ="search-input" type="text" placeholder="搜尋"/>
+            </div>
+          </div>
+          <div class="cards">
+            <div class="card-1">
+              <div class="event-status">
+                <p>狀態: 已成團</p>
+              </div>
+              <div class="event-no">
+                <p>揪團編號: 123456</p>
+              </div>
+              <div class="event-name">
+                <p>揪團名稱: 玉山之旅</p>
+              </div>
+              <div class="event-date">
+                <p>出團日期: 2021/10/24</p>
+              </div>
+              <div class="event-mtn">
+                <p>地點: 玉山</p>
+              </div>
+              <div class="event-attendees">
+                <p>目前參加人數: 10 人</p>
+              </div>
+              <div class="event-details">
+                <button class = "btn--show-modal">詳情</button>
+              </div>
+            </div>
+            <div class="card-2">
+              <div class="event-status">
+                <p>狀態: 揪團中</p>
+              </div>
+              <div class="event-no">
+                <p>揪團編號: 678901</p>
+              </div>
+              <div class="event-name">
+                <p>揪團名稱: 阿里山之旅</p>
+              </div>
+              <div class="event-date">
+                <p>出團日期: 2021/10/24</p>
+              </div>
+              <div class="event-mtn">
+                <p>地點: 阿里山</p>
+              </div>
+              <div class="event-attendees">
+                <p>目前參加人數: 8 人</p>
+              </div>
+              <div class="event-details">
+                <button class = "btn--show-modal">詳情</button>
+              </div>
+            </div>
+            <div class="card-1">
+              <div class="event-status">
+                <p>狀態: 已成團</p>
+              </div>
+              <div class="event-no">
+                <p>揪團編號: 123456</p>
+              </div>
+              <div class="event-name">
+                <p>揪團名稱: 玉山之旅</p>
+              </div>
+              <div class="event-date">
+                <p>出團日期: 2021/10/24</p>
+              </div>
+              <div class="event-mtn">
+                <p>地點: 玉山</p>
+              </div>
+              <div class="event-attendees">
+                <p>目前參加人數: 10 人</p>
+              </div>
+              <div class="event-details">
+                <button class = "btn--show-modal">詳情</button>
+              </div>
+            </div>
+            <div class="card-2">
+              <div class="event-status">
+                <p>狀態: 揪團中</p>
+              </div>
+              <div class="event-no">
+                <p>揪團編號: 678901</p>
+              </div>
+              <div class="event-name">
+                <p>揪團名稱: 阿里山之旅</p>
+              </div>
+              <div class="event-date">
+                <p>出團日期: 2021/10/24</p>
+              </div>
+              <div class="event-mtn">
+                <p>地點: 阿里山</p>
+              </div>
+              <div class="event-attendees">
+                <p>目前參加人數: 8 人</p>
+              </div>
+              <div class="event-details">
+                <button class = "btn--show-modal">詳情</button>
+              </div>
+          </div>
+          <div class="card-1">
+            <div class="event-status">
+              <p>狀態: 已成團</p>
+            </div>
+            <div class="event-no">
+              <p>揪團編號: 123456</p>
+            </div>
+            <div class="event-name">
+              <p>揪團名稱: 玉山之旅</p>
+            </div>
+            <div class="event-date">
+              <p>出團日期: 2021/10/24</p>
+            </div>
+            <div class="event-mtn">
+              <p>地點: 玉山</p>
+            </div>
+            <div class="event-attendees">
+              <p>目前參加人數: 10 人</p>
+            </div>
+            <div class="event-details">
+              <button class = "btn--show-modal">詳情</button>
+            </div>
+          </div>
+          <div class="card-2">
+            <div class="event-status">
+              <p>狀態: 揪團中</p>
+            </div>
+            <div class="event-no">
+              <p>揪團編號: 678901</p>
+            </div>
+            <div class="event-name">
+              <p>揪團名稱: 阿里山之旅</p>
+            </div>
+            <div class="event-date">
+              <p>出團日期: 2021/10/24</p>
+            </div>
+            <div class="event-mtn">
+              <p>地點: 阿里山</p>
+            </div>
+            <div class="event-attendees">
+              <p>目前參加人數: 8 人</p>
+            </div>
+            <div class="event-details">
+              <button class = "btn--show-modal" >詳情</button>
+            </div>
+        </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- MODAL -->
+    <div class="modal hidden">
+      <button class="btn--close-modal">&times;</button>
+      <h2 class="modal__header">揪團詳情</h2>
+      <p class="modal-sub-header">狀態：揪團中</p>
+      <div class = "modal__container">
+        <div class = "modal-box1">
+          <form class = "confirm-event" action="GET">
+            <ul class = "modal-event-details">
+              <li>揪團編號：123456</li>
+              <li>團名：大家一同去陽明山</li>
+              <li>出團日期：2021年12月31日</li>
+              <li>預計截團日期：2021年11月30日</li>
+              <li>目前參與人數：5 位</li>
+              <li>成團人數：20 位</li>
+              <div class ="submit-button"><button type= "submit" class = "submit-confirm-event">確定成團</button></div>
+            </ul>
+          </form>
+          <div class = "cancel-event">
+            <div class = "cancel-title"><h3>取消原因</h3><p>若欲取消開團，請點選原因</p></div>
+            <form class = "form-cancel-reason" action ="GET">
+                <div class= "reason group1">
+                  <label><input type="radio" name="cancel-reason" value="weather">天氣關係</label>
+                  <label><input type="radio" name="cancel-reason" value="people">人數不足</label>
+                </div>
+                <div class= "reason group2">
+                  <label><input type="radio" name="cancel-reason" value="sick">身體不適</label>
+                  <label><input type="radio" name="cancel-reason" value="other">其他因素</label>
+                </div>
+              <div class ="submit-button"><button type= "submit" class = "submit-cancel-event">確定取消</button></div>
+            </form>
+          </div>
+        </div>
+        <div class = "modal-box2">
+          <h4>參加人員</h4>
+          <div class = "attendee-list">
+          <div class = "attendee-item">
+            <ul class = "attendee-1">
+              <li class = "attendee-img"><img class = "member-profile" src="member_imgs/IMG_0075.JPG" alt="user_pic" /></li>
+              <li class = "attendee-name">Buster</li>
+              <li class = "attendee-email">buster123@google.com</li>
+            </ul>
+          </div>
+          <div class = "attendee-item">
+            <ul class = "attendee-2">
+              <li class = "attendee-img"><img class = "member-profile" src="member_imgs/IMG_0075.JPG" alt="user_pic" /></li>
+              <li class = "attendee-name">Buster</li>
+              <li class = "attendee-email">buster123@google.com</li>
+            </ul>
+          </div>
+          <div class = "attendee-item">
+            <ul class = "attendee-1">
+              <li class = "attendee-img"><img class = "member-profile" src="member_imgs/IMG_0075.JPG" alt="user_pic" /></li>
+              <li class = "attendee-name">Buster</li>
+              <li class = "attendee-email">buster123@google.com</li>
+            </ul>
+          </div>
+          <div class = "attendee-item">
+            <ul class = "attendee-2">
+              <li class = "attendee-img"><img class = "member-profile" src="member_imgs/IMG_0075.JPG" alt="user_pic" /></li>
+              <li class = "attendee-name">Buster</li>
+              <li class = "attendee-email">buster123@google.com</li>
+            </ul>
+          </div>
+          <div class = "attendee-item">
+            <ul class = "attendee-1">
+              <li class = "attendee-img"><img class = "member-profile" src="member_imgs/IMG_0075.JPG" alt="user_pic" /></li>
+              <li class = "attendee-name">Buster</li>
+              <li class = "attendee-email">buster123@google.com</li>
+            </ul>
+          </div>
+          <div class = "attendee-item">
+            <ul class = "attendee-2">
+              <li class = "attendee-img"><img class = "member-profile" src="member_imgs/IMG_0075.JPG" alt="user_pic" /></li>
+              <li class = "attendee-name">Buster</li>
+              <li class = "attendee-email">buster123@google.com</li>
+            </ul>
+          </div>
+          <div class = "attendee-item">
+            <ul class = "attendee-1">
+              <li class = "attendee-img"><img class = "member-profile" src="member_imgs/IMG_0075.JPG" alt="user_pic" /></li>
+              <li class = "attendee-name">Buster</li>
+              <li class = "attendee-email">buster123@google.com</li>
+            </ul>
+          </div>
+          <div class = "attendee-item">
+            <ul class = "attendee-2">
+              <li class = "attendee-img"><img class = "member-profile" src="member_imgs/IMG_0075.JPG" alt="user_pic" /></li>
+              <li class = "attendee-name">Buster</li>
+              <li class = "attendee-email">buster123@google.com</li>
+            </ul>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+    <div class="overlay hidden"></div>
+    <!-- <div class="square1"></div>
+    <div class="square2"></div> -->
+    <script src="./vendors/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
+    <script src="./js/header.js"></script>
+    <script  src="./js/member_details.js"></script>
+  </body>
+</html>

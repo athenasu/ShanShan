@@ -26,7 +26,9 @@ public class MemberController {
 	
 	@GetMapping("findMemberById")
 	public Member findMemberById() { // need to change it back to using an Integer
-		return service.findById(1);
+		  final Member member = service.findById(1); 
+		  member.setPicStr(Base64.getEncoder().encodeToString(member.getMemberProfilePic()));
+		return member;
 	}
 	
 	@PostMapping("updateMemberPoints")
