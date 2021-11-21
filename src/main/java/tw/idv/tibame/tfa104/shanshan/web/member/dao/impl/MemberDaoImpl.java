@@ -12,15 +12,26 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import tw.idv.tibame.tfa104.shanshan.web.member.dao.MemberDAOHibernate;
+import tw.idv.tibame.tfa104.shanshan.web.event.entity.Event;
+import tw.idv.tibame.tfa104.shanshan.web.member.dao.MemberDAO;
 import tw.idv.tibame.tfa104.shanshan.web.member.entity.Member;
 import tw.idv.tibame.tfa104.shanshan.web.wishlistEvent.entity.WishlistEvent;
 
 @Repository // will tell Spring to make this a bean
-public class MemberDaoImplHibernate implements MemberDAOHibernate {
+public class MemberDaoImpl implements MemberDAO {
 
 	@Autowired
 	private SessionFactory sessionFactory;
+	
+	@Override
+	public List<Event> findWishlistEventsByMemberId (Integer id) {
+		Session session = sessionFactory.getCurrentSession();
+		Query<Event> query = session.createQuery("FROM Event e JOIN WishlistEvent w " + 
+				"WITH e.eventID = w.wishlistEventId WHERE w.memberId =:id", Event.class)
+				.setParameter("id", id);
+		List<Event> events = query.list();
+		return events;
+	}
 	
 	@Override
 	public int updateMemberPoints(Integer id, Integer points) {
@@ -42,7 +53,7 @@ public class MemberDaoImplHibernate implements MemberDAOHibernate {
 	
 	// just need one to get all the wishlists
 	@Override
-	public List<Member> findWishlistEvent (Integer id) {
+	public List<Member> findAllWishlists (Integer id) {
 		Session session = sessionFactory.getCurrentSession();
 		Query<Member> query = session.createQuery("FROM Member WHERE member_id = :id", Member.class)
 				.setParameter("id", id); 
@@ -50,6 +61,8 @@ public class MemberDaoImplHibernate implements MemberDAOHibernate {
 		return members;
 	}
 	
+	
+	// find member by ID
 	@Override
 	public Member selectById(Integer id) {
 		Session session = sessionFactory.getCurrentSession();
@@ -125,9 +138,24 @@ public class MemberDaoImplHibernate implements MemberDAOHibernate {
 	public List<Member> selectAll() {
 		Session session = sessionFactory.getCurrentSession();
 		
-		Query<Member> query = session.createQuery("FROM Member", Member.class); // how do i get rid of this?
+		Query<Member> query = session.createQuery("FROM Member", Member.class); // how do i get rid of this? by adding the class
 		List<Member> member = query.list();
 		return member;
 	}
+	
+	@Override
+	public int findMemberPoints(Integer id) {
+		Session session = sessionFactory.getCurrentSession();
+		return session.get(Member.class, id).getMemberSumPoints();
+	}
 
 }
+
+
+
+
+
+
+
+
+

@@ -31,19 +31,24 @@ public class MemberController {
 		return member;
 	}
 	
+	@PostMapping("findMemberPoints")
+	public int findMemberPoints(Integer id) {
+		return service.findMemberPoints(id);
+	}
+	
 	@PostMapping("updateMemberPoints")
 	public int updateMemberPoints(Integer id, Integer points) {
 		return service.updateMemberPoints(id, points);
 	}
 	
 	@PostMapping(path = "memberUpdate", consumes = { MediaType.APPLICATION_JSON_VALUE })
-	public Member updateMember(@RequestBody Member member) {
+	public Member memberUpdate(@RequestBody Member member) {
 		byte[] file = Base64.getDecoder().decode(member.getPicStr());
 		return service.updateMember(file, member);
 	}
 
 	@PostMapping(path = "register", consumes = { MediaType.APPLICATION_JSON_VALUE }) // tells the front end that we're sending a JSON file																						// sending a JSON type
-	public int addMember(@RequestBody Member member) {
+	public int register(@RequestBody Member member) {
 		System.out.println("in controller");
 		int result = service.registerMember(member);
 		System.out.println(result);

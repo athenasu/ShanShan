@@ -63,7 +63,7 @@ function showFile() {
   }
 }
 
-// INITIAL STUFF ON STIE //
+// SHOW STUFF ON STIE //
 const populatePage = function () {
   fetch("findMemberById")
     .then((body) => body.json())
@@ -131,6 +131,6 @@ window.onload = function () {
 submitBtn.addEventListener("click", function () {
   console.log("submit button clicked");
   updateInfo();
-  console.log("information updated");
   populatePage();
+  console.log("information updated");
 });
