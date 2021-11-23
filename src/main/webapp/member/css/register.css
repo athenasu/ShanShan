@@ -1,0 +1,305 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+  font-family: sans-serif;
+  background-color: rgb(255, 255, 255);
+}
+
+/* 清空樣式 */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+  border: none;
+}
+
+.-none {
+  display: none;
+}
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+  color: rgb(48, 48, 48);
+  text-decoration: none;
+}
+
+/* 解決「高度塌陷」與「外邊距重疊」*/
+
+.clearfix::before,
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/*  WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW 全頁樣式區 結束 */
+
+/*  WWWWWWWWWWWWWWWWWWWWWWWWWWW 註冊導覽列 區域開始 */
+
+.registor_header {
+  height: 75px;
+  width: 100%;
+  background-color: white;
+  /* box-sizing: border-box;border: 1px solid green;  */
+}
+
+.goods_titlebar,
+.registor_titlebar {
+  margin: 0 auto;
+  height: 75px;
+  width: 1200px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  position: relative;
+  /* box-sizing: border-box; */
+  /* background-color:rgb(190, 109, 109); */
+  /* border: 1px solid red; */
+}
+
+/*LOGO塊元素*/
+
+.goods_titlepic,
+.registor_titlepic {
+  height: 60px;
+  width: 60px;
+  cursor: pointer;
+  padding-top: 10px;
+  margin-right: 10px;
+  /* box-sizing: border-box;border: 1px solid green;  */
+}
+
+/*文字區*/
+
+.goods_header_title_shanshan,
+.goods_header_title_goods,
+.registor_title_signup {
+  font-size: 22px;
+  font-weight: bold;
+  cursor: pointer;
+  color: rgb(95, 95, 95);
+  height: 24px;
+  margin-top: 27px;
+  /* border: 1px solid green; */
+  /* overflow: hidden; */
+}
+
+.goods_header_title_shanshan:hover,
+.goods_header_title_goods:hover,
+.registor_title_signup:hover {
+  color: rgb(187, 177, 147);
+}
+
+.registor_title_signup {
+  margin-right: 860px;
+}
+
+/*文字間隔*/
+
+.goods_titlegap,
+.registor_titlegap {
+  /* line-height: 90px; */
+  margin-left: 8px;
+  margin-right: 8px;
+  margin-top: 35px;
+  /* display: inline-block; */
+  width: 2px;
+  height: 15px;
+  background-color: rgb(166, 163, 170);
+}
+
+/*WWWWWWWWWWWWWWWWWWWWWWWWWWW 註冊導覽列 區域 結束 */
+
+/*WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW 註冊 背景區 開始 */
+
+.registor_bodycontent {
+  min-height: calc(100% - 95px);
+  min-width: 1200px;
+  width: 100%;
+  background-color: rgb(246, 240, 237);
+  /* box-sizing: border-box; border: 1px solid red; */
+  padding-top: 20px;
+}
+
+/*WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW 註冊 背景區 結束 */
+
+/*WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW 註冊方式 選擇 開始 */
+
+.choose_signup_form,
+.signup_email_form {
+  margin: auto;
+  width: 400px;
+  background-color: rgb(254, 251, 248);
+  padding: 22px;
+  box-sizing: border-box;
+  /* border: 1px solid green; */
+}
+
+.registorform {
+  box-sizing: border-box;
+  width: 300px;
+  /* border: 1px solid green; */
+  margin: auto;
+}
+
+.registor_form_title,
+.login_form_title {
+  text-align: center;
+  color: rgb(59, 89, 152);
+}
+
+.registor_formbox,
+.login_formbox {
+  margin-top: 10px;
+}
+
+.registor_formname,
+.login_formname {
+  line-height: 30px;
+  font-size: 20px;
+}
+
+.registor_formbar,
+.login_formbar {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 7px;
+  padding-left: 9px;
+  padding-right: 11px;
+}
+
+/* .registor_formcheckbox,
+.login_formcheckbox {
+} */
+
+.registor_summitbutton,
+.login_summitbutton,
+.summitbutton_signupemail,
+.summitbutton_signupfacebook,
+.summitbutton_signupgoogle,
+.emaillogin {
+  width: 100%;
+  background-color: rgb(187, 177, 147);
+  color: white;
+  font-size: 20px;
+  padding: 7px;
+  font-weight: bold;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.login_description,
+.registor_description {
+  font-size: 12px;
+}
+
+/* WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW 註冊方式 選擇 結束 */
+
+/*  WWWWWWWWWWWWWWWWWWWWWWWWWW 燈箱：登入選擇區 開始 */
+
+.summitbutton_signupfacebook {
+  background-color: rgb(59, 89, 152);
+  margin-top: 20px;
+}
+
+.summitbutton_signupgoogle {
+  background-color: rgb(234, 67, 53);
+  margin-top: 15px;
+}
+
+.horizen_gap {
+  background-color: rgb(187, 177, 147);
+  height: 2px;
+  width: 126px;
+  margin: 20px;
+  margin-bottom: 3px;
+  display: inline-block;
+}
+
+.horizen_gap_or {
+  margin-bottom: 10px;
+  display: inline-block;
+  color: rgb(187, 177, 147);
+}
+
+/* WWWWWWWWWWWWWWWWWWWWWWWWWW 燈箱：登入選擇區 結束 */
+
+/* WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW 燈箱：登入區 開始 */
+
+.login_modal_botton,
+.goods_login_modal_botton,
+.registor_botton,
+.goods_registor_botton {
+  position: relative;
+  font-size: 20px;
+  font-weight: bold;
+  float: right;
+  cursor: pointer;
+  margin-left: 15px;
+  height: 30px;
+  width: 60px;
+  color: rgb(87, 87, 87);
+  border: 2px solid rgb(173, 173, 173);
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 25px;
+}
+
+.login_modal_botton {
+  margin-top: 25px;
+}
+
+.login_modal_botton:hover,
+.goods_login_modal_botton:hover,
+.registor_botton:hover,
+.goods_registor_botton:hover {
+  color: rgb(255, 255, 255);
+  border: 2px solid transparent;
+  background-color: rgba(187, 177, 147);
+}
+
+.login_modal_bcg {
+  height: 100%;
+  /* min-width: 1200px; */
+  width: 100%;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgb(0, 0, 0, 0.3);
+  z-index: 999;
+}
+
+.login_modal,
+.login_modal_email {
+  height: 330px;
+  width: 400px;
+  position: fixed;
+  top: -25%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgb(254, 251, 248);
+  z-index: 1001;
+  padding: 22px;
+  margin: auto;
+  box-sizing: border-box;
+  line-height: 100%;
+}
+
+.login_formbox_2 {
+  margin-top: 25px;
+}
+
+/*WWWWWWWWWWWWWWWWWWWWWWWWWWWWW 燈箱：登入區 結束 */
