@@ -20,7 +20,6 @@ public class MemberWishlistDaoImpl implements MemberWishlistDao {
 	public List<MemberWishlistArticle> findWishlistArticleByMemberId(Integer memberid) {
 		Session session = sessionFactory.getCurrentSession();
 //		 m.member_profile_pic, p.article_picture
-		@SuppressWarnings("unchecked")
 		List<MemberWishlistArticle> wishlistArticles = session.createNativeQuery(
 			"select " +
 				"a.article_id as articleId, " + 
@@ -44,7 +43,7 @@ public class MemberWishlistDaoImpl implements MemberWishlistDao {
 				"where article_id = ap.article_id " +
 				"group by article_id) " +
 				"and " +
-				"wa.member_id = :id")
+				"wa.member_id = :id", MemberWishlistArticle.class)
 				.setParameter("id", memberid)
 //				.unwrap(MemberWishlistArticle.class)
 				.list();

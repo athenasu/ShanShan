@@ -2,33 +2,24 @@ package tw.idv.tibame.tfa104.shanshan.web.member.entity;
 
 import java.sql.Date;
 
-import javax.persistence.ColumnResult;
-import javax.persistence.ConstructorResult;
-import javax.persistence.SqlResultSetMapping;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Transient;
 
 import tw.idv.tibame.tfa104.shanshan.Core;
 
-@SqlResultSetMapping(
-	name = "MemberWishlistArticle",
-	classes = @ConstructorResult(
-		targetClass = MemberWishlistArticle.class,
-		columns = {
-			@ColumnResult(name = "article_id"),
-		    @ColumnResult(name = "article_title"),
-		    @ColumnResult(name = "event_date"),
-		    @ColumnResult(name = "member_name")
-		}
-	)
-)
-
+@Entity
 public class MemberWishlistArticle extends Core {
 	private static final long serialVersionUID = 1L;
 
+	@Id
 	private Integer articleId;
 	private String articleTitle;
 	private Date eventDate;
+	@Transient
 	private Byte[] articlePicture;
 	private String memberName;
+	@Transient
 	private Byte[] memberProfilePicture;
 
 	public  String getMemberName() {
