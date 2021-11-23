@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import tw.idv.tibame.tfa104.shanshan.web.event.entity.Event;
 import tw.idv.tibame.tfa104.shanshan.web.member.entity.Member;
+import tw.idv.tibame.tfa104.shanshan.web.member.entity.MemberWishlistArticle;
 import tw.idv.tibame.tfa104.shanshan.web.member.service.MemberService;
+import tw.idv.tibame.tfa104.shanshan.web.member.service.MemberWishlistService;
 
 
 @RestController // using Spring RESTful to use this controller, which means it will get JSON information
@@ -18,18 +20,27 @@ public class MemberWishlistController {
 
 	@Autowired
 	private MemberService service;
+	
+	@Autowired
+	private MemberWishlistService wishlistService;
 
 	// find all wishlists by member id
+	// this isn't working
 	@PostMapping("findAllWishlistsByMemberId")
-	public List<Member> findAllWishlistEvent (Integer id){
-		return service.findAllWishlists(id);
+	public List<Member> findAllWishlists (){
+		return service.findAllWishlists(1);
+	}
+	
+	@PostMapping("findArticleWishlistsByMemberId")
+	public List<MemberWishlistArticle> findWishlistArticle (){
+		return wishlistService.findWishlistArticleByMemberId(2);
 	}
 	
 	// need to test this once we have event information
 	// find event wishlists by member id
 	@PostMapping("findWishlistEventByMemberId")
-	public List<Event> findWishlistEvent (Integer id){
-		return service.findWishlistEventsByMemberId(id);
+	public List<Event> findWishlistEvents (Integer memberid){
+		return service.findWishlistEventsByMemberId(memberid);
 	}
 	
 	// find product wishlists by member id

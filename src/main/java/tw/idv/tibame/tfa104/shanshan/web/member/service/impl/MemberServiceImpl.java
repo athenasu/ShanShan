@@ -2,6 +2,7 @@ package tw.idv.tibame.tfa104.shanshan.web.member.service.impl;
 
 import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,7 +23,7 @@ public class MemberServiceImpl implements MemberService {
 	public int findMemberPoints(Integer id) {
 		return dao.findMemberPoints(id);
 	}
-	
+
 	@Override
 	public int updateMemberPoints(Integer id, Integer points) {
 		int result = dao.updateMemberPoints(id, points);
@@ -49,7 +50,6 @@ public class MemberServiceImpl implements MemberService {
 		return dao.findAllWishlists(id);
 	}
 
-
 	@Override
 	public Member updateMember(byte[] file, Member member) {
 		return dao.update(file, member);
@@ -68,11 +68,11 @@ public class MemberServiceImpl implements MemberService {
 		return dao.register(member);
 	}
 
-
 	@Override
 	public Member findById(Integer id) {
-		return dao.selectById(id);
+		Member member = dao.selectById(id);
+		
+		return member;
 	}
-
 
 }

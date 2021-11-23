@@ -16,10 +16,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.Table; // is it this one?
+import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import tw.idv.tibame.tfa104.shanshan.web.product.entity.Product;
+import tw.idv.tibame.tfa104.shanshan.web.wishlistArticle.entity.WishlistArticle;
 import tw.idv.tibame.tfa104.shanshan.web.wishlistEvent.entity.WishlistEvent;
 
 @Entity
@@ -41,8 +42,9 @@ public class Member implements Serializable {
 	private Integer memberSumPoints;
 	private Integer memberSubscription;
 	private String picStr;
-	private List<WishlistEvent> wishlistEvents;
-	private List<Product> wishlistProducts;
+	private List<WishlistEvent> wishlistEvents; 
+	private List<Product> wishlistProducts; // i used ManyToMany
+	private List<WishlistArticle> wishlistArticle;
 
 	@ManyToMany
 	@JoinTable(joinColumns = @JoinColumn(referencedColumnName = "member_id", name = "member_id"),
@@ -54,6 +56,16 @@ public class Member implements Serializable {
 
 	public void setWishlistProducts(List<Product> wishlistProducts) {
 		this.wishlistProducts = wishlistProducts;
+	}
+	
+	@JoinColumn(name = "member_id", referencedColumnName = "member_id")
+	@OneToMany
+	public List<WishlistArticle> getWishlistArticle() {
+		return wishlistArticle;
+	}
+
+	public void setWishlistArticle(List<WishlistArticle> wishlistArticle) {
+		this.wishlistArticle = wishlistArticle;
 	}
 
 	@JoinColumn(name = "member_id", referencedColumnName = "member_id")
@@ -184,5 +196,4 @@ public class Member implements Serializable {
 	public void setPicStr(String picStr) {
 		this.picStr = picStr;
 	}
-
 }

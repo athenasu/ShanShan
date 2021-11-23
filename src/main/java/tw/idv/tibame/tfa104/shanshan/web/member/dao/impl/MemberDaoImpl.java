@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -23,7 +24,7 @@ public class MemberDaoImpl implements MemberDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
-	@Override
+	@Override // need to test this
 	public List<Event> findWishlistEventsByMemberId (Integer id) {
 		Session session = sessionFactory.getCurrentSession();
 		Query<Event> query = session.createQuery("FROM Event e JOIN WishlistEvent w " + 
@@ -66,7 +67,11 @@ public class MemberDaoImpl implements MemberDAO {
 	@Override
 	public Member selectById(Integer id) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.get(Member.class, id);
+		Member member = session.get(Member.class, id);
+		member.setWishlistProducts(null);
+		member.setWishlistArticle(null);
+		member.setWishlistEvents(null);
+		return member;
 	}
 
 	@Override
