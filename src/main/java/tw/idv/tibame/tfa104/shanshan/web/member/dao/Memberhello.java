@@ -2,7 +2,7 @@ package tw.idv.tibame.tfa104.shanshan.web.member.dao;
 
 import tw.idv.tibame.tfa104.shanshan.web.member.entity.Member;
 
-public interface MemberDao {
+public interface Memberhello {
 
 	public Integer register(Member member); // create
 	public Member selectById(Integer id); // read

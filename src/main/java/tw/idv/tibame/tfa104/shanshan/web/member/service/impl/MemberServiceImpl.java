@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import tw.idv.tibame.tfa104.shanshan.web.member.dao.MemberDao;
+import tw.idv.tibame.tfa104.shanshan.web.member.dao.Memberhello;
 import tw.idv.tibame.tfa104.shanshan.web.member.entity.Member;
 import tw.idv.tibame.tfa104.shanshan.web.member.service.MemberService;
 
@@ -13,7 +13,7 @@ import tw.idv.tibame.tfa104.shanshan.web.member.service.MemberService;
 public class MemberServiceImpl implements MemberService {
 
 	@Autowired
-	private MemberDao dao;
+	private Memberhello dao;
 	
 	@Override
 	public Member checkLogin(Member member) {
