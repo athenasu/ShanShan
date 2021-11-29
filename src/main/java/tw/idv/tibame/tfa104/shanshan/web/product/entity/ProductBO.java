@@ -20,7 +20,7 @@ public class ProductBO implements Serializable{
 	private Integer prodesId;
 	
 	@Column(name = "companyId")
-	private String companyId;
+	private Integer companyId;
 	
 	@Column(name = "companyName")
 	private String companyName;
@@ -72,10 +72,10 @@ public class ProductBO implements Serializable{
 		this.prodesId = prodesId;
 	}
 	
-	public String getCompanyId() {
+	public Integer getCompanyId() {
 		return companyId;
 	}
-	public void setCompanyId(String companyId) {
+	public void setCompanyId(Integer companyId) {
 		this.companyId = companyId;
 	}
 	public String getCompanyName() {
