@@ -1,17 +1,10 @@
-package tw.idv.tibame.tfa104.shanshan.web.order.dao;
+package tw.idv.tibame.tfa104.shanshan.web.order.service;
 
 import java.util.List;
 
 import tw.idv.tibame.tfa104.shanshan.web.order.entity.Order;
 
-
-public interface OrderDAO {
-//	新增 訂單 成功返回1，失敗返回0
-	int add(Order order);
-//	刪除 訂單 成功返回1，失敗返回0
-	int delete(Integer order_id);
-//	更新 訂單全部欄位 成功返回1，失敗返回0
-	int update(Order order);
+public interface OrderService {
 //	更新 特定訂單的貨運單號(9開頭,六位數字) 成功返回1，失敗返回0
 	int updateShipNumByOrderId(Integer ship_number, Integer order_id);
 //	更新 特定訂單的撥款狀態 成功返回1，失敗返回0
@@ -44,5 +37,6 @@ public interface OrderDAO {
 	List<Order> findAllByDateRangePayStatus(String from_date, String to_date,Integer payment_status);
 //	查詢 特定日期範圍的特定店家的訂單撥款狀態  按order id 倒序
 	List<Order> findAllByDateRangeComIdPayStatus(Integer company_id,Integer payment_status, String from_date, String to_date);
+
 
 }
