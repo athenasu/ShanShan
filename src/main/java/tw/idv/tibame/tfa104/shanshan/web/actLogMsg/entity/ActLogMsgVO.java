@@ -1,8 +1,11 @@
 package tw.idv.tibame.tfa104.shanshan.web.actLogMsg.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class ActLogMsgVO {
+public class ActLogMsgVO implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 	private Integer act_msg_id;
 	private Integer article_id;
 	private Integer member_id;

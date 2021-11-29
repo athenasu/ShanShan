@@ -7,7 +7,12 @@ import tw.idv.tibame.tfa104.shanshan.web.cabin.entity.CabinVO;
 
 public interface CabinDAO_interface {
 
-     public CabinVO findByPrimaryKey(Integer cabin_id);
-     public CabinVO findByMtn(Integer mountain_id);
+ 
+     public void insertCabin(CabinVO CabinVO);
+     public void updateCabin(CabinVO CabinVO);
+     public void deleteCabin(Integer cabin_id);
+     public List<CabinVO> getAllCabin();
+     public CabinVO findByCabinId(Integer cabin_id);
 
+     
 }

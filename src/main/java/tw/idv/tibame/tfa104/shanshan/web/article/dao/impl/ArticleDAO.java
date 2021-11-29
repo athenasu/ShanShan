@@ -1,15 +1,22 @@
 package tw.idv.tibame.tfa104.shanshan.web.article.dao.impl;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.naming.*;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import tw.idv.tibame.tfa104.shanshan.web.article.dao.ArticleDAO_interface;
 import tw.idv.tibame.tfa104.shanshan.web.article.entity.ArticleVO;
 
 public class ArticleDAO implements ArticleDAO_interface {
+
 
 	private static DataSource ds = null;
 	static {
@@ -23,23 +30,30 @@ public class ArticleDAO implements ArticleDAO_interface {
 
 	private static final String INSERT_STMT = "INSERT INTO Article (member_id, mountain_id, article_title, article_content, event_date,recommendation,other_mtn) VALUES (?,?, ?, ?, ?,?,?)";
 	private static final String UPDATE = "UPDATE Article set mountain_id=?, article_title=?, article_content=?, event_date=?,recommendation=?,other_mtn=? WHERE article_id = ?";
-	private static final String GET_ONE_STMT = "SELECT mountain_id, article_title, article_content, article_date_created,event_date,recommendation,other_mtn FROM Article WHERE article_id = ?";
-	private static final String GET_ALL_STMT = "SELECT mountain_id, article_title, article_content, article_date_created,event_date,recommendation,other_mtn FROM Article ORDER BY article_id";
+	private static final String GET_ONE_STMT = "SELECT article_id,member_id,mountain_id, article_title, article_content, article_date_created,event_date,recommendation,other_mtn,aritcle_viewer FROM Article WHERE article_id = ?";
+	private static final String GET_ALL_STMT = "SELECT article_id,member_id,mountain_id, article_title, article_content, article_date_created,event_date,recommendation,other_mtn,aritcle_viewer FROM Article ORDER BY article_date_created desc";
 	private static final String DELETE = "DELETE FROM Article where article_id = ?";
-	
-	//顯示瀏覽數、打賞數
-	
+
+	// 顯示瀏覽數、打賞數
+
 	private static final String views = "SELECT article_viewer FROM Article where article_id = ?";
 	private static final String recievedPoints = "SELECT article_points_recieved FROM Article where article_id = ?";
-	
-    //排序:日期、瀏覽數、打賞數、推薦度
-	private static final String orderByDate = "SELECT article_id,mountain_id, article_title, article_content, article_date_created,event_date,recommendation,other_mtn FROM Article ORDER BY article_date_created desc";
-	private static final String orderByViewer = "SELECT article_id,mountain_id, article_title, article_content, article_date_created,event_date,recommendation,other_mtn FROM Article ORDER BY aritcle_viewer desc";
-	private static final String orderByRecievedPoints = "SELECT article_id,mountain_id, article_title, article_content, article_date_created,event_date,recommendation,other_mtn FROM Article ORDER BY article_points_recieved desc";
-	private static final String orderByRecomm = "SELECT article_id,mountain_id, article_title, article_content, article_date_created,event_date,recommendation,other_mtn FROM Article ORDER BY recommendation desc";
 
-    //複合查詢後補
-    
+	// 排序:日期、瀏覽數、打賞數、推薦度
+	private static final String orderByDate = "SELECT member_id,article_id,mountain_id, article_title, article_content, article_date_created,event_date,recommendation,other_mtn FROM Article ORDER BY article_date_created desc";
+	private static final String orderByViewer = "SELECT member_id,article_id,mountain_id, article_title, article_content, article_date_created,event_date,recommendation,other_mtn,aritcle_viewer FROM Article ORDER BY aritcle_viewer desc limit 5 ";
+	private static final String orderByRecievedPoints = "SELECT member_id,article_id,mountain_id, article_title, article_content, article_date_created,event_date,recommendation,other_mtn FROM Article ORDER BY article_points_recieved desc";
+	private static final String orderByRecomm = "SELECT member_id,article_id,mountain_id, article_title, article_content, article_date_created,event_date,recommendation,other_mtn FROM Article ORDER BY recommendation desc";
+
+	// 複合查詢後補
+
+	// 給member後台使用 to athnea
+	private static final String findByMemIdGiveAll = "select * from article a  join article_picture p on a.article_id = p.article_id join mountain m on a.mountain_id = m.mountain_id where a.member_id= ?; ";
+	private static final String memIdRecievedPoints = "select member_id,sum(article_points_recieved) from article group by member_id=? ";
+
+	// 網誌狀態 to owen
+	private static final String updateArticleStatus = "UPDATE Article set article_status=? WHERE article_id = ?";
+
 	@Override
 	public void insert(ArticleVO ArticleVO) {
 		Connection con = null;
@@ -168,21 +182,22 @@ public class ArticleDAO implements ArticleDAO_interface {
 
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ONE_STMT);
-
 			pstmt.setInt(1, article_id);
-
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
 				ArticleVO = new ArticleVO();
-				ArticleVO.setMember_id(rs.getInt("Member_id"));
-				ArticleVO.setMountain_id(rs.getInt("Mountain_id"));
-				ArticleVO.setArticle_title(rs.getString("Article_title"));
-				ArticleVO.setArticle_content(rs.getString("getArticle_content"));
-				ArticleVO.setArticle_date_created(rs.getDate("Article_date_created"));
-				ArticleVO.setEvent_date(rs.getDate("Event_date"));
-				ArticleVO.setRecommendation(rs.getInt("Recommendation"));
-				ArticleVO.setOther_mtn(rs.getString("Other_mtn"));
+				ArticleVO.setArticle_id(rs.getInt("member_id"));
+				ArticleVO.setMember_id(rs.getInt("article_id"));
+				ArticleVO.setMountain_id(rs.getInt("mountain_id"));
+				ArticleVO.setArticle_title(rs.getString("article_title"));
+				ArticleVO.setArticle_content(rs.getString("article_content"));
+				ArticleVO.setArticle_date_created(rs.getDate("article_date_created"));
+				ArticleVO.setEvent_date(rs.getDate("event_date"));
+				ArticleVO.setRecommendation(rs.getInt("recommendation"));
+				ArticleVO.setOther_mtn(rs.getString("other_mtn"));
+				ArticleVO.setAritcle_viewer(rs.getInt("aritcle_viewer"));
+				
 			}
 
 		} catch (SQLException se) {
@@ -230,14 +245,16 @@ public class ArticleDAO implements ArticleDAO_interface {
 
 			while (rs.next()) {
 				ArticleVO = new ArticleVO();
-				ArticleVO.setMember_id(rs.getInt("Member_id"));
-				ArticleVO.setMountain_id(rs.getInt("Mountain_id"));
-				ArticleVO.setArticle_title(rs.getString("Article_title"));
-				ArticleVO.setArticle_content(rs.getString("getArticle_content"));
-				ArticleVO.setArticle_date_created(rs.getDate("Article_date_created"));
-				ArticleVO.setEvent_date(rs.getDate("Event_date"));
-				ArticleVO.setRecommendation(rs.getInt("Recommendation"));
-				ArticleVO.setOther_mtn(rs.getString("Other_mtn"));
+				ArticleVO.setArticle_id(rs.getInt("article_id"));
+				ArticleVO.setMember_id(rs.getInt("member_id"));
+				ArticleVO.setMountain_id(rs.getInt("mountain_id"));
+				ArticleVO.setArticle_title(rs.getString("article_title"));
+				ArticleVO.setArticle_content(rs.getString("article_content"));
+				ArticleVO.setArticle_date_created(rs.getDate("article_date_created"));
+				ArticleVO.setEvent_date(rs.getDate("event_date"));
+				ArticleVO.setRecommendation(rs.getInt("recommendation"));
+				ArticleVO.setOther_mtn(rs.getString("other_mtn"));
+				ArticleVO.setAritcle_viewer(rs.getInt("aritcle_viewer"));
 				list.add(ArticleVO);
 			}
 
@@ -269,10 +286,9 @@ public class ArticleDAO implements ArticleDAO_interface {
 		return list;
 	}
 
-
 	@Override
 	public ArticleVO views(Integer article_id) {
-		
+
 		ArticleVO ArticleVO = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -289,7 +305,8 @@ public class ArticleDAO implements ArticleDAO_interface {
 
 			while (rs.next()) {
 				ArticleVO = new ArticleVO();
-				ArticleVO.setArticle_viewer(rs.getInt("Article_viewer"));
+				ArticleVO.setAritcle_viewer(rs.getInt("aritcle_viewer"));
+
 			}
 
 		} catch (SQLException se) {
@@ -317,7 +334,7 @@ public class ArticleDAO implements ArticleDAO_interface {
 				}
 			}
 		}
-		return ArticleVO;		
+		return ArticleVO;
 	}
 
 	@Override
@@ -338,7 +355,7 @@ public class ArticleDAO implements ArticleDAO_interface {
 
 			while (rs.next()) {
 				ArticleVO = new ArticleVO();
-				ArticleVO.setArticle_points_received(rs.getInt("Article_points_received"));
+				ArticleVO.setArticle_points_recieved(rs.getInt("article_points_received"));
 			}
 
 		} catch (SQLException se) {
@@ -366,12 +383,12 @@ public class ArticleDAO implements ArticleDAO_interface {
 				}
 			}
 		}
-		return ArticleVO;				
+		return ArticleVO;
 	}
 
 	@Override
 	public List<ArticleVO> orderByDate() {
-		
+
 		List<ArticleVO> list = new ArrayList<ArticleVO>();
 		ArticleVO ArticleVO = null;
 
@@ -387,14 +404,16 @@ public class ArticleDAO implements ArticleDAO_interface {
 
 			while (rs.next()) {
 				ArticleVO = new ArticleVO();
-				ArticleVO.setMember_id(rs.getInt("Member_id"));
-				ArticleVO.setMountain_id(rs.getInt("Mountain_id"));
-				ArticleVO.setArticle_title(rs.getString("Article_title"));
-				ArticleVO.setArticle_content(rs.getString("Article_content"));
-				ArticleVO.setArticle_date_created(rs.getDate("Article_date_created"));
-				ArticleVO.setEvent_date(rs.getDate("Event_date"));
-				ArticleVO.setRecommendation(rs.getInt("Recommendation"));
-				ArticleVO.setOther_mtn(rs.getString("Other_mtn"));
+				ArticleVO.setMember_id(rs.getInt("member_id"));
+				ArticleVO.setArticle_id(rs.getInt("article_id"));
+
+				ArticleVO.setMountain_id(rs.getInt("mountain_id"));
+				ArticleVO.setArticle_title(rs.getString("article_title"));
+				ArticleVO.setArticle_content(rs.getString("article_content"));
+				ArticleVO.setArticle_date_created(rs.getDate("article_date_created"));
+				ArticleVO.setEvent_date(rs.getDate("event_date"));
+				ArticleVO.setRecommendation(rs.getInt("recommendation"));
+				ArticleVO.setOther_mtn(rs.getString("other_mtn"));
 				list.add(ArticleVO);
 			}
 
@@ -443,14 +462,16 @@ public class ArticleDAO implements ArticleDAO_interface {
 
 			while (rs.next()) {
 				ArticleVO = new ArticleVO();
-				ArticleVO.setMember_id(rs.getInt("Member_id"));
-				ArticleVO.setMountain_id(rs.getInt("Mountain_id"));
-				ArticleVO.setArticle_title(rs.getString("Article_title"));
-				ArticleVO.setArticle_content(rs.getString("Article_content"));
-				ArticleVO.setArticle_date_created(rs.getDate("Article_date_created"));
-				ArticleVO.setEvent_date(rs.getDate("Event_date"));
-				ArticleVO.setRecommendation(rs.getInt("Recommendation"));
-				ArticleVO.setOther_mtn(rs.getString("Other_mtn"));
+				ArticleVO.setMember_id(rs.getInt("member_id"));
+				ArticleVO.setArticle_id(rs.getInt("article_id"));
+				ArticleVO.setMountain_id(rs.getInt("mountain_id"));
+				ArticleVO.setArticle_title(rs.getString("article_title"));
+				ArticleVO.setArticle_content(rs.getString("article_content"));
+				ArticleVO.setArticle_date_created(rs.getDate("article_date_created"));
+				ArticleVO.setEvent_date(rs.getDate("event_date"));
+				ArticleVO.setRecommendation(rs.getInt("recommendation"));
+				ArticleVO.setOther_mtn(rs.getString("other_mtn"));
+				ArticleVO.setAritcle_viewer(rs.getInt("aritcle_viewer"));			
 				list.add(ArticleVO);
 			}
 
@@ -499,14 +520,16 @@ public class ArticleDAO implements ArticleDAO_interface {
 
 			while (rs.next()) {
 				ArticleVO = new ArticleVO();
-				ArticleVO.setMember_id(rs.getInt("Member_id"));
-				ArticleVO.setMountain_id(rs.getInt("Mountain_id"));
-				ArticleVO.setArticle_title(rs.getString("Article_title"));
-				ArticleVO.setArticle_content(rs.getString("Article_content"));
-				ArticleVO.setArticle_date_created(rs.getDate("Article_date_created"));
-				ArticleVO.setEvent_date(rs.getDate("Event_date"));
-				ArticleVO.setRecommendation(rs.getInt("Recommendation"));
-				ArticleVO.setOther_mtn(rs.getString("Other_mtn"));
+				ArticleVO.setMember_id(rs.getInt("member_id"));
+				ArticleVO.setArticle_id(rs.getInt("article_id"));
+
+				ArticleVO.setMountain_id(rs.getInt("mountain_id"));
+				ArticleVO.setArticle_title(rs.getString("article_title"));
+				ArticleVO.setArticle_content(rs.getString("article_content"));
+				ArticleVO.setArticle_date_created(rs.getDate("article_date_created"));
+				ArticleVO.setEvent_date(rs.getDate("event_date"));
+				ArticleVO.setRecommendation(rs.getInt("recommendation"));
+				ArticleVO.setOther_mtn(rs.getString("other_mtn"));
 				list.add(ArticleVO);
 			}
 
@@ -555,14 +578,16 @@ public class ArticleDAO implements ArticleDAO_interface {
 
 			while (rs.next()) {
 				ArticleVO = new ArticleVO();
-				ArticleVO.setMember_id(rs.getInt("Member_id"));
-				ArticleVO.setMountain_id(rs.getInt("Mountain_id"));
-				ArticleVO.setArticle_title(rs.getString("Article_title"));
-				ArticleVO.setArticle_content(rs.getString("Article_content"));
-				ArticleVO.setArticle_date_created(rs.getDate("Article_date_created"));
-				ArticleVO.setEvent_date(rs.getDate("Event_date"));
-				ArticleVO.setRecommendation(rs.getInt("Recommendation"));
-				ArticleVO.setOther_mtn(rs.getString("Other_mtn"));
+				ArticleVO.setMember_id(rs.getInt("member_id"));
+				ArticleVO.setArticle_id(rs.getInt("article_id"));
+
+				ArticleVO.setMountain_id(rs.getInt("mountain_id"));
+				ArticleVO.setArticle_title(rs.getString("article_title"));
+				ArticleVO.setArticle_content(rs.getString("article_content"));
+				ArticleVO.setArticle_date_created(rs.getDate("article_date_created"));
+				ArticleVO.setEvent_date(rs.getDate("event_date"));
+				ArticleVO.setRecommendation(rs.getInt("recommendation"));
+				ArticleVO.setOther_mtn(rs.getString("other_mtn"));
 				list.add(ArticleVO);
 			}
 
@@ -594,6 +619,176 @@ public class ArticleDAO implements ArticleDAO_interface {
 		return list;
 	}
 
+	// 給member後台使用 to athnea
+
+	@Override
+	public List<ArticleVO> findByMemIdGiveAll(Integer member_id) {
+		List<ArticleVO> list = new ArrayList<ArticleVO>();
+		ArticleVO ArticleVO = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(findByMemIdGiveAll);
+
+			pstmt.setInt(1, member_id);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				ArticleVO = new ArticleVO();
+				ArticleVO.setArticle_id(rs.getInt("article_id"));
+				ArticleVO.setMember_id(rs.getInt("member_id"));
+				ArticleVO.setMountain_id(rs.getInt("mountain_id"));
+				ArticleVO.setArticle_title(rs.getString("article_title"));
+				ArticleVO.setArticle_content(rs.getString("article_content"));
+				ArticleVO.setArticle_date_created(rs.getDate("article_date_created"));
+				ArticleVO.setEvent_date(rs.getDate("event_date"));
+				ArticleVO.setRecommendation(rs.getInt("recommendation"));
+				ArticleVO.setArticle_points_recieved(rs.getInt("article_points_recieved"));
+				ArticleVO.setArticle_status(rs.getInt("article_status"));
+				ArticleVO.setAritcle_viewer(rs.getInt("aritcle_viewer"));
+
+				ArticleVO.setOther_mtn(rs.getString("other_mtn"));
+				// mountain table
+				ArticleVO.setMountain_district(rs.getInt("mountain_district"));
+				ArticleVO.setMountain_name(rs.getString("mountain_name"));
+				ArticleVO.setMountain_longitude(rs.getInt("mountain_longitude"));
+				ArticleVO.setMountain_latitude(rs.getInt("mountain_latitude"));
+				// Article picture table
+				ArticleVO.setArticle_picture_id(rs.getInt("article_picture_id"));
+				ArticleVO.setArticle_picture(rs.getBytes("article_picture"));
+				list.add(ArticleVO);
+			}
+
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
+
+	}
+
+	@Override
+	public ArticleVO memIdRecievedPoints(Integer member_id) {
+
+		ArticleVO ArticleVO = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(memIdRecievedPoints);
+			pstmt.setInt(1, member_id);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				ArticleVO = new ArticleVO();
+				ArticleVO.setMember_id(rs.getInt("member_id"));
+				ArticleVO.setArticle_points_recieved(rs.getInt("article_points_recieved"));
+
+			}
+
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return ArticleVO;
+	}
+
+	// 網誌狀態 to owen
+
 	
-	
+	@SuppressWarnings("finally")
+	@Override
+	public int updateArticleStatus(Integer article_status, Integer article_id) {
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		int result = -1;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(updateArticleStatus);
+			pstmt.setInt(1, article_status);
+			pstmt.setInt(2, article_id);
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException se) {
+			if (con != null) {
+				try {
+					con.rollback();
+				} catch (SQLException excep) {
+					throw new RuntimeException("rollback error occured. " + excep.getMessage());
+				}
+			}
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+			return result;
+		}
+		
+	}
+
 }

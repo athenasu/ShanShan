@@ -1,0 +1,178 @@
+input {
+  border-style: none;
+}
+
+.wrap {
+  width: 90%;
+  margin: 50px auto;
+}
+.artsearch {
+  position: relative;
+  width: 300px;
+  margin: 0 auto;
+}
+#textinput {
+  width: 100%;
+  padding: 10px;
+  box-shadow: 2px 2px 2px #eee;
+  border-radius: 3px;
+}
+.fa-search {
+  position: absolute;
+  color: rgb(201, 198, 198);
+  top: 7px;
+  right: 8px;
+  font-size: 18px;
+}
+
+.wrapper {
+  display: flex;
+  margin-top: 50px;
+}
+.artlist {
+  width: 75%;
+  /* border: 1px solid red; */
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.artcard {
+  width: 30%;
+  height:350px;
+  margin: 20px 10px;
+  box-shadow: 0px 0px 5px rgb(190, 190, 190);
+  transition: all 1s;
+}
+.artcard:hover {
+  transform: translateY(-5px);
+  box-shadow: 8px 8px 2px 0 rgba(0, 0, 0, 0.075);
+}
+.artimg {
+  /* width: 100%; */
+  height: 170px;
+  overflow: hidden;
+  position: relative;
+}
+.artimg img {
+	max-height: 100%;
+	min-height: 170px;
+  	transition: all 1.5s;
+}
+.artimg img:hover {
+  transform: scale(1.2);
+}
+
+.locinfo {
+  width: 90px;
+  background-color: #5a822a;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  padding: 5px;
+  color: white;
+  text-align: center;
+}
+.locicon {
+  margin-right: 8px;
+  color: rgb(45, 75, 77);
+  font-size: 16px;
+  color: white;
+}
+.artinfo{
+	padding:10px;
+}
+.arttime,
+.arttitle,
+.artmeminfo {
+  margin-top: 10px
+}
+.arttime {
+	height:15px;
+  font-size: 13px;
+  color: #4c4948;
+}
+
+.arttitle {
+	height:100px;
+  font-size: 20px;
+  font-weight: bolder;
+  color: #5a822a;
+}
+.artmeminfo{
+	height:15px;
+}
+
+.artmeminfo,
+.artmem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.artmem {
+  width: 35%;
+}
+.artmemimg {
+  width: 30px;
+  height: 30px;
+  border-radius: 70px;
+  overflow: hidden;
+}
+.artother {
+  width: 30%;
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 20px;
+}
+.artwish {
+  color: red;
+}
+.artpoint {
+  color: yellow;
+}
+
+aside {
+  width: 25%;
+}
+
+.artranking h3 {
+  text-align: center;
+  border-bottom: 2px solid rgb(7, 66, 10);
+}
+.rankinglist {
+  width: 95%;
+  margin: 0 auto;
+}
+
+.rankingimg {
+  width: 40%;
+  overflow: hidden;
+}
+.rankingimg img {
+  border-radius: 5px;
+}
+
+.rankingcard a {
+  display: flex;
+  align-items: center;
+}
+.rankingartinfo {
+  width: 40%;
+  margin: 0px 10px;
+  /* width: 90px; */
+}
+
+.ranktitle {
+  margin: 0px;
+  margin-bottom: 3px;
+}
+
+.checktime {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.checktime span:nth-child(2) {
+  font-size: 10px;
+  color: rgb(141, 141, 141);
+}

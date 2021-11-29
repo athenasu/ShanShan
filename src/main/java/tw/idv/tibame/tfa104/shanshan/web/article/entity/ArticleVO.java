@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.sql.Date;
 
 public class ArticleVO implements Serializable  {
+
+	private static final long serialVersionUID = 1L;
 	private Integer article_id;
 	private Integer member_id;
 	private Integer mountain_id;
@@ -12,10 +14,12 @@ public class ArticleVO implements Serializable  {
 	private Date article_date_created;
 	private Date event_date;
 	private Integer recommendation;
-	private Integer article_points_received;
+	private Integer Article_points_recieved;
 	private Integer article_status;
-	private Integer article_viewer;
+	private Integer aritcle_viewer;
 	private String other_mtn;
+	
+	
 	
 	public Integer getArticle_id() {
 		return article_id;
@@ -66,11 +70,11 @@ public class ArticleVO implements Serializable  {
 	public void setRecommendation(Integer recommendation) {
 		this.recommendation = recommendation;
 	}
-	public Integer getArticle_points_received() {
-		return article_points_received;
+	public Integer getArticle_points_recieved() {
+		return Article_points_recieved;
 	}
-	public void setArticle_points_received(Integer article_points_received) {
-		this.article_points_received = article_points_received;
+	public void setArticle_points_recieved(Integer Article_points_recieved) {
+		this.Article_points_recieved = Article_points_recieved;
 	}
 	public Integer getArticle_status() {
 		return article_status;
@@ -78,11 +82,11 @@ public class ArticleVO implements Serializable  {
 	public void setArticle_status(Integer article_status) {
 		this.article_status = article_status;
 	}
-	public Integer getArticle_viewer() {
-		return article_viewer;
+	public Integer getAritcle_viewer() {
+		return aritcle_viewer;
 	}
-	public void setArticle_viewer(Integer article_viewer) {
-		this.article_viewer = article_viewer;
+	public void setAritcle_viewer(Integer aritcle_viewer) {
+		this.aritcle_viewer = aritcle_viewer;
 	}
 	public String getOther_mtn() {
 		return other_mtn;
@@ -91,6 +95,55 @@ public class ArticleVO implements Serializable  {
 		this.other_mtn = other_mtn;
 	}
 	
+	
+//	for join
+	private Integer mountain_district;
+	private String mountain_name;
+	private Integer mountain_longitude;
+	private Integer mountain_latitude;
+	private Integer article_picture_id;
+	private byte[] article_picture;
+
+
+
+	public Integer getMountain_district() {
+		return mountain_district;
+	}
+	public void setMountain_district(Integer mountain_district) {
+		this.mountain_district = mountain_district;
+	}
+	public String getMountain_name() {
+		return mountain_name;
+	}
+	public void setMountain_name(String mountain_name) {
+		this.mountain_name = mountain_name;
+	}
+	public Integer getMountain_longitude() {
+		return mountain_longitude;
+	}
+	public void setMountain_longitude(Integer mountain_longitude) {
+		this.mountain_longitude = mountain_longitude;
+	}
+	public Integer getMountain_latitude() {
+		return mountain_latitude;
+	}
+	public void setMountain_latitude(Integer mountain_latitude) {
+		this.mountain_latitude = mountain_latitude;
+	}
+	public Integer getArticle_picture_id() {
+		return article_picture_id;
+	}
+	public void setArticle_picture_id(Integer article_picture_id) {
+		this.article_picture_id = article_picture_id;
+	}
+	public byte[] getArticle_picture() {
+		return article_picture;
+	}
+	public void setArticle_picture(byte[] article_picture) {
+		this.article_picture = article_picture;
+	}
+
+
 	
 }
 

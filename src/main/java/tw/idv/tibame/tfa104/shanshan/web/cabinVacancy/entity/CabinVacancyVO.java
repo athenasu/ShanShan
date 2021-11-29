@@ -1,23 +1,31 @@
 package tw.idv.tibame.tfa104.shanshan.web.cabinVacancy.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class CabinVacancyVO {
+public class CabinVacancyVO implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 	private Integer cabin_id;
-	private Date booking_date;
+	private Date date;
 	private Integer cabin_vacancy;
 	private Date update_time;
+	
+	
 	public Integer getCabin_id() {
 		return cabin_id;
 	}
 	public void setCabin_id(Integer cabin_id) {
 		this.cabin_id = cabin_id;
 	}
-	public Date getBooking_date() {
-		return booking_date;
+	
+	
+	
+	public Date getDate() {
+		return date;
 	}
-	public void setBooking_date(Date booking_date) {
-		this.booking_date = booking_date;
+	public void setDate(Date date) {
+		this.date = date;
 	}
 	public Integer getCabin_vacancy() {
 		return cabin_vacancy;

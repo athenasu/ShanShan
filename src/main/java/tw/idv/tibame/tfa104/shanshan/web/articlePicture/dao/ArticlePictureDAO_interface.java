@@ -1,6 +1,6 @@
 package tw.idv.tibame.tfa104.shanshan.web.articlePicture.dao;
 
-import java.util.*;
+import java.util.List;
 
 import tw.idv.tibame.tfa104.shanshan.web.articlePicture.entity.ArticlePictureVO;
 
@@ -8,10 +8,12 @@ import tw.idv.tibame.tfa104.shanshan.web.articlePicture.entity.ArticlePictureVO;
 public interface ArticlePictureDAO_interface {
 	
 	 public void insert(ArticlePictureVO ArticlePictureVO) ;
-	 public void update(ArticlePictureVO ArticlePictureVO) ;
-     public void delete(Integer article_picture_id) ;
-     public ArticlePictureVO findByPrimaryKey(Integer article_picture_id);
-//     public List<ArticlePictureVO> getAll() ;
+	 public String update(ArticlePictureVO ArticlePictureVO) ;
+     public ArticlePictureVO findByArtId(Integer article_id);
+     public ArticlePictureVO getOnePic(Integer article_id);
      
-     
+     public void delete(Integer article_picture_id);
+     public List<ArticlePictureVO> getAllArtPic();
+
+ 
 }

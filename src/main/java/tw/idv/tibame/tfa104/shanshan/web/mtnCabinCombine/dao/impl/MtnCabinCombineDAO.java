@@ -1,4 +1,4 @@
-package tw.idv.tibame.tfa104.shanshan.web.cabin.dao.impl;
+package tw.idv.tibame.tfa104.shanshan.web.mtnCabinCombine.dao.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,10 +12,11 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import tw.idv.tibame.tfa104.shanshan.web.cabin.dao.CabinDAO_interface;
-import tw.idv.tibame.tfa104.shanshan.web.cabin.entity.CabinVO;
+import tw.idv.tibame.tfa104.shanshan.web.mtnCabinCombine.dao.MtnCabinCombineDAO_interface;
+import tw.idv.tibame.tfa104.shanshan.web.mtnCabinCombine.entity.MtnCabinCombineVO;
 
-public class CabinDAO implements CabinDAO_interface {
+
+public class MtnCabinCombineDAO implements MtnCabinCombineDAO_interface {
 
 	private static DataSource ds = null;
 	static {
@@ -27,24 +28,23 @@ public class CabinDAO implements CabinDAO_interface {
 		}
 	}
 
-	private static final String insertCabin = "INSERT INTO cabin (cabin_name,cabin_pic) VALUES (?,?,?)";
-	private static final String updateCabin = "update cabin set cabin_name=?,cabin_pic=? where cabin_id=? ";
-	private static final String deleteCabin = "delete from cabin where cabin_id=? ";
-	private static final String getAllCabin = "select cabin_id,cabin_name,cabin_pic from cabin oder by cabin_id";
-
-	private static final String findByCabinId = "Select cabin_id,cabin_name,cabin_pic from cabin where cabin_id=?";
+	private static final String insert = "INSERT INTO mtn_cabin_combine (mountain_id,cabin_id) VALUES (?,?)";
+	private static final String update = "update mtn_cabin_combine set mountain_id=?,cabin_id=? where combine_id=? ";
+	private static final String delete = "delete from mtn_cabin_combine where combine_id=? ";
+	private static final String getAll = "select combine_id,mountain_id,cabin_id from mtn_cabin_combine oder by combine_id";
+	private static final String findByPK = "Select ccombine_id,mountain_id,cabin_id from mtn_cabin_combine where combine_id=?";
 
 	@Override
-	public void insertCabin(CabinVO CabinVO) {
+	public void insert(MtnCabinCombineVO MtnCabinCombineVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
 		try {
 
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(insertCabin);
-			pstmt.setString(1, CabinVO.getCabin_name());
-			pstmt.setBytes(2, CabinVO.getCabin_pic());
+			pstmt = con.prepareStatement(insert);
+			pstmt.setInt(1, MtnCabinCombineVO.getMountain_id());
+			pstmt.setInt(2, MtnCabinCombineVO.getCabin_id());
 			pstmt.executeUpdate();
 
 		} catch (SQLException se) {
@@ -65,21 +65,21 @@ public class CabinDAO implements CabinDAO_interface {
 				}
 			}
 		}
+		
 	}
 
 	@Override
-	public void updateCabin(CabinVO CabinVO) {
-
+	public void update(MtnCabinCombineVO MtnCabinCombineVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
 		try {
 
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(updateCabin);
-			pstmt.setString(1, CabinVO.getCabin_name());
-			pstmt.setBytes(2, CabinVO.getCabin_pic());
-			pstmt.setInt(3, CabinVO.getCabin_id());
+			pstmt = con.prepareStatement(update);
+			pstmt.setInt(1, MtnCabinCombineVO.getMountain_id());
+			pstmt.setInt(2, MtnCabinCombineVO.getCabin_id());
+			pstmt.setInt(3, MtnCabinCombineVO.getCombine_id());
 			pstmt.executeUpdate();
 
 		} catch (SQLException se) {
@@ -101,11 +101,10 @@ public class CabinDAO implements CabinDAO_interface {
 				}
 			}
 		}
-
 	}
 
 	@Override
-	public void deleteCabin(Integer cabin_id) {
+	public void delete(Integer combine_id) {
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -113,8 +112,8 @@ public class CabinDAO implements CabinDAO_interface {
 		try {
 
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(deleteCabin);
-			pstmt.setInt(1, cabin_id);
+			pstmt = con.prepareStatement(delete);
+			pstmt.setInt(1, combine_id);
 			pstmt.executeUpdate();
 
 		} catch (SQLException se) {
@@ -135,12 +134,62 @@ public class CabinDAO implements CabinDAO_interface {
 				}
 			}
 		}
+		
 	}
 
 	@Override
-	public List<CabinVO> getAllCabin() {
-		List<CabinVO> list = new ArrayList<CabinVO>();
-		CabinVO CabinVO = null;
+	public MtnCabinCombineVO findByPK(Integer combine_id) {
+		MtnCabinCombineVO MtnCabinCombineVO = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(findByPK);
+			pstmt.setInt(1, combine_id);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				MtnCabinCombineVO = new MtnCabinCombineVO();
+				MtnCabinCombineVO.setCombine_id(rs.getInt("combine_id"));
+				MtnCabinCombineVO.setMountain_id(rs.getInt("mountain_id"));
+				MtnCabinCombineVO.setCabin_id(rs.getInt("cabin_id"));
+			}
+
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return MtnCabinCombineVO;
+	}
+
+	@Override
+	public List<MtnCabinCombineVO> getAll() {
+		List<MtnCabinCombineVO> list = new ArrayList<MtnCabinCombineVO>();
+		MtnCabinCombineVO MtnCabinCombineVO = null;
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -149,15 +198,15 @@ public class CabinDAO implements CabinDAO_interface {
 		try {
 
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(getAllCabin);
+			pstmt = con.prepareStatement(getAll);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				CabinVO = new CabinVO();
-				CabinVO.setCabin_id(rs.getInt("cabin_id"));
-				CabinVO.setCabin_name(rs.getString("cabin_name"));
-				CabinVO.setCabin_pic(rs.getBytes("cabin_pic"));
-				list.add(CabinVO); 
+				MtnCabinCombineVO = new MtnCabinCombineVO();
+				MtnCabinCombineVO.setCombine_id(rs.getInt("combine_id"));
+				MtnCabinCombineVO.setMountain_id(rs.getInt("mountain_id"));
+				MtnCabinCombineVO.setCabin_id(rs.getInt("cabin_id"));
+				list.add(MtnCabinCombineVO); 
 			}
 
 		} catch (SQLException se) {
@@ -189,54 +238,7 @@ public class CabinDAO implements CabinDAO_interface {
 		return list;
 	}
 
-	@Override
-	public CabinVO findByCabinId(Integer cabin_id) {
-		CabinVO CabinVO = null;
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-
-		try {
-
-			con = ds.getConnection();
-			pstmt = con.prepareStatement(findByCabinId);
-			pstmt.setInt(1, cabin_id);
-			rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-				CabinVO = new CabinVO();
-				CabinVO.setCabin_id(rs.getInt("cabin_id"));
-				CabinVO.setCabin_name(rs.getString("cabin_name"));
-				CabinVO.setCabin_pic(rs.getBytes("cabin_pic"));
-			}
-
-		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. " + se.getMessage());
-		} finally {
-			if (rs != null) {
-				try {
-					rs.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (Exception e) {
-					e.printStackTrace(System.err);
-				}
-			}
-		}
-		return CabinVO;
-	}
-
 	
+	
+
 }

@@ -1,11 +1,14 @@
 package tw.idv.tibame.tfa104.shanshan.web.articleReport.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class ArticleReportVO {
+public class ArticleReportVO implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	private Integer article_report_id;
 	private Integer member_id;
-	private Integer article_no;
+	private Integer article_id;
 	private Integer article_report_status;
 	private Integer article_report_reason;
 	private Date article_report_date ;
@@ -23,11 +26,11 @@ public class ArticleReportVO {
 	public void setMember_id(Integer member_id) {
 		this.member_id = member_id;
 	}
-	public Integer getArticle_no() {
-		return article_no;
+	public Integer getArticle_id() {
+		return article_id;
 	}
-	public void setArticle_no(Integer article_no) {
-		this.article_no = article_no;
+	public void setArticle_id(Integer article_id) {
+		this.article_id = article_id;
 	}
 	public Integer getArticle_report_status() {
 		return article_report_status;

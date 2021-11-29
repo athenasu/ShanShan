@@ -59,4 +59,41 @@ public class ArticleService {
 		return dao.getAll();
 	}
 
+	public ArticleVO views(Integer article_id) {
+		return dao.views(article_id);
+	}
+
+	public ArticleVO recievedPoints(Integer article_id) {
+		return dao.recievedPoints(article_id);
+	}
+
+	public List<ArticleVO> orderByDate() {
+		return dao.orderByDate();
+	}
+
+	public List<ArticleVO> orderByViewer() {
+		return dao.orderByViewer();
+	}
+
+	public List<ArticleVO> orderByRecievedPoints() {
+		return dao.orderByRecievedPoints();
+	}
+
+	public List<ArticleVO> orderByRecomm() {
+		return dao.orderByRecomm();
+	}
+
+	public List<ArticleVO> findByMemIdGiveAll(Integer member_id) {
+		return dao.findByMemIdGiveAll(member_id);
+	}
+
+	public ArticleVO memIdRecievedPoints(Integer member_id) {
+		return dao.memIdRecievedPoints(member_id);
+	}
+
+	public int updateArticleStatus(Integer article_status, Integer article_id) {
+		return dao.updateArticleStatus(article_status, article_id);
+	}
+
+	
 }
