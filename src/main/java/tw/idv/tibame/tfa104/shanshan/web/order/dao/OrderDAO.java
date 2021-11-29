@@ -3,6 +3,7 @@ package tw.idv.tibame.tfa104.shanshan.web.order.dao;
 import java.util.List;
 
 import tw.idv.tibame.tfa104.shanshan.web.order.entity.Order;
+import tw.idv.tibame.tfa104.shanshan.web.orderDescription.entity.OrderDescriptionBO;
 
 
 public interface OrderDAO {
@@ -44,5 +45,4 @@ public interface OrderDAO {
 	List<Order> findAllByDateRangePayStatus(String from_date, String to_date,Integer payment_status);
 //	查詢 特定日期範圍的特定店家的訂單撥款狀態  按order id 倒序
 	List<Order> findAllByDateRangeComIdPayStatus(Integer company_id,Integer payment_status, String from_date, String to_date);
-
 }
