@@ -42,3 +42,21 @@ $("div.registor_title_shanshan").click(function () {
 });
 
 // WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW 註冊 結束
+
+/////////// LOGIN FETCH EMAIL & PASSWORD ///////////
+const loginBtn = document.querySelector(".login_summitbutton");
+const memberEmail = document.querySelector(".login_formbar_email");
+const memberPassword = document.querySelector(".login_formbar_password");
+loginBtn.addEventListener("click", function () {
+  fetch("member/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    // setting the variables
+    body: JSON.stringify({
+      memberEmail,
+      memberPassword,
+    }),
+  });
+});

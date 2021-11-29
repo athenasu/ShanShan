@@ -4,38 +4,45 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.List;
 
-import org.hibernate.Hibernate;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import tw.idv.tibame.tfa104.shanshan.web.event.entity.Event;
-import tw.idv.tibame.tfa104.shanshan.web.member.dao.MemberDAO;
+import tw.idv.tibame.tfa104.shanshan.web.member.dao.MemberDao;
 import tw.idv.tibame.tfa104.shanshan.web.member.entity.Member;
-import tw.idv.tibame.tfa104.shanshan.web.wishlistEvent.entity.WishlistEvent;
 
-@Repository // will tell Spring to make this a bean
-public class MemberDaoImpl implements MemberDAO {
+@Repository
+public class MemberDaoImpl implements MemberDao {
 
 	@Autowired
 	private SessionFactory sessionFactory;
 	
-	@Override // need to test this
-	public List<Event> findWishlistEventsByMemberId (Integer id) {
+	@Override
+	public Member checkLogin(Member member) {
 		Session session = sessionFactory.getCurrentSession();
-		Query<Event> query = session.createQuery("FROM Event e JOIN WishlistEvent w " + 
-				"WITH e.eventID = w.wishlistEventId WHERE w.memberId =:id", Event.class)
-				.setParameter("id", id);
-		List<Event> events = query.list();
-		return events;
+		CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+		CriteriaQuery<Member> criteriaQuery = criteriaBuilder.createQuery(Member.class);
+		Root<Member> root = criteriaQuery.from(Member.class);
+		Predicate checkEmail = criteriaBuilder.equal(root.get("memberEmail"), member.getMemberEmail());
+		Predicate checkPassword = criteriaBuilder.equal(root.get("memberPassword"), member.getMemberPassword());
+		Predicate check = criteriaBuilder.and(checkEmail, checkPassword);
+		criteriaQuery = criteriaQuery.where(check);
+		Query<Member> query = session.createQuery(criteriaQuery);
+		Member loggedInMember = query.uniqueResult();
+		return loggedInMember;
 	}
 	
+	
 	@Override
-	public int updateMemberPoints(Integer id, Integer points) {
+	public Integer updateMemberPoints(Integer id, Integer points) {
 		Session session = sessionFactory.getCurrentSession();
 		Member member = session.get(Member.class, id);
 		int curPoints = member.getMemberSumPoints();
@@ -44,47 +51,24 @@ public class MemberDaoImpl implements MemberDAO {
 		return 1;
 	}
 	
-	@Override
-	public int deleteWishlistEvent(Integer id) {
-		Session session = sessionFactory.getCurrentSession();
-		WishlistEvent wishlist = session.get(WishlistEvent.class, id);
-		session.delete(wishlist);
-		return 1;
-	}
-	
-	// just need one to get all the wishlists
-	@Override
-	public List<Member> findAllWishlists (Integer id) {
-		Session session = sessionFactory.getCurrentSession();
-		Query<Member> query = session.createQuery("FROM Member WHERE member_id = :id", Member.class)
-				.setParameter("id", id); 
-		List<Member> members = query.list();
-		return members;
-	}
-	
-	
 	// find member by ID
 	@Override
 	public Member selectById(Integer id) {
 		Session session = sessionFactory.getCurrentSession();
 		Member member = session.get(Member.class, id);
-		member.setWishlistProducts(null);
-		member.setWishlistArticle(null);
-		member.setWishlistEvents(null);
 		return member;
 	}
 
 	@Override
-	public boolean checkEmail(String email) {
+	public Boolean checkEmail(String email) {
 		Session session = sessionFactory.getCurrentSession();
-		// :email is like ?, Member.class is the return type
 		Query<Member> query = session.createQuery("FROM Member WHERE memberEmail = :email", Member.class)
-				.setParameter("email", email);
+									 .setParameter("email", email);
 		return query.uniqueResult() != null; // if it returns true, this means this account has already been registered
 	}
 
 	@Override
-	public int register(Member member) {
+	public Integer register(Member member) {
 		Session session = sessionFactory.getCurrentSession(); 
 		System.out.println("in dao register: adding picture");
 		File file = new File("/src/defaultPictures/member/default_profile_pic.png");
@@ -140,16 +124,7 @@ public class MemberDaoImpl implements MemberDAO {
 	}
 
 	@Override
-	public List<Member> selectAll() {
-		Session session = sessionFactory.getCurrentSession();
-		
-		Query<Member> query = session.createQuery("FROM Member", Member.class); // how do i get rid of this? by adding the class
-		List<Member> member = query.list();
-		return member;
-	}
-	
-	@Override
-	public int findMemberPoints(Integer id) {
+	public Integer findMemberPoints(Integer id) {
 		Session session = sessionFactory.getCurrentSession();
 		return session.get(Member.class, id).getMemberSumPoints();
 	}

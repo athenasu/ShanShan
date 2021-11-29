@@ -5,7 +5,7 @@
     <Resource name="jdbc/ShanShan" type="javax.sql.DataSource"
         url="jdbc:mysql://localhost:3306/ShanShan?serverTimezone=Asia/Taipei"
         username="root"
-        password="Macbook2020"
+        password="password"
         driverClassName="com.mysql.cj.jdbc.Driver"
         maxActive="8"
       	maxIdle="4"

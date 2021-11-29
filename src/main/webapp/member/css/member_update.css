@@ -63,7 +63,7 @@ button {
   vertical-align: middle;
 }
 
-.member_profile img {
+.member_profile .member_profile_pic {
   width: 100%;
   min-height: 180px;
   /* height: 100%; */

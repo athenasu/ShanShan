@@ -37,11 +37,35 @@ a:active {
 }
 
 .member_profile {
-  height: 250px;
-  clip-path: circle();
+  /* border: 1px blue solid; */
+  margin-top: 1rem;
+  height: 180px;
+  width: 180px;
+  overflow: hidden;
+  border-radius: 50%;
   position: relative;
-  margin-top: -15%;
-  margin-bottom: 0.5rem;
+  vertical-align: middle;
+}
+
+.member_profile .member_profile_pic {
+  width: 100%;
+  min-height: 180px;
+  /* height: 100%; */
+}
+
+.user {
+  /* border: 1px green solid; */
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.user-info {
+  /* border: 1px red solid; */
+  margin-top: 0.5rem;
+  width: 10rem;
 }
 
 .glass {
@@ -75,14 +99,6 @@ a:active {
     rgba(255, 255, 255, 0.3)
   );
   border-radius: 1rem;
-}
-
-.user {
-  position: absolute;
-}
-
-.user .user-info {
-  margin-top: -40%;
 }
 
 /* SIDE MENU */

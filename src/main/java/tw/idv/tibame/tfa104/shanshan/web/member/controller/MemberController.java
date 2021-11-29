@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import tw.idv.tibame.tfa104.shanshan.web.member.entity.Member;
 import tw.idv.tibame.tfa104.shanshan.web.member.service.MemberService;
 
-@RestController // using Spring RESTful to use this controller, which means it will get JSON information
+@RestController
 @RequestMapping("member")
 @SessionAttributes({ "member" })
 public class MemberController {
@@ -25,19 +25,19 @@ public class MemberController {
 	private MemberService service;
 	
 	@GetMapping("findMemberById")
-	public Member findMemberById() { // need to change it back to using an Integer
+	public Member findMemberById() { // need to change this back to Integer id
 		  final Member member = service.findById(1);
 		  member.setPicStr(Base64.getEncoder().encodeToString(member.getMemberProfilePic()));
 		return member;
 	}
 	
 	@PostMapping("findMemberPoints")
-	public int findMemberPoints(Integer id) {
+	public Integer findMemberPoints(Integer id) { // why don't i need a @RequestBody here?
 		return service.findMemberPoints(id);
 	}
 	
 	@PostMapping("updateMemberPoints")
-	public int updateMemberPoints(Integer id, Integer points) {
+	public Integer updateMemberPoints(Integer id, Integer points) {
 		return service.updateMemberPoints(id, points);
 	}
 	
@@ -48,7 +48,7 @@ public class MemberController {
 	}
 
 	@PostMapping(path = "register", consumes = { MediaType.APPLICATION_JSON_VALUE }) // tells the front end that we're sending a JSON file																						// sending a JSON type
-	public int register(@RequestBody Member member) {
+	public Integer register(@RequestBody Member member) {
 		System.out.println("in controller");
 		int result = service.registerMember(member);
 		System.out.println(result);
@@ -56,7 +56,7 @@ public class MemberController {
 	}
 
 	@PostMapping(path = "upload", consumes = { MediaType.APPLICATION_JSON_VALUE })
-	public int upload(@RequestBody Member member) {
+	public Integer upload(@RequestBody Member member) {
 		// getting and decoding the file to Base64
 		byte[] file = Base64.getDecoder().decode(member.getPicStr());
 
@@ -69,14 +69,19 @@ public class MemberController {
 		return 0;
 	}
 
-	@GetMapping("login")
-	public void login(Model model, Member member) {
+	@PostMapping("login")
+	public Member login(Model model, @RequestBody Member member) {
 		// will need to add this method, as soon as i set the user's email and password,
 		// i'll be able to set their information in the session
 		// and everyone else will be able to get it
+		Member loggedInMember = service.checkLogin(member); 
+		if (loggedInMember != null) {
+			model.addAttribute("member", member);
+		}
+		return loggedInMember;
 //		member = service.findByUsernameAndPassword(member);
-		member.setMemberId(123);
-		member.setMemberUsername("william");
-		model.addAttribute("member", member);
+//		member.setMemberId(member.getMemberId());
+//		member.setMemberEmail(member.getMemberEmail());
+//		member.setMemberPassword(member.getMemberPassword());
 	}
 }

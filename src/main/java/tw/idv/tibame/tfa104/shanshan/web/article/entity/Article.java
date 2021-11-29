@@ -2,18 +2,14 @@ package tw.idv.tibame.tfa104.shanshan.web.article.entity;
 
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-
-import tw.idv.tibame.tfa104.shanshan.web.articlePicture.entity.ArticlePicture;
 
 @Entity
 @Table(name = "article")
@@ -23,87 +19,99 @@ public class Article implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer article_id;
-	private Integer member_id;
-	private Integer mountain_id;
-	private String article_title;
-	private String article_content;
-	private Date article_date_created;
-	private Date event_date;
+	@Column(name = "article_id")
+	private Integer articleId;
+	@Column(name = "member_id")
+	private Integer memberId;
+	@Column(name = "mountain_id")
+	private Integer mountainId;
+	@Column(name = "article_title")
+	private String articleTitle;
+	@Column(name = "article_content")
+	private String articleContent;
+	@Column(name = "article_date_created")
+	private Date articleDateCreated;
+	@Column(name = "event_date")
+	private Date eventDate;
+	@Column(name = "recommendation")
 	private Integer recommendation;
 	@Transient
-	private Integer article_points_received;
-	private Integer article_status;
+	@Column(name = "article_points_received")
+	private Integer articlePointsReceived;
+	@Column(name = "article_status")
+	private Integer articleStatus;
 	@Transient
-	private Integer article_viewer;
-	private String other_mtn;
-	
-	@JoinColumn(name = "article_id", referencedColumnName = "article_id")
-	@OneToMany
-	private List<ArticlePicture> pictures;
-	
-	public List<ArticlePicture> getPictures() {
-		return pictures;
+	@Column(name = "article_viewer")
+	private Integer articleViewer;
+	@Column(name = "other_mtn")
+	private String otherMtn;
+
+//	@JoinColumn(name = "article_id", referencedColumnName = "article_id")
+//	@OneToMany
+//	private List<ArticlePicture> pictures;
+//	
+//	public List<ArticlePicture> getPictures() {
+//		return pictures;
+//	}
+//
+//	public void setPictures(List<ArticlePicture> pictures) {
+//		this.pictures = pictures;
+//	}
+
+	public Integer getArticleId() {
+		return articleId;
 	}
 
-	public void setPictures(List<ArticlePicture> pictures) {
-		this.pictures = pictures;
+	public void setArticleId(Integer articleId) {
+		this.articleId = articleId;
 	}
 
-	public Integer getArticle_id() {
-		return article_id;
+	public Integer getMemberId() {
+		return memberId;
 	}
 
-	public void setArticle_id(Integer article_id) {
-		this.article_id = article_id;
+	public void setMemberId(Integer memberId) {
+		this.memberId = memberId;
 	}
 
-	public Integer getMember_id() {
-		return member_id;
+	public Integer getMountainId() {
+		return mountainId;
 	}
 
-	public void setMember_id(Integer member_id) {
-		this.member_id = member_id;
+	public void setMountainId(Integer mountainId) {
+		this.mountainId = mountainId;
 	}
 
-	public Integer getMountain_id() {
-		return mountain_id;
+	public String getArticleTitle() {
+		return articleTitle;
 	}
 
-	public void setMountain_id(Integer mountain_id) {
-		this.mountain_id = mountain_id;
+	public void setArticleTitle(String articleTitle) {
+		this.articleTitle = articleTitle;
 	}
 
-	public String getArticle_title() {
-		return article_title;
+	public String getArticleContent() {
+		return articleContent;
 	}
 
-	public void setArticle_title(String article_title) {
-		this.article_title = article_title;
+	public void setArticleContent(String articleContent) {
+		this.articleContent = articleContent;
 	}
 
-	public String getArticle_content() {
-		return article_content;
+	public Date getArticleDateCreated() {
+		return articleDateCreated;
 	}
 
-	public void setArticle_content(String article_content) {
-		this.article_content = article_content;
+	public void setArticleDateCreated(Date articleDateCreated) {
+		this.articleDateCreated = articleDateCreated;
 	}
 
-	public Date getArticle_date_created() {
-		return article_date_created;
+	public Date getEventDate() {
+		return eventDate;
 	}
 
-	public void setArticle_date_created(Date article_date_created) {
-		this.article_date_created = article_date_created;
-	}
-
-	public Date getEvent_date() {
-		return event_date;
-	}
-
-	public void setEvent_date(Date event_date) {
-		this.event_date = event_date;
+	public void setEventDate(Date eventDate) {
+		this.eventDate = eventDate;
 	}
 
 	public Integer getRecommendation() {
@@ -114,36 +122,36 @@ public class Article implements Serializable {
 		this.recommendation = recommendation;
 	}
 
-	public Integer getArticle_points_received() {
-		return article_points_received;
+	public Integer getArticlePointsReceived() {
+		return articlePointsReceived;
 	}
 
-	public void setArticle_points_received(Integer article_points_received) {
-		this.article_points_received = article_points_received;
+	public void setArticlePointsReceived(Integer articlePointsReceived) {
+		this.articlePointsReceived = articlePointsReceived;
 	}
 
-	public Integer getArticle_status() {
-		return article_status;
+	public Integer getArticleStatus() {
+		return articleStatus;
 	}
 
-	public void setArticle_status(Integer article_status) {
-		this.article_status = article_status;
+	public void setArticleStatus(Integer articleStatus) {
+		this.articleStatus = articleStatus;
 	}
 
-	public Integer getArticle_viewer() {
-		return article_viewer;
+	public Integer getArticleViewer() {
+		return articleViewer;
 	}
 
-	public void setArticle_viewer(Integer article_viewer) {
-		this.article_viewer = article_viewer;
+	public void setArticleViewer(Integer articleViewer) {
+		this.articleViewer = articleViewer;
 	}
 
-	public String getOther_mtn() {
-		return other_mtn;
+	public String getOtherMtn() {
+		return otherMtn;
 	}
 
-	public void setOther_mtn(String other_mtn) {
-		this.other_mtn = other_mtn;
+	public void setOtherMtn(String otherMtn) {
+		this.otherMtn = otherMtn;
 	}
 
 }

@@ -41,7 +41,7 @@ public class Event extends Core {
 	private Date eventDeadline;
 	
 	@Column(name = "event_start_date")
-	private Timestamp eventStartDate;
+	private Date eventStartDate;
 	
 	@Column(name = "event_post_date")
 	private Timestamp eventPostDate;
@@ -134,11 +134,11 @@ public class Event extends Core {
 	}
 
 	
-	public Timestamp getEventStartDate() {
+	public Date getEventStartDate() {
 		return eventStartDate;
 	}
 
-	public void setEventStartDate(Timestamp eventStartDate) {
+	public void setEventStartDate(Date eventStartDate) {
 		this.eventStartDate = eventStartDate;
 	}
 

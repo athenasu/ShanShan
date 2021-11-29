@@ -171,7 +171,8 @@ a:active {
 }
 
 .registor_formbar,
-.login_formbar {
+.login_formbar_email,
+.login_formbar_password {
   box-sizing: border-box;
   width: 100%;
   padding: 7px;

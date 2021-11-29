@@ -35,19 +35,16 @@
         <div id="register"><a href="#">註冊</a></div>
       </div>
     </header>
-    <main class="member-main">
+    <main class="member_main">
       <section class="glass">
         <div class="dashboard">
           <div class="user">
-            <img
-              class="member-profile"
-              src="member_imgs/IMG_0075.JPG"
-              alt="user_pic"
-            />
+            <div class="member_profile">
+              <img class="member_profile_pic" src="" alt="user_pic" />
+            </div>
             <div class="user-info">
-              <h2>Buster</h2>
-              <p>Bestest Cat</p>
-              <p>您總共有＿＿＿點數</p>
+              <h2 class="member-name-dashboard"></h2>
+              <p class="member-username-dashboard"></p>
             </div>
           </div>
           <div class="links">
@@ -106,9 +103,9 @@
             <h1>收藏紀錄</h1>
           </div>
           <div class="sort-buttons">
-            <button class="sort-button"><a href="#">商品</a></button>
-            <button class="sort-button"><a href="#">揪團文章</a></button>
-            <button class="sort-button"><a href="#">活動日誌</a></button>
+            <button class="sort-by-product">商品</button>
+            <button class="sort-by-event">揪團文章</button>
+            <button class="sort-by-article">活動日誌</button>
             <div class="search-bar">
               <i class="fas fa-search"></i
               ><input class="search-input" type="text" placeholder="搜尋" />
@@ -116,10 +113,12 @@
           </div>
           <div class="cards">
             <div id="grouplist">
-              <div class="groupcard">
+              <!-- GROUPCARD- Event -->
+              <!-- <div class="groupcard">
                 <a href="#">
                   <div class="groupimg">
-                    <img src="/img/TKAI8700--02.jpg" class="img" />
+                    <img src="./img/TKAI8700--02.jpg" class="mtnImg" />
+                    <i class="fas fa-heart heart-product"></i>
                     <p class="countdown">倒數：<span>10天13小時</span></p>
                   </div>
                   <div class="groupinfo">
@@ -144,160 +143,14 @@
                     </div>
                   </div>
                 </a>
-              </div>
-              <div class="groupcard">
-                <a href="#">
-                  <div class="groupimg">
-                    <img src="/img/TKAI8700--02.jpg" class="img" />
-                    <p class="countdown">倒數：<span>10天13小時</span></p>
-                  </div>
-                  <div class="groupinfo">
-                    <h3 class="title2 gp_name">太平山三天兩夜</h3>
-                    <div class="infolist">
-                      <div><i class="far fa-clock"></i></div>
-                      <div>出團日期：<span>2021/11/01</span></div>
-                    </div>
-                    <div class="infolist">
-                      <div><i class="fas fa-bed"></i></div>
-                      <div>住宿種類：<span>山屋</span></div>
-                    </div>
-                    <div class="infolist">
-                      <div><i class="fas fa-hiking"></i></div>
-                      <div><span>東部</span></div>
-                    </div>
-                    <div class="leader">
-                      <div class="leaderimg">
-                        <img src="/img/d1900618.jpg" class="img" />
-                      </div>
-                      <div><span>David</span></div>
-                    </div>
-                  </div>
-                </a>
-              </div>
-              <div class="groupcard">
-                <a href="#">
-                  <div class="groupimg">
-                    <img src="/img/TKAI8700--02.jpg" class="img" />
-                    <p class="countdown">倒數：<span>10天13小時</span></p>
-                  </div>
-                  <div class="groupinfo">
-                    <h3 class="title2 gp_name">太平山三天兩夜</h3>
-                    <div class="infolist">
-                      <div><i class="far fa-clock"></i></div>
-                      <div>出團日期：<span>2021/11/01</span></div>
-                    </div>
-                    <div class="infolist">
-                      <div><i class="fas fa-bed"></i></div>
-                      <div>住宿種類：<span>山屋</span></div>
-                    </div>
-                    <div class="infolist">
-                      <div><i class="fas fa-hiking"></i></div>
-                      <div><span>東部</span></div>
-                    </div>
-                    <div class="leader">
-                      <div class="leaderimg">
-                        <img src="/img/d1900618.jpg" class="img" />
-                      </div>
-                      <div><span>David</span></div>
-                    </div>
-                  </div>
-                </a>
-              </div>
-              <div class="groupcard">
-                <a href="#">
-                  <div class="groupimg">
-                    <img src="/img/TKAI8700--02.jpg" class="img" />
-                    <p class="countdown">倒數：<span>10天13小時</span></p>
-                  </div>
-                  <div class="groupinfo">
-                    <h3 class="title2 gp_name">太平山三天兩夜</h3>
-                    <div class="infolist">
-                      <div><i class="far fa-clock"></i></div>
-                      <div>出團日期：<span>2021/11/01</span></div>
-                    </div>
-                    <div class="infolist">
-                      <div><i class="fas fa-bed"></i></div>
-                      <div>住宿種類：<span>山屋</span></div>
-                    </div>
-                    <div class="infolist">
-                      <div><i class="fas fa-hiking"></i></div>
-                      <div><span>東部</span></div>
-                    </div>
-                    <div class="leader">
-                      <div class="leaderimg">
-                        <img src="/img/d1900618.jpg" class="img" />
-                      </div>
-                      <div><span>David</span></div>
-                    </div>
-                  </div>
-                </a>
-              </div>
-              <div class="groupcard">
-                <a href="#">
-                  <div class="groupimg">
-                    <img src="/img/TKAI8700--02.jpg" class="img" />
-                    <p class="countdown">倒數：<span>10天13小時</span></p>
-                  </div>
-                  <div class="groupinfo">
-                    <h3 class="title2 gp_name">太平山三天兩夜</h3>
-                    <div class="infolist">
-                      <div><i class="far fa-clock"></i></div>
-                      <div>出團日期：<span>2021/11/01</span></div>
-                    </div>
-                    <div class="infolist">
-                      <div><i class="fas fa-bed"></i></div>
-                      <div>住宿種類：<span>山屋</span></div>
-                    </div>
-                    <div class="infolist">
-                      <div><i class="fas fa-hiking"></i></div>
-                      <div><span>東部</span></div>
-                    </div>
-                    <div class="leader">
-                      <div class="leaderimg">
-                        <img src="/img/d1900618.jpg" class="img" />
-                      </div>
-                      <div><span>David</span></div>
-                    </div>
-                  </div>
-                </a>
-              </div>
-              <div class="groupcard">
-                <a href="#">
-                  <div class="groupimg">
-                    <img src="/img/TKAI8700--02.jpg" class="img" />
-                    <p class="countdown">倒數：<span>10天13小時</span></p>
-                  </div>
-                  <div class="groupinfo">
-                    <h3 class="title2 gp_name">太平山三天兩夜</h3>
-                    <div class="infolist">
-                      <div><i class="far fa-clock"></i></div>
-                      <div>出團日期：<span>2021/11/01</span></div>
-                    </div>
-                    <div class="infolist">
-                      <div><i class="fas fa-bed"></i></div>
-                      <div>住宿種類：<span>山屋</span></div>
-                    </div>
-                    <div class="infolist">
-                      <div><i class="fas fa-hiking"></i></div>
-                      <div><span>東部</span></div>
-                    </div>
-                    <div class="leader">
-                      <div class="leaderimg">
-                        <img src="/img/d1900618.jpg" class="img" />
-                      </div>
-                      <div><span>David</span></div>
-                    </div>
-                  </div>
-                </a>
-              </div>
+              </div> -->
+
+              <!-- END OF EVENT CARD -->
             </div>
           </div>
         </div>
       </section>
     </main>
-
-    <!-- <div class="square1"></div>
-    <div class="square2"></div> -->
     <script src="./vendors/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
     <script src="./js/header.js"></script>

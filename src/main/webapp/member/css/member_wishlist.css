@@ -41,23 +41,45 @@ button {
   opacity: 0.8;
 }
 
-/* #72afa4, #6dc2b3 */
-.member-main {
+.member_main {
   font-family: "Roboto", sans-serif;
   min-height: 100vh;
-  /* background: linear-gradient(to right top, #d8d3cd, #f7f2e7); */
   background: #fef5ed;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.user .member-profile {
-  height: 250px;
-  clip-path: circle();
+.member_profile {
+  /* border: 1px blue solid; */
+  margin-top: 1rem;
+  height: 180px;
+  width: 180px;
+  overflow: hidden;
+  border-radius: 50%;
   position: relative;
-  margin-top: -15%;
-  margin-bottom: 0.5rem;
+  vertical-align: middle;
+}
+
+.member_profile .member_profile_pic {
+  width: 100%;
+  min-height: 180px;
+  /* height: 100%; */
+}
+
+.user {
+  /* border: 1px green solid; */
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* width: 100%; */
+}
+
+.user-info {
+  /* border: 1px red solid; */
+  margin-top: 0.5rem;
+  width: 10rem;
 }
 
 .glass {
@@ -92,14 +114,6 @@ button {
     rgba(255, 255, 255, 0.3)
   );
   border-radius: 1rem;
-}
-
-.user {
-  position: absolute;
-}
-
-.user .user-info {
-  margin-top: -40%;
 }
 
 /* SIDE MENU */
@@ -241,7 +255,7 @@ button {
 }
 
 /* SORT BY BUTTONS */
-.events .sort-button {
+.events button {
   border: none;
   padding: 0.3rem 1rem;
   text-decoration: none;
@@ -254,9 +268,10 @@ button {
   border: 2px solid #adc2a9;
   margin-bottom: 1.5rem;
   margin-right: 3rem;
+  z-index: 100;
 }
 
-.events .sort-button:hover {
+.sort-buttons button:hover {
   background-color: #adc2a9;
   color: white;
 }
@@ -300,6 +315,7 @@ button {
   border-radius: 5px;
   transition: 0.5s;
   margin: 0.5rem 10px 1rem 10px;
+  border-radius: 1rem 1rem;
 }
 
 .groupcard:hover {
@@ -309,9 +325,15 @@ button {
 
 .groupimg {
   width: 100%;
+  height: 8rem;
   overflow: hidden;
   margin: 0 auto;
   position: relative;
+  border-radius: 1rem 1rem 0rem 0rem;
+}
+
+.mtnImg {
+  width: 100%;
 }
 
 .countdown {
@@ -335,10 +357,23 @@ button {
 
 .fa-clock,
 .fa-bed,
-.fa-hiking {
+.fa-hiking,
+.fa-heart {
   font-size: 20px;
   /* color: green; */
   /* margin: 0px 5px; */
+}
+
+.fa-heart {
+  position: absolute;
+  margin-top: 1rem;
+  margin-left: -11.5rem;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.fa-heart:hover {
+  color: black;
 }
 
 .groupinfo,
@@ -356,6 +391,7 @@ button {
   align-items: center;
   margin: 0 auto;
 }
+
 .infolist div:first-child {
   width: 15%;
   margin-right: 5px;
@@ -372,4 +408,9 @@ button {
   overflow: hidden;
   border-radius: 70px;
   margin-right: 15px !important;
+}
+
+.leaderimg img {
+  width: 100%;
+  min-height: 30px;
 }
