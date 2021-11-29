@@ -2,22 +2,52 @@ package tw.idv.tibame.tfa104.shanshan.web.participant.entity;
 
 import java.sql.Timestamp;
 
-public class participant {
-	private Integer partID;
-	private Integer eventID;
-	private Integer memberID;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import tw.idv.tibame.tfa104.shanshan.Core;
+
+@Entity
+@Table(name = "participant")
+public class Participant extends Core{
+	
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "part_id")
+	private Integer partId;
+	
+	@Column(name = "event_id")
+	private Integer eventId;
+	
+	@Column(name = "member_id")
+	private Integer memberId;
+	
+	@Column(name = "experience")
 	private boolean experience;
+	
+	@Column(name = "phone_number")
 	private String phoneNumber;
+	
+	@Column(name = "participation")
 	private boolean participation;
+	
+	@Column(name = "join_date")
 	private Timestamp joinDate;
+	
+	@Column(name = "total_participants")
 	private Integer totalParticipants;
 	
-	public participant(int partID, int eventID, int memberID, boolean experience, String phoneNumber,
+	public Participant(int partID, int eventID, int memberID, boolean experience, String phoneNumber,
 			boolean participation, Timestamp joinDate, int totalParticipants) {
 		super();
-		this.partID = partID;
-		this.eventID = eventID;
-		this.memberID = memberID;
+		this.partId = partID;
+		this.eventId = eventID;
+		this.memberId = memberID;
 		this.experience = experience;
 		this.phoneNumber = phoneNumber;
 		this.participation = participation;
@@ -26,27 +56,27 @@ public class participant {
 	}
 
 	public int getPartID() {
-		return partID;
+		return partId;
 	}
 
 	public void setPartID(int partID) {
-		this.partID = partID;
+		this.partId = partID;
 	}
 
 	public int getEventID() {
-		return eventID;
+		return eventId;
 	}
 
 	public void setEventID(int eventID) {
-		this.eventID = eventID;
+		this.eventId = eventID;
 	}
 
 	public int getMemberID() {
-		return memberID;
+		return memberId;
 	}
 
 	public void setMemberID(int memberID) {
-		this.memberID = memberID;
+		this.memberId = memberID;
 	}
 
 	public boolean isExperience() {
@@ -91,7 +121,7 @@ public class participant {
 
 	@Override
 	public String toString() {
-		return "participant [partID=" + partID + ", eventID=" + eventID + ", memberID=" + memberID + ", experience="
+		return "participant [partID=" + partId + ", eventID=" + eventId + ", memberID=" + memberId + ", experience="
 				+ experience + ", phoneNumber=" + phoneNumber + ", participation=" + participation + ", joinDate="
 				+ joinDate + ", totalParticipants=" + totalParticipants + "]";
 	}

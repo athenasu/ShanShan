@@ -20,13 +20,13 @@ public class Event extends Core {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "event_id")
-	private Integer eventID;
+	private Integer eventId;
 	
 	@Column(name = "member_id")
-	private Integer memberID;
+	private Integer memberId;
 	
 	@Column(name = "mountain_id")
-	private Integer mountainID;
+	private Integer mountainId;
 	
 	@Column(name = "event_name")
 	private String eventName;
@@ -72,29 +72,29 @@ public class Event extends Core {
 
 	
 	public Integer getEventID() {
-		return eventID;
+		return eventId;
 	}
 
 	public void setEventID(Integer eventID) {
-		this.eventID = eventID;
+		this.eventId = eventID;
 	}
 
 	
 	public Integer getMemberID() {
-		return memberID;
+		return memberId;
 	}
 
 	public void setMemberID(Integer memberID) {
-		this.memberID = memberID;
+		this.memberId = memberID;
 	}
 
 	
 	public Integer getMountainID() {
-		return mountainID;
+		return mountainId;
 	}
 
 	public void setMountainID(Integer mountainID) {
-		this.mountainID = mountainID;
+		this.mountainId = mountainID;
 	}
 
 	
@@ -220,7 +220,7 @@ public class Event extends Core {
 
 	@Override
 	public String toString() {
-		return "event [eventID=" + eventID + ", memberID=" + memberID + ", mountainID=" + mountainID + ", eventName="
+		return "event [eventID=" + eventId + ", memberID=" + memberId + ", mountainID=" + mountainId + ", eventName="
 				+ eventName + ", eventDays=" + eventDays + ", difficulty=" + difficulty + ", eventDeadline="
 				+ eventDeadline + ", eventStartDate=" + eventStartDate + ", eventPostDate=" + eventPostDate
 				+ ", stayType=" + stayType + ", minNumOfPeople=" + minNumOfPeople + ", maxNumOfPeople=" + maxNumOfPeople

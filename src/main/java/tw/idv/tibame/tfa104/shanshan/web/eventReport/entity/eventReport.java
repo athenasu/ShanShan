@@ -2,13 +2,37 @@ package tw.idv.tibame.tfa104.shanshan.web.eventReport.entity;
 
 import java.sql.Timestamp;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "event_report")
 public class eventReport {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "event_report_id")
 	private Integer eventReportID;
+	
+	@Column(name = "member_id")
 	private Integer memberID;
+	
+	@Column(name = "event_id")
 	private Integer eventID;
+	
+	@Column(name = "report_reason")
 	private Integer reportReason;
+	
+	@Column(name = "report_date")
 	private Timestamp reportDate;
+	
+	@Column(name = "case_done")
 	private Timestamp caseDone;
+	
+	@Column(name = "case_status")
 	private Integer caseStatus;
 	
 	public eventReport(int eventReportID, int memberID, int eventID, int reportReason, Timestamp reportDate,

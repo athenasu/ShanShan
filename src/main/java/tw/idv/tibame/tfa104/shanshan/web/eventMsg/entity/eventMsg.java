@@ -2,6 +2,15 @@ package tw.idv.tibame.tfa104.shanshan.web.eventMsg.entity;
 
 import java.sql.Timestamp;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "event_msg")
 public class eventMsg {
 	private Integer eventMsgId;
 	private Integer memberID;
@@ -19,7 +28,10 @@ public class eventMsg {
 		this.msgContent = msgContent;
 		this.msgStatus = msgStatus;
 	}
-
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "event_msg_id")
 	public int getEventMsgId() {
 		return eventMsgId;
 	}
@@ -27,7 +39,8 @@ public class eventMsg {
 	public void setEventMsgId(int eventMsgId) {
 		this.eventMsgId = eventMsgId;
 	}
-
+	
+	@Column(name = "member_id")
 	public int getMemberID() {
 		return memberID;
 	}
@@ -36,6 +49,7 @@ public class eventMsg {
 		this.memberID = memberID;
 	}
 
+	@Column(name = "event_id")
 	public int getEventID() {
 		return eventID;
 	}
@@ -44,6 +58,7 @@ public class eventMsg {
 		this.eventID = eventID;
 	}
 
+	@Column(name = "msg_date")
 	public Timestamp getMsgDate() {
 		return msgDate;
 	}
@@ -52,6 +67,7 @@ public class eventMsg {
 		this.msgDate = msgDate;
 	}
 
+	@Column(name = "msg_content")
 	public String getMsgContent() {
 		return msgContent;
 	}
@@ -60,6 +76,7 @@ public class eventMsg {
 		this.msgContent = msgContent;
 	}
 
+	@Column(name = "msg_status")
 	public int getMsgStatus() {
 		return msgStatus;
 	}
