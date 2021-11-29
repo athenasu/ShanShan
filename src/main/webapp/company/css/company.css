@@ -1,0 +1,1090 @@
+/* ------- base ------- */
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  margin: 0 auto;
+  padding: 0;
+  background-color: rgb(246, 240, 237);
+}
+a {
+  text-decoration: none;
+  color: rgb(40, 83, 107);
+}
+img {
+  max-width: 100%;
+}
+/* ------- header start------- */
+.header {
+  /* border: 2px solid gray; */
+  box-sizing: border-box;
+  height: 80px;
+  width: 100%;
+  background-color: white;
+}
+header.header {
+  margin-bottom: 20px;
+}
+div.titlebar {
+  margin: 0 auto;
+  height: 80px;
+  box-sizing: border-box;
+  width: 90%;
+  position: relative;
+}
+div.title {
+  position: relative;
+  top: 25px;
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(40, 83, 107);
+  cursor: pointer;
+}
+div.title:hover {
+  color: rgb(109, 150, 173);
+}
+a.backendpage:visited {
+  color: rgb(40, 83, 107);
+}
+button.logout {
+  position: absolute;
+  cursor: pointer;
+  font-size: 16px;
+  border: 0;
+  width: 100px;
+  height: 50px;
+  background-color: rgb(40, 83, 107);
+  color: white;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+button.logout:hover {
+  background-color: rgb(109, 150, 173);
+}
+div.logoutConfirmbox {
+  display: none;
+}
+
+.logo {
+  /*   border:2px solid  red; */
+  float: left;
+  margin: 0;
+  width: 60px;
+  height: 60px;
+  padding: 10px;
+  font-size: 0;
+}
+
+/* ------- header  end ------- */
+
+/* ------- body block start ------- */
+div.order_container {
+  width: 1200px;
+  margin: 0 auto;
+  /* border: 2px solid gray; */
+  box-sizing: border-box;
+  /* background-color: white; */
+}
+
+div.order_container div.wrapper,
+div.order_container div.order {
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+  box-sizing: border-box;
+  font-size: 1rem;
+}
+div.order_container div.wrapper {
+  background-color: white;
+  width: 200px;
+  margin-right: 30px;
+}
+div.order_container div.order {
+  background-color: white;
+  /* border: 1px solid #808080; */
+  border-collapse: collapse;
+  width: calc(100% - 200px - 60px);
+  padding: auto;
+}
+
+/* =====================wrapper內開始==================== */
+/* ------- nav start------- */
+.nav {
+  max-width: 100%;
+}
+
+.nav li {
+  list-style: none;
+}
+/* ------- nav end ------- */
+
+div.main {
+  height: 60px;
+  line-height: 60px;
+  text-indent: -25px;
+  background-color: rgb(40, 83, 107);
+  cursor: pointer;
+  font-size: 16px;
+}
+
+ul.subs li a {
+  display: block;
+  height: 40px;
+  line-height: 40px;
+  text-indent: -25px;
+  /* 	background-color:#F5F5F5;
+	border-right:10px solid #0D9BE5; */
+  font-size: 14px;
+  color: #164158;
+}
+ul li a:visited {
+  color: white;
+}
+
+/* ------- color selection ------- */
+/* main menu*/
+li.color-first div.main {
+  color: white;
+  background-color: rgb(40, 83, 107);
+  border-right: 10px solid rgb(126, 168, 190);
+  border-bottom: 1px solid rgb(220, 227, 232);
+}
+
+li.color-second div.main {
+  color: white;
+  background-color: rgb(40, 83, 107);
+  border-right: 10px solid rgb(126, 168, 190);
+  border-bottom: 1px solid rgb(220, 227, 232);
+}
+
+li.color-third div.main {
+  color: white;
+  background-color: rgb(40, 83, 107);
+  border-right: 10px solid rgb(126, 168, 190);
+}
+
+/* -------------------sub menu-------------------*/
+li.color-first ul.subs li a {
+  border-right: 10px solid rgb(126, 168, 190);
+  color: rgb(40, 83, 107);
+}
+
+li.color-second ul.subs li a {
+  border-right: 10px solid rgb(126, 168, 190);
+  color: rgb(40, 83, 107);
+}
+
+/* -------------------hover--------------------  */
+li.color-first ul.subs li a:hover {
+  background-color: rgb(109, 150, 173);
+  color: rgb(220, 227, 232);
+}
+
+li.color-second ul.subs li a:hover {
+  background-color: rgb(109, 150, 173);
+  color: rgb(220, 227, 232);
+}
+
+/* ---------------------sub menu open------------------ */
+li.color-first div.open {
+  /*   本在background裡url("images/arrow.png") no-repeat */
+  border-right: 10px solid rgb(109, 150, 173);
+  background: rgb(109, 150, 173) 28px bottom;
+}
+
+li.color-second div.open {
+  border-right: 10px solid rgb(109, 150, 173);
+  background: rgb(109, 150, 173) 28px bottom;
+}
+
+li.color-third div.open {
+  border-right: 10px solid rgb(109, 150, 173);
+  background: rgb(109, 150, 173) 28px bottom;
+}
+
+/* -------------------- mouseover ------------------ */
+li.color-first div.rollover {
+  background-color: rgb(109, 150, 173);
+}
+
+li.color-second div.rollover {
+  background-color: rgb(109, 150, 173);
+}
+
+li.color-third div.rollover {
+  background-color: rgb(109, 150, 173);
+}
+
+/* =====================wrapper內結束==================== */
+/* =====================order開始==================== */
+div.order table.orders {
+  /*   border:1px solid black; */
+  border-collapse: collapse;
+  box-sizing: border-box;
+  width: 100%;
+}
+table.orders th {
+  border: 2px solid gray;
+  padding: 2px 4px;
+}
+table.orders td {
+  border: 2px solid gray;
+  text-align: center;
+  padding: 2px 4px;
+}
+td.dt-control {
+  background: url("https://www.datatables.net/examples/resources/details_open.png")
+    no-repeat center center;
+  cursor: pointer;
+}
+
+tr.dt-hasChild td.dt-control {
+  background: url("https://www.datatables.net/examples/resources/details_close.png")
+    no-repeat center center;
+}
+
+table.dataTable th.dt-left,
+table.dataTable td.dt-left {
+  text-align: left;
+}
+table.dataTable th.dt-center,
+table.dataTable td.dt-center,
+table.dataTable td.dataTables_empty {
+  text-align: center;
+}
+table.dataTable th.dt-right,
+table.dataTable td.dt-right {
+  text-align: right;
+}
+table.dataTable th.dt-justify,
+table.dataTable td.dt-justify {
+  text-align: justify;
+}
+table.dataTable th.dt-nowrap,
+table.dataTable td.dt-nowrap {
+  white-space: nowrap;
+}
+table.dataTable thead th.dt-head-left,
+table.dataTable thead td.dt-head-left,
+table.dataTable tfoot th.dt-head-left,
+table.dataTable tfoot td.dt-head-left {
+  text-align: left;
+}
+table.dataTable thead th.dt-head-center,
+table.dataTable thead td.dt-head-center,
+table.dataTable tfoot th.dt-head-center,
+table.dataTable tfoot td.dt-head-center {
+  text-align: center;
+}
+table.dataTable thead th.dt-head-right,
+table.dataTable thead td.dt-head-right,
+table.dataTable tfoot th.dt-head-right,
+table.dataTable tfoot td.dt-head-right {
+  text-align: right;
+}
+table.dataTable thead th.dt-head-justify,
+table.dataTable thead td.dt-head-justify,
+table.dataTable tfoot th.dt-head-justify,
+table.dataTable tfoot td.dt-head-justify {
+  text-align: justify;
+}
+table.dataTable thead th.dt-head-nowrap,
+table.dataTable thead td.dt-head-nowrap,
+table.dataTable tfoot th.dt-head-nowrap,
+table.dataTable tfoot td.dt-head-nowrap {
+  white-space: nowrap;
+}
+table.dataTable tbody th.dt-body-left,
+table.dataTable tbody td.dt-body-left {
+  text-align: left;
+}
+table.dataTable tbody th.dt-body-center,
+table.dataTable tbody td.dt-body-center {
+  text-align: center;
+}
+table.dataTable tbody th.dt-body-right,
+table.dataTable tbody td.dt-body-right {
+  text-align: right;
+}
+table.dataTable tbody th.dt-body-justify,
+table.dataTable tbody td.dt-body-justify {
+  text-align: justify;
+}
+table.dataTable tbody th.dt-body-nowrap,
+table.dataTable tbody td.dt-body-nowrap {
+  white-space: nowrap;
+}
+
+/*
+ * Table styles
+ */
+table.dataTable {
+  width: 100%;
+  margin: 0 auto;
+  clear: both;
+  border-collapse: separate;
+  border-spacing: 0;
+  /*
+   * Header and footer styles
+   */
+  /*
+   * Body styles
+   */
+}
+table.dataTable thead th,
+table.dataTable tfoot th {
+  font-weight: bold;
+}
+table.dataTable thead th,
+table.dataTable thead td {
+  padding: 10px 18px;
+  border-bottom: 1px solid #808080;
+}
+table.dataTable thead th:active,
+table.dataTable thead td:active {
+  outline: none;
+}
+table.dataTable tfoot th,
+table.dataTable tfoot td {
+  padding: 10px 18px 6px 18px;
+  border-top: 1px solid #808080;
+}
+table.dataTable thead .sorting,
+table.dataTable thead .sorting_asc,
+table.dataTable thead .sorting_desc,
+table.dataTable thead .sorting_asc_disabled,
+table.dataTable thead .sorting_desc_disabled {
+  cursor: pointer;
+  *cursor: hand;
+  background-repeat: no-repeat;
+  background-position: center right;
+}
+table.dataTable thead .sorting {
+  background-image: url("../images/sort_both.png");
+}
+table.dataTable thead .sorting_asc {
+  background-image: url("../images/sort_asc.png") !important;
+}
+table.dataTable thead .sorting_desc {
+  background-image: url("../images/sort_desc.png") !important;
+}
+table.dataTable thead .sorting_asc_disabled {
+  background-image: url("../images/sort_asc_disabled.png");
+}
+table.dataTable thead .sorting_desc_disabled {
+  background-image: url("../images/sort_desc_disabled.png");
+}
+table.dataTable tbody tr {
+  background-color: #ffffff;
+}
+
+table.dataTable tbody tr.selected {
+  background-color: #f6f0ec;
+}
+table.dataTable tbody th,
+table.dataTable tbody td {
+  padding: 8px 10px;
+}
+table.dataTable.row-border tbody th,
+table.dataTable.row-border tbody td,
+table.dataTable.display tbody th,
+table.dataTable.display tbody td {
+  border-top: 1px solid #808080;
+}
+table.dataTable.row-border tbody tr:first-child th,
+table.dataTable.row-border tbody tr:first-child td,
+table.dataTable.display tbody tr:first-child th,
+table.dataTable.display tbody tr:first-child td {
+  border-top: none;
+}
+table.dataTable.cell-border tbody th,
+table.dataTable.cell-border tbody td {
+  border-top: 1px solid #808080;
+  border-right: 1px solid #808080;
+}
+table.dataTable.cell-border tbody tr th:first-child,
+table.dataTable.cell-border tbody tr td:first-child {
+  border-left: 1px solid #808080;
+}
+table.dataTable.cell-border tbody tr:first-child th,
+table.dataTable.cell-border tbody tr:first-child td {
+  border-top: none;
+}
+table.dataTable.stripe tbody tr.odd,
+table.dataTable.display tbody tr.odd {
+  background-color: #f9f9f9;
+}
+table.dataTable.stripe tbody tr.odd.selected,
+table.dataTable.display tbody tr.odd.selected {
+  background-color: #f0eae6;
+}
+table.dataTable.hover tbody tr:hover,
+table.dataTable.display tbody tr:hover {
+  background-color: #f6f6f6;
+}
+table.dataTable.hover tbody tr:hover.selected,
+table.dataTable.display tbody tr:hover.selected {
+  background-color: #f6f0ec;
+}
+table.dataTable.order-column tbody tr > .sorting_1,
+table.dataTable.order-column tbody tr > .sorting_2,
+table.dataTable.order-column tbody tr > .sorting_3,
+table.dataTable.display tbody tr > .sorting_1,
+table.dataTable.display tbody tr > .sorting_2,
+table.dataTable.display tbody tr > .sorting_3 {
+  background-color: #fafafa;
+}
+table.dataTable.order-column tbody tr.selected > .sorting_1,
+table.dataTable.order-column tbody tr.selected > .sorting_2,
+table.dataTable.order-column tbody tr.selected > .sorting_3,
+table.dataTable.display tbody tr.selected > .sorting_1,
+table.dataTable.display tbody tr.selected > .sorting_2,
+table.dataTable.display tbody tr.selected > .sorting_3 {
+  background-color: #f1ebe7;
+}
+table.dataTable.display tbody tr.odd > .sorting_1,
+table.dataTable.order-column.stripe tbody tr.odd > .sorting_1 {
+  background-color: #f1f1f1;
+}
+table.dataTable.display tbody tr.odd > .sorting_2,
+table.dataTable.order-column.stripe tbody tr.odd > .sorting_2 {
+  background-color: #f3f3f3;
+}
+table.dataTable.display tbody tr.odd > .sorting_3,
+table.dataTable.order-column.stripe tbody tr.odd > .sorting_3 {
+  background-color: whitesmoke;
+}
+table.dataTable.display tbody tr.odd.selected > .sorting_1,
+table.dataTable.order-column.stripe tbody tr.odd.selected > .sorting_1 {
+  background-color: #e9e3df;
+}
+table.dataTable.display tbody tr.odd.selected > .sorting_2,
+table.dataTable.order-column.stripe tbody tr.odd.selected > .sorting_2 {
+  background-color: #eae5e1;
+}
+table.dataTable.display tbody tr.odd.selected > .sorting_3,
+table.dataTable.order-column.stripe tbody tr.odd.selected > .sorting_3 {
+  background-color: #ece7e3;
+}
+table.dataTable.display tbody tr.even > .sorting_1,
+table.dataTable.order-column.stripe tbody tr.even > .sorting_1 {
+  background-color: #fafafa;
+}
+table.dataTable.display tbody tr.even > .sorting_2,
+table.dataTable.order-column.stripe tbody tr.even > .sorting_2 {
+  background-color: #fcfcfc;
+}
+table.dataTable.display tbody tr.even > .sorting_3,
+table.dataTable.order-column.stripe tbody tr.even > .sorting_3 {
+  background-color: #fefefe;
+}
+table.dataTable.display tbody tr.even.selected > .sorting_1,
+table.dataTable.order-column.stripe tbody tr.even.selected > .sorting_1 {
+  background-color: #f1ebe7;
+}
+table.dataTable.display tbody tr.even.selected > .sorting_2,
+table.dataTable.order-column.stripe tbody tr.even.selected > .sorting_2 {
+  background-color: #f3ede9;
+}
+table.dataTable.display tbody tr.even.selected > .sorting_3,
+table.dataTable.order-column.stripe tbody tr.even.selected > .sorting_3 {
+  background-color: #f5efeb;
+}
+table.dataTable.display tbody tr:hover > .sorting_1,
+table.dataTable.order-column.hover tbody tr:hover > .sorting_1 {
+  background-color: #eaeaea;
+}
+table.dataTable.display tbody tr:hover > .sorting_2,
+table.dataTable.order-column.hover tbody tr:hover > .sorting_2 {
+  background-color: #ececec;
+}
+table.dataTable.display tbody tr:hover > .sorting_3,
+table.dataTable.order-column.hover tbody tr:hover > .sorting_3 {
+  background-color: #efefef;
+}
+table.dataTable.display tbody tr:hover.selected > .sorting_1,
+table.dataTable.order-column.hover tbody tr:hover.selected > .sorting_1 {
+  background-color: #e2dcd9;
+}
+table.dataTable.display tbody tr:hover.selected > .sorting_2,
+table.dataTable.order-column.hover tbody tr:hover.selected > .sorting_2 {
+  background-color: #e4deda;
+}
+table.dataTable.display tbody tr:hover.selected > .sorting_3,
+table.dataTable.order-column.hover tbody tr:hover.selected > .sorting_3 {
+  background-color: #e7e1dd;
+}
+table.dataTable.no-footer {
+  border-bottom: 1px solid #808080;
+}
+table.dataTable.nowrap th,
+table.dataTable.nowrap td {
+  white-space: nowrap;
+}
+table.dataTable.compact thead th,
+table.dataTable.compact thead td {
+  padding: 4px 17px;
+}
+table.dataTable.compact tfoot th,
+table.dataTable.compact tfoot td {
+  padding: 4px;
+}
+table.dataTable.compact tbody th,
+table.dataTable.compact tbody td {
+  padding: 4px;
+}
+
+table.dataTable th,
+table.dataTable td {
+  box-sizing: content-box;
+}
+
+/*
+ * Control feature layout
+ */
+.dataTables_wrapper {
+  position: relative;
+  clear: both;
+  /* border: 0.5px solid gray; */
+}
+.dataTables_wrapper .dataTables_length {
+  float: left;
+}
+.dataTables_wrapper .dataTables_length select {
+  border: 1px solid #aaa;
+  border-radius: 3px;
+  padding: 5px;
+  background-color: transparent;
+  padding: 2px;
+}
+.dataTables_wrapper .dataTables_filter {
+  float: right;
+  text-align: right;
+}
+.dataTables_wrapper .dataTables_filter input {
+  border: 1px solid #aaa;
+  border-radius: 3px;
+  padding: 5px;
+  background-color: transparent;
+  margin-left: 3px;
+}
+.dataTables_wrapper .dataTables_info {
+  clear: both;
+  float: left;
+  padding-top: 0.755em;
+}
+.dataTables_wrapper .dataTables_paginate {
+  float: right;
+  text-align: right;
+  padding-top: 0.25em;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  box-sizing: border-box;
+  display: inline-block;
+  min-width: 1.5em;
+  padding: 0.5em 1em;
+  margin-left: 2px;
+  text-align: center;
+  text-decoration: none !important;
+  cursor: pointer;
+  *cursor: hand;
+  color: #333333 !important;
+  border: 1px solid transparent;
+  border-radius: 2px;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current,
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+  font-size: 12px;
+  color: #333333 !important;
+  border: 1px solid #979797;
+  background-color: white;
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0%, white),
+    color-stop(100%, #dcdcdc)
+  );
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, white 0%, #dcdcdc 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -moz-linear-gradient(top, white 0%, #dcdcdc 100%);
+  /* FF3.6+ */
+  background: -ms-linear-gradient(top, white 0%, #dcdcdc 100%);
+  /* IE10+ */
+  background: -o-linear-gradient(top, white 0%, #dcdcdc 100%);
+  /* Opera 11.10+ */
+  background: linear-gradient(to bottom, white 0%, #dcdcdc 100%);
+  /* W3C */
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled,
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover,
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active {
+  cursor: default;
+  color: #666 !important;
+  border: 1px solid transparent;
+  background: transparent;
+  box-shadow: none;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  color: white !important;
+  border: 1px solid #111111;
+  background-color: #585858;
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0%, #585858),
+    color-stop(100%, #111111)
+  );
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #585858 0%, #111111 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -moz-linear-gradient(top, #585858 0%, #111111 100%);
+  /* FF3.6+ */
+  background: -ms-linear-gradient(top, #585858 0%, #111111 100%);
+  /* IE10+ */
+  background: -o-linear-gradient(top, #585858 0%, #111111 100%);
+  /* Opera 11.10+ */
+  background: linear-gradient(to bottom, #585858 0%, #111111 100%);
+  /* W3C */
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button:active {
+  outline: none;
+  background-color: #2b2b2b;
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0%, #2b2b2b),
+    color-stop(100%, #0c0c0c)
+  );
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #2b2b2b 0%, #0c0c0c 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -moz-linear-gradient(top, #2b2b2b 0%, #0c0c0c 100%);
+  /* FF3.6+ */
+  background: -ms-linear-gradient(top, #2b2b2b 0%, #0c0c0c 100%);
+  /* IE10+ */
+  background: -o-linear-gradient(top, #2b2b2b 0%, #0c0c0c 100%);
+  /* Opera 11.10+ */
+  background: linear-gradient(to bottom, #2b2b2b 0%, #0c0c0c 100%);
+  /* W3C */
+  box-shadow: inset 0 0 3px #111;
+}
+.dataTables_wrapper .dataTables_paginate .ellipsis {
+  padding: 0 1em;
+}
+.dataTables_wrapper .dataTables_processing {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 40px;
+  margin-left: -50%;
+  margin-top: -25px;
+  padding-top: 20px;
+  text-align: center;
+  font-size: 1.2em;
+  background-color: white;
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    color-stop(0%, rgba(255, 255, 255, 0)),
+    color-stop(25%, rgba(255, 255, 255, 0.9)),
+    color-stop(75%, rgba(255, 255, 255, 0.9)),
+    color-stop(100%, rgba(255, 255, 255, 0))
+  );
+  background: -webkit-linear-gradient(
+    left,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.9) 25%,
+    rgba(255, 255, 255, 0.9) 75%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background: -moz-linear-gradient(
+    left,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.9) 25%,
+    rgba(255, 255, 255, 0.9) 75%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background: -ms-linear-gradient(
+    left,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.9) 25%,
+    rgba(255, 255, 255, 0.9) 75%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background: -o-linear-gradient(
+    left,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.9) 25%,
+    rgba(255, 255, 255, 0.9) 75%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.9) 25%,
+    rgba(255, 255, 255, 0.9) 75%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+.dataTables_wrapper .dataTables_length,
+.dataTables_wrapper .dataTables_filter,
+.dataTables_wrapper .dataTables_info,
+.dataTables_wrapper .dataTables_processing,
+.dataTables_wrapper .dataTables_paginate {
+  color: #333333;
+  /* background-color: burlywood; */
+  padding: 5px;
+}
+.dataTables_wrapper .dataTables_scroll {
+  clear: both;
+}
+.dataTables_wrapper .dataTables_scroll div.dataTables_scrollBody {
+  *margin-top: -1px;
+  -webkit-overflow-scrolling: touch;
+}
+.dataTables_wrapper
+  .dataTables_scroll
+  div.dataTables_scrollBody
+  > table
+  > thead
+  > tr
+  > th,
+.dataTables_wrapper
+  .dataTables_scroll
+  div.dataTables_scrollBody
+  > table
+  > thead
+  > tr
+  > td,
+.dataTables_wrapper
+  .dataTables_scroll
+  div.dataTables_scrollBody
+  > table
+  > tbody
+  > tr
+  > th,
+.dataTables_wrapper
+  .dataTables_scroll
+  div.dataTables_scrollBody
+  > table
+  > tbody
+  > tr
+  > td {
+  vertical-align: middle;
+}
+.dataTables_wrapper
+  .dataTables_scroll
+  div.dataTables_scrollBody
+  > table
+  > thead
+  > tr
+  > th
+  > div.dataTables_sizing,
+.dataTables_wrapper
+  .dataTables_scroll
+  div.dataTables_scrollBody
+  > table
+  > thead
+  > tr
+  > td
+  > div.dataTables_sizing,
+.dataTables_wrapper
+  .dataTables_scroll
+  div.dataTables_scrollBody
+  > table
+  > tbody
+  > tr
+  > th
+  > div.dataTables_sizing,
+.dataTables_wrapper
+  .dataTables_scroll
+  div.dataTables_scrollBody
+  > table
+  > tbody
+  > tr
+  > td
+  > div.dataTables_sizing {
+  height: 0;
+  overflow: hidden;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.dataTables_wrapper.no-footer .dataTables_scrollBody {
+  border-bottom: 1px solid #808080;
+}
+.dataTables_wrapper.no-footer div.dataTables_scrollHead table.dataTable,
+.dataTables_wrapper.no-footer div.dataTables_scrollBody > table {
+  border-bottom: none;
+}
+.dataTables_wrapper:after {
+  visibility: hidden;
+  display: block;
+  content: "";
+  clear: both;
+  height: 0;
+}
+
+@media screen and (max-width: 767px) {
+  .dataTables_wrapper .dataTables_info,
+  .dataTables_wrapper .dataTables_paginate {
+    float: none;
+    text-align: center;
+  }
+  .dataTables_wrapper .dataTables_paginate {
+    margin-top: 0.5em;
+  }
+}
+@media screen and (max-width: 640px) {
+  .dataTables_wrapper .dataTables_length,
+  .dataTables_wrapper .dataTables_filter {
+    float: none;
+    text-align: center;
+  }
+  .dataTables_wrapper .dataTables_filter {
+    margin-top: 0.5em;
+  }
+}
+
+/* =====================order結束==================== */
+
+/* ------- body block end ------- */
+
+/* ------- unshiporder button style --------*/
+button.order1,
+button.order2,
+button.order3,
+button.order4,
+button.order5,
+button.order6,
+button.order7,
+button.order8,
+button.order9,
+button.order10 {
+  width: 100%;
+  height: 100%;
+  border: none;
+  color: white;
+  background-color: rgb(109, 150, 173);
+  cursor: pointer;
+}
+button.order1:hover,
+button.order2:hover,
+button.order3:hover,
+button.order4:hover,
+button.order5:hover,
+button.order6:hover,
+button.order7:hover,
+button.order8:hover,
+button.order9:hover,
+button.order10:hover {
+  background-color: rgb(40, 83, 107);
+}
+/* ------- unshiporder button style 結束--------*/
+
+/* ------- alreadyshiporder button style --------*/
+button.shiporder1,
+button.shiporder2,
+button.shiporder3,
+button.shiporder4,
+button.shiporder5,
+button.shiporder6,
+button.shiporder7,
+button.shiporder8,
+button.shiporder9,
+button.shiporder10 {
+  width: 100%;
+  height: 100%;
+  border: none;
+  color: white;
+  background-color: rgb(198, 148, 138);
+  cursor: pointer;
+}
+button.shiporder1:hover,
+button.shiporder2:hover,
+button.shiporder3:hover,
+button.shiporder4:hover,
+button.shiporder5:hover,
+button.shiporder6:hover,
+button.shiporder7:hover,
+button.shiporder8:hover,
+button.shiporder9:hover,
+button.shiporder10:hover {
+  background-color: rgb(193, 124, 110);
+}
+/* ------- alreadyshiporder button style 結束--------*/
+/* ------- 訂單詳情開始--------*/
+table.orderlist1table {
+  border: 1px solid gray;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table.orderlist1table th {
+  border: 1px solid gray;
+  padding: 1px 4px;
+}
+table.orderlist1table td {
+  border: 1px solid gray;
+  text-align: center;
+  padding: 1px 4px;
+}
+/* ------- 訂單詳情結束--------*/
+/* ------- 店家資料維護------- */
+div.shopinfo {
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 10px 20px 40px 20px;
+}
+div.shopinfo p {
+  text-align: center;
+  color: rgb(40, 83, 107);
+  font-weight: bold;
+}
+div.body_container {
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+div.body_container div.wrapper,
+div.body_container div.shopinfo {
+  display: inline-block;
+  vertical-align: top;
+  box-sizing: border-box;
+  font-size: 1rem;
+}
+div.body_container div.wrapper {
+  background-color: white;
+  text-align: center;
+  width: 200px;
+  margin-right: 30px;
+}
+div.body_container div.shopinfo {
+  background-color: white;
+  border: 1px solid gray;
+  border-collapse: collapse;
+  width: calc(100% - 200px - 150px);
+  padding: auto;
+}
+
+div.leftinfo div {
+  color: rgb(40, 83, 107);
+  padding: 0px 0px 0px 5px;
+  font-size: 16px;
+  height: 30px;
+  margin-top: 10px;
+  width: 505px;
+}
+input.shopaccountin,
+input.shoppasswordin,
+input.shopownerin,
+input.shopnamein,
+input.shopaddressin,
+input.shoptelin,
+input.shopcellin {
+  width: 400px;
+  font-size: 14px;
+}
+div.leftinfo,
+div.rightinfo {
+  display: inline-block;
+  /* border: 1px solid red; */
+  vertical-align: top;
+}
+div.rightinfo {
+  padding-top: 6px;
+  width: 510px;
+  height: 250px;
+}
+/* banner begin */
+div.bannerupload {
+  height: 155px;
+}
+span.bannertext {
+  position: relative;
+  /* margin: 0px 170px 0px 170px; */
+  font-size: 16px;
+  color: rgb(40, 83, 107);
+}
+
+input.upload_shopbanner {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+label.shopbanner {
+  position: relative;
+  color: rgb(109, 150, 173);
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 2px 6px;
+  cursor: pointer;
+}
+img.shopbanner {
+  width: 505px;
+  max-height: 135px;
+  /* border: 2px dashed rgb(109, 150, 173); */
+}
+ul.sbanner {
+  list-style: none;
+  margin-top: 5px;
+  padding-top: 5px;
+  min-height: 140px;
+  color: lightgray;
+  border: 2px dashed rgb(109, 150, 173);
+}
+ul.banner li {
+  display: inline-block;
+  vertical-align: top;
+}
+span.sbtext {
+  padding: 0px 220px 0px 220px;
+}
+/* banner end  */
+textarea.shopintroin {
+  resize: none;
+  position: relative;
+  margin: 40px 0px 0px 0px;
+  width: 509px;
+  height: 80px;
+  color: rgb(40, 83, 107);
+}
+#finalbtn {
+  display: inline-block;
+  margin-left: 375px;
+}
+#shopreset,
+#shopsubmit {
+  padding: 2px 5px;
+  cursor: pointer;
+  border: none;
+  background-color: rgb(40, 83, 107);
+  color: white;
+}
+#shopreset:hover,
+#shopsubmit:hover {
+  background-color: rgb(109, 150, 173);
+}
+
+/* ------- 店家資料維護結束------- */
+/* ------- footer  start------- */
+footer.footer {
+  position: relative;
+  font-size: 12px;
+  text-align: center;
+  padding-bottom: auto;
+}
+/* ------- footer  end ------- */
