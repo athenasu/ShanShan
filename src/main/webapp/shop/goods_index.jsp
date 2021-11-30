@@ -1,6 +1,8 @@
 <%@ page import="tw.idv.tibame.tfa104.shanshan.web.shop.service.impl.*"%>
 <%@ page import="tw.idv.tibame.tfa104.shanshan.web.shop.service.*"%>
 <%@ page import="tw.idv.tibame.tfa104.shanshan.web.product.entity.ProductBO"%>
+
+
 <%@ page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -9,9 +11,15 @@
 <%	
 	ShopService shopsvc = new ShopServiceImpl();
 	List<ProductBO> popular10 = shopsvc.findPopular10();
-    pageContext.setAttribute("popular10",popular10);      // 沒問題 使用自己的Serive
-    
+    pageContext.setAttribute("popular10",popular10);     
 %>
+
+<%--
+    ShopService pssvc = new ShopServiceImpl();
+	List<ProductBO> lastest10 = shopsvc.findNew();  //用我的service去呼叫LULU的service
+    pageContext.setAttribute("lastest10",lastest10);     
+    
+--%>
     
     
 <!DOCTYPE html>
@@ -67,9 +75,8 @@
             </ul>
 			
             <div class="goods_title01">新駐商品</div>
-            <%--
 			<ul class="goods_area">
-			<c:forEach  items="${latest10}" var="ProductBO2">
+			<c:forEach  items="${lastest10}" var="ProductBO2">
                 <li class="single_good_area" onclick="location.href='<%=contextPath%>/shop/goods_product_page.jsp'">
 					<div class="good_headpic"><img class="good_headpic_img" src="<%=contextPath%>/LastestProductPicServlet?productId=${ProductBO2.productId}&action=getPopImage" width="250px" alt="goods"></div>
                     <div class="goods_icon"><i class="far fa-heart "></i></div>
@@ -80,7 +87,6 @@
                 </li>
 			</c:forEach>
 			</ul>
-           --%>
         </div>
     </div>
 
