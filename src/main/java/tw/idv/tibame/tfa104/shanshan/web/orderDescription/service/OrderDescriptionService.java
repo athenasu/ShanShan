@@ -6,7 +6,7 @@ import tw.idv.tibame.tfa104.shanshan.web.orderDescription.entity.OrderDescriptio
 import tw.idv.tibame.tfa104.shanshan.web.orderDescription.entity.OrderDescriptionBO;
 import tw.idv.tibame.tfa104.shanshan.web.product.entity.ProductBO;
 
-public interface OrderDescriptionServiceYYYY {
+public interface OrderDescriptionService {
 
 //	查詢 訂單明細 BY PK
 	OrderDescription findByOrderDesId(Integer order_des_id);
