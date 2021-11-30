@@ -3,6 +3,7 @@ const userInfo = document.querySelector(".user-info");
 const sortByProductBtn = document.querySelector(".sort-by-product");
 const sortByArticleBtn = document.querySelector(".sort-by-article");
 const sortByEventBtn = document.querySelector(".sort-by-event");
+const grouplist = document.querySelector("#grouplist");
 
 const renderWishlistEvent = function (event) {
   // mountain picture
@@ -250,17 +251,34 @@ window.onload = function () {
 // button sorting
 sortByProductBtn.addEventListener("click", function (memberId) {
   // this just appends to the original stuff
-  const grouplist = document.querySelector("#grouplist");
   grouplist.innerHTML = "";
   productWishlist(1);
 });
 
-let heartProduct = document.querySelector(".heart-product");
-let heartArticle = document.querySelector(".heart-article");
-let heartEvent = document.querySelector(".heart-event");
-
-heartProduct.addEventListener("click", function () {
-  console.log("heart product clicked");
-  // deleteWishlist("Product", `${product.wishlistProductId}`);
+sortByArticleBtn.addEventListener("click", function (memberId) {
+  grouplist.innerHTML = "";
+  articleWishlist(1);
 });
+
+sortByEventBtn.addEventListener("click", function (memberId) {
+  grouplist.innerHTML = "";
+  eventWishlist(1);
+});
+
+// delete
+// let heartProduct = document.querySelector(".heart-product");
+// let heartArticle = document.querySelector(".heart-article");
+// let heartEvent = document.querySelector(".heart-event");
+
+document.addEventListener("click", function (e) {
+  console.log(e.target);
+  if (e.target.classList.contains("heart-product")) {
+    console.log("heart-product");
+  }
+});
+
+// heartProduct.addEventListener("click", function () {
+//   console.log("heart product clicked");
+//   // deleteWishlist("Product", `${product.wishlistProductId}`);
+// });
 // $('.member-email input[name=my_id]').val(row.my_id).prop('readonly', true);

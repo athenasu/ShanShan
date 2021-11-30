@@ -299,7 +299,8 @@ button {
 }
 
 .card-1,
-.card-2 {
+.card-2,
+.card-3 {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -317,7 +318,9 @@ button {
 .card-2 {
   background-color: white;
 }
-
+.card-3 {
+  background-color: #c5c5c5;
+}
 .cards .order-status {
   width: 6.5rem;
 }
@@ -372,6 +375,26 @@ button {
 
 .card-2 button:hover {
   background-color: #adc2a9;
+  color: white;
+}
+
+.card-3 button {
+  border: none;
+  color: #c5c5c5;
+  padding: 3px 8px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  background-color: white;
+  color: black;
+  border: 2px solid white;
+}
+
+.card-3 button:hover {
+  background-color: #c5c5c5;
   color: white;
 }
 

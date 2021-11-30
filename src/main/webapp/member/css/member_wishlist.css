@@ -364,16 +364,19 @@ button {
   /* margin: 0px 5px; */
 }
 
-.fa-heart {
-  position: absolute;
-  margin-top: 1rem;
-  margin-left: -11.5rem;
-  z-index: 1;
-  cursor: pointer;
-}
-
 .fa-heart:hover {
   color: black;
+}
+
+.heart-product {
+  position: absolute;
+  margin-top: 1rem;
+  height: 20px;
+  width: 20px;
+  /* border: 1px blue solid; */
+  cursor: pointer;
+  margin-left: 1rem;
+  z-index: 100;
 }
 
 .groupinfo,
