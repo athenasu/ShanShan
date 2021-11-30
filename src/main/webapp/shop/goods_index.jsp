@@ -1,13 +1,19 @@
-<%@ page import="tw.idv.tibame.tfa104.shanshan.web.orderDescription.*"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="tw.idv.tibame.tfa104.shanshan.web.shop.service.impl.*"%>
+<%@ page import="tw.idv.tibame.tfa104.shanshan.web.shop.service.*"%>
+<%@ page import="tw.idv.tibame.tfa104.shanshan.web.product.entity.ProductBO"%>
+<%@ page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <% String contextPath = request.getContextPath();%>
-<%-- 取出 Controller orderDescriptionServlet.java已存入request的Poplist物件 --%>
-<%=(String) request.getAttribute("Pop")%>
-<%=(String) request.getAttribute("Poplist")%>
 
-
+<%	
+	ShopService shopsvc = new ShopServiceImpl();
+	List<ProductBO> popular10 = shopsvc.findPopular10();
+    pageContext.setAttribute("popular10",popular10);      // 沒問題 使用自己的Serive
+    
+%>
+    
+    
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,126 +52,35 @@
 
         <div class="goodsindex_innercontent ">
         
-
-            <div class="goods_title01 ">熱門商品</div>
-            <ul class="goods_area ">
-            <c:forEach items="Pop" var="Poplist" begin="1" end="10" step="1" >
-                <li class="single_good_area" onclick="location.href='goods_product_page.jsp'">
-                    <img class="good_headpic" src="img\good01.jpg" width="250px" alt="goods">
+            <div class="goods_title01">熱門商品</div>
+            <ul class="goods_area">
+            <c:forEach items="${popular10}" var="ProductBO" >
+                <li class="single_good_area" onclick="location.href='<%=contextPath %>/shop/goods_product_page.jsp'">
+                    <div class="good_headpic"><img class="good_headpic_img" src="<%=contextPath %>/popularProductPicServlet?productId=${ProductBO.productId}&action=getPopImage" width="250px" alt="goods"></div>
                     <div class="goods_icon"><i class="far fa-heart "></i></div>
                     <div class="goods_icon_keep -none"><i class="fas fa-heart "></i></div>
-                    <span class="good_headsupplier">${Poplist.company.companyName}</span>
-                    <a class="good_headname">
-                        <h4>${Poplist.product.productName}</h4>
-                    </a>
-                    <span class="good_headprice">售價${Poplist.product.productPrice}</span>
+                    <span class="good_headsupplier">${ProductBO.companyName}</span>	
+                    <a class="good_headname"><h5>${ProductBO.productName}</h5></a>
+                    <span class="good_headprice">售價${ProductBO.productPrice}</span>
                 </li>
             </c:forEach>
             </ul>
 			
             <div class="goods_title01">新駐商品</div>
-            <ul class="goods_area">
-                <li class="single_good_area" onclick="location.href='goods_product_page.jsp'">
-                    <img class="good_headpic" src="img\good01.jpg" width="250px" alt="goods">
+            <%--
+			<ul class="goods_area">
+			<c:forEach  items="${latest10}" var="ProductBO2">
+                <li class="single_good_area" onclick="location.href='<%=contextPath%>/shop/goods_product_page.jsp'">
+					<div class="good_headpic"><img class="good_headpic_img" src="<%=contextPath%>/LastestProductPicServlet?productId=${ProductBO2.productId}&action=getPopImage" width="250px" alt="goods"></div>
                     <div class="goods_icon"><i class="far fa-heart "></i></div>
                     <div class="goods_icon_keep -none"><i class="fas fa-heart "></i></div>
-                    <span class="good_headsupplier">山山巧福</span>
-                    <a class="good_headname">
-                        <h4>聚酯纖維彈性襯衫</h4>
-                    </a>
-                    <span class="good_headprice">售價290元</span>
+                    <span class="good_headsupplier">${ProductBO2.companyName}</span>	
+                    <a class="good_headname"><h5>${ProductBO2.productName}</h5></a>
+                    <span class="good_headprice">售價${ProductBO2.productPrice}</span>
                 </li>
-                <li class="single_good_area" onclick="location.href='goods_product_page.jsp'">
-                    <img class="good_headpic" src="img\good01.jpg" width="250px" alt="goods">
-                    <div class="goods_icon"><i class="far fa-heart "></i></div>
-                    <div class="goods_icon_keep -none"><i class="fas fa-heart "></i></div>
-                    <span class="good_headsupplier">The North Face</span>
-                    <a class="good_headname">
-                        <h4>有機棉法蘭絨襯衫</h4>
-                    </a>
-                    <span class="good_headprice">售價2,200元</span>
-                </li>
-                <li class="single_good_area" onclick="location.href='goods_product_page.jsp'">
-                    <img class="good_headpic" src="img\good01.jpg" width="250px" alt="goods">
-                    <div class="goods_icon"><i class="far fa-heart "></i></div>
-                    <div class="goods_icon_keep -none"><i class="fas fa-heart "></i></div>
-                    <span class="good_headsupplier">Marmot</span>
-                    <a class="good_headname">
-                        <h4>有機棉水洗牛津布八分褲</h4>
-                    </a>
-                    <span class="good_headprice">售價2,190元</span>
-                </li>
-                <li class="single_good_area" onclick="location.href='goods_product_page.jsp'">
-                    <img class="good_headpic" src="img\good01.jpg" width="250px" alt="goods">
-                    <div class="goods_icon"><i class="far fa-heart "></i></div>
-                    <div class="goods_icon_keep -none"><i class="fas fa-heart "></i></div>
-                    <span class="good_headsupplier">Patagonia</span>
-                    <a class="good_headname">
-                        <h4>聚酯纖維彈性起毛錐形褲</h4>
-                    </a>
-                    <span class="good_headprice">售價1,230元</span>
-                </li>
-                <li class="single_good_area" onclick="location.href='goods_product_page.jsp'">
-                    <img class="good_headpic" src="img\good01.jpg" width="250px" alt="goods">
-                    <div class="goods_icon"><i class="far fa-heart "></i></div>
-                    <div class="goods_icon_keep -none"><i class="fas fa-heart "></i></div>
-                    <span class="good_headsupplier">Gregory</span>
-                    <a class="good_headname">
-                        <h4>輕量羽絨可攜式無領外套</h4>
-                    </a>
-                    <span class="good_headprice">售價1,760元</span>
-                </li>
-                <li class="single_good_area" onclick="location.href='goods_product_page.jsp'">
-                    <img class="good_headpic" src="img\good01.jpg" width="250px" alt="goods">
-                    <div class="goods_icon"><i class="far fa-heart "></i></div>
-                    <div class="goods_icon_keep -none"><i class="fas fa-heart "></i></div>
-                    <span class="good_headsupplier">WELL FIT威飛客</span>
-                    <a class="good_headname">
-                        <h4>輕量羽絨可攜式無領背心</h4>
-                    </a>
-                    <span class="good_headprice">售價2,010元</span>
-                </li>
-                <li class="single_good_area" onclick="location.href='goods_product_page.jsp'">
-                    <img class="good_headpic" src="img\good01.jpg" width="250px" alt="goods">
-                    <div class="goods_icon"><i class="far fa-heart "></i></div>
-                    <div class="goods_icon_keep -none"><i class="fas fa-heart "></i></div>
-                    <span class="good_headsupplier">山野倉庫</span>
-                    <a class="good_headname">
-                        <h4>防撥水彈性6口袋外套</h4>
-                    </a>
-                    <span class="good_headprice">售價1,450元</span>
-                </li>
-                <li class="single_good_area" onclick="location.href='goods_product_page.jsp'">
-                    <img class="good_headpic" src="img\good01.jpg" width="250px" alt="goods">
-                    <div class="goods_icon"><i class="far fa-heart "></i></div>
-                    <div class="goods_icon_keep -none"><i class="fas fa-heart "></i></div>
-                    <span class="good_headsupplier">ARCTERYX始祖鳥</span>
-                    <a class="good_headname">
-                        <h4>羽絨可攜式立領背心</h4>
-                    </a>
-                    <span class="good_headprice">售價390元</span>
-                </li>
-                <li class="single_good_area" onclick="location.href='goods_product_page.jsp'">
-                    <img class="good_headpic" src="img\good01.jpg" width="250px" alt="goods">
-                    <div class="goods_icon"><i class="far fa-heart "></i></div>
-                    <div class="goods_icon_keep -none"><i class="fas fa-heart "></i></div>
-                    <span class="good_headsupplier">HAGLOFS</span>
-                    <a class="good_headname">
-                        <h4>透氣撥水防水連帽外套</h4>
-                    </a>
-                    <span class="good_headprice">售價3,330元</span>
-                </li>
-                <li class="single_good_area" onclick="location.href='goods_product_page.jsp'">
-                    <img class="good_headpic" src="img\good01.jpg" width="250px" alt="goods">
-                    <div class="goods_icon"><i class="far fa-heart "></i></div>
-                    <div class="goods_icon_keep -none"><i class="fas fa-heart "></i></div>
-                    <span class="good_headsupplier">FIZAN</span>
-                    <a class="good_headname">
-                        <h4>超長棉二重織長版衫</h4>
-                    </a>
-                    <span class="good_headprice">售價2,190元</span>
-                </li>
-            </ul>
+			</c:forEach>
+			</ul>
+           --%>
         </div>
     </div>
 
@@ -175,7 +90,7 @@
 <%@ include file="goods_footer.jsp" %>
 
     <!-- 載入jQuery -->
-    <!-- <script type='text/javascript' src='./code/jquery-3.6.0.js'></script> -->
+    <!-- <script type='text/javascript' src='<%=contextPath%>/shop/code/jquery-3.6.0.js'></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- 載入index.js -->
     <script type='text/javascript' src='<%=contextPath%>/shop/code/index.js'></script>

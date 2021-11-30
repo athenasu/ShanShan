@@ -2,15 +2,14 @@ package tw.idv.tibame.tfa104.shanshan.web.orderDescription.service.impl;
 
 import java.util.List;
 
-import tw.idv.tibame.tfa104.shanshan.web.article.entity.ArticleVO;
+
 import tw.idv.tibame.tfa104.shanshan.web.orderDescription.dao.OrderDescriptionDAO;
 import tw.idv.tibame.tfa104.shanshan.web.orderDescription.dao.impl.OrderDescriptionDAOImpl;
 import tw.idv.tibame.tfa104.shanshan.web.orderDescription.entity.OrderDescription;
 import tw.idv.tibame.tfa104.shanshan.web.orderDescription.entity.OrderDescriptionBO;
-import tw.idv.tibame.tfa104.shanshan.web.orderDescription.service.orderDescriptionService;
-import tw.idv.tibame.tfa104.shanshan.web.product.entity.ProductBO;
+import tw.idv.tibame.tfa104.shanshan.web.orderDescription.service.OrderDescriptionService;
 
-public class orderDescriptionServiceImpl implements orderDescriptionService{
+public class OrderDescriptionServiceImpl implements OrderDescriptionService{
 
 	OrderDescriptionDAO dao = new OrderDescriptionDAOImpl();
 	
@@ -18,6 +17,7 @@ public class orderDescriptionServiceImpl implements orderDescriptionService{
 //	查詢 訂單明細 BY PK
 	@Override
 	public OrderDescription findByOrderDesId(Integer order_des_id) {
+		System.out.println(dao.findByOrderDesId(order_des_id));
 		return dao.findByOrderDesId(order_des_id);
 	}
 
@@ -45,14 +45,6 @@ public class orderDescriptionServiceImpl implements orderDescriptionService{
 	public List<OrderDescriptionBO> BOfindByOrderIdNopic(Integer order_id) {
 		return dao.BOfindByOrderIdNopic(order_id);
 	}
-
-
-	//	回傳10個 PopularProduct , 熱門商品 (10個)  按總銷售數 正序
-	@Override
-	public List<ProductBO> findpopular10() {
-		return dao.findpopular10();
-	}
-
 	
 
 }

@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import tw.idv.tibame.tfa104.shanshan.web.orderDescription.entity.OrderDescription;
-import tw.idv.tibame.tfa104.shanshan.web.orderDescription.service.orderDescriptionService;
-import tw.idv.tibame.tfa104.shanshan.web.orderDescription.service.impl.orderDescriptionServiceImpl;
+import tw.idv.tibame.tfa104.shanshan.web.orderDescription.service.OrderDescriptionService;
+import tw.idv.tibame.tfa104.shanshan.web.orderDescription.service.impl.OrderDescriptionServiceImpl;
 import tw.idv.tibame.tfa104.shanshan.web.product.entity.ProductBO;
 
 @WebServlet("/orderDescriptionServlet")
@@ -26,11 +26,10 @@ public class OrderDescriptionServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         
 //		調用service方法
-		orderDescriptionService service = new orderDescriptionServiceImpl();
-        ProductBO popular = new ProductBO();
-		List<ProductBO> popular10 = service.findpopular10();
-		response.getWriter().print(popular10);
-		request.setAttribute("Pop", popular10);
+//		orderDescriptionService service = new orderDescriptionServiceImpl();
+//		List<ProductBO> popular10 = service.findpopular10();
+//		response.getWriter().print(popular10);
+//		request.setAttribute("Pop", popular10);
 
 //		request.getRequestDispatcher("shop/goods_index.jsp").forward(request, response); 
 		

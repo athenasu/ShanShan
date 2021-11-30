@@ -1,6 +1,7 @@
 package tw.idv.tibame.tfa104.shanshan.web.orderDescription.dao.impl;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,12 +13,14 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import org.springframework.stereotype.Repository;
+
 import tw.idv.tibame.tfa104.shanshan.web.JDBCutil.JDBCUtil;
 import tw.idv.tibame.tfa104.shanshan.web.orderDescription.dao.OrderDescriptionDAO;
 import tw.idv.tibame.tfa104.shanshan.web.orderDescription.entity.OrderDescription;
 import tw.idv.tibame.tfa104.shanshan.web.orderDescription.entity.OrderDescriptionBO;
-import tw.idv.tibame.tfa104.shanshan.web.product.entity.ProductBO;
 
+@Repository
 public class OrderDescriptionDAOImpl implements OrderDescriptionDAO{
 //	新增 訂單明細 成功返回1，失敗返回0
 	private static final String INSERT_STMT = "INSERT INTO Order_description(product_des_id, order_id, product_quantity, product_price) VALUES (?, ?, ?, ?) ";
@@ -37,8 +40,8 @@ public class OrderDescriptionDAOImpl implements OrderDescriptionDAO{
 	private static final String BO_FIND_BY_ORDERID_NO_PIC = "SELECT b.order_id, b.member_id, b.order_created_date, b.order_member_address, b.order_member_name, b.order_member_phone, b.order_status, a.product_quantity, a.product_price, b.order_sum_after, b.order_shipped_date, b.ship_number, b.payment_status, d.product_name, c.product_id, c.product_des_id, c.product_size, c.product_color, d.company_id, e.company_name FROM order_description a JOIN `order` b USING (order_id) JOIN product_description c USING (product_des_id) JOIN product d USING (product_id) JOIN company e USING (company_id) WHERE order_id = ?";
 //	查詢 特定訂單的訂單明細BO 按訂單明細編號 正序 (沒圖片，拿掉一些店家後台用的資料)
 	private static final String BO_FIND_BY_ORDERID_NO_PIC_FOR_MEMBER_CENTER ="SELECT b.order_id, b.order_created_date, b.order_status, a.product_quantity, a.product_price, b.order_sum_after, b.order_shipped_date, b.ship_number, b.payment_status, d.product_name, c.product_id, c.product_des_id, c.product_size, c.product_color, e.company_name FROM order_description a JOIN `order` b USING (order_id) JOIN product_description c USING (product_des_id) JOIN product d USING (product_id) JOIN company e USING (company_id) WHERE order_id = ?";
-//	回傳10個 PopularProduct , 熱門商品 (10個)  按總銷售數 正序
-	private static final String FIND_10POPULAR_PRODUCT ="SELECT pf.product_name, pf.product_price, pf.company_name, pf.product_first_pic FROM (SELECT product_des_id, SUM(product_quantity) total_qty FROM order_description GROUP BY product_des_id ORDER BY total_qty DESC LIMIT 10) pop JOIN (SELECT b.product_id, a.product_des_id, b.product_name, a.product_price, c.company_name, img.product_first_pic FROM product_description a JOIN (select * from product WHERE `status` = 0) b USING (product_id) JOIN company c USING (company_id) JOIN (SELECT a.product_img_id, a.product_des_id, b.product_img product_first_pic FROM (SELECT MIN(product_img_id) product_img_id, product_des_id FROM product_img GROUP BY product_des_id) a JOIN product_img b USING (product_img_id)) img USING (product_des_id)) pf USING (product_des_id)";
+//	查詢 特定會員的訂單+訂單明細BO 按訂單明細編號 正序
+	private static final String BO_FIND_BY_MEMID_NO_PIC_FOR_MEMBER_CENTER ="SELECT b.order_id, b.member_id, b.order_created_date, b.order_member_address, b.order_member_name, b.order_member_phone, b.order_status, a.product_quantity, a.product_price, b.order_sum_after, b.order_shipped_date, b.ship_number, b.payment_status, d.product_name, c.product_id, c.product_des_id, c.product_size, c.product_color, d.company_id, e.company_name FROM order_description a JOIN `order` b USING (order_id) JOIN product_description c USING (product_des_id) JOIN product d USING (product_id) JOIN company e USING (company_id) WHERE member_id = ?";
 
 	private static DataSource ds = null;
 	
@@ -363,7 +366,7 @@ public class OrderDescriptionDAOImpl implements OrderDescriptionDAO{
 	
 //	查詢 特定訂單的訂單明細BO 按訂單明細編號 正序 (沒有圖片)
 	@Override
-	public List<OrderDescriptionBO> BOfindByOrderIdForMemberCenter(Integer order_id) {
+	public List<OrderDescriptionBO> BOfindByOrderIdForMemCentr(Integer order_id) {
 
 		List<OrderDescriptionBO> listOrderDesBO3 = new ArrayList<>();
 		OrderDescriptionBO orderDesBO3 = null;
@@ -415,33 +418,49 @@ public class OrderDescriptionDAOImpl implements OrderDescriptionDAO{
 		return listOrderDesBO3;
 	}
 
-	//	回傳10個 ProductBO , 熱門商品 (10個)  按總銷售數 正序
 	@Override
-	public List<ProductBO> findpopular10() {
+	public List<OrderDescriptionBO> BOfindByMemIdForMembCentr(Integer member_id) {
 
-		List<ProductBO> popular10 = new ArrayList<>();
-		ProductBO popular = null;
+		List<OrderDescriptionBO> listOrderDesBO3 = new ArrayList<>();
+		OrderDescriptionBO orderDesBO3 = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
+
 
 		try {
 
-//			DataSource ds = new ComboPooledDataSource();
-			
+			//		DataSource ds = new ComboPooledDataSource();
+
 			con = ds.getConnection();
-			
-			pstmt = con.prepareStatement(FIND_10POPULAR_PRODUCT);
+
+			pstmt = con.prepareStatement(BO_FIND_BY_MEMID_NO_PIC_FOR_MEMBER_CENTER);
+			pstmt.setInt(1, member_id);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				popular = new ProductBO();
-				popular.setProductName(rs.getString("product_name"));
-				popular.setProductPrice(rs.getInt("product_price"));
-				popular.setCompanyName(rs.getString("company_name"));
-				popular.setProductImg(rs.getBytes("product_first_pic"));
-				popular10.add(popular);
+				orderDesBO3 = new OrderDescriptionBO();
+				orderDesBO3.setOrder_id(rs.getInt("order_id"));
+				orderDesBO3.setMember_id(rs.getInt("member_id"));
+				orderDesBO3.setOrder_created_date(rs.getDate("order_created_date"));
+				orderDesBO3.setOrder_member_address(rs.getString("order_member_address"));
+				orderDesBO3.setOrder_member_name(rs.getString("order_member_name"));
+				orderDesBO3.setOrder_member_phone(rs.getInt("order_member_phone"));
+				orderDesBO3.setOrder_status(rs.getInt("order_status"));
+				orderDesBO3.setOrder_sum_after(rs.getInt("order_sum_after"));
+				orderDesBO3.setOrder_shipped_date(rs.getDate("order_shipped_date"));
+				orderDesBO3.setShip_number(rs.getInt("ship_number"));
+				orderDesBO3.setPayment_status(rs.getInt("payment_status"));
+				orderDesBO3.setProduct_id(rs.getInt("product_id"));
+				orderDesBO3.setProdes_id(rs.getInt("product_des_id"));
+				orderDesBO3.setCompany_id(rs.getInt("company_id"));
+				orderDesBO3.setCompany_name(rs.getString("company_name"));
+				orderDesBO3.setProduct_name(rs.getString("product_name"));
+				orderDesBO3.setProduct_size(rs.getInt("product_size"));
+				orderDesBO3.setProduct_color(rs.getString("product_color"));
+				orderDesBO3.setOrder_description_price(rs.getInt("order_description_price"));
+
+				listOrderDesBO3.add(orderDesBO3);
 			}
 
 		} catch (SQLException se) {
@@ -449,8 +468,7 @@ public class OrderDescriptionDAOImpl implements OrderDescriptionDAO{
 		} finally {
 			JDBCUtil.close(rs,pstmt,con);
 		}
-		
-		return popular10;
+		return listOrderDesBO3;
 	}
 
 	

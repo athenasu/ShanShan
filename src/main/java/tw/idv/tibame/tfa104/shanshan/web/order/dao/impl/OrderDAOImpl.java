@@ -1,6 +1,7 @@
 package tw.idv.tibame.tfa104.shanshan.web.order.dao.impl;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,10 +13,13 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import org.springframework.stereotype.Repository;
+
 import tw.idv.tibame.tfa104.shanshan.web.JDBCutil.JDBCUtil;
 import tw.idv.tibame.tfa104.shanshan.web.order.dao.OrderDAO;
 import tw.idv.tibame.tfa104.shanshan.web.order.entity.Order;
 
+@Repository
 public class OrderDAOImpl implements OrderDAO{
 
 //	新增 訂單 成功返回1，失敗返回0
@@ -43,7 +47,7 @@ public class OrderDAOImpl implements OrderDAO{
 //	查詢 特定店家的訂單 按order id 倒序
 	private static final String FIND_ALL_BY_COMID = "select * from `order` where company_id=? order by order_id desc";
 //	查詢 特定會員的訂單 按order id 倒序
-	private static final String FIND_ALL_BY_MEMID = "select * from `order` where member id=? order by order_id desc";
+	private static final String FIND_ALL_BY_MEMID = "select * from `order` where member_id=? order by order_id desc";
 //	查詢 特定會員 使用點數不為零 的訂單 按order id 倒序
 	private static final String FIND_ALL_BY_MEMID_USEPOINT_NOTZERO = "select * from `order` where member_id=? and point_used not =0 order by order_id desc";
 //	查詢 特定店家的訂單號碼 BY LIKE %?% 按order id 正序

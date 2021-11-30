@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<% String contextPath = request.getContextPath();%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>全部店家</title>
-    <link rel="stylesheet" type="text/css" href="./code/style.css">
+    <link rel="stylesheet" type="text/css" href="<%=contextPath%>/shop/code/style.css">
 
 
 </head>
@@ -83,10 +85,10 @@
 <%@ include file="goods_footer.jsp" %>
 
     <!-- 載入jQuery -->
-    <!-- <script type='text/javascript' src='./code/jquery-3.6.0.js'></script> -->
+    <!-- <script type='text/javascript' src='<%=contextPath%>/shop/code/jquery-3.6.0.js'></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- 載入index.js -->
-    <script type='text/javascript' src='./code/index.js'></script>
+    <script type='text/javascript' src='<%=contextPath%>/shop/code/index.js'></script>
     <!-- 載入icon -->
     <script src="https://kit.fontawesome.com/8cfc21ab70.js" crossorigin="anonymous"></script>
 </body>
