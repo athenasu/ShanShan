@@ -18,7 +18,8 @@ public class ShopServiceImpl implements ShopService{
 //	public List<ProductBO> findNew() {
 //		return pssvc.findNew();
 //	}
-
+	
+	
 	//	回傳10個 PopularProduct , 熱門商品 (10個)  按總銷售數 正序
 	@Override
 	public List<ProductBO> findPopular10() {

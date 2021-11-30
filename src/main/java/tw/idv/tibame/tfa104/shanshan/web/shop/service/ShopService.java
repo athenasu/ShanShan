@@ -11,5 +11,4 @@ public interface ShopService {
 //	回傳10個 ProductBO , 熱門商品 (10個)  按總銷售數 正序
 	List<ProductBO> findPopular10();
 	
-	
 }

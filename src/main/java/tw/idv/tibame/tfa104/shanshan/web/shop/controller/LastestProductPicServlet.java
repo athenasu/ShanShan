@@ -52,6 +52,8 @@ public class LastestProductPicServlet extends HttpServlet {
 			}
 		}
 
+		
+		
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {

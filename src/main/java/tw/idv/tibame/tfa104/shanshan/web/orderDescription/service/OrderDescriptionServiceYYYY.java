@@ -6,7 +6,7 @@ import tw.idv.tibame.tfa104.shanshan.web.orderDescription.entity.OrderDescriptio
 import tw.idv.tibame.tfa104.shanshan.web.orderDescription.entity.OrderDescriptionBO;
 import tw.idv.tibame.tfa104.shanshan.web.product.entity.ProductBO;
 
-public interface OrderDescriptionService {
+public interface OrderDescriptionServiceYYYY {
 
 //	查詢 訂單明細 BY PK
 	OrderDescription findByOrderDesId(Integer order_des_id);
@@ -18,6 +18,7 @@ public interface OrderDescriptionService {
 	List<OrderDescriptionBO> BOfindByOrderId(Integer order_id);
 //	查詢 特定訂單的訂單明細BO 按訂單明細編號 正序 (沒圖片)
 	List<OrderDescriptionBO> BOfindByOrderIdNopic(Integer order_id);
+//  改名大O小O
 }
 
 

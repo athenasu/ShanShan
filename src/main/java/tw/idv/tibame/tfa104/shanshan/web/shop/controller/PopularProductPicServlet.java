@@ -24,7 +24,6 @@ public class PopularProductPicServlet extends HttpServlet {
 		response.setContentType("application/json;charset=utf-8");
 		request.setCharacterEncoding("UTF-8");
 
-		
 		String action = request.getParameter("action");
 		if ("getPopImage".equals(action)) {
 			response.setContentType("image/gif");

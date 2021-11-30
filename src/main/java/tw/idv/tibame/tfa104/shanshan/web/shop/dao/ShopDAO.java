@@ -19,7 +19,6 @@ public interface ShopDAO {
 //	List<ProductBO> findProductByProName();
 ////	山友搜尋店家名字功能 條件company_name like '%?%',20個  按company_id 正序 
 //	List<ProductBO> findCompanyByComName();
-//
 ////	更新 山山點數 欄位member_points_sum 條件member_id="?" 
 //	void UpdateMembPointsByMemId(Integer member_id);
 ////	查詢點數 選擇member_points_sum 條件member_id = "?" 
