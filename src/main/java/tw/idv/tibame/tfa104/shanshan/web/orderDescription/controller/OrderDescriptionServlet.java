@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import tw.idv.tibame.tfa104.shanshan.web.orderDescription.entity.OrderDescription;
+import tw.idv.tibame.tfa104.shanshan.web.orderDescription.entity.OrderDescriptionBO;
 import tw.idv.tibame.tfa104.shanshan.web.orderDescription.service.OrderDescriptionService;
 import tw.idv.tibame.tfa104.shanshan.web.orderDescription.service.impl.OrderDescriptionServiceImpl;
 import tw.idv.tibame.tfa104.shanshan.web.product.entity.ProductBO;
@@ -26,8 +27,9 @@ public class OrderDescriptionServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         
 //		調用service方法
-//		orderDescriptionService service = new orderDescriptionServiceImpl();
-//		List<ProductBO> popular10 = service.findpopular10();
+		OrderDescriptionService service = new OrderDescriptionServiceImpl();
+		List<OrderDescriptionBO> popular10 = service.BOfindByMemIdForMembCentr(1);
+		System.out.println(popular10);
 //		response.getWriter().print(popular10);
 //		request.setAttribute("Pop", popular10);
 

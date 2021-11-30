@@ -294,7 +294,7 @@ public class OrderDescriptionDAOImpl implements OrderDescriptionDAO{
 				orderDesBO.setProduct_name(rs.getString("product_name"));
 				orderDesBO.setProduct_size(rs.getInt("product_size"));
 				orderDesBO.setProduct_color(rs.getString("product_color"));
-				orderDesBO.setOrder_description_price(rs.getInt("order_description_price"));
+				orderDesBO.setOrder_description_price(rs.getInt("product_price"));
 				orderDesBO.setProduct_first_pic(rs.getBytes("product_des_img"));
 
 				listOrderDesBO.add(orderDesBO);
@@ -350,7 +350,7 @@ public class OrderDescriptionDAOImpl implements OrderDescriptionDAO{
 				orderDesBO2.setProduct_name(rs.getString("product_name"));
 				orderDesBO2.setProduct_size(rs.getInt("product_size"));
 				orderDesBO2.setProduct_color(rs.getString("product_color"));
-				orderDesBO2.setOrder_description_price(rs.getInt("order_description_price"));
+				orderDesBO2.setOrder_description_price(rs.getInt("product_price"));
 
 				listOrderDesBO2.add(orderDesBO2);
 			}
@@ -405,7 +405,7 @@ public class OrderDescriptionDAOImpl implements OrderDescriptionDAO{
 				orderDesBO3.setProduct_name(rs.getString("product_name"));
 				orderDesBO3.setProduct_size(rs.getInt("product_size"));
 				orderDesBO3.setProduct_color(rs.getString("product_color"));
-				orderDesBO3.setOrder_description_price(rs.getInt("order_description_price"));
+				orderDesBO3.setOrder_description_price(rs.getInt("product_price"));
 
 				listOrderDesBO3.add(orderDesBO3);
 			}
@@ -418,6 +418,7 @@ public class OrderDescriptionDAOImpl implements OrderDescriptionDAO{
 		return listOrderDesBO3;
 	}
 
+//	查詢 特定會員的訂單+訂單明細BO 按訂單明細編號 正序 
 	@Override
 	public List<OrderDescriptionBO> BOfindByMemIdForMembCentr(Integer member_id) {
 
@@ -458,7 +459,7 @@ public class OrderDescriptionDAOImpl implements OrderDescriptionDAO{
 				orderDesBO3.setProduct_name(rs.getString("product_name"));
 				orderDesBO3.setProduct_size(rs.getInt("product_size"));
 				orderDesBO3.setProduct_color(rs.getString("product_color"));
-				orderDesBO3.setOrder_description_price(rs.getInt("order_description_price"));
+				orderDesBO3.setOrder_description_price(rs.getInt("product_price"));
 
 				listOrderDesBO3.add(orderDesBO3);
 			}

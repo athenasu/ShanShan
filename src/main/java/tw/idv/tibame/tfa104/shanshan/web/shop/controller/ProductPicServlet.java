@@ -15,11 +15,11 @@ import tw.idv.tibame.tfa104.shanshan.web.productImg.entity.ProductImgBO;
 import tw.idv.tibame.tfa104.shanshan.web.productImg.service.impl.ProductImgBOService;
 import tw.idv.tibame.tfa104.shanshan.web.productImg.service.impl.ProductImgBOServiceImpl;
 
-@WebServlet("/popularProductPicServlet")
+@WebServlet("/ProductPicServlet")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 5 * 1024 * 1024, maxRequestSize = 5 * 5 * 1024 * 1024)
-public class PopularProductPicServlet extends HttpServlet {
+public class ProductPicServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		//來源跳轉路徑"<%=contextPath%>/popularProductPicServlet?productId=${ProductBO.productId}&action=getPopImage"
+		//來源跳轉路徑"<%=contextPath%>/ProductPicServlet?productId=${ProductBO.productId}&action=getPopImage"
 
 		response.setContentType("application/json;charset=utf-8");
 		request.setCharacterEncoding("UTF-8");

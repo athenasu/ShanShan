@@ -45,6 +45,18 @@ public class OrderDescriptionServiceImpl implements OrderDescriptionService{
 	public List<OrderDescriptionBO> BOfindByOrderIdNopic(Integer order_id) {
 		return dao.BOfindByOrderIdNopic(order_id);
 	}
+
+//	查詢 特定訂單的訂單明細BO 按訂單明細編號 正序 (沒圖片，拿掉一些店家後台用的資料)
+	@Override
+	public List<OrderDescriptionBO> BOfindByOrderIdForMemCentr(Integer order_id) {
+		return dao.BOfindByOrderIdForMemCentr(order_id);
+	}
+
+//	查詢 特定會員的訂單+訂單明細BO 按訂單明細編號 正序 
+	@Override
+	public List<OrderDescriptionBO> BOfindByMemIdForMembCentr(Integer member_id) {
+		return dao.BOfindByMemIdForMembCentr(member_id);
+	}
 	
 
 }
