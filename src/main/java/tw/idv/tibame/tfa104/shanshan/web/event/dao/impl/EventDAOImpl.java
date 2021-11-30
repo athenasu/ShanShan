@@ -10,7 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import tw.idv.tibame.tfa104.shanshan.web.event.dao.EventDAO;
+import tw.idv.tibame.tfa104.shanshan.web.event.entity.DistrictEventBO;
 import tw.idv.tibame.tfa104.shanshan.web.event.entity.Event;
+import tw.idv.tibame.tfa104.shanshan.web.event.entity.MemberEventBO;
+import tw.idv.tibame.tfa104.shanshan.web.event.entity.OnGoingEventBO;
+import tw.idv.tibame.tfa104.shanshan.web.event.entity.ParEventBO;
+import tw.idv.tibame.tfa104.shanshan.web.event.entity.PopularEventBO;
 
 @Repository
 public class EventDAOImpl implements EventDAO {
@@ -108,45 +113,137 @@ public class EventDAOImpl implements EventDAO {
 
 
 	@Override
-	public List<Object[]> selectByDistrict(Integer mountainDistrict) {
+	public List<DistrictEventBO> selectByDistrict(Integer mountainDistrict) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("FROM Event a join Mountain b WITH a.mountainId = b.mountainId WHERE b.moutainDistrict = :mountainDistrict", Object[].class)
+		return session.createNativeQuery("SELECT "+
+											"a.member_id as memberId, "+
+											"a.event_name as eventName, "+
+											"a.event_start_date as eventStartDate, "+
+											"a.mountain_id as mountainId, "+
+											"b.mountain_name as mountainName, "+
+											"b.mountain_pic as mountainPic, "+
+											"c.member_name as memberName, "+
+											"b.mountain_district as mountainDistrict "+
+										"FROM Event a "+
+										"JOIN Mountain b "+
+											"ON a.mountain_id = b.mountain_id "+
+										"JOIN Member c "+
+											"ON a.member_id = c.member_id "+
+										"WHERE b.mountain_district = :mountainDistrict", DistrictEventBO.class)
 				.setParameter("mountainDistrict", mountainDistrict).list();
 	}
 
 	@Override
-	public List<Object[]> selectByMemberId(Integer memberId) {
+	public List<MemberEventBO> selectByMemberId(Integer memberId, Integer eventId) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("FROM Event a join Mountain b WITH a.mountainId = b.mountainId WHERE a.memberId = :memberId", Object[].class)
-				.setParameter("memberId", memberId).list();
+		return session.createNativeQuery("SELECT "+
+												"a.member_id as memberId, "+
+												"a.event_id as eventId, "+
+												"a.event_name as eventName, "+
+												"a.event_start_date as eventStartDate, "+
+												"a.event_deadline as eventDeadline, "+
+												"a.event_status as eventStatus, "+
+												"a.event_cur_part as eventCurPart, "+
+												"a.max_num_of_people as maxNumOfPeople, "+
+												"b.mountain_name as mountainName, "+
+												"b.mountain_longitude as mountainLongitude, "+
+												"b.mountain_latitude as mountainLatitude, "+
+												"b.mountain_pic as mountainPic, "+
+												"d.member_name as participantMemberName, "+
+												"d.member_email as participantMemberEmail "+
+										 "FROM Event a JOIN Mountain b "+
+												"ON a.mountain_id = b.mountain_id "+
+										 "JOIN Participant c "+
+												"ON a.event_id = c.event_id "+
+										 "JOIN member d "+
+												"ON c.member_id = d.member_id "+
+										 "WHERE (a.member_id = :memberId AND a.event_id = :eventId)", MemberEventBO.class)
+				.setParameter("memberId", memberId)
+				.setParameter("eventId", eventId).list();
 	}
 
 	@Override
-	public List<Object[]> popularEvents() {
+	public List<PopularEventBO> popularEvents() {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("FROM Event a join Mountain b WITH a.mountainId = b.mountainId ORDER BY a.eventCurPart desc", Object[].class)
-				.setMaxResults(5).list();
+		return session.createNativeQuery("SELECT " +
+												"a.event_id as eventId, "+
+												"a.member_id as memberId, "+
+												"a.event_start_date as eventStartDate, "+
+												"a.event_name as eventName, "+
+												"a.event_cur_part as eventCurPart, "+
+												"a.event_status as eventStatus, "+
+												"b.mountain_name as mountainName, "+
+												"b.mountain_district as mountainDistrict, " +
+												"a.mountain_id as mountainId, "+
+												"a.stay_type as stayType, "+
+												"c.member_name as memberName, "+
+												"b.mountain_pic as mountainPic, "+
+												"c.member_profile_pic as memberProfilePic "+
+										 "FROM Event a JOIN Mountain b "+
+										 		"ON a.mountain_id = b.mountain_id "+
+										 "JOIN Member c "+
+										 		"ON a.member_id = c.member_id "+
+										 "ORDER BY a.event_cur_part desc limit 5",PopularEventBO.class).list();
+				
 	}
 
 	@Override
-	public List<Object[]> onGoingEvents() {
+	public List<OnGoingEventBO> onGoingEvents() {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("FROM Event where (curdate() - eventStartDate <= 5 and maxNumOfPeople - eventCurPart <= 5)", Object[].class).list();
+		return session.createNativeQuery("SELECT " +
+												"a.event_id as eventId, "+
+												"a.mountain_id as mountainId, "+
+												"a.member_id as memberId, "+
+												"a.event_name as eventName, "+
+												"a.event_deadline as eventDeadline, "+
+												"a.max_num_of_people as maxNumOfPeople, "+
+												"a.event_status as eventStatus, "+
+												"a.event_cur_part as eventCurPart, "+
+												"b.mountain_pic as mountainPic, "+
+												"c.member_name as memberName, "+
+												"b.mountain_name as mountainName, "+
+												"c.member_profile_pic as memberProfilePic "+
+										 "FROM Event a "+
+										 "JOIN Mountain b "+
+										 		"ON a.mountain_id = b.mountain_id "+
+										 "JOIN Member c "+
+										 		"ON a.member_id = c.member_id "+
+										 "WHERE (curdate() - a.event_deadline <= 5 and a.max_num_of_people - a.event_cur_part <= 5)", OnGoingEventBO.class).list();
+		////"FROM Event where (curdate() - eventStartDate <= 5 and maxNumOfPeople - eventCurPart <= 5)"
 	}
 
 	@Override
 	public List<Object[]> eventList() {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("FROM Event a join Mountain b WITH a.mountainId = b.mountainId", Object[].class).list();
+		return session.createQuery("FROM Event a "+
+										"JOIN Mountain b WITH a.mountainId = b.mountainId "+
+										"JOIN Member c WITH a.memberId = c.memberId", Object[].class).list();
 	}
 
 	@Override
-	public List<Object[]> parEventByMember(Integer memberId) {
+	public List<ParEventBO> parEventByMember(Integer memberId) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("FROM Participant a join Event b WITH a.eventId = b.eventId join mountain c WITH b.mountainId = c.mountainId WHERE a.memberId = :memberId", Object[].class)
+		return session.createNativeQuery("SELECT "+
+											"b.event_id as eventId, "+
+											"b.event_name as eventName, "+
+											"b.event_status as eventStatus, "+
+											"b.event_start_date as eventStartDate, "+
+											"b.assembling_place as assemblingPlace, "+
+											"c.mountain_name as mountainName, "+
+											"b.event_cur_part as eventCurPart, "+
+											"c.mountain_pic as mountainPic, "+
+											"b.event_content as eventContent, "+
+											"b.mountain_id as mountainId, "+
+											"c.mountain_longitude as mountainLongitude, "+
+											"c.mountain_latitude as mountainLatitude "+
+										 "FROM Participant a "+
+										 "JOIN Event b "+
+										 	"ON a.event_id = b.event_id "+ 
+										 "JOIN Mountain c "+
+										 	"ON b.mountain_id = c.mountain_id "+
+										 "WHERE a.member_id = :memberId", ParEventBO.class)
 				.setParameter("memberId", memberId).list();
 	
 	}
-
 
 }
