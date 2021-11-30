@@ -1,6 +1,7 @@
 package tw.idv.tibame.tfa104.shanshan.web.article.entity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.sql.Date;
 
 public class ArticleVO implements Serializable  {
@@ -99,8 +100,8 @@ public class ArticleVO implements Serializable  {
 //	for join
 	private Integer mountain_district;
 	private String mountain_name;
-	private Integer mountain_longitude;
-	private Integer mountain_latitude;
+	private BigDecimal mountain_longitude;
+	private BigDecimal mountain_latitude;
 	private Integer article_picture_id;
 	private byte[] article_picture;
 
@@ -118,16 +119,19 @@ public class ArticleVO implements Serializable  {
 	public void setMountain_name(String mountain_name) {
 		this.mountain_name = mountain_name;
 	}
-	public Integer getMountain_longitude() {
+	
+	
+	
+	public BigDecimal getMountain_longitude() {
 		return mountain_longitude;
 	}
-	public void setMountain_longitude(Integer mountain_longitude) {
+	public void setMountain_longitude(BigDecimal mountain_longitude) {
 		this.mountain_longitude = mountain_longitude;
 	}
-	public Integer getMountain_latitude() {
+	public BigDecimal getMountain_latitude() {
 		return mountain_latitude;
 	}
-	public void setMountain_latitude(Integer mountain_latitude) {
+	public void setMountain_latitude(BigDecimal mountain_latitude) {
 		this.mountain_latitude = mountain_latitude;
 	}
 	public Integer getArticle_picture_id() {

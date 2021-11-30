@@ -12,9 +12,11 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import org.springframework.stereotype.Repository;
+
 import tw.idv.tibame.tfa104.shanshan.web.article.dao.ArticleDAO_interface;
 import tw.idv.tibame.tfa104.shanshan.web.article.entity.ArticleVO;
-
+@Repository
 public class ArticleDAO implements ArticleDAO_interface {
 
 
@@ -48,9 +50,8 @@ public class ArticleDAO implements ArticleDAO_interface {
 	// 複合查詢後補
 
 	// 給member後台使用 to athnea
-	private static final String findByMemIdGiveAll = "select * from article a  join article_picture p on a.article_id = p.article_id join mountain m on a.mountain_id = m.mountain_id where a.member_id= ?; ";
 	private static final String memIdRecievedPoints = "select member_id,sum(article_points_recieved) from article group by member_id=? ";
-
+	private static final String findByMemIdGiveAll ="select a.article_id, a.article_title,a.article_date_created,a.event_date,a.mountain_id,m.mountain_name,m.mountain_latitude,m.mountain_longitude,a.article_points_recieved,a.article_content,min(p.article_picture)from article a  join article_picture p on a.article_id = p.article_id join mountain m on a.mountain_id = m.mountain_id  where a.member_id= 1  group by a.article_id " ;
 	// 網誌狀態 to owen
 	private static final String updateArticleStatus = "UPDATE Article set article_status=? WHERE article_id = ?";
 
@@ -647,17 +648,13 @@ public class ArticleDAO implements ArticleDAO_interface {
 				ArticleVO.setArticle_content(rs.getString("article_content"));
 				ArticleVO.setArticle_date_created(rs.getDate("article_date_created"));
 				ArticleVO.setEvent_date(rs.getDate("event_date"));
-				ArticleVO.setRecommendation(rs.getInt("recommendation"));
 				ArticleVO.setArticle_points_recieved(rs.getInt("article_points_recieved"));
-				ArticleVO.setArticle_status(rs.getInt("article_status"));
-				ArticleVO.setAritcle_viewer(rs.getInt("aritcle_viewer"));
-
 				ArticleVO.setOther_mtn(rs.getString("other_mtn"));
 				// mountain table
 				ArticleVO.setMountain_district(rs.getInt("mountain_district"));
 				ArticleVO.setMountain_name(rs.getString("mountain_name"));
-				ArticleVO.setMountain_longitude(rs.getInt("mountain_longitude"));
-				ArticleVO.setMountain_latitude(rs.getInt("mountain_latitude"));
+				ArticleVO.setMountain_longitude(rs.getBigDecimal("mountain_longitude"));
+				ArticleVO.setMountain_latitude(rs.getBigDecimal("mountain_latitude"));
 				// Article picture table
 				ArticleVO.setArticle_picture_id(rs.getInt("article_picture_id"));
 				ArticleVO.setArticle_picture(rs.getBytes("article_picture"));
