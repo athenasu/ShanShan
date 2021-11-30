@@ -7,9 +7,9 @@ import tw.idv.tibame.tfa104.shanshan.web.orderDescription.dao.OrderDescriptionDA
 import tw.idv.tibame.tfa104.shanshan.web.orderDescription.dao.impl.OrderDescriptionDAOImpl;
 import tw.idv.tibame.tfa104.shanshan.web.orderDescription.entity.OrderDescription;
 import tw.idv.tibame.tfa104.shanshan.web.orderDescription.entity.OrderDescriptionBO;
-import tw.idv.tibame.tfa104.shanshan.web.orderDescription.service.OrderDescriptionService1;
+import tw.idv.tibame.tfa104.shanshan.web.orderDescription.service.OrderDescriptionService;
 
-public class OrderDescriptionServiceImpl implements OrderDescriptionService1{
+public class OrderDescriptionServiceImpl implements OrderDescriptionService{
 
 	OrderDescriptionDAO dao = new OrderDescriptionDAOImpl();
 	
