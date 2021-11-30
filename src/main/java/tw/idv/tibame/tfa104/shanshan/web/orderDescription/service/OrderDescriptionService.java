@@ -18,7 +18,10 @@ public interface OrderDescriptionService {
 	List<OrderDescriptionBO> BOfindByOrderId(Integer order_id);
 //	查詢 特定訂單的訂單明細BO 按訂單明細編號 正序 (沒圖片)
 	List<OrderDescriptionBO> BOfindByOrderIdNopic(Integer order_id);
-//  改名大O小O
+//	查詢 特定訂單的訂單明細BO 按訂單明細編號 正序 (沒圖片，拿掉一些店家後台用的資料)
+	List<OrderDescriptionBO> BOfindByOrderIdForMemCentr(Integer order_id);
+//	查詢 特定會員的訂單+訂單明細BO 按訂單明細編號 正序 
+	List<OrderDescriptionBO> BOfindByMemIdForMembCentr(Integer member_id);
 }
 
 
