@@ -51,7 +51,7 @@ public class ArticleDAO implements ArticleDAO_interface {
 
 	// 給member後台使用 to athnea
 	private static final String memIdRecievedPoints = "select member_id,sum(article_points_recieved) from article group by member_id=? ";
-	private static final String findByMemIdGiveAll ="select a.article_id, a.article_title,a.article_date_created,a.event_date,a.mountain_id,m.mountain_name,m.mountain_latitude,m.mountain_longitude,a.article_points_recieved,a.article_content,min(p.article_picture)from article a  join article_picture p on a.article_id = p.article_id join mountain m on a.mountain_id = m.mountain_id  where a.member_id= 1  group by a.article_id " ;
+	private static final String findByMemIdGiveAll ="select *,article_picture_id,p.article_id,article_picture from article_picture p join article a on p.article_id = a.article_id  join mountain m on a.mountain_id = m.mountain_id where p.article_picture_id = (select min(article_picture_id) from article_picture where article_id = p.article_id group by article_id) and member_id=? " ;
 	// 網誌狀態 to owen
 	private static final String updateArticleStatus = "UPDATE Article set article_status=? WHERE article_id = ?";
 
