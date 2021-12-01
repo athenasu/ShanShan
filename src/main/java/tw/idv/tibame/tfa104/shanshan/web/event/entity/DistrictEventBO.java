@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 import tw.idv.tibame.tfa104.shanshan.Core;
 
@@ -30,13 +31,16 @@ public class DistrictEventBO extends Core{
 	private String mountainName;
 	
 	@Column(name = "mountainPic")
-	private Byte[] mountainPic;
+	private byte[] mountainPic;
 	
 	@Column(name = "memberName")
 	private String memberName;
 	
 	@Column(name = "mountainDistrict")
 	private Integer mountainDistrict;
+	
+	@Transient
+	private String mountainPicStr;
 
 	public Integer getMemberId() {
 		return memberId;
@@ -78,11 +82,11 @@ public class DistrictEventBO extends Core{
 		this.mountainName = mountainName;
 	}
 
-	public Byte[] getMountainPic() {
+	public byte[] getMountainPic() {
 		return mountainPic;
 	}
 
-	public void setMountainPic(Byte[] mountainPic) {
+	public void setMountainPic(byte[] mountainPic) {
 		this.mountainPic = mountainPic;
 	}
 
@@ -106,13 +110,19 @@ public class DistrictEventBO extends Core{
 		return serialVersionUID;
 	}
 
+	public String getMountainPicStr() {
+		return mountainPicStr;
+	}
+
+	public void setMountainPicStr(String memberProfilePicStr) {
+		this.mountainPicStr = memberProfilePicStr;
+	}
+
 	@Override
 	public String toString() {
 		return "DistrictEventBO [memberId=" + memberId + ", eventName=" + eventName + ", eventStartDate="
 				+ eventStartDate + ", mountainId=" + mountainId + ", mountainName=" + mountainName + ", mountainPic="
 				+ Arrays.toString(mountainPic) + ", memberName=" + memberName + ", mountainDistrict=" + mountainDistrict
-				+ "]";
+				+ ", mountainPicStr=" + mountainPicStr + "]";
 	}
-	
-
 }

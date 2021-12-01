@@ -16,6 +16,7 @@ import tw.idv.tibame.tfa104.shanshan.web.event.entity.MemberEventBO;
 import tw.idv.tibame.tfa104.shanshan.web.event.entity.OnGoingEventBO;
 import tw.idv.tibame.tfa104.shanshan.web.event.entity.ParEventBO;
 import tw.idv.tibame.tfa104.shanshan.web.event.entity.PopularEventBO;
+import tw.idv.tibame.tfa104.shanshan.web.event.entity.PopularEventsMountainBO;
 import tw.idv.tibame.tfa104.shanshan.web.event.service.EventService;
 
 
@@ -77,7 +78,12 @@ public class EventController{
 	@GetMapping("parEventByMember")
 	public List<ParEventBO> parEventByMember(){
 		final List<ParEventBO> pareventbymember = eventService.parEventByMember(1);	//set the parameter as 1 for test
-		return pareventbymember;
-				
+		return pareventbymember;				
+	}
+	
+	@GetMapping("findPopularMountain")
+	public List<PopularEventsMountainBO> popularMountains(){
+		final List<PopularEventsMountainBO> popularmountains = eventService.findPopularMountains();	//set the parameter as 1 for test
+		return popularmountains;				
 	}
 }

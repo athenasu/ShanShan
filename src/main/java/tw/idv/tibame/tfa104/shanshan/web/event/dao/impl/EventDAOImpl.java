@@ -16,6 +16,7 @@ import tw.idv.tibame.tfa104.shanshan.web.event.entity.MemberEventBO;
 import tw.idv.tibame.tfa104.shanshan.web.event.entity.OnGoingEventBO;
 import tw.idv.tibame.tfa104.shanshan.web.event.entity.ParEventBO;
 import tw.idv.tibame.tfa104.shanshan.web.event.entity.PopularEventBO;
+import tw.idv.tibame.tfa104.shanshan.web.event.entity.PopularEventsMountainBO;
 
 @Repository
 public class EventDAOImpl implements EventDAO {
@@ -129,7 +130,7 @@ public class EventDAOImpl implements EventDAO {
 											"ON a.mountain_id = b.mountain_id "+
 										"JOIN Member c "+
 											"ON a.member_id = c.member_id "+
-										"WHERE b.mountain_district = :mountainDistrict", DistrictEventBO.class)
+										"WHERE a.event_status = 2 AND b.mountain_district = :mountainDistrict", DistrictEventBO.class)
 				.setParameter("mountainDistrict", mountainDistrict).list();
 	}
 
@@ -161,6 +162,34 @@ public class EventDAOImpl implements EventDAO {
 				.setParameter("memberId", memberId)
 				.setParameter("eventId", eventId).list();
 	}
+	
+	@Override
+	public List<MemberEventBO> selectByMemberId(Integer memberId) {
+		Session session = sessionFactory.getCurrentSession();
+		return session.createNativeQuery("SELECT "+
+												"a.member_id as memberId, "+
+												"a.event_id as eventId, "+
+												"a.event_name as eventName, "+
+												"a.event_start_date as eventStartDate, "+
+												"a.event_deadline as eventDeadline, "+
+												"a.event_status as eventStatus, "+
+												"a.event_cur_part as eventCurPart, "+
+												"a.max_num_of_people as maxNumOfPeople, "+
+												"b.mountain_name as mountainName, "+
+												"b.mountain_longitude as mountainLongitude, "+
+												"b.mountain_latitude as mountainLatitude, "+
+												"b.mountain_pic as mountainPic, "+
+												"d.member_name as participantMemberName, "+
+												"d.member_email as participantMemberEmail "+
+										 "FROM Event a JOIN Mountain b "+
+												"ON a.mountain_id = b.mountain_id "+
+										 "JOIN Participant c "+
+												"ON a.event_id = c.event_id "+
+										 "JOIN member d "+
+												"ON c.member_id = d.member_id "+
+										 "WHERE (a.member_id = :memberId)", MemberEventBO.class)
+				.setParameter("memberId", memberId).list();
+	}
 
 	@Override
 	public List<PopularEventBO> popularEvents() {
@@ -183,6 +212,7 @@ public class EventDAOImpl implements EventDAO {
 										 		"ON a.mountain_id = b.mountain_id "+
 										 "JOIN Member c "+
 										 		"ON a.member_id = c.member_id "+
+										 "WHERE a.event_status = 2 "+
 										 "ORDER BY a.event_cur_part desc limit 5",PopularEventBO.class).list();
 				
 	}
@@ -245,5 +275,21 @@ public class EventDAOImpl implements EventDAO {
 				.setParameter("memberId", memberId).list();
 	
 	}
-
+	
+	@Override
+	public List<PopularEventsMountainBO> popularMountains() {
+		Session session = sessionFactory.getCurrentSession();
+		return session.createNativeQuery("SELECT "+
+											"a.mountain_id as mountainId, "+
+											"count(*) as count, "+
+											"b.mountain_district as mountainDistrict, "+
+											"b.mountain_name as mountainName, "+
+											"b.mountain_pic as mountainPic "+
+										"FROM Event a "+
+										"JOIN Mountain b "+
+											"ON a.mountain_id = b.mountain_id "+
+										"WHERE a.event_status != 4"+
+										"GROUP BY a.mountain_id "+
+										"ORDER BY count desc limit 3", PopularEventsMountainBO.class).list();
+	}
 }

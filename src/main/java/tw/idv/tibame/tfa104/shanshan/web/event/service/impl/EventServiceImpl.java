@@ -1,5 +1,6 @@
 package tw.idv.tibame.tfa104.shanshan.web.event.service.impl;
 
+import java.util.Base64;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import tw.idv.tibame.tfa104.shanshan.web.event.entity.MemberEventBO;
 import tw.idv.tibame.tfa104.shanshan.web.event.entity.OnGoingEventBO;
 import tw.idv.tibame.tfa104.shanshan.web.event.entity.ParEventBO;
 import tw.idv.tibame.tfa104.shanshan.web.event.entity.PopularEventBO;
+import tw.idv.tibame.tfa104.shanshan.web.event.entity.PopularEventsMountainBO;
 import tw.idv.tibame.tfa104.shanshan.web.event.service.EventService;
 
 
@@ -45,7 +47,11 @@ public class EventServiceImpl implements EventService{
 	
 	@Override
 	public List<DistrictEventBO> findEventByDistrict(Integer mountainDistrict){
-		return dao.selectByDistrict(mountainDistrict);
+		List<DistrictEventBO> districtEvents = dao.selectByDistrict(mountainDistrict);
+		for(DistrictEventBO districtEvent : districtEvents) {
+			districtEvent.setMountainPicStr(Base64.getEncoder().encodeToString(districtEvent.getMountainPic()));
+		}		
+		return districtEvents;
 	}
 	
 	@Override
@@ -71,6 +77,11 @@ public class EventServiceImpl implements EventService{
 	@Override
 	public List<ParEventBO> parEventByMember(Integer memberId) {
 		return dao.parEventByMember(memberId);
+	}
+
+	@Override
+	public List<PopularEventsMountainBO> findPopularMountains() {
+		return dao.popularMountains();
 	}
 
 }
