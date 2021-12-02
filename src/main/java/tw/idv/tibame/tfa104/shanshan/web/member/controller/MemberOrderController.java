@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import tw.idv.tibame.tfa104.shanshan.web.member.service.MemberOrderService;
+import tw.idv.tibame.tfa104.shanshan.web.order.entity.Order;
 import tw.idv.tibame.tfa104.shanshan.web.orderDescription.entity.OrderDescriptionBO;
 
 @RestController
@@ -18,8 +19,13 @@ public class MemberOrderController {
 	private MemberOrderService service;
 	
 	@GetMapping("findAllOrdersByMemId")
-	List<OrderDescriptionBO> findAllOrdersByMemId(Integer memberId) {
-		return service.findAllOrdersByMemId(memberId);
+	public List<Order> findAllByMemId(Integer memberId){
+		return service.findAllByMemId(memberId);
+	}
+	
+	@GetMapping("findAllOrderDesByMemId")
+	public List<OrderDescriptionBO> findAllOrderDesByMemId(Integer memberId, Integer orderId) {
+		return service.findAllOrderDesByMemId(memberId, orderId);
 	}
 
 }

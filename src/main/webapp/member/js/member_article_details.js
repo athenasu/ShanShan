@@ -1,12 +1,28 @@
 ///////////// selecting elements ////////////
-
+// EVENT MODAL
 const modal = document.querySelector(".modal");
 const overlay = document.querySelector(".overlay");
 const btnCloseModal = document.querySelector(".btn--close-modal");
 const btnsOpenModal = document.querySelectorAll(".btn--show-modal");
 
+//ARTICLE MODAL
+const modalArticle = document.querySelector(".modal-article");
+const overlayArticle = document.querySelector(".overlay-article");
+const btnCloseModalArticle = document.querySelector(
+  ".btn--close-modal-article"
+);
+const btnsOpenModalArticle = document.querySelectorAll(
+  ".btn--show-modal-article"
+);
+
+// PARTICIPANT MODAL
+const modalPart = document.querySelector(".modal-part");
+const overlayPart = document.querySelector(".overlay-part");
+const btnCloseModalPart = document.querySelector(".btn--close-modal-part");
+const btnsOpenModalPart = document.querySelectorAll(".btn--show-modal-part");
+
 ///////////////////////////////////////
-// Modal window
+// MODAL
 
 // EVENT MODAL //
 const openModal = function (e) {
@@ -31,15 +47,6 @@ document.addEventListener("keydown", function (e) {
 });
 
 // ARTICLE MODAL //
-const modalArticle = document.querySelector(".modal-article");
-const overlayArticle = document.querySelector(".overlay-article");
-const btnCloseModalArticle = document.querySelector(
-  ".btn--close-modal-article"
-);
-const btnsOpenModalArticle = document.querySelectorAll(
-  ".btn--show-modal-article"
-);
-
 const openModalArticle = function (e) {
   e.preventDefault();
   modalArticle.classList.remove("hidden");
@@ -64,11 +71,6 @@ document.addEventListener("keydown", function (e) {
 });
 
 // PARTICIPANT MODAL //
-const modalPart = document.querySelector(".modal-part");
-const overlayPart = document.querySelector(".overlay-part");
-const btnCloseModalPart = document.querySelector(".btn--close-modal-part");
-const btnsOpenModalPart = document.querySelectorAll(".btn--show-modal-part");
-
 const openModalPart = function (e) {
   e.preventDefault();
   modalPart.classList.remove("hidden");

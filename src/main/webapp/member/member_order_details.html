@@ -113,28 +113,25 @@
           </div>
           <div class="cards">
             <!-- DONE ORDERS -->
-            <!-- <a href="#">
-              <div class="card-1">
-                <div class="order-status">
-                  <p>狀態: 已完成</p>
-                </div>
-                <div class="order-no">
-                  <p>訂單編號: 123456</p>
-                </div>
-                <div class="order-date">
-                  <p>訂購日期: 2021/10/24</p>
-                </div>
-                <div class="order-sum">
-                  <p>購物金額: 888 元</p>
-                </div>
-                <div class="order-details">
-                  <button class="btn--show-modal-done">詳情</button>
-                </div>
+            <div class="card-1">
+              <div class="order-status">
+                <p>狀態: 已完成</p>
               </div>
-            </a> -->
+              <div class="order-no">
+                <p>訂單編號: 123456</p>
+              </div>
+              <div class="order-date">
+                <p>訂購日期: 2021/10/24</p>
+              </div>
+              <div class="order-sum">
+                <p>購物金額: 888 元</p>
+              </div>
+              <div class="order-details">
+                <button class="btn--show-modal-done">詳情</button>
+              </div>
+            </div>
             <!-- INTRANSIT CARD -->
-            <!-- <a href="#">
-              <div class="card-2">
+            <!--  <div class="card-2">
                 <div class="order-status">
                   <p>狀態: 配送中</p>
                 </div>
@@ -150,11 +147,9 @@
                 <div class="order-details">
                   <button class="btn--show-modal-intransit">詳情</button>
                 </div>
-              </div>
-            </a> -->
+              </div>-->
             <!-- RETURNED CARD -->
-            <!-- <a href="#">
-              <div class="card-3">
+            <!-- <div class="card-3">
                 <div class="order-status">
                   <p>狀態: 已退貨</p>
                 </div>
@@ -170,17 +165,18 @@
                 <div class="order-details">
                   <button class="btn--show-modal-returned">詳情</button>
                 </div>
-              </div>
-            </a> -->
+              </div> -->
           </div>
         </div>
       </section>
     </main>
 
+    <div class="modal-area"></div>
     <!-- MODAL AREA-->
 
-    <!-- DONE CASES AREA -->
-    <div class="modal-done hidden">
+    <!-- DONE ORDERS AREA -->
+
+    <!-- <div class="modal-done hidden">
       <button class="btn--close-modal-done">&times;</button>
       <h2 class="modal__header">訂單詳情</h2>
       <p class="modal-sub-header">狀態：已完成</p>
@@ -191,70 +187,26 @@
             <li>訂購日期：2021/11/06</li>
             <li>購買商品：</li>
             <div class="order-list">
-              <div class="order-item">
-                <ul class="item-1">
-                  <li class="item-name">品名：登山大背包</li>
-                  <li class="item-size">規格：棕色Ｍ</li>
-                  <li class="item-quantity">數量：1</li>
-                  <li class="item-price">單價：1000 元</li>
-                </ul>
-              </div>
-              <div class="order-item">
-                <ul class="item-2">
-                  <li class="item-name">品名：登山大背包</li>
-                  <li class="item-size">規格：棕色Ｍ</li>
-                  <li class="item-quantity">數量：1</li>
-                  <li class="item-price">單價：1000 元</li>
-                </ul>
-              </div>
-              <div class="order-item">
-                <ul class="item-1">
-                  <li class="item-name">品名：登山大背包</li>
-                  <li class="item-size">規格：棕色Ｍ</li>
-                  <li class="item-quantity">數量：1</li>
-                  <li class="item-price">單價：1000 元</li>
-                </ul>
-              </div>
-              <div class="order-item">
-                <ul class="item-2">
-                  <li class="item-name">品名：登山大背包</li>
-                  <li class="item-size">規格：棕色Ｍ</li>
-                  <li class="item-quantity">數量：1</li>
-                  <li class="item-price">單價：1000 元</li>
-                </ul>
-              </div>
-              <div class="order-item">
-                <ul class="item-1">
-                  <li class="item-name">品名：登山大背包</li>
-                  <li class="item-size">規格：棕色Ｍ</li>
-                  <li class="item-quantity">數量：1</li>
-                  <li class="item-price">單價：1000 元</li>
-                </ul>
-              </div>
-              <div class="order-item">
-                <ul class="item-2">
-                  <li class="item-name">品名：登山大背包</li>
-                  <li class="item-size">規格：棕色Ｍ</li>
-                  <li class="item-quantity">數量：1</li>
-                  <li class="item-price">單價：1000 元</li>
-                </ul>
-              </div>
-              <div class="order-item">
-                <ul class="item-1">
-                  <li class="item-name">品名：登山大背包</li>
-                  <li class="item-size">規格：棕色Ｍ</li>
-                  <li class="item-quantity">數量：1</li>
-                  <li class="item-price">單價：1000 元</li>
-                </ul>
-              </div>
-              <div class="order-item">
-                <ul class="item-2">
-                  <li class="item-name">品名：登山大背包</li>
-                  <li class="item-size">規格：棕色Ｍ</li>
-                  <li class="item-quantity">數量：1</li>
-                  <li class="item-price">單價：1000 元</li>
-                </ul>
-              </div>
+              <a href="#">
+                <div class="order-item">
+                  <ul class="item-1">
+                    <li class="item-name">品名：登山大背包</li>
+                    <li class="item-size">規格：棕色Ｍ</li>
+                    <li class="item-quantity">數量：1</li>
+                    <li class="item-price">單價：1000 元</li>
+                  </ul>
+                </div>
+              </a>
+              <a href="#">
+                <div class="order-item">
+                  <ul class="item-2">
+                    <li class="item-name">品名：登山大背包</li>
+                    <li class="item-size">規格：棕色Ｍ</li>
+                    <li class="item-quantity">數量：1</li>
+                    <li class="item-price">單價：1000 元</li>
+                  </ul>
+                </div>
+              </a>
             </div>
             <div class="modal-order-sum">總金額：3000 元</div>
           </ul>
@@ -265,7 +217,7 @@
                   <li>出貨日期：2021/11/10</li>
                   <li>配送單號：AB1234567890</li>
                   <li>到貨日期：2021/11/13</li>
-                  <!-- 這個要怎麼算？ -->
+
                   <ul class="notes">
                     <li>若須申請退貨，請於收到商品7天內申請</li>
                     <li>最晚退貨日期：2021/11/20</li>
@@ -289,10 +241,10 @@
         </div>
       </div>
     </div>
-    <div class="overlay-done hidden"></div>
+    <div class="overlay-done hidden"></div> -->
 
     <!-- INTRANSIT CASES -->
-    <div class="modal-intransit hidden">
+    <!-- <div class="modal-intransit hidden">
       <button class="btn--close-modal-intransit">&times;</button>
       <h2 class="modal__header">訂單詳情</h2>
       <p class="modal-sub-header">狀態：配送中</p>
@@ -390,10 +342,10 @@
         </div>
       </div>
     </div>
-    <div class="overlay-intransit hidden"></div>
+    <div class="overlay-intransit hidden"></div> -->
 
     <!-- RETURNED CASES -->
-    <div class="modal-returned hidden">
+    <!-- <div class="modal-returned hidden">
       <button class="btn--close-modal-returned">&times;</button>
       <h2 class="modal__header">訂單詳情</h2>
       <p class="modal-sub-header">狀態：已退貨</p>
@@ -478,7 +430,6 @@
                   <li>出貨日期：2021/11/10</li>
                   <li>配送單號：AB1234567890</li>
                   <li>到貨日期：2021/11/13</li>
-                  <!-- 這個要怎麼算？ -->
                   <li>申請退貨日期：2021/11/13</li>
                 </ul>
               </div>
@@ -487,7 +438,7 @@
         </div>
       </div>
     </div>
-    <div class="overlay-returned hidden"></div>
+    <div class="overlay-returned hidden"></div> -->
 
     <script src="./vendors/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>

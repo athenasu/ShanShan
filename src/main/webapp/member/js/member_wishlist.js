@@ -196,8 +196,6 @@ const eventWishlist = function (memberId) {
     .then((body) => body.json())
     .then((wishlistEvents) => {
       for (let event of wishlistEvents) {
-        // getting every event from the list
-        // console.log(event);
         renderWishlistEvent(event);
       }
     });
