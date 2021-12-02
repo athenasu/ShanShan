@@ -1,5 +1,6 @@
 package tw.idv.tibame.tfa104.shanshan.web.event.service.impl;
 
+import java.util.Base64;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +8,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import tw.idv.tibame.tfa104.shanshan.web.event.dao.EventDAO;
+import tw.idv.tibame.tfa104.shanshan.web.event.entity.DistrictEventBO;
 import tw.idv.tibame.tfa104.shanshan.web.event.entity.Event;
+import tw.idv.tibame.tfa104.shanshan.web.event.entity.MemberEventBO;
+import tw.idv.tibame.tfa104.shanshan.web.event.entity.OnGoingEventBO;
+import tw.idv.tibame.tfa104.shanshan.web.event.entity.ParEventBO;
+import tw.idv.tibame.tfa104.shanshan.web.event.entity.PopularEventBO;
+import tw.idv.tibame.tfa104.shanshan.web.event.entity.PopularEventsMountainBO;
 import tw.idv.tibame.tfa104.shanshan.web.event.service.EventService;
 
 
@@ -32,10 +39,6 @@ public class EventServiceImpl implements EventService{
 		return event;
 	}
 
-	@Override
-	public Event findEventByEventId(Integer eventId) {
-		return dao.selectByEventId(eventId);
-	}
 
 	@Override
 	public List<Event> selectAll() {
@@ -43,22 +46,26 @@ public class EventServiceImpl implements EventService{
 	}
 	
 	@Override
-	public List<Object[]> findEventByDistrict(Integer mountainDistrict){
-		return dao.selectByDistrict(mountainDistrict);
+	public List<DistrictEventBO> findEventByDistrict(Integer mountainDistrict){
+		List<DistrictEventBO> districtEvents = dao.selectByDistrict(mountainDistrict);
+		for(DistrictEventBO districtEvent : districtEvents) {
+			districtEvent.setMountainPicStr(Base64.getEncoder().encodeToString(districtEvent.getMountainPic()));
+		}		
+		return districtEvents;
 	}
 	
 	@Override
-	public List<Object[]> findEventByMemberId(Integer memberId) {
-		return  dao.selectByMemberId(memberId);
+	public List<MemberEventBO> findEventByMemberId(Integer memberId, Integer eventId) {
+		return  dao.selectByMemberId(memberId, eventId);
 	}
 
 	@Override
-	public List<Object[]> popularEvents() {
+	public List<PopularEventBO> popularEvents() {
 		return dao.popularEvents();
 	}
 
 	@Override
-	public List<Object[]> onGoingEvents() {
+	public List<OnGoingEventBO> onGoingEvents() {
 		return dao.onGoingEvents();
 	}
 
@@ -68,7 +75,13 @@ public class EventServiceImpl implements EventService{
 	}
 
 	@Override
-	public List<Object[]> parEventByMember(Integer memberId) {
+	public List<ParEventBO> parEventByMember(Integer memberId) {
 		return dao.parEventByMember(memberId);
 	}
+
+	@Override
+	public List<PopularEventsMountainBO> findPopularMountains() {
+		return dao.popularMountains();
+	}
+
 }

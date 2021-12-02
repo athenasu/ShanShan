@@ -1,0 +1,25 @@
+package tw.idv.tibame.tfa104.shanshan.web.member.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import tw.idv.tibame.tfa104.shanshan.web.member.service.MemberOrderService;
+import tw.idv.tibame.tfa104.shanshan.web.orderDescription.entity.OrderDescriptionBO;
+
+@RestController
+@RequestMapping("memberOrder")
+public class MemberOrderController {
+	
+	@Autowired
+	private MemberOrderService service;
+	
+	@GetMapping("findAllOrdersByMemId")
+	List<OrderDescriptionBO> findAllOrdersByMemId(Integer memberId) {
+		return service.findAllOrdersByMemId(memberId);
+	}
+
+}

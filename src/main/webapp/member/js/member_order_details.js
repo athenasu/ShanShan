@@ -26,6 +26,9 @@ const btnsOpenModalReturned = document.querySelectorAll(
   ".btn--show-modal-returned"
 );
 
+// CARDS //
+const cards = document.querySelector(".cards");
+
 ///////////////////////////////////////
 // Modal window
 
@@ -100,3 +103,49 @@ document.addEventListener("keydown", function (e) {
     closeModalReturned();
   }
 });
+
+/////////////////////////////
+////// RENDER CARDS //////
+const renderDoneOrders = function (order) {
+  let html = `
+                <a href="#">
+                <div class="card-1">
+                  <div class="order-status">
+                    <p>狀態: 已完成</p>
+                  </div>
+                  <div class="order-no">
+                    <p>訂單編號: ${order.order_id}</p>
+                  </div>
+                  <div class="order-date">
+                    <p>訂購日期: ${order.order_created_date}</p>
+                  </div>
+                  <div class="order-sum">
+                    <p>購物金額: ${order.order_sum_after} 元</p>
+                  </div>
+                  <div class="order-details">
+                    <button class="btn--show-modal-done">詳情</button>
+                  </div>
+                </div>
+              </a>
+              `;
+  cards.insertAdjacentHTML("beforeend", html);
+};
+
+/////////////////////////////
+////// POPULATING PAGE //////
+const allOrders = function (memberId) {
+  fetch(`/shanshan/memberOrder/findAllOrdersByMemId?memberId=${memberId}`)
+    .then((body) => body.json())
+    .then((orders) => {
+      for (let ord of orders) {
+        if (ord.order_status == 5) {
+          renderDoneOrders(ord);
+          renderDoneOrderDetails(ord);
+        }
+      }
+    });
+};
+
+window.onload = function () {
+  allOrders(1);
+};

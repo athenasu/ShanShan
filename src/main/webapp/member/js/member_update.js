@@ -99,11 +99,13 @@ const updateInfo = function () {
   const memberEmail = document.querySelector(".member-email").value;
   const memberPassword = document.querySelector(".member-password").value;
   const memberIntro = document.querySelector(".member-intro-text").value;
+
   const file = hiddenInput.files[0];
   const fileReader = new FileReader();
 
   fileReader.onload = function (e) {
     const base64str = btoa(e.target.result);
+
     fetch("memberUpdate", {
       method: "POST",
       headers: {
@@ -119,7 +121,16 @@ const updateInfo = function () {
         memberPassword,
         memberIntro,
       }),
-    });
+    })
+      .then(function (response) {
+        console.log(response);
+        return response.json();
+      })
+      .then(function (data) {
+        console.log(data);
+        document.querySelector(".drag-area img").src = "";
+        populatePage();
+      });
   };
   fileReader.readAsBinaryString(file);
 };
@@ -129,8 +140,5 @@ window.onload = function () {
 };
 
 submitBtn.addEventListener("click", function () {
-  console.log("submit button clicked");
   updateInfo();
-  populatePage();
-  console.log("information updated");
 });

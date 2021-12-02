@@ -239,7 +239,8 @@ button {
 }
 
 .card-1,
-.card-2 {
+.card-2,
+.card-3 {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -258,20 +259,29 @@ button {
   background-color: white;
 }
 
-.cards .event-status {
+.card-3 {
+  background-color: #f5f5dc;
+}
+
+.cards .event-status,
+.cards .article-type {
   width: 6.5rem;
 }
 
-.cards .event-no {
+.cards .event-no,
+.cards .article-no {
   width: 8.5rem;
 }
-.cards .event-name {
+.cards .event-name,
+.cards .article-title {
   width: 10.5rem;
 }
-.cards .event-date {
+.cards .event-date,
+.cards .article-date {
   width: 10.5rem;
 }
-.cards .event-mtn {
+.cards .event-mtn,
+.cards .article-points {
   width: 6rem;
 }
 
@@ -326,8 +336,92 @@ button {
   color: white;
 }
 
+.card-3 button {
+  border: none;
+  color: #f5f5dc;
+  padding: 3px 8px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 0.5rem;
+}
+
+.card-3 button {
+  background-color: white;
+  color: black;
+  border: 2px solid white;
+}
+
+.card-3 button:hover {
+  background-color: #e4e49f;
+  color: white;
+}
+/* SIDE MENU */
+.side-bar-event,
+.side-bar-wishlist {
+  display: flex;
+  padding: 0rem;
+}
+.side-bar-event button,
+.side-bar-wishlist button {
+  margin: 0;
+  transition-duration: 0.4s;
+}
+
+.second-menu-event,
+.second-menu-wishlist {
+  position: absolute;
+  /* border: red solid 1px; */
+  padding: 0rem 0rem 0rem 1rem;
+  margin-left: 8.5rem;
+  z-index: 100;
+}
+
+.second-menu-event {
+  bottom: 6.7rem;
+}
+
+.second-menu-wishlist li {
+  width: 5.3rem;
+}
+
+.second-menu-wishlist {
+  bottom: 1.7rem;
+}
+.second-menu-event li,
+.second-menu-wishlist li {
+  display: none;
+  padding: 0rem 0.5rem;
+  margin-bottom: 0.5rem;
+  border: #adc2a9 solid 2px;
+  border-radius: 0.5rem;
+}
+
+.side-bar-event li:hover > ul > li,
+.side-bar-wishlist li:hover > ul > li {
+  display: block;
+}
+
+.second-menu-event li,
+.second-menu-wishlist li {
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  background-color: white;
+}
+
+.second-menu-event li:hover,
+.second-menu-wishlist li:hover {
+  background-color: #adc2a9;
+  color: white;
+}
+
 /* MODAL WINDOW */
-.modal {
+.modal,
+.modal-article,
+.modal-part {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -342,7 +436,9 @@ button {
   border-radius: 1rem;
 }
 
-.overlay {
+.overlay,
+.overlay-article,
+.overlay-part {
   position: fixed;
   top: 0;
   left: 0;
@@ -354,7 +450,9 @@ button {
   transition: all 0.5s;
 }
 
-.btn--close-modal {
+.btn--close-modal,
+.btn--close-modal-article,
+.btn--close-modal-part {
   font-family: inherit;
   color: inherit;
   position: absolute;
@@ -386,7 +484,7 @@ button {
   height: 75%;
 }
 
-/* BOXES- BOX1 */
+/* EVENT BOXES- BOX1 */
 .modal-box1 {
   width: 50%;
 }
@@ -395,7 +493,7 @@ button {
   margin-bottom: 0.5rem;
 }
 
-/* BOX1 BUTTONS */
+/* EVENT BOX1 BUTTONS */
 .modal-event-details button,
 .cancel-event button {
   border: none;
@@ -529,62 +627,139 @@ button {
   visibility: visible;
 }
 
-/* SIDE MENU */
-.side-bar-event,
-.side-bar-wishlist {
+/* ARTICLE MODAL CONTAINER */
+.article-div,
+.part-div {
+  width: 100%;
+  height: 100%;
   display: flex;
-  padding: 0rem;
-}
-.side-bar-event button,
-.side-bar-wishlist button {
-  margin: 0;
-  transition-duration: 0.4s;
+  flex-direction: column;
+  justify-content: center;
+  /* border: purple solid 1px; */
 }
 
-.second-menu-event,
-.second-menu-wishlist {
-  position: absolute;
-  /* border: red solid 1px; */
-  padding: 0rem 0rem 0rem 1rem;
-  margin-left: 8.5rem;
-  z-index: 100;
+.article-top-box,
+.part-top-box {
+  /* border: purple solid 1px; */
+  width: 100%;
+  height: 60%;
+  display: flex;
+  justify-content: center;
 }
 
-.second-menu-event {
-  bottom: 6.7rem;
+.article-bottom-box,
+.part-bottom-box {
+  height: 40%;
 }
 
-.second-menu-wishlist li {
-  width: 5.3rem;
+.article-picture {
+  display: inline-block;
+  width: 15rem;
+  height: 100%;
+  /* border: red 1px solid; */
+  border-radius: 50%;
+  overflow: hidden;
 }
 
-.second-menu-wishlist {
-  bottom: 1.7rem;
+.article-picture img {
+  min-height: 15rem;
+  width: 100%;
 }
-.second-menu-event li,
-.second-menu-wishlist li {
-  display: none;
-  padding: 0rem 0.5rem;
+
+.article-details,
+.part-details {
+  display: inline-block;
+  width: 18rem;
+  height: 100%;
+  /* border: red 1px solid; */
+}
+
+.article-details h4,
+.article-details p,
+.part-details h4,
+.part-details p {
+  margin-top: 1.5rem;
+  margin-left: 1rem;
+}
+
+.article-text,
+.part-textbox {
+  justify-content: center;
+  padding-top: 0rem;
+  height: 100%;
+  width: 80%;
+  margin: 0 auto;
+  /* border: yellowgreen 1px solid; */
+}
+
+.article-text h4 {
   margin-bottom: 0.5rem;
-  border: #adc2a9 solid 2px;
+}
+
+/* AS A PARTICIPANT MODAL */
+.part-content {
+  border: solid #718371 2px;
   border-radius: 0.5rem;
+  height: 8rem;
+  overflow: auto;
+  overflow-anchor: none;
+  padding: 0.7rem 0rem 0.5rem 1rem;
+  margin-top: 0.8rem;
 }
 
-.side-bar-event li:hover > ul > li,
-.side-bar-wishlist li:hover > ul > li {
-  display: block;
+.part-content::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+.part-content::-webkit-scrollbar-thumb {
+  background: #718371;
+  border-radius: 0.2rem;
+  visibility: hidden;
+}
+.part-content:hover::-webkit-scrollbar-thumb {
+  visibility: visible;
 }
 
-.second-menu-event li,
-.second-menu-wishlist li {
+.part-textbox h4 {
+  /* border: rgba(0, 0, 0, 0.3) 1px solid; */
+  width: 5rem;
+  text-align: center;
+  background-color: #f3f3f3;
+  position: absolute;
+  margin-top: -0.7rem;
+  margin-left: 0.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.part-picture {
+  display: inline-block;
+  width: 13rem;
+  height: 13rem;
+  /* border: red 1px solid; */
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.part-picture img {
+  min-height: 15rem;
+  width: 100%;
+}
+
+.cancel-part-btn {
+  float: right;
+  margin-top: 0.8rem;
+  background-color: white;
+  color: black;
+  border: 2px solid #c5c5c5;
+  padding: 3px 8px;
+  text-align: center;
+  text-decoration: none;
   transition-duration: 0.4s;
   cursor: pointer;
   border-radius: 0.5rem;
-  background-color: white;
 }
 
-.second-menu-event li:hover,
-.second-menu-wishlist li:hover {
-  background-color: #adc2a9;
+.cancel-part-btn:hover {
+  background-color: #c5c5c5;
   color: white;
 }
