@@ -19,7 +19,7 @@ public class MemberOrderServiceImpl implements MemberOrderService {
 	private OrderDescriptionDAO dao;
 	
 	public List<OrderDescriptionBO> findAllOrdersByMemId(Integer memberId){
-		return dao.BOfindByMemIdForMembCentr(memberId);
+		return null;
 	}
 
 }

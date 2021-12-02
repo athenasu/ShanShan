@@ -296,6 +296,7 @@ public class OrderDescriptionDAOImpl implements OrderDescriptionDAO{
 				orderDesBO.setProduct_color(rs.getString("product_color"));
 				orderDesBO.setOrder_description_price(rs.getInt("product_price"));
 				orderDesBO.setProduct_first_pic(rs.getBytes("product_des_img"));
+				orderDesBO.setProduct_quantity(rs.getInt("product_quantity"));
 
 				listOrderDesBO.add(orderDesBO);
 			}
@@ -351,6 +352,8 @@ public class OrderDescriptionDAOImpl implements OrderDescriptionDAO{
 				orderDesBO2.setProduct_size(rs.getInt("product_size"));
 				orderDesBO2.setProduct_color(rs.getString("product_color"));
 				orderDesBO2.setOrder_description_price(rs.getInt("product_price"));
+				orderDesBO2.setProduct_quantity(rs.getInt("product_quantity"));
+
 
 				listOrderDesBO2.add(orderDesBO2);
 			}
@@ -406,6 +409,8 @@ public class OrderDescriptionDAOImpl implements OrderDescriptionDAO{
 				orderDesBO3.setProduct_size(rs.getInt("product_size"));
 				orderDesBO3.setProduct_color(rs.getString("product_color"));
 				orderDesBO3.setOrder_description_price(rs.getInt("product_price"));
+				orderDesBO3.setProduct_quantity(rs.getInt("product_quantity"));
+
 
 				listOrderDesBO3.add(orderDesBO3);
 			}
@@ -461,6 +466,7 @@ public class OrderDescriptionDAOImpl implements OrderDescriptionDAO{
 				orderDesBO3.setProduct_size(rs.getInt("product_size"));
 				orderDesBO3.setProduct_color(rs.getString("product_color"));
 				orderDesBO3.setOrder_description_price(rs.getInt("product_price"));
+				orderDesBO3.setProduct_quantity(rs.getInt("product_quantity"));
 
 				listOrderDesBO3.add(orderDesBO3);
 			}

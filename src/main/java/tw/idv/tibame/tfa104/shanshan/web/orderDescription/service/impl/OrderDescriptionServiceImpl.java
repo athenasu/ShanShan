@@ -54,8 +54,8 @@ public class OrderDescriptionServiceImpl implements OrderDescriptionService{
 
 //	查詢 特定會員的訂單+訂單明細BO 按訂單明細編號 正序 
 	@Override
-	public List<OrderDescriptionBO> BOfindByMemIdForMembCentr(Integer member_id) {
-		return dao.BOfindByMemIdForMembCentr(member_id);
+	public List<OrderDescriptionBO> BOfindByMemIdForMembCentr(Integer member_id,Integer order_id) {
+		return dao.BOfindByMemIdForMembCentr(member_id, order_id);
 	}
 	
 
