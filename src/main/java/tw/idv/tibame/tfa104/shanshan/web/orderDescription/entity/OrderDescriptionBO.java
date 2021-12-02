@@ -54,18 +54,20 @@ public class OrderDescriptionBO implements Serializable{
 	
 	private byte[] product_first_pic;
 
+	private Integer product_quantity;
+	
 	
 	public OrderDescriptionBO() {
 		super();
 	}
 
-	
-	
+
 	public OrderDescriptionBO(Integer order_id, Integer member_id, Date order_created_date, String order_member_address,
 			String order_member_name, Integer order_member_phone, Integer order_status, Integer order_sum_after,
 			Date order_shipped_date, Integer ship_number, Integer payment_status, Integer product_id, Integer prodes_id,
 			Integer company_id, String company_name, String product_name, Integer product_size, String product_color,
-			Integer order_description_price, Integer subtotal_price, byte[] product_first_pic) {
+			Integer order_description_price, Integer subtotal_price, byte[] product_first_pic,
+			Integer product_quantity) {
 		super();
 		this.order_id = order_id;
 		this.member_id = member_id;
@@ -88,22 +90,7 @@ public class OrderDescriptionBO implements Serializable{
 		this.order_description_price = order_description_price;
 		this.subtotal_price = subtotal_price;
 		this.product_first_pic = product_first_pic;
-	}
-
-
-
-
-	@Override
-	public String toString() {
-		return "OrderDescriptionBO [order_id=" + order_id + ", member_id=" + member_id + ", order_created_date="
-				+ order_created_date + ", order_member_address=" + order_member_address + ", order_member_name="
-				+ order_member_name + ", order_member_phone=" + order_member_phone + ", order_status=" + order_status
-				+ ", order_sum_after=" + order_sum_after + ", order_shipped_date=" + order_shipped_date
-				+ ", ship_number=" + ship_number + ", payment_status=" + payment_status + ", product_id=" + product_id
-				+ ", prodes_id=" + prodes_id + ", company_id=" + company_id + ", company_name=" + company_name
-				+ ", product_name=" + product_name + ", product_size=" + product_size + ", product_color="
-				+ product_color + ", order_description_price=" + order_description_price + ", subtotal_price="
-				+ subtotal_price + ", product_first_pic=" + Arrays.toString(product_first_pic) + "]";
+		this.product_quantity = product_quantity;
 	}
 
 
@@ -317,9 +304,37 @@ public class OrderDescriptionBO implements Serializable{
 	}
 
 
+	public Integer getProduct_quantity() {
+		return product_quantity;
+	}
+
+
+	public void setProduct_quantity(Integer product_quantity) {
+		this.product_quantity = product_quantity;
+	}
+
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+
+	@Override
+	public String toString() {
+		return "OrderDescriptionBO [order_id=" + order_id + ", member_id=" + member_id + ", order_created_date="
+				+ order_created_date + ", order_member_address=" + order_member_address + ", order_member_name="
+				+ order_member_name + ", order_member_phone=" + order_member_phone + ", order_status=" + order_status
+				+ ", order_sum_after=" + order_sum_after + ", order_shipped_date=" + order_shipped_date
+				+ ", ship_number=" + ship_number + ", payment_status=" + payment_status + ", product_id=" + product_id
+				+ ", prodes_id=" + prodes_id + ", company_id=" + company_id + ", company_name=" + company_name
+				+ ", product_name=" + product_name + ", product_size=" + product_size + ", product_color="
+				+ product_color + ", order_description_price=" + order_description_price + ", subtotal_price="
+				+ subtotal_price + ", product_first_pic=" + Arrays.toString(product_first_pic) + ", product_quantity="
+				+ product_quantity + "]";
+	}
+
+	
+	
 
 
 
