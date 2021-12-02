@@ -27,9 +27,9 @@ public class OrderDescriptionServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         
 //		調用service方法
-		OrderDescriptionService service = new OrderDescriptionServiceImpl();
-		List<OrderDescriptionBO> popular10 = service.BOfindByMemIdForMembCentr(1);
-		System.out.println(popular10);
+//		OrderDescriptionService service = new OrderDescriptionServiceImpl();
+//		List<OrderDescriptionBO> popular10 = service.BOfindByMemIdForMembCentr(1);
+//		System.out.println(popular10);
 //		response.getWriter().print(popular10);
 //		request.setAttribute("Pop", popular10);
 
