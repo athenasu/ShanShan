@@ -20,20 +20,17 @@ public class MemberOrderServiceImpl implements MemberOrderService {
 	@Autowired
 	private OrderDescriptionDAO orderDesDao;
 	
-<<<<<<< HEAD
 	@Autowired
 	private OrderDAO orderDao;
 	
+	@Override
 	public List<Order> findAllByMemId(Integer memberId) {
 		return orderDao.findAllByMemId(memberId);
 	}
 	
+	@Override
 	public List<OrderDescriptionBO> findAllOrderDesByMemId(Integer memberId, Integer orderId){
 		return orderDesDao.BOfindByMemIdForMembCentr(memberId, orderId);
-=======
-	public List<OrderDescriptionBO> findAllOrdersByMemId(Integer memberId){
-		return null;
->>>>>>> 599d345ec811b333e959738342318a33ac401f00
 	}
-
+	
 }

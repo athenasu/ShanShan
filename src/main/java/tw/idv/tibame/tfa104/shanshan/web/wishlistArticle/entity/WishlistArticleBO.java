@@ -31,7 +31,7 @@ public class WishlistArticleBO extends Core {
 	@Column(name = "memberProfilePicture")
 	private byte[] memberProfilePicture;
 	@Column(name = "mountainName")
-	private String mountainName;
+	private String mountainName; // not getting this in my JSON
 	@Transient
 	private String articlePictureStr;
 	@Transient

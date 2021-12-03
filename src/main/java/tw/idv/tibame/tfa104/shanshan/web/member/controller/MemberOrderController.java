@@ -19,12 +19,14 @@ public class MemberOrderController {
 	private MemberOrderService service;
 	
 	@GetMapping("findAllOrdersByMemId")
-	public List<Order> findAllByMemId(Integer memberId){
+	public List<Order> findAllByMemId(Integer memberId){ // change back to HttpSession session
+//		Integer memberId = (Integer)session.getAttribute("memberId");
 		return service.findAllByMemId(memberId);
 	}
 	
 	@GetMapping("findAllOrderDesByMemId")
-	public List<OrderDescriptionBO> findAllOrderDesByMemId(Integer memberId, Integer orderId) {
+	public List<OrderDescriptionBO> findAllOrderDesByMemId(Integer memberId, Integer orderId) { // change back to HttpSession session
+//		Integer memberId = (Integer)session.getAttribute("memberId");
 		return service.findAllOrderDesByMemId(memberId, orderId);
 	}
 

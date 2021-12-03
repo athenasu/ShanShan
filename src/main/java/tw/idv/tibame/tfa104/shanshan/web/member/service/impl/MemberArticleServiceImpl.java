@@ -1,5 +1,6 @@
 package tw.idv.tibame.tfa104.shanshan.web.member.service.impl;
 
+import java.util.Base64;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -11,6 +12,7 @@ import tw.idv.tibame.tfa104.shanshan.web.article.dao.ArticleDAO_interface;
 import tw.idv.tibame.tfa104.shanshan.web.article.entity.ArticleVO;
 import tw.idv.tibame.tfa104.shanshan.web.event.dao.EventDAO;
 import tw.idv.tibame.tfa104.shanshan.web.event.entity.MemberEventBO;
+import tw.idv.tibame.tfa104.shanshan.web.event.entity.ParEventBO;
 import tw.idv.tibame.tfa104.shanshan.web.member.service.MemberArticleService;
 
 @Service
@@ -25,7 +27,16 @@ public class MemberArticleServiceImpl implements MemberArticleService {
 
 	@Override
 	public List<ArticleVO> findAllArticlesByMemId(Integer memberId) {
-		return articleDao.findByMemIdGiveAll(memberId);
+		List<ArticleVO> articles = articleDao.findByMemIdGiveAll(memberId);
+		for (ArticleVO article : articles) {			
+			article.setPicString(Base64.getEncoder().encodeToString(article.getArticle_picture()));
+		}
+		return articles;
+	}
+
+	@Override
+	public List<MemberEventBO> findAllEventsByMemId(Integer memberId) {
+		return eventDao.selectByMemberId(memberId);
 	}
 
 	@Override
@@ -34,9 +45,13 @@ public class MemberArticleServiceImpl implements MemberArticleService {
 	}
 
 	@Override
-	public List<MemberEventBO> findAllEventsByMemId(Integer memberId) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<ParEventBO> findPartEventByMemberId(Integer memberId) {
+		return eventDao.parEventByMember(memberId);
 	}
-
+	
+	@Override
+	public Integer cancelEvent(Integer eventId) {
+		return eventDao.deleteEventById(eventId);
+	}
+	
 }

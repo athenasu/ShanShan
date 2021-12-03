@@ -45,10 +45,12 @@ $("div.registor_title_shanshan").click(function () {
 
 /////////// LOGIN FETCH EMAIL & PASSWORD ///////////
 const loginBtn = document.querySelector(".login_summitbutton");
-const memberEmail = document.querySelector(".login_formbar_email");
-const memberPassword = document.querySelector(".login_formbar_password");
 loginBtn.addEventListener("click", function () {
-  fetch("member/login", {
+  const memberEmail = document.querySelector(".login_formbar_email").value;
+  const memberPassword = document.querySelector(
+    ".login_formbar_password"
+  ).value;
+  fetch("login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -58,5 +60,34 @@ loginBtn.addEventListener("click", function () {
       memberEmail,
       memberPassword,
     }),
+  }).then((body) => {
+    body.json();
+    console.log(body.json()); // how do i get the response from Network?
   });
+});
+
+/////////// REGISTER ///////////
+const registerSubmitBtn = document.querySelector(".register_summitbutton");
+registerSubmitBtn.addEventListener("click", function () {
+  const memberName = document.querySelector(".register-name").value;
+  const memberEmail = document.querySelector(".register-email").value;
+  const memberPassword = document.querySelector(".register-password").value;
+  const memberRepeatPassword = document.querySelector(
+    ".register-repeatpassword"
+  );
+  if (memberPassword === memberRepeatPassword) {
+    fetch("register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        memberName,
+        memberEmail,
+        memberPassword,
+      }),
+    });
+  } else {
+    alert("wrong password"); // can probably show something on the div
+  }
 });

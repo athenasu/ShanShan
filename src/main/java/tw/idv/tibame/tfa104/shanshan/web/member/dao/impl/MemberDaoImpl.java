@@ -70,9 +70,8 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public Integer register(Member member) {
 		Session session = sessionFactory.getCurrentSession(); 
-		System.out.println("in dao register: adding picture");
-		File file = new File("/src/defaultPictures/member/default_profile_pic.png");
-		byte[] bFile= null;
+		File file = new File("/src/main/webapp/member/member_imgs/default_profile_pic.png");
+		byte[] bFile= null; 
 		try {
 			FileInputStream fis = new FileInputStream(file);
 			bFile = new byte[fis.available()];
@@ -85,21 +84,16 @@ public class MemberDaoImpl implements MemberDao {
 		}
 	 
 		member.setMemberProfilePic(bFile);
-		session.save(member);
-
+		
 		System.out.println("committed");
-		// if information has successfully been added to the db, then it will return 1,
-		return 1;
+		return (Integer) session.save(member);
 	}
 
 	@Override
 	public Member update(byte[] file, Member member) {
 		Session session = sessionFactory.getCurrentSession();
 
-		// i can get this from the member package that is thrown back i think
-		Member tempMember = session.get(Member.class, 1); // just for testing
-//		Member tempMember = session.get(Member.class, member.getMemberId());
-		// probably need to move this stuff to the service layer
+		Member tempMember = session.get(Member.class, 1); // just for testing, remember to change back!
 		if (tempMember.getMemberName() != null && tempMember.getMemberName() != "") {
 			tempMember.setMemberName(member.getMemberName());
 		}

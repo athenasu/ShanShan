@@ -338,7 +338,7 @@ button {
 }
 
 /* CARDS BUTTONS */
-.card-1 button {
+.card-1 .btn--show-modal-done {
   border: none;
   color: #adc2a9;
   padding: 3px 8px;
@@ -353,7 +353,7 @@ button {
   border: 2px solid white;
 }
 
-.card-1 button:hover {
+.card-1 .btn--show-modal-done:hover {
   background-color: #adc2a9;
   color: white;
 }
@@ -406,12 +406,11 @@ button {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-
   background-color: #f3f3f3;
   padding: 2rem 3rem;
   box-shadow: 0 4rem 6rem rgba(0, 0, 0, 0.3);
   z-index: 1000;
-  transition: all 0.5s;
+  /* transition: all 0.5s; */
   border-radius: 1rem;
 }
 
@@ -434,9 +433,9 @@ button {
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(4px);
+  /* backdrop-filter: blur(4px); */
   z-index: 100;
-  transition: all 0.5s;
+  /* transition: all 0.5s; */
 }
 
 .btn--close-modal-done,

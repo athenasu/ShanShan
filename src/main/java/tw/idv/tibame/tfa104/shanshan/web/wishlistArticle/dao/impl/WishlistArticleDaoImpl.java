@@ -44,11 +44,11 @@ public class WishlistArticleDaoImpl implements WishlistArticleDao {
 				"wa.wishlist_article_id as wishlistArticleId, " +
 				"a.article_id as articleId, " + 
 			    "a.article_title as articleTitle, " +
+			    "mtn.mountain_name as mountainName, " +
 			    "a.event_date as eventDate, " +
-			    "ap.article_picture as articlePicture, " +
 			    "m.member_name as memberName, " +
-			    "m.member_profile_pic as memberProfilePicture, " +
-			    "mtn.mountain_name as mountainName " +
+			    "ap.article_picture as articlePicture, " +
+			    "m.member_profile_pic as memberProfilePicture " +
 			"from " +
 				"article a " +
 			    "join wishlist_article wa " +

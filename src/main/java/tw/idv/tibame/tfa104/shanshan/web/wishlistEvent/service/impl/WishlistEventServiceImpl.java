@@ -47,8 +47,6 @@ public class WishlistEventServiceImpl implements WishlistEventService {
 		for (WishlistEventBO wishlistEvent : wishlistEvents) {
 			wishlistEvent.setMountainPicStr(Base64.getEncoder().encodeToString(wishlistEvent.getMountainPic()));
 			wishlistEvent.setMemberProfilePicStr(Base64.getEncoder().encodeToString(wishlistEvent.getMemberProfilePic()));
-//			wishlistEvent.setMountainPic(null);
-//			wishlistEvent.setMemberProfilePic(null);
 		}
 		return wishlistEvents;
 	}

@@ -47,7 +47,7 @@ a:active {
 
 /*  WWWWWWWWWWWWWWWWWWWWWWWWWWW 註冊導覽列 區域開始 */
 
-.registor_header {
+.register_header {
   height: 75px;
   width: 100%;
   background-color: white;
@@ -55,7 +55,7 @@ a:active {
 }
 
 .goods_titlebar,
-.registor_titlebar {
+.register_titlebar {
   margin: 0 auto;
   height: 75px;
   width: 1200px;
@@ -71,7 +71,7 @@ a:active {
 /*LOGO塊元素*/
 
 .goods_titlepic,
-.registor_titlepic {
+.register_titlepic {
   height: 60px;
   width: 60px;
   cursor: pointer;
@@ -84,7 +84,7 @@ a:active {
 
 .goods_header_title_shanshan,
 .goods_header_title_goods,
-.registor_title_signup {
+.register_title_signup {
   font-size: 22px;
   font-weight: bold;
   cursor: pointer;
@@ -97,18 +97,18 @@ a:active {
 
 .goods_header_title_shanshan:hover,
 .goods_header_title_goods:hover,
-.registor_title_signup:hover {
+.register_title_signup:hover {
   color: rgb(187, 177, 147);
 }
 
-.registor_title_signup {
+.register_title_signup {
   margin-right: 860px;
 }
 
 /*文字間隔*/
 
 .goods_titlegap,
-.registor_titlegap {
+.register_titlegap {
   /* line-height: 90px; */
   margin-left: 8px;
   margin-right: 8px;
@@ -123,7 +123,7 @@ a:active {
 
 /*WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW 註冊 背景區 開始 */
 
-.registor_bodycontent {
+.register_bodycontent {
   min-height: calc(100% - 95px);
   min-width: 1200px;
   width: 100%;
@@ -146,31 +146,31 @@ a:active {
   /* border: 1px solid green; */
 }
 
-.registorform {
+.registerform {
   box-sizing: border-box;
   width: 300px;
   /* border: 1px solid green; */
   margin: auto;
 }
 
-.registor_form_title,
+.register_form_title,
 .login_form_title {
   text-align: center;
   color: rgb(59, 89, 152);
 }
 
-.registor_formbox,
+.register_formbox,
 .login_formbox {
   margin-top: 10px;
 }
 
-.registor_formname,
+.register_formname,
 .login_formname {
   line-height: 30px;
   font-size: 20px;
 }
 
-.registor_formbar,
+.register_formbar,
 .login_formbar_email,
 .login_formbar_password {
   box-sizing: border-box;
@@ -180,11 +180,11 @@ a:active {
   padding-right: 11px;
 }
 
-/* .registor_formcheckbox,
+/* .register_formcheckbox,
 .login_formcheckbox {
 } */
 
-.registor_summitbutton,
+.register_summitbutton,
 .login_summitbutton,
 .summitbutton_signupemail,
 .summitbutton_signupfacebook,
@@ -201,7 +201,7 @@ a:active {
 }
 
 .login_description,
-.registor_description {
+.register_description {
   font-size: 12px;
 }
 
@@ -240,8 +240,8 @@ a:active {
 
 .login_modal_botton,
 .goods_login_modal_botton,
-.registor_botton,
-.goods_registor_botton {
+.register_botton,
+.goods_register_botton {
   position: relative;
   font-size: 20px;
   font-weight: bold;
@@ -262,8 +262,8 @@ a:active {
 
 .login_modal_botton:hover,
 .goods_login_modal_botton:hover,
-.registor_botton:hover,
-.goods_registor_botton:hover {
+.register_botton:hover,
+.goods_register_botton:hover {
   color: rgb(255, 255, 255);
   border: 2px solid transparent;
   background-color: rgba(187, 177, 147);

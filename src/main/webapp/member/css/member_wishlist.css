@@ -255,7 +255,7 @@ button {
 }
 
 /* SORT BY BUTTONS */
-.events button {
+.sort-buttons button {
   border: none;
   padding: 0.3rem 1rem;
   text-decoration: none;
@@ -360,15 +360,14 @@ button {
 .fa-hiking,
 .fa-heart {
   font-size: 20px;
+  pointer-events: none;
   /* color: green; */
   /* margin: 0px 5px; */
 }
 
-.fa-heart:hover {
-  color: black;
-}
-
-.heart-product {
+.heart-product,
+.heart-event,
+.heart-article {
   position: absolute;
   margin-top: 1rem;
   height: 20px;
@@ -377,6 +376,12 @@ button {
   cursor: pointer;
   margin-left: 1rem;
   z-index: 100;
+}
+
+.heart-product:hover,
+.heart-event:hover,
+.heart-article:hover {
+  color: black;
 }
 
 .groupinfo,

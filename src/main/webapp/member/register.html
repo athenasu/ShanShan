@@ -12,7 +12,7 @@
 
 <body>
 
-    <!-- 燈箱登入方式選擇 LOGIN TYPE-->
+    <!-- 燈箱登入方式選擇 LOGIN -->
     <div class="login_modal_bcg -none"></div>
     <div class="login_modal -none">
         <h1 class="login_form_title">登入</h1>
@@ -74,10 +74,10 @@
 
 
     <!-- 註冊導覽列 -->
-    <header class="registor_header">
-        <div class="registor_titlebar">
+    <header class="register_header">
+        <div class="register_titlebar">
             <!-- LOGO URL https://i.imgur.com/pKqro9S.png   img/logo.png -->
-            <div class="registor_titlepic"><img src="img/logo.png" width="60px" height="60px" alt=""></div>
+            <div class="register_titlepic"><img src="img/logo.png" width="60px" height="60px" alt=""></div>
 
           
             <!-- 山山來此 標題 -->
@@ -87,7 +87,7 @@
             <div class="goods_titlegap"></div>
 
             <!-- 註冊頁面 標題 -->
-            <div class="registor_title_signup" onclick="location.href='#'">註冊頁面
+            <div class="register_title_signup" onclick="location.href='#'">註冊頁面
             </div>
             <input type="button" class="login_modal_botton" value="登入"></input>
         </div>
@@ -96,16 +96,16 @@
 
 
     <!-- 註冊內容區 開始 -->
-    <div class="registor_bodycontent">
+    <div class="register_bodycontent">
         <!-- 註冊方式選擇區 開始 -->
         <form class="choose_signup_form">
-            <h1 class="registor_form_title">註冊</h1>
+            <h1 class="register_form_title">註冊</h1>
             <div>
-                <div class="registor_formbox">
+                <div class="register_formbox">
                     <input class="summitbutton_signupfacebook" type="button" value="用FACEBOOK註冊"></input>
                 </div>
 
-                <div class="registor_formbox">
+                <div class="register_formbox">
                     <input class="summitbutton_signupgoogle" type="button" value="用GOOGLE註冊"></input>
                 </div>
 
@@ -114,15 +114,15 @@
                 <div class="horizen_gap"></div>
 
 
-                <div class="registor_formbox">
+                <div class="register_formbox">
                     <input class="summitbutton_signupemail" type="button" value="用電子郵件註冊"></input>
                 </div>
 
-                <div class="registor_formbox registor_description">
-                    <input class="registor_formcheckbox" type="checkbox">&ensp;我已閱讀並同意《隱私權保護政策》及《定型化契約條款》。</input>
+                <div class="register_formbox register_description">
+                    <input class="register_formcheckbox" type="checkbox">&ensp;我已閱讀並同意《隱私權保護政策》及《定型化契約條款》。</input>
                 </div>
 
-                <div class="registor_formbox registor_description">
+                <div class="register_formbox register_description">
                     <p>※&ensp;請檢查垃圾郵件過濾器以及垃圾信箱，</p>
                     <p>&ensp;&ensp;&ensp;以便接收來自 shanshan@gmail.com 的郵件。</p>
                 </div>
@@ -134,42 +134,42 @@
 
         <!-- 電子郵件註冊 開始 -->
         <form class="signup_email_form -none">
-            <h1 class="registor_form_title" style="text-align:center;">用電子郵件註冊</h1>
+            <h1 class="register_form_title" style="text-align:center;">用電子郵件註冊</h1>
             <div>
-                <div class="registor_formbox">
-                    <label class="registor_formname" for="username">用戶名</label>
-                    <input class="registor_formbar" name="username" placeholder="王小明"></input></br>
+                <div class="register_formbox">
+                    <label class="register_formname" for="username">用戶名</label>
+                    <input class="register_formbar register-name" name="username" placeholder="王小明"></input></br>
                 </div>
 
-                <div class="registor_formbox ">
-                    <label class="registor_formname" for="Email">電子郵件地址</label>
-                    <input class="registor_formbar" name="Email" placeholder="example@gmail.com"></input></br>
+                <div class="register_formbox ">
+                    <label class="register_formname" for="Email">電子郵件地址</label>
+                    <input class="register_formbar register-email" name="Email" placeholder="example@gmail.com"></input></br>
                 </div>
 
-                <div class="registor_formbox registor_description">
-                    <input class="registor_formcheckbox registor_description"
+                <div class="register_formbox register_description">
+                    <input class="register_formcheckbox register_description"
                         type="checkbox">&ensp;我願意收到ShanShan電子報。</input></br>
                 </div>
 
-                <div class="registor_formbox">
-                    <label class="registor_formname" for="password">密碼</label>
-                    <input class="registor_formbar" name="password" placeholder="請輸入8-15位數之間的英文或數字"></input></br>
+                <div class="register_formbox">
+                    <label class="register_formname" for="password">密碼</label>
+                    <input class="register_formbar register-password" name="password" placeholder="請輸入8-15位數之間的英文或數字"></input></br>
                 </div>
 
-                <div class="registor_formbox">
-                    <label class="registor_formname" for="repeatpassword">確認密碼</label>
-                    <input class="registor_formbar" name="repeatpassword" placeholder="請重複輸入密碼"></input></br>
+                <div class="register_formbox">
+                    <label class="register_formname" for="repeatpassword">確認密碼</label>
+                    <input class="register_formbar register-repeatpassword" name="repeatpassword" placeholder="請重複輸入密碼"></input></br>
                 </div>
 
-                <div class="registor_formbox">
-                    <input class="registor_summitbutton" type="submit" value="提交"></input>
+                <div class="register_formbox">
+                    <input class="register_summitbutton" type="submit" value="提交"></input>
                 </div>
 
-                <div class="registor_formbox registor_description">
-                    <input class="registor_formcheckbox" type="checkbox">&ensp;我已閱讀並同意《隱私權保護政策》及《定型化契約條款》。</input>
+                <div class="register_formbox register_description">
+                    <input class="register_formcheckbox" type="checkbox">&ensp;我已閱讀並同意《隱私權保護政策》及《定型化契約條款》。</input>
                 </div>
 
-                <div class="registor_formbox registor_description">
+                <div class="register_formbox register_description">
                     <p>※&ensp;請檢查垃圾郵件過濾器以及垃圾信箱，</p>
                     <p>&ensp;&ensp;&ensp;以便接收來自 shanshan@gmail.com 的郵件。</p>
                 </div>

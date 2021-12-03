@@ -33,8 +33,10 @@ const renderWishlistEvent = function (event) {
             <div class="groupcard">
             <a href="#?${event.wishlistEventId}">
               <div class="groupimg">
+                <span wishlist-id="${event.wishlistEventId}" class="heart-event">
+                  <i class="fas fa-heart"></i>
+                </span>
                 <img src="${mtnUrl}" class="img" />
-                <i class="fas fa-heart heart-event"></i>
                 <p class="countdown">倒數：<span>10天13小時</span></p>
               </div>
               <div class="groupinfo">
@@ -92,8 +94,10 @@ const renderWishlistArticle = function (article) {
             <div class="groupcard">
             <a href="#?${article.wishlistArticleId}">
               <div class="groupimg">
+                <span wishlist-id= "${article.wishlistArticleId}" class="heart-article">
+                  <i class="fas fa-heart"></i>
+                </span>
                 <img src="${articleUrl}" class="img" />
-                <i class="fas fa-heart heart-article"></i>
               </div>
               <div class="groupinfo">
                 <h3 class="title2 gp_name">${article.articleTitle}</h3>
@@ -144,10 +148,12 @@ const renderWishlistProduct = function (product) {
 
   let html = `
             <div class="groupcard">
-            <a href="#">
+            <a href="#?${product.wishlistProductId}">
               <div class="groupimg">
+                <span wishlist-id= "${product.wishlistProductId}" class="heart-product">
+                  <i class="fas fa-heart"></i>
+                </span>
                 <img src="${productUrl}" class="img" />
-                <i class="fas fa-heart heart-product"></i>
               </div>
               <div class="groupinfo">
                 <h3 class="title2 gp_name">${product.productName}</h3>
@@ -233,7 +239,7 @@ const productWishlist = function (memberId) {
 // can i use this for post requests? how do i pass in information using post requests@@?
 const deleteWishlist = function (wishlistType, wishlistId) {
   fetch(
-    `/shanshan/wishlist${wishlistType}/deleteWishlist${wishlistType}?=${wishlistId}`
+    `/shanshan/wishlist${wishlistType}/deleteWishlist${wishlistType}Id?=${wishlistId}`
   );
 };
 
@@ -271,7 +277,28 @@ sortByEventBtn.addEventListener("click", function (memberId) {
 document.addEventListener("click", function (e) {
   console.log(e.target);
   if (e.target.classList.contains("heart-product")) {
-    console.log("heart-product");
+    console.log("heart product clicked");
+    let parent = e.target.closest("div.groupcard");
+    let elem = parent.querySelector(".heart-product");
+    let wishlistId = elem.getAttribute("wishlist-id");
+    deleteWishlist("Product", wishlistId);
+    parent.remove();
+  }
+  if (e.target.classList.contains("heart-article")) {
+    console.log("heart article clicked");
+    let parent = e.target.closest("div.groupcard");
+    let elem = parent.querySelector(".heart-article");
+    let wishlistId = elem.getAttribute("wishlist-id");
+    deleteWishlist("Article", wishlistId);
+    parent.remove();
+  }
+  if (e.target.classList.contains("heart-event")) {
+    console.log("heart event clicked");
+    let parent = e.target.closest("div.groupcard");
+    let elem = parent.querySelector(".heart-event");
+    let wishlistId = elem.getAttribute("wishlist-id");
+    deleteWishlist("Event", wishlistId);
+    parent.remove();
   }
 });
 
