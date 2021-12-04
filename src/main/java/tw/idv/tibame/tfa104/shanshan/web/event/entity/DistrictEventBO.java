@@ -114,8 +114,8 @@ public class DistrictEventBO extends Core{
 		return mountainPicStr;
 	}
 
-	public void setMountainPicStr(String memberProfilePicStr) {
-		this.mountainPicStr = memberProfilePicStr;
+	public void setMountainPicStr(String mountainPicStr) {
+		this.mountainPicStr = mountainPicStr;
 	}
 
 	@Override

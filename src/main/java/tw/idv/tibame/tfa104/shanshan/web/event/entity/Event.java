@@ -1,5 +1,6 @@
 package tw.idv.tibame.tfa104.shanshan.web.event.entity;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
 
@@ -10,11 +11,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.DynamicInsert;
+
 import tw.idv.tibame.tfa104.shanshan.Core;
 
 @Entity
+//@DynamicInsert
 @Table(name = "event")
-public class Event extends Core {
+public class Event implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -70,34 +74,30 @@ public class Event extends Core {
 	@Column(name = "event_cur_part")
 	private Integer eventCurPart;
 
-	
-	public Integer getEventID() {
+	public Integer getEventId() {
 		return eventId;
 	}
 
-	public void setEventID(Integer eventID) {
-		this.eventId = eventID;
+	public void setEventId(Integer eventId) {
+		this.eventId = eventId;
 	}
 
-	
-	public Integer getMemberID() {
+	public Integer getMemberId() {
 		return memberId;
 	}
 
-	public void setMemberID(Integer memberID) {
-		this.memberId = memberID;
+	public void setMemberId(Integer memberId) {
+		this.memberId = memberId;
 	}
 
-	
-	public Integer getMountainID() {
+	public Integer getMountainId() {
 		return mountainId;
 	}
 
-	public void setMountainID(Integer mountainID) {
-		this.mountainId = mountainID;
+	public void setMountainId(Integer mountainId) {
+		this.mountainId = mountainId;
 	}
 
-	
 	public String getEventName() {
 		return eventName;
 	}
@@ -106,7 +106,6 @@ public class Event extends Core {
 		this.eventName = eventName;
 	}
 
-	
 	public Integer getEventDays() {
 		return eventDays;
 	}
@@ -115,7 +114,6 @@ public class Event extends Core {
 		this.eventDays = eventDays;
 	}
 
-	
 	public Integer getDifficulty() {
 		return difficulty;
 	}
@@ -124,7 +122,6 @@ public class Event extends Core {
 		this.difficulty = difficulty;
 	}
 
-	
 	public Date getEventDeadline() {
 		return eventDeadline;
 	}
@@ -133,7 +130,6 @@ public class Event extends Core {
 		this.eventDeadline = eventDeadline;
 	}
 
-	
 	public Date getEventStartDate() {
 		return eventStartDate;
 	}
@@ -142,7 +138,6 @@ public class Event extends Core {
 		this.eventStartDate = eventStartDate;
 	}
 
-	
 	public Timestamp getEventPostDate() {
 		return eventPostDate;
 	}
@@ -151,7 +146,6 @@ public class Event extends Core {
 		this.eventPostDate = eventPostDate;
 	}
 
-	
 	public Integer getStayType() {
 		return stayType;
 	}
@@ -159,7 +153,6 @@ public class Event extends Core {
 	public void setStayType(Integer stayType) {
 		this.stayType = stayType;
 	}
-
 
 	public Integer getMinNumOfPeople() {
 		return minNumOfPeople;
@@ -169,7 +162,6 @@ public class Event extends Core {
 		this.minNumOfPeople = minNumOfPeople;
 	}
 
-	
 	public Integer getMaxNumOfPeople() {
 		return maxNumOfPeople;
 	}
@@ -218,14 +210,17 @@ public class Event extends Core {
 		this.eventCurPart = eventCurPart;
 	}
 
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	@Override
 	public String toString() {
-		return "event [eventID=" + eventId + ", memberID=" + memberId + ", mountainID=" + mountainId + ", eventName="
+		return "Event [eventId=" + eventId + ", memberId=" + memberId + ", mountainId=" + mountainId + ", eventName="
 				+ eventName + ", eventDays=" + eventDays + ", difficulty=" + difficulty + ", eventDeadline="
 				+ eventDeadline + ", eventStartDate=" + eventStartDate + ", eventPostDate=" + eventPostDate
 				+ ", stayType=" + stayType + ", minNumOfPeople=" + minNumOfPeople + ", maxNumOfPeople=" + maxNumOfPeople
 				+ ", assemblingPlace=" + assemblingPlace + ", eventContent=" + eventContent + ", eventStatus="
 				+ eventStatus + ", eventPoints=" + eventPoints + ", eventCurPart=" + eventCurPart + "]";
 	}
-
 }

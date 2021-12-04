@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import tw.idv.tibame.tfa104.shanshan.web.event.dao.EventDAO;
+import tw.idv.tibame.tfa104.shanshan.web.event.entity.DetailEventBO;
 import tw.idv.tibame.tfa104.shanshan.web.event.entity.DistrictEventBO;
 import tw.idv.tibame.tfa104.shanshan.web.event.entity.Event;
 import tw.idv.tibame.tfa104.shanshan.web.event.entity.MemberEventBO;
@@ -17,6 +18,7 @@ import tw.idv.tibame.tfa104.shanshan.web.event.entity.OnGoingEventBO;
 import tw.idv.tibame.tfa104.shanshan.web.event.entity.ParEventBO;
 import tw.idv.tibame.tfa104.shanshan.web.event.entity.PopularEventBO;
 import tw.idv.tibame.tfa104.shanshan.web.event.entity.PopularEventsMountainBO;
+import tw.idv.tibame.tfa104.shanshan.web.member.entity.Member;
 
 @Repository
 public class EventDAOImpl implements EventDAO {
@@ -26,8 +28,8 @@ public class EventDAOImpl implements EventDAO {
 	@Override
 	public int addEvent(Event event) {
 		Session session = sessionFactory.getCurrentSession();
-
-		return (Integer) session.save(event);		
+		session.save(event);	
+		return 1;
 	}
 	
 	@Override
@@ -40,11 +42,11 @@ public class EventDAOImpl implements EventDAO {
 	@Override
 	public Event updateEventById(Event event) {
 		Session session = sessionFactory.getCurrentSession();
-		Event tempEvent = session.get(Event.class, event.getEventID());
+		Event tempEvent = session.get(Event.class, event.getEventId());
 		
-		final Integer mountainID = event.getMountainID();
+		final Integer mountainID = event.getMountainId();
 		if (mountainID != null) {
-			tempEvent.setMountainID(mountainID);
+			tempEvent.setMountainId(mountainID);
 		}
 		
 		final String eventName = event.getEventName();
@@ -243,11 +245,14 @@ public class EventDAOImpl implements EventDAO {
 	}
 
 	@Override
-	public List<Object[]> eventList() {
+	public List<DetailEventBO> eventList() {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("FROM Event a "+
-										"JOIN Mountain b WITH a.mountainId = b.mountainId "+
-										"JOIN Member c WITH a.memberId = c.memberId", Object[].class).list();
+		return session.createNativeQuery("Select * "+
+										 "FROM Event a "+
+										 "JOIN Mountain b "+
+												"ON a.mountain_id = b.mountain_id "+
+										 "JOIN Member c "+
+												"ON a.member_id = c.member_id", DetailEventBO.class).list();
 	}
 
 	@Override
@@ -273,6 +278,18 @@ public class EventDAOImpl implements EventDAO {
 										 	"ON b.mountain_id = c.mountain_id "+
 										 "WHERE a.member_id = :memberId", ParEventBO.class)
 				.setParameter("memberId", memberId).list();
+	
+	}
+	
+	@Override
+	public List<Member> parEventByEventId(Integer eventId) {
+		Session session = sessionFactory.getCurrentSession();
+		return session.createNativeQuery("SELECT *"+
+										 "FROM Member a "+
+										 "JOIN Participant b "+
+										 	"ON a.member_id = b.member_id "+ 
+										 "WHERE b.event_id = :eventId", Member.class)
+				.setParameter("eventId", eventId).list();
 	
 	}
 	
