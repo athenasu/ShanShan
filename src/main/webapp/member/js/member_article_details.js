@@ -142,16 +142,16 @@ const renderArticle = function (article) {
   cards.insertAdjacentHTML("afterbegin", html);
 };
 
-const renderParticipant = function (part) {
+const renderPartEvent = function (part) {
   // need to convert the time
-  // const partBytesStr = atob(part.picString);
-  // let partLen = partBytesStr.length;
-  // const partu8Array = new Uint8Array(partLen);
-  // while (partLen--) {
-  //   partu8Array[partLen] = partBytesStr.charCodeAt(partLen);
-  // }
-  // const partBlob = new Blob([partu8Array]);
-  // const partUrl = URL.createObjectURL(partBlob);
+  const partBytesStr = atob(part.picString);
+  let partLen = partBytesStr.length;
+  const partu8Array = new Uint8Array(partLen);
+  while (partLen--) {
+    partu8Array[partLen] = partBytesStr.charCodeAt(partLen);
+  }
+  const partBlob = new Blob([partu8Array]);
+  const partUrl = URL.createObjectURL(partBlob);
 
   let html = `
             <a href="#" class = "part-card">
@@ -187,7 +187,7 @@ const renderParticipant = function (part) {
                     <div class="part-top-box">
                       <div class="part-picture">
                         <img
-                          src="./img/TKAI8700--02.jpg"
+                          src="${partUrl}"
                           alt="part-picture"
                           class="part-img"
                         />
@@ -222,8 +222,145 @@ const renderParticipant = function (part) {
   cards.insertAdjacentHTML("afterbegin", html);
 };
 
-const article = function () {
-  fetch(`/shanshan/memberArticle/findAllArticlesByMemId?memberId=1`)
+const renderEvent = function (eventList) {
+  // need to convert the time
+  // need to convert the eventStatus
+
+  let html = `
+              <a href="#" class = "event-card">
+              <div class="card-1">
+                <div class="event-status">
+                  <p>狀態：${eventList.eventStatus}</p>
+                </div>
+                <div class="event-no">
+                  <p>揪團編號：${eventList.eventId}</p>
+                </div>
+                <div class="event-name">
+                  <p>揪團名稱：${eventList.eventName}</p>
+                </div>
+                <div class="event-date">
+                  <p>出團日期：${eventList.eventStartDate}</p>
+                </div>
+                <div class="event-mtn">
+                  <p>地點：${eventList.mountainName}</p>
+                </div>
+                <div class="event-attendees">
+                  <p>目前參加人數：${eventList.eventCurPart} 人</p>
+                </div>
+                <div class="event-details">
+                  <button class="btn--show-modal">詳情</button>
+                </div>
+              </div>
+              <div class="modal hidden">
+                <button class="btn--close-modal">&times;</button>
+                <h2 class="modal__header">揪團詳情</h2>
+                <p class="modal-sub-header">狀態：${eventList.eventStatus}</p>
+                <div class="modal__container">
+                  <div class="modal-box1">
+                    <form class="confirm-event">
+                      <ul class="modal-event-details">
+                        <li>揪團編號：${eventList.eventId}</li>
+                        <li>團名：${eventList.eventName}</li>
+                        <li>出團日期：${eventList.eventStartDate}</li>
+                        <li>預計截團日期：${eventList.eventDeadline}</li>
+                        <li>目前參與人數：${eventList.eventCurPart} 位</li>
+                        <li>成團人數：${eventList.maxNumOfPeople} 位</li>
+                        <div class="submit-button">
+                          <button type="submit" class="submit-confirm-event">
+                            確定成團
+                          </button>
+                        </div>
+                      </ul>
+                    </form>
+                    <div class="cancel-event">
+                      <div class="cancel-title">
+                        <h3>取消原因</h3>
+                        <p>若欲取消開團，請點選原因</p>
+                      </div>
+                      <form class="form-cancel-reason" action="GET">
+                        <div class="reason group1">
+                          <label
+                            ><input
+                              type="radio"
+                              name="cancel-reason"
+                              value="weather"
+                            />天氣關係</label
+                          >
+                          <label
+                            ><input
+                              type="radio"
+                              name="cancel-reason"
+                              value="people"
+                            />人數不足</label
+                          >
+                        </div>
+                        <div class="reason group2">
+                          <label
+                            ><input
+                              type="radio"
+                              name="cancel-reason"
+                              value="sick"
+                            />身體不適</label
+                          >
+                          <label
+                            ><input
+                              type="radio"
+                              name="cancel-reason"
+                              value="other"
+                            />其他因素</label
+                          >
+                        </div>
+                        <div class="submit-button">
+                          <button type="submit" class="submit-cancel-event">
+                            確定取消
+                          </button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                  <div class="modal-box2">
+                    <h4>參加人員</h4>
+                    <div class="attendee-list event-list-no-${eventList.eventId}">
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+            `;
+  cards.insertAdjacentHTML("afterbegin", html);
+};
+
+const renderParticipants = function (eventPart, eventId, itemNo) {
+  const memberBytesStr = atob(eventPart.picStr);
+  let memberLen = memberBytesStr.length;
+  const memberu8Array = new Uint8Array(memberLen);
+  while (memberLen--) {
+    memberu8Array[memberLen] = memberBytesStr.charCodeAt(memberLen);
+  }
+  const memberBlob = new Blob([memberu8Array]);
+  const memberUrl = URL.createObjectURL(memberBlob);
+
+  let eventPart = document.querySelector(`.event-list-no-${eventId}`);
+  let html = `
+              <div class="attendee-item">
+                <ul class="attendee-${itemNo}">
+                  <li class="attendee-img">
+                    <img
+                      class="member-profile"
+                      src="${memberUrl}"
+                      alt="user_pic"
+                    />
+                  </li>
+                  <li class="attendee-name">${eventPart.memberName}</li>
+                  <li class="attendee-email">${eventPart.memberEmail}</li>
+                </ul>
+              </div>
+            `;
+};
+
+const articleList = function () {
+  fetch(`/shanshan/memberArticle/findAllArticlesByMemId`)
     .then((body) => body.json())
     .then((articles) => {
       for (let article of articles) {
@@ -232,19 +369,39 @@ const article = function () {
     });
 };
 
-const part = function () {
-  fetch(`/shanshan/memberArticle/findPartEventByMemberId?memberId=1`)
+const partEventList = function () {
+  fetch(`/shanshan/memberArticle/findPartEventByMemberId`)
     .then((body) => body.json())
     .then((parts) => {
       for (let part of parts) {
-        renderParticipant(part);
+        renderPartEvent(part);
+      }
+    });
+};
+
+let itemNo = 1;
+const eventList = function () {
+  fetch(`/shanshan/memberArticle/findAllEventsByMemId`)
+    .then((body) => body.json())
+    .then(async (events) => {
+      for (let event of events) {
+        renderEvent(event);
+        const response = await fetch(
+          `/shanshan/memberArticle/findParEventByEventId?${event.eventId}`
+        );
+        const eventParts = await response.json();
+        for (let eventPart of eventParts) {
+          itemNo = itemNo == 2 ? 1 : 2;
+          renderParticipants(eventPart, event.eventId, itemNo);
+        }
       }
     });
 };
 
 window.onload = function () {
-  article();
-  part();
+  articleList();
+  partEventList();
+  eventList();
 };
 
 document.addEventListener("click", function (e) {

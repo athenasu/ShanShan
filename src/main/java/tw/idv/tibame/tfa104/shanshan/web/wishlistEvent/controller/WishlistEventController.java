@@ -3,6 +3,7 @@ package tw.idv.tibame.tfa104.shanshan.web.wishlistEvent.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,6 +22,7 @@ public class WishlistEventController {
 	@Autowired
 	private WishlistEventService wishlistService;
 
+	@CrossOrigin
 	@PostMapping("addWishlistEvent")
 	public Boolean addWishlistEvent(@RequestBody WishlistEvent wishlistEvent) { 
 		return wishlistService.addWishlistEvent(wishlistEvent);

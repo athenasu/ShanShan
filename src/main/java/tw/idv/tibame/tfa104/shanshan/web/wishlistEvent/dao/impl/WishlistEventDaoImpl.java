@@ -20,7 +20,7 @@ public class WishlistEventDaoImpl implements WishlistEventDao {
 	@Override
 	public Integer addWishlistEvent(WishlistEvent wishlistEvent) {
 		Session session = sessionFactory.getCurrentSession();
-		return (Integer) session.save(wishlistEvent); // returns an id
+		return (Integer) session.save(wishlistEvent);
 	}
 	
 	@Override

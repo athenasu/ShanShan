@@ -13,6 +13,7 @@ import tw.idv.tibame.tfa104.shanshan.web.article.entity.ArticleVO;
 import tw.idv.tibame.tfa104.shanshan.web.event.dao.EventDAO;
 import tw.idv.tibame.tfa104.shanshan.web.event.entity.MemberEventBO;
 import tw.idv.tibame.tfa104.shanshan.web.event.entity.ParEventBO;
+import tw.idv.tibame.tfa104.shanshan.web.member.entity.Member;
 import tw.idv.tibame.tfa104.shanshan.web.member.service.MemberArticleService;
 
 @Service
@@ -49,6 +50,15 @@ public class MemberArticleServiceImpl implements MemberArticleService {
 		List<ParEventBO> participants = eventDao.parEventByMember(memberId);
 		for (ParEventBO participant : participants) {			
 			participant.setPicString(Base64.getEncoder().encodeToString(participant.getMountainPic()));
+		}
+		return participants;
+	}
+	
+	@Override
+	public List<Member> parEventByEventId(Integer eventId) {
+		List<Member> participants = eventDao.parEventByEventId(eventId);
+		for (Member participant : participants) {
+			participant.setPicStr(Base64.getEncoder().encodeToString(participant.getMemberProfilePic()));
 		}
 		return participants;
 	}

@@ -5,6 +5,7 @@ import java.util.List;
 import tw.idv.tibame.tfa104.shanshan.web.article.entity.ArticleVO;
 import tw.idv.tibame.tfa104.shanshan.web.event.entity.MemberEventBO;
 import tw.idv.tibame.tfa104.shanshan.web.event.entity.ParEventBO;
+import tw.idv.tibame.tfa104.shanshan.web.member.entity.Member;
 
 public interface MemberArticleService {
 
@@ -20,6 +21,11 @@ public interface MemberArticleService {
 	// get participating events by memberId
 	public List<ParEventBO> findPartEventByMemberId(Integer memberId);
 	
-	// cancel event
+	// get list of participants from an event
+	List<Member> parEventByEventId(Integer eventId);
+	
+	// cancel event from event host end
 	public Integer cancelEvent(Integer eventId);
+	
+	
 }
