@@ -7,6 +7,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 @Entity
 public class ParEventBO {
@@ -35,7 +36,7 @@ public class ParEventBO {
 	private Integer eventCurPart;
 	
 	@Column(name = "mountainPic")
-	private Byte[] mountainPic;
+	private byte[] mountainPic;
 	
 	@Column(name = "eventContent")
 	private String eventContent;
@@ -48,6 +49,17 @@ public class ParEventBO {
 	
 	@Column(name = "mountainId")
 	private Integer mountainId;
+	
+	@Transient
+	private String picString;
+	
+	public String getPicString() {
+		return picString;
+	}
+
+	public void setPicString(String picString) {
+		this.picString = picString;
+	}
 
 	public Integer getEventId() {
 		return eventId;
@@ -105,11 +117,11 @@ public class ParEventBO {
 		this.eventCurPart = eventCurPart;
 	}
 
-	public Byte[] getMountainPic() {
+	public byte[] getMountainPic() {
 		return mountainPic;
 	}
 
-	public void setMountainPic(Byte[] mountainPic) {
+	public void setMountainPic(byte[] mountainPic) {
 		this.mountainPic = mountainPic;
 	}
 

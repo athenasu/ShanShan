@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import tw.idv.tibame.tfa104.shanshan.Core;
 import tw.idv.tibame.tfa104.shanshan.web.member.entity.Member;
 import tw.idv.tibame.tfa104.shanshan.web.member.service.MemberService;
 
@@ -62,13 +63,18 @@ public class MemberController {
 	
 	@PostMapping("login")
 //	public boolean login(@RequestBody Member member, final RedirectAttributes redirectAttributes) {
-	public boolean login(@RequestBody Member member, HttpSession session) {
+	public Core login(@RequestBody Member member, HttpSession session) {
 		Member loggedInMember = service.checkLogin(member);
+		Core core = new Core();
 		if (loggedInMember != null) {
 			session.setAttribute("memberId", loggedInMember.getMemberId());
-			return true;
+			core.setSuccessful(true);
+			core.setMessage("Login successful");
+			return core;
 		}
-		return false;
+		core.setSuccessful(false);
+		core.setMessage("Login unsuccessful");
+		return core;
 	}
 	
 //	@PostMapping(path = "upload", consumes = { MediaType.APPLICATION_JSON_VALUE })

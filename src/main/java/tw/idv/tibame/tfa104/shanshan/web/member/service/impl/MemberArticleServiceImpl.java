@@ -46,7 +46,11 @@ public class MemberArticleServiceImpl implements MemberArticleService {
 
 	@Override
 	public List<ParEventBO> findPartEventByMemberId(Integer memberId) {
-		return eventDao.parEventByMember(memberId);
+		List<ParEventBO> participants = eventDao.parEventByMember(memberId);
+		for (ParEventBO participant : participants) {			
+			participant.setPicString(Base64.getEncoder().encodeToString(participant.getMountainPic()));
+		}
+		return participants;
 	}
 	
 	@Override

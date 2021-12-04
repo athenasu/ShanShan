@@ -96,7 +96,7 @@ button {
     rgba(255, 255, 255, 0.7),
     rgba(255, 255, 255, 0.3)
   );
-
+  /* position: inherit; */
   backdrop-filter: blur(2rem);
   border-radius: 1rem;
   z-index: 1;
@@ -206,6 +206,8 @@ button {
 
 /* 揪團紀錄 SECTION */
 .events {
+  /* position: relative;
+  z-index: 101; */
   flex: 4;
   display: flex;
   flex-direction: column;
@@ -402,7 +404,7 @@ button {
 .modal-done,
 .modal-intransit,
 .modal-returned {
-  position: fixed;
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -410,7 +412,7 @@ button {
   padding: 2rem 3rem;
   box-shadow: 0 4rem 6rem rgba(0, 0, 0, 0.3);
   z-index: 1000;
-  /* transition: all 0.5s; */
+  transition: all 0.5s;
   border-radius: 1rem;
 }
 
@@ -427,15 +429,17 @@ button {
 .overlay-done,
 .overlay-intransit,
 .overlay-returned {
-  position: fixed;
-  top: 0;
-  left: 0;
+  position: absolute;
+  top: -109px;
+  left: -109px;
+  right: 0px;
+  bottom: 0px;
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
-  /* backdrop-filter: blur(4px); */
+  backdrop-filter: blur(4px);
   z-index: 100;
-  /* transition: all 0.5s; */
+  transition: all 0.5s;
 }
 
 .btn--close-modal-done,
@@ -450,6 +454,7 @@ button {
   cursor: pointer;
   border: none;
   background: none;
+  z-index: 1000;
 }
 
 .hidden {

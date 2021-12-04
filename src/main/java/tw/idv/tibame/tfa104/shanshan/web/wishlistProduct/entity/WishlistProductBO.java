@@ -32,6 +32,14 @@ public class WishlistProductBO extends Core {
 	@Transient
 	private String companyBannerStr;
 
+	public Integer getWishlistProductId() {
+		return wishlistProductId;
+	}
+
+	public void setWishlistProductId(Integer wishlistProductId) {
+		this.wishlistProductId = wishlistProductId;
+	}
+
 	public Integer getProductId() {
 		return productId;
 	}

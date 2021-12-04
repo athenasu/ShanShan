@@ -39,8 +39,9 @@ public class MemberArticleController {
 	public List<ParEventBO> findPartEventByMemberId(Integer memberId) {
 		return service.findPartEventByMemberId(memberId);
 	}
-	// change the status of the event
 	// change the status of participating event (not participating anymore)
+
+	// change the status of the event
 	@PostMapping("cancelEvent")
 	public Integer cancelEvent(Integer eventId) {
 		return service.cancelEvent(eventId);

@@ -40,6 +40,14 @@ public class WishlistEventBO extends Core {
 	@Transient
 	private String memberProfilePicStr;
 
+	public Integer getEventWishlistId() {
+		return eventWishlistId;
+	}
+
+	public void setEventWishlistId(Integer eventWishlistId) {
+		this.eventWishlistId = eventWishlistId;
+	}
+
 	public Integer getEventId() {
 		return eventId;
 	}

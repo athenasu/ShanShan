@@ -36,6 +36,22 @@ public class WishlistArticleBO extends Core {
 	private String articlePictureStr;
 	@Transient
 	private String memberPictureStr;
+	
+	public Integer getWishlistArticleId() {
+		return wishlistArticleId;
+	}
+
+	public void setWishlistArticleId(Integer wishlistArticleId) {
+		this.wishlistArticleId = wishlistArticleId;
+	}
+
+	public String getMountainName() {
+		return mountainName;
+	}
+
+	public void setMountainName(String mountainName) {
+		this.mountainName = mountainName;
+	}
 
 	public String getMemberName() {
 		return memberName;

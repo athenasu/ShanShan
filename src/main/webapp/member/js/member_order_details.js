@@ -21,13 +21,13 @@ const btnsOpenModalReturned = document.querySelectorAll(
   ".btn--show-modal-returned"
 );
 
-// CARDS //
 /////////////////////////////
 ////// RENDER CARDS //////
 
 // DONE ORDERS
 const renderDoneOrders = function (order) {
   let card1 = `
+              <div class = "card-done">
                 <div class="card-1">
                   <div class="order-status">
                     <p>狀態: 已完成</p>
@@ -44,7 +44,8 @@ const renderDoneOrders = function (order) {
                   <div class="order-details">
                     <button class="btn--show-modal-done">詳情</button>
                   </div>
-                  <div class="modal-done hidden">
+                </div>
+                <div class="modal-done hidden">
                   <button class="btn--close-modal-done">&times;</button>
                   <h2 class="modal__header">訂單詳情</h2>
                   <p class="modal-sub-header">狀態：已完成</p>
@@ -118,10 +119,11 @@ const renderDoneOrderDetails = function (orderDetail, orderId, itemNo) {
               `;
   orderItem.insertAdjacentHTML("beforeend", html);
 };
-let itemNo = 1;
+
 /////////////////////////////
 ////// POPULATING PAGE //////
 // MAIN CARDS
+let itemNo = 1;
 const allOrders = function () {
   fetch(`/shanshan/memberOrder/findAllOrdersByMemId`)
     .then((body) => body.json())
@@ -162,30 +164,18 @@ document.addEventListener("click", function (e) {
     // done cases //
     let overlayDone = document.querySelector(".overlay-done");
 
-    let aaa = e.target.closest(".card-1");
-    let modalDone = aaa.querySelector(".modal-done");
-    let btnCloseModalDone = aaa.querySelector(".btn--close-modal-done");
-    let btnsOpenModalDone = aaa.querySelectorAll(".btn--show-modal-done");
+    let parent = e.target.closest(".card-done");
+    let modalDone = parent.querySelector(".modal-done");
+    let btnCloseModalDone = parent.querySelector(".btn--close-modal-done");
 
     modalDone.classList.remove("hidden");
     overlayDone.classList.remove("hidden");
-
-    let openModalDone = function (e) {
-      e.preventDefault();
-      console.log("openModalDone");
-      modalDone.classList.remove("hidden");
-      overlayDone.classList.remove("hidden");
-    };
 
     const closeModalDone = function () {
       modalDone.classList.add("hidden");
       overlayDone.classList.add("hidden");
     };
 
-    // btnsOpenModalDone.forEach((btn) => {
-    //   console.log("test");
-    //   btn.addEventListener("click", openModalDone);
-    // });
     btnCloseModalDone.addEventListener("click", closeModalDone);
     overlayDone.addEventListener("click", closeModalDone);
 
