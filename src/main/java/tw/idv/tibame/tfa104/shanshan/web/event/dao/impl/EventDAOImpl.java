@@ -21,7 +21,7 @@ import tw.idv.tibame.tfa104.shanshan.web.event.entity.PopularEventsMountainBO;
 import tw.idv.tibame.tfa104.shanshan.web.member.entity.Member;
 
 @Repository
-public class EventDAOImpl implements EventDAO {
+public class EventDAOImpl implements EventDAO{
 	@Autowired
 	private SessionFactory sessionFactory;
 	
@@ -180,15 +180,15 @@ public class EventDAOImpl implements EventDAO {
 												"b.mountain_name as mountainName, "+
 												"b.mountain_longitude as mountainLongitude, "+
 												"b.mountain_latitude as mountainLatitude, "+
-												"b.mountain_pic as mountainPic, "+
+												"b.mountain_pic as mountainPic "+
 //												"d.member_name as participantMemberName, "+
 //												"d.member_email as participantMemberEmail "+
 										 "FROM Event a JOIN Mountain b "+
 												"ON a.mountain_id = b.mountain_id "+
 //										 "JOIN Participant c "+
 //												"ON a.event_id = c.event_id "+
-										 "JOIN member d "+
-												"ON c.member_id = d.member_id "+
+										 "JOIN member c "+
+												"ON a.member_id = c.member_id "+
 										 "WHERE (a.member_id = :memberId)", MemberEventBO.class)
 				.setParameter("memberId", memberId).list();
 	}

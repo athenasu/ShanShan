@@ -23,11 +23,12 @@ public interface EventService {
 	List<PopularEventBO> popularEvents();
 	List<OnGoingEventBO> onGoingEvents();
 	List<ParEventBO> parEventByMember(Integer memberId);
-	List<MemberEventBO> findEventByMemberId(Integer memberId, Integer eventId);
+//	List<MemberEventBO> findEventByMemberId(Integer memberId, Integer eventId);
 	List<DistrictEventBO> findEventByDistrict(Integer districtId);
 	List<PopularEventsMountainBO> findPopularMountains();
 	List<Member> parEventByEventId(Integer eventId);
 	Integer addWishlistEvent(WishlistEvent wishlistEvent);
 	List<DetailEventBO> findEventByEventId(Integer eventId);
+	List<MemberEventBO> findEventByMemberId(Integer memberId);
 
 }

@@ -59,10 +59,17 @@ public class EventController{
 		return eventlistbydisctrict;
 	}
 
+//	@CrossOrigin
+//	@GetMapping("findEventByMemberId")
+//	public List<MemberEventBO> findByMemberId(Integer memberId, Integer eventId) {
+//		final List<MemberEventBO> eventlistbymember = eventService.findEventByMemberId(1, 1); //set the parameter as 1 for test
+//		return eventlistbymember;
+//	}
+	
 	@CrossOrigin
-	@GetMapping("findEventByMemberId")
-	public List<MemberEventBO> findByMemberId(Integer memberId, Integer eventId) {
-		final List<MemberEventBO> eventlistbymember = eventService.findEventByMemberId(1, 1); //set the parameter as 1 for test
+	@GetMapping("findEventByMemberId1")
+	public List<MemberEventBO> findByMemberId(Integer memberId) {
+		final List<MemberEventBO> eventlistbymember = eventService.findEventByMemberId(1); //set the parameter as 1 for test
 		return eventlistbymember;
 	}
 	

@@ -53,9 +53,14 @@ public class EventServiceImpl implements EventService{
 		return dao.selectByDistrict(mountainDistrict);
 	}
 	
+//	@Override
+//	public List<MemberEventBO> findEventByMemberId(Integer memberId, Integer eventId) {
+//		return  dao.selectByMemberId(memberId, eventId);
+//	}
+	
 	@Override
-	public List<MemberEventBO> findEventByMemberId(Integer memberId, Integer eventId) {
-		return  dao.selectByMemberId(memberId, eventId);
+	public List<MemberEventBO> findEventByMemberId(Integer memberId) {
+		return  dao.selectByMemberId(memberId);
 	}
 	
 	@Override

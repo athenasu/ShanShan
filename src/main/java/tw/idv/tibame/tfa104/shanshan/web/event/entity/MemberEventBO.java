@@ -48,11 +48,11 @@ public class MemberEventBO extends Core{
 	@Column(name = "mountainPic")
 	private Byte[] mountainPic;
 	
-	@Column(name = "participantMemberName")
-	private String participantMemberName;
-	
-	@Column(name = "participantMemberEmail")
-	private String participantMemberEmail;
+//	@Column(name = "participantMemberName")
+//	private String participantMemberName;
+//	
+//	@Column(name = "participantMemberEmail")
+//	private String participantMemberEmail;
 	
 	@Column(name = "memberId")
 	private Integer memberId;
@@ -145,21 +145,21 @@ public class MemberEventBO extends Core{
 		this.mountainPic = mountainPic;
 	}
 
-	public String getParticipantMemberName() {
-		return participantMemberName;
-	}
-
-	public void setParticipantMemberName(String participantMemberName) {
-		this.participantMemberName = participantMemberName;
-	}
-
-	public String getParticipantMemberEmail() {
-		return participantMemberEmail;
-	}
-
-	public void setParticipantMemberEmail(String participantMemberEmail) {
-		this.participantMemberEmail = participantMemberEmail;
-	}
+//	public String getParticipantMemberName() {
+//		return participantMemberName;
+//	}
+//
+//	public void setParticipantMemberName(String participantMemberName) {
+//		this.participantMemberName = participantMemberName;
+//	}
+//
+//	public String getParticipantMemberEmail() {
+//		return participantMemberEmail;
+//	}
+//
+//	public void setParticipantMemberEmail(String participantMemberEmail) {
+//		this.participantMemberEmail = participantMemberEmail;
+//	}
 
 	public Integer getMemberId() {
 		return memberId;
@@ -179,9 +179,7 @@ public class MemberEventBO extends Core{
 				+ ", eventDeadline=" + eventDeadline + ", eventStatus=" + eventStatus + ", eventCurPart=" + eventCurPart
 				+ ", maxNumOfPeople=" + maxNumOfPeople + ", mountainName=" + mountainName + ", mountainLongitude="
 				+ mountainLongitude + ", mountainLatitude=" + mountainLatitude + ", mountainPic="
-				+ Arrays.toString(mountainPic) + ", participantMemberName=" + participantMemberName
-				+ ", participantMemberEmail=" + participantMemberEmail + ", memberId=" + memberId + "]";
+				+ Arrays.toString(mountainPic) + ", memberId=" + memberId + "]";
 	}
-	
 
 }

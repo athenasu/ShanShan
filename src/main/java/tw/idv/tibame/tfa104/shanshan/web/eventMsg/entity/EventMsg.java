@@ -11,54 +11,51 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "event_msg")
-public class eventMsg {
-	private Integer eventMsgId;
-	private Integer memberID;
-	private Integer eventID;
-	private Timestamp msgDate;
-	private String msgContent;
-	private Integer msgStatus;
-	
-	public eventMsg(int eventMsgId, int memberID, int eventID, Timestamp msgDate, String msgContent, int msgStatus) {
-		super();
-		this.eventMsgId = eventMsgId;
-		this.memberID = memberID;
-		this.eventID = eventID;
-		this.msgDate = msgDate;
-		this.msgContent = msgContent;
-		this.msgStatus = msgStatus;
-	}
-	
+public class EventMsg {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "event_msg_id")
-	public int getEventMsgId() {
+	private Integer eventMsgId;
+	
+	@Column(name = "member_id")
+	private Integer memberID;
+	
+	@Column(name = "event_id")
+	private Integer eventID;
+	
+	@Column(name = "msg_date")
+	private Timestamp msgDate;
+	
+	@Column(name = "msg_content")
+	private String msgContent;
+	
+	@Column(name = "msg_status")
+	private Integer msgStatus;
+
+	public Integer getEventMsgId() {
 		return eventMsgId;
 	}
 
-	public void setEventMsgId(int eventMsgId) {
+	public void setEventMsgId(Integer eventMsgId) {
 		this.eventMsgId = eventMsgId;
 	}
-	
-	@Column(name = "member_id")
-	public int getMemberID() {
+
+	public Integer getMemberID() {
 		return memberID;
 	}
 
-	public void setMemberID(int memberID) {
+	public void setMemberID(Integer memberID) {
 		this.memberID = memberID;
 	}
 
-	@Column(name = "event_id")
-	public int getEventID() {
+	public Integer getEventID() {
 		return eventID;
 	}
 
-	public void setEventID(int eventID) {
+	public void setEventID(Integer eventID) {
 		this.eventID = eventID;
 	}
 
-	@Column(name = "msg_date")
 	public Timestamp getMsgDate() {
 		return msgDate;
 	}
@@ -67,7 +64,6 @@ public class eventMsg {
 		this.msgDate = msgDate;
 	}
 
-	@Column(name = "msg_content")
 	public String getMsgContent() {
 		return msgContent;
 	}
@@ -76,20 +72,19 @@ public class eventMsg {
 		this.msgContent = msgContent;
 	}
 
-	@Column(name = "msg_status")
-	public int getMsgStatus() {
+	public Integer getMsgStatus() {
 		return msgStatus;
 	}
 
-	public void setMsgStatus(int msgStatus) {
+	public void setMsgStatus(Integer msgStatus) {
 		this.msgStatus = msgStatus;
 	}
 
 	@Override
 	public String toString() {
-		return "eventMsg [eventMsgId=" + eventMsgId + ", memberID=" + memberID + ", eventID=" + eventID + ", msgDate="
+		return "EventMsg [eventMsgId=" + eventMsgId + ", memberID=" + memberID + ", eventID=" + eventID + ", msgDate="
 				+ msgDate + ", msgContent=" + msgContent + ", msgStatus=" + msgStatus + "]";
 	}
 	
-	
+
 }

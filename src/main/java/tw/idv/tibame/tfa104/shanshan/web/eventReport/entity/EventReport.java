@@ -11,17 +11,17 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "event_report")
-public class eventReport {
+public class EventReport {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "event_report_id")
 	private Integer eventReportID;
 	
 	@Column(name = "member_id")
-	private Integer memberID;
+	private Integer memberId;
 	
 	@Column(name = "event_id")
-	private Integer eventID;
+	private Integer eventId;
 	
 	@Column(name = "report_reason")
 	private Integer reportReason;
@@ -34,48 +34,36 @@ public class eventReport {
 	
 	@Column(name = "case_status")
 	private Integer caseStatus;
-	
-	public eventReport(int eventReportID, int memberID, int eventID, int reportReason, Timestamp reportDate,
-			Timestamp caseDone, int caseStatus) {
-		super();
-		this.eventReportID = eventReportID;
-		this.memberID = memberID;
-		this.eventID = eventID;
-		this.reportReason = reportReason;
-		this.reportDate = reportDate;
-		this.caseDone = caseDone;
-		this.caseStatus = caseStatus;
-	}
 
-	public int getEventReportID() {
+	public Integer getEventReportID() {
 		return eventReportID;
 	}
 
-	public void setEventReportID(int eventReportID) {
+	public void setEventReportID(Integer eventReportID) {
 		this.eventReportID = eventReportID;
 	}
 
-	public int getMemberID() {
-		return memberID;
+	public Integer getMemberId() {
+		return memberId;
 	}
 
-	public void setMemberID(int memberID) {
-		this.memberID = memberID;
+	public void setMemberId(Integer memberId) {
+		this.memberId = memberId;
 	}
 
-	public int getEventID() {
-		return eventID;
+	public Integer getEventId() {
+		return eventId;
 	}
 
-	public void setEventID(int eventID) {
-		this.eventID = eventID;
+	public void setEventId(Integer eventId) {
+		this.eventId = eventId;
 	}
 
-	public int getReportReason() {
+	public Integer getReportReason() {
 		return reportReason;
 	}
 
-	public void setReportReason(int reportReason) {
+	public void setReportReason(Integer reportReason) {
 		this.reportReason = reportReason;
 	}
 
@@ -95,20 +83,20 @@ public class eventReport {
 		this.caseDone = caseDone;
 	}
 
-	public int getCaseStatus() {
+	public Integer getCaseStatus() {
 		return caseStatus;
 	}
 
-	public void setCaseStatus(int caseStatus) {
+	public void setCaseStatus(Integer caseStatus) {
 		this.caseStatus = caseStatus;
 	}
 
 	@Override
 	public String toString() {
-		return "eventReport [eventReportID=" + eventReportID + ", memberID=" + memberID + ", eventID=" + eventID
+		return "EventReport [eventReportID=" + eventReportID + ", memberId=" + memberId + ", eventId=" + eventId
 				+ ", reportReason=" + reportReason + ", reportDate=" + reportDate + ", caseDone=" + caseDone
 				+ ", caseStatus=" + caseStatus + "]";
 	}
 	
-	
+
 }
