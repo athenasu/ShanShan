@@ -22,6 +22,7 @@ import tw.idv.tibame.tfa104.shanshan.web.event.entity.PopularEventBO;
 import tw.idv.tibame.tfa104.shanshan.web.event.entity.PopularEventsMountainBO;
 import tw.idv.tibame.tfa104.shanshan.web.event.service.EventService;
 import tw.idv.tibame.tfa104.shanshan.web.member.entity.Member;
+import tw.idv.tibame.tfa104.shanshan.web.wishlistEvent.entity.WishlistEvent;
 
 
 
@@ -66,6 +67,13 @@ public class EventController{
 	}
 	
 	@CrossOrigin
+	@GetMapping("findEventByEventId")
+	public List<DetailEventBO> findEventByEventId(Integer eventId) {
+		final List<DetailEventBO> eventdetail = eventService.findEventByEventId(1); //set the parameter as 1 for test
+		return eventdetail;
+	}
+	
+	@CrossOrigin
 	@GetMapping("popularEvents")
 	public List<PopularEventBO> popularEvents(){
 		final List<PopularEventBO> popularevents = eventService.popularEvents();
@@ -105,5 +113,11 @@ public class EventController{
 	public List<Member> parEventByEventId(Integer eventId){
 		final List<Member> pareventbyeventid = eventService.parEventByEventId(1);	//set the parameter as 1 for test
 		return pareventbyeventid;				
+	}
+	
+	@CrossOrigin
+	@PostMapping(path = "addWishlistEvent", consumes = { MediaType.APPLICATION_JSON_VALUE })
+	public Integer addWishlistEvent(@RequestBody WishlistEvent wishlistEvent){
+		return eventService.addWishlistEvent(wishlistEvent);
 	}
 }

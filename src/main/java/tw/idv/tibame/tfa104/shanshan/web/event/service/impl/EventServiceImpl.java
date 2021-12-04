@@ -17,6 +17,8 @@ import tw.idv.tibame.tfa104.shanshan.web.event.entity.PopularEventBO;
 import tw.idv.tibame.tfa104.shanshan.web.event.entity.PopularEventsMountainBO;
 import tw.idv.tibame.tfa104.shanshan.web.event.service.EventService;
 import tw.idv.tibame.tfa104.shanshan.web.member.entity.Member;
+import tw.idv.tibame.tfa104.shanshan.web.wishlistEvent.dao.WishlistEventDao;
+import tw.idv.tibame.tfa104.shanshan.web.wishlistEvent.entity.WishlistEvent;
 
 
 @Service
@@ -24,6 +26,7 @@ import tw.idv.tibame.tfa104.shanshan.web.member.entity.Member;
 public class EventServiceImpl implements EventService{
 	@Autowired
 	private EventDAO dao;
+	private WishlistEventDao wishlistdao;
 
 	@Override
 	public Integer addEvent(Event event) {
@@ -40,7 +43,6 @@ public class EventServiceImpl implements EventService{
 		return event;
 	}
 
-
 	@Override
 	public List<Event> selectAll() {
 		return dao.selectAll();
@@ -54,6 +56,11 @@ public class EventServiceImpl implements EventService{
 	@Override
 	public List<MemberEventBO> findEventByMemberId(Integer memberId, Integer eventId) {
 		return  dao.selectByMemberId(memberId, eventId);
+	}
+	
+	@Override
+	public List<DetailEventBO> findEventByEventId(Integer eventId) {
+		return  dao.selectByEventId(eventId);
 	}
 
 	@Override
@@ -84,6 +91,11 @@ public class EventServiceImpl implements EventService{
 	@Override
 	public List<Member> parEventByEventId(Integer eventId) {
 		return dao.parEventByEventId(eventId);
+	}
+	
+	@Override
+	public Integer addWishlistEvent(WishlistEvent wishlistEvent) {
+		return wishlistdao.addWishlistEvent(wishlistEvent);
 	}
 
 }

@@ -17,7 +17,7 @@ public interface EventDAO {
 
 	int addEvent(Event event);
 	Event updateEventById(Event event);
-	Event selectByEventId(Integer eventId);	
+	List<DetailEventBO> selectByEventId(Integer eventId);	
 	List<MemberEventBO> selectByMemberId(Integer memberId, Integer eventId);
 	List<MemberEventBO> selectByMemberId(Integer memberId);
 	List<Event> selectAll();

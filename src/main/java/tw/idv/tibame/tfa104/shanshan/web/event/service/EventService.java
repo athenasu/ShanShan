@@ -11,6 +11,7 @@ import tw.idv.tibame.tfa104.shanshan.web.event.entity.ParEventBO;
 import tw.idv.tibame.tfa104.shanshan.web.event.entity.PopularEventBO;
 import tw.idv.tibame.tfa104.shanshan.web.event.entity.PopularEventsMountainBO;
 import tw.idv.tibame.tfa104.shanshan.web.member.entity.Member;
+import tw.idv.tibame.tfa104.shanshan.web.wishlistEvent.entity.WishlistEvent;
 
 
 public interface EventService {
@@ -26,5 +27,7 @@ public interface EventService {
 	List<DistrictEventBO> findEventByDistrict(Integer districtId);
 	List<PopularEventsMountainBO> findPopularMountains();
 	List<Member> parEventByEventId(Integer eventId);
+	Integer addWishlistEvent(WishlistEvent wishlistEvent);
+	List<DetailEventBO> findEventByEventId(Integer eventId);
 
 }

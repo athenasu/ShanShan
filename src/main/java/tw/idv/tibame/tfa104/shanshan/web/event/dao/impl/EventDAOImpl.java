@@ -102,11 +102,11 @@ public class EventDAOImpl implements EventDAO {
 		return tempEvent;
 	}
 	
-	@Override
-	public Event selectByEventId(Integer eventId) {
-		Session session = sessionFactory.getCurrentSession();
-		return session.get(Event.class, eventId);
-	}
+//	@Override
+//	public Event selectByEventId(Integer eventId) {
+//		Session session = sessionFactory.getCurrentSession();
+//		return session.get(Event.class, eventId);
+//	}
 	
 	@Override
 	public List<Event> selectAll() {
@@ -181,16 +181,29 @@ public class EventDAOImpl implements EventDAO {
 												"b.mountain_longitude as mountainLongitude, "+
 												"b.mountain_latitude as mountainLatitude, "+
 												"b.mountain_pic as mountainPic, "+
-												"d.member_name as participantMemberName, "+
-												"d.member_email as participantMemberEmail "+
+//												"d.member_name as participantMemberName, "+
+//												"d.member_email as participantMemberEmail "+
 										 "FROM Event a JOIN Mountain b "+
 												"ON a.mountain_id = b.mountain_id "+
-										 "JOIN Participant c "+
-												"ON a.event_id = c.event_id "+
+//										 "JOIN Participant c "+
+//												"ON a.event_id = c.event_id "+
 										 "JOIN member d "+
 												"ON c.member_id = d.member_id "+
 										 "WHERE (a.member_id = :memberId)", MemberEventBO.class)
 				.setParameter("memberId", memberId).list();
+	}
+	
+	@Override
+	public List<DetailEventBO> selectByEventId(Integer eventId) {
+		Session session = sessionFactory.getCurrentSession();
+		return session.createNativeQuery("SELECT * "+
+										 "FROM Event a "+
+										 "JOIN Member b "+
+												"ON a.member_id = b.member_id "+
+										 "JOIN Mountain c "+
+												"ON a.mountain_id = c.mountain_id "+
+										 "WHERE (a.event_id = :eventId)", DetailEventBO.class)
+				.setParameter("eventId", eventId).list();
 	}
 
 	@Override
