@@ -60,65 +60,65 @@
   <!-- wrapper側邊結束 -->
     <!-- 店家資料維護開始 -->
     <div class="shopinfo">
-    <form class="sinfo" action="shopinfoUpdate" method="post" >
-      <p>店家資料維護</p>
-      <div class="leftinfo">
-      <div class="shopaccount">
-        店家帳號：<input class="shopaccountin" type="email" name="shopemail" placeholder="電子郵件地址" autocomplete="off" value>
-      </div>
-      <div class="shoppassword">
-        店家密碼：<input class="shoppasswordin" type="password" name="shoppass" placeholder="請輸入6~12位數之密碼,須包含英文及數字,英文不分大小寫" value>
-      </div>
-      <div class="shopowner">
-        總負責人：<input class="shopownerin" type="text" name="shopboss" placeholder="負責人姓名" value>
-      </div>
-      <div class="shopname">
-        店家名稱：<input class="shopnamein" type="text" name="shopname" placeholder="店家名稱" value>
-      </div>
-      <div class="shopaddress">
-        店家地址：<input class="shopaddressin" type="text" name="shoplocation" placeholder="店家地址" value>
-      </div>
-      <div class="shoptel">
-        聯絡電話：<input class="shoptelin" type="text" maxlength="8" name="shoptellphone" placeholder="聯絡電話" value>
-      </div>
-      <div class="shopcell">
-        聯絡手機：<input class="shopcellin" type="text" maxlength="8"name="shopmobile" placeholder="聯絡手機" value>
-      </div>
-      </div>
-      <div class="rightinfo">
-      <div class="bannerupload">
-        <span class="bannertext">店家首圖</span>
-        <label class="shopbanner">
-          <input id="sb" class="upload_shopbanner" type="file" style="display:none;">
-          <i class="fa fa-photo"></i> 上傳圖片
-        </label>
-        <ul id="sbanner" class="sbanner">
-          <img class="shopbannerimg" src="" alt="shopbannerimg"/>
-          <span class="sbtext">圖片預覽</span>
-          <!-- <li class="sbanner2"></li> -->
-        </ul>
-      </div>
-      <div class="shopintro">
-        <textarea class="shopintroin" placeholder="請輸入店家簡介" ></textarea>
-      </div>
+<!--     <form class="sinfo" action="companyUpdate" method="post"> -->
+        <p>店家資料維護</p>
+        <div class="leftinfo">
+        <div class="shopaccount">
+          店家帳號：<input class="shopaccountin" type="email" name="shopinfo" placeholder="電子郵件地址" autocomplete="off" value>
+        </div>
+        <div class="shoppassword">
+          店家密碼：<input class="shoppasswordin" type="password" name="shopinfo" placeholder="請輸入6~12位數之密碼,須包含英文及數字,英文不分大小寫" value>
+        </div>
+        <div class="shopowner">
+          總負責人：<input class="shopownerin" type="text" name="shopinfo" placeholder="負責人姓名" value>
+        </div>
+        <div class="shopname">
+          店家名稱：<input class="shopnamein" type="text" name="shopinfo" placeholder="店家名稱" value>
+        </div>
+        <div class="shopaddress">
+          店家地址：<input class="shopaddressin" type="text" name="shopinfo" placeholder="店家地址" value>
+        </div>
+        <div class="shoptel">
+          聯絡電話：<input class="shoptelin" type="text" maxlength="8" name="shopinfo" placeholder="聯絡電話" value>
+        </div>
+        <div class="shopcell">
+          聯絡手機：<input class="shopcellin" type="text" maxlength="8"name="shopinfo" placeholder="聯絡手機" value>
+        </div>
+        </div>
+        <div class="rightinfo">
+        <div class="bannerupload">
+          <span class="bannertext">店家首圖</span>
+          <label class="shopbanner">
+            <input id="sb" class="upload_shopbanner" type="file" accept="image/*" style="display:none;">
+            <i class="fa fa-photo"></i> 上傳圖片
+          </label>
+          <ul id="sbanner" class="sbanner">
+            <img class="shopbannerimg" src="" alt="shopbannerimg"/>
+            <span class="sbtext">圖片預覽</span>
+            <!-- <li class="sbanner2"></li> -->
+          </ul>
+        </div>
+        <div class="shopintro">
+          <textarea class="shopintroin" placeholder="請輸入店家簡介" ></textarea>
+        </div>
 
-      <div id="finalbtn">
-      <button type="reset" id="shopreset">清空資料</button>
-      <button type="submit" id="shopsubmit">更新資料</button>
-      </div>
-      </div>
+        <div id="finalbtn">
+        <button type="reset" id="shopreset">清空資料</button>
+        <button type="submit" id="shopsubmit" >更新資料</button>
+        </div>
+        </div>
 
-    </div>
-   </form>
+      </div>
+<!--    </form> -->
     </div>
     <!-- 店家資料維護結束 -->
-    </div>
+   
     <!-- 中間body區塊結束 -->
     
     
-    <footer class="footer">
+    <!-- <footer class="footer">
         copyright_SHANSHAN
-    </footer>
+    </footer> -->
     
     <script src ="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
     <script src ="vendors/jquery/jquery-3.6.0.min.js" ></script>

@@ -1,4 +1,3 @@
-const uploadShopbanner = document.querySelector(".upload_shopbanner")
 $(function(){
     /* ----------側邊欄開始---------- */
     $('ul.subs').hide()
@@ -93,18 +92,20 @@ $(function(){
 
         })
       };
-
+      /* ---------------------------店家資訊頁面更新------------------------------ */
       //Update Company
       const submitBtn = document.querySelector("#shopsubmit");
-      const updatInfo = function(){
-        const shopAccount = document.querySelector(".shopaccountin").value;
-        const shopPassword = document.querySelector(".shoppasswordin").value;
-        const shopOwner = document.querySelector(".shopownerin").value;
-        const shopName = document.querySelector(".shopnamein").value;
-        const shopAddress = document.querySelector(".shopaddressin").value;
-        const shopTel = document.querySelector(".shoptelin").value;
-        const shopCell = document.querySelector(".shopcellin").value;
-        const shopIntro = document.querySelector(".shopintroin").value = company.companyIntro;
+      //去抓上傳圖檔的input標籤
+      const uploadShopbanner = document.querySelector(".upload_shopbanner")
+      const updateInfo = function(){
+        const companyEmail = document.querySelector(".shopaccountin").value;
+        const companyPassword = document.querySelector(".shoppasswordin").value;
+        const companyOwner = document.querySelector(".shopownerin").value;
+        const companyName = document.querySelector(".shopnamein").value;
+        const companyAddress = document.querySelector(".shopaddressin").value;
+        const companyPhone = document.querySelector(".shoptelin").value;
+        const companyCell = document.querySelector(".shopcellin").value;
+        const companyIntro = document.querySelector(".shopintroin").value;
         const file = uploadShopbanner.files[0];
         const fileReader = new FileReader();
 
@@ -113,25 +114,36 @@ $(function(){
           fetch("companyUpdate" , {
             method: "POST",
             headers: {
-              "Content-Type": "application/json",
+              "Content-Type": "application/json"
             },
             body: JSON.stringify({
               picStr: base64str,
-              shopAccount,
-              shopPassword,
-              shopOwner,
-              shopAddress,
-              shopTel,
-              shopCell,
-              shopIntro,
+              companyPassword,
+              companyOwner,
+              companyName,
+              companyAddress,
+              companyPhone,
+              companyCell,
+              companyIntro,
             }),
-          });
+          }).then(body => body.json())
+          	.then(company => {
+          		console.log(company);
+          		alert("資料已更新");
+          	});
         };
         fileReader.readAsBinaryString(file);
       };
       window.onload = function(){
         poplatePage();
       }
+      
+      submitBtn.addEventListener("click", function(){
+    	  console.log("clicked submit");
+    	  updateInfo();
+    	  console.log("shop info updated");
+      });
+      
       /* ---------------------------店家資訊頁面串後端------------------------------ */
       
       

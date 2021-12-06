@@ -41,16 +41,14 @@ public class CompanyServiceHibernate_impl implements CompanyServiecHibernate {
 	}
 
 	@Override
-	public CompanyVO register(byte[]file,CompanyVO company) {
+	public Integer register(CompanyVO company) {
 		System.out.println("comapny register service");
-		CompanyVO com = dao.register(file, company);
 		boolean added = dao.checkEmail(company.getCompanyEmail());
 		if(added){
 			System.out.println("This company already registered");
 		}
 		System.out.println("in service register check email");
-//		return dao.register(company);
-		return com;
+		return 1;
 	}
 
 	@Override

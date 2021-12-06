@@ -1,0 +1,182 @@
+/* ------- base ------- */
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  margin: 0 auto;
+  padding: 0;
+  /* background-color: rgb(246, 240, 237); */
+  background-image: url(../vendors/register_background.jpg);
+  background-position: center;
+  background-size: 100% 250%;
+}
+a {
+  text-decoration: none;
+}
+img {
+  max-width: 100%;
+}
+/* ------- header start------- */
+.header {
+  /* border: 2px solid gray; */
+  box-sizing: border-box;
+  height: 80px;
+  width: 100%;
+  background-color: rgba(236, 242, 245, 0.75);
+}
+header.header {
+  margin-bottom: 20px;
+}
+div.titlebar {
+  margin: 0 auto;
+  height: 80px;
+  box-sizing: border-box;
+  width: 90%;
+  position: relative;
+}
+div.title {
+  position: relative;
+  top: 25px;
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(40, 83, 107);
+  cursor: pointer;
+}
+div.title:hover {
+  color: rgb(109, 150, 173);
+}
+a.backendpage:visited {
+  color: rgb(40, 83, 107);
+}
+button.logout {
+  position: absolute;
+  cursor: pointer;
+  font-size: 16px;
+  border: 0;
+  width: 100px;
+  height: 50px;
+  background-color: rgb(40, 83, 107);
+  color: white;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+button.logout:hover {
+  background-color: rgb(109, 150, 173);
+}
+div.logoutConfirmbox {
+  display: none;
+}
+.logo {
+  /*   border:2px solid  red; */
+  float: left;
+  margin: 0;
+  width: 60px;
+  height: 60px;
+  padding: 10px;
+  font-size: 0;
+}
+
+/* ------- header  end ------- */
+
+/* ------- 店家註冊開始------- */
+div.shopRegister {
+  background: rgba(208, 213, 216, 0.75);
+  margin: 0 auto;
+  box-sizing: border-box;
+  /* border: 1px solid blue; */
+  width: 1000px;
+}
+form.shopRegi p {
+  margin-top: 10px;
+  padding-top: 10px;
+  font-size: 40px;
+  text-align: center;
+  color: rgb(40, 83, 107);
+}
+div.left {
+  /* border: 1px solid red; */
+  margin-top: 20px;
+  margin-left: 20px;
+  width: 400px;
+  color: rgb(40, 83, 107);
+}
+div.leftinline {
+  padding: 0px 0px 0px 10px;
+}
+div.left input {
+  width: 300px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 0px 0px 0px 5px;
+}
+div.right {
+  /* border: 1px solid rgb(40, 83, 107); */
+  width: 550px;
+}
+div.left,
+div.right {
+  display: inline-block;
+  vertical-align: top;
+}
+span.uploadCeti {
+  color: rgb(40, 83, 107);
+  position: relative;
+  left: 150px;
+}
+label.cetiBanner {
+  position: relative;
+  color: white;
+  background-color: rgb(40, 83, 107);
+  border: none;
+  display: inline-block;
+  padding: 2px 5px;
+  cursor: pointer;
+  position: relative;
+  left: 200px;
+}
+label.cetiBanner:hover {
+  background-color: rgb(109, 150, 173);
+  color: white;
+  cursor: pointer;
+}
+input.cetiUp {
+  list-style: none;
+  min-height: 140px;
+  color: lightgray;
+  border: 2px dashed rgb(109, 150, 173);
+}
+ul.cetiPhoto {
+  list-style: none;
+  margin-top: 5px;
+  padding-top: 5px;
+  min-height: 280px;
+  border: 2px dashed rgb(109, 150, 173);
+  text-align: center;
+  color: rgb(198, 201, 202);
+}
+span.cetiText {
+  color: rgb(109, 150, 173);
+}
+#regibutton {
+  height: 20px;
+  margin: 10px 0px 10px 0px;
+  background-color: rgb(40, 83, 107);
+  color: white;
+  width: 100%;
+  border: none;
+}
+#regibutton:hover {
+  background-color: rgb(109, 150, 173);
+  cursor: pointer;
+}
+/* ------- 店家註冊結束------- */
+/* ------- footer  start------- */
+/* footer.footer {
+  position: relative;
+  font-size: 12px;
+  text-align: center;
+  padding-bottom: auto;
+} */
+/* ------- footer  end ------- */

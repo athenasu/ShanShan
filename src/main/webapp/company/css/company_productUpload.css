@@ -1,0 +1,371 @@
+/* ------- base ------- */
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  margin: 0 auto;
+  padding: 0;
+  background-color: rgb(246, 240, 237);
+}
+a {
+  text-decoration: none;
+}
+img {
+  max-width: 100%;
+}
+/* ------- header start------- */
+.header {
+  /* border: 2px solid gray; */
+  box-sizing: border-box;
+  height: 80px;
+  width: 100%;
+  background-color: white;
+}
+header.header {
+  margin-bottom: 20px;
+}
+div.titlebar {
+  margin: 0 auto;
+  height: 80px;
+  box-sizing: border-box;
+  width: 90%;
+  position: relative;
+}
+div.title {
+  position: relative;
+  top: 25px;
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(40, 83, 107);
+  cursor: pointer;
+}
+div.title:hover {
+  color: rgb(109, 150, 173);
+}
+a.backendpage:visited {
+  color: rgb(40, 83, 107);
+}
+button.logout {
+  position: absolute;
+  cursor: pointer;
+  font-size: 16px;
+  border: 0;
+  width: 100px;
+  height: 50px;
+  background-color: rgb(40, 83, 107);
+  color: white;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+button.logout:hover {
+  background-color: rgb(109, 150, 173);
+}
+div.logoutConfirmbox {
+  display: none;
+}
+
+.logo {
+  /*   border:2px solid  red; */
+  float: left;
+  margin: 0;
+  width: 60px;
+  height: 60px;
+  padding: 10px;
+  font-size: 0;
+}
+
+/* ------- header  end ------- */
+
+/* ------- body block start ------- */
+div.body_container {
+  width: 1200px;
+  margin: 0 auto;
+  /* border: 2px solid gray; */
+  box-sizing: border-box;
+  /* background-color: white; */
+}
+
+div.body_container div.wrapper,
+div.body_container div.proinfo {
+  display: inline-block;
+  vertical-align: top;
+  box-sizing: border-box;
+  font-size: 1rem;
+}
+div.body_container div.wrapper {
+  background-color: white;
+  width: 200px;
+  margin-right: 30px;
+}
+div.body_container div.proinfo {
+  background-color: white;
+  /* border: 1px solid #808080; */
+  border-collapse: collapse;
+  width: calc(100% - 200px - 60px);
+  padding: auto;
+}
+
+/* =====================wrapper內開始==================== */
+/* ------- nav start------- */
+.nav {
+  max-width: 100%;
+}
+
+.nav li {
+  list-style: none;
+}
+/* ------- nav end ------- */
+
+div.main {
+  height: 60px;
+  line-height: 60px;
+  text-indent: -25px;
+  background-color: rgb(40, 83, 107);
+  cursor: pointer;
+  font-size: 16px;
+}
+
+ul.subs li a {
+  display: block;
+  height: 40px;
+  line-height: 40px;
+  text-indent: -25px;
+  /* 	background-color:#F5F5F5;
+	border-right:10px solid #0D9BE5; */
+  font-size: 14px;
+  color: #164158;
+}
+ul li a:visited {
+  color: white;
+}
+
+/* ------- color selection ------- */
+/* main menu*/
+li.color-first div.main {
+  color: white;
+  background-color: rgb(40, 83, 107);
+  border-right: 10px solid rgb(126, 168, 190);
+  border-bottom: 1px solid rgb(220, 227, 232);
+}
+
+li.color-second div.main {
+  color: white;
+  background-color: rgb(40, 83, 107);
+  border-right: 10px solid rgb(126, 168, 190);
+  border-bottom: 1px solid rgb(220, 227, 232);
+}
+
+li.color-third div.main {
+  color: white;
+  background-color: rgb(40, 83, 107);
+  border-right: 10px solid rgb(126, 168, 190);
+}
+
+/* -------------------sub menu-------------------*/
+li.color-first ul.subs li a {
+  border-right: 10px solid rgb(126, 168, 190);
+  color: rgb(40, 83, 107);
+}
+
+li.color-second ul.subs li a {
+  border-right: 10px solid rgb(126, 168, 190);
+  color: rgb(40, 83, 107);
+}
+
+/* -------------------hover--------------------  */
+li.color-first ul.subs li a:hover {
+  background-color: rgb(109, 150, 173);
+  color: rgb(220, 227, 232);
+}
+
+li.color-second ul.subs li a:hover {
+  background-color: rgb(109, 150, 173);
+  color: rgb(220, 227, 232);
+}
+
+/* ---------------------sub menu open------------------ */
+li.color-first div.open {
+  /*   本在background裡url("images/arrow.png") no-repeat */
+  border-right: 10px solid rgb(109, 150, 173);
+  background: rgb(109, 150, 173) 28px bottom;
+}
+
+li.color-second div.open {
+  border-right: 10px solid rgb(109, 150, 173);
+  background: rgb(109, 150, 173) 28px bottom;
+}
+
+li.color-third div.open {
+  border-right: 10px solid rgb(109, 150, 173);
+  background: rgb(109, 150, 173) 28px bottom;
+}
+
+/* -------------------- mouseover ------------------ */
+li.color-first div.rollover {
+  background-color: rgb(109, 150, 173);
+}
+
+li.color-second div.rollover {
+  background-color: rgb(109, 150, 173);
+}
+
+li.color-third div.rollover {
+  background-color: rgb(109, 150, 173);
+}
+
+/* =====================wrapper內結束==================== */
+
+/* ------- body block end ------- */
+
+/* ------- 商品新增------- */
+div.proinfo {
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 10px 20px 80px 20px;
+}
+div.proinfo p {
+  text-align: center;
+  color: rgb(40, 83, 107);
+  font-weight: bold;
+}
+div.body_container div.wrapper {
+  background-color: white;
+  text-align: center;
+  width: 200px;
+  margin-right: 30px;
+}
+div.body_container div.proinfo {
+  background-color: white;
+  border: 1px solid gray;
+  border-collapse: collapse;
+  width: calc(100% - 200px - 150px);
+  padding: auto;
+}
+
+div.leftinfo div {
+  color: rgb(40, 83, 107);
+  padding: 0px 0px 0px 5px;
+  font-size: 16px;
+  height: 30px;
+  margin-top: 10px;
+  width: 380px;
+}
+label.sizepick {
+  padding-right: 10px;
+}
+input.proid,
+input.proname,
+input.proprice,
+input.color,
+input.stock {
+  width: 200px;
+  font-size: 14px;
+}
+div.leftinfo,
+div.rightinfo {
+  display: inline-block;
+  /* border: 1px solid red; */
+  vertical-align: top;
+}
+div.rightinfo {
+  padding-top: 6px;
+  width: 410px;
+  height: 1500px;
+}
+/* banner begin */
+div.bannerupload,
+div.bannerupload2,
+div.bannerupload3,
+div.bannerupload4,
+div.bannerupload5 {
+  height: 150px;
+}
+div.bannerupload2,
+div.bannerupload3,
+div.bannerupload4,
+div.bannerupload5 {
+  margin-top: 150px;
+}
+span.bannertext {
+  position: relative;
+  /* margin: 0px 170px 0px 170px; */
+  font-size: 16px;
+  color: rgb(40, 83, 107);
+}
+
+/* input.upload_pro {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+} */
+label.probanner,
+label.probanner2,
+label.probanner3,
+label.probanner4,
+label.probanner5 {
+  position: relative;
+  color: rgb(109, 150, 173);
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 2px 6px;
+  cursor: pointer;
+}
+li img.probanner,
+li img.probanner2,
+li img.probanner3,
+li img.probanner4,
+li img.probanner5 {
+  max-height: 250px;
+}
+ul.proimg,
+ul.proimg2,
+ul.proimg3,
+ul.proimg4,
+ul.proimg5 {
+  list-style: none;
+  margin-top: 5px;
+  padding-top: 5px;
+  min-height: 250px;
+  color: lightgray;
+  border: 2px dashed rgb(109, 150, 173);
+}
+span.pictext {
+  padding: 0px 120px 0px 170px;
+}
+/* banner end  */
+textarea.prointro {
+  resize: none;
+  position: relative;
+  /* margin: 20px 0px 0px 0px; */
+  width: 350px;
+  height: 80px;
+  color: rgb(40, 83, 107);
+}
+#finalbtn {
+  display: inline-block;
+  margin-left: 275px;
+}
+#proreset,
+#prosubmit {
+  margin-top: 200px;
+  padding: 2px 5px;
+  cursor: pointer;
+  border: none;
+  background-color: rgb(40, 83, 107);
+  color: white;
+}
+#proreset:hover,
+#prosubmit:hover {
+  background-color: rgb(109, 150, 173);
+}
+
+/* ------- 店家資料維護結束------- */

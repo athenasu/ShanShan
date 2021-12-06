@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>山山來此店家註冊</title>
+    <link rel="stylesheet" href="./css/company_register.css">
+</head>
+<body>
+    <header class="header">
+        <div class="titlebar">
+          <div class="logo"><img src="vendors/logo.png" width="60px"height="60px"></div>
+          <div class="title"><a class="backendpage" href="company_backend_page.html">山山來此</a></div>
+        </div>
+    </header>
+    <div class="shopRegister">
+        <!-- 左側註冊文字內容 -->
+        <form class="shopRegi">
+            <p>山山來此店家註冊</p>
+            <div class="left">
+                <div class= "leftinline">
+                    註冊帳號：<input required class="shopAcc" type="email" placeholder="請輸入電子郵件" autocomplete="off">
+                </div>
+                <div class= "leftinline">
+                    註冊密碼：<input required class="shopPwd" type="password" placeholder="請輸入註冊密碼" autocomplete="off">
+                </div>
+                <div class= "leftinline">
+                    確認密碼：<input required class="shopPwdConfirm" type="password" placeholder="請再次輸入密碼" autocomplete="off">
+                </div>
+                <div class= "leftinline">
+                    總負責人：<input required class="shopBoss" type="text" placeholder="請輸入負責人姓名" autocomplete="off">
+                </div>
+                <div class= "leftinline">
+                    公司名稱：<input required class="shopName" type="text" placeholder="請輸入公司名稱" autocomplete="off">
+                </div>
+                <div class= "leftinline">
+                    公司地址：<input required class="shopAdd" type="text" placeholder="請輸入公司地址" autocomplete="off">
+                </div>
+                <div class= "leftinline">
+                    聯絡電話：<input required class="shopTell" type="text" placeholder="請輸入公司聯絡電話" autocomplete="off">
+                </div>
+                <div class= "leftinline">
+                    聯絡手機：<input required class="shopCell" type="text" placeholder="請輸入公司聯絡手機" autocomplete="off">
+                </div>
+            </div>
+            <div class="right">
+                <div class="cetificate">
+                    <span class="uploadCeti">上傳營業登記証</span>
+                    <label class="cetiBanner">
+                        <input id="ceti" class="cetiUp" type="file" style="display:none">
+                        <i class="fa fa-photo"></i>上傳圖片
+                    </label>
+                    <ul id="cetiPhoto" class="cetiPhoto">
+                        <span class="cetiText">營登證預覽</span>
+                    </ul>
+                </div>
+                <div id="regbtnblock">
+                    <button type="submit" id="regibutton">註冊</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+    <script src ="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+    <script src ="vendors/jquery/jquery-3.6.0.min.js" ></script>
+    <!-- <script src ="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+    <script src ="vendors/jquery/jquery-ui.min.js"></script>
+    <link rel ="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+    <!-- DataTable links begin-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+    <!-- DataTable links end -->
+    <script src ="./js/company_register.js"></script>
+</body>
+</html>

@@ -66,9 +66,9 @@ public class ProductServiceHibernate_impl implements  ProductServiceHibernate{
 	@Override
 	public List<ProductBO> findByCompanyId(Integer companyId) {
 		List<ProductBO> comIdSearch = dao.findByCompanyId(companyId);
-		for(ProductBO comId : comIdSearch) {
-			comId.setPicStr(Base64.getEncoder().encodeToString(comId.getProductImg()));
-		}
+//		for(ProductBO comId : comIdSearch) {
+//			comId.setPicStr(Base64.getEncoder().encodeToString(comId.getProductImg()));
+//		}
 		return comIdSearch;
 	}
 

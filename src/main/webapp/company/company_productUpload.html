@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" id="shophtml">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新增商品</title>
+    <link rel="stylesheet" href="./css/company_productUpload.css">
+
+</head>
+<body>
+    <header class="header">
+      <div class="titlebar">
+        <div class="logo"><img src="vendors/logo.png" width="60px"height="60px"></div>
+        <div class="title"><a class="backendpage" href="company_backend_page.html">山山來此</a></div>
+        <button type="button" class="logout">
+          <span class="iconify" data-icon="fluent:sign-out-24-filled"data-width="30" data-height="30"></span>
+          登出
+        </button>
+        <div class="logoutConfirmbox">
+            <p>確認是否登出？</p>
+        </div>
+      </div>
+    </header>
+    
+    <!-- 中間body區塊開始 -->
+    <div class="body_container">
+    <!-- wrapper側邊開始 -->
+    <div class="wrapper">
+      <div class="nav">
+        <ul>
+          <li class="color-first">
+            <div class="main"><span class="iconify-inline" data-icon="fluent:building-shop-24-regular" data-width="30" data-height="30"></span>
+              商品管理
+            </div>
+            <ul class="subs">
+              <li><a class="productlist" href="company_productslist.html">商品列表</a></li>
+              <li><a class="uploadnew" href="company_productUpload.html">新增商品</a></li>
+              <li><a class="updateproduct" href="company_productUpdate.html">商品修改上下架</a></li>
+            </ul>
+          </li>
+          <li class="color-second">
+            <div class="main"><span class="iconify" data-icon="grommet-icons:deliver" data-width="30" data-height="25"></span>
+              訂單管理
+            </div>
+            <ul class="subs">
+              <li><a class="orderlist" href="company_ordersManage.html">訂單明細</a></li>
+              <li><a class="unshiporder" href="company_unshiporder.html">待出貨訂單</a></li>
+              <li><a class="shippedorder" href="company_alreadyShipOrder.html">已出貨訂單</a></li>
+            </ul>
+          </li>
+          <li class="color-third">
+            <div class="main"><span class="iconify" data-icon="ic:baseline-assignment-ind"data-width="30" data-height="25"></span>
+              <a class="shopinfoUp" href="company_shopInfo.html">公司資料</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+  </div>
+  <!-- wrapper側邊結束 -->
+    <!-- 新增商品開始 -->
+    <div class="proinfo">
+    <form class="pinfo" action="productAdd" method="post" >
+      <p>新增商品</p>
+      <div class="leftinfo">
+      <!-- <div class="proId">
+        商品編號：<input class="proid" type="text" readonly="value">
+      </div> -->
+      <div class="proName">
+        商品名稱：<input class="proname" type="text"  placeholder="請輸入商品名稱" value>
+      </div>
+      <div class="proPrice">
+        商品價格：<input class="proprice" type="text" placeholder="請輸入商品價格" value>
+      </div>
+      <div class="sizePick">
+        商品尺寸：
+        <label class="sizepick"><input class="sizeF" type="radio" name="product" value> F </label>
+        <label class="sizepick"><input class="sizeS" type="radio" name="product" value> S </label>
+        <label class="sizepick"><input class="sizeM" type="radio" name="product" value> M </label>
+        <label class="sizepick"><input class="sizeL" type="radio" name="product" value> L </label>
+        <label class="sizepick"><input class="sizeXL" type="radio" name="product" value> XL </label>
+      </div>
+      <div class="typePick">
+        商品類別：
+        <label class="typepick"><input class="1" type="radio" name="type"> 衣著 </label>
+        <label class="typepick"><input class="2" type="radio" name="type"> 工具照明 </label>
+        <label class="typepick"><input class="3" type="radio" name="type"> 炊具 </label>
+        <label class="typepick"><input class="4" type="radio" name="type"> 帳篷寢具 </label>
+      </div>
+      <div class="procolor">
+        商品顏色：<input class="color" type="text" name="product" placeholder="請輸入商品顏色" value>
+      </div>
+      <div class="prostock">
+        商品庫存：<input class="stock" type="text" maxlength="8" name="product" placeholder="請輸入商品庫存" value>
+      </div>
+      <div class="productintro">
+        <textarea class="prointro" placeholder="請輸入商品簡介" ></textarea>
+      </div>
+      </div>
+      <!-- 右側上傳圖檔 -->
+      <div class="rightinfo">
+        <!-- 商品圖一 -->
+      <div class="bannerupload">
+        <span class="bannertext">商品圖片一</span>
+        <label class="probanner">
+          <input id="pro" class="upload_pro" type="file" style="display:none;">
+          <i class="fa fa-photo"></i> 上傳圖片
+        </label>
+        <ul id="proimg" class="proimg">
+          <span class="pictext">圖片預覽</span>
+          <!-- <li class="sbanner2"></li> -->
+        </ul>
+      </div>
+        <!-- 商品圖二 -->
+        <div class="bannerupload2">
+          <span class="bannertext">商品圖片二</span>
+          <label class="probanner2">
+            <input id="pro2" class="upload_pro" type="file" style="display:none;">
+            <i class="fa fa-photo"></i> 上傳圖片
+          </label>
+          <ul id="proimg2" class="proimg2">
+            <span class="pictext">圖片預覽</span>
+          </ul>
+        </div>
+        <!-- 商品圖三 -->
+        <div class="bannerupload3">
+          <span class="bannertext">商品圖片三</span>
+          <label class="probanner3">
+            <input id="pro3" class="upload_pro" type="file" style="display:none;">
+            <i class="fa fa-photo"></i> 上傳圖片
+          </label>
+          <ul id="proimg3" class="proimg3">
+            <span class="pictext">圖片預覽</span>
+          </ul>
+        </div>
+        <!-- 商品圖四 -->
+        <div class="bannerupload4">
+          <span class="bannertext">商品圖片四</span>
+          <label class="probanner4">
+            <input id="pro4" class="upload_pro" type="file" style="display:none;">
+            <i class="fa fa-photo"></i> 上傳圖片
+          </label>
+          <ul id="proimg4" class="proimg4">
+            <span class="pictext">圖片預覽</span>
+          </ul>
+        </div>
+        <!-- 商品圖五 -->
+        <div class="bannerupload5">
+          <span class="bannertext">商品圖片五</span>
+          <label class="probanner5">
+            <input id="pro5" class="upload_pro" type="file" style="display:none;">
+            <i class="fa fa-photo"></i> 上傳圖片
+          </label>
+          <ul id="proimg5" class="proimg5">
+            <span class="pictext">圖片預覽</span>
+          </ul>
+        </div>
+
+
+      <div id="finalbtn">
+      <button type="reset" id="proreset">清空重填</button>
+      <button type="submit" id="prosubmit">新增商品</button>
+      </div>
+
+      <div class="uploadConfirmbox">
+        <p>是否確認新增商品？</p>
+      </div>
+    </div>
+
+    </div>
+   </form>
+    </div>
+    <!-- 新增商品結束 -->
+    </div>
+    <!-- 中間body區塊結束 -->
+    
+
+    
+    <script src ="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+    <script src ="vendors/jquery/jquery-3.6.0.min.js" ></script>
+    <!-- <script src ="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+    <script src ="vendors/jquery/jquery-ui.min.js"></script>
+    <link rel ="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+    <!-- DataTable links begin-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+    <!-- DataTable links end -->
+    <script src ="./js/company_productUpload.js"></script>
+    
+    
+</body>
+</html>
