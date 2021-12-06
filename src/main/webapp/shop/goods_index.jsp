@@ -1,27 +1,14 @@
-<%@ page import="tw.idv.tibame.tfa104.shanshan.web.shop.service.impl.*"%>
-<%@ page import="tw.idv.tibame.tfa104.shanshan.web.shop.service.*"%>
-<%@ page import="tw.idv.tibame.tfa104.shanshan.web.product.entity.ProductBO"%>
-
-
-<%@ page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <% String contextPath = request.getContextPath();%>
 
+<%-- 
 <%	
-	ShopService shopsvc = new ShopServiceImpl();
-	List<ProductBO> popular10 = shopsvc.findPopular10();
-    pageContext.setAttribute("popular10",popular10);     
+    application.getAttribute("popular10");
+	application.getAttribute("latest10");
 %>
+ --%>
 
-<%--
-    ShopService pssvc = new ShopServiceImpl();
-	List<ProductBO> lastest10 = shopsvc.findNew();  //用我的service去呼叫LULU的service
-    pageContext.setAttribute("lastest10",lastest10);     
-    
---%>
-    
-    
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -63,8 +50,8 @@
             <div class="goods_title01">熱門商品</div>
             <ul class="goods_area">
             <c:forEach items="${popular10}" var="ProductBO" >
-                <li class="single_good_area" onclick="location.href='<%=contextPath %>/shop/goods_product_page.jsp'">
-                    <div class="good_headpic"><img class="good_headpic_img" src="<%=contextPath %>/popularProductPicServlet?productId=${ProductBO.productId}&action=getPopImage" width="250px" alt="goods"></div>
+                <li class="single_good_area" onclick="location.href='<%=contextPath %>/GetProductServlet?productId=${ProductBO.productId}'">
+                    <div class="good_headpic"><img class="good_headpic_img" src="<%=contextPath %>/ProductPicServlet?productId=${ProductBO.productId}&productSequence=0&action=firstPic" width="250px" alt="goods"></div>
                     <div class="goods_icon"><i class="far fa-heart "></i></div>
                     <div class="goods_icon_keep -none"><i class="fas fa-heart "></i></div>
                     <span class="good_headsupplier">${ProductBO.companyName}</span>	
@@ -76,9 +63,9 @@
 			
             <div class="goods_title01">新駐商品</div>
 			<ul class="goods_area">
-			<c:forEach  items="${lastest10}" var="ProductBO2">
-                <li class="single_good_area" onclick="location.href='<%=contextPath%>/shop/goods_product_page.jsp'">
-					<div class="good_headpic"><img class="good_headpic_img" src="<%=contextPath%>/LastestProductPicServlet?productId=${ProductBO2.productId}&action=getPopImage" width="250px" alt="goods"></div>
+			<c:forEach  items="${latest10}" var="ProductBO2">
+                <li class="single_good_area" onclick="location.href='<%=contextPath %>/GetProductServlet?productId=${ProductBO2.productId}'">
+					<div class="good_headpic"><img class="good_headpic_img" src="<%=contextPath%>/ProductPicServlet?productId=${ProductBO2.productId}&productSequence=0&action=firstPic" width="250px" alt="goods"></div>
                     <div class="goods_icon"><i class="far fa-heart "></i></div>
                     <div class="goods_icon_keep -none"><i class="fas fa-heart "></i></div>
                     <span class="good_headsupplier">${ProductBO2.companyName}</span>	
@@ -87,7 +74,7 @@
                 </li>
 			</c:forEach>
 			</ul>
-        </div>
+        </div>   
     </div>
 
     <!-- 商店首頁 結束-->

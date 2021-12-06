@@ -1,4 +1,4 @@
-package tw.idv.tibame.tfa104.shanshan.web.productImg.entity;
+package tw.idv.tibame.tfa104.shanshan.web.shop.entity;
 
 import java.io.Serializable;
 import java.util.Arrays;
@@ -6,24 +6,14 @@ public class ProductImgBO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private Integer product_img_id;
 	private Integer product_des_id;
+	private Integer product_id;
 	private byte[] product_first_pic;
 	private byte[] product_des_first_pic;
-	private byte[] product_des_pic;
+	private byte[] product_the_pic;
 	
 	
 	public ProductImgBO() {
 		super();
-	}
-
-
-	public ProductImgBO(Integer product_img_id, Integer product_des_id, byte[] product_first_pic,
-			byte[] product_des_first_pic, byte[] product_des_pic) {
-		super();
-		this.product_img_id = product_img_id;
-		this.product_des_id = product_des_id;
-		this.product_first_pic = product_first_pic;
-		this.product_des_first_pic = product_des_first_pic;
-		this.product_des_pic = product_des_pic;
 	}
 
 
@@ -47,6 +37,16 @@ public class ProductImgBO implements Serializable{
 	}
 
 
+	public Integer getProduct_id() {
+		return product_id;
+	}
+
+
+	public void setProduct_id(Integer product_id) {
+		this.product_id = product_id;
+	}
+
+
 	public byte[] getProduct_first_pic() {
 		return product_first_pic;
 	}
@@ -67,13 +67,13 @@ public class ProductImgBO implements Serializable{
 	}
 
 
-	public byte[] getProduct_des_pic() {
-		return product_des_pic;
+	public byte[] getProduct_the_pic() {
+		return product_the_pic;
 	}
 
 
-	public void setProduct_des_pic(byte[] product_des_pic) {
-		this.product_des_pic = product_des_pic;
+	public void setProduct_the_pic(byte[] product_the_pic) {
+		this.product_the_pic = product_the_pic;
 	}
 
 
@@ -84,10 +84,13 @@ public class ProductImgBO implements Serializable{
 
 	@Override
 	public String toString() {
-		return "ProductImgBO [product_img_id=" + product_img_id + ", product_des_id=" + product_des_id
-				+ ", product_first_pic=" + Arrays.toString(product_first_pic) + ", product_des_first_pic="
-				+ Arrays.toString(product_des_first_pic) + ", product_des_pic=" + Arrays.toString(product_des_pic)
+		return "ProductImgBO [product_img_id=" + product_img_id + ", product_des_id=" + product_des_id + ", product_id="
+				+ product_id + ", product_first_pic=" + Arrays.toString(product_first_pic) + ", product_des_first_pic="
+				+ Arrays.toString(product_des_first_pic) + ", product_the_pic=" + Arrays.toString(product_the_pic)
 				+ "]";
 	}
+
+
+
 
 }
