@@ -22,139 +22,31 @@
     <!-- 商店首頁 開始-->
     <div class="goodsindex_bodycontent">
         <div class="goodsindex_innercontent ">
-            <div class="goods_breadcrumb"><a href="goods_index.html">攻山小物</a> > <a href="goods_all_products.html">全部品牌</a> >  <a href="goods_all_products.html">Arc'teryx始祖鳥</a></div>
+            <div class="goods_breadcrumb"><a href="goods_index.html">攻山小物</a> > <a href="/shanshan/AllCompanyServlet">全部品牌</a> >  <a href="/shanshan/GetCompanyServlet?companyId=${companyDetail.companyId}">${companyDetail.companyName}</a></div>
             <div class="storepages_pic_area">
-                <img src="img\arc'teryx_page_01.jpg" width="1200px" height="500px" alt="">
+                <img src="<%=contextPath%>/GetCompanyBannerServlet?companyId=${companyDetail.companyId}&action=companyBanner" width="1200px" height="500px" alt="">
             </div>
-            <div class="storepages_name ">Arc'teryx 始祖鳥</div>
+            <div class="storepages_name">${companyDetail.companyName}</div>
             <div class="storepages_description_area">
-            <div class="storepages_description">　　來自加拿大的頂級戶外品牌Arc'teryx，追求產品傑出性能表現，執著於每一個小細節。擁有獨一無二的內部製模和設計中心，實現前所未有的創意，製造出最頂尖的產品。1989年創立於加拿大溫哥華，至今其總部，設計工作室，和主要生產線依然在溫哥華。
-                </br>　　由於其對新工藝和新技術近乎瘋狂的追求，在短短十幾年時間內，成長成為公認的北美乃至全球領導型的戶外品牌，在服裝和背包領域類有著不錯的 產品。Arc'teryx的產品線今天依然只涉及戶外服裝、背包和攀登護具。
-                由於Arc'teryx對新技術和新工藝近乎瘋狂的追求，以及對產品設計和做工不惜工本的強調，Arc'teryx迅速被公認為最高端的戶外 品牌之一，同時也帶來通常不菲的售價。
-                Arc'teryx的產品幾乎件件都可以用藝術品來形容，而且服裝的功能完善，細節出色，給戶外使用者 充分的體驗和完善的保護。</div>
+            <div class="storepages_description">　　${companyDetail.companyIntro}</div>
             </div>
             <div class="goods_title01 ">我們的商品</div>
 
             <ul class="goods_area ">
-                <!-- https://i.imgur.com/1EiiZs2.png -->
-                <li class="single_good_area" onclick="location.href='goods_product_page.jsp'">
-                    <div class="good_headpic"><img class="good_headpic_img" ssrc="img\good01.jpg" width="250px" alt="goods"></div>
+
+            <c:forEach items="${ourProduct}" var="ProductBO" >
+                <li class="single_good_area" onclick="location.href='<%=contextPath %>/GetProductServlet?productId=${ProductBO.productId}'">
+                    <div class="good_headpic"><img class="good_headpic_img" src="<%=contextPath %>/ProductPicServlet?productId=${ProductBO.productId}&productSequence=0&action=firstPic" width="250px" alt="goods"></div>
                     <div class="goods_icon"><i class="far fa-heart "></i></div>
                     <div class="goods_icon_keep -none"><i class="fas fa-heart "></i></div>
-                    <span class="good_headsupplier">ARCTERYX始祖鳥</span>
-                    <a class="good_headname">
-                        <h5>聚酯纖維彈性襯衫</h5>
-                    </a>
-                    <span class="good_headprice">售價290元</span>
+                    <span class="good_headsupplier">${ProductBO.companyName}</span>	
+                    <a class="good_headname"><h5>${ProductBO.productName}</h5></a>
+                    <span class="good_headprice">售價${ProductBO.productPrice}</span>
                 </li>
-                <li class="single_good_area" onclick="location.href='goods_product_page.jsp'">
-                    <div class="good_headpic"><img class="good_headpic_img" ssrc="img\good01.jpg" width="250px" alt="goods"></div>
-                    <div class="goods_icon"><i class="far fa-heart "></i></div>
-                    <div class="goods_icon_keep -none"><i class="fas fa-heart "></i></div>
-                    <span class="good_headsupplier">ARCTERYX始祖鳥</span>
-                    <a class="good_headname">
-                        <h5>聚酯纖維彈性襯衫</h5>
-                    </a>
-                    <span class="good_headprice">售價290元</span>
-                </li>
-                <li class="single_good_area" onclick="location.href='goods_product_page.jsp'">
-                    <div class="good_headpic"><img class="good_headpic_img" ssrc="img\good01.jpg" width="250px" alt="goods"></div>
-                    <div class="goods_icon"><i class="far fa-heart "></i></div>
-                    <div class="goods_icon_keep -none"><i class="fas fa-heart "></i></div>
-                    <span class="good_headsupplier">ARCTERYX始祖鳥</span>
-                    <a class="good_headname">
-                        <h5>聚酯纖維彈性襯衫</h5>
-                    </a>
-                    <span class="good_headprice">售價290元</span>
-                </li>
-                <li class="single_good_area" onclick="location.href='goods_product_page.jsp'">
-                    <div class="good_headpic"><img class="good_headpic_img" ssrc="img\good01.jpg" width="250px" alt="goods"></div>
-                    <div class="goods_icon"><i class="far fa-heart "></i></div>
-                    <div class="goods_icon_keep -none"><i class="fas fa-heart "></i></div>
-                    <span class="good_headsupplier">ARCTERYX始祖鳥</span>
-                    <a class="good_headname">
-                        <h5>聚酯纖維彈性襯衫</h5>
-                    </a>
-                    <span class="good_headprice">售價290元</span>
-                </li>
-                <li class="single_good_area" onclick="location.href='goods_product_page.jsp'">
-                    <div class="good_headpic"><img class="good_headpic_img" ssrc="img\good01.jpg" width="250px" alt="goods"></div>
-                    <div class="goods_icon"><i class="far fa-heart "></i></div>
-                    <div class="goods_icon_keep -none"><i class="fas fa-heart "></i></div>
-                    <span class="good_headsupplier">ARCTERYX始祖鳥</span>
-                    <a class="good_headname">
-                        <h5>聚酯纖維彈性襯衫</h5>
-                    </a>
-                    <span class="good_headprice">售價290元</span>
-                </li>
-                <li class="single_good_area" onclick="location.href='goods_product_page.jsp'">
-                    <div class="good_headpic"><img class="good_headpic_img" ssrc="img\good01.jpg" width="250px" alt="goods"></div>
-                    <div class="goods_icon"><i class="far fa-heart "></i></div>
-                    <div class="goods_icon_keep -none"><i class="fas fa-heart "></i></div>
-                    <span class="good_headsupplier">ARCTERYX始祖鳥</span>
-                    <a class="good_headname">
-                        <h5>聚酯纖維彈性襯衫</h5>
-                    </a>
-                    <span class="good_headprice">售價290元</span>
-                </li>
-                <li class="single_good_area" onclick="location.href='goods_product_page.jsp'">
-                    <div class="good_headpic"><img class="good_headpic_img" ssrc="img\good01.jpg" width="250px" alt="goods"></div>
-                    <div class="goods_icon"><i class="far fa-heart "></i></div>
-                    <div class="goods_icon_keep -none"><i class="fas fa-heart "></i></div>
-                    <span class="good_headsupplier">ARCTERYX始祖鳥</span>
-                    <a class="good_headname">
-                        <h5>聚酯纖維彈性襯衫</h5>
-                    </a>
-                    <span class="good_headprice">售價290元</span>
-                </li>
-                <li class="single_good_area" onclick="location.href='goods_product_page.jsp'">
-                    <div class="good_headpic"><img class="good_headpic_img" ssrc="img\good01.jpg" width="250px" alt="goods"></div>
-                    <div class="goods_icon"><i class="far fa-heart "></i></div>
-                    <div class="goods_icon_keep -none"><i class="fas fa-heart "></i></div>
-                    <span class="good_headsupplier">ARCTERYX始祖鳥</span>
-                    <a class="good_headname">
-                        <h5>聚酯纖維彈性襯衫</h5>
-                    </a>
-                    <span class="good_headprice">售價290元</span>
-                </li>
-                <li class="single_good_area" onclick="location.href='goods_product_page.jsp'">
-                    <div class="good_headpic"><img class="good_headpic_img" ssrc="img\good01.jpg" width="250px" alt="goods"></div>
-                    <div class="goods_icon"><i class="far fa-heart "></i></div>
-                    <div class="goods_icon_keep -none"><i class="fas fa-heart "></i></div>
-                    <span class="good_headsupplier">ARCTERYX始祖鳥</span>
-                    <a class="good_headname">
-                        <h5>聚酯纖維彈性襯衫</h5>
-                    </a>
-                    <span class="good_headprice">售價290元</span>
-                </li>
-                <li class="single_good_area" onclick="location.href='goods_product_page.jsp'">
-                    <div class="good_headpic"><img class="good_headpic_img" ssrc="img\good01.jpg" width="250px" alt="goods"></div>
-                    <div class="goods_icon"><i class="far fa-heart "></i></div>
-                    <div class="goods_icon_keep -none"><i class="fas fa-heart "></i></div>
-                    <span class="good_headsupplier">ARCTERYX始祖鳥</span>
-                    <a class="good_headname">
-                        <h5>聚酯纖維彈性襯衫</h5>
-                    </a>
-                    <span class="good_headprice">售價290元</span>
-                </li>
+            </c:forEach>
+                
             </ul>
 
-            <!-- 分頁標籤與分頁查詢功能 -->
-            <div class="page_num">
-                <ul>
-                    <li class="page_num_two_words"><a href="">首頁</a></li>
-                    <li class="page_num_three_words"><a href="">上一頁</a></li>
-                    <li class="current_page_num"><a href="">1</a></li>
-                    <li><a href="">2</a></li>
-                    <li><a href="">3</a></li>
-                    <li><a href="">4</a></li>
-                    <li><a href="">5</a></li>
-                    <li class="page_num_three_words"><a href="">下一頁</a></li>
-                    <li class="page_num_two_words"><a href="">末頁</a></li>
-                </ul>
-
-
-            </div>
         </div>
     </div>
 

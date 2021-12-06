@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+    
     <!-- 燈箱登入方式選擇 -->
     <div class="login_modal_bcg -none"></div>
     <div class="login_modal -none">
@@ -63,8 +62,7 @@
     <!-- 商店導覽列 開始-->
     <header class="goods_header">
         <div class="goods_titlebar">
-            <!-- LOGO圖片, LOGO URL https://i.imgur.com/pKqro9S.png   img/logo.png -->
-            <div class="goods_titlepic"><img src="img/logo.png" width="60px" height="60px" alt=""></div>
+            <div class="goods_titlepic"><img src="<%=request.getContextPath()%>/shop/img/logo.png" width="60px" height="60px" alt=""></div>
 
             <!-- 山山來此 標題 -->
             <div class="goods_header_title_shanshan" onclick="location.href='#'">山山來此</div>
@@ -73,10 +71,10 @@
             <div class="goods_titlegap"></div>
 
             <!-- 攻山小物 標題 -->
-            <div class="goods_header_title_goods" onclick="location.href='goods_index.jsp'">攻山小物</div>
+            <div class="goods_header_title_goods" onclick="location.href='/shanshan/shop/goods_index.jsp'">攻山小物</div>
 
             <!-- 購物車icon -->
-            <div class="goods_shopcart_area" onclick="location.href='goods_shopcart.jsp'">
+            <div class="goods_shopcart_area" onclick="location.href='/shanshan/shop/goods_shopcart.jsp'">
                 <i class="fas fa-shopping-cart header_shopcarticon"></i>
                 <div class="shopcarticon_num_bg"><span class="shopcarticon_num">213</span></div>
             </div>
@@ -87,12 +85,11 @@
                 <div class="goods_header_kinds_title">商品情報</div> <!-- 標題按鈕 -->
                 <div class="goods_kinds_list">
                     <div class="goods_list_firstculomn">
-                        <div class="goods_list_item" onclick="location.href='goods_all_products.jsp'">全部商品</div>
-                        <div class="goods_list_item" onclick="location.href='goods_single_kind_products.jsp'">衣著/鞋子/背包</div>
-                        <div class="goods_list_item" onclick="location.href='goods_single_kind_products.jsp'">工具/照明/登山杖</div>
-                        <div class="goods_list_item" onclick="location.href='goods_single_kind_products.jsp'">炊具</div>
-                        <div class="goods_list_item" onclick="location.href='goods_single_kind_products.jsp'">帳篷</div>
-                        <div class="goods_list_item" onclick="location.href='goods_single_kind_products.jsp'">照明/寢具/地墊</div>
+                        <div class="goods_list_item" onclick="location.href='/shanshan/AllProductServlet?pageNum=1'">全部商品</div>
+                        <div class="goods_list_item" onclick="location.href='/shanshan/GetProductTypeServlet?ProductType=1&pageNum=1'">衣著/鞋子/背包</div>
+                        <div class="goods_list_item" onclick="location.href='/shanshan/GetProductTypeServlet?ProductType=2&pageNum=1'	">工具/照明/登山杖</div>
+                        <div class="goods_list_item" onclick="location.href='/shanshan/GetProductTypeServlet?ProductType=3&pageNum=1'">炊具</div>
+                        <div class="goods_list_item" onclick="location.href='/shanshan/GetProductTypeServlet?ProductType=4&pageNum=1'">寢具/帳篷/睡袋</div>
                     </div>
                 </div> <!-- 下拉框 -->
             </div>
@@ -104,18 +101,15 @@
                 <div class="goods_header_stores_title">品牌情報</div> <!-- 標題按鈕 -->
                 <div class="goods_stores_list">
                     <div class="goods_list_firstculomn">
-                        <div class="goods_list_item" onclick="location.href='goods_store_list.jsp'">全部品牌</div>
-                        <div class="goods_list_item" onclick="location.href='goods_store_page.jsp'">山山巧福</div>
-                        <div class="goods_list_item" onclick="location.href='goods_store_page.jsp'">The North Face
-                        </div>
-                        <div class="goods_list_item" onclick="location.href='goods_store_page.jsp'">Marmot</div>
-                        <div class="goods_list_item" onclick="location.href='goods_store_page.jsp'">Patagonia</div>
-                        <div class="goods_list_item" onclick="location.href='goods_store_page.jsp'">Gregory</div>
-                        <div class="goods_list_item" onclick="location.href='goods_store_page.jsp'">WELL FIT威飛客</div>
-                        <div class="goods_list_item" onclick="location.href='goods_store_page.jsp'">山野倉庫</div>
-                        <div class="goods_list_item" onclick="location.href='goods_store_page.jsp'">ARCTERYX始祖鳥</div>
-                        <div class="goods_list_item" onclick="location.href='goods_store_page.jsp'">HAGLOFS</div>
-                        <div class="goods_list_item" onclick="location.href='goods_store_page.jsp'">FIZAN</div>
+                        <div class="goods_list_item" onclick="location.href='/shanshan/AllCompanyServlet'">全部品牌</div>
+                        <div class="goods_list_item" onclick="location.href='/shanshan/GetCompanyServlet?companyId=1'">好好登山</div>
+                        <div class="goods_list_item" onclick="location.href='/shanshan/GetCompanyServlet?companyId=2'">攻山小屋</div>
+                        <div class="goods_list_item" onclick="location.href='/shanshan/GetCompanyServlet?companyId=3'">攀登趣</div>
+                        <div class="goods_list_item" onclick="location.href='/shanshan/GetCompanyServlet?companyId=4'">聞青</div>
+                        <div class="goods_list_item" onclick="location.href='/shanshan/GetCompanyServlet?companyId=5'">GOGOHiking!</div>
+                        <div class="goods_list_item" onclick="location.href='/shanshan/GetCompanyServlet?companyId=6'">goClimbing</div>
+                        <div class="goods_list_item" onclick="location.href='/shanshan/GetCompanyServlet?companyId=7'">山商巧福</div>
+                        <div class="goods_list_item" onclick="location.href='/shanshan/GetCompanyServlet?companyId=8'">山山來煮</div>
                     </div>
                 </div> <!-- 下拉框 -->
             </div>
@@ -136,7 +130,7 @@
             </div>
             <!-- 登入註冊 -->
             <input type="button" class="goods_registor_botton" value="註冊"
-                onclick="location.href='member_signup.jsp'"></input>
+                onclick="location.href='shop/member_signup.jsp'"></input>
             <input type="button" class="goods_login_modal_botton" value="登入"></input>
         </div>
     </header>

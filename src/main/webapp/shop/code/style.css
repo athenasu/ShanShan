@@ -668,15 +668,23 @@ a:link, a:visited, a:hover, a:active {
     opacity: 0.7;
 }
 
-.single_good_area:hover .good_headpic_img{
+.single_good_area:hover .good_headpic_img {
     opacity: 0.7;
 }
 
 /* 單項商店小卡 */
+.goods_stores_headpic_area {
+    width: 260px;
+    height: 104px;
+    min-width: 260px;
+    min-height: 104px;
+    overflow: hidden;
+
+}
 
 .goods_stores_headpic {
     width: 100%;
-    height: auto;
+    height: 100%;
 }
 
 .goods_stores_name {
@@ -795,10 +803,17 @@ a:link, a:visited, a:hover, a:active {
 
 .storepages_pic_area {
     width: 100%;
-    height: 500px;
+    height: 300px;
     margin-top: 20px;
     margin-bottom: 20px;
+    overflow: hidden;
     /* background-color: rgb(129, 111, 236); */
+}
+
+.storepages_pic_area img{
+    width: 100%;
+    height: auto;
+	
 }
 
 .storepages_name {
@@ -972,7 +987,7 @@ a:link, a:visited, a:hover, a:active {
     /* background-color: rgb(199, 199, 238); */
     /* box-sizing: border-box;
     border: 1px solid rgb(43, 32, 53); */
-    font-size: 20px;
+    font-size: 18px;
     color: rgb(34, 34, 34);
 }
 
@@ -1349,7 +1364,7 @@ li .fa-arrow-circle-right {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    
+
 }
 
 /* 商品詳情 標題區*/
@@ -1383,13 +1398,14 @@ li .fa-arrow-circle-right {
 
 }
 
-.payment_check_order_area_company{
-   box-sizing: border-box;
-   border-bottom: 2px dashed rgb(175, 175, 175); 
+.payment_check_order_area_company {
+    box-sizing: border-box;
+    border-bottom: 2px dashed rgb(175, 175, 175);
 }
-.payment_check_order_area_company:last-child{
-    border-bottom: none; 
- }
+
+.payment_check_order_area_company:last-child {
+    border-bottom: none;
+}
 
 
 .payment_check_order_area_company_gap:first-child {
@@ -1397,30 +1413,30 @@ li .fa-arrow-circle-right {
 }
 
 
-.payment_check_order_area_company_shipfee ,.payment_check_order_area_company_totalfee{
+.payment_check_order_area_company_shipfee, .payment_check_order_area_company_totalfee {
     height: 35px;
     width: 1100px;
 }
 
-.payment_check_order_area_company_shipfee{
-    margin-top: 8px;   
+.payment_check_order_area_company_shipfee {
+    margin-top: 8px;
 }
 
-.payment_check_order_area_company_shipfee li,.payment_check_order_area_company_totalfee li{
+.payment_check_order_area_company_shipfee li, .payment_check_order_area_company_totalfee li {
     text-align: right;
     float: right;
     font-size: 23px;
     width: 230px;
     color: rgb(0, 0, 0);
     font-weight: bold;
-    height:35px;
+    height: 35px;
     line-height: 35px;
 }
 
-.payment_check_order_area_company_shipfee li:nth-child(1) ,.payment_check_order_area_company_totalfee li:nth-child(1){
+.payment_check_order_area_company_shipfee li:nth-child(1), .payment_check_order_area_company_totalfee li:nth-child(1) {
     width: 100px;
     line-height: 35px;
-} 
+}
 
 
 
@@ -1435,8 +1451,7 @@ li .fa-arrow-circle-right {
     height: 100px;
 }
 
-.payment_check_order_detail:last-child li {
-}
+.payment_check_order_detail:last-child li {}
 
 .payment_check_order_detail li:nth-child(1), .payment_check_order_detail_title li:nth-child(1) {
     border-left: 2px solid rgb(187, 187, 187);
@@ -1468,18 +1483,19 @@ li .fa-arrow-circle-right {
 
 /* 山山點數 區域 */
 
-.point_game_rule{
+.point_game_rule {
     margin-top: 5px;
     font-size: 10px;
 }
 
-.payment_current_point,.payment_current_point_num{
+.payment_current_point, .payment_current_point_num {
     font-size: 16px;
     margin-bottom: 8px;
-    display:inline-block ;
+    display: inline-block;
 }
-.payment_usepoints, .payment_usepoints_num{
-    display:inline-block ;
+
+.payment_usepoints, .payment_usepoints_num {
+    display: inline-block;
 
 }
 
@@ -1501,9 +1517,10 @@ li .fa-arrow-circle-right {
     width: 230px;
     color: red;
     font-weight: bold;
-    height:35px;
+    height: 35px;
     line-height: 35px;
 }
+
 .payment_check_total_price li:nth-child(1) {
     width: 100px;
     line-height: 35px;
