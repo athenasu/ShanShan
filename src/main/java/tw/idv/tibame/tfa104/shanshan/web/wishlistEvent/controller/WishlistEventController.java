@@ -35,6 +35,6 @@ public class WishlistEventController {
 	
 	@GetMapping("findWishlistEventsByMemberId")
 	public List<WishlistEventBO> findWishlistEventsByMemberId(Integer memberId) { // need to change this back to Integer
-		return wishlistService.findWishlistEventsByMemberId(memberId);
+		return wishlistService.findWishlistEventsByMemberId(1);
 	}
 }

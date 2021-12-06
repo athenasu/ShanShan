@@ -75,7 +75,7 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
+  width: 18%;
 }
 
 .user-info {
@@ -197,7 +197,7 @@ button {
 }
 
 /* SORT BY BUTTONS */
-.events .sort-button {
+.events .sort-buttons button {
   border: none;
   padding: 0.3rem 1rem;
   text-decoration: none;
@@ -212,7 +212,7 @@ button {
   margin-right: 3rem;
 }
 
-.events .sort-button:hover {
+.events .sort-buttons button:hover {
   background-color: #adc2a9;
   color: white;
 }
@@ -590,9 +590,10 @@ button {
 }
 
 .attendee-item .member-profile {
-  height: 60px;
+  height: 40px;
   margin: -0.5rem 0rem;
-  clip-path: circle();
+  border-radius: 50%;
+  overflow: hidden;
   margin-left: 0.5rem;
   display: flex;
   align-items: center;

@@ -1,74 +1,14 @@
 ///////////// selecting elements ////////////
-
-// CARDS
+/////// CARDS ///////
 const cards = document.querySelector(".cards");
+const sortBtnEvent = document.querySelector(".sort-button-event");
+const sortBtnPart = document.querySelector(".sort-button-part");
+const sortBtnArticle = document.querySelector(".sort-button-article");
 
-// //ARTICLE MODAL
-// const modalArticle = document.querySelector(".modal-article");
-// const overlayArticle = document.querySelector(".overlay-article");
-// const btnCloseModalArticle = document.querySelector(
-//   ".btn--close-modal-article"
-// );
-// const btnsOpenModalArticle = document.querySelectorAll(
-//   ".btn--show-modal-article"
-// );
+////////////////////////////////////////
+/////// RENDER CARDS AND MODALS ///////
 
-// // PARTICIPANT MODAL
-// const modalPart = document.querySelector(".modal-part");
-// const overlayPart = document.querySelector(".overlay-part");
-// const btnCloseModalPart = document.querySelector(".btn--close-modal-part");
-// const btnsOpenModalPart = document.querySelectorAll(".btn--show-modal-part");
-
-// ///////////////////////////////////////
-// // MODAL
-
-// // EVENT MODAL //
-// const openModal = function (e) {
-//   e.preventDefault();
-//   modal.classList.remove("hidden");
-//   overlay.classList.remove("hidden");
-// };
-
-// const closeModal = function () {
-//   modal.classList.add("hidden");
-//   overlay.classList.add("hidden");
-// };
-// btnsOpenModal.forEach((btn) => btn.addEventListener("click", openModal));
-
-// btnCloseModal.addEventListener("click", closeModal);
-// overlay.addEventListener("click", closeModal);
-
-// document.addEventListener("keydown", function (e) {
-//   if (e.key === "Escape" && !modal.classList.contains("hidden")) {
-//     closeModal();
-//   }
-// });
-
-// PARTICIPANT MODAL //
-// const openModalPart = function (e) {
-//   e.preventDefault();
-//   modalPart.classList.remove("hidden");
-//   overlayPart.classList.remove("hidden");
-// };
-
-// const closeModalPart = function () {
-//   modalPart.classList.add("hidden");
-//   overlayPart.classList.add("hidden");
-// };
-
-// btnsOpenModalPart.forEach((btn) =>
-//   btn.addEventListener("click", openModalPart)
-// );
-
-// btnCloseModalPart.addEventListener("click", closeModalPart);
-// overlayPart.addEventListener("click", closeModalPart);
-
-// document.addEventListener("keydown", function (e) {
-//   if (e.key === "Escape" && !modalPart.classList.contains("hidden")) {
-//     closeModalPart();
-//   }
-// });
-
+// RENDER ARTICLE
 const renderArticle = function (article) {
   // need to convert the time
   const articleBytesStr = atob(article.picString);
@@ -142,8 +82,10 @@ const renderArticle = function (article) {
   cards.insertAdjacentHTML("afterbegin", html);
 };
 
+// RENDER PARTICIPATING EVENTS
 const renderPartEvent = function (part) {
   // need to convert the time
+  // need to convert event status
   const partBytesStr = atob(part.picString);
   let partLen = partBytesStr.length;
   const partu8Array = new Uint8Array(partLen);
@@ -157,7 +99,7 @@ const renderPartEvent = function (part) {
             <a href="#" class = "part-card">
               <div class="card-3">
                 <div class="event-status">
-                  <p>狀態: 已成團</p>
+                  <p>狀態: ${part.eventStatus}</p>
                 </div>
                 <div class="event-no">
                   <p>參團編號: ${part.eventId}</p>
@@ -222,6 +164,7 @@ const renderPartEvent = function (part) {
   cards.insertAdjacentHTML("afterbegin", html);
 };
 
+// RENDER EVENT
 const renderEvent = function (eventList) {
   // need to convert the time
   // need to convert the eventStatus
@@ -331,6 +274,7 @@ const renderEvent = function (eventList) {
   cards.insertAdjacentHTML("afterbegin", html);
 };
 
+// RENDER EVENT PARTICIPANTS
 const renderParticipants = function (eventPart, eventId, itemNo) {
   const memberBytesStr = atob(eventPart.picStr);
   let memberLen = memberBytesStr.length;
@@ -341,7 +285,7 @@ const renderParticipants = function (eventPart, eventId, itemNo) {
   const memberBlob = new Blob([memberu8Array]);
   const memberUrl = URL.createObjectURL(memberBlob);
 
-  let eventPart = document.querySelector(`.event-list-no-${eventId}`);
+  let eventPartDiv = document.querySelector(`.event-list-no-${eventId}`);
   let html = `
               <div class="attendee-item">
                 <ul class="attendee-${itemNo}">
@@ -357,8 +301,11 @@ const renderParticipants = function (eventPart, eventId, itemNo) {
                 </ul>
               </div>
             `;
+  eventPartDiv.insertAdjacentHTML("afterbegin", html);
 };
 
+////////////////////////////////////////
+//////// POPULATING PAGE ///////
 const articleList = function () {
   fetch(`/shanshan/memberArticle/findAllArticlesByMemId`)
     .then((body) => body.json())
@@ -387,7 +334,7 @@ const eventList = function () {
       for (let event of events) {
         renderEvent(event);
         const response = await fetch(
-          `/shanshan/memberArticle/findParEventByEventId?${event.eventId}`
+          `/shanshan/memberArticle/findParEventByEventId?eventId=${event.eventId}`
         );
         const eventParts = await response.json();
         for (let eventPart of eventParts) {
@@ -398,23 +345,71 @@ const eventList = function () {
     });
 };
 
+// RENDER MEMBER DAHSBOARD
+const populateMemberDashboard = function () {
+  fetch("findMemberById")
+    .then((body) => body.json())
+    .then((member) => {
+      const bytesStr = atob(member.picStr);
+      let len = bytesStr.length;
+      const u8Array = new Uint8Array(len);
+      while (len--) {
+        u8Array[len] = bytesStr.charCodeAt(len);
+      }
+      const blob = new Blob([u8Array]);
+      const url = URL.createObjectURL(blob);
+
+      document.querySelector(".member_profile .member_profile_pic").src = url;
+      document.querySelector(".member-name-dashboard").textContent =
+        member.memberName;
+      document.querySelector(".member-username-dashboard").textContent =
+        member.memberUsername;
+    });
+};
+
 window.onload = function () {
+  populateMemberDashboard();
   articleList();
   partEventList();
   eventList();
 };
 
+////////////////////////////////////////
+// OPEN & CLOSE MODAL
 document.addEventListener("click", function (e) {
+  // card-1 event-card
+  if (e.target.classList.contains("btn--show-modal")) {
+    let parent = e.target.closest("a.event-card");
+    let modal = parent.querySelector(".modal");
+    let overlay = document.querySelector(".overlay");
+    let btnCloseModal = parent.querySelector(".btn--close-modal");
+
+    modal.classList.remove("hidden");
+    overlay.classList.remove("hidden");
+
+    const closeModal = function () {
+      modal.classList.add("hidden");
+      overlay.classList.add("hidden");
+    };
+
+    btnCloseModal.addEventListener("click", closeModal);
+    overlay.addEventListener("click", closeModal);
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+        closeModal();
+      }
+    });
+  }
+  // card-2 article-card
   if (e.target.classList.contains("btn--show-modal-article")) {
-    console.log("modal-article button clicked");
-    // ARTICLE MODAL
+    // console.log("modal-article button clicked");
     let parent = e.target.closest("a.article-card");
     let modalArticle = parent.querySelector(".modal-article");
     let overlayArticle = document.querySelector(".overlay-article");
     let btnCloseModalArticle = parent.querySelector(
       ".btn--close-modal-article"
     );
-    // let btnsOpenModalArticle = parent.querySelector(".btn--show-modal-article");
 
     modalArticle.classList.remove("hidden");
     overlayArticle.classList.remove("hidden");
@@ -433,12 +428,12 @@ document.addEventListener("click", function (e) {
       }
     });
   }
+  // card-3 part-card
   if (e.target.classList.contains("btn--show-modal-part")) {
     let parent = e.target.closest("a.part-card");
     let modalPart = parent.querySelector(".modal-part");
     let overlayPart = document.querySelector(".overlay-part");
     let btnCloseModalPart = parent.querySelector(".btn--close-modal-part");
-    // const btnsOpenModalPart = parent.querySelector(".btn--show-modal-part");
 
     modalPart.classList.remove("hidden");
     overlayPart.classList.remove("hidden");
@@ -457,4 +452,21 @@ document.addEventListener("click", function (e) {
       }
     });
   }
+});
+
+////////////////////////////////////////
+//////// SORT CARDS ///////
+sortBtnArticle.addEventListener("click", function () {
+  cards.innerHTML = "";
+  articleList();
+});
+
+sortBtnEvent.addEventListener("click", function () {
+  cards.innerHTML = "";
+  eventList();
+});
+
+sortBtnPart.addEventListener("click", function () {
+  cards.innerHTML = "";
+  partEventList();
 });

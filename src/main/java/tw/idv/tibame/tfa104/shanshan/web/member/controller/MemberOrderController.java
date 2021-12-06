@@ -19,7 +19,7 @@ public class MemberOrderController {
 	private MemberOrderService service;
 	
 	@GetMapping("findAllOrdersByMemId")
-	public List<Order> findAllByMemId(Integer memberId){ // change back to HttpSession session
+	public List<Order> findAllOrdersByMemId(Integer memberId){ // change back to HttpSession session
 //		Integer memberId = (Integer)session.getAttribute("memberId");
 		return service.findAllByMemId(1);
 	}

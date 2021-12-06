@@ -3,11 +3,8 @@ const dragText = document.querySelector("header");
 const browseBtn = document.querySelector(".browse_btn");
 const hiddenInput = document.querySelector(".hidden_input");
 
-// drag area
-// $(document).ready(function () {
-//   $(".member_profile_pic").draggable();
-// });
-
+///////////////////////////////////
+// SHOW PICTURE FOR UPLOAD
 let file;
 browseBtn.onclick = () => {
   hiddenInput.click(); // if the user clicks the customized button, the hidden
@@ -22,14 +19,12 @@ hiddenInput.addEventListener("change", function () {
 // inside drop area
 dropArea.addEventListener("dragover", (e) => {
   e.preventDefault();
-  // console.log("file dragged over drag area");
   dropArea.classList.add("active");
   dragText.textContent = "Release to upload file";
 });
 
 // outside drop area
 dropArea.addEventListener("dragleave", () => {
-  // console.log("file outside drag area");
   dropArea.classList.remove("active");
   dragText.textContent = "Drag & drop to upload file";
 });
@@ -37,7 +32,6 @@ dropArea.addEventListener("dragleave", () => {
 // file dropped in droparea
 dropArea.addEventListener("drop", (e) => {
   e.preventDefault();
-  // console.log("file outside drag area");
   file = e.dataTransfer.files[0];
   showFile();
 });
@@ -63,6 +57,7 @@ function showFile() {
   }
 }
 
+////////////////////////////////////////
 // SHOW STUFF ON STIE //
 const populatePage = function () {
   fetch("findMemberById")

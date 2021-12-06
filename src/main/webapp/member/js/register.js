@@ -56,13 +56,20 @@ loginBtn.addEventListener("click", function () {
       "Content-Type": "application/json",
     },
     // setting the variables
+    // need to test this
     body: JSON.stringify({
       memberEmail,
       memberPassword,
     }),
   }).then((body) => {
-    body.json();
-    console.log(body.json()); // how do i get the response from Network?
+    if (body.successful) {
+      console.log("Sign in successful");
+      $("div.login_modal_bcg").addClass("-none");
+      $("div.login_modal").addClass("-none");
+      $("div.login_modal_email").addClass("-none");
+    } else {
+      console.log("Login unsuccessful");
+    }
   });
 });
 

@@ -28,13 +28,16 @@ document.addEventListener("keydown", function (e) {
     closeModal();
   }
 });
-// INITIAL STUFF ON STIE //
-// member info
-const memberInfo = function () {
+
+////////////////////////////////////////
+//////// POPULATING PAGE ///////
+
+// RENDER MEMBER DAHSBOARD
+const populateMemberDashboard = function () {
   fetch("findMemberById")
     .then((body) => body.json())
     .then((member) => {
-      const bytesStr = atob(member.picStr); // this is the property in the entity
+      const bytesStr = atob(member.picStr);
       let len = bytesStr.length;
       const u8Array = new Uint8Array(len);
       while (len--) {
@@ -48,11 +51,9 @@ const memberInfo = function () {
         member.memberName;
       document.querySelector(".member-username-dashboard").textContent =
         member.memberUsername;
-      let points = `<p>您總共有${member.memberSumPoints}點數</p>`;
-      userInfo.insertAdjacentHTML("afterend", points);
     });
 };
 
 window.onload = function () {
-  memberInfo();
+  populateMemberDashboard();
 };

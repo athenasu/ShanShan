@@ -26,7 +26,7 @@ public class MemberController {
 	@GetMapping("findMemberById")
 	public Member findMemberById(Integer memberId) { // change back to HttpSession session
 //		Integer memberId = (Integer) session.getAttribute("memberId");
-		final Member member = service.findById(memberId);
+		final Member member = service.findById(1);
 		member.setPicStr(Base64.getEncoder().encodeToString(member.getMemberProfilePic()));
 		return member;
 	}
@@ -77,17 +77,4 @@ public class MemberController {
 		return core;
 	}
 	
-//	@PostMapping(path = "upload", consumes = { MediaType.APPLICATION_JSON_VALUE })
-//	public Integer upload(@RequestBody Member member) {
-//		// getting and decoding the file to Base64
-//		byte[] file = Base64.getDecoder().decode(member.getPicStr());
-//
-//		try (FileOutputStream fos = new FileOutputStream("/Users/athenasu/Downloads/aaa.jpg");) {
-//			fos.write(file);
-//			fos.flush();
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		return 0;
-//	}
 }

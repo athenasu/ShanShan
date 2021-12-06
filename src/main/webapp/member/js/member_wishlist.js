@@ -170,8 +170,10 @@ const renderWishlistProduct = function (product) {
   groupCard.insertAdjacentHTML("beforeend", html);
 };
 
-// INITIAL STUFF ON STIE //
-// member info
+////////////////////////////////////////
+//////// POPULATING PAGE ///////
+
+// RENDER MEMBER DAHSBOARD
 const memberInfo = function () {
   fetch("findMemberById")
     .then((body) => body.json())
@@ -195,10 +197,9 @@ const memberInfo = function () {
     });
 };
 
-const eventWishlist = function (memberId) {
-  fetch(
-    `/shanshan/wishlistEvent/findWishlistEventsByMemberId?memberId=${memberId}`
-  )
+// EVENT WISHLIST
+const eventWishlist = function () {
+  fetch(`/shanshan/wishlistEvent/findWishlistEventsByMemberId`)
     .then((body) => body.json())
     .then((wishlistEvents) => {
       for (let event of wishlistEvents) {
@@ -207,10 +208,9 @@ const eventWishlist = function (memberId) {
     });
 };
 
-const articleWishlist = function (memberId) {
-  fetch(
-    `/shanshan/wishlistArticle/findWishlistArticlesByMemberId?memberId=${memberId}`
-  )
+// ARTICLE WISHLIST
+const articleWishlist = function () {
+  fetch(`/shanshan/wishlistArticle/findWishlistArticlesByMemberId`)
     .then((body) => body.json())
     .then((wishlistArticles) => {
       for (let article of wishlistArticles) {
@@ -221,10 +221,9 @@ const articleWishlist = function (memberId) {
     });
 };
 
-const productWishlist = function (memberId) {
-  fetch(
-    `/shanshan/wishlistProduct/findWishlistProductsByMemberId?memberId=${memberId}`
-  )
+// PRODUCT WISHLIST
+const productWishlist = function () {
+  fetch(`/shanshan/wishlistProduct/findWishlistProductsByMemberId`)
     .then((body) => body.json())
     .then((wishlistProducts) => {
       for (let product of wishlistProducts) {
@@ -235,44 +234,42 @@ const productWishlist = function (memberId) {
     });
 };
 
-// delete wishlist item
-// can i use this for post requests? how do i pass in information using post requests@@?
+window.onload = function () {
+  memberInfo();
+  productWishlist();
+  articleWishlist();
+  eventWishlist();
+};
+
+////////////////////////////////////////
+//////// BUTTON SORTING ///////
+
+// SORT BY PRODUCT
+sortByProductBtn.addEventListener("click", function () {
+  grouplist.innerHTML = "";
+  productWishlist();
+});
+
+// SORT BY ARTICLE
+sortByArticleBtn.addEventListener("click", function () {
+  grouplist.innerHTML = "";
+  articleWishlist();
+});
+
+// SORT BY EVENT
+sortByEventBtn.addEventListener("click", function () {
+  grouplist.innerHTML = "";
+  eventWishlist();
+});
+
+////////////////////////////////////////
+//////// DELETE WISHLIST ///////
+
 const deleteWishlist = function (wishlistType, wishlistId) {
   fetch(
-    `/shanshan/wishlist${wishlistType}/deleteWishlist${wishlistType}Id?=${wishlistId}`
+    `/shanshan/wishlist${wishlistType}/deleteWishlist${wishlistType}Id?wishlist${wishlistType}=${wishlistId}`
   );
 };
-
-// on load
-window.onload = function () {
-  // need to somehow get the memberId here
-  memberInfo();
-  productWishlist(1);
-  articleWishlist(1);
-  eventWishlist(1);
-};
-
-// button sorting
-sortByProductBtn.addEventListener("click", function (memberId) {
-  // this just appends to the original stuff
-  grouplist.innerHTML = "";
-  productWishlist(1);
-});
-
-sortByArticleBtn.addEventListener("click", function (memberId) {
-  grouplist.innerHTML = "";
-  articleWishlist(1);
-});
-
-sortByEventBtn.addEventListener("click", function (memberId) {
-  grouplist.innerHTML = "";
-  eventWishlist(1);
-});
-
-// delete
-// let heartProduct = document.querySelector(".heart-product");
-// let heartArticle = document.querySelector(".heart-article");
-// let heartEvent = document.querySelector(".heart-event");
 
 document.addEventListener("click", function (e) {
   console.log(e.target);

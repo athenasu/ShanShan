@@ -24,7 +24,7 @@ public class WishlistArticleController {
 	
 	@GetMapping("findWishlistArticlesByMemberId")
 	public List<WishlistArticleBO> findWishlistArticle (Integer memberId){
-		return wishlistService.findWishlistArticlesByMemberId(memberId);
+		return wishlistService.findWishlistArticlesByMemberId(1);
 	}
 	
 	@PostMapping("addWishlistArticle")

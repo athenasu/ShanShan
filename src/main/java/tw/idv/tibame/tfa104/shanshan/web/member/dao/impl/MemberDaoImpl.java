@@ -93,7 +93,7 @@ public class MemberDaoImpl implements MemberDao {
 	public Member update(byte[] file, Member member) {
 		Session session = sessionFactory.getCurrentSession();
 
-		Member tempMember = session.get(Member.class, 1); // just for testing, remember to change back!
+		Member tempMember = session.get(Member.class, member.getMemberId());
 		if (tempMember.getMemberName() != null && tempMember.getMemberName() != "") {
 			tempMember.setMemberName(member.getMemberName());
 		}

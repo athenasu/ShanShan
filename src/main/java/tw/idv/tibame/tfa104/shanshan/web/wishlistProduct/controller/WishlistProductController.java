@@ -25,7 +25,7 @@ public class WishlistProductController {
 	// so I'm using GetMapping. Will this be a problem? (have to check WishlistAritcle because that one is PostMapping)
 	@GetMapping("findWishlistProductsByMemberId")
 	public List<WishlistProductBO> findWishlistProductsByMemberId(Integer memberId){
-		return wishlistService.findWishlistProductsByMemberId(memberId);
+		return wishlistService.findWishlistProductsByMemberId(1);
 	}
 	
 	@PostMapping("deleteWishlistProduct")
