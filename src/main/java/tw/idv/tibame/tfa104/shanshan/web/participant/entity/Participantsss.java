@@ -13,7 +13,7 @@ import tw.idv.tibame.tfa104.shanshan.Core;
 
 @Entity
 @Table(name = "participant")
-public class Participant extends Core{
+public class Participantsss extends Core{
 	
 	private static final long serialVersionUID = 1L;
 	@Id

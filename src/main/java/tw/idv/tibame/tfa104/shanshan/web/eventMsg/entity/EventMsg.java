@@ -18,10 +18,10 @@ public class EventMsg {
 	private Integer eventMsgId;
 	
 	@Column(name = "member_id")
-	private Integer memberID;
+	private Integer memberId;
 	
 	@Column(name = "event_id")
-	private Integer eventID;
+	private Integer eventId;
 	
 	@Column(name = "msg_date")
 	private Timestamp msgDate;
@@ -40,20 +40,20 @@ public class EventMsg {
 		this.eventMsgId = eventMsgId;
 	}
 
-	public Integer getMemberID() {
-		return memberID;
+	public Integer getMemberId() {
+		return memberId;
 	}
 
-	public void setMemberID(Integer memberID) {
-		this.memberID = memberID;
+	public void setMemberId(Integer memberId) {
+		this.memberId = memberId;
 	}
 
-	public Integer getEventID() {
-		return eventID;
+	public Integer getEventId() {
+		return eventId;
 	}
 
-	public void setEventID(Integer eventID) {
-		this.eventID = eventID;
+	public void setEventId(Integer eventId) {
+		this.eventId = eventId;
 	}
 
 	public Timestamp getMsgDate() {
@@ -82,9 +82,9 @@ public class EventMsg {
 
 	@Override
 	public String toString() {
-		return "EventMsg [eventMsgId=" + eventMsgId + ", memberID=" + memberID + ", eventID=" + eventID + ", msgDate="
+		return "EventMsg [eventMsgId=" + eventMsgId + ", memberId=" + memberId + ", eventId=" + eventId + ", msgDate="
 				+ msgDate + ", msgContent=" + msgContent + ", msgStatus=" + msgStatus + "]";
 	}
-	
+
 
 }
