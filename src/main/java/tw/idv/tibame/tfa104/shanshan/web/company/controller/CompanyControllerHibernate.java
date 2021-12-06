@@ -21,7 +21,7 @@ public class CompanyControllerHibernate {
 	private CompanyServiecHibernate service;
 	
 	@GetMapping("findByPK")
-	public CompanyVO findByPK () {
+	public CompanyVO findByPK (Integer companyId) {
 		CompanyVO company = service.findByPK(1);
 		company.setPicStr(Base64.getEncoder().encodeToString(company.getCompanyBanner()));
 		return company;
@@ -37,15 +37,15 @@ public class CompanyControllerHibernate {
 		return service.findComByString(search);
 	}
 	
-	@PostMapping(path = "companyUpdate" , consumes = { MediaType.APPLICATION_JSON_VALUE}, produces = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(path = "companyUpdate" , consumes = { MediaType.APPLICATION_JSON_VALUE})
 	public CompanyVO companyUpdate(@RequestBody CompanyVO company) {
 		byte[] file = Base64.getDecoder().decode(company.getPicStr());
 		return service.update(file, company);
 	}
 	@PostMapping(path = "register" , consumes = {MediaType.APPLICATION_JSON_VALUE})
-	public Integer register(@RequestBody CompanyVO company) {
+	public CompanyVO register(@RequestBody CompanyVO company) {
 		System.out.println("in controller ");
-		int result = service.register(company);
-		return result;
+		byte[] file = Base64.getDecoder().decode(company.getPicStr());
+		return service.register(file, company);
 	}
 }

@@ -64,7 +64,7 @@ public class CompanyDAOHibernate_impl implements CompanyDAOHibernate {
 	}
 
 	@Override
-	public Integer register(byte[] file, CompanyVO company) {
+	public CompanyVO register(byte[] file, CompanyVO company) {
 		Session session = sessionFactory.getCurrentSession();
 		File file2 = new File("/src/main/webapp/company/company_imgs/presetBanner");
 		byte[] bytefile = null;
@@ -82,7 +82,7 @@ public class CompanyDAOHibernate_impl implements CompanyDAOHibernate {
 		company.setCompanyBanner(bytefile);
 		session.save(company);
 		System.out.println("add success");
-		return 1;
+		return company;
 	}
 
 
@@ -99,35 +99,15 @@ public class CompanyDAOHibernate_impl implements CompanyDAOHibernate {
 	public CompanyVO update(byte[] file, CompanyVO company) {
 		Session session = sessionFactory.getCurrentSession();
 		CompanyVO testcompany = session.get(CompanyVO.class, 8);
-		if(testcompany.getCompanyPassword() != null && testcompany.getCompanyPassword() != "") {
-			testcompany.setCompanyPassword(company.getCompanyPassword());
-		}
-		if(testcompany.getCompanyOwner() != null && testcompany.getCompanyOwner() != "") {
-			testcompany.setCompanyOwner(company.getCompanyOwner());
-		}
+//		if(testcompany.getCompanyEmail() != null && testcompany.getCompanyEmail() != "") {
+//			testcompany.setCompanyEmail(company.getCompanyEmail());			
+//		}
 		if(testcompany.getCompanyName() != null && testcompany.getCompanyName() != "") {
 			testcompany.setCompanyName(company.getCompanyName());
 		}
-		if(testcompany.getCompanyAddress() != null && testcompany.getCompanyAddress() != "") {
-			testcompany.setCompanyAddress(company.getCompanyAddress());
-		}
-		if(testcompany.getCompanyPhone() != null && testcompany.getCompanyPhone() != "") {
-			testcompany.setCompanyPhone(company.getCompanyPhone());
-		}
-		if(testcompany.getCompanyCell() != null && testcompany.getCompanyCell() != "") {
-			testcompany.setCompanyCell(company.getCompanyCell());
-		}
-		if(testcompany.getCompanyIntro() != null && testcompany.getCompanyIntro()!= "") {
-			testcompany.setCompanyIntro(company.getCompanyIntro());
-		}
-//		如果沒有給新圖就會更新失敗?
 		if(testcompany.getCompanyBanner() != null) {
 			testcompany.setCompanyBanner(file);
 		}
-		if(testcompany.getCompanyBanner() == null) {
-			testcompany.setCompanyBanner(file);
-		}
-		
 		return testcompany;
 	}
 

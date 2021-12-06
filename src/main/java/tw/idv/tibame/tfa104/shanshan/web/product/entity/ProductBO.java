@@ -52,8 +52,7 @@ public class ProductBO implements Serializable{
 	@Column(name = "status")
 	private Integer status;
 	
-	@Transient
-//	@Column(name = "productImg")
+	@Column(name = "productImg")
 	private byte[] productImg;
 	
 	@Transient
