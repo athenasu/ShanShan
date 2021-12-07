@@ -16,7 +16,7 @@ import tw.idv.tibame.tfa104.shanshan.web.wishlistEvent.entity.WishlistEvent;
 
 public interface EventService {
 	Integer addEvent(Event event);
-	Event updateEvent(Event event);
+	Integer updateEvent(Event event);
 	Event deleteEvent(Event event); //change eventStatus
 	List<Event> selectAll();
 	List<DetailEventBO> eventList();

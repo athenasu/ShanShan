@@ -36,47 +36,34 @@ public class Participant extends Core{
 	@Column(name = "participation")
 	private boolean participation;
 	
-	@Column(name = "join_date")
+	@Column(name = "join_date", updatable = false)
 	private Timestamp joinDate;
 	
 	@Column(name = "total_participants")
 	private Integer totalParticipants;
-	
-	public Participant(int partID, int eventID, int memberID, boolean experience, String phoneNumber,
-			boolean participation, Timestamp joinDate, int totalParticipants) {
-		super();
-		this.partId = partID;
-		this.eventId = eventID;
-		this.memberId = memberID;
-		this.experience = experience;
-		this.phoneNumber = phoneNumber;
-		this.participation = participation;
-		this.joinDate = joinDate;
-		this.totalParticipants = totalParticipants;
-	}
 
-	public int getPartID() {
+	public Integer getPartId() {
 		return partId;
 	}
 
-	public void setPartID(int partID) {
-		this.partId = partID;
+	public void setPartId(Integer partId) {
+		this.partId = partId;
 	}
 
-	public int getEventID() {
+	public Integer getEventId() {
 		return eventId;
 	}
 
-	public void setEventID(int eventID) {
-		this.eventId = eventID;
+	public void setEventId(Integer eventId) {
+		this.eventId = eventId;
 	}
 
-	public int getMemberID() {
+	public Integer getMemberId() {
 		return memberId;
 	}
 
-	public void setMemberID(int memberID) {
-		this.memberId = memberID;
+	public void setMemberId(Integer memberId) {
+		this.memberId = memberId;
 	}
 
 	public boolean isExperience() {
@@ -111,19 +98,25 @@ public class Participant extends Core{
 		this.joinDate = joinDate;
 	}
 
-	public int getTotalParticipants() {
+	public Integer getTotalParticipants() {
 		return totalParticipants;
 	}
 
-	public void setTotalParticipants(int totalParticipants) {
+	public void setTotalParticipants(Integer totalParticipants) {
 		this.totalParticipants = totalParticipants;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	@Override
 	public String toString() {
-		return "participant [partID=" + partId + ", eventID=" + eventId + ", memberID=" + memberId + ", experience="
+		return "Participant [partId=" + partId + ", eventId=" + eventId + ", memberId=" + memberId + ", experience="
 				+ experience + ", phoneNumber=" + phoneNumber + ", participation=" + participation + ", joinDate="
 				+ joinDate + ", totalParticipants=" + totalParticipants + "]";
 	}
+	
+
 }
 

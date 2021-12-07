@@ -20,4 +20,17 @@ public class ParticipantDAOImpl implements ParticipantDAO{
 		return 1;
 	}
 	
+	@Override
+	public Integer updateParticipant (Participant participant) {
+		Session session = sessionFactory.getCurrentSession();
+//		Participant tempParticipant = session.get(Participant.class, participant.getPartId());
+		Participant tempParticipant = new Participant();
+		
+		final Integer partId = participant.getPartId();
+		if(partId != null) {
+			tempParticipant.setPartId(partId);
+		}
+		session.update(participant);
+		return 1;
+	}
 }

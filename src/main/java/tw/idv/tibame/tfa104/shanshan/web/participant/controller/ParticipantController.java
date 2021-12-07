@@ -25,4 +25,9 @@ public class ParticipantController {
 		return participantService.addParticipant(participant);
 	}
 	
+	@CrossOrigin
+	@PostMapping(path = "updateParticipant", consumes = { MediaType.APPLICATION_JSON_VALUE })
+	public Integer updateParticipant(@RequestBody Participant participant) {
+		return participantService.updateParticipant(participant);
+	}
 }

@@ -34,7 +34,7 @@ public class EventServiceImpl implements EventService{
 	}
 
 	@Override
-	public Event updateEvent(Event event) {
+	public Integer updateEvent(Event event) {
 		return dao.updateEventById(event);
 	}
 

@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -40,13 +41,20 @@ public class EventDAOImpl implements EventDAO{
 	}
 	
 	@Override
-	public Event updateEventById(Event event) {
+	public Integer updateEventById(Event event) {
 		Session session = sessionFactory.getCurrentSession();
-		Event tempEvent = session.get(Event.class, event.getEventId());
+//		Event tempEvent = session.get(Event.class, event.getEventId());
 		
-		final Integer mountainID = event.getMountainId();
-		if (mountainID != null) {
-			tempEvent.setMountainId(mountainID);
+		Event tempEvent = new Event();
+		
+		final Integer eventId = event.getEventId();
+		if(eventId != null) {
+			tempEvent.setEventId(eventId);
+		}
+		
+		final Integer mountainId = event.getMountainId();
+		if (mountainId != null) {
+			tempEvent.setMountainId(mountainId);
 		}
 		
 		final String eventName = event.getEventName();
@@ -98,8 +106,9 @@ public class EventDAOImpl implements EventDAO{
 		if (eventStatus != null) {
 			tempEvent.setEventStatus(eventStatus);
 		}
-		
-		return tempEvent;
+
+		session.update(event);
+		return 1;
 	}
 	
 //	@Override

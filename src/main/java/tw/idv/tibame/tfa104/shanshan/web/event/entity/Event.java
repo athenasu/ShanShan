@@ -47,7 +47,7 @@ public class Event implements Serializable {
 	@Column(name = "event_start_date")
 	private Date eventStartDate;
 	
-	@Column(name = "event_post_date")
+	@Column(name = "event_post_date", updatable = false)
 	private Timestamp eventPostDate;
 	
 	@Column(name = "stay_type")
@@ -223,4 +223,6 @@ public class Event implements Serializable {
 				+ ", assemblingPlace=" + assemblingPlace + ", eventContent=" + eventContent + ", eventStatus="
 				+ eventStatus + ", eventPoints=" + eventPoints + ", eventCurPart=" + eventCurPart + "]";
 	}
+
+
 }

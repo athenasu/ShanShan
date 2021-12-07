@@ -6,4 +6,6 @@ public interface ParticipantDAO {
 
 	int addParticipant(Participant participant);
 
+	Integer updateParticipant(Participant participant);
+
 }

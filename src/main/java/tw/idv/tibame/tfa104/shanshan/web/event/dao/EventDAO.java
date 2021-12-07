@@ -16,7 +16,7 @@ import tw.idv.tibame.tfa104.shanshan.web.member.entity.Member;
 public interface EventDAO {
 
 	int addEvent(Event event);
-	Event updateEventById(Event event);
+	Integer updateEventById(Event event);
 	List<DetailEventBO> selectByEventId(Integer eventId);	
 	List<MemberEventBO> selectByMemberId(Integer memberId, Integer eventId);
 	List<MemberEventBO> selectByMemberId(Integer memberId);
@@ -29,5 +29,4 @@ public interface EventDAO {
 	List<ParEventBO> parEventByMember(Integer memberId);
 	List<PopularEventsMountainBO> popularMountains();
 	List<Member> parEventByEventId(Integer eventId);
-
 }

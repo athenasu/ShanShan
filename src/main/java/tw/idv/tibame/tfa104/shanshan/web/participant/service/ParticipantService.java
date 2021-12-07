@@ -6,4 +6,6 @@ public interface ParticipantService {
 
 	Integer addParticipant(Participant participant);
 
+	Integer updateParticipant(Participant participant);
+
 }

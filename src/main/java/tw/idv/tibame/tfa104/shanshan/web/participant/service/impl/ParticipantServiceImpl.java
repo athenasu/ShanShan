@@ -18,4 +18,9 @@ public class ParticipantServiceImpl implements ParticipantService{
 	public Integer addParticipant(Participant participant) {
 		return dao.addParticipant(participant);		
 	}
+	
+	@Override
+	public Integer updateParticipant(Participant participant) {
+		return dao.updateParticipant(participant);
+	}
 }

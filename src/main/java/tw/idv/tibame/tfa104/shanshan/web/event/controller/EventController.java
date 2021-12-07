@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,9 +36,9 @@ public class EventController{
 	private EventService eventService;
 	
 	@CrossOrigin
-	@PostMapping("updateEvent")
-	public Event updateEvent(@RequestBody Event event) {
-		return eventService.updateEvent(event);		
+	@PutMapping(path = "updateEvent", consumes = { MediaType.APPLICATION_JSON_VALUE })
+	public Integer updateEvent(@RequestBody Event event) {
+		return eventService.updateEvent(event);
 	}
 	
 	@CrossOrigin
