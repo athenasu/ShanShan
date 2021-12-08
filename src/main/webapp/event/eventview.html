@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
+    <script src="vendors/jquery/jquery-3.4.1.min.js"></script>
+    <link rel="shortcut icon" href="/img/favicon.png" />
+    <link rel="stylesheet" href="./css/header_footer.css" />
+    <link rel="stylesheet" href="./css/eventview.css" />
+    <script src="js/eventview.js"></script>
+    <script src="js/header.js"></script>
+    <script src="https://kit.fontawesome.com/2336c06c64.js" crossorigin="anonymous"></script>
+    <title>山山來此|瀏覽揪團</title>
+    <!-- 　　　　　　↑　可更換為自己的頁面名稱 -->
+</head>
+
+<body>
+    <header>
+        <div id="logo">
+            <a href="index.html"><img src="img/logo.png" class="img" /></a>
+        </div>
+        <nav id="navlist">
+            <ul>
+                <li><a href="#">找山友</a></li>
+                <li><a href="#">山友日誌</a></li>
+                <li><a href="#">攻山小物</a></li>
+                <li><a href="#">登山資訊</a></li>
+                <li><a href="#">會員中心</a></li>
+            </ul>
+        </nav>
+        <div id="memcheck">
+            <div id="ball"><i class="fas fa-bell"></i></div>
+            <div id="login"><a href="#">登入</a></div>
+            <div id="register"><a href="#">註冊</a></div>
+        </div>
+    </header>
+
+    <div class="event_view">
+        <!-- <h3 class="event_name">123123123</h3>
+        <div class="event_pic">
+            <img class="event_pic" src="#">
+        </div>
+        <div class="wish_report">
+            <button class="event_wish_btn">Like</button>
+            <button class="event_report_btn">Report</button>
+        </div>
+        <div class="event_detail">
+            <ul class="event_detail_left">
+                <li class="event_id">揪團編號：0000001</li>
+                <li class="mountain_district">活動地區：北部</li>
+                <li class="mountain_name">目標：金面山</li>
+                <li class="assembling_place">集合地點：台北車站</li>
+                <li class="difficulty">難度：非常簡單</li>
+                <li class="stay_type">住宿種類：當天來回</li>
+            </ul>
+            <ul class="event_detail_right">
+                <li class="event_days">活動天數：1</li>
+                <li class="event_deadline">截止日期：2021-12-25</li>
+                <li class="event_start_date">活動開始日期：2021-12-26</li>
+                <li class="max_num_of_people">人數上限：5</li>
+                <li class="event_cur_part">目前參加人數：1</li>
+                <li class="event_post_date">發文日期：2021-12-04 00:00:00</li>
+            </ul>
+
+        </div>
+        <div class="event_content">
+            <li>爬山爬山爬山爬山爬山爬山爬山爬山爬山爬山爬山爬山爬山
+                爬山爬山爬山爬山爬山爬山爬山爬山爬山爬山爬山爬山爬山
+
+                爬山爬山爬山爬山爬山爬山爬山爬山爬山爬山爬山爬山爬山
+            </li>
+        </div> -->
+    </div>
+    <div class="event_msg_block">
+        <div class="add_msg_block">
+            <input class="add_msg" type="text" placeholder="請輸入留言">
+            <button class="add_msg_btn">留言</button>
+        </div>
+        <div class="event_msg_list">
+            <!-- <ul class="event_msg">
+                <img class="member_pic" src="#">
+                <li class="member_name">Owen：
+                </li>
+                <li class="msg_content">一起來爬山</li>
+                <button class="msg_report_btn">Report</button>
+            </ul>
+            <ul class="event_msg">
+                <img class="member_pic" src="#">
+                <li class="member_name">Owen：
+                </li>
+                <li class="msg_content">一起來爬山</li>
+                <button class="msg_report_btn">Report</button>
+            </ul>
+            <ul class="event_msg">
+                <img class="member_pic" src="#">
+                <li class="member_name">Owen：
+                </li>
+                <li class="msg_content">一起來爬山</li>
+                <button class="msg_report_btn">Report</button>
+            </ul> -->
+        </div>
+    </div>
+    <div class="lightbox-target" id="join_event">
+        <div class="join_content">
+            <p>是否有經驗：</p>
+            <select type="ratio" class="experience" id="experience">
+                <option class="experience" id="experience" value="false">沒有經驗</option>
+                <option class="experience" id="experience" value="true">有經驗</option>
+            </select>
+            <p>是否參加：</p>
+            <select class="participation" id="participation">
+                <option class="participation" id="participation" value="true">參加</option>
+                <option class="participation" id="participation" value="false">不參加</option>
+            </select>
+            <p>連絡電話：</p>
+            <input type="text" class="phone_number" name="phone_number">
+            <p>參加人數</p>
+            <input type="text" class="total_participants" name="total_participants">
+            <button class="send_participants_btn">送出</button>
+            <button class="cancel_participate">返回</button>
+        </div>
+    </div>
+    <!-- <footer>
+        <h4>Copyright <i class="far fa-copyright"></i>2021 G3 SANSAN</h4>
+    </footer> -->
+
+</body>
+
+</html>

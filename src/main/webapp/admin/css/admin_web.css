@@ -1,0 +1,645 @@
+* {
+    box-sizing: border-box;
+
+  }
+hr {
+    padding:0;
+    margin:0;
+    color: rgb(126, 168, 190, 100%);
+}
+body{
+    overflow-y:hidden;
+}
+h1{
+    margin-left:3%;
+}
+
+/*  ======================== NAV BLOCK ========================  */
+nav.header {
+    height: 100px;
+    display:flex;
+    background-color: rgb(126, 168, 190, 100%);
+}
+div.logo{
+    width: 20%;
+    height:100px;
+    /* border:solid; */
+    text-align: center;
+    background-color:rgb(40, 83, 107, 100%);
+}
+a.logo_img{
+    display:block;
+    background:url("./img/logo4.png") no-repeat;
+}
+div.login{
+    display:flex;
+}
+div.admin_profile{
+    width:60px;
+    height:50px;
+    border:solid 1px;
+    border-color:white;
+    background-color: none;;
+    border-radius:100%;
+}
+.login div.admin_name{
+    display:flex;
+    font-size: 25px;
+    text-align: center;
+}
+div.login{
+    display:flex;
+    position:absolute;
+    right:1%;
+}
+button.log_btn{
+    font-size:20px;
+    display:inline-block;
+}
+
+
+/* ======================== SEARCH BAR ======================== */
+div.search{
+    margin-left:25%;
+
+}
+input#search{
+    position: absolute;
+    display:inline-block;
+    left:23%;
+    top: 50px;
+    width: 320px;
+    height: 35px;
+    background: rgb(214, 228, 235);
+    border: none;
+    font-size: 10pt;
+
+    color: #262626;
+    padding-left: 45px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50px;     
+    -webkit-transition: background .55s ease;
+    -moz-transition: background .55s ease;
+    -ms-transition: background .55s ease;
+    -o-transition: background .55s ease;
+    transition: background .55s ease;
+}
+input#search:hover, .search input#search:focus, .search input#search:active{
+    outline:none;
+    background: #ebecf1;
+}
+button.icon{
+    position: absolute;
+    display:inline-block;
+    left:23%;
+    top: 50px;
+    border-top-left-radius: 50%;
+    border-bottom-left-radius: 50%;
+  
+    border: none;
+    background: rgb(214, 228, 235);
+    height: 35px;
+    width: 35px;
+    color: #1a4e81;
+    font-size: 15pt;
+  }
+
+
+/*  ======================== LEFT SIDEBAR ========================  */
+div.sidebar {
+    width: 20%;
+    height:980px;
+    text-align: center;
+    float:left;
+    margin:0;
+    background-color: rgb(40, 83, 107, 100%);
+}
+button.admin_info{
+    height:12%;
+    width:100%;
+    font-size:25px;
+    box-sizing:inline-block;
+    margin-bottom:20px;
+    margin-top: 35px;
+    border:none;
+    background-color: rgb(40, 83, 107, 100%);
+    color:lightgray;
+    cursor:pointer;
+}
+button.admin_info:hover{
+    background-color: rgb(116, 155, 175);
+}
+button.report_management{
+    /* border:solid;
+    border-color:blue; */
+    height:12%;
+    width:100%;
+    font-size:25px;
+    box-sizing:inline-block;
+    margin-bottom:20px;
+    margin-top: 35px;
+    border:none;
+    background-color: rgb(40, 83, 107, 100%);
+    color:lightgray;
+    cursor:pointer;
+}
+button.report_management:hover{
+    background-color: rgb(116, 155, 175);
+}
+button.store_management{
+    /* border:solid;
+    border-color:blue; */
+    height:12%;
+    width:100%;
+    font-size:25px;
+    box-sizing:inline-block;
+    margin-bottom:20px;
+    margin-top: 35px;
+    border:none;
+    background-color: rgb(40, 83, 107, 100%);
+    color:lightgray;
+    cursor:pointer;
+}
+button.store_management:hover{
+    background-color: rgb(116, 155, 175);
+}
+button.member_management{
+    /* border:solid;
+    border-color:blue; */
+    height:12%;
+    width:100%;
+    font-size:25px;
+    box-sizing:inline-block;
+    margin-bottom:20px;
+    margin-top: 35px;
+    border:none;
+    background-color: rgb(40, 83, 107, 100%);
+    color:lightgray;
+    cursor:pointer;
+}
+button.member_management:hover{
+    background-color: rgb(116, 155, 175);
+}
+
+/*=================================================================================================================*/
+/* ================================================= CASE MANAGE ================================================= */
+/*=================================================================================================================*/
+
+/*  ======================== CASE TABS ========================  */
+ul.case_block{
+    /* border:solid;
+    border-color:blueviolet; */
+    display:inline-block;
+    height:3%;
+    margin-top:0;
+}
+select.case_status{
+    margin-left:0;
+    height:30px;
+    width:100px;
+}
+div.tab_container{
+   margin-left:10px;
+   display:inline-block;
+   height:35px;
+}
+.tab_container li,
+.tab_container li:before {
+    cursor: default;
+    z-index: 1;
+    position: relative;
+    border: 1px solid #aaa;
+    border-bottom: 0;
+    transform: skewX(25deg);
+    float: left;
+    height: 100%;
+    margin: 10px 0 0 12px;
+    padding: 0 15px;
+    width: 160px;
+    border-radius: 5px 5px 0 0;
+    box-shadow: inset -1px 1px 0 rgba(255,255,255,.5);
+    background: #ddd;
+}
+
+.tab_container li:nth-child(1) { z-index: 7 }
+.tab_container li:nth-child(2) { z-index: 6 }
+.tab_container li:nth-child(3) { z-index: 5 }
+.tab_container li:nth-child(4) { z-index: 4 }
+.tab_container li:nth-child(5) { z-index: 3 }
+.tab_container li:nth-child(6) { z-index: 2 }
+.tab_container li:nth-child(7) { z-index: 1 }
+
+.tab_container li.case_number.-active,
+.tab_container li.case_number.-active:before {
+    z-index: 9 !important;
+    background: rgb(194 148 138);
+    height: 100%;
+    margin-bottom: -1px;
+    border-color: #888;
+}
+.tab_container li:before {
+    content: '';
+    position: absolute;
+    left: -10%;
+    top: -2%;
+    transform: skewX(140deg);
+    border-right: 0;
+    margin: 0;
+    padding: 0;
+    width: 30px;
+    border-radius: 5px 0 0 0;
+    box-shadow: inset 1px 1px 0 rgba(255,255,255,.5);
+}
+
+.tab_container li a {
+    text-decoration:none;
+    z-index: 3;
+    position: absolute;
+    right: 10px;
+    top: 0px;
+    font-size: 15px;
+    color: #777;
+    width: 15px;
+    height: 15px;
+    line-height: 16px;
+    text-align: center;
+    transform: skewX(-25deg);
+    border-radius: 100%;
+}
+.tab_container li a:hover {
+    color: #fff;
+    background-color: rgb(119, 45, 45);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.4);
+}
+.tab_container li a:active { 
+    background-color: #d83240 
+}
+.tab_container li span {
+    display: block;
+    width: 98%;
+    height:98%;
+    line-height: 30px;
+    transform: skewX(-25deg);
+    white-space: nowrap;
+    overflow: hidden;
+}
+.tab_container li span:hover {
+    color:white;
+}
+
+.tab_container li span:after {
+    content: '';
+    width: 25px;
+    height: 28px;
+    position: absolute;
+    right: 0;
+    top: 1px;
+    background: -webkit-linear-gradient(left, hsla(0,0%,87%,0) 0%,hsla(0,0%,87%,1) 77%,hsla(0,0%,87%,1) 100%);
+}
+.tab_container li.case_number.-active span:after { 
+   background: rgb(194 148 138);
+    /* background: -webkit-linear-gradient(left,  hsla(0,0%,93%,0) 0%,hsla(0,0%,93%,1) 77%,hsla(0,0%,93%,1) 100%)  */
+}
+/*  ======================== STORE TABS ========================  */
+ul.store_tabs{
+    box-sizing:inline-block;
+    background-color: rgb(126, 168, 190, 100%);
+    /* font-size: 0px; */
+}
+li.store_verify, li.order_info, li.statistics{
+    display:inline-block;
+    width:30%;
+    height:100%;
+    font-size:24px;
+    text-align: center;
+    margin-left: 2.5%;
+    border:none;
+    background-color: rgb(126, 168, 190, 100%);
+    color:black;
+    cursor: pointer;
+}
+li.store_verify:hover, li.order_info:hover, li.statistics:hover{
+    background-color: rgb(126, 168, 190, 100%);
+}
+/*  ======================== STORE VERIFY STATUS  ======================== */
+div.store_manage_body{
+    background-color: rgb(126, 168, 190, 100%);
+        /* position:fixed;
+    overflow:hidden; */
+    margin-bottom:75%;
+    margin-left: 0%;
+    /* margin-right:2%;
+    border:solid;
+    border-color:grey; 
+    overflow: scroll; */
+    height:980px;
+}
+/*  ======================== STORE VERIFY BODY  ========================   */
+
+/*  ======================== CASE MANAGE BODY ========================  */
+div.menu {    
+    margin-left: 0%;
+    /* margin-right:2%;
+    border:solid;
+    border-color:grey;  */
+    overflow: auto;
+    height:20%;
+    background-color: rgb(126, 168, 190, 100%);
+}
+
+/* div.case_manage_body-closed{
+    display:none;
+} */
+main{
+    height:980px;
+    background-color: rgb(126, 168, 190, 100%);
+}
+div.case_content{
+    background-color: rgb(126, 168, 190, 100%);
+}
+
+div.case_info_block{
+    width: 49%;
+    height:300px;
+    border:solid 1px;
+    border-color:black;
+    margin-left:1%;
+    margin-top:1%;
+    /* float:left; */
+    background-color:white;
+    border-radius:10px;
+    overflow:hidden;
+    font-size:23px;
+    display:inline-block;
+}
+div.case_info_title{
+    background-color: rgb(232, 221, 217);
+    height:51px;
+    font-size: 25px;
+}
+div.operating_area_block{
+    border:solid 1px;
+    border-color:black;
+    box-sizing: inline-block;
+    width: 49%;
+    height:300px;
+    margin-top:1%;
+    margin-left:0.2%;
+    background-color:white;
+    border-radius:10px;
+    overflow:hidden;
+    font-size:23px;
+    display:inline-block;
+}
+div.operating_area_title{
+    background-color: rgb(232, 221, 217);
+    height:50px;
+    font-size: 25px;
+}
+textarea.case_description{
+    display:block;
+    height:130px;
+    width:96%;
+    margin-left:2%;
+    resize:none;
+}
+button.send_disposal_btn{
+    display:inline-block;
+    margin-left:45%;
+    background-color:lightgrey;
+}
+div.case_ref_block{
+    /* display:inline-block; */
+    width: 98.5%;
+    height:410px;
+    border:solid 1px;
+    border-color:black;
+    margin-left:15px;
+    margin-bottom:10px;
+    margin-top:10px;
+    clear:both; 
+    background-color:white;
+    border-radius:10px;
+    overflow:hidden;
+}
+div.case_ref_title{
+    background-color: rgb(232, 221, 217);
+    height:50px;
+    font-size: 25px;
+}
+/*=======================================================================================================================*/
+/* ===================================================== CASE LIST ===================================================== */
+/*=======================================================================================================================*/
+div.case_list_body{
+    /* position:fixed;
+    overflow:hidden; */
+    margin-bottom:75%;
+    margin-left: 0%;
+    /* margin-right:2%;
+    border:solid;
+    border-color:grey;  */
+    overflow: scroll;
+    height:980px;
+    background-color: rgb(126, 168, 190, 100%);
+}
+div.case_list_body-closed{
+    display:none;
+}
+div.case_list_display{
+    display:inline-block;
+    border:solid 1px;
+    margin-top:0.5%;
+    height:5%;
+    width:90%;
+    margin-left:3.5%;
+    font-size: 16px;
+}
+div.case_number{
+    display:inline-block;
+    width:5%;
+    margin-left:0.5%;
+
+}
+div.case_content{
+    display:inline-block;
+    margin-left:1%;
+    width:78%;
+
+}
+div.case_status{
+    display:inline-block;
+
+}
+div.case_create_date{
+    display:inline-block;
+    margin-left:0.5%;
+}
+
+/*=======================================================================================================================*/
+/* ================================================= ADMIN INFORMATION ================================================= */
+/*=======================================================================================================================*/
+div.admin_information_body {
+    margin-bottom:75%;
+    margin-left: 20%;
+    /* margin-right:2%;
+    border:solid;
+    border-color:grey;  */
+    overflow: auto;
+    height:980px;
+    background-color: rgb(126, 168, 190, 100%);
+}
+div.admin_information_body-closed{
+    display:none;
+}
+h3{
+    display:absolute;
+    margin-left:15%;
+    border:solid 1px;
+    display:inline-block;
+}
+
+div.admin_display{
+    display:inline-block;
+    border:solid 1px;
+    margin-top:0.5%;
+    height:10%;
+    width:80%;
+    margin-left:10%;
+}
+/*  ======================== ADMIN NAME ========================  */
+div.admin_name{
+    display:inline-block;
+    margin-left:5%;
+}
+
+/*  ======================== ADMIN ACCOUNT ========================  */
+div.admin_account{
+    display:inline-block;
+    margin-left:5%;
+}
+
+/*  ======================== STATUS ========================  */
+div.admin_account_status{
+    display:inline-block;
+    margin-left:5%;
+}
+.status_slide {
+    width: 80px;
+    height: 26px;
+    background: rgb(85, 128, 153);
+    margin-left:10%;
+    position: relative;
+    display:inline-block;
+    border-radius: 50px;
+    box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,0.2);
+}
+
+.status_slide:after {
+    content: 'OFF';
+    color: red;
+    position: absolute;
+    right: 10px;
+    z-index: 0;
+    font: 12px/26px Arial, sans-serif;
+    font-weight: bold;
+    text-shadow: 1px 1px 0px rgba(255,255,255,.15);
+}
+
+.status_slide:before{
+    content: 'ON';
+    color: activeColor;
+    position: absolute;
+    left: 10px;
+    z-index: 0;
+    font: 12px/26px Arial, sans-serif;
+    font-weight: bold;
+}
+    
+label.slide {
+    display: block;
+    width: 34px;
+    height: 20px;
+    cursor: pointer;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    z-index: 1;
+    background: #fcfff4;
+    background: linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+    border-radius: 50px;
+    transition: all 0.4s ease;
+    box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.3);
+}
+    
+input[type=checkbox] {
+    visibility: hidden;
+}
+input[type=checkbox]:checked + label {
+    left: 43px;
+}  
+  
+
+/*========================================================================================================================*/
+/* ================================================= VERIFY APPLICATION ================================================= */
+/*========================================================================================================================*/
+div.verify_application_body{
+    margin-bottom:75%;
+    margin-left: 20%;
+    /* margin-right:2%;
+    border:solid;
+    border-color:grey;  */
+    overflow: auto;
+    height:980px;
+    background-color: rgb(126, 168, 190, 100%);  
+}
+div.verify_application_body-closed{
+    display:none;
+}
+div.sv_body{
+    /* position:fixed;
+    overflow:hidden; */
+    margin-bottom:75%;
+    margin-left: 0%;
+    /* margin-right:2%;
+    border:solid;
+    border-color:grey;  */
+    overflow: scroll;
+    height:980px;
+    background-color: rgb(126, 168, 190, 100%);
+}
+div.sv_display{
+    display:inline-block;
+    border:solid 1px;
+    margin-top:0.5%;
+    height:5%;
+    width:90%;
+    margin-left:3.5%;
+    font-size: 16px;
+    border-radius: 10px;
+}
+div.store_name{
+    display:inline-block;
+    width:5%;
+    margin-left:0.5%;
+    top: 50px;
+
+}
+/* div.sv_content{
+    display:inline-block;
+    margin-left:1%;
+    width:78%;
+
+} */
+div.sv_status{
+    display:inline-block;
+    margin-left: 1%;
+
+}
+div.sv_create_date{
+    display:inline-block;
+    margin-left:0.5%;
+}
+/*===================================================================================================================*/
+/* ================================================= MEMBER MANAGE ================================================= */
+/*===================================================================================================================*/

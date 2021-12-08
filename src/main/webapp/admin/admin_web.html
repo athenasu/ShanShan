@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" href="./css/admin_web.css">
+
+</head>
+
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
+    <script src=".\js\jquery-3.6.0.min.js"></script>
+    <script src="./js/admin_web.js"></script>
+
+    <nav class="header">
+        <div class="logo">
+            <a href="#"><img src="./img/unnamed.jpeg" width="100" height="100"></a>
+        </div>
+        <div class="search">
+            <input class="search_bar" type="text" name="search" id="search" placeholder="搜尋">
+            <button class="icon"><i class="fa fa-search"></i></button>
+        </div>
+        <div class="login">
+            <div class="admin_profile"></div>
+            <div class="admin_name"> admin_name </div>
+            <button class="log_btn"><i class="fa fa-sign-out-alt"></i></button>
+        </div>
+    </nav>
+    <hr>
+    <div class="sidebar">
+        <button class="admin_info" href="#">Admin Information</button>
+        <button class="report_management" href="#">Case Manage</button><br>
+        <button class="store_management" href="#">Store Manage</button><br>
+        <!-- <button class="member_management" href="#">Member Manage</button><br> -->
+    </div>
+    <!-- TAB MENU -->
+    <div class="menu" name="menu">
+        <!-- CASE TABS -->
+        <!-- <ul class="case_block">
+            <select class="case_status">
+                <option>NEW</option>
+                <option>WAITING</option>
+                <option>UPDATE</option>
+                <option>DONE</option>
+            </select>
+            <div class="tab_container">
+                <li class="case_number">
+                    <span data-target="case" class="tab">Case Number </span>
+                    <a class="tab_close" href="#">x</a>
+                </li>
+                <li class="case_number">
+                    <span data-target="case" class="tab">Case Number </span>
+                    <a class="tab_close" href="#">x</a>
+                </li>
+                <li class="case_number">
+                    <span data-target="case" class="tab">Case Number </span>
+                    <a class="tab_close" href="#">x</a>
+                </li>
+                <li class="case_number">
+                    <span data-target="case" class="tab">Case Number </span>
+                    <a class="tab_close" href="#">x</a>
+                </li>
+            </div>
+        </ul> -->
+
+        <!-- Store TABS -->
+        <ul class="store_tabs">
+            <li class="store_verify" href="#store_verify" role="tab" data-toggle="tab">Store Verify</li>
+            <li class="order_info" href="#order_info" role="tab" data-toggle="tab">Order Info</li>
+            <li class="statistics" href="#statistics" role="tab" data-toggle="tab">Statistics</li>
+        </ul>        
+    </div>
+    <hr>
+    <main>
+        <!-- 首頁資訊 -->
+        <!-- <div class="admin_home">
+
+        </div> -->
+
+        <!-- 管理者資訊 -->
+        <!-- <div class="admin_information_body" name="admin_information">
+            <h1>Admin Information</h1>
+            <div class="admin_display">
+                <h3>Admin 1 <span class="entypo-down-open"></span></h3>
+                <div class="admin_account">帳號：</div>
+                <div class="admin_name">姓名：</div>
+                <div class="admin_account_status">帳號狀態：</div>
+                <div class="status_slide">
+                    <input type="checkbox" value="None" id="status_slide" name="check" checked />
+                    <label class="slide" for="status_slide"></label>
+                </div>
+            </div>
+            <div class="admin_display">
+                <h3>Admin 2 <span class="entypo-down-open"></span></h3>
+                <div class="admin_account">帳號：</div>
+                <div class="admin_name">姓名：</div>
+                <div class="admin_account_status">帳號狀態：</div>
+                <div class="status_slide">
+                    <input type="checkbox" value="None" id="status_slide" name="check" checked />
+                    <label class="slide" for="status_slide"></label>
+                </div>
+            </div>
+            <div class="admin_display">
+                <h3>Admin 3 <span class="entypo-down-open"></span></h3>
+                <div class="admin_account">帳號：</div>
+                <div class="admin_name">姓名：</div>
+                <div class="admin_account_status">帳號狀態：</div>
+                <div class="status_slide">
+                    <input type="checkbox" value="None" id="status_slide" name="check" checked />
+                    <label class="slide" for="status_slide"></label>
+                </div>
+            </div>
+            <div class="admin_display">
+                <h3>Admin 4 <span class="entypo-down-open"></span></h3>
+                <div class="admin_account">帳號：</div>
+                <div class="admin_name">姓名：</div>
+                <div class="admin_account_status">帳號狀態：</div>
+                <div class="status_slide">
+                    <input type="checkbox" value="None" id="status_slide" name="check" checked />
+                    <label class="slide" for="status_slide"></label>
+                </div>
+            </div>
+            <div class="admin_display">
+                <h3>Admin 5 <span class="entypo-down-open"></span></h3>
+                <div class="admin_account">帳號：</div>
+                <div class="admin_name">姓名：</div>
+                <div class="admin_account_status">帳號狀態：</div>
+                <div class="status_slide">
+                    <input type="checkbox" value="None" id="status_slide" name="check" checked />
+                    <label class="slide" for="status_slide"></label>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- 案件列表 -->
+        <!-- <div class="case_list_body">
+                <h1>New Cases</h1>
+                <div class="case_list_display">
+                    <div class="case_number"><a href="#" target="">123456</a></div>
+                    <div class="case_content">case content</div>
+                    <div class="case_status">NEW</div>
+                    <div class="case_create_date">2021.10.30 00:00:00</div>
+                </div>
+                <div class="case_list_display">
+                    <div class="case_number"><a href="#" target="">123456</a></div>
+                    <div class="case_content">case content</div>
+                    <div class="case_status">NEW</div>
+                    <div class="case_create_date">2021.10.30 00:00:00</div>
+                </div>
+                <div class="case_list_display">
+                    <div class="case_number"><a href="#" target="">123456</a></div>
+                    <div class="case_content">case content</div>
+                    <div class="case_status">NEW</div>
+                    <div class="case_create_date">2021.10.30 00:00:00</div>
+                </div>
+                <div class="case_list_display">
+                    <div class="case_number"><a href="#" target="">123456</a></div>
+                    <div class="case_content">case content</div>
+                    <div class="case_status">NEW</div>
+                    <div class="case_create_date">2021.10.30 00:00:00</div>
+                </div>
+                <div class="case_list_display">
+                    <div class="case_number"><a href="#" target="">123456</a></div>
+                    <div class="case_content">case content</div>
+                    <div class="case_status">NEW</div>
+                    <div class="case_create_date">2021.10.30 00:00:00</div>
+                </div>
+                <div class="case_list_display">
+                    <div class="case_number"><a href="#" target="">123456</a></div>
+                    <div class="case_content">case content</div>
+                    <div class="case_status">NEW</div>
+                    <div class="case_create_date">2021.10.30 00:00:00</div>
+                </div>
+                <div class="case_list_display">
+                    <div class="case_number"><a href="#" target="">123456</a></div>
+                    <div class="case_content">case content</div>
+                    <div class="case_status">NEW</div>
+                    <div class="case_create_date">2021.10.30 00:00:00</div>
+                </div>
+                <div class="case_list_display">
+                    <div class="case_number"><a href="#" target="">5555555</a></div>
+                    <div class="case_content">case content</div>
+                    <div class="case_status">NEW</div>
+                    <div class="case_create_date">2021.10.30 00:00:00</div>
+                </div>
+            </div> -->
+
+        <!-- 案件內容 -->
+        <!-- <div class="case_content">
+            <div class="case_info_block">
+                <div class="case_info_title">Case Information</div>
+                <ul>
+                    <li>檢舉編號：</li>
+                    <li>檢舉原因：</li>
+                    <li>檢舉人：</li>
+                    <li>案件狀態：</li>
+                    <li>案件開立時間：</li>
+                    <li>案件完成時間：</li>
+                </ul>
+            </div>
+            <div class="operating_area_block">
+                <div class="operating_area_title">Respond</div>
+                <div>
+                    <li>簡略敘述：</li>
+                    <textarea class="case_description"></textarea>
+                    <div>處置：
+                        <input class="report_denied" name="casae_disposal" type="radio" id="report_denied"
+                            check="checked">
+                        <label for="report_denied">上架</label>
+                        <input class="report_accepted" name="casae_disposal" type="radio" id="report_accepted">
+                        <label for="report_accepted">下架</label>
+                    </div>
+                    <button class="send_disposal_btn">送出處置</button>
+                </div>
+            </div>
+            <div class="case_ref_block">
+                <div class="case_ref_title">Reference</div>
+            </div>
+        </div> -->
+
+        <!-- 商家管理 -->
+        <!-- <div class="store_manage_body" name="store_manage_body">
+            <div class="sv_selector">
+                <select class="svs_container">
+                    <option>NEW</option>
+                    <option>WAITING</option>
+                    <option>DONE</option>
+                </select>
+            </div>
+
+            <div class="sv_body">
+                <h1>New</h1>
+                <div class="sv_display">
+                    <div class="sv_status">NEW</div>
+                    <div class="store_name">山山</div>
+                    <div class="sv_create_date">2021.11.11 00:00:00</div>
+                    <button class="sv_detail">詳情</button>
+                </div>
+            </div>
+        </div> -->
+
+
+    </main>
+</body>
+
+</html>

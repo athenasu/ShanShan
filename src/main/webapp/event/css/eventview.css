@@ -1,0 +1,180 @@
+* {
+    box-sizing: border-box;
+  }
+body {
+    margin: 0;
+    padding: 0;
+    height:100%;
+    width: 100%;
+    color: rgb(45, 75, 77);
+}
+div.event_view{
+    border:solid red;
+    margin-top: 10%;
+    margin-left:20%;
+    height: 1000px;
+    width: 60%;
+    
+}
+div.wish_report{
+    border:solid indigo;
+    margin-top: 0.5%;
+    height:5%
+}
+div.event_pic{
+    border:solid black;
+    margin-top: 0.5%;
+    height:30%;
+}
+img.event_pic{
+    display:inline-block;
+    overflow:hidden;
+    object-fit: fill;
+    height:100%;
+    margin-left: 30%;
+}
+div.event_detail{
+    border:solid blue;
+    margin-top: 0.5%;
+    height:20%;
+}
+
+ul.event_detail_left{
+    border:lightseagreen solid;
+    display: inline-block;
+    width:48%;
+    height:80%;
+    margin-left: 1%;
+}
+
+ul.event_detail_right{
+    border:lightseagreen solid;
+    display: inline-block;
+    width:48%;
+    height:80%;
+    margin-left: 1%;
+}
+select.north_mountain, select.mid_mountain, select.south_mountain, select.east_mountain, select.other_mountain{
+    display: none;
+}
+select.north_mountain.-on, select.mid_mountain.-on, select.south_mountain.-on, select.east_mountain.-on, select.other_mountain.-on{
+    display: inline-block;
+}
+
+div.event_content{
+    border:solid yellow;
+    margin-top: 0.5%;
+    height:30%;
+}
+div.event_msg{
+    border:solid green;
+    margin-top: 0.5%;
+}
+button.event_wish_btn{
+    display:inline-block;
+    margin-left: 85%;
+    width:5%;
+}
+.fas fa-heart{
+    visibility: visible;
+}
+button.event_report_btn{
+    display:inline-block;
+    margin-left:1%;
+    width:5%;
+}
+div.event_msg_block{
+    border:solid lightcoral;
+    margin-top: 0.5%;
+    margin-left:20%;
+    height:100%;
+    width:60%;
+}
+
+
+div.add_msg_block{
+    border:solid lightslategrey;
+    width:80%;
+    height:100px;
+    margin-left: 10%;
+}
+input.add_msg{
+    display:inline-block;
+    width:90%;
+}
+button.add_msg{
+
+}
+div.event_msg_list{
+    border:mediumaquamarine solid;
+    width:80%;
+    margin-top:1%;
+    margin-left: 10%;
+}
+ul.event_msg{
+    display:block;
+    border:solid red;
+    height: 55px;
+}
+img.member_pic{
+    display:inline-block;
+    border:solid blue;
+    border-radius: 50%;
+    height:50px;
+    width:50px;
+    margin:auto;
+ 
+}
+li.member_name{
+    display:inline-block;
+
+}
+li.msg_content{
+    display:inline-block;
+}
+
+button.back_btn{
+    display:inline;
+    margin-top: 2.5%;
+    margin-left: 45%;
+}
+button.edit_btn{
+
+}
+.-none{
+    display: none;
+}
+
+
+input.event_name, input.event_days,input.assembling_place, input.event_deadline, input.event_start_date, input.max_num_of_people, input.min_num_of_people{
+    border:0;
+    outline: none;
+}
+
+input.event_name.-on, input.event_days.-on,input.assembling_place.-on, input.event_deadline.-on, input.event_start_date.-on, input.max_num_of_people.-on, input.min_num_of_people.-on{
+    outline:solid grey 0.01rem;
+}
+
+textarea.event_content{
+    display:inline-block;
+    resize: none;
+    width: 100%;
+    height:100%;
+}
+.lightbox-target{
+    display:none;
+}
+.lightbox-target.-on{
+    position:fixed;
+    display:block;
+    background-color: coral;
+    border:solid black;
+    border-radius: 15px;
+    top:35%;
+    left:35%;
+    width:500px;
+    height:400px;
+}
+select.experience{
+    display:inline-block;
+}

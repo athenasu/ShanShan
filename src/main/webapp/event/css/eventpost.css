@@ -1,0 +1,59 @@
+* {
+    box-sizing: border-box;
+  }
+html,body{
+    height: 100%;
+}
+span{
+    display:block;
+    margin-left:35%;
+}
+div.post_event{
+    margin-top: 10%;
+}
+
+div.post_event{
+    border: solid red;
+    margin-top: 10%;
+    margin-left: 10%;
+    width: 80%;
+    height: 100%;
+}
+
+div.mountain_pic{
+    border: solid blue;
+    margin-left: 20%;
+    width:60%;
+    height: 60%;
+}
+img.mountain_pic{
+    border-radius: 15px;
+    overflow: hidden;
+    object-fit: fill;
+}
+div.name_event, div.event_detail, div.event_content, div.event_post_btn{
+    border: solid green;
+    margin-left: 20%;
+    margin-top:1%;
+    width:60%;
+}
+select.north_mountain, select.mid_mountain, select.south_mountain, select.east_mountain, select.other_mountain{
+    display: none;
+}
+select.north_mountain.-on, select.mid_mountain.-on, select.south_mountain.-on, select.east_mountain.-on, select.other_mountain.-on{
+    display: inline-block;
+}
+
+textarea.event_content{
+    display:inline;
+    resize: none;
+    width:100%;
+    height:100%;
+}
+.-none{
+    display:none;
+}
+
+input.event_name, input.event_days, input.event_deadline, input.event_start_date, input.max_num_of_people, input.min_num_of_people{
+outline: none;
+}

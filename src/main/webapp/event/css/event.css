@@ -1,0 +1,130 @@
+* {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    color: rgb(45, 75, 77);
+  }
+  /*====================== MAIN ======================*/
+  div.district_block{
+    display: flex;
+    margin-top: 10%;
+
+  }
+
+  div.north_area, div.mid_area, div.south_area, div.east_area, div.other_area{
+    margin: auto;
+    border:solid red;
+    font-size: 50px;
+  }
+
+  /*====================== Search bar ======================*/
+  div.search_block{
+    margin-top: 1%;
+    margin-left: 25%;
+
+}
+input#search{
+    display:inline-block;
+    width: 50%;
+    height: 10%;
+    background: rgb(214, 228, 235);
+    border: none;
+    font-size: 25px;
+
+    color: #262626;
+    padding-left: 45px;
+    -webkit-border-left-radius: 10px;
+    -moz-border-left-radius: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;   
+    -webkit-transition: background .55s ease;
+    -moz-transition: background .55s ease;
+    -ms-transition: background .55s ease;
+    -o-transition: background .55s ease;
+    transition: background .55s ease;
+}
+input#search:hover, .search input#search:focus, .search input#search:active{
+    outline:none;
+    background: #ebecf1;
+}
+button.icon{
+    display:inline-block;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+  
+    border: none;
+    background: rgb(214, 228, 235);
+    height: 28px;
+    width: 35px;
+    color: #1a4e81;
+    font-size: 20pt;
+  }
+
+  button.create_event{
+    display:inline-block;
+    margin-left: 25%;
+    font-size: 20px;
+  }
+  /*====================== Slide Show ======================*/
+div.slidshow_container{
+  display: relative;
+  border: solid red;
+  height: 250px;
+  margin-top: 1%;
+
+}
+
+div.event_slide{
+  border: solid blue;
+  display: inline-block;
+  height: 100%;
+}
+div.main_block{
+  display: block;
+  height: 1200px;
+  margin-top: 1%;
+  margin-left:0.5%;
+
+}
+div.event_display{
+  display: inline-block;
+  height: 32.5%;
+  width: 32.5%;
+  margin-top: 0.5%;
+  margin-left: 0.5%;
+}
+img.event_slide_pic{
+  display:inline-block;
+  border: solid black;
+  border-radius: 15px;
+  overflow: hidden;
+  margin-left:10%;
+  object-fit: fill;
+  height: 70%;
+  width: 80%;
+}
+img.event_pic{
+  display:inline-block;
+  border: solid black;
+  border-radius: 15px;
+  margin-left:10%;
+  overflow: hidden;
+  object-fit: fill;
+  height: 70%;
+  width: 80%;
+}
+
+h3.event_name{
+  margin-left: 10%;
+}
+div.event_start_date{
+  margin-left: 10%;
+}
+
+div.slide_startdate{
+  display:inline-block;
+  font-size: 12px;
+}

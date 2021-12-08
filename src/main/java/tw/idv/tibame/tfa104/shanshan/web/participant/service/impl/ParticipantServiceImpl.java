@@ -1,5 +1,7 @@
 package tw.idv.tibame.tfa104.shanshan.web.participant.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,5 +24,10 @@ public class ParticipantServiceImpl implements ParticipantService{
 	@Override
 	public Integer updateParticipant(Participant participant) {
 		return dao.updateParticipant(participant);
+	}
+	
+	@Override
+	public List<Participant> selectParticipantByMemberId(Integer memberId, Integer eventId){
+		return dao.selectParticipantByMemberId(memberId, eventId);
 	}
 }

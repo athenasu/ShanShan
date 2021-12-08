@@ -1,5 +1,6 @@
 package tw.idv.tibame.tfa104.shanshan.web.participant.entity;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
@@ -9,11 +10,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import tw.idv.tibame.tfa104.shanshan.Core;
+import org.hibernate.annotations.DynamicInsert;
+
 
 @Entity
+@DynamicInsert
 @Table(name = "participant")
-public class Participant extends Core{
+public class Participant implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	@Id

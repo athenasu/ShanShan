@@ -1,5 +1,7 @@
 package tw.idv.tibame.tfa104.shanshan.web.participant.dao.impl;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +32,18 @@ public class ParticipantDAOImpl implements ParticipantDAO{
 		if(partId != null) {
 			tempParticipant.setPartId(partId);
 		}
+		
 		session.update(participant);
 		return 1;
+	}
+	
+	@Override
+	public List<Participant> selectParticipantByMemberId(Integer memberId, Integer eventId){
+		Session session = sessionFactory.getCurrentSession();
+		return session.createNativeQuery("SELECT * "+
+											"FROM Participant "+
+											"WHERE member_id = :memberId AND event_id = :eventId", Participant.class)
+										.setParameter("memberId", memberId)
+										.setParameter("eventId", eventId).list();
 	}
 }

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
+    <script src="vendors/jquery/jquery-3.4.1.min.js"></script>
+    <link rel="shortcut icon" href="/img/favicon.png" />
+    <link rel="stylesheet" href="./css/header_footer.css" />
+    <link rel="stylesheet" href="./css/eventpost.css" />
+    <script src="js/eventpost.js"></script>
+    <title>山山來此|發布揪團</title>
+    <!-- 　　　　　　↑　可更換為自己的頁面名稱 -->
+</head>
+
+<body>
+    <header>
+        <div id="logo">
+            <a href="index.html"><img src="img/logo.png" class="img" /></a>
+        </div>
+        <nav id="navlist">
+            <ul>
+                <li><a href="#">找山友</a></li>
+                <li><a href="#">山友日誌</a></li>
+                <li><a href="#">攻山小物</a></li>
+                <li><a href="#">登山資訊</a></li>
+                <li><a href="#">會員中心</a></li>
+            </ul>
+        </nav>
+        <div id="memcheck">
+            <div id="ball"><i class="fas fa-bell"></i></div>
+            <div id="login"><a href="#">登入</a></div>
+            <div id="register"><a href="#">註冊</a></div>
+        </div>
+    </header>
+    <div class='post_event'>
+        <div class="mountain_pic">
+            <img src="#" class="mountain_pic">
+        </div>
+        <div class="name_event">
+            <span>團名：
+                <input class="event_name" type="text" name="event_name" placeholder="請輸入團名...">
+            </span>
+        </div>
+        <div class="event_detail">
+            <span>活動天數：
+                <input type="text" class="event_days" name="event_days">
+            </span>
+            <span>難度：
+                <select id="difficulty">
+                    <option class="difficulty" name="difficulty" value="1">非常簡單</option>
+                    <option class="difficulty" name="difficulty" value="2">簡單</option>
+                    <option class="difficulty" name="difficulty" value="3">普通</option>
+                    <option class="difficulty" name="difficulty" value="4">困難</option>
+                    <option class="difficulty" name="difficulty" value="5">非常困難</option>
+                </select>
+            </span>
+            <label for="event_deadline">結團日期：
+                <input type="date" name="event_deadline" id="event_deadline">
+            </label>
+            <label for="event_start_date">出發日期：
+                <input type="date" name="event_start_date" id="event_start_date">
+            </label>
+            <span>住宿種類：
+                <select id="stay_type">
+                    <option name="stay_type" value="0">當天來回</option>
+                    <option name="stay_type" value="1">野營</option>
+                    <option name="stay_type" value="2">山屋</option>
+                    <option name="stay_type" value="3">飯店</option>
+                </select>
+            </span>
+            <span>最少出發人數：
+                <input class="min_num_of_people" type="text" name="min_num_of_people">
+            </span>
+            <span>人數上限：
+                <input class="max" type="text" name="max_num_of_people">
+            </span>
+            <span>山名：
+
+                <select class="area_option" id="mountain_area">
+                    <option name="mountain_district" value="1">北部</option>
+                    <option name="mountain_district" value="2">中部</option>
+                    <option name="mountain_district" value="3">南部</option>
+                    <option name="mountain_district" value="4">東部</option>
+                    <option name="mountain_district" value="5">其他地區</option>
+                </select>
+                <select class="north_mountain -on" id="mountain_id">
+                    <option name="mountain_id" value="1">大霸尖山</option>
+                    <option name="mountain_id" value="2">伊澤山</option>
+                    <option name="mountain_id" value="3">喀拉業山</option>
+                    <option name="mountain_id" value="4">七星山</option>
+                    <option name="mountain_id" value="5">金面山</option>
+                    <option name="mountain_id" value="30">其他</option>
+                </select>
+                <select class="mid_mountain" id="mountain_id">
+                    <option name="mountain_id" value="6">雪山</option>
+                    <option name="mountain_id" value="7">南湖大山</option>
+                    <option name="mountain_id" value="8">大劍山</option>
+                    <option name="mountain_id" value="9">中央尖山</option>
+                    <option name="mountain_id" value="10">品田山</option>
+                    <option name="mountain_id" value="30">其他</option>
+                </select>
+                <select class="south_mountain" id="mountain_id">
+                    <option name="mountain_id" value="11">卓社大山</option>
+                    <option name="mountain_id" value="12">能高山</option>
+                    <option name="mountain_id" value="13">白姑大山</option>
+                    <option name="mountain_id" value="14">干卓萬山</option>
+                    <option name="mountain_id" value="15">牧山</option>
+                    <option name="mountain_id" value="30">其他</option>
+                </select>
+                <select class="east_mountain" id="mountain_id">
+                    <option name="mountain_id" value="16">馬比杉山</option>
+                    <option name="mountain_id" value="17">奇萊主山</option>
+                    <option name="mountain_id" value="18">合歡山</option>
+                    <option name="mountain_id" value="19">畢祿山</option>
+                    <option name="mountain_id" value="20">太魯閣大山</option>
+                    <option name="mountain_id" value="30">其他</option>
+                </select>
+                <select class="other_mountain" id="mountain_id">
+                    <option name="mountain_id" value="21">紅頭山</option>
+                    <option name="mountain_id" value="22">蛇頭山</option>
+                    <option name="mountain_id" value="23">太武山</option>
+                    <option name="mountain_id" value="24">雲台山</option>
+                    <option name="mountain_id" value="30">其他</option>
+                </select>
+
+            </span>
+            <span>集合地點：
+                <input class="assembling_place" type="text" name="assembling_place">
+            </span>
+        </div>
+        <div class="event_content">
+            <textarea class="event_content" name="event_content"></textarea>
+        </div>
+        <div class="event_post_btn">
+            <button class="cancel_btn">取消</button>
+            <button class="submit_btn" type="button">發布</button>
+        </div>
+    </div>
+
+    <!-- <footer>
+        <h4>Copyright <i class="far fa-copyright"></i>2021 G3 SANSAN</h4>
+    </footer> -->
+    <!-- <script src="js/header.js"></script> -->
+    <script src="https://kit.fontawesome.com/2336c06c64.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
