@@ -31,7 +31,7 @@ public class WishlistProductServiceImpl implements WishlistProductService {
 	
 	public Boolean deleteWishlistProductMemIdProductId(Integer memberId, Integer productId) {
 		int result = dao.deleteWishlistProductMemIdProductId(memberId, productId);
-		if (result >= 1) {
+		if (result == 1) {
 			return true;
 		} else {
 			return false;

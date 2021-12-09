@@ -11,10 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.DynamicInsert;
-
-import tw.idv.tibame.tfa104.shanshan.Core;
-
 @Entity
 //@DynamicInsert
 @Table(name = "event")

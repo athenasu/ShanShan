@@ -41,12 +41,13 @@ public class WishlistProduct extends Core {
 		this.memberId = memberId;
 	}
 
-	public Integer getEventId() {
+	public Integer getProductId() {
 		return productId;
 	}
 
-	public void setEventId(Integer productId) {
+	public void setProductId(Integer productId) {
 		this.productId = productId;
 	}
 
+	
 }

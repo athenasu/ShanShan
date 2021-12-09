@@ -34,8 +34,8 @@ public class WishlistProductController {
 	}
 	
 	@PostMapping("deleteWishlistProductMemIdProductId")
-	public Boolean deleteWishlistProductMemIdProductId(Integer memberId, Integer productId) {
-		return wishlistService.deleteWishlistProductMemIdProductId(memberId, productId);
+	public Boolean deleteWishlistProductMemIdProductId(@RequestBody WishlistProduct wishlistProduct) {
+		return wishlistService.deleteWishlistProductMemIdProductId(wishlistProduct.getMemberId(), wishlistProduct.getProductId());
 	}
 
 	@PostMapping("addWishlistProduct")

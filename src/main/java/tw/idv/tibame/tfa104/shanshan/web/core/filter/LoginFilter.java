@@ -39,7 +39,7 @@ public class LoginFilter extends HttpFilter {
 //				session.setAttribute("location", path); // save html location
 				Core core = new Core();
 				core.setSuccessful(false); // how do i send this to the front end?
-//				response.sendRedirect("/login.html");
+				response.sendRedirect("/login.html");
 			} else {
 //				request.getSession().getAttribute("memberId"); 
 				chain.doFilter(request, response);

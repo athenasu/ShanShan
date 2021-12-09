@@ -57,7 +57,7 @@ public class WishlistProductDaoImpl implements WishlistProductDao {
 	public Integer deleteWishlistProductMemIdProductId(Integer memberId, Integer productId) {
 		Session session = sessionFactory.getCurrentSession();
 		return session.createQuery(
-				"DELETE WishlistProduct wp " +
+				"DELETE WishlistProduct " +
 				"WHERE memberId = :memberId AND productId = :productId")
 				.setParameter("memberId", memberId)
 				.setParameter("productId", productId)
