@@ -82,12 +82,17 @@ div.event_slide{
   display: inline-block;
   height: 100%;
 }
+
+
+  /*====================== MAIN BLOCK ======================*/
+
 div.main_block{
   display: block;
   height: 1200px;
   margin-top: 1%;
   margin-left:0.5%;
-
+  width:60%;
+  margin-left: 20%;
 }
 div.event_display{
   display: inline-block;

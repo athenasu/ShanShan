@@ -1,6 +1,9 @@
 * {
     box-sizing: border-box;
   }
+h3{
+      text-align: center;
+}
 body {
     margin: 0;
     padding: 0;
@@ -37,6 +40,7 @@ div.event_detail{
     border:solid blue;
     margin-top: 0.5%;
     height:20%;
+
 }
 
 ul.event_detail_left{
@@ -45,6 +49,7 @@ ul.event_detail_left{
     width:48%;
     height:80%;
     margin-left: 1%;
+
 }
 
 ul.event_detail_right{
@@ -53,6 +58,7 @@ ul.event_detail_right{
     width:48%;
     height:80%;
     margin-left: 1%;
+
 }
 select.north_mountain, select.mid_mountain, select.south_mountain, select.east_mountain, select.other_mountain{
     display: none;
@@ -112,6 +118,7 @@ div.event_msg_list{
     margin-left: 10%;
 }
 ul.event_msg{
+
     display:block;
     border:solid red;
     height: 55px;
@@ -127,10 +134,12 @@ img.member_pic{
 }
 li.member_name{
     display:inline-block;
-
 }
 li.msg_content{
     display:inline-block;
+}
+button.msg_report_btn{
+    right:0;
 }
 
 button.back_btn{

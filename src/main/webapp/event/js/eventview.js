@@ -1,19 +1,15 @@
 $(document).on("change", "#event_deadline", function () {
     $("#event_deadline").attr("value", $(this.val()));
 })
-
 $(document).on("change", "#event_start_date", function () {
     $("#event_start_date").attr("value", $(this.val()));
 })
-
 $(document).on("change", "#difficulty", function () {
     $("#difficulty").attr("value", $(this).val());
 })
-
 $(document).on("change", "#stay_type", function () {
     $("#stay_type").attr("value", $(this).val());
 })
-
 $(document).on("change", "#mountain_id", function () {
     $("#mountain_id").attr("value", $(this).val());
 })
@@ -27,7 +23,6 @@ $(document).on("change", "select.participation", function(){
     $("select.participation").attr("value", $(this).val());
     console.log(this)
 })
-
 $(document).on("change", "#mountain_area", function () {
     $("#mountain_area").attr("value", $(this).val());
     $("select").filter(".-on").removeClass("-on");
@@ -65,10 +60,6 @@ function init() {
 
         },
         success: function (data) {
-            // console.log(data);
-            // console.log(data[0].eventName);
-            // console.log(new Date(data[0].eventPostDate).toISOString());
-
             var bytes = new Uint8Array(data[0].mountainPic);
             var blob = new Blob([bytes], { type: "image/png" });
             var url = URL.createObjectURL(blob);
@@ -86,17 +77,18 @@ function init() {
             <div class="event_detail">
                 <ul class="event_detail_left">
                     <li class="event_id" name="event_id" value="${data[0].eventId}"">揪團編號：<span>${data[0].eventId}</span></li>
+                    <li class="event_owner" value="${data[0].memberName}">揪團發起人：<span>${data[0].memberName}</span></li>
                     <li class="mountain_district">活動地區：
                         <select class="area_option" id="mountain_area" disabled>
-                            <option name="mountain_district" value="1">北部</option>
-                            <option name="mountain_district" value="2">中部</option>
-                            <option name="mountain_district" value="3">南部</option>
-                            <option name="mountain_district" value="4">東部</option>
-                            <option name="mountain_district" value="5">其他地區</option>
+                            <option class="north_mountain" name="mountain_district" value="1">北部</option>
+                            <option class="mid_mountain" name="mountain_district" value="2">中部</option>
+                            <option class="south_mountain" name="mountain_district" value="3">南部</option>
+                            <option class="east_mountain" name="mountain_district" value="4">東部</option>
+                            <option class="other_mountain" name="mountain_district" value="5">其他地區</option>
                         </select>
                     </li>
                     <li class="mountain_name">目標：
-                        <select class="north_mountain -on" id="mountain_id" disabled>
+                        <select class="north_mountain" id="mountain_id" disabled>
                             <option name="mountain_id" value="1">大霸尖山</option>
                             <option name="mountain_id" value="2">伊澤山</option>
                             <option name="mountain_id" value="3">喀拉業山</option>
@@ -157,12 +149,12 @@ function init() {
                 </ul>
                 <ul class="event_detail_right">
                     <li class="event_days">活動天數：<input class="event_days " type="text" value="${data[0].eventDays}" readonly="readonly"></li>
-                    <li class="event_deadline">截止日期：<input class="event_deadline " type="date" value="${new Date(data[0].eventDeadline).toISOString().slice(0, -14)}").toISOString()}" disabled></li>
-                    <li class="event_start_date">活動開始日期：<input class="event_start_date " type="date" value="${new Date(data[0].eventStartDate).toISOString().slice(0, -14)}" disabled></li>
+                    <li class="event_deadline">截止日期：<input class="event_deadline " type="date" value="${new Date(data[0].eventDeadline).toLocaleDateString('fr-CA', { year: 'numeric', month: '2-digit', day: '2-digit' })}" disabled></li>
+                    <li class="event_start_date">活動開始日期：<input class="event_start_date " type="date" value="${new Date(data[0].eventStartDate).toLocaleDateString('fr-CA', { year: 'numeric', month: '2-digit', day: '2-digit' })}" disabled></li>
                     <li class="max_num_of_people">最少人數：<input class="min_num_of_people " value="${data[0].minNumOfPeople}"></li>
                     <li class="max_num_of_people">人數上限：<input class="max_num_of_people " value="${data[0].maxNumOfPeople}"></li>
                     <li class="event_cur_part" value="${data[0].eventCurPart}">目前參加人數：${data[0].eventCurPart}</li>
-                    <li class="event_post_date">發文日期：${new Date(data[0].eventPostDate).toISOString().replace('T', '  ').split('.')[0]}</li>
+                    <li class="event_post_date">發文日期：${new Date(data[0].eventPostDate).toLocaleString()}</li>
                 </ul>
     
             </div>
@@ -210,9 +202,24 @@ function init() {
                     break;
             }
             console.log(data[0].mountainId)
-            switch (parseInt(data[0].mountainId)) {
 
+            if(data[0].mountainId == 1 || data[0].mountainId == 2 || data[0].mountainId == 3 || data[0].mountainId == 4 || data[0].mountainId == 5){
+                $("option.north_mountain").prop('selected', true);
+                $("select.north_mountain").addClass("-on")
+            }else if(data[0].mountainId == 6 || data[0].mountainId == 7 || data[0].mountainId == 8 || data[0].mountainId == 9 || data[0].mountainId == 10){
+                $("option.mid_mountain").prop('selected', true);
+                $("select.mid_mountain").addClass("-on")
+            }else if(data[0].mountainId == 11 || data[0].mountainId == 12 || data[0].mountainId == 13 || data[0].mountainId == 14 || data[0].mountainId == 15){
+                $("option.south_mountain").prop('selected', true);
+                $("select.south_mountain").addClass("-on")
+            }else if(data[0].mountainId == 16 || data[0].mountainId == 17 || data[0].mountainId == 18 || data[0].mountainId == 19 || data[0].mountainId == 20){
+                $("option.east_mountain").prop('selected', true);
+                $("select.east_mountain").addClass("-on")
+            }else{
+                $("option.other_mountain").prop('selected', true);
+                $("select.other_mountain").addClass("-on")
             }
+        
         }
     })
 
@@ -237,10 +244,10 @@ function init() {
                 console.log(url);
 
                 event_msg_html += "<ul class='event_msg'>";
-                event_msg_html += "<img class='member_pic' src='" + url + "'>";
-                event_msg_html += "<li class='member_name'>" + item.memberName + "</li>";
-                event_msg_html += "<li class='msg_content'>" + item.msgContent + "</li>";
-                event_msg_html += "<button class='msg_report_btn'>Report</button>";
+                event_msg_html +=   "<img class='member_pic' src='" + url + "'>";
+                event_msg_html +=   "<li class='member_name'>" + item.memberName + "：</li>";
+                event_msg_html +=   "<li class='msg_content'>" + item.msgContent + "</li>";
+                event_msg_html +=   "<button class='msg_report_btn'>Report</button>";
                 event_msg_html += "</ul>";
             })
             $("div.event_msg_list").html(event_msg_html);
@@ -266,7 +273,7 @@ $(document).on("click", "button.event_wish_btn", function () {
         beforeSend: function () {
         },
         success: function (data) {
-            console.log("123");
+
         }
     })
 })
@@ -288,7 +295,7 @@ $(document).on("click", "button.event_report_btn", function () {
         beforeSend: function () {
         },
         success: function (data) {
-            console.log("123");
+ 
         }
     })
 })
@@ -323,8 +330,6 @@ $(document).on("click", "button.send_btn", function () {
     var member_id = 1;
     var event_status = 2;
     var event_points = 10;
-    // var event_cur_part = 1;
-    // console.log($("#stay_type").val())
 
     $.ajax({
         url: "http://localhost:8081/shanshan/event/updateEvent",
@@ -360,7 +365,7 @@ $(document).on("click", "button.send_btn", function () {
 
 //=========================== GET PARTICIPANT INFO IF EXIST===========================
 $(document).on("click", "button.join_btn", function () {
-    // console.log("123")
+
     $(".lightbox-target").addClass("-on")
     $.ajax({
         url: "http://localhost:8081/shanshan/participant/selectParticipantByMemberId",
@@ -371,10 +376,6 @@ $(document).on("click", "button.join_btn", function () {
         beforeSend: function () {
         },
         success: function (data) {
-            // console.log("123")
-            // $.each(data, function (index, item) {
-            // console.log(item.eventId == $("li.event_id").val())
-            // console.log(data)
 
             if (data.length != 0) {
                 // console.log(data[0])
@@ -394,7 +395,8 @@ $(document).on("click", "button.join_btn", function () {
                         </select>
                         <p>連絡電話：</p>
                         <input type="text" class="phone_number" name="phone_number" value="${data[0].phoneNumber}">
-                        <p>參加人數</p>
+                        <p class="original_participants">參加人數</p>
+                        <input type="hidden" class="original_participants" value="${data[0].totalParticipants}">
                         <input type="text" class="total_participants" name="total_participants" value="${data[0].totalParticipants}">
                         <button class="edit_participants_btn">送出修改</button>
                         <button class="cancel_participate">返回</button>
@@ -471,8 +473,7 @@ $(document).on("click", "button.send_participants_btn", function () {
         beforeSend: function () {
         },
         success: function (data) {
-            console.log(typeof($("input.participation").val()));
-            console.log(typeof($("#experience").val()));
+
             var member_id = 1;
             var event_status = 2;
             var event_points = 10;
@@ -512,34 +513,13 @@ $(document).on("click", "button.send_participants_btn", function () {
 //========================== UPDATE PARTICIPANT INFO ============================
 $(document).on("click", "button.edit_participants_btn", function () {
     var memberId = 4;
-    // console.log($("li.event_id").val());
-    console.log($("select.experience").val());
-    console.log($("input.phone_number").val());
-    console.log($("select.participation").val());
-    console.log($("input.part_id").val());
-    console.log($("input.total_participants").val());
-    // console.log(typeof($("select.participation").val()));
-    // console.log(typeof($("#experience").val()));
-    // if($("select.participation").val() == true){
-    //     var participation = 1;
-    // }else{
-    //     var participation = 0;
-    // }
-
-    // if($("select.experience").val() == true){
-    //     var experience = 1;
-    // }else{
-    //     var experience = 0;
-    // }
-    // console.log(participation);
-    // console.log(experience);
 
     $.ajax({
         url: "http://localhost:8081/shanshan/participant/updateParticipant",
         type: "PUT",
         contentType: 'application/json',
         data: JSON.stringify({
-            "partId": $("input.partId").val(),
+            "partId": $("input.part_id").val(),
             "eventId": $("li.event_id").val(),
             "memberId": memberId,
             "experience": 1,
@@ -554,7 +534,8 @@ $(document).on("click", "button.edit_participants_btn", function () {
             var member_id = 1;
             var event_status = 2;
             var event_points = 10;
-            var event_cur_part = (parseInt($("li.event_cur_part").val()) + parseInt($("input.total_participants").val()));
+            const pre_calculate = (parseInt($("li.event_cur_part").val()) - parseInt($("input.original_participants").val()));
+            var event_cur_part = (pre_calculate + parseInt($("input.total_participants").val()));
 
             //========= UPDATE EVENT_CUR_PART AFTER UPDATE PARTICIPANTS =========
             $.ajax({
