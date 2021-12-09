@@ -1,3 +1,5 @@
+"use strict";
+
 const dropArea = document.querySelector(".drag-area");
 const dragText = document.querySelector("header");
 const browseBtn = document.querySelector(".browse_btn");
@@ -91,6 +93,7 @@ const submitBtn = document.querySelector(".submit-btn");
 const updateInfo = function () {
   const memberName = document.querySelector(".member-name").value;
   const memberUsername = document.querySelector(".member-username").value;
+  const memberPhoneNum = document.querySelector(".member-phone").value;
   const memberEmail = document.querySelector(".member-email").value;
   const memberPassword = document.querySelector(".member-password").value;
   const memberIntro = document.querySelector(".member-intro-text").value;
@@ -114,6 +117,7 @@ const updateInfo = function () {
         memberUsername,
         memberEmail,
         memberPassword,
+        memberPhoneNum,
         memberIntro,
       }),
     })

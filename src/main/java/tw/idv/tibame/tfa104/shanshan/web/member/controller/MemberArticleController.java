@@ -41,6 +41,7 @@ public class MemberArticleController {
 		return service.findPartEventByMemberId(1);
 	}
 	
+	// don't think i need this one
 	@GetMapping("findParEventByEventId")
 	public List<Member> findParEventByEventId(Integer eventId) {
 		return service.parEventByEventId(eventId);

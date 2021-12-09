@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>member_signup</title>
+    <link rel="stylesheet" type="text/css" href="./css/register_login.css">
+
+</head>
+
+<body>
+
+    <!-- 燈箱登入方式選擇 LOGIN -->
+    <div class="login_modal_bcg"></div>
+    <div class="login_modal">
+        <h1 class="login_form_title">登入</h1>
+        <div>
+            <div class="login_formbox">
+                <input class="summitbutton_signupfacebook" type="button" value="用FACEBOOK登入"></input>
+            </div>
+
+            <div class="login_formbox">
+                <input class="summitbutton_signupgoogle" type="button" value="用GOOGLE登入"></input>
+            </div>
+
+            <div class="horizen_gap"></div>
+            <div class="horizen_gap_or">or</div>
+            <div class="horizen_gap"></div>
+
+
+            <div class="login_formbox">
+                <input class="emaillogin" type="button" value="用電子郵件登入"></input>
+            </div>
+
+            <div class="login_formbox login_formbox_register" style=" text-align: center;">
+                <p>還沒註冊?請點選這裡<a href="register.html">註冊成為新山友</a></p>
+            </div>
+        </div>
+
+    </div>
+    <!-- 燈箱登入方式選擇 結束-->
+
+    <!-- 燈箱郵件登入 開始 USER LOGIN-->
+    <div class="login_modal_email -none">
+        <h1 class="login_form_title">用電子郵件登入</h1>
+        <div>
+            <div class="login_formbox_2 ">
+                <label class="login_formname" for="Email">電子郵件地址</label>
+                <input class="login_formbar_email" name="Email" placeholder="請輸入您的電子郵件地址"></input></br>
+            </div>
+
+            <div class="login_formbox">
+                <label class="login_formname" for="password">密碼</label>
+                <input class="login_formbar_password" name="password" placeholder="請輸入您的密碼"></input></br>
+            </div>
+
+            <div class="login_formbox login_description">
+                <input class="login_formcheckbox" type="checkbox">&ensp;記住我的密碼</input>
+            </div>
+
+            <div class="login_formbox">
+                <input class="login_summitbutton" type="button" value="登入"></input>
+            </div>
+
+            <div class="login_formbox" style=" text-align: center;">
+                <p><a href="#">忘記密碼?</a></p>
+            </div>
+        </div>
+    </div>
+    <!-- 燈箱郵件登入 結束-->
+
+
+    <!-- 載入jQuery -->
+    <!-- <script type='text/javascript' src='./code/jquery-3.6.0.js'></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- 載入index.js -->
+    <script type='text/javascript' src='./js/login.js'></script>
+    <!-- 載入icon -->
+    <script src="https://kit.fontawesome.com/8cfc21ab70.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

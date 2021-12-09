@@ -8,7 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import tw.idv.tibame.tfa104.shanshan.Core;
+
+import tw.idv.tibame.tfa104.shanshan.web.core.Core;
 
 @Entity
 @Table(name = "product")

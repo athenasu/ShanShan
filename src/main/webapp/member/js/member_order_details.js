@@ -54,7 +54,7 @@ const renderIntransitOrders = function (order) {
                         </div>
                         <div class="confirm-buttons-container">
                           <div class="submit-button">
-                            <button type="submit" class="submit-cancel-order">
+                            <button type="submit" class="submit-confirm-order">
                               確定收貨
                             </button>
                           </div>
@@ -121,7 +121,7 @@ const renderDoneOrders = function (order) {
                         <div class="confirm-buttons-container">
                           <div class="submit-button">
                             <button type="submit" class="submit-cancel-event">
-                              確定付款
+                              確定收貨
                             </button>
                           </div>
                           <div class="submit-button">
@@ -310,6 +310,7 @@ document.addEventListener("click", function (e) {
     const btnCloseModalIntransit = parent.querySelector(
       ".btn--close-modal-intransit"
     );
+    const btnConfirmOrder = parent.querySelector(".submit-confirm-order");
 
     modalIntransit.classList.remove("hidden");
     overlay.classList.remove("hidden");

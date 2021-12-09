@@ -7,7 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-import tw.idv.tibame.tfa104.shanshan.Core;
+import tw.idv.tibame.tfa104.shanshan.web.core.Core;
 
 @Entity
 public class OnGoingEventBO extends Core {

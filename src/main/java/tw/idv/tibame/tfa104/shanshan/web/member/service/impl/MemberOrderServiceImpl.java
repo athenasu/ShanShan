@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import tw.idv.tibame.tfa104.shanshan.web.core.Core;
 import tw.idv.tibame.tfa104.shanshan.web.member.service.MemberOrderService;
 import tw.idv.tibame.tfa104.shanshan.web.order.dao.OrderDAO;
 import tw.idv.tibame.tfa104.shanshan.web.order.entity.Order;
@@ -31,6 +32,18 @@ public class MemberOrderServiceImpl implements MemberOrderService {
 	@Override
 	public List<OrderDescriptionBO> findAllOrderDesByMemId(Integer memberId, Integer orderId){
 		return orderDesDao.BOfindByMemIdForMembCentr(memberId, orderId);
+	}
+	
+	@Override
+	public Core updateOrderStatsByOrderId(Integer orderStatus, Integer orderId, Core core) {
+		int result = orderDao.updateOrderStatsByOrderId(orderStatus, orderId);
+		if (result ==1) {
+			core.setSuccessful(true);
+			return core;
+		} else {
+			core.setSuccessful(false);
+			return core;
+		}
 	}
 	
 }

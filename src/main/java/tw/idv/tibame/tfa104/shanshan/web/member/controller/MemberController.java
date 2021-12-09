@@ -2,6 +2,7 @@ package tw.idv.tibame.tfa104.shanshan.web.member.controller;
 
 import java.util.Base64;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import tw.idv.tibame.tfa104.shanshan.Core;
+import tw.idv.tibame.tfa104.shanshan.web.core.Core;
 import tw.idv.tibame.tfa104.shanshan.web.member.entity.Member;
 import tw.idv.tibame.tfa104.shanshan.web.member.service.MemberService;
 
@@ -53,14 +54,10 @@ public class MemberController {
 	public Integer register(@RequestBody Member member) {
 		int result = service.registerMember(member);
 		System.out.println(result);
+		// need to send that confirmation email
 		return result;
 	}
-	
-//	@GetMapping("test")
-//	public Member test(HttpSession session) {
-//		return (Member) session.getAttribute("member");
-//	}
-	
+
 	@PostMapping("login")
 //	public boolean login(@RequestBody Member member, final RedirectAttributes redirectAttributes) {
 	public Core login(@RequestBody Member member, HttpSession session) {
@@ -77,4 +74,18 @@ public class MemberController {
 		return core;
 	}
 	
+	@RequestMapping(value = "/logout")
+	public String logout(HttpServletRequest request) {
+	    HttpSession session = request.getSession(false);
+	    if (session != null) {
+	        session.invalidate();
+	    }
+	    return "redirect:/";  // add our homepage here
+	}
+
+//	@GetMapping("test")
+//	public Member test(HttpSession session) {
+//		return (Member) session.getAttribute("member");
+//	}
+
 }

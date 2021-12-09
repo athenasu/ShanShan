@@ -265,10 +265,40 @@ sortByEventBtn.addEventListener("click", function () {
 ////////////////////////////////////////
 //////// DELETE WISHLIST ///////
 
-const deleteWishlist = function (wishlistType, wishlistId) {
-  fetch(
-    `/shanshan/wishlist${wishlistType}/deleteWishlist${wishlistType}Id?wishlist${wishlistType}=${wishlistId}`
-  );
+const deleteArticleWishlist = function (wishlistId) {
+  fetch(`/shanshan/wishlistArticle/deleteWishlistArticle`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      wishlistArticleId: wishlistId,
+    }),
+  });
+};
+
+const deleteEventWishlist = function (wishlistId) {
+  fetch(`/shanshan/wishlistEvent/deleteWishlistEvent`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      wishlistEventId: wishlistId,
+    }),
+  });
+};
+
+const deleteProductWishlist = function (wishlistId) {
+  fetch(`/shanshan/wishlistProduct/deleteWishlistProduct`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      wishlistProductId: wishlistId,
+    }),
+  });
 };
 
 document.addEventListener("click", function (e) {
@@ -278,7 +308,7 @@ document.addEventListener("click", function (e) {
     let parent = e.target.closest("div.groupcard");
     let elem = parent.querySelector(".heart-product");
     let wishlistId = elem.getAttribute("wishlist-id");
-    deleteWishlist("Product", wishlistId);
+    deleteProductWishlist(wishlistId);
     parent.remove();
   }
   if (e.target.classList.contains("heart-article")) {
@@ -286,7 +316,7 @@ document.addEventListener("click", function (e) {
     let parent = e.target.closest("div.groupcard");
     let elem = parent.querySelector(".heart-article");
     let wishlistId = elem.getAttribute("wishlist-id");
-    deleteWishlist("Article", wishlistId);
+    deleteArticleWishlist(wishlistId);
     parent.remove();
   }
   if (e.target.classList.contains("heart-event")) {
@@ -294,7 +324,7 @@ document.addEventListener("click", function (e) {
     let parent = e.target.closest("div.groupcard");
     let elem = parent.querySelector(".heart-event");
     let wishlistId = elem.getAttribute("wishlist-id");
-    deleteWishlist("Event", wishlistId);
+    deleteEventWishlist(wishlistId);
     parent.remove();
   }
 });

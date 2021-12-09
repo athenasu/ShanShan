@@ -1,3 +1,4 @@
+"use strict";
 ///////////// selecting elements ////////////
 /////// CARDS ///////
 const cards = document.querySelector(".cards");
@@ -383,6 +384,7 @@ document.addEventListener("click", function (e) {
     let modal = parent.querySelector(".modal");
     let overlay = document.querySelector(".overlay");
     let btnCloseModal = parent.querySelector(".btn--close-modal");
+    let btnConfirmEvent = parent.querySelector(".submit-confirm-event");
 
     modal.classList.remove("hidden");
     overlay.classList.remove("hidden");
@@ -399,6 +401,11 @@ document.addEventListener("click", function (e) {
       if (e.key === "Escape" && !modal.classList.contains("hidden")) {
         closeModal();
       }
+    });
+
+    btnConfirmEvent.addEventListener("click", function (e) {
+      e.preventDefault();
+      console.log("event-submit clicked");
     });
   }
   // card-2 article-card

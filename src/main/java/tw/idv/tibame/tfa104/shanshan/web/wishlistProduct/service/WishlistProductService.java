@@ -9,6 +9,7 @@ public interface WishlistProductService {
 	
 	public Boolean addWishlistProduct(WishlistProduct wishlistProduct);
 	public Boolean deleteWishlistProduct(WishlistProduct wishlistProduct);
+	public Boolean deleteWishlistProductMemIdProductId(Integer memberId, Integer productId);
 	public List<WishlistProductBO> findWishlistProductsByMemberId(Integer memberId);
 	
 }

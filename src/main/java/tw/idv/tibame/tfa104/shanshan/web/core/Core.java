@@ -1,4 +1,4 @@
-package tw.idv.tibame.tfa104.shanshan;
+package tw.idv.tibame.tfa104.shanshan.web.core;
 
 import java.io.Serializable;
 

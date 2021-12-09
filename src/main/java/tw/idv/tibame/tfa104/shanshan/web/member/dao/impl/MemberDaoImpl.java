@@ -48,7 +48,7 @@ public class MemberDaoImpl implements MemberDao {
 		int curPoints = member.getMemberSumPoints();
 		int newPoints = curPoints + points;
 		member.setMemberSumPoints(newPoints);
-		return 1;
+		return member.getMemberSumPoints();
 	}
 	
 	// find member by ID

@@ -9,5 +9,6 @@ public interface WishlistProductDao {
 
 	public Integer addWishlistProduct(WishlistProduct wishlistProduct);
 	public Integer deleteWishlistProduct(WishlistProduct wishlistProduct);
+	public Integer deleteWishlistProductMemIdProductId(Integer memberId, Integer productId);
 	public List<WishlistProductBO> findWishlistProductsByMemberId(Integer memberId);
 }
