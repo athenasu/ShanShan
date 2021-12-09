@@ -23,14 +23,11 @@ public class MemberEventBO extends Core{
 	@Column(name = "eventName")
 	private String eventName;
 
-//	@Temporal(TemporalType.DATE)
-//	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@JsonFormat(pattern="yyyy-MM-dd", timezone = "GMT+8")
 	@Column(name = "eventStartDate")
 	private Date eventStartDate;
 
-//	@Temporal(TemporalType.DATE)
-//	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@JsonFormat(pattern="yyyy-MM-dd", timezone = "GMT+8")
 	@Column(name = "eventDeadline")
 	private Date eventDeadline;
 	

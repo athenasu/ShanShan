@@ -29,6 +29,16 @@ public class WishlistEventServiceImpl implements WishlistEventService {
 		}
 	}
 	
+	@Override 
+	public Boolean deleteWishlistEventByMemIdEventId(Integer memberId, Integer eventId) {
+		int result = dao.deleteWishlistEventByMemIdEventId(memberId, eventId);
+		if (result >= 1) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	@Override
 	public Boolean addWishlistEvent(WishlistEvent wishlistEvent) {
 		int result = dao.addWishlistEvent(wishlistEvent);
@@ -50,4 +60,10 @@ public class WishlistEventServiceImpl implements WishlistEventService {
 		}
 		return wishlistEvents;
 	}
+	
+	@Override
+	public List<WishlistEvent> findAllWishlistEventByMemId(Integer memberId) {
+		return dao.findAllWishlistEventByMemId(memberId);
+	}
+	
 }

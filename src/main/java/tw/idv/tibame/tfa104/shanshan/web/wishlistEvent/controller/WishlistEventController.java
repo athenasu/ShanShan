@@ -33,6 +33,16 @@ public class WishlistEventController {
 		return wishlistService.deleteWishlistEvent(wishlistEvent);
 	}
 	
+	@PostMapping("deleteWishlistEventByMemIdEventId")
+	public Boolean deleteWishlistEventByMemIdEventId(@RequestBody WishlistEvent wishlistEvent) {
+		return wishlistService.deleteWishlistEventByMemIdEventId(wishlistEvent.getMemberId(), wishlistEvent.getEventId());
+	}
+	
+	@GetMapping("findAllWishlistEventByMemId")
+	public List<WishlistEvent> findAllWishlistEventByMemId(Integer memberId) {
+		return wishlistService.findAllWishlistEventByMemId(memberId);
+	}
+	
 	@GetMapping("findWishlistEventsByMemberId")
 	public List<WishlistEventBO> findWishlistEventsByMemberId(Integer memberId) { // need to change this back to Integer
 		return wishlistService.findWishlistEventsByMemberId(1);

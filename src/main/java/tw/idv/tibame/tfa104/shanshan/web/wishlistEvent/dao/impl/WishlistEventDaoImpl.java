@@ -2,6 +2,11 @@ package tw.idv.tibame.tfa104.shanshan.web.wishlistEvent.dao.impl;
 
 import java.util.List;
 
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +33,17 @@ public class WishlistEventDaoImpl implements WishlistEventDao {
 		Session session = sessionFactory.getCurrentSession();
 		session.remove(wishlistEvent);
 		return 1;
+	}
+	
+	@Override
+	public Integer deleteWishlistEventByMemIdEventId(Integer memberId, Integer eventId) {
+		Session session = sessionFactory.getCurrentSession();
+		return session.createQuery(
+				"DELETE WishlistEvent " +
+				"WHERE memberId = :memberId AND eventId = :eventId")
+				.setParameter("memberId", memberId)
+				.setParameter("eventId", eventId)
+				.executeUpdate();
 	}
 	
 	@Override
@@ -59,4 +75,21 @@ public class WishlistEventDaoImpl implements WishlistEventDao {
 			.list();
 		return wishlistEvents;
 	}
+	
+	@Override
+	public List<WishlistEvent> findAllWishlistEventByMemId(Integer memberId){
+		// SELECT * FROM wishlist_event WHERE member_id = ?
+		Session session = sessionFactory.getCurrentSession();
+		CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+		CriteriaQuery<WishlistEvent> criteriaQuery = criteriaBuilder.createQuery(WishlistEvent.class);
+		Root<WishlistEvent> root = criteriaQuery.from(WishlistEvent.class);
+		criteriaQuery = criteriaQuery.where(
+				criteriaBuilder.equal(root.get("memberId"), memberId)
+				);
+		TypedQuery<WishlistEvent> typedQuery = session.createQuery(criteriaQuery);
+		List<WishlistEvent> wishlistEvents = typedQuery.getResultList();
+		return wishlistEvents;
+	}
+	
+	
 }

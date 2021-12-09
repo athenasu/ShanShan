@@ -20,13 +20,24 @@ public class WishlistArticleServiceImpl implements WishlistArticleService {
 	private WishlistArticleDao dao;
 	
 	@Override
-	public boolean deleteWishlistArticle(WishlistArticle wishlistArticle) {
+	public Boolean deleteWishlistArticle(WishlistArticle wishlistArticle) {
 		int result = dao.deleteWishlistArticle(wishlistArticle);
 		if (result == 1) {
 			return true;
 		} else {
 			return false;
 		}
+	}
+	
+	@Override
+	public Boolean deleteWishlistArticleByMemIdEventId(Integer memberId, Integer articleId) {
+		int result = dao.deleteWishlistArticleByMemIdEventId(memberId, articleId);
+		if (result >= 1) {
+			return true;
+		} else {
+			return false;
+		}
+		
 	}
 	
 	@Override
@@ -41,7 +52,12 @@ public class WishlistArticleServiceImpl implements WishlistArticleService {
 	}
 	
 	@Override
-	public boolean addWishlistArticle(WishlistArticle wishlistArticle) {
+	public List<WishlistArticle> findAllWishlistArticleByMemId(Integer memberId) {
+		return dao.findAllWishlistArticleByMemId(memberId);
+	}
+	
+	@Override
+	public Boolean addWishlistArticle(WishlistArticle wishlistArticle) {
 		boolean result = dao.addWishlistArticle(wishlistArticle);
 		if (result) {
 			wishlistArticle.setSuccessful(true);

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import tw.idv.tibame.tfa104.shanshan.web.core.Core;
 import tw.idv.tibame.tfa104.shanshan.web.member.entity.Member;
 import tw.idv.tibame.tfa104.shanshan.web.member.service.MemberService;
+import tw.idv.tibame.tfa104.shanshan.web.util.MailService;
 
 @RestController
 @RequestMapping("member")
@@ -53,8 +54,10 @@ public class MemberController {
 	@PostMapping(path = "register", consumes = { MediaType.APPLICATION_JSON_VALUE })
 	public Integer register(@RequestBody Member member) {
 		int result = service.registerMember(member);
-		System.out.println(result);
-		// need to send that confirmation email
+		MailService mailService = new MailService();
+		String subject = "山山來此-會員註冊";
+		String messageText = "歡迎加入山山來此！";
+		mailService.sendMail(member.getMemberEmail(), subject, messageText);
 		return result;
 	}
 

@@ -8,7 +8,9 @@ import tw.idv.tibame.tfa104.shanshan.web.wishlistArticle.entity.WishlistArticleB
 public interface WishlistArticleService {
 	
 	public List<WishlistArticleBO> findWishlistArticlesByMemberId(Integer memberId);
-	public boolean addWishlistArticle(WishlistArticle wishlistArticle);
-	public boolean deleteWishlistArticle(WishlistArticle wishlistArticle);
+	public List<WishlistArticle> findAllWishlistArticleByMemId(Integer memberId);
+	public Boolean addWishlistArticle(WishlistArticle wishlistArticle);
+	public Boolean deleteWishlistArticle(WishlistArticle wishlistArticle);
+	public Boolean deleteWishlistArticleByMemIdEventId(Integer memberId, Integer articleId);
 
 }
