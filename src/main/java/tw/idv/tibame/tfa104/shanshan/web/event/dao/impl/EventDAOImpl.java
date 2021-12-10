@@ -81,6 +81,11 @@ public class EventDAOImpl implements EventDAO{
 			tempEvent.setEventStartDate(eventStartDate);
 		}
 		
+		final Integer stayType = event.getStayType();
+		if(stayType != null) {
+			tempEvent.setStayType(stayType);
+		}
+		
 		final Integer minNumOfPeople = event.getMinNumOfPeople();
 		if (minNumOfPeople != null) {
 			tempEvent.setMinNumOfPeople(minNumOfPeople);
@@ -104,6 +109,11 @@ public class EventDAOImpl implements EventDAO{
 		final Integer eventStatus = event.getEventStatus();
 		if (eventStatus != null) {
 			tempEvent.setEventStatus(eventStatus);
+		}
+		
+		final Integer eventPoints = event.getEventPoints();
+		if(eventPoints != null) {
+			tempEvent.setEventPoints(eventPoints);
 		}
 		
 		final Integer eventCurPart = event.getEventCurPart();
