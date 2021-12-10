@@ -54,6 +54,7 @@ public class MemberController {
 	@PostMapping(path = "register", consumes = { MediaType.APPLICATION_JSON_VALUE })
 	public Integer register(@RequestBody Member member) {
 		int result = service.registerMember(member);
+		// send email
 		MailService mailService = new MailService();
 		String subject = "山山來此-會員註冊";
 		String messageText = "歡迎加入山山來此！";
@@ -68,6 +69,7 @@ public class MemberController {
 		Core core = new Core();
 		if (loggedInMember != null) {
 			session.setAttribute("memberId", loggedInMember.getMemberId());
+			session.setAttribute("memberName", loggedInMember.getMemberName());
 			core.setSuccessful(true);
 			core.setMessage("Login successful");
 			return core;

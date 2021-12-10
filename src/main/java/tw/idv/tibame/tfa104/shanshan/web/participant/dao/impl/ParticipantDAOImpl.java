@@ -46,4 +46,15 @@ public class ParticipantDAOImpl implements ParticipantDAO{
 										.setParameter("memberId", memberId)
 										.setParameter("eventId", eventId).list();
 	}
+	
+	@Override
+	public Integer deleteParticipantByMemIdEventId(Integer memberId, Integer eventId) {
+		Session session = sessionFactory.getCurrentSession();
+		return session.createQuery(
+						"DELETE Participant " +
+						"WHERE memberId =:memberId AND eventId =:eventId")
+					.setParameter("memberId", memberId)
+					.setParameter("eventId", eventId)
+					.executeUpdate();
+	}
 }

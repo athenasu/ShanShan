@@ -303,14 +303,14 @@ document.addEventListener("click", function (e) {
     });
   }
   if (e.target.classList.contains("btn--show-modal-intransit")) {
-    let overlay = document.querySelector(".overlay-done");
-
     let parent = e.target.closest(".card-intransit");
+
+    // MODAL
+    let overlay = document.querySelector(".overlay-done");
     const modalIntransit = parent.querySelector(".modal-intransit");
     const btnCloseModalIntransit = parent.querySelector(
       ".btn--close-modal-intransit"
     );
-    const btnConfirmOrder = parent.querySelector(".submit-confirm-order");
 
     modalIntransit.classList.remove("hidden");
     overlay.classList.remove("hidden");
@@ -327,6 +327,13 @@ document.addEventListener("click", function (e) {
       if (e.key === "Escape" && !modalIntransit.classList.contains("hidden")) {
         closeModalIntransit();
       }
+    });
+
+    // CONFIRM ORDER
+    const btnConfirmOrder = parent.querySelector(".submit-confirm-order");
+    btnCloseModalIntransit.addEventListener("click", function () {
+      // change order status to 3
+      fetch(``);
     });
   }
   if (e.target.classList.contains("btn--show-modal-returned")) {

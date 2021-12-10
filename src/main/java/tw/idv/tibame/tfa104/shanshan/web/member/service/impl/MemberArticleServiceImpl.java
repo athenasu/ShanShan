@@ -25,7 +25,7 @@ public class MemberArticleServiceImpl implements MemberArticleService {
 	
 	@Autowired
 	private EventDAO eventDao;
-
+	
 	@Override
 	public List<ArticleVO> findAllArticlesByMemId(Integer memberId) {
 		List<ArticleVO> articles = articleDao.findByMemIdGiveAll(memberId);
@@ -63,9 +63,5 @@ public class MemberArticleServiceImpl implements MemberArticleService {
 		return participants;
 	}
 	
-	@Override
-	public Integer cancelEvent(Integer eventId) {
-		return eventDao.deleteEventById(eventId);
-	}
 	
 }

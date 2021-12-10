@@ -121,7 +121,7 @@ const renderPartEvent = function (part) {
                   <button class="btn--show-modal-part">詳情</button>
                 </div>
               </div>
-              <div class="modal-part hidden">
+              <div event-id = "${part.eventId}" class="modal-part hidden">
                 <button class="btn--close-modal-part">&times;</button>
                 <h2 class="modal__header">參團詳情</h2>
                 <p class="modal-sub-header">目前人數：${part.eventCurPart} 位</p>
@@ -195,7 +195,7 @@ const renderEvent = function (eventList) {
                   <button class="btn--show-modal">詳情</button>
                 </div>
               </div>
-              <div class="modal hidden">
+              <div event-id = "${eventList.eventId}" class="modal hidden">
                 <button class="btn--close-modal">&times;</button>
                 <h2 class="modal__header">揪團詳情</h2>
                 <p class="modal-sub-header">狀態：${eventList.eventStatus}</p>
@@ -385,6 +385,7 @@ document.addEventListener("click", function (e) {
     let overlay = document.querySelector(".overlay");
     let btnCloseModal = parent.querySelector(".btn--close-modal");
     let btnConfirmEvent = parent.querySelector(".submit-confirm-event");
+    let btnCancelEvent = parent.querySelector(".submit-cancel-event");
 
     modal.classList.remove("hidden");
     overlay.classList.remove("hidden");
@@ -402,10 +403,40 @@ document.addEventListener("click", function (e) {
         closeModal();
       }
     });
-
+    // event buttons
     btnConfirmEvent.addEventListener("click", function (e) {
       e.preventDefault();
+      let eventId = modal.getAttribute("event-id");
+      let eventStatus = 5;
       console.log("event-submit clicked");
+      console.log(eventId);
+      fetch(`/shanshan/memberEvent/confirmEvent`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          eventId,
+          eventStatus,
+        }),
+      });
+      closeModal();
+    });
+
+    btnCancelEvent.addEventListener("click", function (e) {
+      e.preventDefault();
+      let eventId = modal.getAttribute("event-id");
+      console.log("event-cancel clicked");
+      console.log(eventId);
+      fetch(`/shanshan/memberEvent/cancelEvent`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          eventId,
+        }),
+      });
     });
   }
   // card-2 article-card
@@ -441,6 +472,7 @@ document.addEventListener("click", function (e) {
     let modalPart = parent.querySelector(".modal-part");
     let overlayPart = document.querySelector(".overlay-part");
     let btnCloseModalPart = parent.querySelector(".btn--close-modal-part");
+    let btnCancelPart = parent.querySelector(".cancel-part-btn");
 
     modalPart.classList.remove("hidden");
     overlayPart.classList.remove("hidden");
@@ -457,6 +489,24 @@ document.addEventListener("click", function (e) {
       if (e.key === "Escape" && !modalPart.classList.contains("hidden")) {
         closeModal();
       }
+    });
+    // cancel participation button
+    btnCancelPart.addEventListener("click", function (e) {
+      e.preventDefault();
+      console.log("cancel button clicked");
+      let eventId = modalPart.getAttribute("event-id");
+      console.log(eventId);
+      fetch(`/shanshan/memberEvent/deleteParticipation`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          eventId,
+        }),
+      });
+
+      closeModal();
     });
   }
 });

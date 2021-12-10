@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -45,13 +44,7 @@ public class MemberArticleController {
 	public List<Member> findParEventByEventId(Integer eventId) {
 		return service.parEventByEventId(eventId);
 	}
-	
-	// change the status of participating event (not participating anymore)
 
-	// change the status of the event
-	@PostMapping("cancelEvent")
-	public Integer cancelEvent(Integer eventId) {
-		return service.cancelEvent(eventId);
-	}
+
 	
 }

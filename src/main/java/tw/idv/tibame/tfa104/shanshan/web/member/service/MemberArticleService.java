@@ -24,8 +24,4 @@ public interface MemberArticleService {
 	// get list of participants from an event
 	List<Member> parEventByEventId(Integer eventId);
 	
-	// cancel event from event host end
-	public Integer cancelEvent(Integer eventId);
-	
-	
 }
