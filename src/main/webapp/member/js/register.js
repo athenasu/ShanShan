@@ -50,7 +50,7 @@ loginBtn.addEventListener("click", function () {
   const memberPassword = document.querySelector(
     ".login_formbar_password"
   ).value;
-  fetch("login", {
+  fetch("/shanshan/memberLogin/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -89,7 +89,7 @@ registerSubmitBtn.addEventListener("click", function () {
     ".register-repeatpassword"
   );
   if (memberPassword === memberRepeatPassword) {
-    fetch("register", {
+    fetch("/shanshan/memberRegister/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

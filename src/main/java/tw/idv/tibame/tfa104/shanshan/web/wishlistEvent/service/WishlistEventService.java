@@ -12,5 +12,6 @@ public interface WishlistEventService {
 	public Boolean deleteWishlistEventByMemIdEventId(Integer memberId, Integer eventId);
 	public List<WishlistEventBO> findWishlistEventsByMemberId(Integer memberId);
 	public List<WishlistEvent> findAllWishlistEventByMemId(Integer memberId);
+	public WishlistEvent findWishlistEventByMemberIdEventId (Integer memberId, Integer eventId);
 
 }

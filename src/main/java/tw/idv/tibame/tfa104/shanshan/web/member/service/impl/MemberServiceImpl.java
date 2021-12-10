@@ -16,6 +16,11 @@ public class MemberServiceImpl implements MemberService {
 	private MemberDao dao;
 	
 	@Override
+	public Member checkEmail(String email) {
+		return dao.checkEmail(email);
+	}
+	
+	@Override
 	public Member checkLogin(Member member) {
 		Member loggedInMember = dao.checkLogin(member);
 		if (loggedInMember != null) {
@@ -50,8 +55,8 @@ public class MemberServiceImpl implements MemberService {
 	public Integer registerMember(Member member) {
 		System.out.println("in register service");
 		// check if email has been registered already, send to the DAO and return an int
-		boolean added = dao.checkEmail(member.getMemberEmail());
-		if (added) {
+		Member added = dao.checkEmail(member.getMemberEmail());
+		if (added != null) {
 			System.out.println("This account already exists");
 			return 0;
 		}

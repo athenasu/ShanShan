@@ -10,5 +10,6 @@ public interface MemberService {
 	public Integer updateMemberPoints(Integer id, Integer points);
 	public Integer findMemberPoints(Integer id);
 	public Member checkLogin(Member member);
+	public Member checkEmail(String email);
 }
 

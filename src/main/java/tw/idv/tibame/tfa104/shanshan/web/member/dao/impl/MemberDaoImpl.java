@@ -60,11 +60,15 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public Boolean checkEmail(String email) {
+	public Member checkEmail(String email) {
 		Session session = sessionFactory.getCurrentSession();
 		Query<Member> query = session.createQuery("FROM Member WHERE memberEmail = :email", Member.class)
 									 .setParameter("email", email);
-		return query.uniqueResult() != null; // if it returns true, this means this account has already been registered
+		try {
+			return query.getSingleResult();
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	@Override

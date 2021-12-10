@@ -17,5 +17,7 @@ public interface WishlistEventDao {
 	public List<WishlistEventBO> findWishlistEventsByMemberId(Integer memberId);
 	// select: find all wishlistEvents by memberId
 	public List<WishlistEvent> findAllWishlistEventByMemId(Integer memberId);
+	// select: find one wishlistEvent by memberId and eventId
+	public WishlistEvent findWishlistEventByMemberIdEventId (Integer memberId, Integer eventId);
 	
 }

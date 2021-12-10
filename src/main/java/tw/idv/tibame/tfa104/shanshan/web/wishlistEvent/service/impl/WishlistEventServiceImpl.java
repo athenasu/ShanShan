@@ -66,4 +66,8 @@ public class WishlistEventServiceImpl implements WishlistEventService {
 		return dao.findAllWishlistEventByMemId(memberId);
 	}
 	
+	public WishlistEvent findWishlistEventByMemberIdEventId (Integer memberId, Integer eventId) {
+		return dao.findWishlistEventByMemberIdEventId (memberId, eventId);
+	}
+	
 }

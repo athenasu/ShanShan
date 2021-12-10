@@ -86,7 +86,20 @@ const renderArticle = function (article) {
 // RENDER PARTICIPATING EVENTS
 const renderPartEvent = function (part) {
   // need to convert the time
-  // need to convert event status
+  let eventStatus = function () {
+    if (eventList.eventStatus == 2) {
+      return "招募中";
+    }
+    if (eventList.eventStatus == 3) {
+      return "滿團";
+    }
+    if (eventList.eventStatus == 4) {
+      return "流團";
+    }
+    if (eventList.eventStatus == 5) {
+      return "成團";
+    }
+  };
   const partBytesStr = atob(part.picString);
   let partLen = partBytesStr.length;
   const partu8Array = new Uint8Array(partLen);
@@ -100,7 +113,7 @@ const renderPartEvent = function (part) {
             <a href="#" class = "part-card">
               <div class="card-3">
                 <div class="event-status">
-                  <p>狀態: ${part.eventStatus}</p>
+                  <p>狀態: ${eventStatus}</p>
                 </div>
                 <div class="event-no">
                   <p>參團編號: ${part.eventId}</p>
@@ -168,13 +181,26 @@ const renderPartEvent = function (part) {
 // RENDER EVENT
 const renderEvent = function (eventList) {
   // need to convert the time
-  // need to convert the eventStatus
+  let eventStatus = function () {
+    if (eventList.eventStatus == 2) {
+      return "招募中";
+    }
+    if (eventList.eventStatus == 3) {
+      return "滿團";
+    }
+    if (eventList.eventStatus == 4) {
+      return "流團";
+    }
+    if (eventList.eventStatus == 5) {
+      return "成團";
+    }
+  };
 
   let html = `
               <a href="#" class = "event-card">
               <div class="card-1">
                 <div class="event-status">
-                  <p>狀態：${eventList.eventStatus}</p>
+                  <p>狀態：${eventStatus}</p>
                 </div>
                 <div class="event-no">
                   <p>揪團編號：${eventList.eventId}</p>
@@ -198,7 +224,7 @@ const renderEvent = function (eventList) {
               <div event-id = "${eventList.eventId}" class="modal hidden">
                 <button class="btn--close-modal">&times;</button>
                 <h2 class="modal__header">揪團詳情</h2>
-                <p class="modal-sub-header">狀態：${eventList.eventStatus}</p>
+                <p class="modal-sub-header">狀態：${eventStatus}</p>
                 <div class="modal__container">
                   <div class="modal-box1">
                     <form class="confirm-event">

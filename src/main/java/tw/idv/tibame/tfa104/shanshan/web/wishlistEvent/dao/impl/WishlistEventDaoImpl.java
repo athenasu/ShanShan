@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import org.hibernate.Session;
@@ -91,5 +92,23 @@ public class WishlistEventDaoImpl implements WishlistEventDao {
 		return wishlistEvents;
 	}
 	
+	@Override
+	public WishlistEvent findWishlistEventByMemberIdEventId (Integer memberId, Integer eventId) {
+		Session session = sessionFactory.getCurrentSession();
+		CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+		CriteriaQuery<WishlistEvent> criteriaQuery = criteriaBuilder.createQuery(WishlistEvent.class);
+		Root<WishlistEvent> root = criteriaQuery.from(WishlistEvent.class);
+		Predicate checkMemberId = criteriaBuilder.equal(root.get("memberId"), memberId);
+		Predicate checkEventId = criteriaBuilder.equal(root.get("eventId"), eventId);
+		criteriaQuery = criteriaQuery.where(checkMemberId, checkEventId);
+		TypedQuery<WishlistEvent> typedQuery = session.createQuery(criteriaQuery);
+		WishlistEvent wishlistEvent = typedQuery.getSingleResult();
+		return wishlistEvent;
+	}
 	
 }
+
+
+
+
+
