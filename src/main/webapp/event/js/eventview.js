@@ -73,7 +73,8 @@ function init() {
                 <img class="event_pic" src="${url}">
             </div>
             <div class="wish_report">
-                <button class="event_wish_btn"><i class="fas fa-heart"></i>Like</button>
+                <div class="event_wish_heart -on"><i class="far fa-heart fa-2x"></i></div>
+                <div class="event_wish_heart_filled"><i class="fas fa-heart fa-2x"></i></div>
                 <button class="event_report_btn">Report</button>
                 <button class="join_btn" href="lightbox-target">JOIN</button>
             </div>
@@ -228,7 +229,7 @@ function init() {
                 url: "http://localhost:8081/shanshan/eventReport/selectEventReportByMemberId",
                 type: "GET",
                 data: {
-                    "memberId": 1,
+                    "memberId": 1,          //set as 1 for test, need to get the login memberId
                     "eventId": data[0].eventId
                 },
                 dataType: "json",
@@ -244,22 +245,25 @@ function init() {
             })
 
             //=========================== GET EVENT WISHLIST BY MEMBER&EVENT FROM DATABASE ===========================
-            // $.ajax({
-            //     url: "http://localhost:8081/shanshan/eventReport/selectEventReportByMemberId",
-            //     type: "GET",
-            //     data: {
-            //         "memberId": 1,
-            //         "eventId": data[0].eventId
-            //     },
-            //     dataType: "json",
-            //     beforeSend: function () {
+            $.ajax({
+                url: "http://localhost:8081/shanshan/wishlistEvent/findWishlistEventByMemberIdEventId",
+                type: "GET",
+                data: {
+                    "memberId": 2,              //set as 5 for test, need to get the login memberId
+                    "eventId": $("li.event_id").val()
+                },
+                dataType: "json",
+                beforeSend: function () {
 
-            //     },
-            //     success: function (data) {
-            //         console.log(data);
-
-            //     }
-            // })
+                },
+                success: function (data) {
+                    console.log(data);
+                    if (data != null) {
+                        $("div.event_wish_heart").removeClass("-on");
+                        $("div.event_wish_heart_filled").addClass("-on")
+                    }
+                }
+            })
         }
 
     })
@@ -270,7 +274,7 @@ function init() {
     $.ajax({
         url: "http://localhost:8081/shanshan/eventMsg/eventMsgList",
         type: "GET",
-        data: { "eventId": 1 },
+        data: { "eventId": 1 },         //set as 1 for test
         dataType: "json",
         beforeSend: function () {
 
@@ -287,10 +291,10 @@ function init() {
                 // console.log(url);
 
                 event_msg_html += "<ul class='event_msg'>";
-                event_msg_html +=   "<img class='member_pic' src='" + url + "'>";
-                event_msg_html +=   "<li class='member_name'>" + item.memberName + "：</li>";
-                event_msg_html +=   "<li class='msg_content'>" + item.msgContent + "</li>";
-                event_msg_html +=   "<button class='msg_report_btn'>Report</button>";
+                event_msg_html += "<img class='member_pic' src='" + url + "'>";
+                event_msg_html += "<li class='member_name'>" + item.memberName + "：</li>";
+                event_msg_html += "<li class='msg_content'>" + item.msgContent + "</li>";
+                event_msg_html += "<button class='msg_report_btn'>Report</button>";
                 event_msg_html += "</ul>";
             })
             $("div.event_msg_list").html(event_msg_html);
@@ -300,7 +304,7 @@ function init() {
 
 //=========================== SEND EVENT_WISH_LIST TO DATABASE ===========================
 
-$(document).on("click", "button.event_wish_btn", function () {
+$(document).on("click", "div.event_wish_heart", function () {
 
     let eventWishList = JSON.stringify({
         "memberId": 5,      //set as 5 for test, need to catch login memberId
@@ -316,7 +320,30 @@ $(document).on("click", "button.event_wish_btn", function () {
         beforeSend: function () {
         },
         success: function (data) {
+            $("div.event_wish_heart").removeClass("-on");
+            $("div.event_wish_heart_filled").addClass("-on");
+        }
+    })
+})
 
+$(document).on("click", "div.event_wish_heart_filled", function () {
+
+    let eventWishList = JSON.stringify({
+        "memberId": 5,      //set as 5 for test, need to catch login memberId
+        "eventId": $("li.event_id").val()
+    })
+
+    $.ajax({
+        url: "http://localhost:8081/shanshan/wishlistEvent/deleteWishlistEventByMemIdEventId",
+        type: "POST",
+        contentType: 'application/json',
+        data: eventWishList,
+        dataType: "json",
+        beforeSend: function () {
+        },
+        success: function (data) {
+            $("div.event_wish_heart").addClass("-on");
+            $("div.event_wish_heart_filled").removeClass("-on");
         }
     })
 })

@@ -3,6 +3,8 @@ package tw.idv.tibame.tfa104.shanshan.web.wishlistEvent.service.impl;
 import java.util.Base64;
 import java.util.List;
 
+import javax.persistence.NoResultException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -67,7 +69,11 @@ public class WishlistEventServiceImpl implements WishlistEventService {
 	}
 	
 	public WishlistEvent findWishlistEventByMemberIdEventId (Integer memberId, Integer eventId) {
-		return dao.findWishlistEventByMemberIdEventId (memberId, eventId);
+		try {
+			return dao.findWishlistEventByMemberIdEventId (memberId, eventId);
+		}catch(NoResultException exception) {
+			return null;
+		}
 	}
 	
 }

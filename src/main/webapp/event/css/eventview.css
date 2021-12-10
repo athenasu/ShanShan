@@ -76,13 +76,34 @@ div.event_msg{
     border:solid green;
     margin-top: 0.5%;
 }
-button.event_wish_btn{
-    display:inline-block;
-    margin-left: 85%;
-    width:5%;
+div.event_wish_heart, div.event_wish_heart_filled{
+    display:none;
 }
-.fas fa-heart{
-    visibility: visible;
+div.event_wish_heart_filled.-on{
+
+    display: inline-block;
+    height:40px;
+    width:40px;
+    margin-left: 80%;
+    cursor:pointer;
+}
+div.event_wish_heart.-on{
+
+    display: inline-block;
+    height:40px;
+    width:40px;
+    margin-left: 80%;
+    cursor:pointer;
+}
+.fa-heart{
+    color:red;
+}
+.fa-heart{
+    color:red;
+}
+.fa-heart-none, .fa-heart-none{
+    display:none;
+    
 }
 button.event_report_btn{
     display:inline-block;

@@ -56,8 +56,8 @@ public class EventController{
 	
 	@CrossOrigin
 	@GetMapping("findEventByDistrict")
-	public List<DistrictEventBO> eventlistbydisctrict(){
-		final List<DistrictEventBO> eventlistbydisctrict = eventService.findEventByDistrict(2); //set the parameter as 2 for test
+	public List<DistrictEventBO> eventlistbydisctrict(Integer mountainDistrict){
+		final List<DistrictEventBO> eventlistbydisctrict = eventService.findEventByDistrict(mountainDistrict); 
 		return eventlistbydisctrict;
 	}
 

@@ -16,8 +16,9 @@
 
   div.north_area, div.mid_area, div.south_area, div.east_area, div.other_area{
     margin: auto;
-    border:solid red;
+    /* border:solid red; */
     font-size: 50px;
+    cursor:pointer;
   }
 
   /*====================== Search bar ======================*/
@@ -100,6 +101,7 @@ div.event_display{
   width: 32.5%;
   margin-top: 0.5%;
   margin-left: 0.5%;
+  cursor: pointer;
 }
 img.event_slide_pic{
   display:inline-block;

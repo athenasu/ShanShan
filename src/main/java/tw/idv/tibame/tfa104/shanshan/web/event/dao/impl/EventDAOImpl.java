@@ -155,7 +155,7 @@ public class EventDAOImpl implements EventDAO{
 											"ON a.mountain_id = b.mountain_id "+
 										"JOIN Member c "+
 											"ON a.member_id = c.member_id "+
-										"WHERE a.event_status = 2 AND b.mountain_district = :mountainDistrict", DistrictEventBO.class)
+										"WHERE (a.event_status = 2 AND b.mountain_district = :mountainDistrict)", DistrictEventBO.class)
 				.setParameter("mountainDistrict", mountainDistrict).list();
 	}
 
