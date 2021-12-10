@@ -22,6 +22,11 @@
 </head>
 
 <body>
+<input type="hidden" class="member_id" value="${memberId}">
+<%-- 
+<%=session.getAttribute("mapwp")%>
+<%=session.getAttribute("memberId")%> 
+--%>
     <!-- 插入 商城頁首-->
 <%@ include file="goods_header.jsp" %>
 
@@ -52,11 +57,12 @@
             <c:forEach items="${popular10}" var="ProductBO" >
                 <li class="single_good_area" onclick="location.href='<%=contextPath %>/GetProductServlet?productId=${ProductBO.productId}'">
                     <div class="good_headpic"><img class="good_headpic_img" src="<%=contextPath %>/ProductPicServlet?productId=${ProductBO.productId}&productSequence=0&action=firstPic" width="250px" alt="goods"></div>
-                    <div class="goods_icon"><i class="far fa-heart "></i></div>
-                    <div class="goods_icon_keep -none"><i class="fas fa-heart "></i></div>
+                    <div class="goods_icon"><i class="far fa-heart toWishList "></i></div>
+                    <div class="goods_icon_keep -none"><i class="fas fa-heart offWishList "></i></div>
                     <span class="good_headsupplier">${ProductBO.companyName}</span>	
                     <a class="good_headname"><h5>${ProductBO.productName}</h5></a>
                     <span class="good_headprice">售價${ProductBO.productPrice}</span>
+                    <input type="hidden" class="data_product_id" value="${ProductBO.productId}">
                 </li>
             </c:forEach>
             </ul>
@@ -66,14 +72,19 @@
 			<c:forEach  items="${latest10}" var="ProductBO2">
                 <li class="single_good_area" onclick="location.href='<%=contextPath %>/GetProductServlet?productId=${ProductBO2.productId}'">
 					<div class="good_headpic"><img class="good_headpic_img" src="<%=contextPath%>/ProductPicServlet?productId=${ProductBO2.productId}&productSequence=0&action=firstPic" width="250px" alt="goods"></div>
-                    <div class="goods_icon"><i class="far fa-heart "></i></div>
-                    <div class="goods_icon_keep -none"><i class="fas fa-heart "></i></div>
+                    <div class="goods_icon"><i class="far fa-heart toWishList "></i></div>
+                    <div class="goods_icon_keep -none"><i class="fas fa-heart offWishList "></i></div>
                     <span class="good_headsupplier">${ProductBO2.companyName}</span>	
                     <a class="good_headname"><h5>${ProductBO2.productName}</h5></a>
                     <span class="good_headprice">售價${ProductBO2.productPrice}</span>
+                    <input type="hidden" class="data_product_id" value="${ProductBO2.productId}">
                 </li>
 			</c:forEach>
 			</ul>
+			
+			<c:forEach  items="${listwp}" var="wp">
+                    <input type="hidden" class="wish_list" value="${wp}">
+			</c:forEach>
         </div>   
     </div>
 
@@ -86,7 +97,9 @@
     <!-- <script type='text/javascript' src='<%=contextPath%>/shop/code/jquery-3.6.0.js'></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- 載入index.js -->
-    <script type='text/javascript' src='<%=contextPath%>/shop/code/index.js'></script>
+    <script type='text/javascript' src='<%=contextPath%>/shop/code/header.js'></script>
+    <script type='text/javascript' src='<%=contextPath%>/shop/code/index_slider.js'></script>
+    <script type='text/javascript' src='<%=contextPath%>/shop/code/wishlist.js'></script>
     <!-- 載入icon -->
     <script src="https://kit.fontawesome.com/8cfc21ab70.js" crossorigin="anonymous"></script>
 </body>

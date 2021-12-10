@@ -20,6 +20,7 @@ import tw.idv.tibame.tfa104.shanshan.web.product.entity.ProductBO;
 import tw.idv.tibame.tfa104.shanshan.web.shop.dao.ShopDAO;
 import tw.idv.tibame.tfa104.shanshan.web.shop.entity.Page;
 import tw.idv.tibame.tfa104.shanshan.web.shop.entity.ProductImgBO;
+import tw.idv.tibame.tfa104.shanshan.web.wishlistProduct.entity.WishlistProduct;
 
 @Repository
 public class ShopDAOImpl implements ShopDAO{
@@ -33,6 +34,8 @@ public class ShopDAOImpl implements ShopDAO{
 	private static final String FIND_ALL_COMPANY = "select company_name, company_id, company_banner,company_intro from company WHERE company_status = 0 order by company_id asc";
 //		顯示特定商品資訊 商品單頁
 	private static final String FIND_PORDUCT_BY_PRO_ID = "SELECT pd.product_id, pd.product_des_id, pd.product_size, pd.product_color, c.company_id, c.company_name, p.product_name, p.product_type, pd.product_price, p.product_intro FROM product_description pd JOIN product p USING (product_id) JOIN company c USING (company_id) WHERE pd.product_id = ? AND pd.status = 1";
+//		顯示特定商品明細資訊 購物車
+	private static final String FIND_PORDUCT_BY_PRO_DES_ID = "SELECT pd.product_id, pd.product_des_id, pd.product_size, pd.product_color, c.company_id, c.company_name, p.product_name, pd.product_price FROM product_description pd JOIN product p USING (product_id) JOIN company c USING (company_id) WHERE pd.product_des_id = ? AND pd.status = 1";
 //		顯示特定商家商品?個+分頁功能 按照product_id 正序
 	private static final String FIND_PORDUCT_BY_COM_ID = "SELECT product_id, company_name, product_name, product_price FROM product JOIN company USING (company_id) where company_id = ?  and `status` = 1 ORDER BY product_id ASC LIMIT ? , ?";
 //		顯示指定商品類別的商品?個+分頁功能 按照product_id 正序
@@ -55,6 +58,10 @@ public class ShopDAOImpl implements ShopDAO{
 	private static final String GET_PRODUCT_DES_ALL_PIC = "SELECT * FROM product_img WHERE product_des_id = ? ORDER BY product_img_id";
 //	查詢特定商品編號的全部圖片 按product_img_id 正序
 	private static final String GET_PRODUCT_ALL_PIC = "SELECT product_id, product_des_id, product_img_id, product_img FROM product_img JOIN product_description USING (product_des_id) WHERE product_id = ? ORDER BY product_img_id";
+//  查詢特定會員的WishlistProduct list
+	private static final String GET_ALL_WISH_PRODUCT_BY_MEMID ="SELECT * FROM ShanShan.wishlist_product WHERE member_id = ?";
+	
+	
 	
 //	更新 山山點數 欄位member_points_sum 條件member_id="?" 
 //private static final String UPDATE_MEM_POINTS_BY_MEMID = "UPDATE member SET member_points_sum = (-?) WHERE member_id = ?";
@@ -269,6 +276,45 @@ public class ShopDAOImpl implements ShopDAO{
 		return listproductBO;
 	}
 
+//	顯示特定商品明細資訊 購物車
+	
+	@Override
+	public ProductBO findProductByProDesId(Integer product_des_id) {
+		ProductBO productBO = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+
+//			DataSource ds = new ComboPooledDataSource();
+			
+			con = ds.getConnection();
+			
+			pstmt = con.prepareStatement(FIND_PORDUCT_BY_PRO_DES_ID);
+			pstmt.setInt(1, product_des_id);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				productBO = new ProductBO();
+				productBO.setProductId(rs.getInt("product_id"));
+				productBO.setProductName(rs.getString("product_name"));
+				productBO.setProductPrice(rs.getInt("product_price"));
+				productBO.setCompanyName(rs.getString("company_name"));
+				productBO.setProdesId(rs.getInt("product_des_id"));
+				productBO.setCompanyId(rs.getInt("company_id"));
+				productBO.setProductSize(rs.getInt("product_size"));
+				productBO.setProductColor(rs.getString("product_color"));
+			}
+
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} finally {
+			JDBCUtil.close(rs,pstmt,con);
+		}
+		return productBO;
+	}
+
 //	顯示特定商家商品?個+分頁功能 按照product_id 正序
 	@Override
 	public List<ProductBO> findProductByComId(Integer company_id, Integer ingoreNum, Integer showNum ) {
@@ -310,7 +356,8 @@ public class ShopDAOImpl implements ShopDAO{
 		return listproductBO;
 	}
 	
-//	顯示指定商品類別的商品?個+分頁功能 按照product_id 正序
+
+	//	顯示指定商品類別的商品?個+分頁功能 按照product_id 正序
 	@Override
 	public List<ProductBO> findProductByType(Integer product_type, Integer ingoreNum,Integer showNum) {
 		List<ProductBO> listproductBO = new ArrayList<>();
@@ -614,7 +661,42 @@ public class ShopDAOImpl implements ShopDAO{
 		}
 		return listProductImgBO;
 	}
+	
+//  查詢特定會員的WishlistProduct list
+	@Override
+	public List<WishlistProduct> getWishlistProductsByMemberId(Integer memberId) {
+		List<WishlistProduct> listWishlistProduct = new ArrayList<>();
+		WishlistProduct wishlistProduct = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_ALL_WISH_PRODUCT_BY_MEMID);
+			pstmt.setInt(1, memberId);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				wishlistProduct = new WishlistProduct();
+				wishlistProduct.setMemberId(rs.getInt("member_id"));
+				wishlistProduct.setProductId(rs.getInt("product_id"));
+				wishlistProduct.setWishlistProductId(rs.getInt("wishlist_product_id"));
+				listWishlistProduct.add(wishlistProduct);
+			}
+
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} finally {
+			JDBCUtil.close(pstmt,con);
+		}
+		return listWishlistProduct;
+	}
+
+	
+	
+	
 
 
 ////更新 山山點數 欄位member_points_sum 條件member_id="?" 

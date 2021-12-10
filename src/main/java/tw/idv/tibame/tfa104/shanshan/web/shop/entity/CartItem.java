@@ -3,28 +3,38 @@ package tw.idv.tibame.tfa104.shanshan.web.shop.entity;
 public class CartItem{
 
 		private Integer productId; 
+		private Integer prodesId; 
 		private String productName; 
 		private String companyName; 
 		private Integer productSize; 
 		private String productColor; 
-		private double productPrice; 
+		private Integer productPrice; 
 		private Integer itemQTY; 
-		private double subtotalPrice;
+		private Integer subtotalPrice;
 		
-//		獲取商品小計
-		public double getSubtotalPrice() {
+//		計算 商品小計
+		public Integer countSubtotalPrice() {
 			return getProductPrice() * getItemQTY();
 		}
 		
+//		set商品小計
+		public void setSubtotalPrice(Integer subtotalPrice) {
+			this.subtotalPrice = subtotalPrice;
+		}
+
+		public Integer getSubtotalPrice() {
+			return subtotalPrice;
+		}
+
 		public CartItem() {
 			super();
 		}
 		
 		
-		public CartItem(Integer productId, String productName, String companyName, Integer productSize,
-				String productColor, double productPrice, Integer itemQTY) {
+		public CartItem(Integer prodesId, String productName, String companyName, Integer productSize,
+				String productColor, Integer productPrice, Integer itemQTY) {
 			super();
-			this.productId = productId;
+			this.prodesId = prodesId;
 			this.productName = productName;
 			this.companyName = companyName;
 			this.productSize = productSize;
@@ -33,12 +43,14 @@ public class CartItem{
 			this.itemQTY = itemQTY;
 		}
 
-		public Integer getProductId() {
-			return productId;
+		public Integer getProdesId() {
+			return prodesId;
 		}
-		public void setProductId(Integer productId) {
-			this.productId = productId;
+
+		public void setProdesId(Integer prodesId) {
+			this.prodesId = prodesId;
 		}
+
 		public String getProductName() {
 			return productName;
 		}
@@ -63,7 +75,7 @@ public class CartItem{
 		public void setProductColor(String productColor) {
 			this.productColor = productColor;
 		}
-		public double getProductPrice() {
+		public Integer getProductPrice() {
 			return productPrice;
 		}
 		public void setProductPrice(Integer productPrice) {
@@ -75,15 +87,21 @@ public class CartItem{
 		public void setItemQTY(Integer itemQTY) {
 			this.itemQTY = itemQTY;
 		}
-		public void setSubtotalPrice(Integer subtotalPrice) {
-			this.subtotalPrice = subtotalPrice;
+
+		public Integer getProductId() {
+			return productId;
 		}
+
+		public void setProductId(Integer productId) {
+			this.productId = productId;
+		}
+
 		@Override
 		public String toString() {
-			return "CartItem [productId=" + productId + ", productName=" + productName + ", companyName=" + companyName
-					+ ", productSize=" + productSize + ", productColor=" + productColor + ", productPrice="
-					+ productPrice + ", itemQTY=" + itemQTY + ", subtotalPrice=" + subtotalPrice + "]";
-		} 
-		
-		
+			return "CartItem [productId=" + productId + ", prodesId=" + prodesId + ", productName=" + productName
+					+ ", companyName=" + companyName + ", productSize=" + productSize + ", productColor=" + productColor
+					+ ", productPrice=" + productPrice + ", itemQTY=" + itemQTY + ", subtotalPrice=" + subtotalPrice
+					+ "]";
+		}
+
 }

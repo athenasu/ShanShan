@@ -2,11 +2,18 @@ package tw.idv.tibame.tfa104.shanshan.web.shop.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import tw.idv.tibame.tfa104.shanshan.web.company.entity.CompanyVO;
 import tw.idv.tibame.tfa104.shanshan.web.product.entity.ProductBO;
+import tw.idv.tibame.tfa104.shanshan.web.product.service.ProductServiceHibernate;
 import tw.idv.tibame.tfa104.shanshan.web.shop.entity.Cart;
 import tw.idv.tibame.tfa104.shanshan.web.shop.entity.CartItem;
 import tw.idv.tibame.tfa104.shanshan.web.shop.entity.ProductImgBO;
+import tw.idv.tibame.tfa104.shanshan.web.wishlistProduct.entity.WishlistProduct;
 
 
 public interface ShopService {
@@ -20,6 +27,8 @@ public interface ShopService {
 	List<CompanyVO> findAllCompany();
 //	顯示特定商品資訊 商品單頁
 	List<ProductBO> findProductByProId(Integer product_id);
+//	顯示特定商品明細 購物車
+	ProductBO findProductByProDesId(Integer product_des_id);
 //	顯示特定商家商品?個+分頁功能 按照product_id 正序
 	List<ProductBO> findProductByComId(Integer company_id,Integer ingoreNum, Integer showNum);
 //	顯示指定商品類別的商品?個+分頁功能 按照product_id 正序
@@ -41,19 +50,14 @@ public interface ShopService {
 //    public List<ProductImgBO> getAllProDesPic(Integer product_des_id);
 ////	查詢特定商品編號的全部圖片 按product_img_id 正序
     public List<ProductImgBO> getAllProPic(Integer product_id);
-    
 
-//  購物車
-//  加入購物車項目
-    public Cart addCartItem(Integer product_des_id);
-//  刪除購物車項目
-    public Cart deleteCartItem(Integer product_des_id);
+//  查詢特定會員的WishlistProduct list
+    public List<WishlistProduct> getWishlistProductsByMemberId(Integer memberId);
     
-//  清除購物車
-    public Cart cleanCart();
-
-//  顯示購物車
-    public Cart showCart();
+//  新曾產品收藏
+//    public void addWish(Integer memberId,Integer producId);
+//  刪除產品收藏
+//    public void removeWish(Integer memberId,Integer producId);
     
 }
 

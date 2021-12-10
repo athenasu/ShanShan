@@ -19,8 +19,6 @@ import tw.idv.tibame.tfa104.shanshan.web.shop.service.impl.ShopServiceImpl;
 public class AllCompanyServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
-		response.setContentType("application/json;charset=utf-8");
-		request.setCharacterEncoding("UTF-8");
 
 			ShopService service = new ShopServiceImpl();
 			List<CompanyVO> listAllCompanyVO = service.findAllCompany();

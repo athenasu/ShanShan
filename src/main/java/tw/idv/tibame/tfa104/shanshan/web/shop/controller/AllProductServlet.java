@@ -17,9 +17,6 @@ import tw.idv.tibame.tfa104.shanshan.web.shop.service.impl.ShopServiceImpl;
 @WebServlet("/AllProductServlet")
 public class AllProductServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-
-		response.setContentType("application/json;charset=utf-8");
-		request.setCharacterEncoding("UTF-8");
 		
 		int pageNum = 0;
 		pageNum = Integer.parseInt(request.getParameter("pageNum"));

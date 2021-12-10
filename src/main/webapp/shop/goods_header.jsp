@@ -71,25 +71,27 @@
             <div class="goods_titlegap"></div>
 
             <!-- 攻山小物 標題 -->
-            <div class="goods_header_title_goods" onclick="location.href='/shanshan/shop/goods_index.jsp'">攻山小物</div>
+            <div class="goods_header_title_goods" onclick="location.href='<%=request.getContextPath()%>/shop/goods_index.jsp'">攻山小物</div>
 
             <!-- 購物車icon -->
-            <div class="goods_shopcart_area" onclick="location.href='/shanshan/shop/goods_shopcart.jsp'">
+            <div class="goods_shopcart_area" onclick="location.href='<%=request.getContextPath()%>/CartServlet?method=mycart'">
                 <i class="fas fa-shopping-cart header_shopcarticon"></i>
-                <div class="shopcarticon_num_bg"><span class="shopcarticon_num">213</span></div>
+                <div class="shopcarticon_num_bg"><span class="shopcarticon_num">${cart.totalItemQTY}</span></div>
             </div>
-
+			<form method="get" action="<%=request.getContextPath()%>/CartServlet" id="totalItemQTY" onsubmit="return submitTotalItemQTY();">
+                  <input type="hidden" name="method" value="totalItemQTY">
+            </form>
 
             <!-- 商品情報 標題 -->
             <div class="goods_header_kinds_area">
                 <div class="goods_header_kinds_title">商品情報</div> <!-- 標題按鈕 -->
                 <div class="goods_kinds_list">
                     <div class="goods_list_firstculomn">
-                        <div class="goods_list_item" onclick="location.href='/shanshan/AllProductServlet?pageNum=1'">全部商品</div>
-                        <div class="goods_list_item" onclick="location.href='/shanshan/GetProductTypeServlet?ProductType=1&pageNum=1'">衣著/鞋子/背包</div>
-                        <div class="goods_list_item" onclick="location.href='/shanshan/GetProductTypeServlet?ProductType=2&pageNum=1'	">工具/照明/登山杖</div>
-                        <div class="goods_list_item" onclick="location.href='/shanshan/GetProductTypeServlet?ProductType=3&pageNum=1'">炊具</div>
-                        <div class="goods_list_item" onclick="location.href='/shanshan/GetProductTypeServlet?ProductType=4&pageNum=1'">寢具/帳篷/睡袋</div>
+                        <div class="goods_list_item" onclick="location.href='<%=request.getContextPath()%>/AllProductServlet?pageNum=1'">全部商品</div>
+                        <div class="goods_list_item" onclick="location.href='<%=request.getContextPath()%>/GetProductTypeServlet?ProductType=1&pageNum=1'">衣著/鞋子/背包</div>
+                        <div class="goods_list_item" onclick="location.href='<%=request.getContextPath()%>/GetProductTypeServlet?ProductType=2&pageNum=1'	">工具/照明/登山杖</div>
+                        <div class="goods_list_item" onclick="location.href='<%=request.getContextPath()%>/GetProductTypeServlet?ProductType=3&pageNum=1'">炊具</div>
+                        <div class="goods_list_item" onclick="location.href='<%=request.getContextPath()%>/GetProductTypeServlet?ProductType=4&pageNum=1'">寢具/帳篷/睡袋</div>
                     </div>
                 </div> <!-- 下拉框 -->
             </div>
@@ -101,15 +103,15 @@
                 <div class="goods_header_stores_title">品牌情報</div> <!-- 標題按鈕 -->
                 <div class="goods_stores_list">
                     <div class="goods_list_firstculomn">
-                        <div class="goods_list_item" onclick="location.href='/shanshan/AllCompanyServlet'">全部品牌</div>
-                        <div class="goods_list_item" onclick="location.href='/shanshan/GetCompanyServlet?companyId=1'">好好登山</div>
-                        <div class="goods_list_item" onclick="location.href='/shanshan/GetCompanyServlet?companyId=2'">攻山小屋</div>
-                        <div class="goods_list_item" onclick="location.href='/shanshan/GetCompanyServlet?companyId=3'">攀登趣</div>
-                        <div class="goods_list_item" onclick="location.href='/shanshan/GetCompanyServlet?companyId=4'">聞青</div>
-                        <div class="goods_list_item" onclick="location.href='/shanshan/GetCompanyServlet?companyId=5'">GOGOHiking!</div>
-                        <div class="goods_list_item" onclick="location.href='/shanshan/GetCompanyServlet?companyId=6'">goClimbing</div>
-                        <div class="goods_list_item" onclick="location.href='/shanshan/GetCompanyServlet?companyId=7'">山商巧福</div>
-                        <div class="goods_list_item" onclick="location.href='/shanshan/GetCompanyServlet?companyId=8'">山山來煮</div>
+                        <div class="goods_list_item" onclick="location.href='<%=request.getContextPath()%>/AllCompanyServlet'">全部品牌</div>
+                        <div class="goods_list_item" onclick="location.href='<%=request.getContextPath()%>/GetCompanyServlet?companyId=1'">好好登山</div>
+                        <div class="goods_list_item" onclick="location.href='<%=request.getContextPath()%>/GetCompanyServlet?companyId=2'">攻山小屋</div>
+                        <div class="goods_list_item" onclick="location.href='<%=request.getContextPath()%>/GetCompanyServlet?companyId=3'">攀登趣</div>
+                        <div class="goods_list_item" onclick="location.href='<%=request.getContextPath()%>/GetCompanyServlet?companyId=4'">聞青</div>
+                        <div class="goods_list_item" onclick="location.href='<%=request.getContextPath()%>/GetCompanyServlet?companyId=5'">GOGOHiking!</div>
+                        <div class="goods_list_item" onclick="location.href='<%=request.getContextPath()%>/GetCompanyServlet?companyId=6'">goClimbing</div>
+                        <div class="goods_list_item" onclick="location.href='<%=request.getContextPath()%>/GetCompanyServlet?companyId=7'">山商巧福</div>
+                        <div class="goods_list_item" onclick="location.href='<%=request.getContextPath()%>/GetCompanyServlet?companyId=8'">山山來煮</div>
                     </div>
                 </div> <!-- 下拉框 -->
             </div>

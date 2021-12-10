@@ -22,10 +22,7 @@ public class ProductPicServlet extends HttpServlet {
 	private static final long serialVersionUID = -1212325068431259995L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-
-		response.setContentType("text/html;charset=utf-8");
-		response.setContentType("image/gif");
-
+		
 //		輸出I/O流預備
 		ServletOutputStream out = response.getOutputStream();
 
@@ -34,10 +31,19 @@ public class ProductPicServlet extends HttpServlet {
 		ProductImgBO productImgBO =new ProductImgBO();
 		List<ProductImgBO> listproductImgBO =new ArrayList<ProductImgBO>();
 		byte[] pic = null;
+		
+		
 		int productId = 0;
 		int productSequence = 0;
-		String action = request.getParameter("action");
-		productId = Integer.parseInt(request.getParameter("productId"));
+		String action ="";
+
+		if (request.getParameter("action")!= null) {
+			action = request.getParameter("action");
+		}
+
+		if (request.getParameter("productId") != null) {
+			productId = Integer.parseInt(request.getParameter("productId"));
+		}
 		
 //		來源跳轉路徑"<%=contextPath%>/ProductPicServlet?productId=${ProductBO.productId}&productSequence=0&action=firstPic"
 //		輸出第一張圖片
@@ -61,7 +67,10 @@ public class ProductPicServlet extends HttpServlet {
 //		來源跳轉路徑"<%=contextPath%>/ProductPicServlet?productId=${ProductBO.productId}&productSequence=${ProductBO.productImgId}&action=thePic"
 //		按照productId的第?張圖片輸出圖片
 		if ("thePic".equals(action)) {
-			productSequence = Integer.parseInt(request.getParameter("productSequence"));
+
+			if (request.getParameter("productSequence") != null) {
+				productSequence = Integer.parseInt(request.getParameter("productSequence"));
+			}
 			
 			try {
 				productImgBO = shopsvc.getPic(productId,productSequence);
@@ -79,27 +88,6 @@ public class ProductPicServlet extends HttpServlet {
 			
 		}
 		
-		
-		
-//		product_id = Integer.parseInt(request.getParameter("product_id"));
-
-//		if (product_id != 0)
-//			try {
-//
-//				ListproductImgBO = shopsvc.getAllProPic(product_id);
-//
-//				for ( int i = 0; i <= ListproductImgBO.size(); i++) {
-//					pic = ListproductImgBO.get(i).getProduct_des_pic();
-//					out.write(pic);
-//					out.flush();
-//				};
-//			}
-//
-//		catch (Exception e) {
-//			e.printStackTrace();
-//		} finally {
-//			out.close();
-//		}
 		
 	}
 

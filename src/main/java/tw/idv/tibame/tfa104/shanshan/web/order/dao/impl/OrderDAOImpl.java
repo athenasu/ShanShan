@@ -154,17 +154,18 @@ public class OrderDAOImpl implements OrderDAO{
 
 			pstmt.setInt(1, order.getMember_id());
 			pstmt.setDate(2, order.getOrder_created_date());
-			pstmt.setString(3, order.getOrder_member_address());
-			pstmt.setString(4, order.getOrder_member_name());
-			pstmt.setInt(5, order.getOrder_member_phone());
-			pstmt.setInt(6, order.getOrder_status());
-			pstmt.setInt(7, order.getPoint_used());
-			pstmt.setInt(8, order.getOrder_sum_before());
-			pstmt.setInt(9, order.getOrder_sum_after());
-			pstmt.setDate(10, order.getOrder_shipped_date());
-			pstmt.setInt(11, order.getShip_number());
-			pstmt.setInt(12, order.getPayment_status());
-			pstmt.setInt(13, order.getOrder_id());
+			pstmt.setInt(3, order.getCompany_id());
+			pstmt.setString(4, order.getOrder_member_address());
+			pstmt.setString(5, order.getOrder_member_name());
+			pstmt.setInt(6, order.getOrder_member_phone());
+			pstmt.setInt(7, order.getOrder_status());
+			pstmt.setInt(8, order.getPoint_used());
+			pstmt.setInt(9, order.getOrder_sum_before());
+			pstmt.setInt(10, order.getOrder_sum_after());
+			pstmt.setDate(11, order.getOrder_shipped_date());
+			pstmt.setInt(12, order.getShip_number());
+			pstmt.setInt(13, order.getPayment_status());
+			pstmt.setInt(14, order.getOrder_id());
 			
 			pstmt.executeUpdate();
 
@@ -288,6 +289,7 @@ public class OrderDAOImpl implements OrderDAO{
 				order = new Order();
 				order.setOrder_id(rs.getInt("order_id"));
 				order.setMember_id(rs.getInt("Member_id"));
+				order.setCompany_id(rs.getInt("company_id"));
 				order.setOrder_created_date(rs.getDate("Order_created_date"));
 				order.setOrder_member_address(rs.getString("Order_member_address"));
 				order.setOrder_member_name(rs.getString("Order_member_name"));
@@ -333,6 +335,7 @@ public class OrderDAOImpl implements OrderDAO{
 				order = new Order();
 				order.setOrder_id(rs.getInt("order_id"));
 				order.setMember_id(rs.getInt("Member_id"));
+				order.setCompany_id(rs.getInt("company_id"));
 				order.setOrder_created_date(rs.getDate("Order_created_date"));
 				order.setOrder_member_address(rs.getString("Order_member_address"));
 				order.setOrder_member_name(rs.getString("Order_member_name"));
@@ -381,6 +384,7 @@ public class OrderDAOImpl implements OrderDAO{
 				order = new Order();
 				order.setOrder_id(rs.getInt("order_id"));
 				order.setMember_id(rs.getInt("Member_id"));
+				order.setCompany_id(rs.getInt("company_id"));
 				order.setOrder_created_date(rs.getDate("Order_created_date"));
 				order.setOrder_member_address(rs.getString("Order_member_address"));
 				order.setOrder_member_name(rs.getString("Order_member_name"));
@@ -429,6 +433,7 @@ public class OrderDAOImpl implements OrderDAO{
 				order = new Order();
 				order.setOrder_id(rs.getInt("order_id"));
 				order.setMember_id(rs.getInt("Member_id"));
+				order.setCompany_id(rs.getInt("company_id"));
 				order.setOrder_created_date(rs.getDate("Order_created_date"));
 				order.setOrder_member_address(rs.getString("Order_member_address"));
 				order.setOrder_member_name(rs.getString("Order_member_name"));
@@ -474,6 +479,7 @@ public class OrderDAOImpl implements OrderDAO{
 				order = new Order();
 				order.setOrder_id(rs.getInt("order_id"));
 				order.setMember_id(rs.getInt("Member_id"));
+				order.setCompany_id(rs.getInt("company_id"));
 				order.setOrder_created_date(rs.getDate("Order_created_date"));
 				order.setOrder_member_address(rs.getString("Order_member_address"));
 				order.setOrder_member_name(rs.getString("Order_member_name"));
@@ -520,6 +526,7 @@ public class OrderDAOImpl implements OrderDAO{
 				order = new Order();
 				order.setOrder_id(rs.getInt("order_id"));
 				order.setMember_id(rs.getInt("Member_id"));
+				order.setCompany_id(rs.getInt("company_id"));
 				order.setOrder_created_date(rs.getDate("Order_created_date"));
 				order.setOrder_member_address(rs.getString("Order_member_address"));
 				order.setOrder_member_name(rs.getString("Order_member_name"));
@@ -568,6 +575,7 @@ public class OrderDAOImpl implements OrderDAO{
 				order = new Order();
 				order.setOrder_id(rs.getInt("order_id"));
 				order.setMember_id(rs.getInt("Member_id"));
+				order.setCompany_id(rs.getInt("company_id"));
 				order.setOrder_created_date(rs.getDate("Order_created_date"));
 				order.setOrder_member_address(rs.getString("Order_member_address"));
 				order.setOrder_member_name(rs.getString("Order_member_name"));
@@ -616,6 +624,7 @@ public class OrderDAOImpl implements OrderDAO{
 				order = new Order();
 				order.setOrder_id(rs.getInt("order_id"));
 				order.setMember_id(rs.getInt("Member_id"));
+				order.setCompany_id(rs.getInt("company_id"));
 				order.setOrder_created_date(rs.getDate("Order_created_date"));
 				order.setOrder_member_address(rs.getString("Order_member_address"));
 				order.setOrder_member_name(rs.getString("Order_member_name"));
@@ -664,6 +673,7 @@ public class OrderDAOImpl implements OrderDAO{
 				order = new Order();
 				order.setOrder_id(rs.getInt("order_id"));
 				order.setMember_id(rs.getInt("Member_id"));
+				order.setCompany_id(rs.getInt("company_id"));
 				order.setOrder_created_date(rs.getDate("Order_created_date"));
 				order.setOrder_member_address(rs.getString("Order_member_address"));
 				order.setOrder_member_name(rs.getString("Order_member_name"));
@@ -714,6 +724,7 @@ public class OrderDAOImpl implements OrderDAO{
 				order = new Order();
 				order.setOrder_id(rs.getInt("order_id"));
 				order.setMember_id(rs.getInt("Member_id"));
+				order.setCompany_id(rs.getInt("company_id"));
 				order.setOrder_created_date(rs.getDate("Order_created_date"));
 				order.setOrder_member_address(rs.getString("Order_member_address"));
 				order.setOrder_member_name(rs.getString("Order_member_name"));
@@ -761,6 +772,7 @@ public class OrderDAOImpl implements OrderDAO{
 				order = new Order();
 				order.setOrder_id(rs.getInt("order_id"));
 				order.setMember_id(rs.getInt("Member_id"));
+				order.setCompany_id(rs.getInt("company_id"));
 				order.setOrder_created_date(rs.getDate("Order_created_date"));
 				order.setOrder_member_address(rs.getString("Order_member_address"));
 				order.setOrder_member_name(rs.getString("Order_member_name"));
@@ -810,6 +822,7 @@ public class OrderDAOImpl implements OrderDAO{
 				order = new Order();
 				order.setOrder_id(rs.getInt("order_id"));
 				order.setMember_id(rs.getInt("Member_id"));
+				order.setCompany_id(rs.getInt("company_id"));
 				order.setOrder_created_date(rs.getDate("Order_created_date"));
 				order.setOrder_member_address(rs.getString("Order_member_address"));
 				order.setOrder_member_name(rs.getString("Order_member_name"));
@@ -860,6 +873,7 @@ public class OrderDAOImpl implements OrderDAO{
 				order = new Order();
 				order.setOrder_id(rs.getInt("order_id"));
 				order.setMember_id(rs.getInt("Member_id"));
+				order.setCompany_id(rs.getInt("company_id"));
 				order.setOrder_created_date(rs.getDate("Order_created_date"));
 				order.setOrder_member_address(rs.getString("Order_member_address"));
 				order.setOrder_member_name(rs.getString("Order_member_name"));

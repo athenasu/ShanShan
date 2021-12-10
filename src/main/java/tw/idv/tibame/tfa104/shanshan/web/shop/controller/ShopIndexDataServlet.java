@@ -23,11 +23,11 @@ public class ShopIndexDataServlet extends HttpServlet {
 
 	public void init() throws ServletException {
 		System.out.println("ShopIndexDataServlet  init()被調用了");
-//		取得一個ServletContext物件
+//		為了獲取框架Hibernate做的service，需先取得一個ServletContext物件....
 		ServletContext application = this.getServletContext();
-		
 		WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
 		ProductServiceHibernate service = context.getBean(ProductServiceHibernate.class);
+		
 		List<ProductBO> latest10 =  (List<ProductBO>) service.findNew();
 		application.setAttribute("latest10", latest10);
 		
@@ -37,12 +37,8 @@ public class ShopIndexDataServlet extends HttpServlet {
 		application.setAttribute("popular10",popular10);   
 		}
 	
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-
-		response.setContentType("text/html;charset=utf-8");
-		request.setCharacterEncoding("UTF-8");
-		
-  
 		
 	}
 

@@ -12,6 +12,41 @@
     <title>購物車</title>
     <link rel="stylesheet" type="text/css" href="<%=contextPath%>/shop/code/style.css">
 
+    <script type='text/javascript'>
+    
+//  提交購物車form，移除購物車項目
+    function submitRemoveCartItem(){
+    	console.log("提交form,RemoveCartItem")
+//    	提交productDesId的值
+
+    	$("#removeCartItem").ajaxSubmit(function(message) {
+	    	console.log("提交form,RemoveCartItem OK!!")
+    	});
+    	return false
+    }
+    
+//  提交購物車form，清空購物車
+    function submitCleanCartItem(){
+    	/* $("#cleanCartItem").submit(); */
+    	console.log("提交form,cleanCartItem()")
+    	$("#cleanCartItem").ajaxSubmit(function(message) {
+	    	console.log("提交form,cleanCartItem OK!!")
+    	});
+    	
+    	return false
+    }    
+    
+//  提交購物車form，改數量
+    function submitChangeItemQTY(){
+    	console.log("提交form,changeItemQTY")
+    	
+    	$("#changeItemQTY").ajaxSubmit(function(message) {
+	    	console.log("提交form,changeItemQTY OK!!")
+    	});	
+    	
+    	return false
+    }
+    </script>
 
 </head>
 
@@ -44,104 +79,50 @@
                     <li>小計</li>
                     <li>移除此項</li>
                 </ul>
+                       
+
+                        <form method="get" action="<%=contextPath%>/CartServlet" id="cleanCartItem" onsubmit="return submitCleanCartItem();">
+                            <input type="hidden" name="method" value="cleanCartItem">
+                        </form>
+
                 <ul class="cart_product_content_area">
+         		  <c:forEach items="${cart.cartItems}" var="cartItem" >
                     <ul class="cart_product_content">
                         <li class="cart_product_content1"><input type="checkbox" name="choose"></li>
-                        <li class="cart_product_content2"><img src="img\product_pic_01.jpg" alt=""></li>
-                        <li class="cart_product_content3"><span>Arc'teryx 始祖鳥</span></li>
-                        <li class="cart_product_content4"><span>聚酯纖維彈性襯衫</span></li>
-                        <li class="cart_product_content5"><span>L</span></li>
-                        <li class="cart_product_content6"><span>黑色</span></li>
-                        <li class="cart_product_content7">NT&ensp;<span class="cart_single_item_price">1390</span></li>
+                        <li class="cart_product_content2"><img src="<%=contextPath %>/ProductPicServlet?productId=${cartItem.productId}&productSequence=0&action=firstPic" alt=""></li>
+                        <li class="cart_product_content3"><span>${cartItem.companyName}</span></li>
+                        <li class="cart_product_content4"><span>${cartItem.productName}</span></li>
+                        <li class="cart_product_content5"><span>${cartItem.productSize}</span></li>
+                        <li class="cart_product_content6"><span>${cartItem.productColor}</span></li>
+                        <li class="cart_product_content7">NT&ensp;<span class="cart_single_item_price">${cartItem.productPrice}</span></li>
                         <li class="cart_product_content8">
                             <div class="carts_adjust_qty">
                                 <i class="fas fa-minus carts_adjust_qty_icon"></i>
-                                <span class="carts_adust_item_qty">1</span>
+                                <span class="carts_adust_item_qty">${cartItem.itemQTY}</span>
                                 <i class="fas fa-plus carts_adjust_qty_icon"></i>
                             </div>
                         </li>
-                        <li class="cart_product_content9">NT&ensp;<span class="cart_item_price"></span></li>
+                        <li class="cart_product_content9">NT&ensp;<span class="cart_item_price">${cartItem.subtotalPrice}</span></li>
                         <li class="cart_product_content10"><span>移除</span></li>
+                         <form method="get" action="<%=contextPath%>/CartServlet" id="removeCartItem" onsubmit="return submitRemoveCartItem();">
+                            <input type="hidden" name="method" value="removeCartItem">
+                            <input type="hidden" id="removeCartItem_productDesId" name="productDesId" value="${cartItem.prodesId}">
+                        </form>
+                        <form method="get" action="<%=contextPath%>/CartServlet" id="changeItemQTY" onsubmit="return submitChangeItemQTY();">
+                            <input type="hidden" name="method" value="changeItemQTY">
+                            <input type="hidden" id="changeItemQTY_productDesId" name="productDesId" value="${cartItem.prodesId}">
+                            <input type="hidden" id="changeItemQTY_itemQTY"name="itemQTY" value="">
+                        </form>
                     </ul>
-                    <ul class="cart_product_content">
-                        <li class="cart_product_content1"><input type="checkbox" name="choose"></li>
-                        <li class="cart_product_content2"><img src="img\product_pic_01.jpg" alt=""></li>
-                        <li class="cart_product_content3"><span>Arc'teryx 始祖鳥</span></li>
-                        <li class="cart_product_content4"><span>聚酯纖維彈性襯衫</span></li>
-                        <li class="cart_product_content5"><span>L</span></li>
-                        <li class="cart_product_content6"><span>黑色</span></li>
-                        <li class="cart_product_content7">NT&ensp;<span class="cart_single_item_price">1390</span></li>
-                        <li class="cart_product_content8">
-                            <div class="carts_adjust_qty">
-                                <i class="fas fa-minus carts_adjust_qty_icon"></i>
-                                <span class="carts_adust_item_qty">1</span>
-                                <i class="fas fa-plus carts_adjust_qty_icon"></i>
-                            </div>
-                        </li>
-                        <li class="cart_product_content9">NT&ensp;<span class="cart_item_price"></span></li>
-                        <li class="cart_product_content10"><span>移除</span></li>
-                    </ul>
-                    <ul class="cart_product_content">
-                        <li class="cart_product_content1"><input type="checkbox" name="choose"></li>
-                        <li class="cart_product_content2"><img src="img\product_pic_01.jpg" alt=""></li>
-                        <li class="cart_product_content3"><span>Arc'teryx 始祖鳥</span></li>
-                        <li class="cart_product_content4"><span>聚酯纖維彈性襯衫</span></li>
-                        <li class="cart_product_content5"><span>L</span></li>
-                        <li class="cart_product_content6"><span>黑色</span></li>
-                        <li class="cart_product_content7">NT&ensp;<span class="cart_single_item_price">1390</span></li>
-                        <li class="cart_product_content8">
-                            <div class="carts_adjust_qty">
-                                <i class="fas fa-minus carts_adjust_qty_icon"></i>
-                                <span class="carts_adust_item_qty">1</span>
-                                <i class="fas fa-plus carts_adjust_qty_icon"></i>
-                            </div>
-                        </li>
-                        <li class="cart_product_content9">NT&ensp;<span class="cart_item_price"></span></li>
-                        <li class="cart_product_content10"><span>移除</span></li>
-                    </ul>
-                    <ul class="cart_product_content">
-                        <li class="cart_product_content1"><input type="checkbox" name="choose"></li>
-                        <li class="cart_product_content2"><img src="img\product_pic_01.jpg" alt=""></li>
-                        <li class="cart_product_content3"><span>Arc'teryx 始祖鳥</span></li>
-                        <li class="cart_product_content4"><span>聚酯纖維彈性襯衫</span></li>
-                        <li class="cart_product_content5"><span>L</span></li>
-                        <li class="cart_product_content6"><span>黑色</span></li>
-                        <li class="cart_product_content7">NT&ensp;<span class="cart_single_item_price">1390</span></li>
-                        <li class="cart_product_content8">
-                            <div class="carts_adjust_qty">
-                                <i class="fas fa-minus carts_adjust_qty_icon"></i>
-                                <span class="carts_adust_item_qty">1</span>
-                                <i class="fas fa-plus carts_adjust_qty_icon"></i>
-                            </div>
-                        </li>
-                        <li class="cart_product_content9">NT&ensp;<span class="cart_item_price"></span></li>
-                        <li class="cart_product_content10"><span>移除</span></li>
-                    </ul>
-                    <ul class="cart_product_content">
-                        <li class="cart_product_content1"><input type="checkbox" name="choose"></li>
-                        <li class="cart_product_content2"><img src="img\product_pic_01.jpg" alt=""></li>
-                        <li class="cart_product_content3"><span>Arc'teryx 始祖鳥</span></li>
-                        <li class="cart_product_content4"><span>聚酯纖維彈性襯衫</span></li>
-                        <li class="cart_product_content5"><span>L</span></li>
-                        <li class="cart_product_content6"><span>黑色</span></li>
-                        <li class="cart_product_content7">NT&ensp;<span class="cart_single_item_price">1390</span></li>
-                        <li class="cart_product_content8">
-                            <div class="carts_adjust_qty">
-                                <i class="fas fa-minus carts_adjust_qty_icon"></i>
-                                <span class="carts_adust_item_qty">1</span>
-                                <i class="fas fa-plus carts_adjust_qty_icon"></i>
-                            </div>
-                        </li>
-                        <li class="cart_product_content9">NT&ensp;<span class="cart_item_price"></span></li>
-                        <li class="cart_product_content10"><span>移除</span></li>
-                    </ul>
+                   </c:forEach> 
+                   
                 </ul>
                 <div class="cart_end_gap"></div>
                 <ul class="cart_end_area">
-                    <li><input class="selectallcart" type="checkbox" for="" name="selectallcart">&ensp;全選</li>
+                    <li><input class="selectallcart" type="checkbox" name="selectallcart">&ensp;全選</li>
                     <li><span>全部移除</span></li>
-                    <li>總金額(不含運費)：NT&ensp;<span class="cart_total_price">0</span></li>
-                    <li onclick="location.href='goods_payment_check.jsp'">前往結帳</li>
+                    <li>總金額(不含運費)：NT&ensp;<span class="cart_total_price">${cart.totalPrice}</span></li>
+                    <li onclick="location.href='<%=contextPath %>/shop/goods_payment_check.jsp'">前往結帳</li>
                 </ul>
             </div>
         </div>
@@ -154,9 +135,12 @@
 
     <!-- 載入jQuery -->
     <!-- <script type='text/javascript' src='<%=contextPath%>/shop/code/jquery-3.6.0.js'></script> -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type='text/javascript' src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- 載入jQuery form-->
+    <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.js"></script>
     <!-- 載入index.js -->
-    <script type='text/javascript' src='<%=contextPath%>/shop/code/index.js'></script>
+    <script type='text/javascript' src='<%=contextPath%>/shop/code/header.js'></script>
+    <script type='text/javascript' src='<%=contextPath%>/shop/code/cart.js'></script>
     <!-- 載入icon -->
     <script src="https://kit.fontawesome.com/8cfc21ab70.js" crossorigin="anonymous"></script>
 </body>

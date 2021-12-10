@@ -63,6 +63,8 @@
                                 <li>數量</li>
                                 <li>小計</li>
                             </ul>
+                            
+         				   <c:forEach items="${orderDes}" var="orderDes" >
                             <ul class="payment_check_order_detail">
                                 <li class=""><img src="img\product_pic_01.jpg" alt=""></li>
                                 <li class=""><span>Arc'teryx 始祖鳥</span></li>
@@ -73,73 +75,7 @@
                                 <li class=""><span>2</span></li>
                                 <li class="">NT&ensp;<span class="">1390</span></li>
                             </ul>
-                            <ul class="payment_check_order_detail">
-                                <li class=""><img src="img\product_pic_01.jpg" alt=""></li>
-                                <li class=""><span>Arc'teryx 始祖鳥</span></li>
-                                <li class=""><span>聚酯纖維彈性襯衫</span></li>
-                                <li class=""><span>L</span></li>
-                                <li class=""><span>黑色</span></li>
-                                <li class="">NT&ensp;<span class="">1390</span></li>
-                                <li class=""><span>2</span></li>
-                                <li class="">NT&ensp;<span class="">1390</span></li>
-                            </ul>
-                            <ul class="payment_check_order_detail">
-                                <li class=""><img src="img\product_pic_01.jpg" alt=""></li>
-                                <li class=""><span>Arc'teryx 始祖鳥</span></li>
-                                <li class=""><span>聚酯纖維彈性襯衫</span></li>
-                                <li class=""><span>L</span></li>
-                                <li class=""><span>黑色</span></li>
-                                <li class="">NT&ensp;<span class="">1390</span></li>
-                                <li class=""><span>2</span></li>
-                                <li class="">NT&ensp;<span class="">1390</span></li>
-                            </ul>
-                        </div>
-                        <div class="payment_check_order_area_company_shipfee">運費：NT$<span>100</span></div>
-                    </div>
-
-                    <div class="payment_check_order_area_company">
-                        <div class="payment_check_order_area_company_title">訂單二</div>
-                        <div class="payment_check_order_detail_area">
-                            <ul class="payment_check_order_detail_title">
-                                <li>商品圖片</li>
-                                <li>店名</li>
-                                <li>商品訊息</li>
-                                <li>尺寸</li>
-                                <li>顏色</li>
-                                <li>售價</li>
-                                <li>數量</li>
-                                <li>小計</li>
-                            </ul>
-                            <ul class="payment_check_order_detail">
-                                <li class=""><img src="img\product_pic_01.jpg" alt=""></li>
-                                <li class=""><span>Arc'teryx 始祖鳥</span></li>
-                                <li class=""><span>聚酯纖維彈性襯衫</span></li>
-                                <li class=""><span>L</span></li>
-                                <li class=""><span>黑色</span></li>
-                                <li class="">NT&ensp;<span class="">1390</span></li>
-                                <li class=""><span>2</span></li>
-                                <li class="">NT&ensp;<span class="">1390</span></li>
-                            </ul>
-                            <ul class="payment_check_order_detail">
-                                <li class=""><img src="img\product_pic_01.jpg" alt=""></li>
-                                <li class=""><span>Arc'teryx 始祖鳥</span></li>
-                                <li class=""><span>聚酯纖維彈性襯衫</span></li>
-                                <li class=""><span>L</span></li>
-                                <li class=""><span>黑色</span></li>
-                                <li class="">NT&ensp;<span class="">1390</span></li>
-                                <li class=""><span>2</span></li>
-                                <li class="">NT&ensp;<span class="">1390</span></li>
-                            </ul>
-                            <ul class="payment_check_order_detail">
-                                <li class=""><img src="img\product_pic_01.jpg" alt=""></li>
-                                <li class=""><span>Arc'teryx 始祖鳥</span></li>
-                                <li class=""><span>聚酯纖維彈性襯衫</span></li>
-                                <li class=""><span>L</span></li>
-                                <li class=""><span>黑色</span></li>
-                                <li class="">NT&ensp;<span class="">1390</span></li>
-                                <li class=""><span>2</span></li>
-                                <li class="">NT&ensp;<span class="">1390</span></li>
-                            </ul>
+                            </c:forEach>
                         </div>
                         <div class="payment_check_order_area_company_shipfee">運費：NT$<span>100</span></div>
                     </div>
@@ -242,7 +178,8 @@
     <!-- <script type='text/javascript' src='<%=contextPath%>/shop/code/jquery-3.6.0.js'></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- 載入index.js -->
-    <script type='text/javascript' src='<%=contextPath%>/shop/code/index.js'></script>
+    <script type='text/javascript' src='<%=contextPath%>/shop/code/header.js'></script>
+    <script type='text/javascript' src='<%=contextPath%>/shop/code/chekc_order.js'></script>
     <!-- 載入icon -->
     <script src="https://kit.fontawesome.com/8cfc21ab70.js" crossorigin="anonymous"></script>
 </body>

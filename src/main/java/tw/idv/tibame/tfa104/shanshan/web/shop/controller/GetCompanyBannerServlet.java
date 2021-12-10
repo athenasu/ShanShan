@@ -17,9 +17,6 @@ import tw.idv.tibame.tfa104.shanshan.web.shop.service.impl.ShopServiceImpl;
 public class GetCompanyBannerServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		//來源路徑<%=contextPath %>/GetComapnytServlet?comapnyId=${comapnyBO.comapnyId}
-
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html");
 		
 		int company_id = Integer.parseInt(request.getParameter("companyId"));
 

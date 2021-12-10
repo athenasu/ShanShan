@@ -20,11 +20,12 @@ public class GetCompanyServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		//來源路徑<%=contextPath %>/GetComapnytServlet?comapnyId=${comapnyBO.comapnyId}
 
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html");
+		int company_id = 0;
 		
-		int company_id = Integer.parseInt(request.getParameter("companyId"));
-
+		if(request.getParameter("companyId") != null) {
+			company_id = Integer.parseInt(request.getParameter("companyId"));
+		}
+		
 //		顯示商店細節
 		ShopService service = new ShopServiceImpl();
 		CompanyVO companyDetail = service.findCompanyByComId(company_id);

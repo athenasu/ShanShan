@@ -17,18 +17,21 @@ import tw.idv.tibame.tfa104.shanshan.web.shop.service.impl.ShopServiceImpl;
 @WebServlet("/GetProductTypeServlet")
 public class GetProductTypeServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-
-		response.setContentType("application/json;charset=utf-8");
-		request.setCharacterEncoding("UTF-8");
-
+		
 		int productType = 0;
 		int pageNum = 0;
 		//取得參數
-		productType = Integer.parseInt(request.getParameter("ProductType"));
-		pageNum = Integer.parseInt(request.getParameter("pageNum"));
 
+		if(request.getParameter("ProductType") != null) {
+			productType = Integer.parseInt(request.getParameter("ProductType"));
+		}		
+		
+		if(request.getParameter("pageNum") != null) {
+			pageNum = Integer.parseInt(request.getParameter("pageNum"));
+		}
+
+		
 		if ( productType!= 0 & pageNum != 0) {
-
 			//取得頁數物件
 			Page page = new Page();
 			//設定目前頁數=JSP傳過來的參數

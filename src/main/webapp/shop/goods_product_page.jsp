@@ -21,6 +21,17 @@
     <link rel="stylesheet" type="text/css" href="<%=contextPath%>/shop/code/style.css">
 
 
+
+    <script type='text/javascript'>
+			function subForm() {
+		    	$("#product_format_detail").ajaxSubmit(function(message) {
+			    	console.log("提交form到CartServlet")
+		    	});
+		    	return false
+			}
+			
+	</script>
+
 </head>
 
 <body>
@@ -56,27 +67,38 @@
         <!-- 產品規格區-->
         <div class="product_format_detail_area">
             <div class="product_format_detail_breadcrumb">全部商品 > ${porductTypeName} > ${listProductDetail[0].productName}</div>
-            <form style="display: inline-block;" for="product_format_detail">
-            <div class="product_format_detail_name">品名：${listProductDetail[0].productName}</div>
-            <div class="product_format_detail_id">商品編號：${listProductDetail[0].productId}</div>
-            <div class="product_format_detail_price">售價：NT ${listProductDetail[0].productPrice}</div>
-            <div class="product_format_detail_color">樣式：
-             	<c:forEach items="${listStyle}" var="style" >
-                    <input class="product_format_detail_radio" type="radio" name="product_format_detail_color" value="white" checked>
-                    &ensp;${style}
-                </c:forEach>
-            </div>
-            <div class="product_format_detail_payway">付款方式：
-                    <input class="product_format_detail_radio" type="radio" name="product_format_detail_payway" value="信用卡" checked>&ensp;信用卡
-            </div>
-            <div class="product_format_detail_deliveryway">配送方式：
-                    <input class="product_format_detail_radio" type="radio" name="product_format_detail_deliveryway" value="宅配" checked>&ensp;宅配
-            </div>
-            <div class="product_format_detail_buttons">
-                    <div><input class="product_format_detail_button_1" type="button" value="直接購買"></input></div>
-                    <div><input class="product_format_detail_button_2" type="button" value="加入購物車"></input></div>
-            </div>
+          		<div class="product_format_detail_name">品名：${listProductDetail[0].productName}</div>
+            	<div class="product_format_detail_id">商品編號：${listProductDetail[0].productId}</div>
+            	<div class="product_format_detail_price">售價：NT ${listProductDetail[0].productPrice}</div>
+            <form method="get" id="product_format_detail" action="<%=contextPath%>/CartServlet" onsubmit="return subForm();">
+            
+                <input class="submit_method" type="hidden" name="method" value="addCartItem" ">
+            	<div class="product_format_detail_style">樣式：
+             		<c:forEach items="${listProductDetail}" var="listProductDetail" >
+                    <div class="product_format_detail_style_each">
+                	    <input class="product_format_detail_radio" type="radio" name="productDesId" value="${listProductDetail.prodesId}" checked >&ensp;${listProductDetail.productColor}&ensp;/&ensp;${listProductDetail.productSize}&ensp;
+                    </div>
+                    </c:forEach>
+            	</div>
+            	<div class="product_format_detail_qty">數量：
+                    <div class="product_adjust_qty">
+                        <i class="fas fa-minus product_adjust_qty_icon"></i>
+                        <input class="product_adust_item_qty_value" type="hidden" value="1" name="itemQTY">
+                        <span class="product_adust_item_qty">1</span>
+                        <i class="fas fa-plus product_adjust_qty_icon"></i>
+                    </div>
+                </div>
             </form>
+           		<div class="product_format_detail_payway">付款方式：
+                    <input class="product_format_detail_radio" type="radio" name="product_format_detail_payway" value="信用卡" checked>&ensp;信用卡
+           		</div>
+           		<div class="product_format_detail_deliveryway">配送方式：
+                    <input class="product_format_detail_radio" type="radio" name="product_format_detail_deliveryway" value="宅配" checked>&ensp;宅配
+            	</div>
+            <div class="product_format_detail_buttons">
+                   <div class="product_format_detail_button_1" >直接購買</div>
+                   <div class="product_format_detail_button_2" >加入購物車</div>
+                </div>
             <div class="product_format_detail_remark">※ 備註：如果商品是貼身衣物，則無法退貨。</div>
         </div>
     </div>
@@ -102,13 +124,18 @@
             <c:forEach items="${popular5}" var="ProductBO" >
                 <li class="single_good_area" onclick="location.href='<%=contextPath %>/GetProductServlet?productId=${ProductBO.productId}'">
                     <div class="good_headpic"><img class="good_headpic_img" src="<%=contextPath %>/ProductPicServlet?productId=${ProductBO.productId}&productImgId=0&action=firstPic" width="250px" alt="goods"></div>
-                    <div class="goods_icon"><i class="far fa-heart "></i></div>
-                    <div class="goods_icon_keep -none"><i class="fas fa-heart "></i></div>
+                    <div class="goods_icon"><i class="far fa-heart toWishList"></i></div>
+                    <div class="goods_icon_keep -none"><i class="fas fa-heart offWishList "></i></div>
                     <span class="good_headsupplier">${ProductBO.companyName}</span>	
                     <a class="good_headname"><h5>${ProductBO.productName}</h5></a>
                     <span class="good_headprice">售價${ProductBO.productPrice}</span>
+                    <input type="hidden" class="data_product_id" value="${ProductBO.productId}">
             </li>
             </c:forEach>
+            
+			<c:forEach  items="${listwp}" var="wp">
+                    <input type="hidden" class="wish_list" value="${wp}">
+			</c:forEach>
         </ul>
     </div>
 
@@ -121,8 +148,12 @@
     <!-- 載入jQuery -->
     <!-- <script type='text/javascript' src='<%=contextPath%>/shop/code/jquery-3.6.0.js'></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- 載入jQuery form-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.js"></script>
     <!-- 載入index.js -->
-    <script type='text/javascript' src='<%=contextPath%>/shop/code/index.js'></script>
+    <script type='text/javascript' src='<%=contextPath%>/shop/code/header.js'></script>
+    <script type='text/javascript' src='<%=contextPath%>/shop/code/wishlist.js'></script>
+    <script type='text/javascript' src='<%=contextPath%>/shop/code/product_page.js'></script>
     <!-- 載入icon -->
     <script src="https://kit.fontawesome.com/8cfc21ab70.js" crossorigin="anonymous"></script>
 </body>

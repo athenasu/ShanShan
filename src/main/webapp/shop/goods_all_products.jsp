@@ -32,17 +32,21 @@
                 <!-- https://i.imgur.com/1EiiZs2.png -->
                 <li class="single_good_area" onclick="location.href='<%=contextPath %>/GetProductServlet?productId=${ProductBO.productId}'">
                     <img class="good_headpic" src="<%=contextPath %>/ProductPicServlet?productId=${ProductBO.productId}&productSequence=0&action=firstPic" width="250px" alt="goods">
-                    <div class="goods_icon"><i class="far fa-heart "></i></div>
-                    <div class="goods_icon_keep -none"><i class="fas fa-heart "></i></div>
+                    <div class="goods_icon"><i class="far fa-heart toWishList "></i></div>
+                    <div class="goods_icon_keep -none"><i class="fas fa-heart offWishList "></i></div>
                     <span class="good_headsupplier">${ProductBO.companyName}</span>	
                     <a class="good_headname"><h5>${ProductBO.productName}</h5></a>
                     <span class="good_headprice">售價${ProductBO.productPrice}</span>
+                    <input type="hidden" class="data_product_id" value="${ProductBO.productId}">
                 </li>
             </c:forEach>
             
-            
             </ul>
 
+			<c:forEach  items="${listwp}" var="wp">
+                    <input type="hidden" class="wish_list" value="${wp}">
+			</c:forEach>
+			
             <!-- 分頁標籤與分頁查詢功能 -->
             <div class="page_num">
                 <ul>
@@ -72,7 +76,9 @@
     <!-- <script type='text/javascript' src='<%=contextPath%>/shop/code/jquery-3.6.0.js'></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- 載入index.js -->
-    <script type='text/javascript' src='<%=contextPath%>/shop/code/index.js'></script>
+    <script type='text/javascript' src='<%=contextPath%>/shop/code/header.js'></script>
+    <script type='text/javascript' src='<%=contextPath%>/shop/code/product_page.js'></script>
+    <script type='text/javascript' src='<%=contextPath%>/shop/code/wishlist.js'></script>
     <!-- 載入icon -->
     <script src="https://kit.fontawesome.com/8cfc21ab70.js" crossorigin="anonymous"></script>
 </body>

@@ -2,6 +2,10 @@ package tw.idv.tibame.tfa104.shanshan.web.shop.service.impl;
 
 import java.util.List;
 
+import org.hibernate.cache.spi.support.AbstractReadWriteAccess.Item;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import tw.idv.tibame.tfa104.shanshan.web.company.entity.CompanyVO;
 import tw.idv.tibame.tfa104.shanshan.web.product.entity.ProductBO;
 import tw.idv.tibame.tfa104.shanshan.web.product.service.ProductServiceHibernate;
@@ -12,12 +16,19 @@ import tw.idv.tibame.tfa104.shanshan.web.shop.entity.Cart;
 import tw.idv.tibame.tfa104.shanshan.web.shop.entity.CartItem;
 import tw.idv.tibame.tfa104.shanshan.web.shop.entity.ProductImgBO;
 import tw.idv.tibame.tfa104.shanshan.web.shop.service.ShopService;
+//import tw.idv.tibame.tfa104.shanshan.web.shop.service.WishlistProductDao;
+//import tw.idv.tibame.tfa104.shanshan.web.shop.service.WishlistProductDaoImpl;
+import tw.idv.tibame.tfa104.shanshan.web.wishlistProduct.entity.WishlistProduct;
 
 public class ShopServiceImpl implements ShopService{
 
 	ProductServiceHibernate pssvc = new ProductServiceHibernate_impl();
 	
 	ShopDAO dao = new ShopDAOImpl();
+	
+
+//	WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+//	WishlistProductDao dao2 = context.getBean(WishlistProductDaoImpl.class);
 	
 	//	回傳?個 PopularProduct , 熱門商品 (?個)  按總銷售數 正序
 	@Override
@@ -47,6 +58,12 @@ public class ShopServiceImpl implements ShopService{
 	@Override
 	public List<ProductBO> findProductByProId(Integer product_id) {
 		return dao.findProductByProId(product_id);
+	}
+	
+//	顯示特定商品明細 購物車
+	@Override
+	public ProductBO findProductByProDesId(Integer product_des_id) {
+		return dao.findProductByProDesId(product_des_id);
 	}
 
 //	顯示特定商家商品?個+分頁功能 按照product_id 正序
@@ -109,34 +126,13 @@ public class ShopServiceImpl implements ShopService{
 	public List<ProductImgBO> getAllProPic(Integer product_id) {
 		return dao.getAllProPic(product_id);
 	}
-	
 
-//  購物車
-//  加入購物車項目
+//  查詢特定會員的WishlistProduct list
 	@Override
-	public Cart addCartItem(Integer product_des_id) {
-		
-		return null;
-	}
-
-//  刪除購物車項目
-	@Override
-	public Cart deleteCartItem(Integer product_des_id) {
-
-		return null;
-	}
-
-//  清除購物車
-	@Override
-	public Cart cleanCart() {
-
-		return null;
+	public List<WishlistProduct> getWishlistProductsByMemberId(Integer memberId) {
+		return dao.getWishlistProductsByMemberId( memberId);
 	}
 	
-//  顯示購物車
-	@Override
-	public Cart showCart() {
+	
 
-		return null;
-	}
 }
