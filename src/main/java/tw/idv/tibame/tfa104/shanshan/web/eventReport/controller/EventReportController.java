@@ -1,8 +1,11 @@
 package tw.idv.tibame.tfa104.shanshan.web.eventReport.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,5 +25,12 @@ public class EventReportController {
 	@PostMapping(path = "addEventReport", consumes = { MediaType.APPLICATION_JSON_VALUE })
 	public Integer addEventReport(@RequestBody EventReport eventreport){
 		return eventReportService.addEventReport(eventreport);
+	}
+	
+	@CrossOrigin
+	@GetMapping("selectEventReportByMemberId")
+	public List<EventReport> selectEventReportByMemberId(Integer memberId, Integer eventId){
+		final List<EventReport> eventListByMemberId = eventReportService.selectEventReportByMemberId(memberId, eventId);
+		return eventListByMemberId;
 	}
 }

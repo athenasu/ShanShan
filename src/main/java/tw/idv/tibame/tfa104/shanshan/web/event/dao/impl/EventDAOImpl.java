@@ -105,6 +105,11 @@ public class EventDAOImpl implements EventDAO{
 		if (eventStatus != null) {
 			tempEvent.setEventStatus(eventStatus);
 		}
+		
+		final Integer eventCurPart = event.getEventCurPart();
+		if (eventCurPart != null) {
+			tempEvent.setEventCurPart(eventCurPart);
+		}
 
 		session.update(tempEvent);
 		return 1;

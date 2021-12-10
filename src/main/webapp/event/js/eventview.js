@@ -16,12 +16,15 @@ $(document).on("change", "#mountain_id", function () {
 $(document).on("click", "button.cancel_participate", function () {
     $(".lightbox-target").removeClass("-on")
 })
-$(document).on("change", "select.experience", function(){
+$(document).on("change", "select.experience", function () {
     $("select.experience").attr("value", $(this).val());
 })
-$(document).on("change", "select.participation", function(){
+$(document).on("change", "select.participation", function () {
     $("select.participation").attr("value", $(this).val());
     console.log(this)
+})
+$(document).on("click", "button.cancel_event_report_btn", function () {
+    $(".lightbox-target2").removeClass("-on")
 })
 $(document).on("change", "#mountain_area", function () {
     $("#mountain_area").attr("value", $(this).val());
@@ -76,8 +79,8 @@ function init() {
             </div>
             <div class="event_detail">
                 <ul class="event_detail_left">
-                    <li class="event_id" name="event_id" value="${data[0].eventId}"">揪團編號：<span>${data[0].eventId}</span></li>
-                    <li class="event_owner" value="${data[0].memberName}">揪團發起人：<span>${data[0].memberName}</span></li>
+                    <li class="event_id" name="event_id" value="${data[0].eventId}"><span>揪團編號：${data[0].eventId}</span></li>
+                    <li class="event_owner" value="${data[0].memberName}"><span>揪團發起人：${data[0].memberName}</span></li>
                     <li class="mountain_district">活動地區：
                         <select class="area_option" id="mountain_area" disabled>
                             <option class="north_mountain" name="mountain_district" value="1">北部</option>
@@ -201,27 +204,67 @@ function init() {
                     $("option.hardest").prop('selected', true);
                     break;
             }
-            console.log(data[0].mountainId)
+            // console.log(data[0].mountainId)
 
-            if(data[0].mountainId == 1 || data[0].mountainId == 2 || data[0].mountainId == 3 || data[0].mountainId == 4 || data[0].mountainId == 5){
+            if (data[0].mountainId == 1 || data[0].mountainId == 2 || data[0].mountainId == 3 || data[0].mountainId == 4 || data[0].mountainId == 5) {
                 $("option.north_mountain").prop('selected', true);
                 $("select.north_mountain").addClass("-on")
-            }else if(data[0].mountainId == 6 || data[0].mountainId == 7 || data[0].mountainId == 8 || data[0].mountainId == 9 || data[0].mountainId == 10){
+            } else if (data[0].mountainId == 6 || data[0].mountainId == 7 || data[0].mountainId == 8 || data[0].mountainId == 9 || data[0].mountainId == 10) {
                 $("option.mid_mountain").prop('selected', true);
                 $("select.mid_mountain").addClass("-on")
-            }else if(data[0].mountainId == 11 || data[0].mountainId == 12 || data[0].mountainId == 13 || data[0].mountainId == 14 || data[0].mountainId == 15){
+            } else if (data[0].mountainId == 11 || data[0].mountainId == 12 || data[0].mountainId == 13 || data[0].mountainId == 14 || data[0].mountainId == 15) {
                 $("option.south_mountain").prop('selected', true);
                 $("select.south_mountain").addClass("-on")
-            }else if(data[0].mountainId == 16 || data[0].mountainId == 17 || data[0].mountainId == 18 || data[0].mountainId == 19 || data[0].mountainId == 20){
+            } else if (data[0].mountainId == 16 || data[0].mountainId == 17 || data[0].mountainId == 18 || data[0].mountainId == 19 || data[0].mountainId == 20) {
                 $("option.east_mountain").prop('selected', true);
                 $("select.east_mountain").addClass("-on")
-            }else{
+            } else {
                 $("option.other_mountain").prop('selected', true);
                 $("select.other_mountain").addClass("-on")
             }
-        
+
+            //=========================== GET EVENT REPORT BY MEMBER&EVENT FROM DATABASE ===========================
+            $.ajax({
+                url: "http://localhost:8081/shanshan/eventReport/selectEventReportByMemberId",
+                type: "GET",
+                data: {
+                    "memberId": 1,
+                    "eventId": data[0].eventId
+                },
+                dataType: "json",
+                beforeSend: function () {
+
+                },
+                success: function (data) {
+                    // console.log(data);
+                    if (data.length != 0) {
+                        $("button.event_report_btn").attr("disabled", true)
+                    }
+                }
+            })
+
+            //=========================== GET EVENT WISHLIST BY MEMBER&EVENT FROM DATABASE ===========================
+            // $.ajax({
+            //     url: "http://localhost:8081/shanshan/eventReport/selectEventReportByMemberId",
+            //     type: "GET",
+            //     data: {
+            //         "memberId": 1,
+            //         "eventId": data[0].eventId
+            //     },
+            //     dataType: "json",
+            //     beforeSend: function () {
+
+            //     },
+            //     success: function (data) {
+            //         console.log(data);
+
+            //     }
+            // })
         }
+
     })
+
+
 
     //=========================== GET EVENT_MSG BY EVENT_ID FROM DATABASE ===========================
     $.ajax({
@@ -241,7 +284,7 @@ function init() {
                 var url = URL.createObjectURL(blob);
                 // console.log(item);
                 // console.log(item.memberProfilePic)
-                console.log(url);
+                // console.log(url);
 
                 event_msg_html += "<ul class='event_msg'>";
                 event_msg_html +=   "<img class='member_pic' src='" + url + "'>";
@@ -280,24 +323,28 @@ $(document).on("click", "button.event_wish_btn", function () {
 
 //=========================== SEND EVENT_REPORT TO DATABASE ===========================
 $(document).on("click", "button.event_report_btn", function () {
-    $.ajax({
-        url: "http://localhost:8081/shanshan/eventReport/addEventReport",
-        type: "POST",
-        contentType: 'application/json',
-        data: JSON.stringify({
-            "eventId": 1,
-            "memberId": 1,
-            "reportReason": 1,
-            "reportDate": new Date().toISOString(),
-            "caseStatus": 1
-        }),
-        dataType: "json",
-        beforeSend: function () {
-        },
-        success: function (data) {
- 
-        }
+    $(".lightbox-target2").addClass("-on")
+    $(document).on("click", "button.send_event_report_btn", function () {
+        $.ajax({
+            url: "http://localhost:8081/shanshan/eventReport/addEventReport",
+            type: "POST",
+            contentType: 'application/json',
+            data: JSON.stringify({
+                "eventId": $("li.event_id").val(),
+                "memberId": 1,
+                "reportReason": 1,
+                "reportDate": new Date().toISOString(),
+                "caseStatus": 1
+            }),
+            dataType: "json",
+            beforeSend: function () {
+            },
+            success: function (data) {
+                $(".lightbox-target2").removeClass("-on")
+            }
+        })
     })
+
 })
 
 $(document).on("click", "button.back_btn", function () {
@@ -388,11 +435,6 @@ $(document).on("click", "button.join_btn", function () {
                             <option class="no_experience" id="experience" value="false">沒有經驗</option>
                             <option class="has_experience" id="experience" value="true">有經驗</option>
                         </select>
-                        <p>是否參加：</p>
-                        <select class="participation" id="participation">
-                            <option class="participate" id="participation" value="true">參加</option>
-                            <option class="no_participate" id="participation" value="false">不參加</option>
-                        </select>
                         <p>連絡電話：</p>
                         <input type="text" class="phone_number" name="phone_number" value="${data[0].phoneNumber}">
                         <p class="original_participants">參加人數</p>
@@ -413,15 +455,15 @@ $(document).on("click", "button.join_btn", function () {
                         $("select.experience").attr("value", false)
                 }
 
-                switch (data[0].participation) {
-                    case true:
-                        $("option.participate").prop('selected', true);
-                        $("select.participate").attr("value", true)
-                        break;
-                    case false:
-                        $("option.no_participate").prop('selected', true);
-                        $("select.participate").attr("value", false)
-                }
+                // switch (data[0].participation) {
+                //     case true:
+                //         $("option.participate").prop('selected', true);
+                //         $("select.participate").attr("value", true)
+                //         break;
+                //     case false:
+                //         $("option.no_participate").prop('selected', true);
+                //         $("select.participate").attr("value", false)
+                // }
 
             }
             else {
@@ -433,14 +475,10 @@ $(document).on("click", "button.join_btn", function () {
                             <option class="no_experience" id="experience" value="false">沒有經驗</option>
                             <option class="has_experience" id="experience" value="true">有經驗</option>
                         </select>
-                        <p>是否參加：</p>
-                        <select class="participation" id="participation">
-                            <option class="participate" id="participation" value="true">參加</option>
-                            <option class="no_participate" id="participation" value="false">不參加</option>
-                        </select>
                         <p>連絡電話：</p>
                         <input type="text" class="phone_number" name="phone_number">
                         <p>參加人數</p>
+                        <input type="hidden" class="original_participants" value="0">
                         <input type="text" class="total_participants" name="total_participants">
                         <button class="send_participants_btn">送出</button>
                         <button class="cancel_participate">返回</button>
@@ -456,7 +494,7 @@ $(document).on("click", "button.join_btn", function () {
 $(document).on("click", "button.send_participants_btn", function () {
     var memberId = 4;
     $.ajax({
-        
+
         url: "http://localhost:8081/shanshan/participant/addParticipant",
         type: "POST",
         contentType: 'application/json',
@@ -465,7 +503,6 @@ $(document).on("click", "button.send_participants_btn", function () {
             "memberId": memberId,
             "experience": $("select.experience").val(),
             "phoneNumber": $("input.phone_number").val(),
-            "participation": $("select.participation").val(),
             "joinDate": new Date().toISOString(),
             "totalParticipants": $("input.total_participants").val()
         }),
@@ -477,8 +514,9 @@ $(document).on("click", "button.send_participants_btn", function () {
             var member_id = 1;
             var event_status = 2;
             var event_points = 10;
-            var event_cur_part = (parseInt($("li.event_cur_part").val()) + parseInt($("input.total_participants").val()));
-
+            // var event_cur_part = (parseInt($("li.event_cur_part").val()) + parseInt($("input.total_participants").val()));
+            var pre_calculate = (parseInt($("li.event_cur_part").val()) - parseInt($("input.original_participants").val()));
+            var event_cur_part = (pre_calculate + parseInt($("input.total_participants").val()));
             //========= UPDATE EVENT_CUR_PART AFTER ADD PARTICIPANTS =========
             $.ajax({
                 url: "http://localhost:8081/shanshan/event/updateEvent",
@@ -504,7 +542,7 @@ $(document).on("click", "button.send_participants_btn", function () {
                 }),
                 success: function (data) {
                     $(".lightbox-target").removeClass("-on")
-
+                    // console.log(event_cur_part)
                 }
             })
         }
@@ -524,7 +562,6 @@ $(document).on("click", "button.edit_participants_btn", function () {
             "memberId": memberId,
             "experience": 1,
             "phoneNumber": $("input.phone_number").val(),
-            "participation": 1,
             "totalParticipants": $("input.total_participants").val()
         }),
         dataType: "json",
@@ -534,7 +571,7 @@ $(document).on("click", "button.edit_participants_btn", function () {
             var member_id = 1;
             var event_status = 2;
             var event_points = 10;
-            const pre_calculate = (parseInt($("li.event_cur_part").val()) - parseInt($("input.original_participants").val()));
+            var pre_calculate = (parseInt($("li.event_cur_part").val()) - parseInt($("input.original_participants").val()));
             var event_cur_part = (pre_calculate + parseInt($("input.total_participants").val()));
 
             //========= UPDATE EVENT_CUR_PART AFTER UPDATE PARTICIPANTS =========
@@ -562,7 +599,7 @@ $(document).on("click", "button.edit_participants_btn", function () {
                 }),
                 success: function (data) {
                     $(".lightbox-target").removeClass("-on")
-
+                    // console.log(event_cur_part)
                 }
             })
         }

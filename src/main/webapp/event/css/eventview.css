@@ -123,6 +123,7 @@ ul.event_msg{
     border:solid red;
     height: 55px;
 }
+
 img.member_pic{
     display:inline-block;
     border:solid blue;
@@ -183,6 +184,24 @@ textarea.event_content{
     left:35%;
     width:500px;
     height:400px;
+}
+
+.lightbox-target2{
+    display:none;
+}
+.lightbox-target2.-on{
+    position:fixed;
+    display:block;
+    background-color: coral;
+    border:solid black;
+    border-radius: 15px;
+    top:45%;
+    left:83%;
+    width:200px;
+    height:200px;
+}
+label.reason_0, label.reason_1, label.reason_2, label.reason_3{
+    display:block;
 }
 select.experience{
     display:inline-block;

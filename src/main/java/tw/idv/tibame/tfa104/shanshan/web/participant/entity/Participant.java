@@ -36,8 +36,8 @@ public class Participant implements Serializable{
 	@Column(name = "phone_number")
 	private String phoneNumber;
 	
-	@Column(name = "participation")
-	private boolean participation;
+//	@Column(name = "participation")
+//	private boolean participation;
 	
 	@Column(name = "join_date", updatable = false)
 	private Timestamp joinDate;
@@ -85,13 +85,13 @@ public class Participant implements Serializable{
 		this.phoneNumber = phoneNumber;
 	}
 
-	public boolean isParticipation() {
-		return participation;
-	}
-
-	public void setParticipation(boolean participation) {
-		this.participation = participation;
-	}
+//	public boolean isParticipation() {
+//		return participation;
+//	}
+//
+//	public void setParticipation(boolean participation) {
+//		this.participation = participation;
+//	}
 
 	public Timestamp getJoinDate() {
 		return joinDate;
@@ -116,9 +116,11 @@ public class Participant implements Serializable{
 	@Override
 	public String toString() {
 		return "Participant [partId=" + partId + ", eventId=" + eventId + ", memberId=" + memberId + ", experience="
-				+ experience + ", phoneNumber=" + phoneNumber + ", participation=" + participation + ", joinDate="
-				+ joinDate + ", totalParticipants=" + totalParticipants + "]";
+				+ experience + ", phoneNumber=" + phoneNumber + ", joinDate=" + joinDate + ", totalParticipants="
+				+ totalParticipants + "]";
 	}
+
+
 	
 
 }
