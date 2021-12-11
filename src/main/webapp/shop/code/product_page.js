@@ -127,6 +127,7 @@ $(document).ready(
 			// 點擊按鈕 加入購物車 提交FORM表單
 			$(".product_format_detail_button_2").click(function() {
 				$("#product_format_detail").submit();
+				alert("成估加入購物車。");
 				showCartItemQty();
 			})
 

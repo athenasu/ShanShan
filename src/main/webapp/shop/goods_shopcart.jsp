@@ -46,11 +46,14 @@
     	
     	return false
     }
+    
+
     </script>
 
 </head>
 
 <body>
+<input type="hidden" class="member_id" value="${memberId}">
     <!-- 插入 商城頁首-->
 <%@ include file="goods_header.jsp" %>
 
@@ -58,6 +61,7 @@
     <div class="goodsindex_bodycontent">
 
         <div class="goodsindex_innercontent ">
+            <form method="get" action="<%=contextPath%>/PurchaseServlet" id="PurchaseProduct">
             <ul class="cart_top_title_area_01">
                 <li style="color: rgb(51, 51, 51);">查看購物車</li>
                 <li><i class="fas fa-arrow-circle-right" style="color: rgb(51, 51, 51);"></i></li>
@@ -80,15 +84,15 @@
                     <li>移除此項</li>
                 </ul>
                        
-
+			
                         <form method="get" action="<%=contextPath%>/CartServlet" id="cleanCartItem" onsubmit="return submitCleanCartItem();">
-                            <input type="hidden" name="method" value="cleanCartItem">
+                            <input type="hidden" name="method" value="cleanCartItem" id="cleanCartItemInput" >
                         </form>
 
                 <ul class="cart_product_content_area">
          		  <c:forEach items="${cart.cartItems}" var="cartItem" >
                     <ul class="cart_product_content">
-                        <li class="cart_product_content1"><input type="checkbox" name="choose"></li>
+                        <li class="cart_product_content1"><input class="chooseItem" type="checkbox" name="choose" ></li>
                         <li class="cart_product_content2"><img src="<%=contextPath %>/ProductPicServlet?productId=${cartItem.productId}&productSequence=0&action=firstPic" alt=""></li>
                         <li class="cart_product_content3"><span>${cartItem.companyName}</span></li>
                         <li class="cart_product_content4"><span>${cartItem.productName}</span></li>
@@ -113,6 +117,7 @@
                             <input type="hidden" id="changeItemQTY_productDesId" name="productDesId" value="${cartItem.prodesId}">
                             <input type="hidden" id="changeItemQTY_itemQTY"name="itemQTY" value="">
                         </form>
+                        
                     </ul>
                    </c:forEach> 
                    
@@ -122,9 +127,11 @@
                     <li><input class="selectallcart" type="checkbox" name="selectallcart">&ensp;全選</li>
                     <li><span>全部移除</span></li>
                     <li>總金額(不含運費)：NT&ensp;<span class="cart_total_price">${cart.totalPrice}</span></li>
-                    <li onclick="location.href='<%=contextPath %>/shop/goods_payment_check.jsp'">前往結帳</li>
+                    <li id="go_to_pay">前往結帳</li>
                 </ul>
             </div>
+            
+           </form>
         </div>
     </div>
 

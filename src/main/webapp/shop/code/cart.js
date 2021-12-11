@@ -24,7 +24,7 @@ $(document).ready(function () {
     let single_checked = $("input[name='choose']");
 
 
-    // WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW 提交表格區
+    // WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW 移除/清空/改數量/總價更新方法 (用提交表格的方式)
 //  提交購物車form，移除購物車項目
     function submitRemoveCartItem(){
     	console.log("提交form,RemoveCartItem")
@@ -54,6 +54,7 @@ $(document).ready(function () {
     	$("#changeItemQTY").ajaxSubmit(function(message) {
 	    	console.log("提交form,changeItemQTY OK!!")
     	});
+    	return false
     }
     
 //    總價格更新方法
@@ -70,7 +71,16 @@ $(document).ready(function () {
         $(".cart_total_price").text(sum_price);
     	
     }
-    
+
+    // WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW checkbox優化
+//  如果checkbox打勾，就添加checked屬性，如果取消打勾，就移除checked屬性(變成undefined)
+    $(".chooseItem").click(function () {
+    	if($(this).attr("checked") == undefined){
+        	$(this).attr("checked","checked")
+    	}else{
+        	$(this).removeAttr("checked")
+    	}
+    })
     // 點擊 全選
     all_checked.click(function () {
         // 如果全選未勾選(true)
@@ -109,6 +119,7 @@ $(document).ready(function () {
     })
 
     
+    // WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW 刪除購物車項目
     // 點擊 清空購物車，移除購物車全部商品 
     $("ul.cart_end_area li:nth-child(2)").click(function () {
 
@@ -189,5 +200,34 @@ $(document).ready(function () {
         updateTotalPrice();
 
     })
-
+    
+    
+    // WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW 結帳
+        // 點擊 提交表單 前往結帳頁面
+    $("#go_to_pay").click(function () {
+//    	清除其他的form表單，避免出錯
+    	$("#cleanCartItem").remove();
+    	$("#cleanCartItemInput").remove();
+    	$("#removeCartItem").remove();
+    	$("#changeItemQTY").remove();
+    	$("input.selectallcart").remove();
+    	
+//    	找到商品區域，所有有打勾的項目
+    	let cart = $(".cart_product_content_area")
+//    	console.log(cart.find(".cart_product_content").eq(0))
+    	
+//    	遍歷所有cart item
+    	for (let c = 1 ; c <= cart.children().length ; c++){
+//    		如果cart item的checkbox有打勾，寫入所有資料到input，name為資料順序(int)，value為商品資訊JSON
+    		if (cart.find(".cart_product_content").eq(c).find(".chooseItem").attr("checked")){
+//    			cart.find(".cart_product_content").eq(c).find("input.XXX").attr("name", c);
+//    			cart.find(".cart_product_content").eq(c).find("input.XXX").attr("value", "prodesId=???,productPrice=???,itemQTY=????");
+    		}
+    	}
+        // 提交form，執行servlet
+//    	$("#PurchaseProduct").submit();
+    })
+    
+    
+    
 })

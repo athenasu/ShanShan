@@ -49,7 +49,9 @@ public class PurchaseServlet extends HttpServlet {
 
 //		從購物車購買
 		if ("buyCart".equals(method)) {
-			request.getRequestDispatcher("/shop/goods_payment_check.jsp").forward(request, response);
+			
+			
+//			request.getRequestDispatcher("/shop/goods_payment_check.jsp").forward(request, response);
 		};
 
 

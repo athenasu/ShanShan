@@ -41,7 +41,7 @@ public class OrderDescriptionDAOImpl implements OrderDescriptionDAO{
 //	查詢 特定訂單的訂單明細BO 按訂單明細編號 正序 (沒圖片，拿掉一些店家後台用的資料)
 	private static final String BO_FIND_BY_ORDERID_NO_PIC_FOR_MEMBER_CENTER ="SELECT b.order_id, b.order_created_date, b.order_status, a.product_quantity, a.product_price, b.order_sum_after, b.order_shipped_date, b.ship_number, b.payment_status, d.product_name, c.product_id, c.product_des_id, c.product_size, c.product_color, e.company_name FROM order_description a JOIN `order` b USING (order_id) JOIN product_description c USING (product_des_id) JOIN product d USING (product_id) JOIN company e USING (company_id) WHERE order_id = ?";
 //	查詢 特定會員的訂單+訂單明細BO 按訂單明細編號 正序
-	private static final String BO_FIND_BY_MEMID_NO_PIC_FOR_MEMBER_CENTER ="SELECT b.order_id, b.member_id, b.order_created_date, b.order_member_address, b.order_member_name, b.order_member_phone, b.order_status, a.product_quantity, a.product_price, b.order_sum_after, b.order_shipped_date, b.ship_number, b.payment_status, d.product_name, c.product_id, c.product_des_id, c.product_size, c.product_color, d.company_id, e.company_name FROM order_description a JOIN `order` b USING (order_id) JOIN company e USING (company_id) JOIN product_description c USING (product_des_id) JOIN product d USING (product_id) WHERE member_id = ? AND order_id = ?";
+	private static final String BO_FIND_BY_MEMID_FOR_MEMBER_CENTER ="SELECT b.order_id, b.member_id, b.order_created_date, b.order_member_address, b.order_member_name, b.order_member_phone, b.order_status, a.product_quantity, a.product_price, a.subtotal_price, b.order_sum_after, b.order_shipped_date, b.ship_number, b.payment_status, d.product_name, c.product_id, c.product_des_id, c.product_size, c.product_color, d.company_id, e.company_name, f.product_img FROM order_description a JOIN `order` b USING (order_id) JOIN company e USING (company_id) JOIN product_description c USING (product_des_id) JOIN product d USING (product_id) JOIN (SELECT g.product_img_id,g.product_des_id, h.product_img FROM (SELECT min(product_img_id) product_img_id,product_des_id FROM product_img GROUP BY product_des_id) g JOIN product_img h USING (product_img_id)) f USING (product_des_id) WHERE member_id = ? AND order_id = ?";
 
 	private static DataSource ds = null;
 	
@@ -440,7 +440,7 @@ public class OrderDescriptionDAOImpl implements OrderDescriptionDAO{
 
 			con = ds.getConnection();
 
-			pstmt = con.prepareStatement(BO_FIND_BY_MEMID_NO_PIC_FOR_MEMBER_CENTER);
+			pstmt = con.prepareStatement(BO_FIND_BY_MEMID_FOR_MEMBER_CENTER);
 			pstmt.setInt(1, member_id);
 			pstmt.setInt(2, order_id);
 			rs = pstmt.executeQuery();
@@ -467,6 +467,8 @@ public class OrderDescriptionDAOImpl implements OrderDescriptionDAO{
 				orderDesBO3.setProduct_color(rs.getString("product_color"));
 				orderDesBO3.setOrder_description_price(rs.getInt("product_price"));
 				orderDesBO3.setProduct_quantity(rs.getInt("product_quantity"));
+				orderDesBO3.setSubtotal_price(rs.getInt("subtotal_price"));
+				orderDesBO3.setProduct_first_pic(rs.getBytes("product_img"));
 
 				listOrderDesBO3.add(orderDesBO3);
 			}

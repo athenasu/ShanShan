@@ -35,6 +35,7 @@
 </head>
 
 <body>
+<input type="hidden" class="member_id" value="${memberId}">
 
     <!-- 插入 商城頁首-->
 <%@ include file="goods_header.jsp" %>
