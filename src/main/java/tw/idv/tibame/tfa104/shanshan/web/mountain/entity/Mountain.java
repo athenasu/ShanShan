@@ -31,7 +31,7 @@ public class Mountain implements Serializable {
  @Column(name = "mountain_latitude")
  private BigDecimal mountainLatitude;
  @Column(name = "mountain_pic", columnDefinition = "LONGBLOB")
- private Byte[] mountainPic;
+ private byte[] mountainPic;
  @Column(name = "mountain_info")
  private String mountainInfo;
 
@@ -76,11 +76,11 @@ public class Mountain implements Serializable {
   this.mountainLatitude = mountainLatitude;
  }
 
- public Byte[] getMountainPic() {
+ public byte[] getMountainPic() {
   return mountainPic;
  }
 
- public void setMountainPic(Byte[] mountainPic) {
+ public void setMountainPic(byte[] mountainPic) {
   this.mountainPic = mountainPic;
  }
 
