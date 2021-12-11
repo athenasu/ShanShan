@@ -7,9 +7,11 @@ import java.util.List;
 import javax.naming.*;
 import javax.sql.DataSource;
 
+import org.springframework.stereotype.Repository;
+
 import tw.idv.tibame.tfa104.shanshan.web.articleReport.dao.ArticleReportDAO_interface;
 import tw.idv.tibame.tfa104.shanshan.web.articleReport.entity.ArticleReportVO;
-
+@Repository
 public class ArticleReportDAO implements ArticleReportDAO_interface {
 
 	private static DataSource ds = null;

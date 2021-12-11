@@ -9,7 +9,8 @@ public interface ActLogMsgDAO_interface {
 	public void insertMsg(ActLogMsgVO ActLogMsgVO);
     public void update(ActLogMsgVO ActLogMsgVO);
     public void delete(Integer act_msg_id);
-	public ActLogMsgVO findMsgByPK(Integer act_msg_id);
+	public List<ActLogMsgVO> findMsgByPK(Integer act_msg_id);
+	public List<ActLogMsgVO> findMsgByArtId(Integer article_id);
     public List<ActLogMsgVO> getAllMsg();
     
 //    上架狀態留言

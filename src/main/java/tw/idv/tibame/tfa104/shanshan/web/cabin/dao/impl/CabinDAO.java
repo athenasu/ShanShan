@@ -12,9 +12,11 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import org.springframework.stereotype.Repository;
+
 import tw.idv.tibame.tfa104.shanshan.web.cabin.dao.CabinDAO_interface;
 import tw.idv.tibame.tfa104.shanshan.web.cabin.entity.CabinVO;
-
+@Repository
 public class CabinDAO implements CabinDAO_interface {
 
 	private static DataSource ds = null;

@@ -27,8 +27,14 @@ public class ActLogMsgService {
 		dao.delete(act_msg_id);
 	}
 
-	public ActLogMsgVO findMsgByPK(Integer act_msg_id) {
+	
+	
+	public List<ActLogMsgVO> findMsgByPK(Integer act_msg_id) {
 		return dao.findMsgByPK(act_msg_id);
+	}
+
+	public List<ActLogMsgVO> findMsgByArtId(Integer article_id) {
+		return dao.findMsgByArtId(article_id);
 	}
 
 	public List<ActLogMsgVO> getAllMsg() {
@@ -42,7 +48,6 @@ public class ActLogMsgService {
 	public String changeMsgStatus(ActLogMsgVO ActLogMsgVO) {
 		return dao.changeMsgStatus(ActLogMsgVO);
 	}
-	
-	
+
 
 }

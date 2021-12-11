@@ -1,11 +1,14 @@
 package tw.idv.tibame.tfa104.shanshan.web.article.service.impl;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import tw.idv.tibame.tfa104.shanshan.web.article.dao.ArticleDAO_interface;
 import tw.idv.tibame.tfa104.shanshan.web.article.dao.impl.ArticleDAO;
 import tw.idv.tibame.tfa104.shanshan.web.article.entity.ArticleVO;
+import tw.idv.tibame.tfa104.shanshan.web.articlePicture.entity.ArticlePictureVO;
 
 public class ArticleService {
 	private ArticleDAO_interface dao;
@@ -94,6 +97,24 @@ public class ArticleService {
 	public int updateArticleStatus(Integer article_status, Integer article_id) {
 		return dao.updateArticleStatus(article_status, article_id);
 	}
+
+	
+	public void updateviews(Integer aritcle_viewer, Integer article_id) {
+		dao.updateviews(aritcle_viewer, article_id);
+	}
+
+	public String insertWithPic(ArticleVO ArticleVO, List<ArticlePictureVO> articlePictureVO) {
+//		public String insertWithPic(ArticleVO ArticleVO, ArticlePictureVO articlePictureVO) {
+           dao.insertWithPic(ArticleVO, articlePictureVO);
+		   return "ok";
+	}
+
+	public List<ArticleVO> search(String article_title, String article_content, String member_name,
+			String mountain_name) {
+		return dao.search(article_title, article_content, member_name, mountain_name);
+	}
+
+
 
 	
 }

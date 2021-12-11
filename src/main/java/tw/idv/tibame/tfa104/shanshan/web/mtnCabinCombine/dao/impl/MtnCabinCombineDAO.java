@@ -12,10 +12,12 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import org.springframework.stereotype.Repository;
+
 import tw.idv.tibame.tfa104.shanshan.web.mtnCabinCombine.dao.MtnCabinCombineDAO_interface;
 import tw.idv.tibame.tfa104.shanshan.web.mtnCabinCombine.entity.MtnCabinCombineVO;
 
-
+@Repository
 public class MtnCabinCombineDAO implements MtnCabinCombineDAO_interface {
 
 	private static DataSource ds = null;

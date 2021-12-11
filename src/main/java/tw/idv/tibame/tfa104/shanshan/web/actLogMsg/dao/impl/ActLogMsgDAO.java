@@ -12,9 +12,11 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import org.springframework.stereotype.Repository;
+
 import tw.idv.tibame.tfa104.shanshan.web.actLogMsg.dao.ActLogMsgDAO_interface;
 import tw.idv.tibame.tfa104.shanshan.web.actLogMsg.entity.ActLogMsgVO;
-
+@Repository
 public class ActLogMsgDAO implements ActLogMsgDAO_interface {
 
 	private static DataSource ds = null;
@@ -31,6 +33,7 @@ public class ActLogMsgDAO implements ActLogMsgDAO_interface {
 	private static final String update = "update act_log_msg set article_id=?, member_id=?, msg_content=? where act_msg_id=?";
 	private static final String delete = "delect act_msg_id from act_log_msg where act_log_msg=?";
 	private static final String findMsgPK = "Select act_msg_id, article_id, member_id, msg_time,msg_content,msg_status from act_log_msg  where act_msg_id=?";
+	private static final String findMsgID = "Select act_msg_id, article_id, member_id, msg_time,msg_content,msg_status from act_log_msg  where article_id=?";
 	private static final String getAllMsg = "Select act_msg_id, article_id, member_id, msg_time,msg_content,msg_status from act_log_msg  order by act_msg_id";
 	
 	
@@ -242,7 +245,8 @@ public class ActLogMsgDAO implements ActLogMsgDAO_interface {
 	}
 
 	@Override
-	public ActLogMsgVO findMsgByPK(Integer act_msg_id) {
+	public List<ActLogMsgVO> findMsgByPK(Integer act_msg_id) {
+		List<ActLogMsgVO> list = new ArrayList<ActLogMsgVO>();
 
 		ActLogMsgVO ActLogMsgVO = null;
 		Connection con = null;
@@ -264,6 +268,7 @@ public class ActLogMsgDAO implements ActLogMsgDAO_interface {
 				ActLogMsgVO.setMsg_time(rs.getDate("Msg_time"));
 				ActLogMsgVO.setMsg_content(rs.getString("Msg_content"));
 				ActLogMsgVO.setMsg_status(rs.getInt("Msg_status"));
+				list.add(ActLogMsgVO);
 			}
 
 		} catch (SQLException se) {
@@ -291,7 +296,7 @@ public class ActLogMsgDAO implements ActLogMsgDAO_interface {
 				}
 			}
 		}
-		return ActLogMsgVO;
+		return list;
 	}
 
 	@Override
@@ -323,6 +328,60 @@ public class ActLogMsgDAO implements ActLogMsgDAO_interface {
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
+	}
+
+	@Override
+	public List<ActLogMsgVO> findMsgByArtId(Integer article_id) {
+		List<ActLogMsgVO> list = new ArrayList<ActLogMsgVO>();
+		ActLogMsgVO ActLogMsgVO = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(findMsgID);
+			pstmt.setInt(1, article_id);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				ActLogMsgVO = new ActLogMsgVO();
+				ActLogMsgVO.setAct_msg_id(rs.getInt("Act_msg_id"));
+				ActLogMsgVO.setArticle_id(rs.getInt("Article_id"));
+				ActLogMsgVO.setMember_id(rs.getInt("Member_id"));
+				ActLogMsgVO.setMsg_time(rs.getDate("Msg_time"));
+				ActLogMsgVO.setMsg_content(rs.getString("Msg_content"));
+				ActLogMsgVO.setMsg_status(rs.getInt("Msg_status"));
+				list.add(ActLogMsgVO);
+			}
+
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
 		} finally {
 			if (rs != null) {
 				try {

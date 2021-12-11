@@ -132,6 +132,17 @@ public class ArticleVO implements Serializable {
 	private BigDecimal mountain_latitude;
 	private Integer article_picture_id;
 	private byte[] article_picture;
+	private String member_name;
+
+	
+	
+	public String getMember_name() {
+		return member_name;
+	}
+
+	public void setMember_name(String member_name) {
+		this.member_name = member_name;
+	}
 
 	public Integer getMountain_district() {
 		return mountain_district;
