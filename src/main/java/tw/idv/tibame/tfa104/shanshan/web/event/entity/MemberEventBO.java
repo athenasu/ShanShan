@@ -60,6 +60,9 @@ public class MemberEventBO extends Core{
 	
 	@Column(name = "memberId")
 	private Integer memberId;
+	
+	@Column(name = "eventPoints")
+	private Integer eventPoints;
 
 	public Integer getEventId() {
 		return eventId;
@@ -176,6 +179,15 @@ public class MemberEventBO extends Core{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	
+	
+	public Integer getEventPoints() {
+		return eventPoints;
+	}
+
+	public void setEventPoints(Integer eventPoints) {
+		this.eventPoints = eventPoints;
+	}
 
 	@Override
 	public String toString() {
@@ -183,7 +195,7 @@ public class MemberEventBO extends Core{
 				+ ", eventDeadline=" + eventDeadline + ", eventStatus=" + eventStatus + ", eventCurPart=" + eventCurPart
 				+ ", maxNumOfPeople=" + maxNumOfPeople + ", mountainName=" + mountainName + ", mountainLongitude="
 				+ mountainLongitude + ", mountainLatitude=" + mountainLatitude + ", mountainPic="
-				+ Arrays.toString(mountainPic) + ", memberId=" + memberId + "]";
+				+ Arrays.toString(mountainPic) + ", memberId=" + memberId + ", eventPoints=" + eventPoints + "]";
 	}
 
 }
