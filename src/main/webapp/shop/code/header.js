@@ -94,7 +94,10 @@ $(document).ready(function () {
         $("div.goods_search_area").css("border", "2px solid rgb(214, 214, 214)")
     });
 
-
+    $("i.goods_search_icon").click(function () {
+//    	console.log("點到了喔")
+        $("#search_bar").submit();
+    });
     // WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW 商店 header 結束
 
 })

@@ -40,6 +40,9 @@ a:link, a:visited, a:hover, a:active {
     clear: both
 }
 
+input {
+	-webkit-user-select: auto !important;
+}
 /*  WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW 全頁樣式區 結束 */
 
 /*  WWWWWWWWWWWWWWWWWWWWWWWWWWW 註冊導覽列 區域開始 */
@@ -330,13 +333,15 @@ a:link, a:visited, a:hover, a:active {
 .goods_search {
     font-weight: bold;
     font-size: 16px;
-    margin-top: 7px;
-    margin-left: 5px;
-    width: 110px;
-    float: right;
+    /* margin-top: 0px; */
+    /* margin-left: 0px; */
+    /* float: right; */
+    width: 95px;
     border: 0;
     outline: none;
     background-color: rgba(0, 0, 0, 0);
+    position: relative;
+    top: 5px;
 }
 
 .goods_search::placeholder {
@@ -354,14 +359,15 @@ a:link, a:visited, a:hover, a:active {
 .goods_search_icon {
     position: absolute;
     top: 8px;
-    left: 3px;
+    left: 165px;
     /* border: 5px solid rgb(114, 114, 114); */
+    cursor: pointer;
 }
 
 .goods_search_choose_bar {
     position: absolute;
     top: 6px;
-    left: 23px;
+    left: 8px;
 }
 
 /* 購物車ICON */
@@ -1560,21 +1566,40 @@ li .fa-arrow-circle-right {
 
 /* 山山點數 區域 */
 
-.point_game_rule {
+/* .point_game_rule {
     margin-top: 5px;
     font-size: 10px;
 }
+.point_game_rule span{
+    font-size: 15px;
+    font-weight: bold;  
+} */
 
-.payment_current_point, .payment_current_point_num {
+/* .payment_usepoints, .payment_usepoints_num {
+    display: inline-block;
+} */
+
+.payment_current_point {
     font-size: 16px;
     margin-bottom: 8px;
     display: inline-block;
+    width: 1100px;
+    height: 30px;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    flex-wrap:wrap;
+    margin-bottom: 0;
 }
 
-.payment_usepoints, .payment_usepoints_num {
-    display: inline-block;
-
-}
+/* .payment_check_point_use{
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap:wrap;
+    
+} */
 
 /* 價錢總結 確認按鈕 區域 */
 
@@ -1582,12 +1607,12 @@ li .fa-arrow-circle-right {
     margin-bottom: 20px;
 }
 
-.payment_check_total_price {
+.payment_check_sum_after,.payment_check_sum_before,.payment_check_shipping_fee {
     margin-top: 10px;
     height: 35px;
 }
 
-.payment_check_total_price li {
+.payment_check_sum_after li,.payment_check_sum_before li,.payment_check_shipping_fee li {
     text-align: right;
     float: right;
     font-size: 23px;
@@ -1598,7 +1623,7 @@ li .fa-arrow-circle-right {
     line-height: 35px;
 }
 
-.payment_check_total_price li:nth-child(1) {
+.payment_check_sum_after li:nth-child(1),.payment_check_sum_before li:nth-child(1),.payment_check_shipping_fee li:nth-child(1) {
     width: 100px;
     line-height: 35px;
 }

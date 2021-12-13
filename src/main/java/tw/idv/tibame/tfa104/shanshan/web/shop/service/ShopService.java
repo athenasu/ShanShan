@@ -8,6 +8,7 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import tw.idv.tibame.tfa104.shanshan.web.company.entity.CompanyVO;
+import tw.idv.tibame.tfa104.shanshan.web.order.entity.Order;
 import tw.idv.tibame.tfa104.shanshan.web.product.entity.ProductBO;
 import tw.idv.tibame.tfa104.shanshan.web.product.service.ProductServiceHibernate;
 import tw.idv.tibame.tfa104.shanshan.web.shop.entity.Cart;
@@ -17,6 +18,7 @@ import tw.idv.tibame.tfa104.shanshan.web.wishlistProduct.entity.WishlistProduct;
 
 
 public interface ShopService {
+	
 //	回傳?個 ProductBO , 熱門商品 (?個)  按總銷售數 正序
 	List<ProductBO> findPopularNum(Integer showNum);
 //  山友搜尋商品名字功能 條件product_name like '%?%' 按product_id 正序 

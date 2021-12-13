@@ -36,7 +36,15 @@
             <div class="goods_title01 ">訂單確認</div>
             <div class="payment_check_order_area">
 
+
+                <form method="get" action="<%=contextPath%>/PaymentResultServlet" id="PaymentResultServlet">
+                
+                <div class="payment_check_order_title">請填寫收件人姓名</div>
+                <input class="payment_fill_name" type="text" placeholder="王小明" style="width: 80px;" name="fill_name">
+                <div class="payment_check_order_title">請填寫收件人電話</div>
+                <input class="payment_fill_phone" type="text" placeholder="09..." style="width: 100px;" name="fill_phone">
                 <div class="payment_check_order_title">請填寫收貨地址</div>
+                <input class="payment_address" type="hidden" name="address" value="">
                 <input class="payment_fill_address" type="text" placeholder="縣市" style="width: 60px;">
                 <input class="payment_fill_address" type="text" placeholder="鄉鎮市區" style="width: 60px;">
                 <input class="payment_fill_address" type="text" placeholder="道路街" style="width: 120px;">
@@ -44,7 +52,7 @@
                 <input class="payment_fill_address" type="text" placeholder="弄" style="width: 40px;">
                 <input class="payment_fill_address" type="text" placeholder="號" style="width: 40px;">
                 <input class="payment_fill_address" type="text" placeholder="樓" style="width: 40px;">
-                <input class="payment_fill_address" type="text" placeholder="室" style="width: 40px;">
+                <input class="payment_fill_address" type="text" placeholder="室" style="width: 40px;" >
                 <div class="cart_end_gap2"></div>
                 <div class="payment_check_order_title">請選擇付款方式</div>
                 <input class="payment_fill_payway" type="radio" checked>&ensp;信用卡
@@ -52,7 +60,8 @@
                 <div class="payment_check_order_title">商品詳情：</div>
                 <div>
                     <div class="payment_check_order_area_company">
-                        <div class="payment_check_order_area_company_title">訂單一</div>
+         				<c:forEach items="${orderList}" var="orderList" varStatus="s">
+                        <div class="payment_check_order_area_company_title">訂單${s.count}</div>
                         <div class="payment_check_order_detail_area">
                             <ul class="payment_check_order_detail_title">
                                 <li>商品圖片</li>
@@ -65,41 +74,70 @@
                                 <li>小計</li>
                             </ul>
                             
-         				   <c:forEach items="${orderDes}" var="orderDes" >
+         					<c:forEach items="${orderList.orderDesBOList}" var="orderDesBOList" >
                             <ul class="payment_check_order_detail">
-                                <li class=""><img src="img\product_pic_01.jpg" alt=""></li>
-                                <li class=""><span>Arc'teryx 始祖鳥</span></li>
-                                <li class=""><span>聚酯纖維彈性襯衫</span></li>
-                                <li class=""><span>L</span></li>
-                                <li class=""><span>黑色</span></li>
-                                <li class="">NT&ensp;<span class="">1390</span></li>
-                                <li class=""><span>2</span></li>
-                                <li class="">NT&ensp;<span class="">1390</span></li>
+                                <li class=""><img src="<%=contextPath %>/ProductPicServlet?productId=${orderDesBOList.product_id}&productSequence=0&action=firstPic" alt=""></li>
+                                <li class=""><span>${orderDesBOList.company_name}</span></li>
+                                <li class=""><span>${orderDesBOList.product_name}</span></li>
+                                <li class=""><span>${orderDesBOList.product_size}</span></li>
+                                <li class=""><span>${orderDesBOList.product_color}</span></li>
+                                <li class="">NT&ensp;<span class="">${orderDesBOList.order_description_price}</span></li>
+                                <li class=""><span>${orderDesBOList.product_quantity}</span></li>
+                                <li class="">NT&ensp;<span class="">${orderDesBOList.subtotal_price}</span></li>
                             </ul>
                             </c:forEach>
+                            <ul class="payment_current_point">
+                       		         您現有的山山點數為：
+                                <span class="payment_current_point_num">${memberPoint}</span>
+                         		       ，使用&ensp;<span class="payment_usepoints_num">0</span>&ensp;點取得對應折扣。&ensp;
+                                 <input class="payment_points_range" type="range" min="0" max="50" step="1" value="0" >
+          					     <input class="payment_usedPoints" type="hidden" name="${s.index}point">
+          					     <input class="payment_sumAfter" type="hidden" name="${s.index}sumAfter">
+                            </ul>
+                            <ul class="payment_check_order_area_company_shipfee">
+                                <li class="this_ship_fee">0</li>
+                                <li>本訂單運費：&ensp;NT$&ensp;</li>
+                            </ul>
+                            <ul class="payment_check_order_area_company_totalfee">
+                                <li class="this_sum_before">${orderList.order_sum_before}</li>
+                                <li>折扣前金額：&ensp;NT$&ensp;</li>
+                            </ul>
+                            <ul class="payment_check_order_area_company_totalfee ">
+                                <li class="this_sum_after">${orderList.order_sum_after}</li>
+                                <li>折扣後金額：&ensp;NT$&ensp;</li>
+                            </ul>
                         </div>
-                        <div class="payment_check_order_area_company_shipfee">運費：NT$<span>100</span></div>
+                        </c:forEach>
+                        
                     </div>
                 </div>
+                <div class="cart_end_gap2"></div>
+                <div class="payment_check_order_title">山山點數 遊戲規則</div>
+                <div class="point_game_rule">
+                    &ensp;&ensp;&ensp;a. 使用山山點數可以獲得商品金額折扣。
+                    <br>&ensp;&ensp;&ensp;b. 使用1點可以獲得0.1%的折扣。
+                    <br>&ensp;&ensp;&ensp;c. 每張訂單最多可以獲取商品金額5%的折扣。
+                </div>
+                
                 <div class="cart_end_gap2"></div>
                 <div class="payment_check_order_title">付款詳細資料</div>
                 <ul>
                     <li style="margin-bottom: 10px;">信用卡類型：
-                        <input class="payment_fill_credit_type" name="payment_fill_credit_type" value="visa"
-                            type="radio"><img src="img\credit_logo_visa.jpg" width="50px">
-                        <input class="payment_fill_credit_type" name="payment_fill_credit_type" value="mastercard"
-                            type="radio"><img src="img\credit_logo_mastercard.jpg" width="50px">
-                        <input class="payment_fill_credit_type" name="payment_fill_credit_type" value="JCB"
-                            type="radio"><img src="img\credit_logo_JCB.jpg" width="50px">
+                        <input class="payment_fill_credit_type" name="" value="visa"
+                            type="radio"><img src="<%=contextPath %>/shop/img/credit_logo_visa.jpg" width="50px">
+                        <input class="payment_fill_credit_type" name="" value="mastercard"
+                            type="radio"><img src="<%=contextPath %>/shop/img/credit_logo_mastercard.jpg" width="50px">
+                        <input class="payment_fill_credit_type" name="" value="JCB"
+                            type="radio"><img src="<%=contextPath %>/shop/img/credit_logo_JCB.jpg" width="50px">
                     </li>
                     <li style="margin-bottom: 10px;">信用卡號碼：
-                        <input class="payment_fill_credit_num" name="payment_fill_credit_num" type="text" maxlength="4"
+                        <input class="payment_fill_credit_num" name="" type="text" maxlength="4"
                             style="width: 50px;">&ensp;-&ensp;
-                        <input class="payment_fill_credit_num" name="payment_fill_credit_num" type="text" maxlength="4"
+                        <input class="payment_fill_credit_num" name="" type="text" maxlength="4"
                             style="width: 50px;">&ensp;-&ensp;
-                        <input class="payment_fill_credit_num" name="payment_fill_credit_num" type="text" maxlength="4"
+                        <input class="payment_fill_credit_num" name="" type="text" maxlength="4"
                             style="width: 50px;">&ensp;-&ensp;
-                        <input class="payment_fill_credit_num" name="payment_fill_credit_num" type="text" maxlength="4"
+                        <input class="payment_fill_credit_num" name="" type="text" maxlength="4"
                             style="width: 50px;">
                     </li>
                     <li style="margin-bottom: 10px;">到期月份：
@@ -134,35 +172,45 @@
                         <input class="payment_fill_CVN" name="payment_fill_CVN" type="text" style="width: 40px;">
                     </li>
                 </ul>
-                <div class="cart_end_gap2"></div>
+               <!--  <div class="cart_end_gap2"></div>
                 <div class="payment_check_order_title">山山點數</div>
-                <input class="payment_points_range" type="range" checked min="0" max="100" value="0"> 使用點數：
-                <span class="payment_points_num">0</span>
+                <div class="payment_current_point">您的現有點數為：</div>
+                <div class="payment_current_point_num">1,203</div>
+                <div>
+                    <input class="payment_points_range" type="range" checked min="0" max="100" value="0"> 
+                    <div class="payment_usepoints">&ensp;使用點數：</div>
+                    <div class="payment_usepoints_num">0</div>
+                </div>
                 <div class="point_game_rule">*遊戲規則：
                     <br>&ensp;&ensp;&ensp;a. 使用山山點數可以獲得商品金額折扣。
                     <br>&ensp;&ensp;&ensp;b. 使用1點可以獲得0.1%的折扣。
                     <br>&ensp;&ensp;&ensp;c. 每次結帳最多可以獲取商品金額5%的折扣。
                     <br>&ensp;&ensp;&ensp;d. 每次結帳可使用的最大點數為商品金額的5%。
-                </div>
+                </div> -->
+                
                 <div class="cart_end_gap" style="margin-top: 10px;"></div>
+                </form>
             </div>
 
             <div class="payment_check_order_endarea">
-                <ul class="payment_check_total_price">
-                    <ul>
-                        <li>&ensp;NT$&ensp;<span>1,000</span></li>
-                        <li>&ensp;NT$&ensp;<span>200</span></li>
-                        <li>&ensp;NT$&ensp;<span>1,200</span></li>
-                    </ul>
-                    <ul>
-                        <li>商品金額：</li>
-                        <li>運費：</li>
-                        <li>應付總金額：</li>
-                    </ul>
+                <ul class="payment_check_sum_before">
+                    <li class="sum_before_num">1,200</li>
+                    <li>折扣前金額：&ensp;NT$&ensp;</li>
                 </ul>
+                
+                <ul class="payment_check_shipping_fee">
+                    <li class="shipping_fee_num">0</li>
+                    <li>總運費：&ensp;NT$&ensp;</li>
+                </ul>
+
+                <ul class="payment_check_sum_after">
+                    <li class="sum_after_num">1,200</li>
+                    <li>應付總金額：&ensp;NT$&ensp;</li>
+                </ul>
+               
                 <ul class="payment_check_end_botton">
-                    <li class="payment_back_carts" onclick="location.href='goods_shopcart.jsp'">返回購物車</li>
-                    <li class="payment_confirm_pay" onclick="location.href='goods_payment_complete.jsp'">確認訂單並付款</li>
+                    <li class="payment_back_carts" onclick="location.href='<%=contextPath%>/CartServlet?method=mycart'">返回購物車</li>
+                    <li class="payment_confirm_pay" >確認訂單並付款</li>
                 </ul>
 
 

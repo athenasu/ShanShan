@@ -66,7 +66,7 @@ public class CartServlet extends HttpServlet {
 			Integer productId = productBO.getProductId();
 
 			// 重新定向，到原來商品頁面
-			response.sendRedirect(request.getContextPath() + "/GetProductServlet?productId=" + productId);
+			response.sendRedirect("/GetProductServlet?productId=" + productId);
 			}else {
 //			如果目前購物車有這productDesId，方法改變回變更數量
 			cart.changeItemQTY(cart, productDesId, itemQTY);
@@ -107,7 +107,7 @@ public class CartServlet extends HttpServlet {
 			itemQTY = Integer.parseInt(request.getParameter("itemQTY"));
 			// 調用方法，獲取現有購物車
 			Cart cart = (Cart) request.getSession().getAttribute("cart");
-			// 調用方法，清空cart
+			// 調用方法，改變項目數量
 			cart.changeItemQTY(cart, productDesId, itemQTY);
 			// 放新購物車到session
 			request.getSession().setAttribute("cart", cart);

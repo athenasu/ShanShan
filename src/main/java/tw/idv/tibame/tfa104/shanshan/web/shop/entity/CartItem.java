@@ -5,6 +5,7 @@ public class CartItem{
 		private Integer productId; 
 		private Integer prodesId; 
 		private String productName; 
+		private Integer companyId; 
 		private String companyName; 
 		private Integer productSize; 
 		private String productColor; 
@@ -12,37 +13,22 @@ public class CartItem{
 		private Integer itemQTY; 
 		private Integer subtotalPrice;
 		
+//		set商品小計
+		public void setSubtotalPrice() {
+			this.subtotalPrice =  getSubtotalPrice();
+		}
+
 //		計算 商品小計
-		public Integer countSubtotalPrice() {
+		public Integer getSubtotalPrice() {
+
 			return getProductPrice() * getItemQTY();
 		}
 		
-//		set商品小計
-		public void setSubtotalPrice(Integer subtotalPrice) {
-			this.subtotalPrice = subtotalPrice;
-		}
-
-		public Integer getSubtotalPrice() {
-			return subtotalPrice;
-		}
-
 		public CartItem() {
 			super();
 		}
 		
 		
-		public CartItem(Integer prodesId, String productName, String companyName, Integer productSize,
-				String productColor, Integer productPrice, Integer itemQTY) {
-			super();
-			this.prodesId = prodesId;
-			this.productName = productName;
-			this.companyName = companyName;
-			this.productSize = productSize;
-			this.productColor = productColor;
-			this.productPrice = productPrice;
-			this.itemQTY = itemQTY;
-		}
-
 		public Integer getProdesId() {
 			return prodesId;
 		}
@@ -96,12 +82,37 @@ public class CartItem{
 			this.productId = productId;
 		}
 
+		public Integer getCompanyId() {
+			return companyId;
+		}
+
+		public void setCompanyId(Integer companyId) {
+			this.companyId = companyId;
+		}
+
 		@Override
 		public String toString() {
 			return "CartItem [productId=" + productId + ", prodesId=" + prodesId + ", productName=" + productName
-					+ ", companyName=" + companyName + ", productSize=" + productSize + ", productColor=" + productColor
-					+ ", productPrice=" + productPrice + ", itemQTY=" + itemQTY + ", subtotalPrice=" + subtotalPrice
-					+ "]";
+					+ ", companyId=" + companyId + ", companyName=" + companyName + ", productSize=" + productSize
+					+ ", productColor=" + productColor + ", productPrice=" + productPrice + ", itemQTY=" + itemQTY
+					+ ", subtotalPrice=" + subtotalPrice + "]";
 		}
+
+		public CartItem(Integer productId, Integer prodesId, String productName, Integer companyId, String companyName,
+				Integer productSize, String productColor, Integer productPrice, Integer itemQTY,
+				Integer subtotalPrice) {
+			super();
+			this.productId = productId;
+			this.prodesId = prodesId;
+			this.productName = productName;
+			this.companyId = companyId;
+			this.companyName = companyName;
+			this.productSize = productSize;
+			this.productColor = productColor;
+			this.productPrice = productPrice;
+			this.itemQTY = itemQTY;
+			this.subtotalPrice = subtotalPrice;
+		}
+
 
 }

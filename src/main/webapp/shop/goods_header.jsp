@@ -19,7 +19,7 @@
 
 
             <div class="login_formbox">
-                <input class="emaillogin" type="button" value="用電子郵件登入"></input>
+                <input class="emaillogin" type="button" value="電子郵件登入"></input>
             </div>
 
             <div class="login_formbox" style=" text-align: center;">
@@ -62,10 +62,10 @@
     <!-- 商店導覽列 開始-->
     <header class="goods_header">
         <div class="goods_titlebar">
-            <div class="goods_titlepic"><img src="<%=request.getContextPath()%>/shop/img/logo.png" width="60px" height="60px" alt=""></div>
+            <div class="goods_titlepic"><img src="<%=request.getContextPath()%>/shop/img/logo.png" width="60px" height="60px" alt="" onclick="location.href='<%=request.getContextPath()%>/index/index.jsp'"></div>
 
             <!-- 山山來此 標題 -->
-            <div class="goods_header_title_shanshan" onclick="location.href='#'">山山來此</div>
+            <div class="goods_header_title_shanshan" onclick="location.href='<%=request.getContextPath()%>/index/index.jsp'">山山來此</div>
 
             <!-- 隔線 -->
             <div class="goods_titlegap"></div>
@@ -118,17 +118,19 @@
 
             <!-- 搜尋功能 -->
             <div class="goods_search_area" tabindex="0">
+              <form id="search_bar" action="<%=request.getContextPath()%>/SearchServlet" method="get" >
                 <div class="goods_search_choose">
 
                     <i class="fas fa-search goods_search_icon"></i>
-                    <select class="goods_search_choose_bar" value="1" tabindex="0">
-                        <option value="1">商品</option>
-                        <option value="2">商店</option>
+                    <select class="goods_search_choose_bar" value="1" name="method" tabindex="0">
+                        <option value="product">商品</option>
+                        <option value="company">商店</option>
                     </select>
                 </div>
                 <label for="goods_search">
-                    <input type="type" class="goods_search" placeholder="輸入關鍵字..." name="goods_search"
-                        tabindex="0"></input></label>
+                    <input type="text" class="goods_search" placeholder="輸入關鍵字..." name="searchString" tabindex="0"></input>
+                </label>
+           	 </form>
             </div>
             <!-- 登入註冊 -->
             <input type="button" class="goods_registor_botton" value="註冊"

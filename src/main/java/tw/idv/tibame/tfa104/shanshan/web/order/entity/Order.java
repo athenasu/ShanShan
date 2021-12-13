@@ -2,11 +2,18 @@ package tw.idv.tibame.tfa104.shanshan.web.order.entity;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+import tw.idv.tibame.tfa104.shanshan.web.orderDescription.entity.OrderDescription;
+import tw.idv.tibame.tfa104.shanshan.web.orderDescription.entity.OrderDescriptionBO;
+import tw.idv.tibame.tfa104.shanshan.web.shop.entity.CartItem;
 
 public class Order implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-	
+	private List<OrderDescriptionBO> orderDesBOList= new ArrayList<OrderDescriptionBO>();
 	private Integer order_id;
 	private Integer member_id;
 	private Integer company_id;
@@ -14,6 +21,7 @@ public class Order implements Serializable{
 	private String order_member_address;
 	private String order_member_name;
 	private Integer order_member_phone;
+	
 	private Integer order_status;
 	private Integer point_used;
 	private Integer order_sum_before;
@@ -25,6 +33,20 @@ public class Order implements Serializable{
 	public Order() {
 	}
 
+
+//	public Collection<CartItem> getCartItems() {
+//		return mapCartItem.values();
+//	}
+
+//	EL表達式中，取值的方法是透過物件的get方法，去掉get,屬性名改小寫，取到該get方法的值。
+	public List<OrderDescriptionBO> getOrderDesBOList() {
+		return orderDesBOList;
+	}
+
+	public void setOrderDesBOList(List<OrderDescriptionBO> orderDesBOList) {
+		this.orderDesBOList = orderDesBOList;
+	}
+	
 	public Integer getOrder_id() {
 		return order_id;
 	}
@@ -139,19 +161,21 @@ public class Order implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Order [order_id=" + order_id + ", member_id=" + member_id + ", company_id=" + company_id
-				+ ", order_created_date=" + order_created_date + ", order_member_address=" + order_member_address
-				+ ", order_member_name=" + order_member_name + ", order_member_phone=" + order_member_phone
-				+ ", order_status=" + order_status + ", point_used=" + point_used + ", order_sum_before="
-				+ order_sum_before + ", order_sum_after=" + order_sum_after + ", order_shipped_date="
-				+ order_shipped_date + ", ship_number=" + ship_number + ", payment_status=" + payment_status + "]";
+		return "Order [orderDesBOList=" + orderDesBOList + ", order_id=" + order_id + ", member_id=" + member_id + ", company_id="
+				+ company_id + ", order_created_date=" + order_created_date + ", order_member_address="
+				+ order_member_address + ", order_member_name=" + order_member_name + ", order_member_phone="
+				+ order_member_phone + ", order_status=" + order_status + ", point_used=" + point_used
+				+ ", order_sum_before=" + order_sum_before + ", order_sum_after=" + order_sum_after
+				+ ", order_shipped_date=" + order_shipped_date + ", ship_number=" + ship_number + ", payment_status="
+				+ payment_status + "]";
 	}
 
-	public Order(Integer order_id, Integer member_id, Integer company_id, Date order_created_date,
-			String order_member_address, String order_member_name, Integer order_member_phone, Integer order_status,
-			Integer point_used, Integer order_sum_before, Integer order_sum_after, Date order_shipped_date,
-			Integer ship_number, Integer payment_status) {
+	public Order(List<OrderDescriptionBO> orderDesBOList, Integer order_id, Integer member_id, Integer company_id,
+			Date order_created_date, String order_member_address, String order_member_name, Integer order_member_phone,
+			Integer order_status, Integer point_used, Integer order_sum_before, Integer order_sum_after,
+			Date order_shipped_date, Integer ship_number, Integer payment_status) {
 		super();
+		this.orderDesBOList = orderDesBOList;
 		this.order_id = order_id;
 		this.member_id = member_id;
 		this.company_id = company_id;
@@ -167,6 +191,5 @@ public class Order implements Serializable{
 		this.ship_number = ship_number;
 		this.payment_status = payment_status;
 	}
-	
 
 }

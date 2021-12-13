@@ -14,7 +14,7 @@ import tw.idv.tibame.tfa104.shanshan.web.shop.service.impl.ShopServiceImpl;
 
 public class Cart {
 
-//		建立一個空的CartItem的map集合，該集合的CartItem物件以productId命名，進去購物車頁面時，可以調用到這個空的HashMap集合
+//		建立一個空的CartItem的map集合，該集合key以productId命名，value是對應的CartItem物件，進去購物車頁面時，可以調用到這個空的HashMap集合
 	private Map<String, CartItem> mapCartItem = new HashMap<String, CartItem>();
 	private Integer totalPrice = 0;
 //  購物車icon的數字
@@ -38,15 +38,12 @@ public class Cart {
 //			進行加總
 			sum += itemSubtotal;
 		}
-
-//		System.out.println("getTotalPrice被調用了");
 		return sum;
 	}
 
 //  改變購物車icon的數字
 	public Integer getTotalItemQTY() {
 		int sum = mapCartItem.size();
-		
 		return sum;
 	}
 
@@ -66,7 +63,7 @@ public class Cart {
 	}
 
 
-	public void setTotalPrice(Integer totalPrice) {
+	public void setTotalPrice(Integer totalPrice) {;
 		this.totalPrice = totalPrice;
 	}
 
@@ -87,12 +84,13 @@ public class Cart {
 		cartItem.setProductId(productBO.getProductId());
 		cartItem.setProdesId(productDesId);
 		cartItem.setProductName(productBO.getProductName());
+		cartItem.setCompanyId(productBO.getCompanyId());
 		cartItem.setCompanyName(productBO.getCompanyName());
 		cartItem.setProductSize(productBO.getProductSize());
 		cartItem.setProductColor(productBO.getProductColor());
 		cartItem.setProductPrice(productBO.getProductPrice());
 		cartItem.setItemQTY(itemQTY);
-		cartItem.setSubtotalPrice(cartItem.countSubtotalPrice());
+		cartItem.setSubtotalPrice();
 
 //		把productDesId轉成字串
 		String str = Integer.toString(productDesId);
@@ -134,9 +132,12 @@ public class Cart {
 //		取出對應的購物車項目
 		CartItem cartItem = mapCartItem.get(productDesIdStr);
 //		設定對應購物車項目的數量
-		cartItem.setItemQTY(itemQTY+cartItem.getItemQTY());
+		cartItem.setItemQTY(itemQTY);
 //		把購物車項目塞回mapCartItem
 		mapCartItem.put(productDesIdStr ,cartItem);
+
+		List<CartItem> listCartItem = new ArrayList<CartItem>(mapCartItem.values());
+		
 //		更新總價
 		cart.setTotalPrice(cart.getTotalPrice());
 	}

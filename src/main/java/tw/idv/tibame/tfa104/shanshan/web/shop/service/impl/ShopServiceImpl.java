@@ -7,6 +7,7 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import tw.idv.tibame.tfa104.shanshan.web.company.entity.CompanyVO;
+import tw.idv.tibame.tfa104.shanshan.web.order.entity.Order;
 import tw.idv.tibame.tfa104.shanshan.web.product.entity.ProductBO;
 import tw.idv.tibame.tfa104.shanshan.web.product.service.ProductServiceHibernate;
 import tw.idv.tibame.tfa104.shanshan.web.product.service.impl.ProductServiceHibernate_impl;
@@ -29,6 +30,7 @@ public class ShopServiceImpl implements ShopService{
 
 //	WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
 //	WishlistProductDao dao2 = context.getBean(WishlistProductDaoImpl.class);
+
 	
 	//	回傳?個 PopularProduct , 熱門商品 (?個)  按總銷售數 正序
 	@Override
@@ -132,6 +134,7 @@ public class ShopServiceImpl implements ShopService{
 	public List<WishlistProduct> getWishlistProductsByMemberId(Integer memberId) {
 		return dao.getWishlistProductsByMemberId( memberId);
 	}
+
 	
 	
 

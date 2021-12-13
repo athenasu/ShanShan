@@ -14,6 +14,21 @@ public class OrderServiceImpl implements OrderService{
 
 	OrderDAO dao = new OrderDAOImpl();
 
+
+//	新增 訂單 成功返回1，失敗返回0
+
+	@Override
+	public int add(Order order) {
+		// TODO Auto-generated method stub
+		return dao.add(order);
+	}
+
+//	查詢 特定會員的最新一張訂單(用來 顯示結帳結果)
+	@Override
+	public Order findLatestByMemId(Integer member_id) {
+		return dao.findLatestByMemId(member_id);
+	}
+	
 	@Override
 	public int updateShipNumByOrderId(Integer ship_number, Integer order_id) {
 		// TODO Auto-generated method stub
@@ -110,5 +125,8 @@ public class OrderServiceImpl implements OrderService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
+	
 	
 }

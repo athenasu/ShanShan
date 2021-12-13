@@ -23,7 +23,7 @@ import tw.idv.tibame.tfa104.shanshan.web.order.entity.Order;
 public class OrderDAOImpl implements OrderDAO{
 
 //	新增 訂單 成功返回1，失敗返回0
-	private static final String INSERT_STMT = "SET FOREIGN_KEY_CHECKS = 0"+"INSERT INTO `Order`(member_id, order_created_date, order_member_address, order_member_name, order_member_phone, order_status, point_used, order_sum_before, order_sum_after, order_shipped_date, ship_number, payment_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	private static final String INSERT_STMT = "INSERT INTO `Order`( member_id, order_member_address, order_member_name, order_member_phone, order_status, point_used, order_sum_before, order_sum_after, payment_status ,company_id) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?)";
 //	刪除 訂單 成功返回1，失敗返回0
 	private static final String DELETE_STMT = "DELETE FROM `Order` WHERE order_id = ?";
 //	更新 訂單全部欄位 成功返回1，失敗返回0
@@ -60,7 +60,8 @@ public class OrderDAOImpl implements OrderDAO{
 	private static final String FIND_ALL_BY_DATERANGE_PAYSTATS = "select * from `order` where (order_created_date between '?' and '?') and payment_status=?order by order_id desc";
 //	查詢 特定日期範圍的特定店家的訂單撥款狀態  按order id 倒序
 	private static final String FIND_ALL_BY_DATERANGE_COMID_PAYSTATS = "select * from `order` where company_id=? and payment_status =? and (order_created_date between '?' and '?') order by order_id desc";
-
+//	查詢 特定會員的最新一張訂單(用來 顯示結帳結果)
+	private static final String FIND_LATEST_BY_MEMID = "select * from `order` where member_id=? order by order_id desc limit 0, 1";
 	
 	private static DataSource ds = null;
 	static {
@@ -88,19 +89,17 @@ public class OrderDAOImpl implements OrderDAO{
 			pstmt = con.prepareStatement(INSERT_STMT);
 
 			pstmt.setInt(1, order.getMember_id());
-			pstmt.setDate(2, order.getOrder_created_date());
-			pstmt.setString(3, order.getOrder_member_address());
-			pstmt.setString(4, order.getOrder_member_name());
-			pstmt.setInt(5, order.getOrder_member_phone());
-			pstmt.setInt(6, order.getOrder_status());
-			pstmt.setInt(7, order.getPoint_used());
-			pstmt.setInt(8, order.getOrder_sum_before());
-			pstmt.setInt(9, order.getOrder_sum_after());
-			pstmt.setDate(10, order.getOrder_shipped_date());
-			pstmt.setInt(11, order.getShip_number());
-			pstmt.setInt(12, order.getPayment_status());
+			pstmt.setString(2, order.getOrder_member_address());
+			pstmt.setString(3, order.getOrder_member_name());
+			pstmt.setInt(4, order.getOrder_member_phone());
+			pstmt.setInt(5, order.getOrder_status());
+			pstmt.setInt(6, order.getPoint_used());
+			pstmt.setInt(7, order.getOrder_sum_before());
+			pstmt.setInt(8, order.getOrder_sum_after());
+			pstmt.setInt(9, order.getPayment_status());
+			pstmt.setInt(10, order.getCompany_id());
 
-			pstmt.executeUpdate();
+			i = pstmt.executeUpdate();
 
 		} catch (SQLException se) {
 			se.printStackTrace();
@@ -126,8 +125,8 @@ public class OrderDAOImpl implements OrderDAO{
 			pstmt = con.prepareStatement(DELETE_STMT);
 
 			pstmt.setInt(1, order_id);
-			
-			pstmt.executeUpdate();
+
+			i = pstmt.executeUpdate();
 
 		} catch (SQLException se) {
 			se.printStackTrace();
@@ -166,8 +165,8 @@ public class OrderDAOImpl implements OrderDAO{
 			pstmt.setInt(12, order.getShip_number());
 			pstmt.setInt(13, order.getPayment_status());
 			pstmt.setInt(14, order.getOrder_id());
-			
-			pstmt.executeUpdate();
+
+			i = pstmt.executeUpdate();
 
 		} catch (SQLException se) {
 			se.printStackTrace();
@@ -898,4 +897,48 @@ public class OrderDAOImpl implements OrderDAO{
 		return orderList;
 	}
 
+	@Override
+	public Order findLatestByMemId(Integer member_id) {
+		Order order = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			//		DataSource ds = new ComboPooledDataSource();
+
+			con = ds.getConnection();
+
+			pstmt = con.prepareStatement(FIND_LATEST_BY_MEMID);
+			pstmt.setInt(1, member_id);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				order = new Order();
+				order.setOrder_id(rs.getInt("order_id"));
+				order.setMember_id(rs.getInt("Member_id"));
+				order.setCompany_id(rs.getInt("company_id"));
+				order.setOrder_created_date(rs.getDate("Order_created_date"));
+				order.setOrder_member_address(rs.getString("Order_member_address"));
+				order.setOrder_member_name(rs.getString("Order_member_name"));
+				order.setOrder_member_phone(rs.getInt("Order_member_phone"));
+				order.setOrder_status(rs.getInt("Order_status"));
+				order.setPoint_used(rs.getInt("Point_used"));
+				order.setOrder_sum_before(rs.getInt("Order_sum_before"));
+				order.setOrder_sum_after(rs.getInt("Order_sum_after"));
+				order.setOrder_shipped_date(rs.getDate("Order_shipped_date"));
+				order.setShip_number(rs.getInt("Ship_number"));
+				order.setPayment_status(rs.getInt("Payment_status"));
+			}
+
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} finally {
+			JDBCUtil.close(rs,pstmt,con);
+		}
+		return order;
+	}
+
+	
 }

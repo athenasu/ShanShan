@@ -16,9 +16,6 @@
     
 //  提交購物車form，移除購物車項目
     function submitRemoveCartItem(){
-    	console.log("提交form,RemoveCartItem")
-//    	提交productDesId的值
-
     	$("#removeCartItem").ajaxSubmit(function(message) {
 	    	console.log("提交form,RemoveCartItem OK!!")
     	});
@@ -27,8 +24,6 @@
     
 //  提交購物車form，清空購物車
     function submitCleanCartItem(){
-    	/* $("#cleanCartItem").submit(); */
-    	console.log("提交form,cleanCartItem()")
     	$("#cleanCartItem").ajaxSubmit(function(message) {
 	    	console.log("提交form,cleanCartItem OK!!")
     	});
@@ -38,8 +33,6 @@
     
 //  提交購物車form，改數量
     function submitChangeItemQTY(){
-    	console.log("提交form,changeItemQTY")
-    	
     	$("#changeItemQTY").ajaxSubmit(function(message) {
 	    	console.log("提交form,changeItemQTY OK!!")
     	});	
@@ -61,7 +54,10 @@
     <div class="goodsindex_bodycontent">
 
         <div class="goodsindex_innercontent ">
+			<!-- 結帳 -->
             <form method="get" action="<%=contextPath%>/PurchaseServlet" id="PurchaseProduct">
+       			<input type="hidden" name="method" value="buyCart">
+            
             <ul class="cart_top_title_area_01">
                 <li style="color: rgb(51, 51, 51);">查看購物車</li>
                 <li><i class="fas fa-arrow-circle-right" style="color: rgb(51, 51, 51);"></i></li>
@@ -84,13 +80,13 @@
                     <li>移除此項</li>
                 </ul>
                        
-			
+						<!-- 刪除全部 -->
                         <form method="get" action="<%=contextPath%>/CartServlet" id="cleanCartItem" onsubmit="return submitCleanCartItem();">
                             <input type="hidden" name="method" value="cleanCartItem" id="cleanCartItemInput" >
                         </form>
 
                 <ul class="cart_product_content_area">
-         		  <c:forEach items="${cart.cartItems}" var="cartItem" >
+         		  <c:forEach items="${cart.cartItems}" var="cartItem" varStatus="s">
                     <ul class="cart_product_content">
                         <li class="cart_product_content1"><input class="chooseItem" type="checkbox" name="choose" ></li>
                         <li class="cart_product_content2"><img src="<%=contextPath %>/ProductPicServlet?productId=${cartItem.productId}&productSequence=0&action=firstPic" alt=""></li>
@@ -108,16 +104,28 @@
                         </li>
                         <li class="cart_product_content9">NT&ensp;<span class="cart_item_price">${cartItem.subtotalPrice}</span></li>
                         <li class="cart_product_content10"><span>移除</span></li>
+                        	<!-- 移除項目-->
                          <form method="get" action="<%=contextPath%>/CartServlet" id="removeCartItem" onsubmit="return submitRemoveCartItem();">
                             <input type="hidden" name="method" value="removeCartItem">
-                            <input type="hidden" id="removeCartItem_productDesId" name="productDesId" value="${cartItem.prodesId}">
+                            <input type="hidden" class="removeCartItem_productDesId" name="productDesId" value="${cartItem.prodesId}">
                         </form>
+                        	<!-- 改數量 -->
                         <form method="get" action="<%=contextPath%>/CartServlet" id="changeItemQTY" onsubmit="return submitChangeItemQTY();">
                             <input type="hidden" name="method" value="changeItemQTY">
-                            <input type="hidden" id="changeItemQTY_productDesId" name="productDesId" value="${cartItem.prodesId}">
-                            <input type="hidden" id="changeItemQTY_itemQTY"name="itemQTY" value="">
+                            <input type="hidden" class="changeItemQTY_productDesId" name="productDesId" value="${cartItem.prodesId}">
+                            <input type="hidden" class="changeItemQTY_itemQTY"name="itemQTY" value="">
                         </form>
-                        
+                        	<!-- 結帳 -->
+       				         <%-- <input type="hidden" class="cartItem_companyId" value="${cartItem.companyId}"> --%>
+       				         <input type="hidden" class="buyCart_cartItem_prodesId" name="${s.count}" value="prodesId"><!-- 只取每個項目的prodesId -->
+       				         <%-- <input type="hidden" class="buyCart_cartItem_itemQTY" name="${s.count}itemQTY" value="">
+       				         <input type="hidden" class="buyCart_cartItem_companyId" name="${s.count}companyId" value="">
+       				         <input type="hidden" class="buyCart_cartItem_companyId" name="${s.count}productId" value="">
+       				         <input type="hidden" class="buyCart_cartItem_companyId" name="${s.count}companyName" value="">
+       				         <input type="hidden" class="buyCart_cartItem_companyId" name="${s.count}productSize" value="">
+       				         <input type="hidden" class="buyCart_cartItem_companyId" name="${s.count}productColor" value="">
+       				         <input type="hidden" class="buyCart_cartItem_companyId" name="${s.count}productPrice" value="">
+       				         <input type="hidden" class="buyCart_cartItem_companyId" name="${s.count}subtotalPrice" value=""> --%>
                     </ul>
                    </c:forEach> 
                    
@@ -131,6 +139,7 @@
                 </ul>
             </div>
             
+           <!-- 結帳的/form -->
            </form>
         </div>
     </div>

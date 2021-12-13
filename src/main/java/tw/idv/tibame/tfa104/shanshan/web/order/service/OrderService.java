@@ -38,5 +38,10 @@ public interface OrderService {
 //	查詢 特定日期範圍的特定店家的訂單撥款狀態  按order id 倒序
 	List<Order> findAllByDateRangeComIdPayStatus(Integer company_id,Integer payment_status, String from_date, String to_date);
 
+//	查詢 特定會員的最新一張訂單(用來 顯示結帳結果)
+	Order findLatestByMemId(Integer member_id);
+
+//	新增 訂單 成功返回1，失敗返回0
+	int add(Order order);
 
 }
