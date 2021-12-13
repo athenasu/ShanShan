@@ -58,29 +58,9 @@ $(document).ready(function () {
     $("input.registor_botton").click(function () {
     })
 
-    // 山山來此 圖示
-    $("div.goods_titlepic").click(function () {
-        alert("功能未實現。")
-    })
-
     // 山山來此 字樣
     $("div.goods_header_title_shanshan").click(function () {
-        alert("功能未實現。")
-    })
-
-    // 攻山小物 字樣
-    $("div.goods_header_title").click(function () {
-        alert("功能未實現。")
-    })
-
-    // 商品 字樣
-    $("div.goods_header_item_goods").click(function () {
-        alert("功能未實現。")
-    })
-
-    // 商店 字樣
-    $("div.goods_header_item_stores").click(function () {
-        alert("功能未實現。")
+        confirm("你將離開商城頁面")
     })
 
 

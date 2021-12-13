@@ -20,7 +20,7 @@ import tw.idv.tibame.tfa104.shanshan.web.shop.entity.Cart;
 import tw.idv.tibame.tfa104.shanshan.web.shop.service.ShopService;
 import tw.idv.tibame.tfa104.shanshan.web.shop.service.impl.ShopServiceImpl;
 import tw.idv.tibame.tfa104.shanshan.web.wishlistProduct.entity.WishlistProduct;
-@WebFilter(value = {"/shop/goods_payment_check.jsp","/shop/goods_payment_check.jsp","/shop/goods_payment_complete.jsp","/shop/goods_product_page.jsp","/shop/goods_single_kind_products.jsp","/shop/goods_all_products.jsp","/shop/goods_store_page.jsp","/shop/goods_store_list.jsp"}, dispatcherTypes = DispatcherType.FORWARD)
+@WebFilter(value = {"/shop/goods_payment_check.jsp","/shop/goods_payment_check.jsp","/shop/goods_payment_complete.jsp","/shop/goods_product_page.jsp","/shop/goods_single_kind_products.jsp","/shop/goods_all_products.jsp","/shop/goods_store_page.jsp","/shop/goods_store_list.jsp" ,"/shop/goods_search_products.jsp" ,"/shop/goods_search_store.jsp"}, dispatcherTypes = DispatcherType.FORWARD)
 public class Filter2ShopForward extends HttpFilter {
 
 	

@@ -24,7 +24,7 @@
     <!-- 商店首頁 開始-->
     <div class="goodsindex_bodycontent">
         <div class="goodsindex_innercontent ">
-            <div class="goods_breadcrumb"><a href="/shanshan/shop/goods_index.jsp">攻山小物</a> > <a href="/shanshan/AllCompanyServlet">全部品牌</a></div>
+            <div class="goods_breadcrumb"><a href="<%=contextPath %>/shop/goods_index.jsp">攻山小物</a> > <a>全部品牌</a></div>
             <div class="goods_title01 ">全部品牌</div>
             <ul class="goods_stores_area ">
             

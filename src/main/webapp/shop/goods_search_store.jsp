@@ -24,8 +24,8 @@
     <!-- 商店首頁 開始-->
     <div class="goodsindex_bodycontent">
         <div class="goodsindex_innercontent ">
-            <div class="goods_breadcrumb"><a href="/shanshan/shop/goods_index.jsp">攻山小物</a> > <a href="/shanshan/AllCompanyServlet">店家 搜尋結果</a></div>
-            <div class="goods_title01 ">全部品牌</div>
+            <div class="goods_breadcrumb"><a href="<%=contextPath %>/shop/goods_index.jsp">攻山小物</a> > <a>店家 搜尋結果</a></div>
+            <div class="goods_title01 ">店家 搜尋結果</div>
             <ul class="goods_stores_area ">
             
 			<c:forEach  items="${searchCompanyList}" var="CompanyVO">

@@ -26,7 +26,7 @@
     <div class="goodsindex_bodycontent">
         <div class="goodsindex_innercontent ">
             <div class="goods_breadcrumb"><a href="goods_index.html">攻山小物</a> > <a href="goods_all_products.html">商品 搜尋結果</a></div>
-            <div class="goods_title01 ">全部商品</div>
+            <div class="goods_title01 ">商品 搜尋結果</div>
             <ul class="goods_area ">
             
              <c:forEach items="${searchProductList}" var="ProductBO" >
@@ -47,23 +47,7 @@
 			<c:forEach  items="${listwp}" var="wp">
                     <input type="hidden" class="wish_list" value="${wp}">
 			</c:forEach>
-			
-            <!-- 分頁標籤與分頁查詢功能 -->
-            <div class="page_num">
-                <ul>
-                    <li class="page_num_two_words"><a href="">首頁</a></li>
-                    <li class="page_num_three_words"><a href="">上一頁</a></li>
-                    <li class="current_page_num"><a href="">1</a></li>
-                    <li><a href="">2</a></li>
-                    <li><a href="">3</a></li>
-                    <li><a href="">4</a></li>
-                    <li><a href="">5</a></li>
-                    <li class="page_num_three_words"><a href="">下一頁</a></li>
-                    <li class="page_num_two_words"><a href="">末頁</a></li>
-                </ul>
 
-
-            </div>
         </div>
     </div>
 

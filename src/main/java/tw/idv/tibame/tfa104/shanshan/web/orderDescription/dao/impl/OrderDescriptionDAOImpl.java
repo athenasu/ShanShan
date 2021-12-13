@@ -39,7 +39,7 @@ public class OrderDescriptionDAOImpl implements OrderDescriptionDAO{
 //	查詢 特定訂單的訂單明細BO 按訂單明細編號 正序 (沒有圖片)
 	private static final String BO_FIND_BY_ORDERID_NO_PIC = "SELECT b.order_id, b.member_id, b.order_created_date, b.order_member_address, b.order_member_name, b.order_member_phone, b.order_status, a.product_quantity, a.product_price, b.order_sum_after, b.order_shipped_date, b.ship_number, b.payment_status, d.product_name, c.product_id, c.product_des_id, c.product_size, c.product_color, d.company_id, e.company_name FROM order_description a JOIN `order` b USING (order_id) JOIN product_description c USING (product_des_id) JOIN product d USING (product_id) JOIN company e USING (company_id) WHERE order_id = ?";
 //	查詢 特定訂單的訂單明細BO 按訂單明細編號 正序 (沒圖片，拿掉一些店家後台用的資料)
-	private static final String BO_FIND_BY_ORDERID_NO_PIC_FOR_MEMBER_CENTER ="SELECT b.order_id, b.order_created_date, b.order_status, a.product_quantity, a.product_price, b.order_sum_after, b.order_shipped_date, b.ship_number, b.payment_status, d.product_name, c.product_id, c.product_des_id, c.product_size, c.product_color, e.company_name, e.company_id FROM order_description a JOIN `order` b USING (order_id) JOIN company e USING (company_id) JOIN product_description c USING (product_des_id) JOIN product d USING (product_id) WHERE order_id = ?";
+	private static final String BO_FIND_BY_ORDERID_NO_PIC_FOR_MEMBER_CENTER ="SELECT b.order_id, b.order_created_date, b.order_status, a.product_quantity, a.product_price, b.order_sum_after, b.order_shipped_date, b.ship_number, b.payment_status, d.product_name, c.product_id, c.product_des_id, c.product_size, c.product_color, e.company_name, e.company_id, b.member_id, b.order_member_address, b.order_member_name, b.order_member_phone FROM order_description a JOIN `order` b USING (order_id) JOIN company e USING (company_id) JOIN product_description c USING (product_des_id) JOIN product d USING (product_id) WHERE order_id = ?";
 //	查詢 特定會員的訂單+訂單明細BO 按訂單明細編號 正序
 	private static final String BO_FIND_BY_MEMID_FOR_MEMBER_CENTER ="SELECT b.order_id, b.member_id, b.order_created_date, b.order_member_address, b.order_member_name, b.order_member_phone, b.order_status, a.product_quantity, a.product_price, a.subtotal_price, b.order_sum_after, b.order_shipped_date, b.ship_number, b.payment_status, d.product_name, c.product_id, c.product_des_id, c.product_size, c.product_color, d.company_id, e.company_name, f.product_img FROM order_description a JOIN `order` b USING (order_id) JOIN company e USING (company_id) JOIN product_description c USING (product_des_id) JOIN product d USING (product_id) JOIN (SELECT g.product_img_id,g.product_des_id, h.product_img FROM (SELECT min(product_img_id) product_img_id,product_des_id FROM product_img GROUP BY product_des_id) g JOIN product_img h USING (product_img_id)) f USING (product_des_id) WHERE member_id = ? AND order_id = ?";
 
@@ -336,9 +336,9 @@ public class OrderDescriptionDAOImpl implements OrderDescriptionDAO{
 				orderDesBO2.setOrder_id(rs.getInt("order_id"));
 				orderDesBO2.setMember_id(rs.getInt("member_id"));
 				orderDesBO2.setOrder_created_date(rs.getDate("order_created_date"));
-				orderDesBO2.setOrder_member_address(rs.getString("order_member_address"));
-				orderDesBO2.setOrder_member_name(rs.getString("order_member_name"));
-				orderDesBO2.setOrder_member_phone(rs.getInt("order_member_phone"));
+				orderDesBO2.setOrder_member_address(rs.getString("order_member_address")); //ss
+				orderDesBO2.setOrder_member_name(rs.getString("order_member_name")); //ss
+				orderDesBO2.setOrder_member_phone(rs.getInt("order_member_phone")); //ss
 				orderDesBO2.setOrder_status(rs.getInt("order_status"));
 				orderDesBO2.setOrder_sum_after(rs.getInt("order_sum_after"));
 				orderDesBO2.setOrder_shipped_date(rs.getDate("order_shipped_date"));

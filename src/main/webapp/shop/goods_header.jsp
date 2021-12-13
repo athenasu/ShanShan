@@ -62,7 +62,7 @@
     <!-- 商店導覽列 開始-->
     <header class="goods_header">
         <div class="goods_titlebar">
-            <div class="goods_titlepic"><img src="<%=request.getContextPath()%>/shop/img/logo.png" width="60px" height="60px" alt="" onclick="location.href='<%=request.getContextPath()%>/index/index.jsp'"></div>
+            <div class="goods_titlepic"><img src="<%=request.getContextPath()%>/shop/img/logo.png" width="60px" height="60px" alt=""></div>
 
             <!-- 山山來此 標題 -->
             <div class="goods_header_title_shanshan" onclick="location.href='<%=request.getContextPath()%>/index/index.jsp'">山山來此</div>

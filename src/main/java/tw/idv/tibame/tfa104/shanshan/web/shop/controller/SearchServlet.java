@@ -73,9 +73,10 @@ public class SearchServlet extends HttpServlet {
 			WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
 			CompanyServiecHibernate companysrvc = context.getBean(CompanyServiceHibernate_impl.class);
 			searchCompanyList =	companysrvc.findComByString(searchString);
+//			System.out.println("companysrvc.findComByString(searchString)==="+companysrvc.findComByString(searchString));
 					
 //			儲存到request
-			request.setAttribute("searchCompany", searchCompanyList);
+			request.setAttribute("searchCompanyList", searchCompanyList);
 			request.getRequestDispatcher("/shop/goods_search_store.jsp").forward(request, response);
 		}
 		
