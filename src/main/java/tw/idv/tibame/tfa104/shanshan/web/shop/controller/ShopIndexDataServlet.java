@@ -21,6 +21,8 @@ import tw.idv.tibame.tfa104.shanshan.web.shop.service.impl.ShopServiceImpl;
 @WebServlet(urlPatterns={"/ShopIndexDataServlet"},loadOnStartup = 1)
 public class ShopIndexDataServlet extends HttpServlet {
 
+	private static final long serialVersionUID = 1L;
+	
 	public void init() throws ServletException {
 		System.out.println("ShopIndexDataServlet  init()被調用了");
 //		為了獲取框架Hibernate做的service，需先取得一個ServletContext物件....

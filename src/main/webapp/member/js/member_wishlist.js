@@ -1,9 +1,51 @@
+"use strict";
+
 const groupCard = document.querySelector("#grouplist");
 const userInfo = document.querySelector(".user-info");
 const sortByProductBtn = document.querySelector(".sort-by-product");
 const sortByArticleBtn = document.querySelector(".sort-by-article");
 const sortByEventBtn = document.querySelector(".sort-by-event");
 const grouplist = document.querySelector("#grouplist");
+
+////////////////////////////////////////
+/////// RENDER CARDS ///////
+
+// Format Date
+const formatDate = function (timestamp) {
+  var d = new Date(timestamp);
+
+  var dateString =
+    d.getFullYear() + "年" + (d.getMonth() + 1) + "月" + d.getDate() + "日";
+
+  return dateString;
+};
+
+const stayTypeStr = function (type) {
+  if (type == 0) {
+    return "當天來回";
+  }
+  if (type == 1) {
+    return "野營";
+  }
+  if (type == 2) {
+    return "山屋";
+  }
+  if (type == 3) {
+    return "飯店";
+  }
+};
+
+const countdownDiv = function (timestamp) {
+  let today = new Date();
+  let eventDate = new Date(timestamp);
+  let countdownDate = eventDate - today;
+  if (countdownDate > 0) {
+    let dateString = eventDate.getDate() + "天" + eventDate.getHours() + "小時";
+    return `<p class="countdown">倒數：<span>${dateString}</span></p>`;
+  } else {
+    return `<p class="countdown-done">倒數：<span>已出發</span></p>`;
+  }
+};
 
 const renderWishlistEvent = function (event) {
   // mountain picture
@@ -26,9 +68,12 @@ const renderWishlistEvent = function (event) {
   const leaderBlob = new Blob([leaderu8Array]);
   const leaderUrl = URL.createObjectURL(leaderBlob);
 
+  let startDate = formatDate(event.eventStartDate);
+  let stayType = stayTypeStr(event.stayType);
+  let countdown = countdownDiv(event.eventStartDate);
   // add a current date to subtract from event date
   // if the date is already up, then make it a different color or something
-  // might need to convert the stayType manually
+
   let html = `
             <div class="groupcard">
             <a href="#?${event.wishlistEventId}">
@@ -37,17 +82,17 @@ const renderWishlistEvent = function (event) {
                   <i class="fas fa-heart"></i>
                 </span>
                 <img src="${mtnUrl}" class="img" />
-                <p class="countdown">倒數：<span>10天13小時</span></p>
+                ${countdown}
               </div>
               <div class="groupinfo">
                 <h3 class="title2 gp_name">${event.eventName}</h3>
                 <div class="infolist">
                   <div><i class="far fa-clock"></i></div>
-                  <div>出團日期：<span>${event.eventStartDate}</span></div>
+                  <div>出團日期：<span>${startDate}</span></div>
                 </div>
                 <div class="infolist">
                   <div><i class="fas fa-bed"></i></div>
-                  <div>住宿種類：<span>${event.stayType}</span></div>
+                  <div>住宿種類：<span>${stayType}</span></div>
                 </div>
                 <div class="infolist">
                   <div><i class="fas fa-hiking"></i></div>
@@ -90,6 +135,8 @@ const renderWishlistArticle = function (article) {
   const writerBlob = new Blob([writeru8Array]);
   const writerUrl = URL.createObjectURL(writerBlob);
 
+  let eventDate = formatDate(article.eventDate);
+
   let html = `
             <div class="groupcard">
             <a href="#?${article.wishlistArticleId}">
@@ -103,7 +150,7 @@ const renderWishlistArticle = function (article) {
                 <h3 class="title2 gp_name">${article.articleTitle}</h3>
                 <div class="infolist">
                   <div><i class="far fa-clock"></i></div>
-                  <div>出團日期：<span>${article.eventDate}</span></div>
+                  <div>出團日期：<span>${eventDate}</span></div>
                 </div>
                 <div class="infolist">
                   <div><i class="fas fa-hiking"></i></div>

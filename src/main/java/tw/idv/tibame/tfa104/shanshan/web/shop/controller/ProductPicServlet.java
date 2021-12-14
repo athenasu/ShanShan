@@ -1,8 +1,6 @@
 package tw.idv.tibame.tfa104.shanshan.web.shop.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
@@ -29,7 +27,7 @@ public class ProductPicServlet extends HttpServlet {
 //		準備相關物件變數參數
 		ShopService shopsvc = new ShopServiceImpl(); 
 		ProductImgBO productImgBO =new ProductImgBO();
-		List<ProductImgBO> listproductImgBO =new ArrayList<ProductImgBO>();
+//		List<ProductImgBO> listproductImgBO =new ArrayList<ProductImgBO>();
 		byte[] pic = null;
 		
 		

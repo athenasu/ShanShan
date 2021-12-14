@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Table(name = "points_used_act")
 public class PointsUsedArticle {
@@ -23,6 +25,7 @@ public class PointsUsedArticle {
 	private Integer articleId;
 	@Column(name = "points_used")
 	private Integer pointsUsed;
+	@JsonFormat(pattern="yyyy-MM-dd", timezone = "GMT+8")
 	@Column(name = "points_used_date")
 	private Date pointsUsedDate;
 

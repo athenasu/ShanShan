@@ -17,16 +17,16 @@ import tw.idv.tibame.tfa104.shanshan.web.order.entity.Order;
 import tw.idv.tibame.tfa104.shanshan.web.order.service.OrderService;
 import tw.idv.tibame.tfa104.shanshan.web.order.service.impl.OrderServiceImpl;
 import tw.idv.tibame.tfa104.shanshan.web.shop.entity.Cart;
-import tw.idv.tibame.tfa104.shanshan.web.shop.service.ShopService;
-import tw.idv.tibame.tfa104.shanshan.web.shop.service.impl.ShopServiceImpl;
 
 @WebServlet("/PaymentResultServlet")
 public class PaymentResultServlet extends HttpServlet {
+	
+	private static final long serialVersionUID = 1L;
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 //		url http://localhost:8081/shanshan/PaymentResultServlet?fill_name=%E7%8E%8B%E6%9B%89%E6%98%8E&fill_phone=0912123012&address=%E5%8F%B0%E5%8C%97%E5%B8%82%E5%8D%97%E5%8D%80%E4%B8%80%E6%A2%9D%E8%B7%AF20%E8%99%9F4%E6%A8%93&0point=0&1point=0&expire_month=&expire_year=&payment_fill_CVN=
 
-		ShopService service = new ShopServiceImpl();
 		OrderService ordersrvc = new OrderServiceImpl();
 //		取得Session
 		HttpSession session = request.getSession();
@@ -41,6 +41,7 @@ public class PaymentResultServlet extends HttpServlet {
 //		取得購物車
 		Cart cart = (Cart) session.getAttribute("cart");
 //		取得結帳清單
+		@SuppressWarnings("unchecked")
 		List<Order> orderList = (List<Order>) session.getAttribute("orderList");
 //		取得訂單數
 		int orderQTY = orderList.size();

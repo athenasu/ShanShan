@@ -10,5 +10,6 @@ public interface MemberDao {
 	public Member checkEmail(String email);
 	public Integer updateMemberPoints(Integer id, Integer points);
 	public Integer findMemberPoints(Integer id);
-	public Member checkLogin(Member member) ;
+	public Member checkLogin(Member member);
+	public Member updateMemberPassword(Integer memberId, String memberPassword);
 }

@@ -2,9 +2,6 @@ package tw.idv.tibame.tfa104.shanshan.web.order.service.impl;
 
 import java.util.List;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import tw.idv.tibame.tfa104.shanshan.web.order.dao.OrderDAO;
 import tw.idv.tibame.tfa104.shanshan.web.order.dao.impl.OrderDAOImpl;
 import tw.idv.tibame.tfa104.shanshan.web.order.entity.Order;

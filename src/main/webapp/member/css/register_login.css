@@ -154,25 +154,31 @@ a:active {
 }
 
 .register_form_title,
-.login_form_title {
+.login_form_title,
+.forgot_password_title,
+.change_password_title {
   text-align: center;
   color: rgb(59, 89, 152);
 }
 
 .register_formbox,
-.login_formbox {
+.login_formbox,
+.forgot_password_formbox,
+.change_password_formbox {
   margin-top: 10px;
 }
 
 .register_formname,
-.login_formname {
+.login_formname,
+.forgot_password_formname {
   line-height: 30px;
   font-size: 20px;
 }
 
 .register_formbar,
 .login_formbar_email,
-.login_formbar_password {
+.login_formbar_password,
+.forgot_password_email {
   box-sizing: border-box;
   width: 100%;
   padding: 7px;
@@ -189,7 +195,9 @@ a:active {
 .summitbutton_signupemail,
 .summitbutton_signupfacebook,
 .summitbutton_signupgoogle,
-.emaillogin {
+.emaillogin,
+.forgot_password_summitbutton,
+.change_password_submitbutton {
   width: 100%;
   background-color: rgb(187, 177, 147);
   color: white;
@@ -203,6 +211,13 @@ a:active {
 .login_description,
 .register_description {
   font-size: 12px;
+}
+
+.error-message {
+  /* border: 1px red solid; */
+  margin-left: 0.5rem;
+  color: red;
+  font-style: italic;
 }
 
 /* WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW 註冊方式 選擇 結束 */
@@ -238,10 +253,11 @@ a:active {
 
 /* WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW 燈箱：登入區 開始 */
 
-.login_modal_botton,
+.login_modal_button,
 .goods_login_modal_botton,
 .register_botton,
-.goods_register_botton {
+.goods_register_botton,
+.logout_modal_button {
   position: relative;
   font-size: 20px;
   font-weight: bold;
@@ -256,14 +272,16 @@ a:active {
   border-radius: 25px;
 }
 
-.login_modal_botton {
+.login_modal_button,
+.logout_modal_button {
   margin-top: 25px;
 }
 
-.login_modal_botton:hover,
+.login_modal_button:hover,
 .goods_login_modal_botton:hover,
 .register_botton:hover,
-.goods_register_botton:hover {
+.goods_register_botton:hover,
+.logout_modal_button:hover {
   color: rgb(255, 255, 255);
   border: 2px solid transparent;
   background-color: rgba(187, 177, 147);
@@ -283,7 +301,9 @@ a:active {
 }
 
 .login_modal,
-.login_modal_email {
+.login_modal_email,
+.forgot_password_modal,
+.change_password_page {
   height: 330px;
   width: 400px;
   position: fixed;

@@ -32,8 +32,8 @@ public class MemberEventServiceImpl implements MemberEventService {
 	}
 	
 	@Override
-	public Integer cancelEvent(Integer eventId) {
-		return eventDao.deleteEventById(eventId);
+	public Integer cancelEvent(Event event) {
+		return eventDao.updateEventById(event);
 	}
 	
 	@Override

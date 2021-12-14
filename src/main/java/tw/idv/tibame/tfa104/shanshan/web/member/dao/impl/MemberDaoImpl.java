@@ -74,7 +74,7 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public Integer register(Member member) {
 		Session session = sessionFactory.getCurrentSession(); 
-		File file = new File("/src/main/webapp/member/member_imgs/default_profile_pic.png");
+		File file = new File("/member/member_imgs/default_profile_pic.png");
 		byte[] bFile= null; 
 		try {
 			FileInputStream fis = new FileInputStream(file);
@@ -127,6 +127,14 @@ public class MemberDaoImpl implements MemberDao {
 		return session.get(Member.class, id).getMemberSumPoints();
 	}
 
+	@Override
+	public Member updateMemberPassword(Integer memberId, String memberPassword) {
+		Session session = sessionFactory.getCurrentSession();
+		Member member = session.get(Member.class, memberId);
+		member.setMemberPassword(memberPassword);
+		return member;
+	}
+	
 }
 
 

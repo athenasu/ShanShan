@@ -5,10 +5,21 @@ const cards = document.querySelector(".cards");
 
 /////////////////////////////
 /////// RENDER CARDS & MODAL ///////
+const formatDate = function (timestamp, days) {
+  let newTimestamp = days * 24 * 60 * 60 * 1000;
+  newTimestamp += timestamp;
+  let d = new Date(newTimestamp);
+  let dateString =
+    d.getFullYear() + "年" + (d.getMonth() + 1) + "月" + d.getDate() + "日";
+
+  return dateString;
+};
 
 // INTRANSIT ORDERS, STATUS 1 & 2
 const renderIntransitOrders = function (order) {
   let orderStatus = order.order_status == 1 ? "配送中" : "已配送";
+  let createdDate = formatDate(order.order_created_date, 0);
+  let shippedDate = formatDate(order.order_shipped_date, 0);
   let card2 = `
               <div class = "card-intransit">
                 <div class="card-2">
@@ -19,7 +30,7 @@ const renderIntransitOrders = function (order) {
                     <p>訂單編號：${order.order_id}</p>
                   </div>
                   <div class="order-date">
-                    <p>訂購日期：${order.order_created_date}</p>
+                    <p>訂購日期：${createdDate}</p>
                   </div>
                   <div class="order-sum">
                     <p>購物金額：${order.order_sum_after} 元</p>
@@ -28,7 +39,7 @@ const renderIntransitOrders = function (order) {
                     <button class="btn--show-modal-intransit">詳情</button>
                   </div>
                 </div>
-                <div class="modal-intransit hidden">
+                <div order-id = "${order.order_id}" class="modal-intransit hidden">
                   <button class="btn--close-modal-intransit">&times;</button>
                   <h2 class="modal__header">訂單詳情</h2>
                   <p class="modal-sub-header">狀態：${orderStatus}</p>
@@ -36,7 +47,7 @@ const renderIntransitOrders = function (order) {
                     <div class="modal-box1">
                       <ul class="modal-event-details">
                         <li>訂單編號：${order.order_id}</li>
-                        <li>訂購日期：${order.order_created_date}</li>
+                        <li>訂購日期：${createdDate}</li>
                         <li>購買商品：</li>
                         <div class="order-list no-${order.order_id}">
                           
@@ -47,7 +58,7 @@ const renderIntransitOrders = function (order) {
                         <div class="shipping-info">
                           <div class="cancel-title">
                             <ul>
-                              <li>出貨日期：${order.order_shipped_date}</li>
+                              <li>出貨日期：${shippedDate}</li>
                               <li>配送單號：${order.ship_number}</li>
                             </ul>
                           </div>
@@ -70,17 +81,22 @@ const renderIntransitOrders = function (order) {
 
 // DONE ORDERS, STATUS 3 & 4
 const renderDoneOrders = function (order) {
+  let createdDate = formatDate(order.order_created_date, 0);
+  let shippedDate = formatDate(order.order_shipped_date, 0);
+  let arrivalDate = formatDate(order.order_shipped_date, 3);
+  let lastConfirmDate = formatDate(order.order_shipped_date, 7);
+  let orderStatus = order.order_status == 3 ? "已收貨" : "已結單";
   let card1 = `
               <div class = "card-done">
                 <div class="card-1">
                   <div class="order-status">
-                    <p>狀態: 已完成</p>
+                    <p>狀態: ${orderStatus}</p>
                   </div>
                   <div class="order-no">
                     <p>訂單編號: ${order.order_id}</p>
                   </div>
                   <div class="order-date">
-                    <p>訂購日期: ${order.order_created_date}</p>
+                    <p>訂購日期: ${createdDate}</p>
                   </div>
                   <div class="order-sum">
                     <p>購物金額: ${order.order_sum_after} 元</p>
@@ -89,7 +105,7 @@ const renderDoneOrders = function (order) {
                     <button class="btn--show-modal-done">詳情</button>
                   </div>
                 </div>
-                <div class="modal-done hidden">
+                <div order-id = "${order.order_id}" class="modal-done hidden">
                   <button class="btn--close-modal-done">&times;</button>
                   <h2 class="modal__header">訂單詳情</h2>
                   <p class="modal-sub-header">狀態：已完成</p>
@@ -97,7 +113,7 @@ const renderDoneOrders = function (order) {
                     <div class="modal-box1">
                       <ul class="modal-event-details">
                         <li>訂單編號：${order.order_id}</li>
-                        <li>訂購日期：${order.order_created_date}</li>
+                        <li>訂購日期：${createdDate}</li>
                         <li>購買商品：</li>
                         <div class="order-list no-${order.order_id}">
                           
@@ -108,24 +124,24 @@ const renderDoneOrders = function (order) {
                         <div class="shipping-info">
                           <div class="cancel-title">
                             <ul>
-                              <li>出貨日期：${order.order_shipped_date}</li>
+                              <li>出貨日期：${shippedDate}</li>
                               <li>配送單號：${order.ship_number}</li>
-                              <li>到貨日期：!!需要在計算＆轉換!!</li>
+                              <li>到貨日期：${arrivalDate}</li>
                               <ul class="notes">
                                 <li>若須申請退貨，請於收到商品7天內申請</li>
-                                <li>最晚退貨日期：!!需要在計算＆轉換!!</li>
+                                <li>最晚退貨日期：${lastConfirmDate}</li>
                               </ul>
                             </ul>
                           </div>
                         </div>
                         <div class="confirm-buttons-container">
                           <div class="submit-button">
-                            <button type="submit" class="submit-cancel-event">
+                            <button type="submit" class="submit-confirm-order">
                               確定收貨
                             </button>
                           </div>
                           <div class="submit-button">
-                            <button type="submit" class="submit-confirm-event">
+                            <button type="submit" class="submit-cancel-order">
                               申請退貨
                             </button>
                           </div>
@@ -142,6 +158,7 @@ const renderDoneOrders = function (order) {
 // CANCELLED ORDERS, STATUS 0 & 5
 const renderCancelledOrders = function (order) {
   let orderStatus = order.order_status == 0 ? "取消" : "退貨";
+  let createdDate = formatDate(order.order_created_date, 0);
   let card3 = `
               <div class = "card-cancelled">
                 <div class="card-3">
@@ -152,7 +169,7 @@ const renderCancelledOrders = function (order) {
                     <p>訂單編號：${order.order_id}</p>
                   </div>
                   <div class="order-date">
-                    <p>訂購日期：${order.order_created_date}</p>
+                    <p>訂購日期：${createdDate}</p>
                   </div>
                   <div class="order-sum">
                     <p>購物金額：${order.order_sum_after} 元</p>
@@ -161,7 +178,7 @@ const renderCancelledOrders = function (order) {
                     <button class="btn--show-modal-returned">詳情</button>
                   </div>
                 </div>
-                <div class="modal-returned hidden">
+                <div order-id = "${order.order_id}" class="modal-returned hidden">
                   <button class="btn--close-modal-returned">&times;</button>
                   <h2 class="modal__header">訂單詳情</h2>
                   <p class="modal-sub-header">狀態：${orderStatus}</p>
@@ -169,7 +186,7 @@ const renderCancelledOrders = function (order) {
                     <div class="modal-box1">
                       <ul class="modal-event-details">
                         <li>訂單編號：${order.order_id}</li>
-                        <li>訂購日期：${order.order_created_date}</li>
+                        <li>訂購日期：${createdDate}</li>
                         <li>購買商品：</li>
                         <div class="order-list no-${order.order_id}">
                           
@@ -278,6 +295,8 @@ window.onload = function () {
 ///////////////////////////////////////
 /////// OPEN & CLOSE MODAL ///////
 document.addEventListener("click", function (e) {
+  e.preventDefault();
+  // done cases
   if (e.target.classList.contains("btn--show-modal-done")) {
     let overlayDone = document.querySelector(".overlay-done");
 
@@ -301,11 +320,47 @@ document.addEventListener("click", function (e) {
         closeModalDone();
       }
     });
+
+    // CONFIRM ORDER
+    const btnConfirmOrder = parent.querySelector(".submit-confirm-order");
+    btnConfirmOrder.addEventListener("click", function () {
+      // change order status to 3
+      let orderId = modal.getAttribute("order-id");
+      let orderStatus = 3;
+      fetch(`/shanshan/memberOrder/updateOrderStatusByOrderId`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          orderStatus,
+          orderId,
+        }),
+      });
+    });
+
+    // CANCEL ORDER
+    const btnCancelOrder = parent.querySelector(".submit-cancel-order");
+    btnCancelOrder.addEventListener("click", function () {
+      // change status to 5
+      let orderId = modal.getAttribute("order-id");
+      let orderStatus = 5;
+      fetch(`/shanshan/memberOrder/updateOrderStatusByOrderId`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          orderStatus,
+          orderId,
+        }),
+      });
+    });
   }
+
+  // IN TRANSIT
   if (e.target.classList.contains("btn--show-modal-intransit")) {
     let parent = e.target.closest(".card-intransit");
-
-    // MODAL
     let overlay = document.querySelector(".overlay-done");
     const modalIntransit = parent.querySelector(".modal-intransit");
     const btnCloseModalIntransit = parent.querySelector(
@@ -331,11 +386,23 @@ document.addEventListener("click", function (e) {
 
     // CONFIRM ORDER
     const btnConfirmOrder = parent.querySelector(".submit-confirm-order");
-    btnCloseModalIntransit.addEventListener("click", function () {
+    btnConfirmOrder.addEventListener("click", function () {
       // change order status to 3
-      fetch(``);
+      let orderId = modal.getAttribute("order-id");
+      let orderStatus = 3;
+      fetch(`/shanshan/memberOrder/updateOrderStatusByOrderId`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          orderStatus,
+          orderId,
+        }),
+      });
     });
   }
+  // CANCELLED ORDER
   if (e.target.classList.contains("btn--show-modal-returned")) {
     let overlay = document.querySelector(".overlay-done");
 

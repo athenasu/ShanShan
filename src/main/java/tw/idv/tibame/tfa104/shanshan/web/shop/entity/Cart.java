@@ -6,8 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.hibernate.query.criteria.internal.expression.function.AggregationFunction.SUM;
-
 import tw.idv.tibame.tfa104.shanshan.web.product.entity.ProductBO;
 import tw.idv.tibame.tfa104.shanshan.web.shop.service.ShopService;
 import tw.idv.tibame.tfa104.shanshan.web.shop.service.impl.ShopServiceImpl;
@@ -18,6 +16,7 @@ public class Cart {
 	private Map<String, CartItem> mapCartItem = new HashMap<String, CartItem>();
 	private Integer totalPrice = 0;
 //  購物車icon的數字
+	@SuppressWarnings("unused")
 	private Integer totalItemQTY = 0;
 	
 //	EL表達式中，取值的方法是透過物件的get方法，去掉get,屬性名改小寫，取到該get方法的值。
@@ -136,7 +135,7 @@ public class Cart {
 //		把購物車項目塞回mapCartItem
 		mapCartItem.put(productDesIdStr ,cartItem);
 
-		List<CartItem> listCartItem = new ArrayList<CartItem>(mapCartItem.values());
+//		List<CartItem> listCartItem = new ArrayList<CartItem>(mapCartItem.values());
 		
 //		更新總價
 		cart.setTotalPrice(cart.getTotalPrice());

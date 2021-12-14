@@ -32,9 +32,9 @@ public class MemberOrderController {
 		return service.findAllOrderDesByMemId(1, orderId);
 	}
 	
-	@PostMapping("updateOrderStatsByOrderId")
-	public Core updateOrderStatsByOrderId(Integer orderStatus, Integer orderId, Core core) {
-		return service.updateOrderStatsByOrderId(orderStatus, orderId, core);
+	@PostMapping("updateOrderStatusByOrderId")
+	public Core updateOrderStatusByOrderId(Integer orderStatus, Integer orderId, Core core) {
+		return service.updateOrderStatusByOrderId(orderStatus, orderId, core);
 	}
 
 }

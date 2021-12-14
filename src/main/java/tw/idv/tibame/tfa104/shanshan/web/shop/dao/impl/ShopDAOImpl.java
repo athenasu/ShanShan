@@ -55,7 +55,7 @@ public class ShopDAOImpl implements ShopDAO{
 //	查詢特定商品編號的第一個商品明細編號的第一張圖片
 	private static final String GET_PRODUCT_FIRST_PIC = "select pro.product_id, img.product_des_id, img.product_img_id, img.product_first_pic from (select a.product_des_id, a.product_id from ( select min(product_des_id) product_des_id , product_id from product_description group by product_id ) a join product_description b using (product_des_id)) pro join( select c.product_img_id, c.product_des_id, d.product_img product_first_pic from ( select min(product_img_id) product_img_id , product_des_id from product_img group by product_des_id ) c join product_img d using (product_img_id))img using (product_des_id) where product_id = ?";
 //	查詢特定商品明細編號的全部圖片 按product_img_id 正序
-	private static final String GET_PRODUCT_DES_ALL_PIC = "SELECT * FROM product_img WHERE product_des_id = ? ORDER BY product_img_id";
+//	private static final String GET_PRODUCT_DES_ALL_PIC = "SELECT * FROM product_img WHERE product_des_id = ? ORDER BY product_img_id";
 //	查詢特定商品編號的全部圖片 按product_img_id 正序
 	private static final String GET_PRODUCT_ALL_PIC = "SELECT product_id, product_des_id, product_img_id, product_img FROM product_img JOIN product_description USING (product_des_id) WHERE product_id = ? ORDER BY product_img_id";
 //  查詢特定會員的WishlistProduct list

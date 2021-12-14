@@ -8,8 +8,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import tw.idv.tibame.tfa104.shanshan.web.core.Core;
 
 @Entity
@@ -23,11 +21,9 @@ public class MemberEventBO extends Core{
 	@Column(name = "eventName")
 	private String eventName;
 
-	@JsonFormat(pattern="yyyy-MM-dd", timezone = "GMT+8")
 	@Column(name = "eventStartDate")
 	private Date eventStartDate;
 
-	@JsonFormat(pattern="yyyy-MM-dd", timezone = "GMT+8")
 	@Column(name = "eventDeadline")
 	private Date eventDeadline;
 	

@@ -3,12 +3,9 @@ package tw.idv.tibame.tfa104.shanshan.web.order.entity;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
-import tw.idv.tibame.tfa104.shanshan.web.orderDescription.entity.OrderDescription;
 import tw.idv.tibame.tfa104.shanshan.web.orderDescription.entity.OrderDescriptionBO;
-import tw.idv.tibame.tfa104.shanshan.web.shop.entity.CartItem;
 
 public class Order implements Serializable{
 

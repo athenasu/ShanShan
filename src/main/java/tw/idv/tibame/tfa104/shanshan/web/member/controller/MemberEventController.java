@@ -18,10 +18,9 @@ public class MemberEventController {
 	@Autowired
 	private MemberEventService service;
 	
-	// change the status of the event
 	@PostMapping("cancelEvent")
-	public Integer cancelEvent(Integer eventId) {
-		return service.cancelEvent(eventId);
+	public Integer cancelEvent(@RequestBody Event event) {
+		return service.cancelEvent(event);
 	}
 	
 	@PostMapping("confirmEvent")
@@ -30,7 +29,7 @@ public class MemberEventController {
 	}
 	
 	@PostMapping("deleteParticipation")
-	public Core deleteParticipation(@RequestBody Participant participant) {
+	public Core deleteParticipation(@RequestBody Participant participant) {// need to add HttpSession into this
 		Core core = new Core();
 		boolean result = service.deleteParticipation(1, participant.getEventId()); //participant.getMemberId()--> use session
 		if (result) {

@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/member_update.css" />
   </head>
   <body>
-    <header>
+    <header class="header-div">
       <div id="logo">
         <a href="index.html"><img src="img/logo.png" class="img" /></a>
       </div>
@@ -25,8 +25,7 @@
       </nav>
       <div id="memcheck">
         <div id="ball"><i class="fas fa-bell"></i></div>
-        <div id="login"><a href="#">登入</a></div>
-        <div id="register"><a href="#">註冊</a></div>
+        <div id="logout"><a href="#">登出</a></div>
       </div>
     </header>
     <main class="member_main">
@@ -37,9 +36,8 @@
               <img class="member_profile_pic" src="" alt="user_pic" />
             </div>
             <div class="user-info">
-              <h2 class="member-name-dashboard">Buster</h2>
-              <p class="member-username-dashboard">Bestest Cat</p>
-              <p>您總共有＿＿＿點數</p>
+              <h2 class="member-name-dashboard"></h2>
+              <p class="member-username-dashboard"></p>
             </div>
           </div>
           <div class="links">
@@ -79,10 +77,9 @@
                     <a href="member_wishlist.html"><h3>收藏紀錄</h3></a>
                   </button>
                   <ul class="second-menu-wishlist">
-                    <!-- might not need an href, just need an event listener -->
-                    <li><a class="wishlist-event" href="#">揪團</a></li>
-                    <li><a class="wishlist-article" href="#">活動日誌</a></li>
-                    <li><a class="wishlist-product" href="#">商品</a></li>
+                    <li><a href="#">揪團</a></li>
+                    <li><a href="#">活動日誌</a></li>
+                    <li><a href="#">商品</a></li>
                   </ul>
                 </li>
               </ul>
@@ -98,7 +95,6 @@
           <div><h1>修改會員資料</h1></div>
           <div class="containers">
             <div class="left-container">
-              <!-- will i be able to set this? -->
               <div><input type="hidden-id" hidden /></div>
               <div>
                 <h4>名字<input class="member-name" type="text" /></h4>
@@ -111,20 +107,6 @@
               </div>
               <div>
                 <h4>電話號碼<input class="member-phone" type="text" /></h4>
-              </div>
-              <div>
-                <h4>
-                  密碼<input type= "password" "member-password" type="text" />
-                </h4>
-              </div>
-              <div>
-                <h4>
-                  確認密碼<input
-                    type="password"
-                    class="member-password-confirm"
-                    type="text"
-                  />
-                </h4>
               </div>
             </div>
             <div class="right-container">
@@ -149,6 +131,11 @@
             </div>
           </div>
           <div class="btn-div">
+            <a href="change_password.html">
+              <button class="change-password-btn" type="submit">
+                修改密碼
+              </button>
+            </a>
             <button class="submit-btn" type="submit">確定修改</button>
             <button class="cancel-btn" type="submit">取消修改</button>
           </div>
@@ -158,6 +145,7 @@
 
     <script src="./vendors/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
-    <script src="./js/member_update.js?aaa"></script>
+    <script src="./js/header.js"></script>
+    <script src="./js/member_update.js"></script>
   </body>
 </html>

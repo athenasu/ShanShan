@@ -1,7 +1,6 @@
 package tw.idv.tibame.tfa104.shanshan.web.shop.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -9,8 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 
 import tw.idv.tibame.tfa104.shanshan.web.product.entity.ProductBO;
 import tw.idv.tibame.tfa104.shanshan.web.shop.entity.Cart;
@@ -20,6 +17,8 @@ import tw.idv.tibame.tfa104.shanshan.web.shop.service.impl.ShopServiceImpl;
 
 @WebServlet("/CartServlet")
 public class CartServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)	throws IOException, ServletException {
 
 		ShopService service = new ShopServiceImpl();
@@ -37,7 +36,7 @@ public class CartServlet extends HttpServlet {
 		// 來源路徑<%=request.getContextPath()%>/CartServlet?method=mycart
 		// 一般進入購物車
 		if ("mycart".equals(method)) {
-			Cart cart = (Cart) request.getSession().getAttribute("cart");
+//			Cart cart = (Cart) request.getSession().getAttribute("cart");
 			response.sendRedirect("shop/goods_shopcart.jsp");
 		}
 		

@@ -11,12 +11,14 @@ let mapZoom = 9;
 let mapEvent;
 let markers = [];
 
+// for events and partEvents
 const renderBoxEvent = function (eventMtn, leafletId) {
+  let startDate = new Date(eventMtn.eventStartDate).toDateString();
   let html = `
                 <div class="card" id = "${leafletId}">
                   <ul>
                     <li class="date">
-                      <span><p>${eventMtn.eventStartDate}</p></span>
+                      <span><p>${startDate}</p></span>
                     </li>
                     <li class="event-name">
                       <span><p>名稱：${eventMtn.eventName}</p></span>
@@ -31,11 +33,12 @@ const renderBoxEvent = function (eventMtn, leafletId) {
 };
 
 const renderBoxArticle = function (articleMtn, leafletId) {
+  let startDate = new Date(articleMtn.event_date).toDateString();
   let html = `
                 <div class="card" id = "${leafletId}">
                   <ul>
                     <li class="date">
-                      <span><p>${articleMtn.event_date}</p></span>
+                      <span><p>${startDate}</p></span>
                     </li>
                     <li class="event-name">
                       <span><p>名稱：${articleMtn.article_title}</p></span>
@@ -183,6 +186,76 @@ const renderMap = function () {
 };
 
 ////////////////////////////////////////
+//////// Calendar ////////
+let eventList = new Array();
+const renderCalendar = function () {
+  fetch(`/shanshan/memberArticle/findAllArticlesByMemId`)
+    .then((body) => body.json())
+    .then((articles) => {
+      for (let article of articles) {
+        let startDate = new Date(article.event_date).toDateString();
+        let endDate = new Date(article.event_date).toDateString();
+        let summary = article.article_title;
+        let obj = {
+          startDate: startDate,
+          endDate: endDate,
+          summary: summary,
+        };
+        eventList.push(obj);
+      }
+      return fetch(`/shanshan/memberArticle/findAllEventsByMemId`);
+    })
+    .then((body) => body.json())
+    .then((memEvents) => {
+      for (let memEvent of memEvents) {
+        let startDate = new Date(memEvent.eventStartDate).toDateString();
+        let endDate = new Date(memEvent.eventStartDate).toDateString();
+        let summary = memEvent.eventName;
+        let obj = {
+          startDate: startDate,
+          endDate: endDate,
+          summary: summary,
+        };
+        eventList.push(obj);
+      }
+      return fetch(`/shanshan/memberArticle/findPartEventByMemberId`);
+    })
+    .then((body) => body.json())
+    .then((partEvents) => {
+      for (let partEvent of partEvents) {
+        let startDate = new Date(partEvent.eventStartDate).toDateString();
+        let endDate = new Date(partEvent.eventStartDate).toDateString();
+        let summary = partEvent.eventName;
+        let obj = {
+          startDate: startDate,
+          endDate: endDate,
+          summary: summary,
+        };
+        eventList.push(obj);
+      }
+      console.log(eventList);
+    })
+    .then(
+      jQuery("#container").simpleCalendar({
+        displayEvent: true,
+        // prettier-ignore
+        months: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
+        days: ["日", "一", "二", "三", "四", "五", "六"],
+        events: eventList,
+
+        // disable showing event details
+        // disableEventDetails: false,
+        // changing start day to sunday
+        fixedStartDay: 0,
+
+        // disable showing empty date details
+        //        disableEmptyDetails: true,
+        displayYear: true,
+      })
+    );
+};
+
+////////////////////////////////////////
 //////// POPULATING PAGE ////////
 
 // RENDER MEMBER DASHBOARD
@@ -209,12 +282,18 @@ const populateMemberDashboard = function () {
 
 window.onload = function () {
   populateMemberDashboard();
+  renderCalendar(); // depends on what i want to render first
 };
 
 ////////////////////////////////////////
 //////// SELECTING CALENDAR OR MAP ////////
 calendarIcon.addEventListener("click", function () {
   mapOrCalendarArea.innerHTML = "";
+  mapOrCalendarArea.insertAdjacentHTML(
+    "afterbegin",
+    `<div id="container"></div>`
+  );
+  renderCalendar();
 });
 
 mapIcon.addEventListener("click", function () {
@@ -222,3 +301,10 @@ mapIcon.addEventListener("click", function () {
   mapOrCalendarArea.insertAdjacentHTML("afterbegin", `<div id="map"></div>`);
   renderMap();
 });
+
+// let startDate = new Date(
+//   new Date().setHours(new Date().getHours() + 24)
+// ).toDateString();
+// let startDate = new Date(1625932800000).toDateString();
+// console.log(startDate);
+// console.log(typeof startDate);

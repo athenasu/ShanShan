@@ -16,6 +16,9 @@ import tw.idv.tibame.tfa104.shanshan.web.shop.service.impl.ShopServiceImpl;
 
 @WebServlet("/GetProductTypeServlet")
 public class GetProductTypeServlet extends HttpServlet {
+	
+	private static final long serialVersionUID = 1L;
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 

@@ -9,9 +9,21 @@ const sortBtnArticle = document.querySelector(".sort-button-article");
 ////////////////////////////////////////
 /////// RENDER CARDS AND MODALS ///////
 
+// Format Date
+const formatDate = function (timestamp) {
+  var d = new Date(timestamp);
+
+  var dateString =
+    d.getFullYear() + "年" + (d.getMonth() + 1) + "月" + d.getDate() + "日";
+
+  return dateString;
+};
+
 // RENDER ARTICLE
 const renderArticle = function (article) {
-  // need to convert the time
+  let dateCreated = formatDate(article.article_date_created);
+  let eventDate = formatDate(article.event_date);
+
   const articleBytesStr = atob(article.picString);
   let articleLen = articleBytesStr.length;
   const articleu8Array = new Uint8Array(articleLen);
@@ -34,7 +46,7 @@ const renderArticle = function (article) {
                   <p>文章名稱: ${article.article_title}</p>
                 </div>
                 <div class="article-date">
-                  <p>文章日期: ${article.article_date_created}</p>
+                  <p>文章日期: ${dateCreated}</p>
                 </div>
                 <div class="article-mtn">
                   <p>地點: ${article.mountain_name}</p>
@@ -62,8 +74,8 @@ const renderArticle = function (article) {
                         </div>
                         <div class="article-details">
                           <h4>名稱：${article.article_title}</h4>
-                          <p>發文日期：${article.article_date_created}</p>
-                          <p>登山日期：${article.event_date}</p>
+                          <p>發文日期：${dateCreated}</p>
+                          <p>登山日期：${eventDate}</p>
                           <p>山名：${article.mountain_name}</p>
                         </div>
                       </div>
@@ -85,21 +97,25 @@ const renderArticle = function (article) {
 
 // RENDER PARTICIPATING EVENTS
 const renderPartEvent = function (part) {
-  // need to convert the time
-  let eventStatus = function () {
-    if (eventList.eventStatus == 2) {
+  // converting status
+  let eventStatusStr = function (status) {
+    if (status == 2) {
       return "招募中";
     }
-    if (eventList.eventStatus == 3) {
+    if (status == 3) {
       return "滿團";
     }
-    if (eventList.eventStatus == 4) {
+    if (status == 4) {
       return "流團";
     }
-    if (eventList.eventStatus == 5) {
+    if (status == 5) {
       return "成團";
     }
   };
+
+  let eventStatus = eventStatusStr(part.eventStatus);
+  let startDate = formatDate(part.eventStartDate);
+
   const partBytesStr = atob(part.picString);
   let partLen = partBytesStr.length;
   const partu8Array = new Uint8Array(partLen);
@@ -122,7 +138,7 @@ const renderPartEvent = function (part) {
                   <p>參團名稱: ${part.eventName}</p>
                 </div>
                 <div class="event-date">
-                  <p>出團日期: ${part.eventStartDate}</p>
+                  <p>出團日期: ${startDate}</p>
                 </div>
                 <div class="event-mtn">
                   <p>地點: ${part.mountainName}</p>
@@ -150,7 +166,7 @@ const renderPartEvent = function (part) {
                       </div>
                       <div class="part-details">
                         <h4>名稱：${part.eventName}</h4>
-                        <p>登山日期：${part.eventStartDate}</p>
+                        <p>登山日期：${startDate}</p>
                         <p>山名：${part.mountainName}</p>
                         <p>集合地點：${part.assemblingPlace}</p>
                       </div>
@@ -179,28 +195,15 @@ const renderPartEvent = function (part) {
 };
 
 // RENDER EVENT
-const renderEvent = function (eventList) {
-  // need to convert the time
-  let eventStatus = function () {
-    if (eventList.eventStatus == 2) {
-      return "招募中";
-    }
-    if (eventList.eventStatus == 3) {
-      return "滿團";
-    }
-    if (eventList.eventStatus == 4) {
-      return "流團";
-    }
-    if (eventList.eventStatus == 5) {
-      return "成團";
-    }
-  };
+const renderOngoingEvent = function (eventList) {
+  let startDate = formatDate(eventList.eventStartDate);
+  let deadline = formatDate(eventList.eventDeadline);
 
   let html = `
               <a href="#" class = "event-card">
               <div class="card-1">
                 <div class="event-status">
-                  <p>狀態：${eventStatus}</p>
+                  <p>狀態：招募中</p>
                 </div>
                 <div class="event-no">
                   <p>揪團編號：${eventList.eventId}</p>
@@ -209,7 +212,7 @@ const renderEvent = function (eventList) {
                   <p>揪團名稱：${eventList.eventName}</p>
                 </div>
                 <div class="event-date">
-                  <p>出團日期：${eventList.eventStartDate}</p>
+                  <p>出團日期：${startDate}</p>
                 </div>
                 <div class="event-mtn">
                   <p>地點：${eventList.mountainName}</p>
@@ -231,8 +234,8 @@ const renderEvent = function (eventList) {
                       <ul class="modal-event-details">
                         <li>揪團編號：${eventList.eventId}</li>
                         <li>團名：${eventList.eventName}</li>
-                        <li>出團日期：${eventList.eventStartDate}</li>
-                        <li>預計截團日期：${eventList.eventDeadline}</li>
+                        <li>出團日期：${startDate}</li>
+                        <li>預計截團日期：${deadline}</li>
                         <li>目前參與人數：${eventList.eventCurPart} 位</li>
                         <li>成團人數：${eventList.maxNumOfPeople} 位</li>
                         <div class="submit-button">
@@ -281,7 +284,7 @@ const renderEvent = function (eventList) {
                           >
                         </div>
                         <div class="submit-button">
-                          <button type="submit" class="submit-cancel-event">
+                          <button type="submit" class="submit-cancel-event" disabled>
                             確定取消
                           </button>
                         </div>
@@ -301,8 +304,79 @@ const renderEvent = function (eventList) {
   cards.insertAdjacentHTML("afterbegin", html);
 };
 
+const renderConfirmedEvent = function (eventList) {
+  let eventStatusStr = function (status) {
+    if (status == 3) {
+      return "滿團";
+    }
+    if (status == 4) {
+      return "流團";
+    }
+    if (status == 5) {
+      return "成團";
+    }
+  };
+
+  let eventStatus = eventStatusStr(eventList.eventStatus);
+  let startDate = formatDate(eventList.eventStartDate);
+  let deadline = formatDate(eventList.eventDeadline);
+
+  let html = `
+              <a href="#" class = "event-card">
+              <div class="card-1">
+                <div class="event-status">
+                  <p>狀態：${eventStatus}</p>
+                </div>
+                <div class="event-no">
+                  <p>揪團編號：${eventList.eventId}</p>
+                </div>
+                <div class="event-name">
+                  <p>揪團名稱：${eventList.eventName}</p>
+                </div>
+                <div class="event-date">
+                  <p>出團日期：${startDate}</p>
+                </div>
+                <div class="event-mtn">
+                  <p>地點：${eventList.mountainName}</p>
+                </div>
+                <div class="event-attendees">
+                  <p>目前參加人數：${eventList.eventCurPart} 人</p>
+                </div>
+                <div class="event-details">
+                  <button class="btn--show-modal">詳情</button>
+                </div>
+              </div>
+              <div event-id = "${eventList.eventId}" class="modal hidden">
+                <button class="btn--close-modal">&times;</button>
+                <h2 class="modal__header">揪團詳情</h2>
+                <p class="modal-sub-header">狀態：${eventStatus}</p>
+                <div class="modal__container">
+                  <div class="modal-box1">
+                    <form class="confirm-event">
+                      <ul class="modal-event-details">
+                        <li>揪團編號：${eventList.eventId}</li>
+                        <li>團名：${eventList.eventName}</li>
+                        <li>出團日期：${startDate}</li>
+                        <li>預計截團日期：${deadline}</li>
+                        <li>目前參與人數：${eventList.eventCurPart} 位</li>
+                        <li>成團人數：${eventList.maxNumOfPeople} 位</li>
+                      </ul>
+                    </form>
+                  <div class="modal-box2">
+                    <h4>參加人員</h4>
+                    <div class="attendee-list event-list-no-${eventList.eventId}">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+            `;
+  cards.insertAdjacentHTML("afterbegin", html);
+};
+
 // RENDER EVENT PARTICIPANTS
 const renderParticipants = function (eventPart, eventId, itemNo) {
+  // picture area
   const memberBytesStr = atob(eventPart.picStr);
   let memberLen = memberBytesStr.length;
   const memberu8Array = new Uint8Array(memberLen);
@@ -359,7 +433,26 @@ const eventList = function () {
     .then((body) => body.json())
     .then(async (events) => {
       for (let event of events) {
-        renderEvent(event);
+        // should change the status of the event to 5 if it reaches the max num of participants
+        if (event.eventCurPart == event.maxNumOfPeople) {
+          let eventId = modal.getAttribute("event-id");
+          let eventStatus = 5;
+          fetch(`/shanshan/memberEvent/confirmEvent`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              eventId,
+              eventStatus,
+            }),
+          });
+          renderEvent(event);
+        } else if (event.eventStatus == 2) {
+          renderOngoingEvent(event);
+        } else {
+          renderEvent(event);
+        }
         const response = await fetch(
           `/shanshan/memberArticle/findParEventByEventId?eventId=${event.eventId}`
         );
@@ -430,12 +523,16 @@ document.addEventListener("click", function (e) {
       }
     });
     // event buttons
+    let radioBtns = parent.getElementsByName("cancel-reason");
+    radioBtns.addEventListener("change", function () {
+      btnCancelEvent.disabled = false;
+    });
+    // need to test if this works even when it's disabled
     btnConfirmEvent.addEventListener("click", function (e) {
-      e.preventDefault();
       let eventId = modal.getAttribute("event-id");
       let eventStatus = 5;
-      console.log("event-submit clicked");
-      console.log(eventId);
+      // console.log("event-submit clicked");
+      // console.log(eventId);
       fetch(`/shanshan/memberEvent/confirmEvent`, {
         method: "POST",
         headers: {
@@ -452,6 +549,7 @@ document.addEventListener("click", function (e) {
     btnCancelEvent.addEventListener("click", function (e) {
       e.preventDefault();
       let eventId = modal.getAttribute("event-id");
+      let eventStatus = 4;
       console.log("event-cancel clicked");
       console.log(eventId);
       fetch(`/shanshan/memberEvent/cancelEvent`, {
@@ -461,6 +559,7 @@ document.addEventListener("click", function (e) {
         },
         body: JSON.stringify({
           eventId,
+          eventStatus,
         }),
       });
     });
@@ -530,9 +629,16 @@ document.addEventListener("click", function (e) {
         body: JSON.stringify({
           eventId,
         }),
-      });
-
-      closeModal();
+      })
+        .then(function (response) {
+          console.log(response);
+          return response.json();
+        })
+        .then((body) => {
+          if (body.successful) {
+            closeModal();
+          }
+        });
     });
   }
 });

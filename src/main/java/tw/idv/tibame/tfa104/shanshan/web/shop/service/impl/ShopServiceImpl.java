@@ -2,19 +2,12 @@ package tw.idv.tibame.tfa104.shanshan.web.shop.service.impl;
 
 import java.util.List;
 
-import org.hibernate.cache.spi.support.AbstractReadWriteAccess.Item;
-import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.context.support.WebApplicationContextUtils;
-
 import tw.idv.tibame.tfa104.shanshan.web.company.entity.CompanyVO;
-import tw.idv.tibame.tfa104.shanshan.web.order.entity.Order;
 import tw.idv.tibame.tfa104.shanshan.web.product.entity.ProductBO;
 import tw.idv.tibame.tfa104.shanshan.web.product.service.ProductServiceHibernate;
 import tw.idv.tibame.tfa104.shanshan.web.product.service.impl.ProductServiceHibernate_impl;
 import tw.idv.tibame.tfa104.shanshan.web.shop.dao.ShopDAO;
 import tw.idv.tibame.tfa104.shanshan.web.shop.dao.impl.ShopDAOImpl;
-import tw.idv.tibame.tfa104.shanshan.web.shop.entity.Cart;
-import tw.idv.tibame.tfa104.shanshan.web.shop.entity.CartItem;
 import tw.idv.tibame.tfa104.shanshan.web.shop.entity.ProductImgBO;
 import tw.idv.tibame.tfa104.shanshan.web.shop.service.ShopService;
 //import tw.idv.tibame.tfa104.shanshan.web.shop.service.WishlistProductDao;

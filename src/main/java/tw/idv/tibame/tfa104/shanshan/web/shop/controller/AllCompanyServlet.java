@@ -10,13 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import tw.idv.tibame.tfa104.shanshan.web.company.entity.CompanyVO;
-import tw.idv.tibame.tfa104.shanshan.web.product.entity.ProductBO;
-import tw.idv.tibame.tfa104.shanshan.web.shop.entity.Page;
 import tw.idv.tibame.tfa104.shanshan.web.shop.service.ShopService;
 import tw.idv.tibame.tfa104.shanshan.web.shop.service.impl.ShopServiceImpl;
 
 @WebServlet("/AllCompanyServlet")
 public class AllCompanyServlet extends HttpServlet {
+
+	private static final long serialVersionUID = 1L;
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
 

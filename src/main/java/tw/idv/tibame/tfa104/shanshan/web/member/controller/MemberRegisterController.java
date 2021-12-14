@@ -30,7 +30,7 @@ public class MemberRegisterController {
 		// send email
 		MailService mailService = new MailService();
 		String subject = "山山來此-會員註冊";
-		boolean mailSent = mailService.sendMail(member.getMemberEmail(), subject, "member/authenicate", member.getMemberId());
+		boolean mailSent = mailService.sendMail(member.getMemberEmail(), subject, "memberRegister/authenicate", member.getMemberId());
 		
 		if (mailSent && result > 0) {
 			core.setSuccessful(true);
@@ -50,12 +50,14 @@ public class MemberRegisterController {
 			// setting session
 			session.setAttribute("memberId", member.getMemberId());
 			session.setAttribute("memberName", member.getMemberName());
+			System.out.println(member.getMemberName());
+			System.out.println(member.getMemberId());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		jedis.close();
-		return "index"; // need to change to main page jsp
+		return "index.jsp"; // need to change to main page jsp
 	}
 
 }

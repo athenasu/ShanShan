@@ -4,7 +4,6 @@ import java.util.List;
 
 import tw.idv.tibame.tfa104.shanshan.web.orderDescription.entity.OrderDescription;
 import tw.idv.tibame.tfa104.shanshan.web.orderDescription.entity.OrderDescriptionBO;
-import tw.idv.tibame.tfa104.shanshan.web.product.entity.ProductBO;
 
 
 public interface OrderDescriptionDAO {

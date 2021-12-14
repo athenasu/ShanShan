@@ -2,17 +2,8 @@ package tw.idv.tibame.tfa104.shanshan.web.shop.service;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.context.support.WebApplicationContextUtils;
-
 import tw.idv.tibame.tfa104.shanshan.web.company.entity.CompanyVO;
-import tw.idv.tibame.tfa104.shanshan.web.order.entity.Order;
 import tw.idv.tibame.tfa104.shanshan.web.product.entity.ProductBO;
-import tw.idv.tibame.tfa104.shanshan.web.product.service.ProductServiceHibernate;
-import tw.idv.tibame.tfa104.shanshan.web.shop.entity.Cart;
-import tw.idv.tibame.tfa104.shanshan.web.shop.entity.CartItem;
 import tw.idv.tibame.tfa104.shanshan.web.shop.entity.ProductImgBO;
 import tw.idv.tibame.tfa104.shanshan.web.wishlistProduct.entity.WishlistProduct;
 

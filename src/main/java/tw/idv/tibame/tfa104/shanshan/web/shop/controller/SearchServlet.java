@@ -1,14 +1,11 @@
 package tw.idv.tibame.tfa104.shanshan.web.shop.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,18 +18,15 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 import tw.idv.tibame.tfa104.shanshan.web.company.entity.CompanyVO;
 import tw.idv.tibame.tfa104.shanshan.web.company.service.CompanyServiecHibernate;
 import tw.idv.tibame.tfa104.shanshan.web.company.service.impl.CompanyServiceHibernate_impl;
-import tw.idv.tibame.tfa104.shanshan.web.member.service.MemberService;
-import tw.idv.tibame.tfa104.shanshan.web.member.service.impl.MemberServiceImpl;
 import tw.idv.tibame.tfa104.shanshan.web.product.entity.ProductBO;
 import tw.idv.tibame.tfa104.shanshan.web.product.service.ProductServiceHibernate;
 import tw.idv.tibame.tfa104.shanshan.web.product.service.impl.ProductServiceHibernate_impl;
-import tw.idv.tibame.tfa104.shanshan.web.shop.entity.Cart;
-import tw.idv.tibame.tfa104.shanshan.web.shop.entity.CartItem;
-import tw.idv.tibame.tfa104.shanshan.web.shop.service.ShopService;
-import tw.idv.tibame.tfa104.shanshan.web.shop.service.impl.ShopServiceImpl;
 
 @WebServlet("/SearchServlet")
 public class SearchServlet extends HttpServlet {
+	
+	private static final long serialVersionUID = 1L;
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)	throws IOException, ServletException {
 
 		// 來源路徑<%=request.getContextPath()%>/SearchServlet?method=????& searchString=????????
@@ -54,7 +48,7 @@ public class SearchServlet extends HttpServlet {
 			List<ProductBO> searchProductList = new ArrayList<ProductBO>();
 //			調用搜尋字串方法
 
-			ServletContext application = this.getServletContext();
+//			ServletContext application = this.getServletContext();
 			WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
 			ProductServiceHibernate productsrvc = context.getBean(ProductServiceHibernate_impl.class);
 			
@@ -69,7 +63,7 @@ public class SearchServlet extends HttpServlet {
 			List<CompanyVO> searchCompanyList = new ArrayList<CompanyVO>();
 //			調用搜尋公司方法
 
-			ServletContext application = this.getServletContext();
+//			ServletContext application = this.getServletContext();
 			WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
 			CompanyServiecHibernate companysrvc = context.getBean(CompanyServiceHibernate_impl.class);
 			searchCompanyList =	companysrvc.findComByString(searchString);

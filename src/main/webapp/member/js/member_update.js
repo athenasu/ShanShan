@@ -4,7 +4,9 @@ const dropArea = document.querySelector(".drag-area");
 const dragText = document.querySelector("header");
 const browseBtn = document.querySelector(".browse_btn");
 const hiddenInput = document.querySelector(".hidden_input");
-
+const cancelBtn = document.querySelector(".cancel-btn");
+const submitBtn = document.querySelector(".submit-btn");
+const changePasswordBtn = document.querySelector(".change-password-btn");
 ///////////////////////////////////
 // SHOW PICTURE FOR UPLOAD
 let file;
@@ -82,20 +84,17 @@ const populatePage = function () {
       document.querySelector(".member-username-dashboard").textContent =
         member.memberUsername;
       document.querySelector(".member-email").value = member.memberEmail;
-      document.querySelector(".member-password").value = member.memberPassword;
+      // document.querySelector(".member-password").value = member.memberPassword;
       document.querySelector(".member-intro-text").value = member.memberIntro;
     });
 };
 
 // UPDATE MEMBER //
-const submitBtn = document.querySelector(".submit-btn");
-
 const updateInfo = function () {
   const memberName = document.querySelector(".member-name").value;
   const memberUsername = document.querySelector(".member-username").value;
   const memberPhoneNum = document.querySelector(".member-phone").value;
   const memberEmail = document.querySelector(".member-email").value;
-  const memberPassword = document.querySelector(".member-password").value;
   const memberIntro = document.querySelector(".member-intro-text").value;
 
   const file = hiddenInput.files[0];
@@ -107,7 +106,6 @@ const updateInfo = function () {
     fetch("memberUpdate", {
       method: "POST",
       headers: {
-        // we're telling Java what kind of file we're sending
         "Content-Type": "application/json",
       },
       // setting the variables
@@ -116,7 +114,6 @@ const updateInfo = function () {
         memberName: memberName,
         memberUsername,
         memberEmail,
-        memberPassword,
         memberPhoneNum,
         memberIntro,
       }),
@@ -141,3 +138,11 @@ window.onload = function () {
 submitBtn.addEventListener("click", function () {
   updateInfo();
 });
+
+cancelBtn.addEventListener("click", function () {
+  populatePage();
+});
+
+// changePasswordBtn.addEventListener("click", function(){
+
+// })

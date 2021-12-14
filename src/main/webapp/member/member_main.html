@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/header_footer.css" />
     <title>會員中心</title>
     <link rel="stylesheet" href="css/member.css" />
+    <link rel="stylesheet" href="./dist/simple-calendar.css" />
     <link
       rel="stylesheet"
       href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
@@ -22,7 +23,7 @@
     ></script>
   </head>
   <body>
-    <header>
+    <header class="header-div">
       <div id="logo">
         <a href="index.html"><img src="img/logo.png" class="img" /></a>
       </div>
@@ -37,73 +38,72 @@
       </nav>
       <div id="memcheck">
         <div id="ball"><i class="fas fa-bell"></i></div>
-        <div id="login"><a href="#">登入</a></div>
-        <div id="register"><a href="#">註冊</a></div>
+        <div id="logout"><a href="#">登出</a></div>
       </div>
     </header>
-    <main class="member_main">
-      <section class="glass">
-        <div class="dashboard">
-          <div class="user">
-            <div class="member_profile">
-              <img class="member_profile_pic" src="" alt="user_pic" />
-            </div>
-            <div class="user-info">
-              <h2 class="member-name-dashboard"></h2>
-              <p class="member-username-dashboard"></p>
-            </div>
+    <section class="glass">
+      <div class="overlay-done hidden"></div>
+      <div class="dashboard">
+        <div class="user">
+          <div class="member_profile">
+            <img class="member_profile_pic" src="" alt="user_pic" />
           </div>
-          <div class="links">
-            <div class="link">
-              <button>
-                <a href="member.html"><h3>會員首頁</h3></a>
-              </button>
-            </div>
-            <div class="link">
-              <button>
-                <a href="member_update.html"><h3>修改會員資料</h3></a>
-              </button>
-            </div>
-            <div class="link">
-              <ul class="side-bar-event">
-                <li>
-                  <button class="link-btn-event">
-                    <a href="member_article_details.html"><h3>文章紀錄</h3></a>
-                  </button>
-                  <ul class="second-menu-event">
-                    <li><a href="#">揪團紀錄</a></li>
-                    <li><a href="#">參團紀錄</a></li>
-                    <li><a href="#">發文紀錄</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-            <div class="link">
-              <button>
-                <a href="member_order_details.html"><h3>訂單記錄</h3></a>
-              </button>
-            </div>
-            <div class="link">
-              <ul class="side-bar-wishlist">
-                <li>
-                  <button class="link-btn-wishlist">
-                    <a href="#"><h3>收藏紀錄</h3></a>
-                  </button>
-                  <ul class="second-menu-wishlist">
-                    <li><a href="#">揪團</a></li>
-                    <li><a href="#">活動日誌</a></li>
-                    <li><a href="#">商品</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
+          <div class="user-info">
+            <h2 class="member-name-dashboard"></h2>
+            <p class="member-username-dashboard"></p>
+          </div>
+        </div>
+        <div class="links">
+          <div class="link">
+            <button>
+              <a href="member.html"><h3>會員首頁</h3></a>
+            </button>
           </div>
           <div class="link">
             <button>
-              <a href="member_points.html"><h3>點數記錄</h3></a>
+              <a href="member_update.html"><h3>修改會員資料</h3></a>
             </button>
           </div>
+          <div class="link">
+            <ul class="side-bar-event">
+              <li>
+                <button class="link-btn-event">
+                  <a href="member_article_details.html"><h3>文章紀錄</h3></a>
+                </button>
+                <ul class="second-menu-event">
+                  <li><a href="#">揪團紀錄</a></li>
+                  <li><a href="#">參團紀錄</a></li>
+                  <li><a href="#">日誌紀錄</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <div class="link">
+            <button>
+              <a href="member_order_details.html"><h3>訂單記錄</h3></a>
+            </button>
+          </div>
+          <div class="link">
+            <ul class="side-bar-wishlist">
+              <li>
+                <button class="link-btn-wishlist">
+                  <a href="#"><h3>收藏紀錄</h3></a>
+                </button>
+                <ul class="second-menu-wishlist">
+                  <li><a href="#">揪團</a></li>
+                  <li><a href="#">活動日誌</a></li>
+                  <li><a href="#">商品</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
         </div>
+        <div class="link">
+          <button>
+            <a href="member_points.html"><h3>點數記錄</h3></a>
+          </button>
+        </div>
+      </div>
         <div class="events">
           <div class="calendar-map">
             <div class="icons">
@@ -115,98 +115,21 @@
               </div>
             </div>
             <div class="map-or-calendar">
+              <div id="container"></div>
               <!-- <div id="map"></div> -->
-              <!-- <img class = "calendar" src="./img/calendar-sample.png" alt="calendar_sample" /> -->
             </div>
           </div>
         </div>
       </section>
     </main>
     <div class="square1"></div>
-    <div class="square2">
-      <!-- <div class="card">
-        <ul>
-          <li class="date">
-            <span><p>10月31日</p></span>
-          </li>
-          <li class="event-name">
-            <span><p>名稱：大家一同去陽明山</p></span>
-          </li>
-          <li class="event-location">
-            <span><p>登山：陽明山</p></span>
-          </li>
-        </ul>
-      </div>
-      <div class="card active">
-        <ul>
-          <li class="date">
-            <span><p>10月31日</p></span>
-          </li>
-          <li class="event-name">
-            <span><p>名稱：大家一同去陽明山</p></span>
-          </li>
-          <li class="event-location">
-            <span><p>登山：陽明山</p></span>
-          </li>
-        </ul>
-      </div>
-      <div class="card">
-        <ul>
-          <li class="date">
-            <span><p>10月31日</p></span>
-          </li>
-          <li class="event-name">
-            <span><p>名稱：大家一同去陽明山</p></span>
-          </li>
-          <li class="event-location">
-            <span><p>登山：陽明山</p></span>
-          </li>
-        </ul>
-      </div>
-      <div class="card">
-        <ul>
-          <li class="date">
-            <span><p>10月31日</p></span>
-          </li>
-          <li class="event-name">
-            <span><p>名稱：大家一同去陽明山</p></span>
-          </li>
-          <li class="event-location">
-            <span><p>登山：陽明山</p></span>
-          </li>
-        </ul>
-      </div>
-      <div class="card">
-        <ul>
-          <li class="date">
-            <span><p>10月31日</p></span>
-          </li>
-          <li class="event-name">
-            <span><p>名稱：大家一同去陽明山</p></span>
-          </li>
-          <li class="event-location">
-            <span><p>登山：陽明山</p></span>
-          </li>
-        </ul>
-      </div>
-      <div class="card">
-        <ul>
-          <li class="date">
-            <span><p>10月31日</p></span>
-          </li>
-          <li class="event-name">
-            <span><p>名稱：大家一同去陽明山</p></span>
-          </li>
-          <li class="event-location">
-            <span><p>登山：陽明山</p></span>
-          </li>
-        </ul>
-      </div> -->
-    </div>
+    <div class="square2"></div>
 
     <script src="./vendors/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
-    <!-- <script src=".js/header.js"></script> -->
+    <script src="./js/header.js"></script>
     <script src="./js/member_main.js"></script>
+    <script src="./dist/jquery.simple-calendar.min.js"></script>
+    <script src="./dist/jquery.simple-calendar.js"></script>
   </body>
 </html>

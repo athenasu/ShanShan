@@ -3,7 +3,6 @@ package tw.idv.tibame.tfa104.shanshan.web.order.dao;
 import java.util.List;
 
 import tw.idv.tibame.tfa104.shanshan.web.order.entity.Order;
-import tw.idv.tibame.tfa104.shanshan.web.orderDescription.entity.OrderDescriptionBO;
 
 
 public interface OrderDAO {

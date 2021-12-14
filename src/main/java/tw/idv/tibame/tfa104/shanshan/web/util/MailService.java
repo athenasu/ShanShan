@@ -63,7 +63,7 @@ public class MailService {
 			Jedis jedis = new Jedis("localhost", 6379);
 			jedis.set(token, memberId.toString());
 			System.out.println(token);
-			jedis.expire(token, 60); // setting timeout time (jedis will delete this token)
+			jedis.expire(token, 120); // setting timeout time (jedis will delete this token)
 			System.out.println("傳送成功!");
 			jedis.close();
 			return true;

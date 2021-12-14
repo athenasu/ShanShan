@@ -1,12 +1,9 @@
 package tw.idv.tibame.tfa104.shanshan.web.shop.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,26 +14,21 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
-import com.mysql.cj.Session;
-
-import tw.idv.tibame.tfa104.shanshan.web.member.entity.Member;
-import tw.idv.tibame.tfa104.shanshan.web.product.entity.ProductBO;
-import tw.idv.tibame.tfa104.shanshan.web.product.service.ProductServiceHibernate;
-import tw.idv.tibame.tfa104.shanshan.web.shop.entity.Cart;
-import tw.idv.tibame.tfa104.shanshan.web.shop.entity.ProductImgBO;
-import tw.idv.tibame.tfa104.shanshan.web.shop.service.ShopService;
-import tw.idv.tibame.tfa104.shanshan.web.shop.service.impl.ShopServiceImpl;
 import tw.idv.tibame.tfa104.shanshan.web.wishlistProduct.entity.WishlistProduct;
 import tw.idv.tibame.tfa104.shanshan.web.wishlistProduct.service.WishlistProductService;
 import tw.idv.tibame.tfa104.shanshan.web.wishlistProduct.service.impl.WishlistProductServiceImpl;
 
 @WebServlet("/WishProductServlet")
 public class WishProductServlet extends HttpServlet {
+	
+	private static final long serialVersionUID = 1L;
+	
+	@SuppressWarnings("unchecked")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)	throws IOException, ServletException {
 		
 		String method = request.getParameter("method");
 		int productId = Integer.parseInt(request.getParameter("productId"));
-		Map mapwp = new HashMap();
+		Map<String , Integer> mapwp = new HashMap<String , Integer>();
 		
 		System.out.println("WishListServlet被調用了,method :" + method);
 
@@ -48,20 +40,20 @@ public class WishProductServlet extends HttpServlet {
 
 			// 來源路徑 /shanshan/WishProductServlet?method=addRemoveWishProduct&productId=??
 			if ("addRemoveWishProduct".equals(method)) {
-				mapwp = (Map) session.getAttribute("mapwp");
+				mapwp = (Map<String , Integer>) session.getAttribute("mapwp");
 				
-				ServletContext application = this.getServletContext();
+//				ServletContext application = this.getServletContext();
 				WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
 				WishlistProductService wpsrc = context.getBean(WishlistProductServiceImpl.class);
 				
 //				如果有收藏裡有這件產品
-				if(mapwp.containsKey(productId)) {
+				if(mapwp.containsKey(productId+"")) {
 //					true, 移除收藏
 					wpsrc.deleteWishlistProductMemIdProductId(memberId,  productId);
 					
 					System.out.println("WishProductServlet: 移除收藏成功");
 //					把該KEY從收藏列表中移除
-					mapwp.remove(productId);
+					mapwp.remove(productId+"");
 
 				}
 				else {
@@ -73,7 +65,7 @@ public class WishProductServlet extends HttpServlet {
 					
 					System.out.println("WishProductServlet: 添加收藏成功");
 //					把該KEY加入收藏列表
-					mapwp.put(productId, memberId);
+					mapwp.put(productId+"", memberId);
 				};
 
 //				把新的收藏列表丟進session

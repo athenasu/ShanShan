@@ -13,6 +13,6 @@ public interface MemberOrderService {
 	// select: find all order descriptions by memberId and orderId
 	List<OrderDescriptionBO> findAllOrderDesByMemId(Integer memberId, Integer orderId);
 	// update: order status
-	Core updateOrderStatsByOrderId(Integer orderStatus, Integer orderId, Core core);
+	Core updateOrderStatusByOrderId(Integer orderStatus, Integer orderId, Core core);
 
 }

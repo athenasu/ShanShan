@@ -2,12 +2,10 @@ package tw.idv.tibame.tfa104.shanshan.web.shop.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,15 +16,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
-import com.mysql.cj.x.protobuf.MysqlxCrud.Update;
-
 import tw.idv.tibame.tfa104.shanshan.web.member.service.MemberService;
 import tw.idv.tibame.tfa104.shanshan.web.member.service.impl.MemberServiceImpl;
 import tw.idv.tibame.tfa104.shanshan.web.order.entity.Order;
 import tw.idv.tibame.tfa104.shanshan.web.orderDescription.entity.OrderDescription;
 import tw.idv.tibame.tfa104.shanshan.web.orderDescription.entity.OrderDescriptionBO;
 import tw.idv.tibame.tfa104.shanshan.web.product.entity.ProductBO;
-import tw.idv.tibame.tfa104.shanshan.web.product.service.ProductServiceHibernate;
 import tw.idv.tibame.tfa104.shanshan.web.shop.entity.Cart;
 import tw.idv.tibame.tfa104.shanshan.web.shop.entity.CartItem;
 import tw.idv.tibame.tfa104.shanshan.web.shop.service.ShopService;
@@ -34,6 +29,9 @@ import tw.idv.tibame.tfa104.shanshan.web.shop.service.impl.ShopServiceImpl;
 
 @WebServlet("/PurchaseServlet")
 public class PurchaseServlet extends HttpServlet {
+	
+	private static final long serialVersionUID = 1L;
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
 		ShopService service = new ShopServiceImpl();
@@ -50,13 +48,14 @@ public class PurchaseServlet extends HttpServlet {
 		}
 
 //		取得會員點數
-		ServletContext application = this.getServletContext();
+//		ServletContext application = this.getServletContext();
 		WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
 		MemberService memsrvc = context.getBean(MemberServiceImpl.class);
 		memberPoint = memsrvc.findMemberPoints(memberId);
 		request.setAttribute("memberPoint", memberPoint);
 		
 //		確認是否有結帳資料(orderList)在session，沒有的話就新建一個，有的話就清除。
+		@SuppressWarnings("unchecked")
 		List<Order> orderList = (List<Order>) session.getAttribute("orderList");
 		if (orderList == null) {
 			orderList = new ArrayList<Order>(); //訂單 集合

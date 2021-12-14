@@ -66,9 +66,17 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public Member findById(Integer id) {
-		Member member = dao.selectById(id);
-		
-		return member;
+		return dao.selectById(id);
+	}
+	
+	@Override
+	public Boolean updateMemberPassword(Integer memberId, String memberPassword) {
+		Member result = dao.updateMemberPassword(memberId, memberPassword);
+		if (result != null) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }

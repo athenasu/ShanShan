@@ -15,6 +15,8 @@ import tw.idv.tibame.tfa104.shanshan.web.shop.service.impl.ShopServiceImpl;
 
 @WebServlet("/GetCompanyBannerServlet")
 public class GetCompanyBannerServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		//來源路徑<%=contextPath %>/GetComapnytServlet?comapnyId=${comapnyBO.comapnyId}
 		

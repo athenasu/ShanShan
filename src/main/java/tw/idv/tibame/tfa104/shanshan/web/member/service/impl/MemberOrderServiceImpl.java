@@ -35,7 +35,7 @@ public class MemberOrderServiceImpl implements MemberOrderService {
 	}
 	
 	@Override
-	public Core updateOrderStatsByOrderId(Integer orderStatus, Integer orderId, Core core) {
+	public Core updateOrderStatusByOrderId(Integer orderStatus, Integer orderId, Core core) {
 		int result = orderDao.updateOrderStatsByOrderId(orderStatus, orderId);
 		if (result ==1) {
 			core.setSuccessful(true);

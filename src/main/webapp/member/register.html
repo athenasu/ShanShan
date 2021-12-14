@@ -5,9 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>member_signup</title>
+    <title>註冊｜登入</title>
     <link rel="stylesheet" type="text/css" href="./css/register_login.css">
-
 </head>
 
 <body>
@@ -17,7 +16,7 @@
     <div class="login_modal -none">
         <h1 class="login_form_title">登入</h1>
         <div>
-            <div class="login_formbox">
+            <!-- <div class="login_formbox">
                 <input class="summitbutton_signupfacebook" type="button" value="用FACEBOOK登入"></input>
             </div>
 
@@ -27,7 +26,7 @@
 
             <div class="horizen_gap"></div>
             <div class="horizen_gap_or">or</div>
-            <div class="horizen_gap"></div>
+            <div class="horizen_gap"></div> -->
 
 
             <div class="login_formbox">
@@ -48,30 +47,44 @@
         <div>
             <div class="login_formbox_2 ">
                 <label class="login_formname" for="Email">電子郵件地址</label>
-                <input class="login_formbar_email" name="Email" placeholder="請輸入您的電子郵件地址"></input></br>
+                <input class="login_formbar_email" name="Email" placeholder="請輸入您的電子郵件地址"></input>
+            </br>
             </div>
 
             <div class="login_formbox">
                 <label class="login_formname" for="password">密碼</label>
-                <input class="login_formbar_password" name="password" placeholder="請輸入您的密碼"></input></br>
+                <input class="login_formbar_password" type = "password"  name="password" placeholder="請輸入您的密碼"></input></br>
             </div>
 
-            <div class="login_formbox login_description">
+            <!-- <div class="login_formbox login_description">
                 <input class="login_formcheckbox" type="checkbox">&ensp;記住我的密碼</input>
-            </div>
+            </div> -->
 
             <div class="login_formbox">
                 <input class="login_summitbutton" type="button" value="登入"></input>
             </div>
 
             <div class="login_formbox" style=" text-align: center;">
-                <p><a href="#">忘記密碼?</a></p>
+                <p class= "forgot_password"><a href="#">忘記密碼?</a></p>
             </div>
         </div>
     </div>
     <!-- 燈箱郵件登入 結束-->
 
-
+    <!-- 燈箱忘記密碼 開始 FORGOT PASSWORD-->
+    <div class="forgot_password_modal -none">
+        <h1 class="forgot_password_title">請輸入電子郵件</h1>
+        <div>
+            <div class="forgot_password_formbox">
+                <label class="forgot_password_formname" for="Email">電子郵件地址</label>
+                <input class="forgot_password_email" name="Email" placeholder="請輸入您的電子郵件地址"></input></br>
+            </div>
+            <div class="forgot_password_formbox">
+                <input class="forgot_password_summitbutton" type="button" value="發信"></input>
+            </div>
+        </div>
+    </div>
+    <!-- 燈箱忘記密碼 結束 FORGOT PASSWORD-->
 
     <!-- 註冊導覽列 -->
     <header class="register_header">
@@ -89,7 +102,8 @@
             <!-- 註冊頁面 標題 -->
             <div class="register_title_signup" onclick="location.href='#'">註冊頁面
             </div>
-            <input type="button" class="login_modal_botton" value="登入"></input>
+            <input type="button" class="login_modal_button" value="登入"></input>
+            <input type="button" class="logout_modal_button -none" value="登出"></input>
         </div>
     </header>
     <!-- 註冊導覽列 結束 -->
@@ -101,7 +115,7 @@
         <form class="choose_signup_form">
             <h1 class="register_form_title">註冊</h1>
             <div>
-                <div class="register_formbox">
+                <!-- <div class="register_formbox">
                     <input class="summitbutton_signupfacebook" type="button" value="用FACEBOOK註冊"></input>
                 </div>
 
@@ -111,7 +125,7 @@
 
                 <div class="horizen_gap"></div>
                 <div class="horizen_gap_or">or</div>
-                <div class="horizen_gap"></div>
+                <div class="horizen_gap"></div> -->
 
 
                 <div class="register_formbox">
@@ -124,7 +138,7 @@
 
                 <div class="register_formbox register_description">
                     <p>※&ensp;請檢查垃圾郵件過濾器以及垃圾信箱，</p>
-                    <p>&ensp;&ensp;&ensp;以便接收來自 shanshan@gmail.com 的郵件。</p>
+                    <p>&ensp;&ensp;&ensp;以便接收來自 shanshantester@gmail.com 的郵件。</p>
                 </div>
 
             </div>
@@ -144,21 +158,22 @@
                 <div class="register_formbox ">
                     <label class="register_formname" for="Email">電子郵件地址</label>
                     <input class="register_formbar register-email" name="Email" placeholder="example@gmail.com"></input></br>
+                    <div class="error-message"></div>
                 </div>
 
-                <div class="register_formbox register_description">
+                <!-- <div class="register_formbox register_description">
                     <input class="register_formcheckbox register_description"
                         type="checkbox">&ensp;我願意收到ShanShan電子報。</input></br>
-                </div>
+                </div> -->
 
                 <div class="register_formbox">
                     <label class="register_formname" for="password">密碼</label>
-                    <input class="register_formbar register-password" name="password" placeholder="請輸入8-15位數之間的英文或數字"></input></br>
+                    <input class="register_formbar register-password" type = "password" name="password" placeholder="請輸入8-15位數之間的英文或數字"></input></br>
                 </div>
 
                 <div class="register_formbox">
                     <label class="register_formname" for="repeatpassword">確認密碼</label>
-                    <input class="register_formbar register-repeatpassword" name="repeatpassword" placeholder="請重複輸入密碼"></input></br>
+                    <input class="register_formbar register-repeatpassword" type = "password" name="repeatpassword" placeholder="請重複輸入密碼"></input></br>
                 </div>
 
                 <div class="register_formbox">

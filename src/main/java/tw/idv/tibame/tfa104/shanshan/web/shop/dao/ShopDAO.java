@@ -6,7 +6,6 @@ import tw.idv.tibame.tfa104.shanshan.web.company.entity.CompanyVO;
 import tw.idv.tibame.tfa104.shanshan.web.product.entity.ProductBO;
 import tw.idv.tibame.tfa104.shanshan.web.shop.entity.ProductImgBO;
 import tw.idv.tibame.tfa104.shanshan.web.wishlistProduct.entity.WishlistProduct;
-import tw.idv.tibame.tfa104.shanshan.web.wishlistProduct.entity.WishlistProductBO;
 
 
 public interface ShopDAO {

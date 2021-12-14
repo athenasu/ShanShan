@@ -406,7 +406,12 @@ button {
   color: white;
 }
 
-.cancel-btn {
+.change-password-btn {
+  margin-right: 10rem;
+}
+
+.cancel-btn,
+.change-password-btn {
   margin-top: 1rem;
   padding: 4px 8px;
   text-align: center;
@@ -421,7 +426,8 @@ button {
   border: 2px solid #c5c5c5;
 }
 
-.cancel-btn:hover {
+.cancel-btn:hover,
+.change-password-btn:hover {
   background-color: #c5c5c5;
   color: white;
 }
