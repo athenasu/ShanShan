@@ -21,6 +21,7 @@ function init() {
 
                 popular_events += "<div class='event_slide'>";
                 popular_events += "<img class='event_slide_pic' src='" + url + "'>";
+                popular_events += "<input type='hidden' class='event_id' value='"+item.eventId+"'>"
                 popular_events += "<h4 class='event_slide_name'>" + item.eventName + "</h4>";
                 popular_events += "<h4 class ='slide_startdate'>出團日期：" + (new Date(item.eventStartDate).toLocaleDateString('fr-CA', { year: 'numeric', month: '2-digit', day: '2-digit' })) + "</h4>"
                 popular_events += "</div>"
@@ -38,7 +39,7 @@ function init() {
 
         },
         success: function (data) {
-            // console.log(data);
+            console.log(data);
             let event_list = "";
             $.each(data, function (index, item) {
                 // console.log(item)
@@ -50,6 +51,7 @@ function init() {
 
                 event_list += "<div class='event_display'>";
                 event_list += "<img class ='event_pic' src='" + url + "'>";
+                event_list += "<input type='hidden' class='event_id' value='"+item.eventId+"'>"
                 event_list += "<h3 class='event_name'>" + item.eventName + "</h3>";
                 event_list += "<div class='event_start_date'>出團日期：<span>" + (new Date(item.eventStartDate).toLocaleDateString('fr-CA', { year: 'numeric', month: '2-digit', day: '2-digit' })) + "</span></div>"
                 event_list += "</div>"
@@ -228,8 +230,17 @@ $(document).on("click", "div.other_area", function () {
 
 //============================== REDIRECT TO EVENT VIEW PAGE ============================
 $(document).on("click", "div.event_display", function(){
-    
+    // console.log($(this).find("input").val());
+    window.localStorage.setItem("eventID", $(this).find("input").val());
+    // window.sessionStorage.setItem("eventID", $(this).find("input").val())
+    window.location.replace("eventview.html");
 })
+
+//============================== REDIRECT TO EVENTPOST PAGE ============================
+$(document).on("click", "button.create_event", function(){
+    window.location.replace("eventpost.html");
+})
+
 
 //=======================================================================================
 $(function () {

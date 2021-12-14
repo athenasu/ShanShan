@@ -43,7 +43,9 @@ select.north_mountain, select.mid_mountain, select.south_mountain, select.east_m
 select.north_mountain.-on, select.mid_mountain.-on, select.south_mountain.-on, select.east_mountain.-on, select.other_mountain.-on{
     display: inline-block;
 }
-
+div.event_content{
+    height:250px
+}
 textarea.event_content{
     display:inline;
     resize: none;
@@ -57,3 +59,5 @@ textarea.event_content{
 input.event_name, input.event_days, input.event_deadline, input.event_start_date, input.max_num_of_people, input.min_num_of_people{
 outline: none;
 }
+
+

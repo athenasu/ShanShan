@@ -17,6 +17,7 @@
   <script src="./js/event.js"></script>
   <link rel="stylesheet" href="./css/event.css" />
   <link rel="stylesheet" href="./css/header_footer.css" />
+  
   <header>
     <div id="logo">
       <a href="index.html"><img src="img/logo.png" class="img" /></a>
@@ -52,7 +53,7 @@
 
 
   <div class="slidshow_container">
-    <div class="event_slide">
+    <!-- <div class="event_slide">
       <img src="#">
       <h3 class="event_name">合歡山當天來回</h3>
       <div>出團日期：<span>2021/01/01</span></div>
@@ -81,11 +82,11 @@
       <img src="#">
       <h3 class="event_name">合歡山當天來回</h3>
       <div>出團日期：<span>2021/01/01</span></div>
-    </div>
+    </div> -->
   </div>
 
   <div class="main_block">
-    <div class="event_display">
+    <!-- <div class="event_display">
       <img class="event_pic" src="#">
       <h3 class="event_name">合歡山當天來回</h3>
       <div>出團日期：<span>2021/01/01</span></div>
@@ -129,10 +130,73 @@
       <img class="event_pic" src="#">
       <h3 class="event_name">合歡山當天來回</h3>
       <div>出團日期：<span>2021/01/01</span></div>
-    </div>
+    </div> -->
   </div>
 
-  <div class="M-box"></div>
+  <!-- CSS TAG -->
+  <link rel="stylesheet" type="text/css" href="./css/register_login.css">
+  <!-- SCRIPT TAG -->
+  <script type='text/javascript' src='./js/register.js'></script>
+
+  <!-- 燈箱登入方式選擇 LOGIN -->
+  <div class="login_modal_bcg -none"></div>
+  <div class="login_modal -none">
+    <h1 class="login_form_title">登入</h1>
+    <div>
+      <div class="login_formbox">
+        <input class="emaillogin" type="button" value="用電子郵件登入"></input>
+      </div>
+
+      <div class="login_formbox" style=" text-align: center;">
+        <p>還沒註冊?請點選這裡<a href="register.html">註冊成為新山友</a></p>
+      </div>
+    </div>
+
+  </div>
+  <!-- 燈箱登入方式選擇 結束-->
+
+  <!-- 燈箱郵件登入 開始 USER LOGIN-->
+  <div class="login_modal_email -none">
+    <h1 class="login_form_title">用電子郵件登入</h1>
+    <div>
+      <div class="login_formbox_2 ">
+        <label class="login_formname" for="Email">電子郵件地址</label>
+        <input class="login_formbar_email" name="Email" placeholder="請輸入您的電子郵件地址"></input>
+        </br>
+      </div>
+
+      <div class="login_formbox">
+        <label class="login_formname" for="password">密碼</label>
+        <input class="login_formbar_password" type="password" name="password" placeholder="請輸入您的密碼"></input></br>
+      </div>
+
+      <div class="login_formbox">
+        <input class="login_summitbutton" type="button" value="登入"></input>
+      </div>
+
+      <div class="login_formbox" style=" text-align: center;">
+        <p class="forgot_password"><a href="#">忘記密碼?</a></p>
+      </div>
+    </div>
+  </div>
+  <!-- 燈箱郵件登入 結束-->
+
+  <!-- 燈箱忘記密碼 開始 FORGOT PASSWORD-->
+  <div class="forgot_password_modal -none">
+    <h1 class="forgot_password_title">請輸入電子郵件</h1>
+    <div>
+      <div class="forgot_password_formbox">
+        <label class="forgot_password_formname" for="Email">電子郵件地址</label>
+        <input class="forgot_password_email" name="Email" placeholder="請輸入您的電子郵件地址"></input></br>
+      </div>
+      <div class="forgot_password_formbox">
+        <input class="forgot_password_summitbutton" type="button" value="發信"></input>
+      </div>
+    </div>
+  </div>
+  <!-- 燈箱忘記密碼 結束 FORGOT PASSWORD-->
+
+
 
   <footer>
     <h4>Copyright <i class="far fa-copyright"></i>2021 G3 SANSAN</h4>

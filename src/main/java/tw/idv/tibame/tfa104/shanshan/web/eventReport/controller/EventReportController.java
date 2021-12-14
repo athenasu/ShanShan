@@ -33,4 +33,18 @@ public class EventReportController {
 		final List<EventReport> eventListByMemberId = eventReportService.selectEventReportByMemberId(memberId, eventId);
 		return eventListByMemberId;
 	}
+	
+	@CrossOrigin
+	@GetMapping("selectNew")
+	public List<EventReport> selectNew(){
+		final List<EventReport> newCases = eventReportService.selectNew();
+		return newCases;
+	}
+	
+	@CrossOrigin
+	@GetMapping("selectDone")
+	public List<EventReport> selectDone(){
+		final List<EventReport> doneCases = eventReportService.selectDone();
+		return doneCases;
+	}
 }

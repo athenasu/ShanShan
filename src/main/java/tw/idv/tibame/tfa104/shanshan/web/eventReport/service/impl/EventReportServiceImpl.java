@@ -24,4 +24,13 @@ public class EventReportServiceImpl implements EventReportService{
 	public List<EventReport> selectEventReportByMemberId(Integer memberId, Integer eventId){
 		return dao.selectEventReportByMemberId(memberId, eventId);
 	}
+	
+	@Override
+	public List<EventReport> selectNew(){
+		return dao.selectNew();
+	}
+	
+	public List<EventReport> selectDone(){
+		return dao.selectDone();
+	}
 }

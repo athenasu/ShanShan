@@ -10,4 +10,8 @@ public interface EventReportService {
 
 	List<EventReport> selectEventReportByMemberId(Integer memberId, Integer eventId);
 
+	List<EventReport> selectNew();
+	
+	List<EventReport> selectDone();
+
 }

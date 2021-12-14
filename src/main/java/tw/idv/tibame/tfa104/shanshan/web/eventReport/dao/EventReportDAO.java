@@ -10,4 +10,10 @@ public interface EventReportDAO {
 
 	List<EventReport> selectEventReportByMemberId(Integer memberId, Integer eventId);
 
+	List<EventReport> selectNew();
+
+	List<EventReport> selectWaiting();
+
+	List<EventReport> selectDone();
+
 }

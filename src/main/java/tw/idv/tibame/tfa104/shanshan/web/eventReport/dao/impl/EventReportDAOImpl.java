@@ -30,4 +30,29 @@ public class EventReportDAOImpl implements EventReportDAO{
 											.setParameter("memberId", memberId)
 											.setParameter("eventId", eventId).list();
 	}
+	
+	@Override
+	public List<EventReport> selectNew(){
+		Session session = sessionFactory.getCurrentSession();
+		return session.createNativeQuery("SELECT * "+
+											"FROM event_report "+
+											"WHERE case_status = 1", EventReport.class).list();
+	}
+	
+	@Override
+	public List<EventReport> selectWaiting(){
+		Session session = sessionFactory.getCurrentSession();
+		return session.createNativeQuery("SELECT * "+
+											"FROM event_report "+
+											"WHERE case_status = 0", EventReport.class).list();
+	}
+	
+	@Override
+	public List<EventReport> selectDone(){
+		Session session = sessionFactory.getCurrentSession();
+		return session.createNativeQuery("SELECT * "+
+											"FROM event_report "+
+											"WHERE case_status = 2", EventReport.class).list();
+	}
+	
 }

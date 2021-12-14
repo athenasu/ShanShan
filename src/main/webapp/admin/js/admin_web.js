@@ -1,6 +1,113 @@
 //================================================================================================================================
 //=========================================================== SIDE BAR ===========================================================
 //================================================================================================================================
+//================================================================================================================================
+
+
+//================================================================================================================================
+$(document).on("change", "select.case_status", function(){
+    $("select.case_status").attr("value", $(this).val())
+    console.log($("select.case_status"))
+    switch(parseInt($("select.case_status").val())){
+        case 1:
+            //GET NEW EVENT REPORT
+            $.ajax({
+                url: "http://localhost:8081/shanshan/eventReport/selectNew",
+                type: "GET",
+                data: {},
+                beforeSend: function(){
+
+                },
+                success: function(data){
+                    // console.log("123");
+                    // console.log(data);
+                    let event_repot_list = "";
+
+                    $.each(data, function(index, item){
+                     console.log(item)
+                    //  event_repot_list +=         '<h1>New Cases</h1>';
+                     event_repot_list +=         '<div class="case_list_display">';
+                     event_repot_list +=             '<div class="case_number"><a href="#" target="">'+item.eventReportID+'</a></div>';
+                     event_repot_list +=             '<div class="case_content">case content</div>';
+                     event_repot_list +=             '<div class="case_status">NEW</div>';
+                     event_repot_list +=             '<div class="case_create_date">'+new Date(item.reportDate)+'</div>';
+                     event_repot_list +=         '</div>';
+
+                    })
+                    $("div.case_list_body").html(event_repot_list);
+
+                }
+            })
+
+            //GET NEW MSG REPORT
+            $.ajax({
+                url: "http://localhost:8081/shanshan//",
+                type: "GET",
+                data: {},
+                beforeSend: function(){
+
+                },
+                success: function(data){
+                    
+                }
+            })
+            //GET NEW ARTICLE REPORT
+            $.ajax({
+                url: "http://localhost:8081/shanshan//",
+                type: "GET",
+                data: {},
+                beforeSend: function(){
+
+                },
+                success: function(data){
+                    
+                }
+            })
+            break;
+        case 2:
+            //GET DONE EVENT REPORT
+            $.ajax({
+                url: "http://localhost:8081/shanshan/eventReport/selectDone",
+                type: "GET",
+                data: {},
+                beforeSend: function(){
+
+                },
+                success: function(data){
+                    
+                }
+            })
+
+            //GET DONE MSG REPORT
+            $.ajax({
+                url: "http://localhost:8081/shanshan//",
+                type: "GET",
+                data: {},
+                beforeSend: function(){
+
+                },
+                success: function(data){
+                    
+                }
+            })
+            //GET DONE ARTICLE REPORT
+            $.ajax({
+                url: "http://localhost:8081/shanshan//",
+                type: "GET",
+                data: {},
+                beforeSend: function(){
+
+                },
+                success: function(data){
+                    
+                }
+            })
+
+            break;
+
+    }
+})
+//================================================================================================================================
 
 //===================================== ADMIN IFNORMATION =====================================
 $(document).on("click", "button.admin_info", function(e){
@@ -72,24 +179,24 @@ $(document).on("click", "button.report_management", function(e){
     // list_html += '<div class="menu" name="menu">';
     list_html +=    '<ul class="case_block">';
     list_html +=        '<select class="case_status">';
-    list_html +=            '<option>NEW</option>';
-    list_html +=            '<option>WAITING</option>';
-    list_html +=            '<option>UPDATE</option>';
-    list_html +=            '<option>DONE</option>';
+    list_html +=            '<option value="1">NEW</option>';
+    list_html +=            '<option value="2">WAITING</option>';
+    list_html +=            '<option value="3">UPDATE</option>';
+    list_html +=            '<option value="4">DONE</option>';
     list_html +=        '</select>';
     list_html +=        '<div class="tab_container">';
     list_html +=        '</div>';
     list_html +=    '</ul>';
     // list_html += '<hr>'; //這hr有重複加入的問題待解決
     list_html +=    '<div class="case_list_body">';
-    list_html +=         '<h1>New Cases</h1>';
-    list_html +=         '<div class="case_list_display">';
-    list_html +=             '<div class="case_number"><a href="#" target="">123456</a></div>';
-    list_html +=             '<div class="case_content">case content</div>';
-    list_html +=             '<div class="case_status">NEW</div>';
-    list_html +=             '<div class="case_create_date">2021.10.30 00:00:00</div>';
-    list_html +=         '</div>';
-    list_html += '</div>';
+    // list_html +=         '<h1>New Cases</h1>';
+    // list_html +=         '<div class="case_list_display">';
+    // list_html +=             '<div class="case_number"><a href="#" target="">123456</a></div>';
+    // list_html +=             '<div class="case_content">case content</div>';
+    // list_html +=             '<div class="case_status">NEW</div>';
+    // list_html +=             '<div class="case_create_date">2021.10.30 00:00:00</div>';
+    // list_html +=         '</div>';
+    list_html +=    '</div>';
  
     $(this).parents().find(".menu").append(list_html)
 

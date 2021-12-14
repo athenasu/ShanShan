@@ -50,14 +50,15 @@ $(document).on("change", "#mountain_area", function () {
     }
 })
 
-
 function init() {
-
+    const eventID = window.localStorage.getItem("eventID");
+    // window.sessionStorage.getItem("eventId");
+    // console.log(eventId)
     //=========================== GET EVENT BY EVENT_ID FROM DATABASE ===========================
     $.ajax({
         url: "http://localhost:8081/shanshan/event/findEventByEventId",
         type: "GET",
-        data: { "eventId": 1 },
+        data: { "eventId": eventID },
         dataType: "json",
         beforeSend: function () {
 
@@ -93,43 +94,43 @@ function init() {
                     </li>
                     <li class="mountain_name">目標：
                         <select class="north_mountain" id="mountain_id" disabled>
-                            <option name="mountain_id" value="1">大霸尖山</option>
-                            <option name="mountain_id" value="2">伊澤山</option>
-                            <option name="mountain_id" value="3">喀拉業山</option>
-                            <option name="mountain_id" value="4">七星山</option>
-                            <option name="mountain_id" value="5">金面山</option>
-                            <option name="mountain_id" value="30">其他</option>
+                            <option class="mountain_id" name="mountain_id" value="1">大霸尖山</option>
+                            <option class="mountain_id" name="mountain_id" value="2">伊澤山</option>
+                            <option class="mountain_id" name="mountain_id" value="3">喀拉業山</option>
+                            <option class="mountain_id" name="mountain_id" value="4">七星山</option>
+                            <option class="mountain_id" name="mountain_id" value="5">金面山</option>
+                            <option class="mountain_id" name="mountain_id" value="30">其他</option>
                         </select>
                         <select class="mid_mountain" id="mountain_id" disabled>
-                            <option name="mountain_id" value="6">雪山</option>
-                            <option name="mountain_id" value="7">南湖大山</option>
-                            <option name="mountain_id" value="8">大劍山</option>
-                            <option name="mountain_id" value="9">中央尖山</option>
-                            <option name="mountain_id" value="10">品田山</option>
-                            <option name="mountain_id" value="30">其他</option>
+                            <option class="mountain_id" name="mountain_id" value="6">雪山</option>
+                            <option class="mountain_id" name="mountain_id" value="7">南湖大山</option>
+                            <option class="mountain_id" name="mountain_id" value="8">大劍山</option>
+                            <option class="mountain_id" name="mountain_id" value="9">中央尖山</option>
+                            <option class="mountain_id" name="mountain_id" value="10">品田山</option>
+                            <option class="mountain_id" name="mountain_id" value="30">其他</option>
                         </select>
                         <select class="south_mountain" id="mountain_id" disabled>
-                            <option name="mountain_id" value="11">卓社大山</option>
-                            <option name="mountain_id" value="12">能高山</option>
-                            <option name="mountain_id" value="13">白姑大山</option>
-                            <option name="mountain_id" value="14">干卓萬山</option>
-                            <option name="mountain_id" value="15">牧山</option>
-                            <option name="mountain_id" value="30">其他</option>
+                            <option class="mountain_id" name="mountain_id" value="11">卓社大山</option>
+                            <option class="mountain_id" name="mountain_id" value="12">能高山</option>
+                            <option class="mountain_id" name="mountain_id" value="13">白姑大山</option>
+                            <option class="mountain_id" name="mountain_id" value="14">干卓萬山</option>
+                            <option class="mountain_id" name="mountain_id" value="15">牧山</option>
+                            <option class="mountain_id" name="mountain_id" value="30">其他</option>
                         </select>
                         <select class="east_mountain" id="mountain_id" disabled>
-                            <option name="mountain_id" value="16">馬比杉山</option>
-                            <option name="mountain_id" value="17">奇萊主山</option>
-                            <option name="mountain_id" value="18">合歡山</option>
-                            <option name="mountain_id" value="19">畢祿山</option>
-                            <option name="mountain_id" value="20">太魯閣大山</option>
-                            <option name="mountain_id" value="30">其他</option>
+                            <option class="mountain_id" name="mountain_id" value="16">馬比杉山</option>
+                            <option class="mountain_id" name="mountain_id" value="17">奇萊主山</option>
+                            <option class="mountain_id" name="mountain_id" value="18">合歡山</option>
+                            <option class="mountain_id" name="mountain_id" value="19">畢祿山</option>
+                            <option class="mountain_id" name="mountain_id" value="20">太魯閣大山</option>
+                            <option class="mountain_id" name="mountain_id" value="30">其他</option>
                         </select>
                         <select class="other_mountain" id="mountain_id" disabled>
-                            <option name="mountain_id" value="21">紅頭山</option>
-                            <option name="mountain_id" value="22">蛇頭山</option>
-                            <option name="mountain_id" value="23">太武山</option>
-                            <option name="mountain_id" value="24">雲台山</option>
-                            <option name="mountain_id" value="30">其他</option>
+                            <option class="mountain_id" name="mountain_id" value="21">紅頭山</option>
+                            <option class="mountain_id" name="mountain_id" value="22">蛇頭山</option>
+                            <option class="mountain_id" name="mountain_id" value="23">太武山</option>
+                            <option class="mountain_id" name="mountain_id" value="24">雲台山</option>
+                            <option class="mountain_id" name="mountain_id" value="30">其他</option>
                         </select>
                     </li>
                     <li class="assembling_place">集合地點：<input class="assembling_place " type="text" value="${data[0].assemblingPlace}" readonly="readonly"></li>
@@ -205,23 +206,128 @@ function init() {
                     $("option.hardest").prop('selected', true);
                     break;
             }
-            // console.log(data[0].mountainId)
+
 
             if (data[0].mountainId == 1 || data[0].mountainId == 2 || data[0].mountainId == 3 || data[0].mountainId == 4 || data[0].mountainId == 5) {
                 $("option.north_mountain").prop('selected', true);
                 $("select.north_mountain").addClass("-on")
+                switch (parseInt(data[0].mountainId)) {
+                    case 1:
+                        console.log($("option.mountain_id").eq(0));
+                        $("option.mountain_id").eq(0).prop('selected', true);
+                        break;
+                    case 2:
+                        $("option.mountain_id").eq(1).prop('selected', true);
+                        break;
+                    case 3:
+                        $("option.mountain_id").eq(2).prop('selected', true);
+                        break;
+                    case 4:
+                        $("option.mountain_id").eq(3).prop('selected', true);
+                        break;
+                    case 5:
+                        $("option.mountain_id").eq(4).prop('selected', true);
+                        break;
+                    case 100:
+                        $("option.mountain_id").eq(5).prop('selected', true);
+                        break;
+                }
             } else if (data[0].mountainId == 6 || data[0].mountainId == 7 || data[0].mountainId == 8 || data[0].mountainId == 9 || data[0].mountainId == 10) {
                 $("option.mid_mountain").prop('selected', true);
                 $("select.mid_mountain").addClass("-on")
+                switch (parseInt(data[0].mountainId)) {
+                    case 6:
+                        console.log($("option.mountain_id").eq(0));
+                        $("option.mountain_id").eq(6).prop('selected', true);
+                        break;
+                    case 7:
+                        $("option.mountain_id").eq(7).prop('selected', true);
+                        break;
+                    case 8:
+                        $("option.mountain_id").eq(8).prop('selected', true);
+                        break;
+                    case 9:
+                        $("option.mountain_id").eq(9).prop('selected', true);
+                        break;
+                    case 10:
+                        $("option.mountain_id").eq(10).prop('selected', true);
+                        break;
+                    case 100:
+                        $("option.mountain_id").eq(11).prop('selected', true);
+                        break;
+                }
             } else if (data[0].mountainId == 11 || data[0].mountainId == 12 || data[0].mountainId == 13 || data[0].mountainId == 14 || data[0].mountainId == 15) {
                 $("option.south_mountain").prop('selected', true);
                 $("select.south_mountain").addClass("-on")
+                switch (parseInt(data[0].mountainId)) {
+                    case 11:
+                        console.log($("option.mountain_id").eq(0));
+                        $("option.mountain_id").eq(12).prop('selected', true);
+                        break;
+                    case 12:
+                        $("option.mountain_id").eq(13).prop('selected', true);
+                        break;
+                    case 13:
+                        $("option.mountain_id").eq(14).prop('selected', true);
+                        break;
+                    case 14:
+                        $("option.mountain_id").eq(15).prop('selected', true);
+                        break;
+                    case 15:
+                        $("option.mountain_id").eq(16).prop('selected', true);
+                        break;
+                    case 100:
+                        $("option.mountain_id").eq(17).prop('selected', true);
+                        break;
+                }
             } else if (data[0].mountainId == 16 || data[0].mountainId == 17 || data[0].mountainId == 18 || data[0].mountainId == 19 || data[0].mountainId == 20) {
                 $("option.east_mountain").prop('selected', true);
                 $("select.east_mountain").addClass("-on")
+                switch (parseInt(data[0].mountainId)) {
+                    case 16:
+                        console.log($("option.mountain_id").eq(0));
+                        $("option.mountain_id").eq(18).prop('selected', true);
+                        break;
+                    case 17:
+                        $("option.mountain_id").eq(19).prop('selected', true);
+                        break;
+                    case 18:
+                        $("option.mountain_id").eq(20).prop('selected', true);
+                        break;
+                    case 19:
+                        $("option.mountain_id").eq(21).prop('selected', true);
+                        break;
+                    case 20:
+                        $("option.mountain_id").eq(22).prop('selected', true);
+                        break;
+                    case 100:
+                        $("option.mountain_id").eq(23).prop('selected', true);
+                        break;
+                }
             } else {
                 $("option.other_mountain").prop('selected', true);
                 $("select.other_mountain").addClass("-on")
+                switch (parseInt(data[0].mountainId)) {
+                    case 21:
+                        console.log($("option.mountain_id").eq(0));
+                        $("option.mountain_id").eq(24).prop('selected', true);
+                        break;
+                    case 22:
+                        $("option.mountain_id").eq(25).prop('selected', true);
+                        break;
+                    case 23:
+                        $("option.mountain_id").eq(26).prop('selected', true);
+                        break;
+                    case 24:
+                        $("option.mountain_id").eq(27).prop('selected', true);
+                        break;
+                    case 25:
+                        $("option.mountain_id").eq(28).prop('selected', true);
+                        break;
+                    case 100:
+                        $("option.mountain_id").eq(29).prop('selected', true);
+                        break;
+                }
             }
 
             //=========================== GET EVENT REPORT BY MEMBER&EVENT FROM DATABASE ===========================
