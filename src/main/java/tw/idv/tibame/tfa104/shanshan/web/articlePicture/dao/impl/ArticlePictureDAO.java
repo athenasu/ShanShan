@@ -6,13 +6,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+
 import org.springframework.stereotype.Repository;
+
 import tw.idv.tibame.tfa104.shanshan.web.articlePicture.dao.ArticlePictureDAO_interface;
 import tw.idv.tibame.tfa104.shanshan.web.articlePicture.entity.ArticlePictureVO;
 

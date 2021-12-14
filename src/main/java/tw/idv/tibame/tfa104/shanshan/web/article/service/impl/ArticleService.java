@@ -1,9 +1,7 @@
 package tw.idv.tibame.tfa104.shanshan.web.article.service.impl;
 
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 import tw.idv.tibame.tfa104.shanshan.web.article.dao.ArticleDAO_interface;
 import tw.idv.tibame.tfa104.shanshan.web.article.dao.impl.ArticleDAO;

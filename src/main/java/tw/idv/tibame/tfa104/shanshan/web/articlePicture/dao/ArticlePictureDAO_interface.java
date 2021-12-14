@@ -2,7 +2,6 @@ package tw.idv.tibame.tfa104.shanshan.web.articlePicture.dao;
 
 import java.sql.Connection;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 import tw.idv.tibame.tfa104.shanshan.web.articlePicture.entity.ArticlePictureVO;
 

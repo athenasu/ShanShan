@@ -1,7 +1,6 @@
 package tw.idv.tibame.tfa104.shanshan.web.article.dao;
 
-import java.util.*;
-import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.List;
 
 import tw.idv.tibame.tfa104.shanshan.web.article.entity.ArticleVO;
 import tw.idv.tibame.tfa104.shanshan.web.articlePicture.entity.ArticlePictureVO;
