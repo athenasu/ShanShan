@@ -3,8 +3,10 @@ package tw.idv.tibame.tfa104.shanshan.web.product.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,6 +19,12 @@ import tw.idv.tibame.tfa104.shanshan.web.product.service.ProductServiceHibernate
 public class ProductControllerHibernate {
 	@Autowired
 	private ProductServiceHibernate service;
+	
+	@PostMapping(path = "addproduct", consumes = {MediaType.APPLICATION_JSON_VALUE})
+	public Product addproduct( @RequestBody Product product) {
+		return service.addproduct(product);
+	}
+	
 	
 	@GetMapping("findById")//跟productdes proimg重複
 	public List<ProductBO> findById(Integer productId) {

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>已出貨訂單</title>
+    <link rel="stylesheet" href="./css/company.css">
+</head>
+<body>
+    <header class="header">
+        <div class="titlebar">
+          <div class="logo"><img src="company_imgs/logo.png" width="60px"height="60px"></div>
+          <div class="title"><a class="backendpage" href="company_backend_page.html">山山來此</a></div>
+          <button type="button" class="logout">
+            <span class="iconify" data-icon="fluent:sign-out-24-filled"data-width="30" data-height="30"></span>
+            登出
+          </button>
+          <div class="logoutConfirmbox">
+              <p>確認是否登出？</p>
+          </div>
+        </div>
+    </header>
+    <!-- 中間body區塊開始 -->
+    <div class="order_container">
+    <!-- wrapper側邊開始 -->
+    <div class="wrapper">
+        <div class="nav">
+          <ul>
+            <li class="color-first">
+              <div class="main"><span class="iconify-inline" data-icon="fluent:building-shop-24-regular" data-width="30" data-height="30"></span>
+                商品管理
+              </div>
+              <ul class="subs">
+                <li><a class="productlist" href="company_productslist.html">商品列表</a></li>
+                <li><a class="uploadnew" href="company_productUpload.html">新增商品</a></li>
+                <li><a class="updateproduct" href="company_productUpdate.html">商品修改上下架</a></li>
+              </ul>
+            </li>
+            <li class="color-second">
+              <div class="main"><span class="iconify" data-icon="grommet-icons:deliver" data-width="30" data-height="25"></span>
+                訂單管理
+              </div>
+              <ul class="subs">
+                <li><a class="orderlist" href="company_ordersManage.html">訂單明細</a></li>
+                <li><a class="unshiporder" href="company_unshiporder.html">待出貨訂單</a></li>
+                <li ><a class="shippedorder" href="company_alreadyShipOrder.html">已出貨訂單</a></li>
+              </ul>
+            </li>
+            <li class="color-third">
+              <div class="main"><span class="iconify" data-icon="ic:baseline-assignment-ind"data-width="30" data-height="25"></span>
+                <a class="shopinfoUp" href="company_shopInfo.html">公司資料</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+    </div>
+    <!-- wrapper側邊結束 -->
+   <!-- 已出貨訂單表格開始 -->
+   <div class="order">
+    <table class="orders">
+      <thead>
+      <tr>
+        <th colspan="6">已出貨訂單</th>
+      </tr>
+      <tr>
+        <th width = "75px">訂單編號</th>
+        <th>訂購者編號</th>
+        <th>聯絡電話</th>
+        <th>訂單日期</th>
+        <th>訂單總金額</th>
+        <th>訂單詳情</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>1</td>
+        <td>001</td>
+        <td>0912345678</td>
+        <td>2021/11/2</td>
+        <td>2000</td>
+        <td><button class="shiporder1">明細</button></td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>002</td>
+        <td>0912345678</td>
+        <td>2021/11/3</td>
+        <td>30000</td>
+        <td><button class="shiporder2">明細</button></td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>003</td>
+        <td>0912345678</td>
+        <td>2021/11/3</td>
+        <td>30000</td>
+        <td><button class="shiporder3">明細</button></td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>004</td>
+        <td>0912345678</td>
+        <td>2021/11/3</td>
+        <td>30000</td>
+        <td><button class="shiporder4">明細</button></td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>005</td>
+        <td>0912345678</td>
+        <td>2021/11/3</td>
+        <td>30000</td>
+        <td><button class="shiporder5">明細</button></td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>006</td>
+        <td>0912345678</td>
+        <td>2021/11/3</td>
+        <td>30000</td>
+        <td><button class="shiporder6">明細</button></td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>007</td>
+        <td>0912345678</td>
+        <td>2021/11/3</td>
+        <td>30000</td>
+        <td><button class="shiporder7">明細</button></td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td>008</td>
+        <td>0912345678</td>
+        <td>2021/11/3</td>
+        <td>30000</td>
+        <td><button class="shiporder8">明細</button></td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td>009</td>
+        <td>0912345678</td>
+        <td>2021/11/3</td>
+        <td>30000</td>
+        <td><button class="shiporder9">明細</button></td>
+      </tr>
+      <tr>
+        <td>10</td>
+        <td>010</td>
+        <td>0912345678</td>
+        <td>2021/11/3</td>
+        <td>30000</td>
+        <td><button class="shiporder10">明細</button></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- 已出貨訂單結束 -->
+  </div>
+   
+    <!-- 中間body區塊結束 -->
+
+
+
+    <script src ="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+    <script src ="vendors/jquery/jquery-3.6.0.min.js" ></script>
+    <!-- <script src ="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+    <script src ="vendors/jquery/jquery-ui.min.js"></script>
+    <link rel ="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+    <!-- DataTable links begin-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+    <!-- DataTable links end -->
+    <script src ="./js/company_alreadyshiporder.js"></script>
+</body>
+</html>

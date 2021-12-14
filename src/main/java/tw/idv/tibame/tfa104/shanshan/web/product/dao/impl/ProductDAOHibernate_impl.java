@@ -16,6 +16,13 @@ public class ProductDAOHibernate_impl implements ProductDAOHibernate {
 
 	@Autowired //spring 注入物件可使用
 	private SessionFactory sessionFactory;
+	
+	@Override
+	public Product addproduct(Product product) {
+		Session session = sessionFactory.getCurrentSession();
+		session.save(product);
+		return product;
+	}
 	@Override
 	public List<ProductBO> findById(Integer productId) {
 		Session session = sessionFactory.getCurrentSession();
@@ -188,6 +195,8 @@ public class ProductDAOHibernate_impl implements ProductDAOHibernate {
 						.list();
 		return allpro;
 	}
+
+	
 	
 	
 

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>待出貨訂單</title>
+    <link rel="stylesheet" href="./css/company_unshiporder.css">
+
+</head>
+<body>
+    <header class="header">
+      <div class="titlebar">
+        <div class="logo"><img src="company_imgs/logo.png" width="60px"height="60px"></div>
+        <div class="title"><a class="backendpage" href="company_backend_page.html">山山來此</a></div>
+        <button type="button" class="logout">
+          <span class="iconify" data-icon="fluent:sign-out-24-filled"data-width="30" data-height="30"></span>
+          登出
+        </button>
+        <div class="logoutConfirmbox">
+            <p>確認是否登出？</p>
+        </div>
+      </div>
+    </header>
+    
+    <!-- 中間body區塊開始 -->
+    <div class="order_container">
+    <!-- wrapper側邊開始 -->
+    <div class="wrapper">
+      <div class="nav">
+        <ul>
+          <li class="color-first">
+            <div class="main"><span class="iconify-inline" data-icon="fluent:building-shop-24-regular" data-width="30" data-height="30"></span>
+              商品管理
+            </div>
+            <ul class="subs">
+              <li><a class="productlist" href="company_productslist.html">商品列表</a></li>
+              <li><a class="uploadnew" href="company_productUpload.html">新增商品</a></li>
+              <li><a class="updateproduct" href="company_productUpdate.html">商品修改上下架</a></li>
+            </ul>
+          </li>
+          <li class="color-second">
+            <div class="main"><span class="iconify" data-icon="grommet-icons:deliver" data-width="30" data-height="25"></span>
+              訂單管理
+            </div>
+            <ul class="subs">
+              <li><a class="orderlist" href="company_ordersManage.html">訂單明細</a></li>
+              <li><a class="unshiporder" href="company_unshiporder.html">待出貨訂單</a></li>
+              <li><a class="shippedorder" href="company_alreadyShipOrder.html">已出貨訂單</a></li>
+            </ul>
+          </li>
+          <li class="color-third">
+            <div class="main"><span class="iconify" data-icon="ic:baseline-assignment-ind"data-width="30" data-height="25"></span>
+              <a class="shopinfoUp" href="company_shopInfo.html">公司資料</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  <!-- wrapper側邊結束 -->
+    <!-- 待出貨訂單表格開始 -->
+    <div class="order">
+      <table id="orderlist" class="orders">
+        <thead>
+        <tr>
+          <th colspan="7">待出貨訂單</th>
+        </tr>
+        <tr>
+          <th width = "75px">訂單編號</th>
+          <th>訂購者編號</th>
+          <th>聯絡電話</th>
+          <th>訂單日期</th>
+          <th>折扣前總金額</th>
+          <th>折扣後總金額</th>
+          <th>訂單詳情</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <!-- <td><button class="order1">明細</button></td> -->
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- 待出貨訂單結束 -->
+    </div>
+    <!-- 中間body區塊結束 -->
+    <!-- 訂單詳情開始 -->
+    <div class="orderdetail">
+      訂單編號：<input readonly class="orderid" type="text" value>
+      <p>訂單日期：<input readonly class="orderdate" type="text" value></p>
+      <!-- <p>訂購者編號：<input  readonly></p> -->
+      <p>訂購者姓名：<input readonly class="clientname" type="text" value></p>
+      <p>訂購者聯絡電話：<input readonly class="clientphone" type="text" value></p>
+      <!-- <p>訂購者E-mail：<input class="clientemail" type="text" readonly></p> -->
+      <p>寄送地址：<input class="shipaddress" type="text" readonly></p>
+      <table id="orderdes" class="orderlisttable">
+        <thead>
+        <tr>
+          <th colspan="3">商品明細</th>
+        </tr>
+        <tr>
+          <!-- <th width = "75px">商品編號</th> -->
+          <th>商品名稱</th>
+          <th>數量</th>
+          <th>商品價格</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <!-- <td>001</td> -->
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+      </table>
+      <!-- <p>折扣前訂單總金額：<input class="sumbefore" readonly></p> -->
+      <p>訂單總金額：<input class="sumafter" readonly></p>
+    </div>
+    <!-- 訂單詳情結束 -->
+    <!-- 訂單確認出貨 -->
+    <!-- <div class="confirmship">
+      <p>訂單編號：001</p>
+      <p>訂單日期：2021/11/10</p>
+      <p>訂購者編號：001</p>
+      <p>訂購者姓名：三三</p>
+      <p>訂購者聯絡電話：0912345678</p>
+      <p>訂購者E-mail：aaa@gmail.com</p>
+      <p>寄送地址：106台北市中山區南京東路216號</p>
+      <p>貨運單號：<input id="shipnumber" type="text" placeholder="請輸入貨運單號" required></p>
+      <p>出貨日期：2021/11/10</p>
+    </div> -->
+    <!-- 訂單確認出貨結束 -->
+
+    <!-- 訂單取消出貨 -->
+    <!-- <div class="cancleorder">
+      <p>訂單編號：001</p>
+      <p>訂單日期：2021/11/10</p>
+      <p>訂購者編號：001</p>
+      <p>訂購者姓名：三三</p>
+      <p>訂購者聯絡電話：0912345678</p>
+      <p>訂購者E-mail：aaa@gmail.com</p>
+      <p>寄送地址：106台北市中山區南京東路216號</p>
+    </div> -->
+    <!-- 訂單取消出貨結束 -->
+
+
+   
+    
+    <script src ="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+    <script src ="vendors/jquery/jquery-3.6.0.min.js" ></script>
+    <script src ="vendors/jquery/jquery-ui.min.js"></script>
+    
+    <link rel ="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+    <script src="https://cdn.datatables.net/datetime/1.1.1/js/dataTables.dateTime.min.js"></script>
+    <script src="https://cdn.datatables.net/plug-ins/1.10.21/dataRender/datetime.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <!-- <script src="https://editor.datatables.net/extensions/Editor/js/dataTables.editor.min.js"></script> -->
+    <!-- 未出貨訂單JS -->
+    <script src ="./js/company_unshiporder.js"></script>
+    
+    
+</body>
+</html>

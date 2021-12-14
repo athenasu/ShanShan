@@ -39,7 +39,7 @@ public class CompanyDAOHibernate_impl implements CompanyDAOHibernate {
 		Session session = sessionFactory.getCurrentSession();
 		CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
 		CriteriaQuery<CompanyVO> criteriaQuery = criteriaBuilder.createQuery(CompanyVO.class);
-		Root<CompanyVO>root = criteriaQuery.from(CompanyVO.class);
+//		Root<CompanyVO>root = criteriaQuery.from(CompanyVO.class);
 		Query<CompanyVO> query = session.createQuery(criteriaQuery);
 		List<CompanyVO> list = query.list();
 //		List <CompanyVO> companyAll = session .createSQLQuery("select company_id,company_name,company_email,"
@@ -64,7 +64,7 @@ public class CompanyDAOHibernate_impl implements CompanyDAOHibernate {
 	}
 
 	@Override
-	public CompanyVO register(byte[] file, CompanyVO company) {
+	public CompanyVO register(byte[]file,CompanyVO company) {
 		Session session = sessionFactory.getCurrentSession();
 		File file2 = new File("/src/main/webapp/company/company_imgs/presetBanner");
 		byte[] bytefile = null;
@@ -78,8 +78,9 @@ public class CompanyDAOHibernate_impl implements CompanyDAOHibernate {
 		}catch (IOException ie) {
 			ie.printStackTrace();
 		}
-		
+		company.setCompanyCetificate(file);
 		company.setCompanyBanner(bytefile);
+		
 		session.save(company);
 		System.out.println("add success");
 		return company;
@@ -98,14 +99,32 @@ public class CompanyDAOHibernate_impl implements CompanyDAOHibernate {
 	@Override
 	public CompanyVO update(byte[] file, CompanyVO company) {
 		Session session = sessionFactory.getCurrentSession();
-		CompanyVO testcompany = session.get(CompanyVO.class, 8);
-//		if(testcompany.getCompanyEmail() != null && testcompany.getCompanyEmail() != "") {
-//			testcompany.setCompanyEmail(company.getCompanyEmail());			
-//		}
+		CompanyVO testcompany = session.get(CompanyVO.class,1);//companyId先用1測試
 		if(testcompany.getCompanyName() != null && testcompany.getCompanyName() != "") {
 			testcompany.setCompanyName(company.getCompanyName());
 		}
+		if(testcompany.getCompanyPassword() != null && testcompany.getCompanyPassword() != "") {
+			testcompany.setCompanyPassword(company.getCompanyPassword());
+		}
+		if(testcompany.getCompanyOwner() != null && testcompany.getCompanyOwner() != "") {
+			testcompany.setCompanyOwner(company.getCompanyOwner());
+		}
+		if(testcompany.getCompanyAddress() != null && testcompany.getCompanyAddress()!= "") {
+			testcompany.setCompanyAddress(company.getCompanyAddress());
+		}
+		if(testcompany.getCompanyPhone() != null && testcompany.getCompanyPhone() != "") {
+			testcompany.setCompanyPhone(company.getCompanyPhone());
+		}
+		if(testcompany.getCompanyCell() != null && testcompany.getCompanyCell() != "") {
+			testcompany.setCompanyCell(company.getCompanyCell());
+		}
+		if(testcompany.getCompanyIntro() != null && testcompany.getCompanyIntro() != "") {
+			testcompany.setCompanyIntro(company.getCompanyIntro());
+		}
 		if(testcompany.getCompanyBanner() != null) {
+			testcompany.setCompanyBanner(file);
+		}
+		if(testcompany.getCompanyBanner() == null) {
 			testcompany.setCompanyBanner(file);
 		}
 		return testcompany;

@@ -1,0 +1,118 @@
+/* ------- base ------- */
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  margin: 0 auto;
+  padding: 0;
+  /* background-color: rgb(246, 240, 237); */
+  background-image: url(../company_imgs/register_background.jpg);
+  background-position: center;
+  background-size: 150% 450%;
+}
+a {
+  text-decoration: none;
+}
+img {
+  max-width: 100%;
+}
+/* ------- header start------- */
+.header {
+  /* border: 2px solid gray; */
+  box-sizing: border-box;
+  height: 80px;
+  width: 100%;
+  background-color: rgba(236, 242, 245, 0.75);
+}
+header.header {
+  margin-bottom: 20px;
+}
+div.titlebar {
+  margin: 0 auto;
+  height: 80px;
+  box-sizing: border-box;
+  width: 90%;
+  position: relative;
+}
+div.title {
+  position: relative;
+  top: 25px;
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(40, 83, 107);
+  cursor: pointer;
+}
+div.title:hover {
+  color: rgb(109, 150, 173);
+}
+a.backendpage:visited {
+  color: rgb(40, 83, 107);
+}
+.logo {
+  /*   border:2px solid  red; */
+  float: left;
+  margin: 0;
+  width: 60px;
+  height: 60px;
+  padding: 10px;
+  font-size: 0;
+}
+
+/* ------- header  end ------- */
+
+/* ------- 店家登入開始------- */
+div.forgetPwd {
+  background: rgba(208, 213, 216, 0.75);
+  margin: 0 auto;
+  box-sizing: border-box;
+  width: 500px;
+}
+form.forget {
+  max-width: 100%;
+  height: 200px;
+}
+form.forget p {
+  margin-top: 10px;
+  padding-top: 10px;
+  font-size: 30px;
+  text-align: center;
+  color: rgb(40, 83, 107);
+}
+div.middle {
+  text-align: center;
+  margin-top: 20px;
+  margin-left: 42px;
+  width: 400px;
+  color: rgb(40, 83, 107);
+}
+div.middleinline {
+  padding: 0px 0px 0px 10px;
+}
+div.middle input {
+  width: 300px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 0px 0px 0px 5px;
+}
+button.submitPwd {
+  margin: 0px 0px 0px 220px;
+  padding: 7px 15px 7px 15px;
+  text-align: center;
+  background-color: rgb(40, 83, 107);
+  color: white;
+  border: none;
+}
+button.submitPwd:hover {
+  background-color: rgb(109, 150, 173);
+  cursor: pointer;
+}
+/* ------- 店家登入結束------- */
+/* ------- footer  start------- */
+/* footer.footer {
+  position: relative;
+  font-size: 12px;
+  text-align: center;
+  padding-bottom: auto;
+} */
+/* ------- footer  end ------- */

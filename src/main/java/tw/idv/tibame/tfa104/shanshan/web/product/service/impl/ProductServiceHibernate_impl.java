@@ -18,6 +18,11 @@ public class ProductServiceHibernate_impl implements  ProductServiceHibernate{
 	@Autowired
 	private ProductDAOHibernate dao;
 	
+	
+	@Override
+	public Product addproduct(Product product) {
+		return dao.addproduct(product);
+	}
 	@Override
 	public List<ProductBO> findById(Integer productId) {
 		List <ProductBO> proId = dao.findById(productId);
@@ -80,6 +85,8 @@ public class ProductServiceHibernate_impl implements  ProductServiceHibernate{
 		}
 		return allList;
 	}
+
+
 
 	
 	

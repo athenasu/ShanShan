@@ -6,7 +6,8 @@ import tw.idv.tibame.tfa104.shanshan.web.product.entity.Product;
 import tw.idv.tibame.tfa104.shanshan.web.product.entity.ProductBO;
 
 public interface ProductServiceHibernate {
-		
+	
+	public Product addproduct(Product product);
 	List<ProductBO> findById (Integer productId);
 	List<ProductBO> findNew();
 	List<ProductBO> findByCompanyName(String search);

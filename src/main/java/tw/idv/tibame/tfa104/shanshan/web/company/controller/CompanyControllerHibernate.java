@@ -42,10 +42,12 @@ public class CompanyControllerHibernate {
 		byte[] file = Base64.getDecoder().decode(company.getPicStr());
 		return service.update(file, company);
 	}
-//	@PostMapping(path = "register" , consumes = {MediaType.APPLICATION_JSON_VALUE})
+	
+//	@PostMapping(path = "register" , consumes = { MediaType.APPLICATION_JSON_VALUE})
 //	public CompanyVO register(@RequestBody CompanyVO company) {
-//		System.out.println("in controller ");
-//		byte[] file = Base64.getDecoder().decode(company.getPicStr());
-//		return service.register(file, company);
+//		byte[]file = Base64.getDecoder().decode(company.getPicStr());
+//		return service.register(file,company);
 //	}
+	
+	
 }
