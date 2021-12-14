@@ -3,6 +3,7 @@ package tw.idv.tibame.tfa104.shanshan.web.article.entity;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class ArticleVO implements Serializable {
 
@@ -12,10 +13,10 @@ public class ArticleVO implements Serializable {
 	private Integer mountain_id;
 	private String article_title;
 	private String article_content;
-	private Date article_date_created;
+	private Timestamp article_date_created;
 	private Date event_date;
 	private Integer recommendation;
-	private Integer Article_points_recieved;
+	private Integer article_points_recieved;
 	private Integer article_status;
 	private Integer aritcle_viewer;
 	private String other_mtn;
@@ -69,11 +70,11 @@ public class ArticleVO implements Serializable {
 		this.article_content = article_content;
 	}
 
-	public Date getArticle_date_created() {
+	public Timestamp getArticle_date_created() {
 		return article_date_created;
 	}
 
-	public void setArticle_date_created(Date article_date_created) {
+	public void setArticle_date_created(Timestamp article_date_created) {
 		this.article_date_created = article_date_created;
 	}
 
@@ -93,12 +94,14 @@ public class ArticleVO implements Serializable {
 		this.recommendation = recommendation;
 	}
 
+	
+
 	public Integer getArticle_points_recieved() {
-		return Article_points_recieved;
+		return article_points_recieved;
 	}
 
-	public void setArticle_points_recieved(Integer Article_points_recieved) {
-		this.Article_points_recieved = Article_points_recieved;
+	public void setArticle_points_recieved(Integer article_points_recieved) {
+		this.article_points_recieved = article_points_recieved;
 	}
 
 	public Integer getArticle_status() {

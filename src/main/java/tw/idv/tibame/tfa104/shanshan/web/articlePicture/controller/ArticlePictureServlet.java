@@ -42,7 +42,7 @@ public class ArticlePictureServlet extends HttpServlet {
 
 		String action = req.getParameter("action");
 
-		if ("add".equals(action)) {
+//		if ("add".equals(action)) {
 
 //			多張圖片上傳
 //			Collection<Part> parts = req.getParts();
@@ -101,7 +101,7 @@ public class ArticlePictureServlet extends HttpServlet {
 //			String url ="/article/addArticle.jsp";
 //			req.getRequestDispatcher(url);
 
-		}
+//		}
 
 		if ("getOneImage".equals(action)) {
 			res.setContentType("image/gif");

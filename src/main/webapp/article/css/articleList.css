@@ -1,0 +1,318 @@
+input {
+	/*   border-style: none; */
+	border: 1px solid #eee;
+}
+
+input:focus {
+	outline: none;
+}
+
+.wrap {
+	width: 90%;
+	margin: 50px auto;
+}
+
+.artsearch {
+	position: relative;
+	width: 300px;
+	margin: 0 auto;
+}
+
+#searcharea {
+	display: flex;
+	align-items: stretch;
+	justify-content: center;
+}
+
+#textinput {
+	width: 100%;
+	padding: 10px;
+	box-shadow: 4px 4px 2px #eee;
+	border-radius: 3px 0px 0px 3px;
+}
+
+#searchbtn{
+	border-radius: 0px 3px 3px 0px;
+	box-shadow: 4px 4px 2px #eee;
+}
+.addArt{
+	display:flex;
+	width:120px;
+	border:1px solid #5a822a;
+	border-radius:3px;
+	justify-content: center;
+	align-items: center;
+}
+
+.addArt a {
+	color: #5a822a;
+	padding: 10px;
+}
+
+.fa-pencil-alt {
+	margin-left: 5px;
+}
+
+.wrapper {
+	display: flex;
+	margin-top: 50px;
+}
+
+.artAndPage {
+	width: 100%
+}
+
+.artlist {
+	/*   width: 75%; */
+	/* border: 1px solid red; */
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.artcard {
+	width: 30%;
+	height: 350px;
+	margin: 20px 10px;
+	box-shadow: 0px 0px 5px rgb(190, 190, 190);
+	transition: all 1s;
+}
+
+.artcard:hover {
+	transform: translateY(-5px);
+	box-shadow: 8px 8px 2px 0 rgba(0, 0, 0, 0.075);
+}
+
+.artimg {
+	/* width: 100%; */
+	height: 170px;
+	overflow: hidden;
+	position: relative;
+}
+
+.artimg img {
+	max-height: 100%;
+	min-height: 170px;
+	transition: all 1.5s;
+}
+
+.artimg img:hover {
+	transform: scale(1.2);
+}
+
+.locinfo {
+	width: 110px;
+	background-color: #5a822a;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	padding: 5px;
+	color: white;
+	text-align: center;
+}
+
+.locicon {
+	margin-right: 8px;
+	color: rgb(45, 75, 77);
+	font-size: 16px;
+	color: white;
+}
+
+.artinfo {
+	padding: 10px;
+}
+
+.arttime, .arttitle, .artmeminfo {
+	margin-top: 10px
+}
+
+.arttime {
+	height: 15px;
+	font-size: 13px;
+	color: #4c4948;
+	display:flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.views{
+	color:#808000;
+}
+
+.fa-eye{
+	margin-right:5px;
+}
+
+.arttitle {
+	height: 90px;
+	font-size: 20px;
+	font-weight: bolder;
+	color: #5a822a;
+}
+
+.artmeminfo {
+	height: 15px;
+}
+
+.artmeminfo, .artmem {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.artmem {
+	width: 35%;
+}
+
+.artmemimg {
+	width: 30px;
+	height: 30px;
+	border-radius: 70px;
+	overflow: hidden;
+}
+
+.memimg {
+	height: 100%;
+}
+
+.artother {
+	width: 30%;
+	display: flex;
+	justify-content: space-evenly;
+	font-size: 20px;
+}
+
+
+.artpoint {
+	color: #bbbb2b;
+}
+
+.point{
+	color: #bbbb2b;
+	font-size:18px;
+	font-weight:bolder;
+}
+
+.page {
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.page a {
+	margin: 0px 10px;
+}
+
+aside {
+	width: 25%;
+}
+
+.artranking h3 {
+	text-align: center;
+	border-bottom: 2px solid rgb(7, 66, 10);
+}
+
+.rankinglist {
+	width: 95%;
+	margin: 0 auto;
+}
+
+.rankingimg {
+	width: 40%;
+	overflow: hidden;
+}
+
+.rankingimg img {
+	border-radius: 5px;
+}
+
+.rankingcard {
+	margin-bottom: 5px;
+}
+
+.rankingcard a {
+	display: flex;
+	align-items: center;
+}
+
+.rankingartinfo {
+	width: 40%;
+	margin: 0px 10px;
+	/* width: 90px; */
+}
+
+.ranktitle {
+	font-size: 14px;
+	margin: 0px;
+	margin-bottom: 3px;
+}
+
+.rankmem {
+	font-size: 13px;
+}
+
+.checktime {
+	width: 20%;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+}
+
+.checktime span:nth-child(2) {
+	font-size: 10px;
+	color: rgb(141, 141, 141);
+}
+
+
+.overlay,.overlay2 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: hsla(0, 0%, 0%, 0.5);
+}
+
+.modal,.modal2 {
+  background-color: white;
+  width: 400px;
+/*   max-width: 800px; */
+  border-radius: 10px;
+  box-shadow: 0 0 10px #ddd;
+  padding: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  text-align: center;
+}
+
+.modal div,.modal2 div {
+  margin: 15px 0px;
+}
+.modal input{
+	margin:10px 10px;
+}
+
+#havepoint {
+  color: red;
+}
+
+#givepoint {
+  width: 50px;
+  height: 30px;
+  border-style:none;
+  border-bottom: 1px solid gray;
+  margin-left: 5px;
+  outline: none;
+  text-align: center;
+}
+
+#errormsg {
+  color: red;
+  text-align: center;
+}
+
+.-none {
+  display: none;
+}

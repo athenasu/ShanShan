@@ -13,6 +13,7 @@ public interface ArticleDAO_interface {
      public ArticleVO findByPrimaryKey(Integer article_id);
      public List<ArticleVO> getAll();
      public void updateviews(Integer aritcle_viewer, Integer article_id);
+     public void updatepoints(Integer article_points_recieved, Integer article_id);
      
  	//自增主鍵值
      public String insertWithPic(ArticleVO ArticleVO , List<ArticlePictureVO> articlePictureVO);

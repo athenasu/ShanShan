@@ -103,8 +103,14 @@ public class ArticleService {
 		dao.updateviews(aritcle_viewer, article_id);
 	}
 
+	
+	
+	public void updatepoints(Integer article_points_recieved, Integer article_id) {
+
+		dao.updatepoints(article_points_recieved, article_id);
+	}
+
 	public String insertWithPic(ArticleVO ArticleVO, List<ArticlePictureVO> articlePictureVO) {
-//		public String insertWithPic(ArticleVO ArticleVO, ArticlePictureVO articlePictureVO) {
            dao.insertWithPic(ArticleVO, articlePictureVO);
 		   return "ok";
 	}

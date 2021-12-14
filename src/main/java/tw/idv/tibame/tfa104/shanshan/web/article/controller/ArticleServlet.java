@@ -29,6 +29,7 @@ import tw.idv.tibame.tfa104.shanshan.web.product.entity.ProductBO;
 import tw.idv.tibame.tfa104.shanshan.web.product.service.ProductServiceHibernate;
 import tw.idv.tibame.tfa104.shanshan.web.shop.service.ShopService;
 import tw.idv.tibame.tfa104.shanshan.web.shop.service.impl.ShopServiceImpl;
+import tw.idv.tibame.tfa104.shanshan.web.wishlistArticle.service.WishlistArticleService;
 
 @WebServlet(urlPatterns = { "/ArticleServlet.do" }, loadOnStartup = 1)
 @MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 5 * 1024 * 1024, maxRequestSize = 5 * 5 * 1024 * 1024)
@@ -47,6 +48,7 @@ public class ArticleServlet extends HttpServlet {
 		
 		MemberService memSvc = context.getBean(MemberService.class);
 		application.setAttribute("memSvc", memSvc);
+		
 
 		MountainService mtnSvc = context.getBean(MountainService.class);
 		application.setAttribute("mtnSvc", mtnSvc);
@@ -54,10 +56,8 @@ public class ArticleServlet extends HttpServlet {
 		EventService eventSvc = context.getBean(EventService.class);
 		application.setAttribute("eventSvc", eventSvc);
 		
-		ProductServiceHibernate productSvc = context.getBean(ProductServiceHibernate.class);
-//		List<ProductBO> productlist =  (List<ProductBO>) productSvc.findNew();
-		application.setAttribute("productSvc", productSvc);
-//		System.out.println(productlist);
+		WishlistArticleService wishSvc = context.getBean(WishlistArticleService.class);
+		application.setAttribute("wishSvc", wishSvc);
 		
 		ShopService shopsvc = new ShopServiceImpl();
 		List<ProductBO> popular5 = shopsvc.findPopularNum(5);
@@ -122,17 +122,17 @@ public class ArticleServlet extends HttpServlet {
 			List<ArticlePictureVO> list = new ArrayList<ArticlePictureVO>();
 
 			byte[] article_picture = null;
-			ArticlePictureVO articlePic = new ArticlePictureVO();
 			for (Part part : parts) {
 				if (part.getContentType()!=null && part.getContentType().contains("image/")) {
 					InputStream in = part.getInputStream();
 					article_picture = new byte[in.available()];
-					in.read(article_picture);					
-					in.close();
+					in.read(article_picture);		
+					in.close();	
+					ArticlePictureVO articlePic = new ArticlePictureVO();
 					articlePic.setArticle_picture(article_picture);
-					list.add(articlePic);	
+					list.add(articlePic);
 				}
-				
+
 			}
 			
 				ArticleService articleSvc = new ArticleService();
@@ -147,7 +147,6 @@ public class ArticleServlet extends HttpServlet {
 						.getWebApplicationContext(getServletContext());
 				MemberService memSvc = context.getBean(MemberService.class);
 				memSvc.updateMemberPoints(articleVO.getMember_id(), 5);
-//				System.out.println("okok");
 
 				// 新增成功後跳轉網誌列表
 				String url = "/article/articleList.jsp";
@@ -164,7 +163,6 @@ public class ArticleServlet extends HttpServlet {
 		}
 
 		if ("getThisArt".equals(action)) {
-//			System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!");
 			Integer article_id = new Integer(req.getParameter("article_id"));
 
 			ArticleService artSvc = new ArticleService();
@@ -173,7 +171,7 @@ public class ArticleServlet extends HttpServlet {
 
 			// 點閱數+1
 			int viewer = articleVO.getAritcle_viewer();
-			viewer += 1;
+			viewer+=1 ;
 			artSvc.updateviews(viewer, article_id);
 
 			String url = "/article/article.jsp";
@@ -199,7 +197,18 @@ public class ArticleServlet extends HttpServlet {
 			}
 
 		}
+		if("addpoint".equals(action)) {
+			Integer article_id = new Integer(req.getParameter("article_id"));
+			Integer article_points_recieved = new Integer(req.getParameter("article_points_recieved"));
 
+			ArticleService artSvc = new ArticleService();
+			artSvc.updatepoints(article_points_recieved, article_id);
+			
+		}
+
+		
 	}
+	
+	
 
 }

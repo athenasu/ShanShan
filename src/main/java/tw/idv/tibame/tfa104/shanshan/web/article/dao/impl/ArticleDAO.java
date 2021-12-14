@@ -5,10 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
-
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -36,20 +33,21 @@ public class ArticleDAO implements ArticleDAO_interface {
 
 	private static final String INSERT_STMT = "INSERT INTO Article (member_id, mountain_id, article_title, article_content, event_date,recommendation,other_mtn) VALUES (?,?, ?, ?, ?,?,?)";
 	private static final String UPDATE = "UPDATE Article set mountain_id=?, article_title=?, article_content=?, event_date=?,recommendation=?,other_mtn=? WHERE article_id = ?";
-	private static final String GET_ONE_STMT = "SELECT article_id,member_id,mountain_id, article_title, article_content, article_date_created,event_date,recommendation,other_mtn,aritcle_viewer FROM Article WHERE article_id = ?";
-	private static final String GET_ALL_STMT = "SELECT article_id,member_id,mountain_id, article_title, article_content, article_date_created,event_date,recommendation,other_mtn,aritcle_viewer FROM Article ORDER BY article_date_created desc";
+	private static final String GET_ONE_STMT = "SELECT article_id,member_id,mountain_id, article_title, article_content, article_date_created,event_date,recommendation,other_mtn,aritcle_viewer,article_points_recieved FROM Article WHERE article_id = ?";
+	private static final String GET_ALL_STMT = "SELECT article_id,member_id,mountain_id, article_title, article_content, article_date_created,event_date,recommendation,other_mtn,aritcle_viewer,article_points_recieved FROM Article ORDER BY article_date_created desc";
 	private static final String DELETE = "DELETE FROM Article where article_id = ?";
 	private static final String updateviews = "UPDATE Article set aritcle_viewer=? where article_id = ?";
+	private static final String updatepoints = "UPDATE Article set article_points_recieved=? where article_id = ?";
 	// 顯示瀏覽數、打賞數
 
 	private static final String views = "SELECT article_viewer FROM Article where article_id = ?";
 	private static final String recievedPoints = "SELECT article_points_recieved FROM Article where article_id = ?";
 
 	// 排序:日期、瀏覽數、打賞數、推薦度
-	private static final String orderByDate = "SELECT member_id,article_id,mountain_id, article_title, article_content, article_date_created,event_date,recommendation,other_mtn FROM Article ORDER BY article_date_created desc";
-	private static final String orderByViewer = "SELECT member_id,article_id,mountain_id, article_title, article_content, article_date_created,event_date,recommendation,other_mtn,aritcle_viewer FROM Article ORDER BY aritcle_viewer desc limit 5 ";
-	private static final String orderByRecievedPoints = "SELECT member_id,article_id,mountain_id, article_title, article_content, article_date_created,event_date,recommendation,other_mtn FROM Article ORDER BY article_points_recieved desc";
-	private static final String orderByRecomm = "SELECT member_id,article_id,mountain_id, article_title, article_content, article_date_created,event_date,recommendation,other_mtn FROM Article ORDER BY recommendation desc";
+	private static final String orderByDate = "SELECT article_id,member_id,mountain_id, article_title, article_content, article_date_created,event_date,recommendation,other_mtn,aritcle_viewer,article_points_recieved FROM Article ORDER BY article_date_created desc";
+	private static final String orderByViewer = "SELECT article_id,member_id,mountain_id, article_title, article_content, article_date_created,event_date,recommendation,other_mtn,aritcle_viewer,article_points_recieved FROM Article ORDER BY aritcle_viewer desc limit 5 ";
+	private static final String orderByRecievedPoints = "SELECT article_id,member_id,mountain_id, article_title, article_content, article_date_created,event_date,recommendation,other_mtn,aritcle_viewer,article_points_recieved FROM Article ORDER BY article_points_recieved desc";
+	private static final String orderByRecomm = "SELECT article_id,member_id,mountain_id, article_title, article_content, article_date_created,event_date,recommendation,other_mtn,aritcle_viewer,article_points_recieved FROM Article ORDER BY recommendation desc";
 
 	// 查詢
 	private static final String search ="SELECT * FROM Article a join member m on a.member_id = m.member_id join mountain mt on a.mountain_id = mt.mountain_id WHERE article_title like ? or article_content like ? or member_name like ? or mountain_name like ? ";
@@ -198,12 +196,13 @@ public class ArticleDAO implements ArticleDAO_interface {
 				ArticleVO.setMountain_id(rs.getInt("mountain_id"));
 				ArticleVO.setArticle_title(rs.getString("article_title"));
 				ArticleVO.setArticle_content(rs.getString("article_content"));
-				ArticleVO.setArticle_date_created(rs.getDate("article_date_created"));
+				ArticleVO.setArticle_date_created(rs.getTimestamp("article_date_created"));
 				ArticleVO.setEvent_date(rs.getDate("event_date"));
 				ArticleVO.setRecommendation(rs.getInt("recommendation"));
 				ArticleVO.setOther_mtn(rs.getString("other_mtn"));
 				ArticleVO.setAritcle_viewer(rs.getInt("aritcle_viewer"));
-
+				ArticleVO.setArticle_points_recieved(rs.getInt("article_points_recieved"));
+				 
 			}
 
 		} catch (SQLException se) {
@@ -256,11 +255,12 @@ public class ArticleDAO implements ArticleDAO_interface {
 				ArticleVO.setMountain_id(rs.getInt("mountain_id"));
 				ArticleVO.setArticle_title(rs.getString("article_title"));
 				ArticleVO.setArticle_content(rs.getString("article_content"));
-				ArticleVO.setArticle_date_created(rs.getDate("article_date_created"));
+				ArticleVO.setArticle_date_created(rs.getTimestamp("article_date_created"));
 				ArticleVO.setEvent_date(rs.getDate("event_date"));
 				ArticleVO.setRecommendation(rs.getInt("recommendation"));
 				ArticleVO.setOther_mtn(rs.getString("other_mtn"));
 				ArticleVO.setAritcle_viewer(rs.getInt("aritcle_viewer"));
+				ArticleVO.setArticle_points_recieved(rs.getInt("article_points_recieved"));
 				list.add(ArticleVO);
 			}
 
@@ -410,16 +410,17 @@ public class ArticleDAO implements ArticleDAO_interface {
 
 			while (rs.next()) {
 				ArticleVO = new ArticleVO();
-				ArticleVO.setMember_id(rs.getInt("member_id"));
 				ArticleVO.setArticle_id(rs.getInt("article_id"));
-
+				ArticleVO.setMember_id(rs.getInt("member_id"));
 				ArticleVO.setMountain_id(rs.getInt("mountain_id"));
 				ArticleVO.setArticle_title(rs.getString("article_title"));
 				ArticleVO.setArticle_content(rs.getString("article_content"));
-				ArticleVO.setArticle_date_created(rs.getDate("article_date_created"));
+				ArticleVO.setArticle_date_created(rs.getTimestamp("article_date_created"));
 				ArticleVO.setEvent_date(rs.getDate("event_date"));
 				ArticleVO.setRecommendation(rs.getInt("recommendation"));
 				ArticleVO.setOther_mtn(rs.getString("other_mtn"));
+				ArticleVO.setAritcle_viewer(rs.getInt("aritcle_viewer"));
+				ArticleVO.setArticle_points_recieved(rs.getInt("article_points_recieved"));
 				list.add(ArticleVO);
 			}
 
@@ -468,16 +469,17 @@ public class ArticleDAO implements ArticleDAO_interface {
 
 			while (rs.next()) {
 				ArticleVO = new ArticleVO();
-				ArticleVO.setMember_id(rs.getInt("member_id"));
 				ArticleVO.setArticle_id(rs.getInt("article_id"));
+				ArticleVO.setMember_id(rs.getInt("member_id"));
 				ArticleVO.setMountain_id(rs.getInt("mountain_id"));
 				ArticleVO.setArticle_title(rs.getString("article_title"));
 				ArticleVO.setArticle_content(rs.getString("article_content"));
-				ArticleVO.setArticle_date_created(rs.getDate("article_date_created"));
+				ArticleVO.setArticle_date_created(rs.getTimestamp("article_date_created"));
 				ArticleVO.setEvent_date(rs.getDate("event_date"));
 				ArticleVO.setRecommendation(rs.getInt("recommendation"));
 				ArticleVO.setOther_mtn(rs.getString("other_mtn"));
 				ArticleVO.setAritcle_viewer(rs.getInt("aritcle_viewer"));
+				ArticleVO.setArticle_points_recieved(rs.getInt("article_points_recieved"));
 				list.add(ArticleVO);
 			}
 
@@ -526,16 +528,17 @@ public class ArticleDAO implements ArticleDAO_interface {
 
 			while (rs.next()) {
 				ArticleVO = new ArticleVO();
-				ArticleVO.setMember_id(rs.getInt("member_id"));
 				ArticleVO.setArticle_id(rs.getInt("article_id"));
-
+				ArticleVO.setMember_id(rs.getInt("member_id"));
 				ArticleVO.setMountain_id(rs.getInt("mountain_id"));
 				ArticleVO.setArticle_title(rs.getString("article_title"));
 				ArticleVO.setArticle_content(rs.getString("article_content"));
-				ArticleVO.setArticle_date_created(rs.getDate("article_date_created"));
+				ArticleVO.setArticle_date_created(rs.getTimestamp("article_date_created"));
 				ArticleVO.setEvent_date(rs.getDate("event_date"));
 				ArticleVO.setRecommendation(rs.getInt("recommendation"));
 				ArticleVO.setOther_mtn(rs.getString("other_mtn"));
+				ArticleVO.setAritcle_viewer(rs.getInt("aritcle_viewer"));
+				ArticleVO.setArticle_points_recieved(rs.getInt("article_points_recieved"));
 				list.add(ArticleVO);
 			}
 
@@ -584,16 +587,17 @@ public class ArticleDAO implements ArticleDAO_interface {
 
 			while (rs.next()) {
 				ArticleVO = new ArticleVO();
-				ArticleVO.setMember_id(rs.getInt("member_id"));
 				ArticleVO.setArticle_id(rs.getInt("article_id"));
-
+				ArticleVO.setMember_id(rs.getInt("member_id"));
 				ArticleVO.setMountain_id(rs.getInt("mountain_id"));
 				ArticleVO.setArticle_title(rs.getString("article_title"));
 				ArticleVO.setArticle_content(rs.getString("article_content"));
-				ArticleVO.setArticle_date_created(rs.getDate("article_date_created"));
+				ArticleVO.setArticle_date_created(rs.getTimestamp("article_date_created"));
 				ArticleVO.setEvent_date(rs.getDate("event_date"));
 				ArticleVO.setRecommendation(rs.getInt("recommendation"));
 				ArticleVO.setOther_mtn(rs.getString("other_mtn"));
+				ArticleVO.setAritcle_viewer(rs.getInt("aritcle_viewer"));
+				ArticleVO.setArticle_points_recieved(rs.getInt("article_points_recieved"));
 				list.add(ArticleVO);
 			}
 
@@ -651,7 +655,7 @@ public class ArticleDAO implements ArticleDAO_interface {
 				ArticleVO.setMountain_id(rs.getInt("mountain_id"));
 				ArticleVO.setArticle_title(rs.getString("article_title"));
 				ArticleVO.setArticle_content(rs.getString("article_content"));
-				ArticleVO.setArticle_date_created(rs.getDate("article_date_created"));
+				ArticleVO.setArticle_date_created(rs.getTimestamp("article_date_created"));
 				ArticleVO.setEvent_date(rs.getDate("event_date"));
 				ArticleVO.setArticle_points_recieved(rs.getInt("article_points_recieved"));
 				ArticleVO.setOther_mtn(rs.getString("other_mtn"));
@@ -914,7 +918,56 @@ public class ArticleDAO implements ArticleDAO_interface {
 		
 	}
 
+	
 
+
+	@Override
+	public void updatepoints(Integer article_points_recieved, Integer article_id) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
+		ResultSet rs = null;
+		ArticleVO ArticleVO = null;
+		int originPoints;
+		try {
+
+			con = ds.getConnection();
+			
+			pstmt = con.prepareStatement(recievedPoints);
+			pstmt.setInt(1, article_id);
+			rs = pstmt.executeQuery();		
+			while (rs.next()) {
+				ArticleVO = new ArticleVO();
+				ArticleVO.setArticle_points_recieved(rs.getInt("article_points_recieved"));
+			}
+			
+			originPoints = ArticleVO.getArticle_points_recieved();
+
+			pstmt2 = con.prepareStatement(updatepoints);
+			pstmt2.setInt(1, originPoints+article_points_recieved);
+			pstmt2.setInt(2, article_id);
+			pstmt2.executeUpdate();
+
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		
+	}
 
 	@Override
 	public List<ArticleVO> search(String article_title,String article_content, String member_name,String mountain_name) {
@@ -944,7 +997,7 @@ public class ArticleDAO implements ArticleDAO_interface {
 				articleVO.setMountain_name(rs.getString("mountain_name"));
 				articleVO.setArticle_title(rs.getString("article_title"));
 				articleVO.setArticle_content(rs.getString("article_content"));
-				articleVO.setArticle_date_created(rs.getDate("article_date_created"));
+				articleVO.setArticle_date_created(rs.getTimestamp("article_date_created"));
 				articleVO.setEvent_date(rs.getDate("event_date"));
 				articleVO.setRecommendation(rs.getInt("recommendation"));
 				articleVO.setOther_mtn(rs.getString("other_mtn"));
