@@ -148,7 +148,6 @@ $(document).ready(function () {
     
 //    提交訂單
         $("li.payment_confirm_pay").click(function () {
-        	console.log("點了提交按鈕了")
 //        	拿到各張訂單的使用點數/折扣後價格，更新進去另外準備的input     point_used  /order_sum_after
     	    for(let i = 0 ; i < orderQTY ; i++){
     	    	let this_use_pionts = $(".payment_check_order_area_company").find("span.payment_usepoints_num").eq(i).text();
@@ -164,7 +163,12 @@ $(document).ready(function () {
         	}
         	$(".payment_address").val(address)
         	        	
-        	$("#PaymentResultServlet").submit();
+//        	如果收件人資訊為空，不得submit
+        	if($(".payment_address").val() || $(".payment_fill_name").val() || $(".payment_fill_phone").val() == ""){
+        		alert("收件人資訊不得空白");
+        	}else{
+//            	$("#PaymentResultServlet").submit();
+        	}
         })
     
     

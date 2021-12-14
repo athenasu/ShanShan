@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
+
 import tw.idv.tibame.tfa104.shanshan.web.product.entity.ProductBO;
 import tw.idv.tibame.tfa104.shanshan.web.shop.entity.Cart;
 import tw.idv.tibame.tfa104.shanshan.web.shop.entity.CartItem;
@@ -40,7 +42,7 @@ public class CartServlet extends HttpServlet {
 		}
 		
 		// 新增購物車項目 // 來源路徑<%=contextPath // /CartServlet?method=addCartItem&productDesId=${????/}&itemQTY=${?????}
-		if ("addCartItem".equals(method)) {
+		if ("addCartItem".equals(method)) {			
 			// 調用方法，獲取現有購物車
 			Cart cart = (Cart) request.getSession().getAttribute("cart");
 			// 取得商品明細編號
@@ -49,7 +51,6 @@ public class CartServlet extends HttpServlet {
 			itemQTY = Integer.parseInt(request.getParameter("itemQTY"));
 			// 取得cartItem物件map集合
 			Map<String, CartItem> mapCartItem = cart.getMapCartItem();
-
 //			把productDesId轉成字串
 			String productDesIdStr = Integer.toString(productDesId);
 //			如果目前購物車沒這productDesId
@@ -67,8 +68,10 @@ public class CartServlet extends HttpServlet {
 
 			// 重新定向，到原來商品頁面
 			response.sendRedirect("/GetProductServlet?productId=" + productId);
-			}else {
-//			如果目前購物車有這productDesId，方法改變回變更數量
+			}
+			else {
+//			如果目前購物車有這productDesId，方法改變回變更數量  : 原本的數量+要增加的數量
+			itemQTY = itemQTY + mapCartItem.get(productDesIdStr).getItemQTY();
 			cart.changeItemQTY(cart, productDesId, itemQTY);
 			}
 		}
@@ -113,7 +116,6 @@ public class CartServlet extends HttpServlet {
 			request.getSession().setAttribute("cart", cart);
 		}
 		
-		
 		// 輸出CartItemQty的數字    // 來源路徑<%=contextPath	// /CartServlet?method=showCartItemQty
 		if ("showCartItemQty".equals(method)) {
 //			System.out.println("CartServlet?method=showCartItemQty執行了");
@@ -126,7 +128,6 @@ public class CartServlet extends HttpServlet {
 			response.getWriter().flush();
 			response.getWriter().close();
 		}
-		
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

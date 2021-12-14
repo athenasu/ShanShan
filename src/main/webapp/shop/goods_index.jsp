@@ -22,7 +22,6 @@
 </head>
 
 <body>
-<input type="hidden" class="member_id" value="${memberId}">
 <%-- 
 <%=session.getAttribute("mapwp")%>
 <%=session.getAttribute("memberId")%> 
@@ -96,6 +95,8 @@
     <!-- 載入jQuery -->
     <!-- <script type='text/javascript' src='<%=contextPath%>/shop/code/jquery-3.6.0.js'></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- 載入jQuery form-->
+    <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.js"></script>
     <!-- 載入index.js -->
     <script type='text/javascript' src='<%=contextPath%>/shop/code/header.js'></script>
     <script type='text/javascript' src='<%=contextPath%>/shop/code/index_slider.js'></script>

@@ -12,12 +12,20 @@
     <title>各類商品</title>
     <link rel="stylesheet" type="text/css" href="<%=contextPath%>/shop/code/style.css">
 
-
+    <script type='text/javascript'>
+//  提交看更多功能的表格
+    function submitSeeMore(){
+    	$("#seemore").ajaxSubmit(function(message) {
+	    	console.log("提交form,seemore OK!!")
+    	});
+    	
+    	return false
+    }
+    </script>
+    
 </head>
 
 <body>
-<input type="hidden" class="member_id" value="${memberId}">
-
     <!-- 插入 商城頁首-->
 <%@ include file="goods_header.jsp" %>
 
@@ -46,7 +54,7 @@
             </ul>
 
             <!-- 分頁標籤與分頁查詢功能 -->
-            <div class="page_num">
+            <!-- <div class="page_num">
                 <ul>
                     <li class="page_num_two_words"><a href="">首頁</a></li>
                     <li class="page_num_three_words"><a href="">上一頁</a></li>
@@ -58,9 +66,13 @@
                     <li class="page_num_three_words"><a href="">下一頁</a></li>
                     <li class="page_num_two_words"><a href="">末頁</a></li>
                 </ul>
-
-
-            </div>
+            </div> -->
+             <!-- 看更多功能 -->
+             <input type="hidden" class="see_more_pages_ProductType" name="ProductType" value="${listTypeProductBO[0].productType}">
+             <input type="hidden" class="see_more_pages_pageNum" name="pageNum" value="2">
+             <div class="see_more">
+                <div class="see_more_button see_more_button_kindproduct">看更多</div>
+             </div>
         </div>
     </div>
 
@@ -72,6 +84,8 @@
     <!-- 載入jQuery -->
     <!-- <script type='text/javascript' src='<%=contextPath%>/shop/code/jquery-3.6.0.js'></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- 載入jQuery form-->
+    <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.js"></script>
     <!-- 載入index.js -->
     <script type='text/javascript' src='<%=contextPath%>/shop/code/header.js'></script>
     <script type='text/javascript' src='<%=contextPath%>/shop/code/wishlist.js'></script>

@@ -39,7 +39,7 @@ public class ShopDAOImpl implements ShopDAO{
 //		顯示特定商家商品?個+分頁功能 按照product_id 正序
 	private static final String FIND_PORDUCT_BY_COM_ID = "SELECT product_id, company_name, product_name, product_price FROM product JOIN company USING (company_id) where company_id = ?  and `status` = 1 ORDER BY product_id ASC LIMIT ? , ?";
 //		顯示指定商品類別的商品?個+分頁功能 按照product_id 正序
-	private static final String FIND_PRODUCT_BY_TYPE = "SELECT product_id, company_name, product_name, product_price FROM product JOIN company USING (company_id) where product_type = ?  and `status` = 1 ORDER BY product_id ASC LIMIT ? , ?";
+	private static final String FIND_PRODUCT_BY_TYPE = "SELECT product_id, company_name, product_name, product_price,product_type FROM product JOIN company USING (company_id) where product_type = ?  and `status` = 1 ORDER BY product_id ASC LIMIT ? , ?";
 //		顯示全部商品?個+分頁功能 按照product_id 正序
 	private static final String FIND_ALL_PRODUCT = "SELECT product_id, company_name, product_name, product_price FROM product JOIN company USING (company_id) WHERE `status`=1 ORDER BY product_id ASC LIMIT ? , ? ";
 //		顯示特定店家的資訊
@@ -385,6 +385,7 @@ public class ShopDAOImpl implements ShopDAO{
 				productBO.setProductName(rs.getString("product_name"));
 				productBO.setProductPrice(rs.getInt("product_price"));
 				productBO.setCompanyName(rs.getString("company_name"));
+				productBO.setProductType(rs.getInt("product_type"));
 //				productBO.setProductImg(rs.getBytes("product_first_pic"));
 				listproductBO.add(productBO);
 			}

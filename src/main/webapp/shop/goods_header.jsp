@@ -51,7 +51,7 @@
             <div class="login_formbox">
                 <input class="login_summitbutton" type="button" value="登入"></input>
             </div>
-
+			<input type="hidden" class="member_id" value="${memberId}">
             <div class="login_formbox" style=" text-align: center;">
                 <p><a href="#">忘記密碼?</a></p>
             </div>
@@ -134,7 +134,7 @@
             </div>
             <!-- 登入註冊 -->
             <input type="button" class="goods_registor_botton" value="註冊"
-                onclick="location.href='shop/member_signup.jsp'"></input>
+                onclick="location.href='<%=request.getContextPath()%>/shop/member_signup.jsp'"></input>
             <input type="button" class="goods_login_modal_botton" value="登入"></input>
         </div>
     </header>

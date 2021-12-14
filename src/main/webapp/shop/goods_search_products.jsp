@@ -16,8 +16,6 @@
 </head>
 
 <body>
-<input type="hidden" class="member_id" value="${memberId}">
-
     <!-- 插入 商城頁首-->
 <%@ include file="goods_header.jsp" %>
 
@@ -47,7 +45,22 @@
 			<c:forEach  items="${listwp}" var="wp">
                     <input type="hidden" class="wish_list" value="${wp}">
 			</c:forEach>
-
+            <!-- 分頁標籤與分頁查詢功能 -->
+            <!-- 
+            <div class="page_num">
+                <ul>
+                    <li class="page_num_two_words"><a href="">首頁</a></li>
+                    <li class="page_num_three_words"><a href="">上一頁</a></li>
+                    <li class="current_page_num"><a href="">1</a></li>
+                    <li><a href="">2</a></li>
+                    <li><a href="">3</a></li>
+                    <li><a href="">4</a></li>
+                    <li><a href="">5</a></li>
+                    <li class="page_num_three_words"><a href="">下一頁</a></li>
+                    <li class="page_num_two_words"><a href="">末頁</a></li>
+                </ul>
+            </div> 
+            -->
         </div>
     </div>
 
@@ -60,6 +73,8 @@
     <!-- 載入jQuery -->
     <!-- <script type='text/javascript' src='<%=contextPath%>/shop/code/jquery-3.6.0.js'></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- 載入jQuery form-->
+    <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.js"></script>
     <!-- 載入index.js -->
     <script type='text/javascript' src='<%=contextPath%>/shop/code/header.js'></script>
     <script type='text/javascript' src='<%=contextPath%>/shop/code/product_page.js'></script>

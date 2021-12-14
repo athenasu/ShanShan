@@ -341,7 +341,7 @@ input {
     outline: none;
     background-color: rgba(0, 0, 0, 0);
     position: relative;
-    top: 6px;
+    top: 7px;
 }
 
 .goods_search::placeholder {
@@ -1117,6 +1117,7 @@ input {
     background-color: rgb(187, 177, 147);
 }
 
+
 .product_format_detail_button_1 {
     margin-right: 40px;
 }
@@ -1668,5 +1669,31 @@ li .fa-arrow-circle-right {
 /*WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW 結帳頁面 開始 */
 
 /*WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW 結帳頁面 結束 */
+
+/*WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW 看更多功能 開始 */
+.see_more{
+    height: 80px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+.see_more_button{
+    box-sizing: border-box;
+    font-size: 25px;
+    width: 100px;
+    border: 2px solid rgb(173, 173, 173);
+    text-align: center;
+    cursor: pointer;
+}
+
+.see_more_button:hover{
+    border: 2px solid transparent;
+    background-color: rgb(187, 177, 147);
+    border: 2px solid transparent;
+    color: white;
+}
+/*WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW 看更多功能 結束 */
 
 /*WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW 商店 結束 */
