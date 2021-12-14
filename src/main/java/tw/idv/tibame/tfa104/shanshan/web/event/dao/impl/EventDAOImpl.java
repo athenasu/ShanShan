@@ -205,7 +205,7 @@ public class EventDAOImpl implements EventDAO{
 												"b.mountain_longitude as mountainLongitude, "+
 												"b.mountain_latitude as mountainLatitude, "+
 												"b.mountain_pic as mountainPic, "+
-												"a.event_points "+
+												"a.event_points as eventPoints "+
 //												"d.member_name as participantMemberName, "+
 //												"d.member_email as participantMemberEmail "+
 										 "FROM Event a JOIN Mountain b "+
