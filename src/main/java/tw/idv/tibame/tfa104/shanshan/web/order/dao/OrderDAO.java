@@ -1,5 +1,6 @@
 package tw.idv.tibame.tfa104.shanshan.web.order.dao;
 
+import java.sql.Date;
 import java.util.List;
 
 import tw.idv.tibame.tfa104.shanshan.web.order.entity.Order;
@@ -12,8 +13,8 @@ public interface OrderDAO {
 	int delete(Integer order_id);
 //	更新 訂單全部欄位 成功返回1，失敗返回0
 	int update(Order order);
-//	更新 特定訂單的貨運單號(9開頭,六位數字) 成功返回1，失敗返回0
-	int updateShipNumByOrderId(Integer ship_number, Integer order_id);
+//  更新 特定訂單的貨運單號/寄送日期(9開頭,六位數字) 成功返回1，失敗返回0
+    int updateShipNumDateByOrderId(Integer ship_number,Date shipDate, Integer order_id);
 //	更新 特定訂單的撥款狀態 成功返回1，失敗返回0
 	int updatePayStatsByOrderId(Integer payment_status, Integer order_id);
 //	更新 特定訂單的訂單狀態 成功返回1，失敗返回0

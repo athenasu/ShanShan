@@ -1,7 +1,7 @@
 package tw.idv.tibame.tfa104.shanshan.web.order.dao.impl;
 
 import java.sql.Connection;
-
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -28,8 +28,8 @@ public class OrderDAOImpl implements OrderDAO{
 	private static final String DELETE_STMT = "DELETE FROM `Order` WHERE order_id = ?";
 //	更新 訂單全部欄位 成功返回1，失敗返回0
 	private static final String UPDATE_STMT = "UPDATE `Order` SET member_id = ?, order_created_date = ?, order_member_address = ?, order_member_name = ?, order_member_phone = ?, order_status = ?, point_used = ?, order_sum_before = ?, order_sum_after = ?, order_shipped_date = ?, ship_number = ?, payment_status = ? WHERE order_id = ?";
-//	更新 特定訂單的貨運單號
-	private static final String UPDATE_SHIP_NUM= "update `order` (ship_number) values(?) where order_id =?";
+//  更新 特定訂單的貨運單號
+    private static final String UPDATE_SHIP_NUM= "update `order` (ship_number) values(?) where order_id =?";
 //	更新 特定訂單的撥款狀態
 	private static final String UPDATE_PAY_STATS = "update `order` (payment_status) valuse(?) where order_id=?";
 //	更新 特定訂單的訂單狀態
@@ -178,7 +178,7 @@ public class OrderDAOImpl implements OrderDAO{
 	
 //	更新 特定訂單的貨運單號 成功返回1，失敗返回0
 	@Override
-	public int updateShipNumByOrderId(Integer ship_number, Integer order_id) {
+    public int updateShipNumDateByOrderId(Integer ship_number,Date shipDate, Integer order_id) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		int i = 0;
@@ -192,7 +192,8 @@ public class OrderDAOImpl implements OrderDAO{
 			pstmt = con.prepareStatement(UPDATE_SHIP_NUM);
 
 			pstmt.setInt(1, ship_number);
-			pstmt.setInt(2, order_id);
+            pstmt.setDate(2, shipDate);
+            pstmt.setInt(3, order_id);
 			
 			i = pstmt.executeUpdate();
 
