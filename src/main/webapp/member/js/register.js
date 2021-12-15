@@ -1,6 +1,8 @@
-// WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW 登入 開始
+/////////////////////////////////////
+/////////// LOGIN MODAL ///////////
 // 點擊登入按鈕，開啟選擇登入方式的燈箱
-$("input.login_modal_botton").click(function () {
+$("input.login_modal_button").click(function () {
+  console.log("login button clicked");
   $("div.login_modal_bcg").removeClass("-none");
   $("div.login_modal").removeClass("-none");
 });
@@ -27,7 +29,7 @@ $("p.forgot_password").click(function (e) {
 
 // WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW 登入 結束
 
-// WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW 註冊 開始
+/////////////////////////////////////
 // 點擊註冊頁面，回到選擇註冊方式
 $("div.registor_title_signup").click(function () {
   $("form.signup_email_form").addClass("-none");
@@ -48,8 +50,10 @@ $("div.registor_title_shanshan").click(function () {
   //超連結至首頁
 });
 
-// WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW 註冊 結束
-// check email validity
+///////////////////////////////////// 註冊 結束
+
+/////////////////////////////////////
+// CHECK EMAIL VALIDITY
 const validateEmail = function (emailAdress) {
   let regexEmail = /\S+@\S+\.\S+/;
   if (emailAdress.match(regexEmail)) {
@@ -61,7 +65,6 @@ const validateEmail = function (emailAdress) {
 /////////// LOGIN ///////////
 const loginSubmitBtn = document.querySelector(".login_summitbutton");
 const loginBtn = document.querySelector(".login_modal_button");
-const logoutBtn = document.querySelector(".logout_modal_button");
 loginSubmitBtn.addEventListener("click", function () {
   const memberEmail = document.querySelector(".login_formbar_email").value;
   const memberPassword = document.querySelector(
@@ -168,4 +171,6 @@ forgotPasswordSubmitBtn.addEventListener("click", function () {
 const logoutBtn = document.querySelector(".logout_modal_button");
 logoutBtn.addEventListener("click", function () {
   fetch(`/shanshan/memberLogin/logout`);
+  $("input.logout_modal_button").addClass("-none");
+  $("input.login_modal_button").removeClass("-none");
 });
