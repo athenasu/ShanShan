@@ -29,11 +29,11 @@ public class OrderDAOImpl implements OrderDAO{
 //	更新 訂單全部欄位 成功返回1，失敗返回0
 	private static final String UPDATE_STMT = "UPDATE `Order` SET member_id = ?, order_created_date = ?, order_member_address = ?, order_member_name = ?, order_member_phone = ?, order_status = ?, point_used = ?, order_sum_before = ?, order_sum_after = ?, order_shipped_date = ?, ship_number = ?, payment_status = ? WHERE order_id = ?";
 //  更新 特定訂單的貨運單號
-    private static final String UPDATE_SHIP_NUM= "update `order` (ship_number) values(?) where order_id =?";
+    private static final String UPDATE_SHIP_NUM= "update `order` SET ship_number = ?, order_shipped_date = ? where order_id =?";
 //	更新 特定訂單的撥款狀態
-	private static final String UPDATE_PAY_STATS = "update `order` (payment_status) valuse(?) where order_id=?";
+	private static final String UPDATE_PAY_STATS = "update `order` SET payment_status = ? where order_id=?";
 //	更新 特定訂單的訂單狀態
-	private static final String UPDATE_ORDER_STATS = "update `order` (order_status) valuse(?) where order_id=?";
+	private static final String UPDATE_ORDER_STATS = "update `order` set order_status = ? where order_id = ?";
 //	查詢  特定訂單  BY 訂單編號
 	private static final String FIND_BY_PK = "SELECT * FROM `Order` WHERE order_id = ?";
 //	查詢 全部訂單

@@ -1,10 +1,12 @@
 package tw.idv.tibame.tfa104.shanshan.web.productDescription.dao.impl;
 
 import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
 import tw.idv.tibame.tfa104.shanshan.web.productDescription.dao.ProductDesDAOHibernate;
 import tw.idv.tibame.tfa104.shanshan.web.productDescription.entity.FindByProductIdBO;
 
@@ -93,6 +95,19 @@ public class ProductDesDAOHibernate_impl implements ProductDesDAOHibernate {
 				+ "WHERE d.status = 1 ", FindByProductIdBO.class)
 				.list();
 		return all;
+	}
+
+	
+	@Override
+	public Integer updateProdesStock(Integer prodesId, Integer prodesStock) {
+		Session session = sessionFactory.getCurrentSession();
+		return session.createQuery("UPDATE ProductDesVO set "
+				+ "productStock = productStock - :prodesStock "
+				+ "WHERE productDesId =:prodesId")
+				.setParameter("prodesStock", prodesStock)
+				.setParameter("prodesId", prodesId)
+				.executeUpdate();
+		
 	}
 	
 }

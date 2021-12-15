@@ -17,4 +17,6 @@ public interface ProductDesDAOHibernate {
 	
 	List <FindByProductIdBO> getAll();
 	
+	//出貨更新商品庫存數
+	public Integer updateProdesStock(Integer prodesId, Integer prodesStock);
 }

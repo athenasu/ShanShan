@@ -94,12 +94,10 @@
     <!-- 中間body區塊結束 -->
     <!-- 訂單詳情開始 -->
     <div class="orderdetail">
-      訂單編號：<input readonly class="orderid" type="text" value>
+      <p>訂單編號：<input readonly class="orderid" type="text" value></p>
       <p>訂單日期：<input readonly class="orderdate" type="text" value></p>
-      <!-- <p>訂購者編號：<input  readonly></p> -->
       <p>訂購者姓名：<input readonly class="clientname" type="text" value></p>
       <p>訂購者聯絡電話：<input readonly class="clientphone" type="text" value></p>
-      <!-- <p>訂購者E-mail：<input class="clientemail" type="text" readonly></p> -->
       <p>寄送地址：<input class="shipaddress" type="text" readonly></p>
       <table id="orderdes" class="orderlisttable">
         <thead>
@@ -127,17 +125,15 @@
     </div>
     <!-- 訂單詳情結束 -->
     <!-- 訂單確認出貨 -->
-    <!-- <div class="confirmship">
-      <p>訂單編號：001</p>
-      <p>訂單日期：2021/11/10</p>
-      <p>訂購者編號：001</p>
-      <p>訂購者姓名：三三</p>
-      <p>訂購者聯絡電話：0912345678</p>
-      <p>訂購者E-mail：aaa@gmail.com</p>
-      <p>寄送地址：106台北市中山區南京東路216號</p>
+    <div class="confirmship">
+      <p>訂單編號：<input readonly class="conOrderid" type="text" value></p>
+      <p>訂單日期：<input readonly class="conOrderdate" type="text" value></p>
+      <p>訂購者姓名：<input readonly class="conClientname" type="text" value></p>
+      <p>訂購者聯絡電話：<input readonly class="conClientphone" type="text" value></p>
+      <p>寄送地址：<input readonly class="conShipaddress" type="text" ></p>
       <p>貨運單號：<input id="shipnumber" type="text" placeholder="請輸入貨運單號" required></p>
-      <p>出貨日期：2021/11/10</p>
-    </div> -->
+      <p>出貨日期：<input id="shippedDate" type="date"></p>
+    </div>
     <!-- 訂單確認出貨結束 -->
 
     <!-- 訂單取消出貨 -->

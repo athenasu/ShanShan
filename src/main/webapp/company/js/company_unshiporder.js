@@ -38,9 +38,17 @@ $(function(){
     });
     /* -----------登出鈕結束---------- */
 
-    /* -----------訂單dataTable開始---------- */
+    //dateformat method  
+    const dateformat = function (data){
+      var date = new Date (data);
+      var month = date.getMonth() +1;
+      var dateStr = date.getFullYear()+ "/" + (month.toString().length > 1 ? month : "0" + month) + "/" + date.getDate()  ;
+      return dateStr;
+    }
+
+    /* -----------待出貨訂單明細dataTable開始---------- */
     $.ajax({
-	      url:"../companyOrder/findByOrderStatus?orderStatus=4&companyId=1",
+	      url:"../companyOrder/findByOrderStatus?orderStatus=1&companyId=1",
 	      type:"GET",
 	      dataType:"json",
 	      success: function(data){
@@ -63,10 +71,10 @@ $(function(){
           {'data':'member_id'},
           {'data':'order_member_phone'},
           {'data':'order_created_date',
-           'render': function(data){
-                    var date = new Date (data);
-                    var month = date.getMonth() +1;
-                    return date.getFullYear()+ "/" + (month.toString().length > 1 ? month : "0" + month) + "/" + date.getDate()  ;
+           'render': function (data){
+                      var date = new Date (data);
+                      var month = date.getMonth() +1;
+                      return date.getFullYear()+ "/" + (month.toString().length > 1 ? month : "0" + month) + "/" + date.getDate()  ;
                     }
           },
           {'data':'order_sum_before'},
@@ -77,8 +85,8 @@ $(function(){
         ]
       }) 
     }
-    /* -----------訂單dataTable結束---------- */
-    /* -----------訂單詳情顯示開始---------- */
+    /* -----------待出貨訂單明細dataTable結束---------- */
+    /* -----------單一訂單詳情顯示開始---------- */
     $('#orderlist tbody').on('click','button',function(e){
         console.log("in click function")
         $('div.orderdetail').dialog("open");
@@ -96,23 +104,14 @@ $(function(){
           $.each(OrderDescriptionBO,function(index,item){
             // console.log(item.order_id);
             document.querySelector(".orderid").value = item.order_id;
-            document.querySelector(".orderdate").value = item.order_created_date;
+            document.querySelector(".orderdate").value = dateformat(item.order_created_date);
             document.querySelector(".clientname").value = item.order_member_name;
             document.querySelector(".clientphone").value = item.order_member_phone;
             document.querySelector(".shipaddress").value = item.order_member_address;
             document.querySelector(".sumafter").value = item.order_sum_after;
            });
+           document.getElementById("orderdes").style.width='100%';
 
-
-          //  function dateformat (){
-          //    console.log("in format ");
-          //   var orderD = document.querySelector(".orderdate").value;
-          //   var date = new Date (orderD);
-          //   var month = date.getMonth() +1;
-          //   return date.getFullYear()+ "/" + (month.toString().length > 1 ? month : "0" + month) + "/" + date.getDate()  ;
-          //   }
-           
-           
         })
       },
       modal:true,
@@ -130,7 +129,7 @@ $(function(){
       
     });
     $.ajax({
-      url:"../companyOrder/findDesByOrderId?orderId=7",
+      url:"../companyOrder/findDesByOrderId?orderId=40",
       type:"GET",
       dataType:"json",
       success: function(data){
@@ -159,22 +158,67 @@ $(function(){
         ]
       }) 
     }
-
-  
-    
-    
-    /* -----------訂單詳情顯示結束---------- */
+    /* -----------單一訂單詳情顯示結束---------- */
   
     /* -----------訂單確認出貨開始---------- */
     $('div.confirmship').dialog({
       width:800,
       autoOpen:false,
+      open: function(){
+        fetch("../companyOrder/findDesByOrderId?orderId=40")
+        .then((body) => body.json())
+        .then((OrderDescriptionBO) => {
+          // console.log(OrderDescriptionBO);
+          $.each(OrderDescriptionBO,function(index,item){
+            console.log(item.order_id);
+            document.querySelector(".conOrderid").value = item.order_id;
+            document.querySelector(".conOrderdate").value = dateformat(item.order_created_date);
+            document.querySelector(".conClientname").value = item.order_member_name;
+            document.querySelector(".conClientphone").value = item.order_member_phone;
+            document.querySelector(".conShipaddress").value = item.order_member_address;
+           });
+            document.getElementById("orderdes").style.width='100%';
+
+        })
+      },
       modal:true,
       title:"確認出貨",
       buttons:{
         "確認出貨":function(){
-          if($('#shipnumber') == null){
-            $('div.confirmship').dialog("close");
+          if($('#shipnumber') != null){
+              //insert shipNumber
+              let shipNumber = document.querySelector("#shipnumber").value;
+              let shippedDate = document.querySelector("#shippedDate").value;
+              fetch("../companyOrder/updateShip" , {
+                method:"POST",
+                headers:{
+                  "Content-Type":"application/json"
+                },
+                body: JSON.stringify({
+                  shipNumber,
+                }),
+            }).then(function(){
+                //update orderStatus 1 > 2
+                let orderStatus = 2 ;
+                let orderId = document.querySelector(".conOrderid").value;
+                fetch("../companyOrder/updateOrderStatus" , {
+                  method:"POST",
+                  headers:{
+                    "Content-Type":"application/json"
+                  },
+                  body: JSON.stringify({
+                    orderStatus,
+                    orderId,
+                  })
+                })  
+            }).then(function(){
+               // upsate productDes stock 
+            })
+              .then((body) => {
+              alert("訂單已確認出貨");
+              $('div.confirmship').dialog("close");
+            })
+            
           }else{
             alert('貨運單號不可空白!')
           }
