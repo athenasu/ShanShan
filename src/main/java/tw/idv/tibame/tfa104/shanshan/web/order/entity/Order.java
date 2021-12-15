@@ -18,7 +18,6 @@ public class Order implements Serializable{
 	private String order_member_address;
 	private String order_member_name;
 	private Integer order_member_phone;
-	
 	private Integer order_status;
 	private Integer point_used;
 	private Integer order_sum_before;

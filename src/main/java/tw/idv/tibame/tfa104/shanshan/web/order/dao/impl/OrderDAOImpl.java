@@ -178,7 +178,7 @@ public class OrderDAOImpl implements OrderDAO{
 	
 //	更新 特定訂單的貨運單號 成功返回1，失敗返回0
 	@Override
-    public int updateShipNumDateByOrderId(Integer ship_number,Date shipDate, Integer order_id) {
+    public int updateShipNumDateByOrderId(Integer ship_number,Date order_shipped_date, Integer order_id) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		int i = 0;
@@ -192,7 +192,7 @@ public class OrderDAOImpl implements OrderDAO{
 			pstmt = con.prepareStatement(UPDATE_SHIP_NUM);
 
 			pstmt.setInt(1, ship_number);
-            pstmt.setDate(2, shipDate);
+            pstmt.setDate(2, order_shipped_date);
             pstmt.setInt(3, order_id);
 			
 			i = pstmt.executeUpdate();
