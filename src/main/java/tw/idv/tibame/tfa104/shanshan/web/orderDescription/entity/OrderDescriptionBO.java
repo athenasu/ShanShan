@@ -17,7 +17,7 @@ public class OrderDescriptionBO implements Serializable{
 	
 	private String order_member_name;
 	
-	private Integer order_member_phone;
+	private String order_member_phone;
 	
 	private Integer order_status;
 	
@@ -58,7 +58,7 @@ public class OrderDescriptionBO implements Serializable{
 
 
 	public OrderDescriptionBO(Integer order_id, Integer member_id, Date order_created_date, String order_member_address,
-			String order_member_name, Integer order_member_phone, Integer order_status, Integer order_sum_after,
+			String order_member_name, String order_member_phone, Integer order_status, Integer order_sum_after,
 			Date order_shipped_date, Integer ship_number, Integer payment_status, Integer product_id, Integer prodes_id,
 			Integer company_id, String company_name, String product_name, Integer product_size, String product_color,
 			Integer order_description_price, Integer subtotal_price, byte[] product_first_pic,
@@ -139,12 +139,12 @@ public class OrderDescriptionBO implements Serializable{
 	}
 
 
-	public Integer getOrder_member_phone() {
+	public String getOrder_member_phone() {
 		return order_member_phone;
 	}
 
 
-	public void setOrder_member_phone(Integer order_member_phone) {
+	public void setOrder_member_phone(String order_member_phone) {
 		this.order_member_phone = order_member_phone;
 	}
 

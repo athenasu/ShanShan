@@ -281,7 +281,7 @@ public class OrderDescriptionDAOImpl implements OrderDescriptionDAO{
 				orderDesBO.setOrder_created_date(rs.getDate("order_created_date"));
 				orderDesBO.setOrder_member_address(rs.getString("order_member_address"));
 				orderDesBO.setOrder_member_name(rs.getString("order_member_name"));
-				orderDesBO.setOrder_member_phone(rs.getInt("order_member_phone"));
+				orderDesBO.setOrder_member_phone(rs.getString("order_member_phone"));
 				orderDesBO.setOrder_status(rs.getInt("order_status"));
 				orderDesBO.setOrder_sum_after(rs.getInt("order_sum_after"));
 				orderDesBO.setOrder_shipped_date(rs.getDate("order_shipped_date"));
@@ -338,7 +338,7 @@ public class OrderDescriptionDAOImpl implements OrderDescriptionDAO{
 				orderDesBO2.setOrder_created_date(rs.getDate("order_created_date"));
 				orderDesBO2.setOrder_member_address(rs.getString("order_member_address")); //ss
 				orderDesBO2.setOrder_member_name(rs.getString("order_member_name")); //ss
-				orderDesBO2.setOrder_member_phone(rs.getInt("order_member_phone")); //ss
+				orderDesBO2.setOrder_member_phone(rs.getString("order_member_phone")); //ss
 				orderDesBO2.setOrder_status(rs.getInt("order_status"));
 				orderDesBO2.setOrder_sum_after(rs.getInt("order_sum_after"));
 				orderDesBO2.setOrder_shipped_date(rs.getDate("order_shipped_date"));
@@ -452,7 +452,7 @@ public class OrderDescriptionDAOImpl implements OrderDescriptionDAO{
 				orderDesBO3.setOrder_created_date(rs.getDate("order_created_date"));
 				orderDesBO3.setOrder_member_address(rs.getString("order_member_address"));
 				orderDesBO3.setOrder_member_name(rs.getString("order_member_name"));
-				orderDesBO3.setOrder_member_phone(rs.getInt("order_member_phone"));
+				orderDesBO3.setOrder_member_phone(rs.getString("order_member_phone"));
 				orderDesBO3.setOrder_status(rs.getInt("order_status"));
 				orderDesBO3.setOrder_sum_after(rs.getInt("order_sum_after"));
 				orderDesBO3.setOrder_shipped_date(rs.getDate("order_shipped_date"));

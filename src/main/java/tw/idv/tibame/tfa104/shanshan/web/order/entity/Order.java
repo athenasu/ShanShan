@@ -17,13 +17,13 @@ public class Order implements Serializable{
 	private Date order_created_date;
 	private String order_member_address;
 	private String order_member_name;
-	private Integer order_member_phone;
+	private String order_member_phone;
 	private Integer order_status;
 	private Integer point_used;
 	private Integer order_sum_before;
 	private Integer order_sum_after;
 	private Date order_shipped_date;
-	private Integer ship_number;
+	private String ship_number;
 	private Integer payment_status;
 	
 	public Order() {
@@ -91,11 +91,11 @@ public class Order implements Serializable{
 		this.order_member_name = order_member_name;
 	}
 
-	public Integer getOrder_member_phone() {
+	public String getOrder_member_phone() {
 		return order_member_phone;
 	}
 
-	public void setOrder_member_phone(Integer order_member_phone) {
+	public void setOrder_member_phone(String order_member_phone) {
 		this.order_member_phone = order_member_phone;
 	}
 
@@ -139,11 +139,11 @@ public class Order implements Serializable{
 		this.order_shipped_date = order_shipped_date;
 	}
 
-	public Integer getShip_number() {
+	public String getShip_number() {
 		return ship_number;
 	}
 
-	public void setShip_number(Integer ship_number) {
+	public void setShip_number(String ship_number) {
 		this.ship_number = ship_number;
 	}
 
@@ -167,9 +167,9 @@ public class Order implements Serializable{
 	}
 
 	public Order(List<OrderDescriptionBO> orderDesBOList, Integer order_id, Integer member_id, Integer company_id,
-			Date order_created_date, String order_member_address, String order_member_name, Integer order_member_phone,
+			Date order_created_date, String order_member_address, String order_member_name, String order_member_phone,
 			Integer order_status, Integer point_used, Integer order_sum_before, Integer order_sum_after,
-			Date order_shipped_date, Integer ship_number, Integer payment_status) {
+			Date order_shipped_date, String ship_number, Integer payment_status) {
 		super();
 		this.orderDesBOList = orderDesBOList;
 		this.order_id = order_id;
