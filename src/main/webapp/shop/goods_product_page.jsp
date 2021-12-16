@@ -75,7 +75,7 @@
             	<div class="product_format_detail_style">樣式：
              		<c:forEach items="${listProductDetail}" var="listProductDetail" >
                     <div class="product_format_detail_style_each">
-                	    <input class="product_format_detail_radio" type="radio" name="productDesId" value="${listProductDetail.prodesId}" checked >&ensp;${listProductDetail.productColor}&ensp;/&ensp;${listProductDetail.productSize}&ensp;
+                	    <input class="product_format_detail_radio" type="radio" name="productDesId" value="${listProductDetail.prodesId}" checked >&ensp;${listProductDetail.productColor}&ensp;/&ensp;<span class="product_page_productSize">${listProductDetail.productSize}</span>&ensp;
                     </div>
                     </c:forEach>
             	</div>

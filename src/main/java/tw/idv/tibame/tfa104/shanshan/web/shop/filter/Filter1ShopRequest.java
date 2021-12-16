@@ -20,11 +20,11 @@ import tw.idv.tibame.tfa104.shanshan.web.shop.entity.Cart;
 import tw.idv.tibame.tfa104.shanshan.web.shop.service.ShopService;
 import tw.idv.tibame.tfa104.shanshan.web.shop.service.impl.ShopServiceImpl;
 import tw.idv.tibame.tfa104.shanshan.web.wishlistProduct.entity.WishlistProduct;
-//,DispatcherType.FORWARD
 @WebFilter(value = {"/shop/goods_index.jsp","/shop/goods_shopcart.jsp"}, dispatcherTypes = DispatcherType.REQUEST)
 public class Filter1ShopRequest extends HttpFilter {
-
 	
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	protected void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain)	throws IOException, ServletException {
 
@@ -45,46 +45,50 @@ public class Filter1ShopRequest extends HttpFilter {
 		
 
 //		登入設定
-		int memberId = 0 ;
-		Map mapwp = new HashMap();
+		Object memberIdOB = null ;
+		int memberId = 0;
+		Map<String,Integer> mapwp = new HashMap<String,Integer>();
 //		如果已經登入
-		if (session.getAttribute("memberId") != null) {
-//			取得session的memberId
-			memberId = (int) session.getAttribute("memberId");
+//		if (session.getAttribute("memberId") != null || session.getAttribute("memberId") != "") {
+//		取得session的memberId
+		memberIdOB = session.getAttribute("memberId");
+
+//		如果已經登入
+		if(memberIdOB != null) {
+//			取得登入會員ID
+			memberId = (int) memberIdOB;
+			System.out.println("已經登入了喔");
+//			收藏功能
+//			得到該會員所有收藏物件
+			ShopService service = new ShopServiceImpl();
+			List<WishlistProduct> Listwp = service.getWishlistProductsByMemberId(memberId);
+//			System.out.println("memberId :"+ memberId+"的收藏為 : "+ Listwp);
+//			把ProductId作為KEY，存放WishlistProduct物件在MAP集合
+			for (int i = 0 ; i < Listwp.size() ; i++) {
+				WishlistProduct wp = Listwp.get(i);
+				mapwp.put(wp.getProductId()+"", memberId);
+			}
+//			System.out.println("memberId :"+ memberId+"的收藏為 : "+ mapwp);
 			
+//			存放mapwp到session;
+			session.setAttribute("mapwp", mapwp);
+			
+//			把收藏map轉成list存放  只存放商品編號，用於在JSP上取值
+			List<String> listwpProductId = new ArrayList<String>(mapwp.keySet());
+			session.setAttribute("listwp", listwpProductId);
 		}
 //		如果沒有登入
-		else {
-
-			if (memberId == 0) {
-//				假登入，讓memeber_id 1號登入
-				memberId = 1;
-				session.setAttribute("memberId", memberId);   
-				System.out.println("假登入被執行了，memberId:"+ memberId);
+		else if (memberId == 0) {
+////				假登入，讓memeber_id 1號登入
+//				memberId = 1;
+//				session.setAttribute("memberId", memberId);   
+//				System.out.println("假登入被執行了，memberId:"+ memberId);
+			
 //				存放一個member_Id=0，作為未登入使用者
 //				session.setAttribute("memberId", memberId);  
+			System.out.println("沒有登入喔");
 			}
-		}
-		
-//		收藏功能(之後要移動到已登入那邊)
-//		得到該會員所有收藏物件
-		ShopService service = new ShopServiceImpl();
-		List<WishlistProduct> Listwp = service.getWishlistProductsByMemberId(memberId);
-//		System.out.println("memberId :"+ memberId+"的收藏為 : "+ Listwp);
-//		把ProductId作為KEY，存放WishlistProduct物件在MAP集合
-		for (int i = 0 ; i < Listwp.size() ; i++) {
-			WishlistProduct wp = Listwp.get(i);
-			mapwp.put(wp.getProductId(), memberId);
-		}
-//		System.out.println("memberId :"+ memberId+"的收藏為 : "+ mapwp);
-		
-//		存放mapwp到session;
-		session.setAttribute("mapwp", mapwp);
-		
-//		把收藏map轉成list存放  只存放商品編號，用於在JSP上取值
-		List<String> listwpProductId = new ArrayList<>(mapwp.keySet());
-		session.setAttribute("listwp", listwpProductId);
-		
+
 		System.out.println("Filter1Shop執行了");
 		super.doFilter(request, response, chain);
 		System.out.println("Filter1Shop回來了");

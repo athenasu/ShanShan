@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import tw.idv.tibame.tfa104.shanshan.web.company.entity.CompanyVO;
 import tw.idv.tibame.tfa104.shanshan.web.company.service.CompanyServiecHibernate;
 import tw.idv.tibame.tfa104.shanshan.web.company.service.impl.CompanyServiceHibernate_impl;
@@ -53,6 +55,7 @@ public class SearchServlet extends HttpServlet {
 			ProductServiceHibernate productsrvc = context.getBean(ProductServiceHibernate_impl.class);
 			
 			searchProductList = productsrvc.findProdNameByString(searchString);
+
 			
 //			儲存到request
 			request.setAttribute("searchProductList", searchProductList);
@@ -73,8 +76,6 @@ public class SearchServlet extends HttpServlet {
 			request.setAttribute("searchCompanyList", searchCompanyList);
 			request.getRequestDispatcher("/shop/goods_search_store.jsp").forward(request, response);
 		}
-		
-		
 		
 	}
 

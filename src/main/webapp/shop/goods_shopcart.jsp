@@ -89,7 +89,7 @@
                         <li class="cart_product_content2"><img src="<%=contextPath %>/ProductPicServlet?productId=${cartItem.productId}&productSequence=0&action=firstPic" alt=""></li>
                         <li class="cart_product_content3"><span>${cartItem.companyName}</span></li>
                         <li class="cart_product_content4"><span>${cartItem.productName}</span></li>
-                        <li class="cart_product_content5"><span>${cartItem.productSize}</span></li>
+                        <li class="cart_product_content5"><span class="product_page_productSize">${cartItem.productSize}</span></li>
                         <li class="cart_product_content6"><span>${cartItem.productColor}</span></li>
                         <li class="cart_product_content7">NT&ensp;<span class="cart_single_item_price">${cartItem.productPrice}</span></li>
                         <li class="cart_product_content8">

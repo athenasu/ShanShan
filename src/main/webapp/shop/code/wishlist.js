@@ -2,6 +2,7 @@ $(document).ready(function () {
 	
     let product_id = $("input.data_product_id");
     let wp_product_id = $("input.wish_list");
+    let member_id = $("input.member_id").val();
     
 //  在JSP中，已經把該會員全部的wp porduct id全遍歷出來，放在各自個input.value裡面
 //  在這裡把頁面上有的product_id都遍歷出來
@@ -20,44 +21,46 @@ $(document).ready(function () {
     
 //	 點擊收藏商品
     $("div.goods_icon").click(function (e) {
-//    	addWish(e);
+    	if (member_id !=0 || member_id != ""){
         $(this).addClass("-none");
         $(this).parent().find("div.goods_icon_keep").removeClass("-none");
         e.stopPropagation();
-        	console.log("收藏商品")
-        
+        console.log("收藏商品")
+    	}else{
+            e.stopPropagation();
+    		alert("請先登入，再收藏商品。")
+    	}
     })
     
 // 	點擊取消收藏商品
     $("div.goods_icon_keep").click(function (e) {
-//    	removeWish(e);
+    	if (member_id !=0 || member_id != ""){
         $(this).addClass("-none");
         $(this).parent().find("div.goods_icon").removeClass("-none");
         e.stopPropagation();
-        
-      console.log("取消收藏商品");
+        console.log("取消收藏商品");
+    	}else{
+            e.stopPropagation();
+    		alert("請先登入，再收藏商品。")
+    	}
     })
     
     
  // 添加/取消收藏商品 跑servlet
     $("div.goods_icon_keep,div.goods_icon").click(function (e) {
+    	if (member_id !=0 || member_id != ""){
         let thisProductId = $(this).siblings("input.data_product_id").val();
-//    	function addRemoveWishProduct(){
     		$.ajax({
     			url:"/shanshan/WishProductServlet?method=addRemoveWishProduct",
     			type:"get",
     			data:{"productId":`${thisProductId}`},
     			dataType:"text",
     			success:function(result){
-    				console.log("添加/取消收藏 調用Servlet成功了");
     			},
     			error:function(result){
-    				console.log("添加/取消收藏 用Servlet失敗了");
     			}
     		})
-
-//    	}
-//        addRemoveWishProduct();
+    	}
     })
     
 

@@ -25,6 +25,8 @@ public class CartServlet extends HttpServlet {
 		String method ="";
 		Integer productDesId = 0;
 		Integer itemQTY = 0;
+		@SuppressWarnings("unused")
+		String contextPath = request.getContextPath();
 		
 		// 獲取調用方法
 		if(request.getParameter("method") != null) {
@@ -34,11 +36,11 @@ public class CartServlet extends HttpServlet {
 //		System.out.println("CartServlet被調用了,method :" + method);
 
 		// 來源路徑<%=request.getContextPath()%>/CartServlet?method=mycart
-		// 一般進入購物車
-		if ("mycart".equals(method)) {
-//			Cart cart = (Cart) request.getSession().getAttribute("cart");
-			response.sendRedirect("shop/goods_shopcart.jsp");
-		}
+//		// 一般進入購物車
+//		if ("mycart".equals(method)) {
+////			Cart cart = (Cart) request.getSession().getAttribute("cart");
+//			response.sendRedirect(contextPath+"shop/goods_shopcart.jsp");
+//		}
 		
 		// 新增購物車項目 // 來源路徑<%=contextPath // /CartServlet?method=addCartItem&productDesId=${????/}&itemQTY=${?????}
 		if ("addCartItem".equals(method)) {			
@@ -65,8 +67,8 @@ public class CartServlet extends HttpServlet {
 			ProductBO productBO = service.findProductByProDesId(productDesId);
 			Integer productId = productBO.getProductId();
 
-			// 重新定向，到原來商品頁面
-			response.sendRedirect("/GetProductServlet?productId=" + productId);
+			// 重新定向，到原來商品頁面 (改用ajaxSubmit)
+//			response.sendRedirect(contextPath+"/GetProductServlet?productId=" + productId);
 			}
 			else {
 //			如果目前購物車有這productDesId，方法改變回變更數量  : 原本的數量+要增加的數量

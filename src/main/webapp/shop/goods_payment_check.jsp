@@ -21,7 +21,7 @@
 
 
     <!-- 商店首頁 開始-->
-    <div class="goodsindex_bodycontent">
+    <div class="goodsindex_bodycontent paymentPage">
 
         <div class="goodsindex_innercontent ">
             <ul class="cart_top_title_area_01">
@@ -77,7 +77,7 @@
                                 <li class=""><img src="<%=contextPath %>/ProductPicServlet?productId=${orderDesBOList.product_id}&productSequence=0&action=firstPic" alt=""></li>
                                 <li class=""><span>${orderDesBOList.company_name}</span></li>
                                 <li class=""><span>${orderDesBOList.product_name}</span></li>
-                                <li class=""><span>${orderDesBOList.product_size}</span></li>
+                                <li class=""><span class="product_page_productSize">${orderDesBOList.product_size}</span></li>
                                 <li class=""><span>${orderDesBOList.product_color}</span></li>
                                 <li class="">NT&ensp;<span class="">${orderDesBOList.order_description_price}</span></li>
                                 <li class=""><span>${orderDesBOList.product_quantity}</span></li>

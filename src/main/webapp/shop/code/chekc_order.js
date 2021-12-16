@@ -78,8 +78,33 @@ $(document).ready(function () {
     		}
     	}
 	}
-	
-	
+
+//    尺寸解碼
+	function decodeSize (){
+//		取得尺寸欄位
+		let productSize = $(".payment_check_order_detail").find("span.product_page_productSize")
+		for (let i = 0 ; i < productSize.length; i++) {
+			switch (productSize.eq(i).text()) {
+    		case "0":
+    			productSize.eq(i).text("F")
+    			break;
+    		case "1":
+    			productSize.eq(i).text("S")
+    			break;
+    		case "2":
+    			productSize.eq(i).text("M")
+    			break;
+    		case "3":
+    			productSize.eq(i).text("L")
+    			break;
+    		case "4":
+    			productSize.eq(i).text("XL")
+    			break;
+			}
+		}
+	}
+
+	decodeSize ();
 //	 WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW 加載網頁後  執行
     
 //    算每張訂單 得折扣後金額
@@ -164,11 +189,11 @@ $(document).ready(function () {
         	$(".payment_address").val(address)
         	        	
 //        	如果收件人資訊為空，不得submit
-        	if($(".payment_address").val() || $(".payment_fill_name").val() || $(".payment_fill_phone").val() == ""){
-        		alert("收件人資訊不得空白");
-        	}else{
-//            	$("#PaymentResultServlet").submit();
-        	}
+//        	if($(".payment_address").val() || $(".payment_fill_name").val() || $(".payment_fill_phone").val() == ""){
+//        		alert("收件人資訊不得空白");
+//        	}else{
+            	$("#PaymentResultServlet").submit();
+//        	}
         })
     
     

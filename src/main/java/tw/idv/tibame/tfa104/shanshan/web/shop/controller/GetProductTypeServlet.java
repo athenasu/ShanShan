@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import tw.idv.tibame.tfa104.shanshan.web.product.entity.ProductBO;
 import tw.idv.tibame.tfa104.shanshan.web.shop.entity.Page;
 import tw.idv.tibame.tfa104.shanshan.web.shop.service.ShopService;
@@ -58,19 +60,22 @@ public class GetProductTypeServlet extends HttpServlet {
 			System.out.println("本頁數不存在");			
 		}else if (pageNum == 1) {
 //			findAllProduct參數(忽略的資料數,每頁資料條數)
-			List<ProductBO> listTypeProductBO = ssvc.findProductByType(productType, (pageNum - 1) * pageStandard,
-					pageStandard);
+			List<ProductBO> listTypeProductBO = ssvc.findProductByType(productType, (pageNum - 1) * pageStandard, pageStandard);
 
 			request.setAttribute("listTypeProductBO", listTypeProductBO);
 			request.getRequestDispatcher("/shop/goods_single_kind_products.jsp").forward(request, response);
 		}else if(pageNum > 1) {
-//			findAllProduct參數(忽略的資料數,每頁資料條數)
-			List<ProductBO> listAllProductBO = ssvc.findAllProduct((pageNum - 1) * pageStandard, pageStandard);
-
+			
 			response.setContentType("application/json;charset=utf-8");
 			request.setCharacterEncoding("UTF-8");
 			
-			response.getWriter().print(listAllProductBO);
+//			findAllProduct參數(忽略的資料數,每頁資料條數)
+			List<ProductBO> listTypeProductBO = ssvc.findProductByType(productType, (pageNum - 1) * pageStandard, pageStandard);
+
+			ObjectMapper mapper = new ObjectMapper();
+			String jsonTypeProductBO = mapper.writeValueAsString(listTypeProductBO);
+			
+			response.getWriter().print(jsonTypeProductBO);
 			response.getWriter().flush();
 			response.getWriter().close();
 		}

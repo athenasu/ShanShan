@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import tw.idv.tibame.tfa104.shanshan.web.product.entity.ProductBO;
 import tw.idv.tibame.tfa104.shanshan.web.shop.entity.Page;
 import tw.idv.tibame.tfa104.shanshan.web.shop.service.ShopService;
@@ -54,12 +56,17 @@ public class AllProductServlet extends HttpServlet {
 			request.getRequestDispatcher("/shop/goods_all_products.jsp").forward(request, response);
 
 		}else if (pageNum > 1) {
+				response.setContentType("application/json;charset=utf-8");
+				request.setCharacterEncoding("UTF-8");
+			
 //				findAllProduct參數(忽略的資料數,每頁資料條數)
 			
 				List<ProductBO> listAllProductBO = ssvc.findAllProduct((pageNum - 1) * pageStandard, pageStandard);
 
+				ObjectMapper mapper = new ObjectMapper();
+				String jsonAllProductBO = mapper.writeValueAsString(listAllProductBO);
 				
-				response.getWriter().print(listAllProductBO);
+				response.getWriter().print(jsonAllProductBO);
 				response.getWriter().flush();
 				response.getWriter().close();
 				System.out.println("輸出'看更多'資料");

@@ -19,8 +19,33 @@ $(document).ready(
 		    		}
 		    	})
 		    }
+
+//		    尺寸解碼
+		    function decodeSize (){
+//		    	取得尺寸欄位
+		    	let productSize = $(".product_format_detail_style").find("span.product_page_productSize")
+		    	for (let i = 0 ; i < productSize.length; i++) {
+		    		switch (productSize.eq(i).text()) {
+		    		case "0":
+		    			productSize.eq(i).text("F")
+		    			break;
+		    		case "1":
+		    			productSize.eq(i).text("S")
+		    			break;
+		    		case "2":
+		    			productSize.eq(i).text("M")
+		    			break;
+		    		case "3":
+		    			productSize.eq(i).text("L")
+		    			break;
+		    		case "4":
+		    			productSize.eq(i).text("XL")
+		    			break;
+		    		}
+		    	}
+		    }
 		    
-		    
+		    decodeSize ();
 			// WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW 提交表格區
 			function subAddCartItem() {
 		    	console.log("提交form,addCartItem")
@@ -30,7 +55,6 @@ $(document).ready(
 		    	});
 		    	return false
 			}
-
 			// WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW 商品圖片 首圖
 			// 開始
 
@@ -127,7 +151,7 @@ $(document).ready(
 			// 點擊按鈕 加入購物車 提交FORM表單
 			$(".product_format_detail_button_2").click(function() {
 				$("#product_format_detail").submit();
-				alert("成估加入購物車。");
+				alert("成功加入購物車。");
 				showCartItemQty();
 			})
 
@@ -140,6 +164,8 @@ $(document).ready(
 //			})
 
 			$(".product_format_detail_button_1").click(function() {
+			    let member_id = $("input.member_id").val();
+		    	if (member_id !=0 || member_id != ""){
 //				更改form的資料
 				$("#product_format_detail").attr("action", "/shanshan/PurchaseServlet");
 				$("#product_format_detail").attr("onsubmit", "");
@@ -148,6 +174,9 @@ $(document).ready(
 
 //				提交
 				$("#product_format_detail").submit();
+		    	}else{
+		    		alert("請先登入，再購買商品。")
+		    	}
 			})
 			
 			

@@ -12,17 +12,6 @@
     <title>各類商品</title>
     <link rel="stylesheet" type="text/css" href="<%=contextPath%>/shop/code/style.css">
 
-    <script type='text/javascript'>
-//  提交看更多功能的表格
-    function submitSeeMore(){
-    	$("#seemore").ajaxSubmit(function(message) {
-	    	console.log("提交form,seemore OK!!")
-    	});
-    	
-    	return false
-    }
-    </script>
-    
 </head>
 
 <body>

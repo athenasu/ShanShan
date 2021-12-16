@@ -23,7 +23,7 @@
             </div>
 
             <div class="login_formbox" style=" text-align: center;">
-                <p>還沒註冊?請點選這裡<a href="#">註冊成為新山友</a></p>
+                <p>還沒註冊?請點選這裡<a href="<%=request.getContextPath()%>/member/register.html">註冊成為新山友</a></p>
             </div>
         </div>
 
@@ -34,29 +34,42 @@
     <div class="login_modal_email -none">
         <h1 class="login_form_title">用電子郵件登入</h1>
         <div>
+        <form method="post" action="<%=request.getContextPath()%>/memberLogin/login" id="loginSubmit">
             <div class="login_formbox_2 ">
                 <label class="login_formname" for="Email">電子郵件地址</label>
-                <input class="login_formbar" name="Email" placeholder="請輸入您的電子郵件地址"></input></br>
+                <input class="login_formbar_email login_formbar" name="Email" placeholder="請輸入您的電子郵件地址"></input></br>
             </div>
 
             <div class="login_formbox">
                 <label class="login_formname" for="password">密碼</label>
-                <input class="login_formbar" name="password" placeholder="請輸入您的密碼"></input></br>
+                <input class="login_formbar_password login_formbar" name="password" placeholder="請輸入您的密碼"></input></br>
             </div>
 
+		</form>
             <div class="login_formbox login_description">
                 <input class="login_formcheckbox" type="checkbox">&ensp;記住我的密碼</input>
             </div>
-
             <div class="login_formbox">
                 <input class="login_summitbutton" type="button" value="登入"></input>
             </div>
-			<input type="hidden" class="member_id" value="${memberId}">
+			<input type="hidden" class="member_id" value="${memberId}"> <!--  登入狀態   -->
             <div class="login_formbox" style=" text-align: center;">
-                <p><a href="#">忘記密碼?</a></p>
+                <p class= "forgot_password"><a href="#">忘記密碼?</a></p>
             </div>
         </div>
     </div>
+  	 <div class="forgot_password_modal -none">
+ 	     <h1 class="forgot_password_title">請輸入電子郵件</h1>
+ 		 <div>
+   			<div class="forgot_password_formbox">
+   	   	  		<label class="forgot_password_formname" for="Email">電子郵件地址</label>
+   	     		<input class="forgot_password_email" name="Email" placeholder="請輸入您的電子郵件地址"></input></br>
+   	     	</div>
+   	     	<div class="forgot_password_formbox">
+      	    	<input class="forgot_password_summitbutton" type="button" value="發送驗證信"></input>
+         	</div>
+         </div>
+	</div>
     <!-- 燈箱郵件登入 結束-->
 
     <!-- 商店導覽列 開始-->
@@ -74,7 +87,7 @@
             <div class="goods_header_title_goods" onclick="location.href='<%=request.getContextPath()%>/shop/goods_index.jsp'">攻山小物</div>
 
             <!-- 購物車icon -->
-            <div class="goods_shopcart_area" onclick="location.href='<%=request.getContextPath()%>/CartServlet?method=mycart'">
+            <div class="goods_shopcart_area" onclick="location.href='<%=request.getContextPath()%>/shop/goods_shopcart.jsp'">
                 <i class="fas fa-shopping-cart header_shopcarticon"></i>
                 <div class="shopcarticon_num_bg"><span class="shopcarticon_num">${cart.totalItemQTY}</span></div>
             </div>
@@ -134,7 +147,7 @@
             </div>
             <!-- 登入註冊 -->
             <input type="button" class="goods_registor_botton" value="註冊"
-                onclick="location.href='<%=request.getContextPath()%>/shop/member_signup.jsp'"></input>
+                onclick="location.href='<%=request.getContextPath()%>/member/register.html'"></input>
             <input type="button" class="goods_login_modal_botton" value="登入"></input>
         </div>
     </header>

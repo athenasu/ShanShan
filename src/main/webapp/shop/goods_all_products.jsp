@@ -12,14 +12,11 @@
     <title>所有商品</title>
     <link rel="stylesheet" type="text/css" href="<%=contextPath%>/shop/code/style.css">
 
-    
 </head>
 
 <body>
-
     <!-- 插入 商城頁首-->
 <%@ include file="goods_header.jsp" %>
-
 
     <!-- 商店首頁 開始-->
     <div class="goodsindex_bodycontent">
@@ -29,7 +26,6 @@
             <ul class="goods_area ">
             
              <c:forEach items="${listAllProductBO}" var="ProductBO" >
-                <!-- https://i.imgur.com/1EiiZs2.png -->
                 <li class="single_good_area" onclick="location.href='<%=contextPath %>/GetProductServlet?productId=${ProductBO.productId}'">
                     <img class="good_headpic" src="<%=contextPath %>/ProductPicServlet?productId=${ProductBO.productId}&productSequence=0&action=firstPic" width="250px" alt="goods">
                     <div class="goods_icon"><i class="far fa-heart toWishList "></i></div>

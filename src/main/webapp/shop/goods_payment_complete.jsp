@@ -16,13 +16,12 @@
 </head>
 
 <body>
-<%=request.getAttribute("finalOrderList")%>>
     <!-- 插入 商城頁首-->
 <%@ include file="goods_header.jsp" %>
 
 
     <!-- 商店首頁 開始-->
-    <div class="goodsindex_bodycontent">
+    <div class="goodsindex_bodycontent paymentPage">
 
         <div class="goodsindex_innercontent ">
             <ul class="cart_top_title_area_01">
@@ -34,9 +33,26 @@
             </ul>
             <div class="goods_title01 ">訂單完成</div>
             <ul class="payment_complete_detail">
-                <li>您的訂單編號：<span>123456789</span></li>
-                <li>訂單建立時間：<span>2021/11/11 19:23:12</span></li>
-                <li>訂單金額：NT$&ensp;<span>1390</span></li>
+                <li>
+					<table style="  width:400px ; align:center" cellpadding='5' >
+						<colgroup>
+							<col >
+							<col span="3">
+						</colgroup>
+						<tr >
+							<th >您的訂單編號</th>
+							<th>訂單建立時間</th>
+							<th>訂單金額</th>
+						</tr>
+						<c:forEach items="${finalOrderList}" var="order" varStatus="s">
+							<tr>
+								<td>${order.order_id}</td>
+								<td>${order.order_created_date}</td>
+								<td>NT &ensp;${order.order_sum_after}</td>
+							</tr>
+              		    </c:forEach>
+					</table> 
+              	</li>
                 <li>目前訂單狀態：等待店家確認訂單。</li>
                 <li>&ensp;</li>
                 <li>山山來此與店家在此感謝您的購買與支持。</li>
