@@ -96,7 +96,7 @@ public class ActLogMsgDAO implements ActLogMsgDAO_interface {
 				ActLogMsgVO.setAct_msg_id(rs.getInt("Act_msg_id"));
 				ActLogMsgVO.setArticle_id(rs.getInt("Article_id"));
 				ActLogMsgVO.setMember_id(rs.getInt("Member_id"));
-				ActLogMsgVO.setMsg_time(rs.getDate("Msg_time"));
+				ActLogMsgVO.setMsg_time(rs.getTimestamp("Msg_time"));
 				ActLogMsgVO.setMsg_content(rs.getString("Msg_content"));
 				ActLogMsgVO.setMsg_status(rs.getInt("Msg_status"));
 			}
@@ -265,7 +265,7 @@ public class ActLogMsgDAO implements ActLogMsgDAO_interface {
 				ActLogMsgVO.setAct_msg_id(rs.getInt("Act_msg_id"));
 				ActLogMsgVO.setArticle_id(rs.getInt("Article_id"));
 				ActLogMsgVO.setMember_id(rs.getInt("Member_id"));
-				ActLogMsgVO.setMsg_time(rs.getDate("Msg_time"));
+				ActLogMsgVO.setMsg_time(rs.getTimestamp("Msg_time"));
 				ActLogMsgVO.setMsg_content(rs.getString("Msg_content"));
 				ActLogMsgVO.setMsg_status(rs.getInt("Msg_status"));
 				list.add(ActLogMsgVO);
@@ -319,7 +319,7 @@ public class ActLogMsgDAO implements ActLogMsgDAO_interface {
 				ActLogMsgVO.setAct_msg_id(rs.getInt("Act_msg_id"));
 				ActLogMsgVO.setArticle_id(rs.getInt("Article_id"));
 				ActLogMsgVO.setMember_id(rs.getInt("Member_id"));
-				ActLogMsgVO.setMsg_time(rs.getDate("Msg_time"));
+				ActLogMsgVO.setMsg_time(rs.getTimestamp("Msg_time"));
 				ActLogMsgVO.setMsg_content(rs.getString("Msg_content"));
 				ActLogMsgVO.setMsg_status(rs.getInt("Msg_status"));
 				list.add(ActLogMsgVO); 
@@ -374,7 +374,7 @@ public class ActLogMsgDAO implements ActLogMsgDAO_interface {
 				ActLogMsgVO.setAct_msg_id(rs.getInt("Act_msg_id"));
 				ActLogMsgVO.setArticle_id(rs.getInt("Article_id"));
 				ActLogMsgVO.setMember_id(rs.getInt("Member_id"));
-				ActLogMsgVO.setMsg_time(rs.getDate("Msg_time"));
+				ActLogMsgVO.setMsg_time(rs.getTimestamp("Msg_time"));
 				ActLogMsgVO.setMsg_content(rs.getString("Msg_content"));
 				ActLogMsgVO.setMsg_status(rs.getInt("Msg_status"));
 				list.add(ActLogMsgVO);

@@ -34,8 +34,8 @@ public class ArticleReportService {
 	public ArticleReportVO findByArticleRepoPK(Integer article_report_id) {
 		return dao.findByArticleRepoPK(article_report_id);
 	}
-
-	public ArticleReportVO findArticleRepoByStatus(Integer article_report_status) {
+	
+	public List<ArticleReportVO> findArticleRepoByStatus(Integer article_report_status) {
 		return dao.findArticleRepoByStatus(article_report_status);
 	}
 

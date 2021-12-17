@@ -57,10 +57,6 @@ public class ActLogMsgServlet extends HttpServlet {
 			articleVO = artSvc.getOneArticle(article_id);
 			req.setAttribute("articleVO", articleVO);
 			
-			String url = "/article/article.jsp";
-			RequestDispatcher view = req.getRequestDispatcher(url);
-			view.forward(req, res);
-
 		}
 		
 		

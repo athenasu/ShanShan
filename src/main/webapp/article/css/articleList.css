@@ -308,6 +308,15 @@ aside {
   text-align: center;
 }
 
+#giveBtn,#cancel{
+	border-style: none;
+    width: 80px;
+    padding: 5px;
+    border-radius: 5px;	
+    cursor: pointer;
+    
+}
+
 #errormsg {
   color: red;
   text-align: center;
