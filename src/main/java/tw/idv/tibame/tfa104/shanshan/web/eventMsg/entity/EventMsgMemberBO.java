@@ -17,37 +17,37 @@ public class EventMsgMemberBO extends Core {
 	
 
 	@Id
-	@Column(name = "memberId")
-	private String memberId;
+	@Column(name = "msgContent")
+	private String msgContent;
 	
 	@Column(name = "eventId")
-	private String eventId;
+	private Integer eventId;
 	
 	@Column(name = "memberName")
 	private String memberName;
 	
+	@Column(name = "memberId")
+	private Integer memberId;
+		
 	@Column(name = "memberProfilePic")
 	private byte[] memberProfilePic;
-	
-	@Column(name = "msgContent")
-	private String msgContent;
 	
 	@Column(name = "msgDate")
 	private Timestamp msgDate;
 
-	public String getMemberId() {
+	public Integer getMemberId() {
 		return memberId;
 	}
 
-	public void setMemberId(String memberId) {
+	public void setMemberId(Integer memberId) {
 		this.memberId = memberId;
 	}
 
-	public String getEventId() {
+	public Integer getEventId() {
 		return eventId;
 	}
 
-	public void setEventId(String eventId) {
+	public void setEventId(Integer eventId) {
 		this.eventId = eventId;
 	}
 
@@ -93,6 +93,5 @@ public class EventMsgMemberBO extends Core {
 				+ ", memberProfilePic=" + Arrays.toString(memberProfilePic) + ", msgContent=" + msgContent
 				+ ", msgDate=" + msgDate + "]";
 	}
-
 	
 }

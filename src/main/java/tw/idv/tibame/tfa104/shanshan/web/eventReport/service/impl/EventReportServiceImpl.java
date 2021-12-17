@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tw.idv.tibame.tfa104.shanshan.web.eventReport.dao.EventReportDAO;
 import tw.idv.tibame.tfa104.shanshan.web.eventReport.entity.EventReport;
+import tw.idv.tibame.tfa104.shanshan.web.eventReport.entity.EventReportDetailBO;
 import tw.idv.tibame.tfa104.shanshan.web.eventReport.service.EventReportService;
 
 @Service
@@ -32,5 +33,17 @@ public class EventReportServiceImpl implements EventReportService{
 	
 	public List<EventReport> selectDone(){
 		return dao.selectDone();
+	}
+	
+	public EventReport selectById(Integer eventReportID){
+		return dao.selectById(eventReportID);
+	}
+	
+	public List<EventReportDetailBO> selectByIdtest(Integer eventReportID){
+		return dao.selectByIdtest(eventReportID);
+	}
+	
+	public Integer updateEventReport (EventReport eventReport) {
+		return dao.updateEventReport(eventReport);
 	}
 }

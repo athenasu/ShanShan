@@ -142,6 +142,7 @@ public class EventDAOImpl implements EventDAO{
 	public List<DistrictEventBO> selectByDistrict(Integer mountainDistrict) {
 		Session session = sessionFactory.getCurrentSession();
 		return session.createNativeQuery("SELECT "+
+											"a.event_id as eventId, "+
 											"a.member_id as memberId, "+
 											"a.event_name as eventName, "+
 											"a.event_start_date as eventStartDate, "+

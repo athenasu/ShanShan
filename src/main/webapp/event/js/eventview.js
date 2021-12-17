@@ -335,7 +335,7 @@ function init() {
                 url: "http://localhost:8081/shanshan/eventReport/selectEventReportByMemberId",
                 type: "GET",
                 data: {
-                    "memberId": 1,          //set as 1 for test, need to get the login memberId
+                    "memberId": 2,          //set as 1 for test, need to get the login memberId
                     "eventId": data[0].eventId
                 },
                 dataType: "json",
@@ -370,40 +370,36 @@ function init() {
                     }
                 }
             })
-        }
+            //=========================== GET EVENT_MSG BY EVENT_ID FROM DATABASE ===========================
+            $.ajax({
+                url: "http://localhost:8081/shanshan/eventMsg/eventMsgList",
+                type: "GET",
+                data: { "eventId": eventID },         //set as 1 for test
+                dataType: "json",
+                beforeSend: function () {
 
-    })
+                },
+                success: function (data) {
+                    console.log(data);
+                    let event_msg_html = "";
+                    $.each(data, function (index, item) {
+                        var bytes = new Uint8Array(item.memberProfilePic);
+                        var blob = new Blob([bytes], { type: "image/png" });
+                        var url = URL.createObjectURL(blob);
+                        // console.log(item);
+                        // console.log(item.memberProfilePic)
+                        // console.log(url);
 
-
-
-    //=========================== GET EVENT_MSG BY EVENT_ID FROM DATABASE ===========================
-    $.ajax({
-        url: "http://localhost:8081/shanshan/eventMsg/eventMsgList",
-        type: "GET",
-        data: { "eventId": 1 },         //set as 1 for test
-        dataType: "json",
-        beforeSend: function () {
-
-        },
-        success: function (data) {
-
-            let event_msg_html = "";
-            $.each(data, function (index, item) {
-                var bytes = new Uint8Array(item.memberProfilePic);
-                var blob = new Blob([bytes], { type: "image/png" });
-                var url = URL.createObjectURL(blob);
-                // console.log(item);
-                // console.log(item.memberProfilePic)
-                // console.log(url);
-
-                event_msg_html += "<ul class='event_msg'>";
-                event_msg_html += "<img class='member_pic' src='" + url + "'>";
-                event_msg_html += "<li class='member_name'>" + item.memberName + "：</li>";
-                event_msg_html += "<li class='msg_content'>" + item.msgContent + "</li>";
-                event_msg_html += "<button class='msg_report_btn'>Report</button>";
-                event_msg_html += "</ul>";
+                        event_msg_html += "<ul class='event_msg'>";
+                        event_msg_html += "<img class='member_pic' src='" + url + "'>";
+                        event_msg_html += "<li class='member_name'>" + item.memberName + "：</li>";
+                        event_msg_html += "<li class='msg_content'>" + item.msgContent + "</li>";
+                        event_msg_html += "<button class='msg_report_btn'>Report</button>";
+                        event_msg_html += "</ul>";
+                    })
+                    $("div.event_msg_list").html(event_msg_html);
+                }
             })
-            $("div.event_msg_list").html(event_msg_html);
         }
     })
 }
@@ -413,7 +409,7 @@ function init() {
 $(document).on("click", "div.event_wish_heart", function () {
 
     let eventWishList = JSON.stringify({
-        "memberId": 5,      //set as 5 for test, need to catch login memberId
+        "memberId": 2,      //set as 5 for test, need to catch login memberId
         "eventId": $("li.event_id").val()
     })
 
@@ -435,7 +431,7 @@ $(document).on("click", "div.event_wish_heart", function () {
 $(document).on("click", "div.event_wish_heart_filled", function () {
 
     let eventWishList = JSON.stringify({
-        "memberId": 5,      //set as 5 for test, need to catch login memberId
+        "memberId": 2,      //set as 5 for test, need to catch login memberId
         "eventId": $("li.event_id").val()
     })
 
@@ -464,7 +460,7 @@ $(document).on("click", "button.event_report_btn", function () {
             contentType: 'application/json',
             data: JSON.stringify({
                 "eventId": $("li.event_id").val(),
-                "memberId": 1,
+                "memberId": 2,
                 "reportReason": 1,
                 "reportDate": new Date().toISOString(),
                 "caseStatus": 1
@@ -551,7 +547,7 @@ $(document).on("click", "button.join_btn", function () {
         url: "http://localhost:8081/shanshan/participant/selectParticipantByMemberId",
         type: "GET",
         contentType: 'application/json',
-        data: { "memberId": 4, "eventId": $("li.event_id").val() }, //need to get the login memberId
+        data: { "memberId": 5, "eventId": $("li.event_id").val() }, //need to get the login memberId
         dataType: "json",
         beforeSend: function () {
         },
@@ -625,7 +621,7 @@ $(document).on("click", "button.join_btn", function () {
 
 //============================== SEND PARTICIPANT TO DATABASE ADN UPDATE EVENT_CUR_PART ========================================
 $(document).on("click", "button.send_participants_btn", function () {
-    var memberId = 4;
+    var memberId = 2;
     $.ajax({
 
         url: "http://localhost:8081/shanshan/participant/addParticipant",
@@ -683,7 +679,7 @@ $(document).on("click", "button.send_participants_btn", function () {
 })
 //========================== UPDATE PARTICIPANT INFO ============================
 $(document).on("click", "button.edit_participants_btn", function () {
-    var memberId = 4;
+    var memberId = 2;
 
     $.ajax({
         url: "http://localhost:8081/shanshan/participant/updateParticipant",
@@ -742,7 +738,7 @@ $(document).on("click", "button.edit_participants_btn", function () {
 //=========================== SEND EVENT_MSG TO DATABASE ===========================
 $(document).on("click", "button.add_msg_btn", function () {
     let eventId = $("li.event_id").val();
-    let memberId = 1;
+    let memberId = 2;
     let msgDate = new Date().toISOString();
     let msgContent = $("input.add_msg").val();
     let msgStatus = 1;

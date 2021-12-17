@@ -15,11 +15,17 @@ public class DistrictEventBO extends Core{
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@Column(name = "eventName")
+	private String eventName;
+	
+	@Column(name = "mountainDistrict")
+	private Integer mountainDistrict;
+	
 	@Column(name = "memberId")
 	private Integer memberId;
 	
-	@Column(name = "eventName")
-	private String eventName;
+	@Column(name = "eventId")
+	private Integer eventId;
 	
 	@Column(name = "eventStartDate")
 	private Date eventStartDate;
@@ -36,11 +42,24 @@ public class DistrictEventBO extends Core{
 	@Column(name = "memberName")
 	private String memberName;
 	
-	@Column(name = "mountainDistrict")
-	private Integer mountainDistrict;
-	
 	@Transient
 	private String mountainPicStr;
+
+	public String getEventName() {
+		return eventName;
+	}
+
+	public void setEventName(String eventName) {
+		this.eventName = eventName;
+	}
+
+	public Integer getMountainDistrict() {
+		return mountainDistrict;
+	}
+
+	public void setMountainDistrict(Integer mountainDistrict) {
+		this.mountainDistrict = mountainDistrict;
+	}
 
 	public Integer getMemberId() {
 		return memberId;
@@ -50,12 +69,12 @@ public class DistrictEventBO extends Core{
 		this.memberId = memberId;
 	}
 
-	public String getEventName() {
-		return eventName;
+	public Integer getEventId() {
+		return eventId;
 	}
 
-	public void setEventName(String eventName) {
-		this.eventName = eventName;
+	public void setEventId(Integer eventId) {
+		this.eventId = eventId;
 	}
 
 	public Date getEventStartDate() {
@@ -98,18 +117,6 @@ public class DistrictEventBO extends Core{
 		this.memberName = memberName;
 	}
 
-	public Integer getMountainDistrict() {
-		return mountainDistrict;
-	}
-
-	public void setMountainDistrict(Integer mountainDistrict) {
-		this.mountainDistrict = mountainDistrict;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
 	public String getMountainPicStr() {
 		return mountainPicStr;
 	}
@@ -118,11 +125,17 @@ public class DistrictEventBO extends Core{
 		this.mountainPicStr = mountainPicStr;
 	}
 
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	@Override
 	public String toString() {
-		return "DistrictEventBO [memberId=" + memberId + ", eventName=" + eventName + ", eventStartDate="
-				+ eventStartDate + ", mountainId=" + mountainId + ", mountainName=" + mountainName + ", mountainPic="
-				+ Arrays.toString(mountainPic) + ", memberName=" + memberName + ", mountainDistrict=" + mountainDistrict
-				+ ", mountainPicStr=" + mountainPicStr + "]";
+		return "DistrictEventBO [eventName=" + eventName + ", mountainDistrict=" + mountainDistrict + ", memberId="
+				+ memberId + ", eventId=" + eventId + ", eventStartDate=" + eventStartDate + ", mountainId="
+				+ mountainId + ", mountainName=" + mountainName + ", mountainPic=" + Arrays.toString(mountainPic)
+				+ ", memberName=" + memberName + ", mountainPicStr=" + mountainPicStr + "]";
 	}
+
+
 }
