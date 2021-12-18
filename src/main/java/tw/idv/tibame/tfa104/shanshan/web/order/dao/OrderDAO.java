@@ -13,7 +13,7 @@ public interface OrderDAO {
 //	更新 訂單全部欄位 成功返回1，失敗返回0
 	int update(Order order);
 //  更新 特定訂單的貨運單號/寄送日期(9開頭,六位數字) 成功返回1，失敗返回0
-    int updateShipNumDateByOrderId(Integer ship_number,java.sql.Date shipDate, Integer order_id);
+    int updateShipNumDateByOrderId(String shipNumber,java.sql.Date shipDate, Integer order_id);
 //	更新 特定訂單的撥款狀態 成功返回1，失敗返回0
 	int updatePayStatsByOrderId(Integer payment_status, Integer order_id);
 //	更新 特定訂單的訂單狀態 成功返回1，失敗返回0
@@ -24,6 +24,9 @@ public interface OrderDAO {
 	List<Order> findAll();
 //	查詢 特定店家的特定訂單狀態的訂單 按order id 倒序
 	List<Order> findAllByComIdOrderStatus(Integer order_status, Integer company_id);
+//**查詢 特定店家 已出貨的訂單 按order id 倒序** Lulu update
+	List<Order> findAllShippedByComId(Integer company_id);
+//********************************************************
 //	查詢 特定會員的特定訂單狀態的訂單 按order id 倒序 
 	List<Order> findAllByMemIdOrderStatus(Integer order_status, Integer member_id);
 //	查詢 最新的訂單 參數為多少筆 按order id 倒序
