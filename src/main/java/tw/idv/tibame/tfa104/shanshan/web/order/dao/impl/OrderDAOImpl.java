@@ -40,6 +40,8 @@ public class OrderDAOImpl implements OrderDAO{
 	private static final String FIND_ALL = "SELECT * FROM `Order`";
 //	查詢 特定店家的特定訂單狀態的訂單 按order id 倒序
 	private static final String FIND_ALL_BY_COMID_ORDERSTATS = "select * from `order` where order_status=? and company_id =? order by order_id desc";
+//  **查詢 特定店家 已出貨的訂單 按order id 倒序** Lulu update
+	private static final String FIND_ALL_SHIPPED = "select * from `order` where order_status != 1 and order_status != 0 and order_status != 6 and company_id = ? order by order_id desc;";
 //	查詢 特定會員的特定訂單狀態的訂單 按order id 倒序
 	private static final String FIND_ALL_BY_MEMID_ORDERSTATS = "select * from `order` where order_status=? and member_id=? order by order_id desc";
 //	查詢 最新的訂單 參數為多少筆 按order id 倒序
@@ -178,7 +180,7 @@ public class OrderDAOImpl implements OrderDAO{
 	
 //	更新 特定訂單的貨運單號 成功返回1，失敗返回0
 	@Override
-    public int updateShipNumDateByOrderId(Integer ship_number,Date order_shipped_date, Integer order_id) {
+    public int updateShipNumDateByOrderId(String ship_number,Date order_shipped_date, Integer order_id) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		int i = 0;
@@ -191,7 +193,7 @@ public class OrderDAOImpl implements OrderDAO{
 			
 			pstmt = con.prepareStatement(UPDATE_SHIP_NUM);
 
-			pstmt.setInt(1, ship_number);
+			pstmt.setString(1, ship_number);
             pstmt.setDate(2, order_shipped_date);
             pstmt.setInt(3, order_id);
 			
@@ -409,6 +411,47 @@ public class OrderDAOImpl implements OrderDAO{
 		return orderList;
 	}
 	
+//  **查詢 特定店家 已出貨的訂單 按order id 倒序** Lulu update
+	@Override
+	public List<Order> findAllShippedByComId(Integer company_id) {
+		List<Order> orderList = new ArrayList<>();
+		Order order = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement( FIND_ALL_SHIPPED);
+			pstmt.setInt(1, company_id);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				order = new Order();
+				order.setOrder_id(rs.getInt("order_id"));
+				order.setMember_id(rs.getInt("Member_id"));
+				order.setCompany_id(rs.getInt("company_id"));
+				order.setOrder_created_date(rs.getDate("Order_created_date"));
+				order.setOrder_member_address(rs.getString("Order_member_address"));
+				order.setOrder_member_name(rs.getString("Order_member_name"));
+				order.setOrder_member_phone(rs.getString("Order_member_phone"));
+				order.setOrder_status(rs.getInt("Order_status"));
+				order.setPoint_used(rs.getInt("Point_used"));
+				order.setOrder_sum_before(rs.getInt("Order_sum_before"));
+				order.setOrder_sum_after(rs.getInt("Order_sum_after"));
+				order.setOrder_shipped_date(rs.getDate("Order_shipped_date"));
+				order.setShip_number(rs.getString("Ship_number"));
+				order.setPayment_status(rs.getInt("Payment_status"));
+				orderList.add(order);
+				
+
+			}
+		}catch(SQLException se){
+			se.printStackTrace();
+		}finally {
+			JDBCUtil.close(rs,pstmt,con);
+		}
+		return orderList;
+	}
 //	查詢 特定會員的特定訂單狀態的訂單
 	@Override
 	public List<Order> findAllByMemIdOrderStatus(Integer order_status, Integer member_id) {
@@ -940,6 +983,8 @@ public class OrderDAOImpl implements OrderDAO{
 		}
 		return order;
 	}
+
+	
 
 	
 }
