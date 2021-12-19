@@ -33,7 +33,7 @@ public class ArticleReportDAO implements ArticleReportDAO_interface {
 	// to Owen
 	// 檢舉狀態 (0:未處理 1:已刪除 2:未通過)
 	private static final String findArticleRepoByStatus = "select article_report_id,member_id,article_id,article_report_status,article_report_reason,article_report_date,case_done from article_report where article_report_status = ?";
-
+	private static final String findRepoByRepoPK ="select a.article_report_id,a.member_id,a.article_id, a.article_report_status, a.article_report_reason, a.case_done, b.article_title, b.article_content, c.member_name from article_report a join article b on a.article_id = b.article_id join member c on a.member_id = c.member_id where article_report_id = ?";
 	// 改變狀態
 	private static final String updateArticleRepoStatus = "update article_report set article_report_status=?,case_done=? where article_id=? ";
 
@@ -355,6 +355,65 @@ public class ArticleReportDAO implements ArticleReportDAO_interface {
 				}
 			}
 		}
+	}
+	
+	public List<ArticleReportVO> findRepoByRepoPK(Integer article_report_id) {
+
+		List<ArticleReportVO> list = new ArrayList<ArticleReportVO>();
+		ArticleReportVO ArticleReportVO = null;
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(findRepoByRepoPK);
+			pstmt.setInt(1, article_report_id);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				ArticleReportVO = new ArticleReportVO();
+				ArticleReportVO.setArticle_report_id(rs.getInt("Article_report_id"));
+				ArticleReportVO.setMember_id(rs.getInt("Member_id"));
+				ArticleReportVO.setArticle_id(rs.getInt("Article_id"));
+				ArticleReportVO.setArticle_report_status(rs.getInt("Article_report_status"));
+				ArticleReportVO.setArticle_report_reason(rs.getInt("Article_report_reason"));
+				ArticleReportVO.setArticle_report_date(rs.getTimestamp("Article_report_date"));
+				ArticleReportVO.setCase_done(rs.getDate("Case_done"));
+				ArticleReportVO.setArticle_title(rs.getString("article_title"));
+				ArticleReportVO.setArticle_content(rs.getString("article_content"));
+				ArticleReportVO.setMember_name(rs.getString("member_name"));
+				list.add(ArticleReportVO);
+			}
+
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
 	}
 
 }

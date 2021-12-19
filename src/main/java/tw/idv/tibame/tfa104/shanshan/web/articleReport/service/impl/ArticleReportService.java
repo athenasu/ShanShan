@@ -43,4 +43,9 @@ public class ArticleReportService {
 		return dao.updateArticleRepoStatus(article_report_status, case_done, article_id);
 	}
 
+	public List<ArticleReportVO> findRepoByRepoPK(Integer article_report_id) {
+		return dao.findRepoByRepoPK(article_report_id);
+	}
+
+	
 }

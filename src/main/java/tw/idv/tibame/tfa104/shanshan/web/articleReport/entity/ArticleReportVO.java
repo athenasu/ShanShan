@@ -58,7 +58,29 @@ public class ArticleReportVO implements Serializable {
 		this.case_done = case_done;
 	}
 	
-	
+//	for owen
+	private String article_title;
+	private String article_content;
+	private String member_name;
+
+	public String getArticle_title() {
+		return article_title;
+	}
+	public void setArticle_title(String article_title) {
+		this.article_title = article_title;
+	}
+	public String getArticle_content() {
+		return article_content;
+	}
+	public void setArticle_content(String article_content) {
+		this.article_content = article_content;
+	}
+	public String getMember_name() {
+		return member_name;
+	}
+	public void setMember_name(String member_name) {
+		this.member_name = member_name;
+	}
 	
 
 }

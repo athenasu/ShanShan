@@ -19,7 +19,8 @@ public interface ArticleReportDAO_interface {
 
      //依狀態搜尋 (0:未處理 1:已刪除 2:未通過)
      public List<ArticleReportVO> findArticleRepoByStatus(Integer article_report_status);
-   
+     public List<ArticleReportVO> findRepoByRepoPK(Integer article_report_id);
+     
      //更改檢舉狀態(0:未處理 1:已刪除 2:未通過)
      public int updateArticleRepoStatus(Integer article_report_status,Date case_done , Integer article_id);
 }
