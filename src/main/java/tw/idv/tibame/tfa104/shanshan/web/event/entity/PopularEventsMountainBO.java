@@ -25,6 +25,9 @@ public class PopularEventsMountainBO extends Core {
 	@Column(name = "mountainPic")
 	private byte[] mountainPic;
 
+	@Column(name = "mountainInfo")
+	private String mountainInfo;
+
 	public Integer getMountainId() {
 		return mountainId;
 	}
@@ -57,6 +60,14 @@ public class PopularEventsMountainBO extends Core {
 		this.mountainPic = mountainPic;
 	}
 
+	public String getMountainInfo() {
+		return mountainInfo;
+	}
+
+	public void setMountainInfo(String mountainInfo) {
+		this.mountainInfo = mountainInfo;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -64,7 +75,9 @@ public class PopularEventsMountainBO extends Core {
 	@Override
 	public String toString() {
 		return "PopularEventsMountainBO [mountainId=" + mountainId + ", mountainDistrict=" + mountainDistrict
-				+ ", mountainName=" + mountainName + ", mountainPic=" + Arrays.toString(mountainPic) + "]";
+				+ ", mountainName=" + mountainName + ", mountainPic=" + Arrays.toString(mountainPic) + ", mountainInfo="
+				+ mountainInfo + "]";
 	}
+	
 
 }

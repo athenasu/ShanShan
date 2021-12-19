@@ -1,4 +1,7 @@
-function init() {
+
+// function init() {
+$(document).ready(function(){
+        
     $.ajax({
         url: "../event/popularEvents",
         type: "GET",
@@ -19,14 +22,14 @@ function init() {
                 var url = URL.createObjectURL(blob);
                 // console.log(JSON.stringify(item.mountainPic));
 
-                popular_events += "<div class='event_slide'>";
-                popular_events += "<img class='event_slide_pic' src='" + url + "'>";
-                popular_events += "<input type='hidden' class='event_id' value='"+item.eventId+"'>"
-                popular_events += "<h4 class='event_slide_name'>" + item.eventName + "</h4>";
-                popular_events += "<h4 class ='slide_startdate'>出團日期：" + (new Date(item.eventStartDate).toLocaleDateString('fr-CA', { year: 'numeric', month: '2-digit', day: '2-digit' })) + "</h4>"
+                popular_events += "<div class='mySlides fade'>";
+                popular_events +=   "<img class='event_slide_pic' src='" + url + "'>";
+                popular_events +=   "<input type='hidden' class='event_id' value='"+item.eventId+"'>"
+                popular_events +=   "<div class='text'>" + item.eventName + "</div>";
+                popular_events +=   "<h4 class ='text'>出團日期：" + (new Date(item.eventStartDate).toLocaleDateString('fr-CA', { year: 'numeric', month: '2-digit', day: '2-digit' })) + "</h4>"
                 popular_events += "</div>"
             })
-            $("div.slidshow_container").html(popular_events);
+            $("div.slideshow-container").html(popular_events);
         }
     })
 
@@ -59,7 +62,26 @@ function init() {
             $("div.main_block").html(event_list);
         }
     })
-}
+})
+//var slideIndex = 0;
+//showSlides();
+//
+//function showSlides() {
+//  var i;
+//  var slides = $("div.mySlides");
+//  var dots = $("span.dot");
+//  for (i = 0; i < slides.length; i++) {
+//    slides[i].style.display = "none";  
+//  }
+//  slideIndex++;
+//  if (slideIndex > slides.length) {slideIndex = 1}    
+//  for (i = 0; i < dots.length; i++) {
+//    dots[i].className = dots[i].className.replace(" active", "");
+//  }
+//  slides[slideIndex-1].style.display = "block";  
+//  dots[slideIndex-1].className += " active";
+//  setTimeout(showSlides, 2000); // Change image every 2 seconds
+//}
 //============================== SELECT BY DISTRICT ============================
 $(document).on("click", "div.north_area", function () {
     console.log($(this))
@@ -249,6 +271,6 @@ $(document).on("click", "button.create_event", function(){
 
 
 //=======================================================================================
-$(function () {
-    init();
-})
+// $(function () {
+//     init();
+// })

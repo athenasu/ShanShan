@@ -336,7 +336,19 @@ div.store_manage_body{
     height:980px;
 }
 /*  ======================== STORE VERIFY BODY  ========================   */
-
+div.store_verify_lightbox{
+    display:none;
+}
+div.store_verify_lightbox.-on{
+    position:fixed;
+    display:block;
+    background-color:#1a4e81;
+    border-radius:15px;
+    top:25%;
+    left:25%;
+    width:50%;
+    height:50%;
+}
 /*  ======================== CASE MANAGE BODY ========================  */
 div.event_report_lightbox, div.article_report_lightbox, div.msg_report_lightbox{
     display:none;
@@ -346,9 +358,9 @@ div.event_report_lightbox.-on, div.article_report_lightbox.-on, div.msg_report_l
     display:block;
     background-color:#1a4e81;
     border-radius:15px;
-    top:120px;
-    left:400px;
-    width:1450px;
+    top:12.5%;
+    left:22%;
+    width:75%;
     height:85%;
 }
 
@@ -679,6 +691,3 @@ div.sv_create_date{
     display:inline-block;
     margin-left:0.5%;
 }
-/*===================================================================================================================*/
-/* ================================================= MEMBER MANAGE ================================================= */
-/*===================================================================================================================*/

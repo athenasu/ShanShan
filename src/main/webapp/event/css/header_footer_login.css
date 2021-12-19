@@ -236,10 +236,11 @@ a {
 
 /* footer */
 
-/* footer {
+footer {
+  position:fixed;
   width: 100%;
   border: 1px solid black;
-  margin-top: 50px;
+  bottom:0;
 }
 
 footer h4 {
@@ -248,4 +249,4 @@ footer h4 {
 
 .fa-copyright {
   margin: 0px 3px;
-} */
+}

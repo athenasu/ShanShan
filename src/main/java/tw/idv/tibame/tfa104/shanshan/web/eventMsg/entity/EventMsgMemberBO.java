@@ -17,18 +17,18 @@ public class EventMsgMemberBO extends Core {
 	
 
 	@Id
-	@Column(name = "msgContent")
-	private String msgContent;
+	@Column(name = "memberId")
+	private Integer memberId;
 	
 	@Column(name = "eventId")
 	private Integer eventId;
 	
+	@Column(name = "msgContent")
+	private String msgContent;
+	
 	@Column(name = "memberName")
 	private String memberName;
-	
-	@Column(name = "memberId")
-	private Integer memberId;
-		
+			
 	@Column(name = "memberProfilePic")
 	private byte[] memberProfilePic;
 	

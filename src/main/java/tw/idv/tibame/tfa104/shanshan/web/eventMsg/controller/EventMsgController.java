@@ -31,7 +31,7 @@ public class EventMsgController {
 	@CrossOrigin
 	@GetMapping("eventMsgList")
 	public List<EventMsgMemberBO> eventMsgList(Integer eventId) {
-		final List<EventMsgMemberBO> eventMsgList = eventMsgService.eventMsgList(1);		//set as 1 for test
+		final List<EventMsgMemberBO> eventMsgList = eventMsgService.eventMsgList(eventId);		
 		return eventMsgList;
 	}
 }

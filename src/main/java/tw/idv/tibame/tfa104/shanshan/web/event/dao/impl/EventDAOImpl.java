@@ -340,11 +340,12 @@ public class EventDAOImpl implements EventDAO{
 											"count(*) as count, "+
 											"b.mountain_district as mountainDistrict, "+
 											"b.mountain_name as mountainName, "+
-											"b.mountain_pic as mountainPic "+
+											"b.mountain_pic as mountainPic, "+
+											"b.mountain_info as mountainInfo "+
 										"FROM Event a "+
 										"JOIN Mountain b "+
 											"ON a.mountain_id = b.mountain_id "+
-										"WHERE a.event_status != 4"+
+										"WHERE a.event_status != 4 "+
 										"GROUP BY a.mountain_id "+
 										"ORDER BY count desc limit 3", PopularEventsMountainBO.class).list();
 	}

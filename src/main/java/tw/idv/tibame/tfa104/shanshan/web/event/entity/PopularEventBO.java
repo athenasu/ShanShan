@@ -142,10 +142,6 @@ public class PopularEventBO extends Core {
 		this.memberName = memberName;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
 	public Integer getEventStatus() {
 		return eventStatus;
 	}
@@ -162,6 +158,10 @@ public class PopularEventBO extends Core {
 		this.memberProfilePic = memberProfilePic;
 	}
 
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	@Override
 	public String toString() {
 		return "PopularEventBO [eventId=" + eventId + ", memberId=" + memberId + ", mountainId=" + mountainId
@@ -170,6 +170,4 @@ public class PopularEventBO extends Core {
 				+ ", mountainDistrict=" + mountainDistrict + ", stayType=" + stayType + ", memberName=" + memberName
 				+ ", eventStatus=" + eventStatus + ", memberProfilePic=" + Arrays.toString(memberProfilePic) + "]";
 	}
-
-
 }

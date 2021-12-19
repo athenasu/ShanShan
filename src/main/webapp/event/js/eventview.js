@@ -1,3 +1,5 @@
+var login_memberId = 1;
+
 $(document).on("change", "#event_deadline", function () {
     $("#event_deadline").attr("value", $(this.val()));
 })
@@ -50,7 +52,8 @@ $(document).on("change", "#mountain_area", function () {
     }
 })
 
-function init() {
+// function init() {
+$(document).ready(function(){
     const eventID = window.localStorage.getItem("eventID");
     // window.sessionStorage.getItem("eventId");
     // console.log(eventId)
@@ -69,7 +72,7 @@ function init() {
             var url = URL.createObjectURL(blob);
 
             let event_view_html = `
-            <h3 class="event_name"><input class="event_name" value="${data[0].eventName}" readonly="readonly"></h3>
+            <div class="event_name"><input class="event_name" value="${data[0].eventName}" readonly="readonly"></div>
             <div class="event_pic">
                 <img class="event_pic" src="${url}">
             </div>
@@ -335,7 +338,7 @@ function init() {
                 url: "http://localhost:8081/shanshan/eventReport/selectEventReportByMemberId",
                 type: "GET",
                 data: {
-                    "memberId": 2,          //set as 1 for test, need to get the login memberId
+                    "memberId": login_memberId,          //set as 1 for test, need to get the login memberId
                     "eventId": data[0].eventId
                 },
                 dataType: "json",
@@ -355,7 +358,7 @@ function init() {
                 url: "http://localhost:8081/shanshan/wishlistEvent/findWishlistEventByMemberIdEventId",
                 type: "GET",
                 data: {
-                    "memberId": 2,              //set as 5 for test, need to get the login memberId
+                    "memberId": login_memberId,              //set as 5 for test, need to get the login memberId
                     "eventId": $("li.event_id").val()
                 },
                 dataType: "json",
@@ -374,7 +377,7 @@ function init() {
             $.ajax({
                 url: "http://localhost:8081/shanshan/eventMsg/eventMsgList",
                 type: "GET",
-                data: { "eventId": eventID },         //set as 1 for test
+                data: { "eventId": eventID },
                 dataType: "json",
                 beforeSend: function () {
 
@@ -390,26 +393,26 @@ function init() {
                         // console.log(item.memberProfilePic)
                         // console.log(url);
 
-                        event_msg_html += "<ul class='event_msg'>";
+                        event_msg_html += "<div class='event_msg'>";
                         event_msg_html += "<img class='member_pic' src='" + url + "'>";
                         event_msg_html += "<li class='member_name'>" + item.memberName + "：</li>";
                         event_msg_html += "<li class='msg_content'>" + item.msgContent + "</li>";
                         event_msg_html += "<button class='msg_report_btn'>Report</button>";
-                        event_msg_html += "</ul>";
+                        event_msg_html += "</div>";
                     })
                     $("div.event_msg_list").html(event_msg_html);
                 }
             })
         }
     })
-}
+})
 
 //=========================== SEND EVENT_WISH_LIST TO DATABASE ===========================
 
 $(document).on("click", "div.event_wish_heart", function () {
 
     let eventWishList = JSON.stringify({
-        "memberId": 2,      //set as 5 for test, need to catch login memberId
+        "memberId": login_memberId,      //set as 2 for test, need to catch login memberId
         "eventId": $("li.event_id").val()
     })
 
@@ -427,11 +430,11 @@ $(document).on("click", "div.event_wish_heart", function () {
         }
     })
 })
-
+//=========================== DELETE EVENT_WISH_LIST FROM DATABASE ===========================
 $(document).on("click", "div.event_wish_heart_filled", function () {
 
     let eventWishList = JSON.stringify({
-        "memberId": 2,      //set as 5 for test, need to catch login memberId
+        "memberId": login_memberId,      //set as 2 for test, need to catch login memberId
         "eventId": $("li.event_id").val()
     })
 
@@ -460,7 +463,7 @@ $(document).on("click", "button.event_report_btn", function () {
             contentType: 'application/json',
             data: JSON.stringify({
                 "eventId": $("li.event_id").val(),
-                "memberId": 2,
+                "memberId": login_memberId,              //set as 2 for test, need to catch login memberId
                 "reportReason": 1,
                 "reportDate": new Date().toISOString(),
                 "caseStatus": 1
@@ -513,7 +516,7 @@ $(document).on("click", "button.send_btn", function () {
         contentType: 'application/json',
         data: JSON.stringify({
             "eventId": $("li.event_id").val(),
-            "memberId": member_id,                                                      //set as 1 for test
+            "memberId": login_memberId,                                                      //set as 1 for test
             "mountainId": $("#mountain_id").val(),
             "eventName": $("input.event_name").val(),
             "eventDays": $("input.event_days").val(),
@@ -547,7 +550,7 @@ $(document).on("click", "button.join_btn", function () {
         url: "http://localhost:8081/shanshan/participant/selectParticipantByMemberId",
         type: "GET",
         contentType: 'application/json',
-        data: { "memberId": 5, "eventId": $("li.event_id").val() }, //need to get the login memberId
+        data: { "memberId": login_memberId, "eventId": $("li.event_id").val() }, //need to get the login memberId
         dataType: "json",
         beforeSend: function () {
         },
@@ -629,7 +632,7 @@ $(document).on("click", "button.send_participants_btn", function () {
         contentType: 'application/json',
         data: JSON.stringify({
             "eventId": $("li.event_id").val(),
-            "memberId": memberId,
+            "memberId": login_memberId,
             "experience": $("select.experience").val(),
             "phoneNumber": $("input.phone_number").val(),
             "joinDate": new Date().toISOString(),
@@ -653,7 +656,7 @@ $(document).on("click", "button.send_participants_btn", function () {
                 contentType: 'application/json',
                 data: JSON.stringify({
                     "eventId": $("li.event_id").val(),
-                    "memberId": member_id,                                                      //set as 1 for test
+                    "memberId": login_memberId,                                                      //set as 1 for test
                     "mountainId": $("#mountain_id").val(),
                     "eventName": $("input.event_name").val(),
                     "eventDays": $("input.event_days").val(),
@@ -688,7 +691,7 @@ $(document).on("click", "button.edit_participants_btn", function () {
         data: JSON.stringify({
             "partId": $("input.part_id").val(),
             "eventId": $("li.event_id").val(),
-            "memberId": memberId,
+            "memberId": login_memberId,
             "experience": 1,
             "phoneNumber": $("input.phone_number").val(),
             "totalParticipants": $("input.total_participants").val()
@@ -749,7 +752,7 @@ $(document).on("click", "button.add_msg_btn", function () {
         contentType: 'application/json',
         data: JSON.stringify({
             "eventId": eventId,
-            "memberId": memberId,
+            "memberId": login_memberId,
             "msgDate": msgDate,
             "msgContent": msgContent,
             "msgStatus": msgStatus

@@ -12,7 +12,7 @@ body {
     color: rgb(45, 75, 77);
 }
 div.event_view{
-    border:solid red;
+
     margin-top: 10%;
     margin-left:20%;
     height: 1000px;
@@ -20,12 +20,12 @@ div.event_view{
     
 }
 div.wish_report{
-    border:solid indigo;
+
     margin-top: 0.5%;
     height:5%
 }
 div.event_pic{
-    border:solid black;
+    text-align: center;
     margin-top: 0.5%;
     height:30%;
 }
@@ -34,17 +34,19 @@ img.event_pic{
     overflow:hidden;
     object-fit: fill;
     height:100%;
-    margin-left: 30%;
+    vertical-align : middle;
+    box-shadow:0 0 5px 3px rgba(0,150,200,1);
+
 }
 div.event_detail{
-    border:solid blue;
+
     margin-top: 0.5%;
     height:20%;
 
 }
 
 ul.event_detail_left{
-    border:lightseagreen solid;
+
     display: inline-block;
     width:48%;
     height:80%;
@@ -53,7 +55,7 @@ ul.event_detail_left{
 }
 
 ul.event_detail_right{
-    border:lightseagreen solid;
+
     display: inline-block;
     width:48%;
     height:80%;
@@ -68,12 +70,12 @@ select.north_mountain.-on, select.mid_mountain.-on, select.south_mountain.-on, s
 }
 
 div.event_content{
-    border:solid yellow;
+
     margin-top: 0.5%;
     height:30%;
 }
 div.event_msg{
-    border:solid green;
+
     margin-top: 0.5%;
 }
 div.event_wish_heart, div.event_wish_heart_filled{
@@ -107,11 +109,10 @@ div.event_wish_heart.-on{
 }
 button.event_report_btn{
     display:inline-block;
-    margin-left:1%;
     width:5%;
 }
 div.event_msg_block{
-    border:solid lightcoral;
+
     margin-top: 0.5%;
     margin-left:20%;
     height:100%;
@@ -120,7 +121,7 @@ div.event_msg_block{
 
 
 div.add_msg_block{
-    border:solid lightslategrey;
+
     width:80%;
     height:100px;
     margin-left: 10%;
@@ -133,35 +134,38 @@ button.add_msg{
 
 }
 div.event_msg_list{
-    border:mediumaquamarine solid;
+
     width:80%;
     margin-top:1%;
     margin-left: 10%;
 }
-ul.event_msg{
-
+div.event_msg{
     display:block;
-    border:solid red;
     height: 55px;
+    width:1000px;
 }
 
 img.member_pic{
     display:inline-block;
-    border:solid blue;
     border-radius: 50%;
     height:50px;
     width:50px;
     margin:auto;
+    vertical-align: middle;
  
 }
 li.member_name{
     display:inline-block;
+    vertical-align: middle;
 }
 li.msg_content{
     display:inline-block;
+    vertical-align: middle;
 }
 button.msg_report_btn{
+	float:right;
     right:0;
+    vertical-align: middle;
 }
 
 button.back_btn{
@@ -184,6 +188,9 @@ input.event_name, input.event_days,input.assembling_place, input.event_deadline,
 
 input.event_name.-on, input.event_days.-on,input.assembling_place.-on, input.event_deadline.-on, input.event_start_date.-on, input.max_num_of_people.-on, input.min_num_of_people.-on{
     outline:solid grey 0.01rem;
+}
+div.event_name{
+	text-align:center;
 }
 
 textarea.event_content{

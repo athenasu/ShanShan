@@ -2,6 +2,7 @@ $(document).on("click", "a.lightbox-close", function () {
     $("div.event_report_lightbox").removeClass("-on");
     $("div.article_report_lightbox").removeClass("-on");
     $("div.msg_report_lightbox").removeClass("-on");
+    $("div.store_verify_lightbox").removeClass("-on");
 })
 $(document).on("click", "input.report_accepted", function () {
     $(this).attr("checked", true);
@@ -34,15 +35,13 @@ $(document).on("change", "select.case_status", function () {
 
                 },
                 success: function (data) {
-                    // console.log("123");
-                    // console.log(data);
+
                     let event_repot_list = "";
 
                     $.each(data, function (index, item) {
-                        //  console.log(item)
-                        //  event_repot_list +=         '<h1>New Cases</h1>';
-                        event_repot_list += '<div class="case_list_display">';
-                        event_repot_list += '<div id= "case_number" class="case_number" data-casenumber="' + item.eventReportID + '">EVENT <a href="#" target="">' + item.eventReportID + '</a></div>';
+
+                        event_repot_list += '<div class="case_list_display event">';
+                        event_repot_list += '<div id= "case_number" class="case_number" data-casenumber="' + item.eventReportID + '"><a href="#" target="">EVENT - ' + item.eventReportID + '</a></div>';
                         event_repot_list += '<div class="case_content">case content</div>';
                         event_repot_list += '<div class="case_status">NEW</div>';
                         event_repot_list += '<div class="case_create_date">' + new Date(item.reportDate).toLocaleDateString('fr-CA', { year: 'numeric', month: '2-digit', day: '2-digit' }) + '</div>';
@@ -50,32 +49,42 @@ $(document).on("change", "select.case_status", function () {
 
                     })
                     $("div.case_list_body").append(event_repot_list);
-                    // console.log($("div.case_number").data("casenumber"))
+
                 }
             })
 
             //GET NEW MSG REPORT
-            $.ajax({
-                url: "http://localhost:8081/shanshan//",
-                type: "GET",
-                data: {},
-                beforeSend: function () {
-
-                },
-                success: function (data) {
-
-                }
-            })
+//            $.ajax({
+//                url: "http://localhost:8081/shanshan//",
+//                type: "GET",
+//                data: {},
+//                beforeSend: function () {
+//
+//                },
+//                success: function (data) {
+//
+//                }
+//            })
             //GET NEW ARTICLE REPORT
             $.ajax({
-                url: "http://localhost:8081/shanshan//",
+                url: "http://localhost:8081/shanshan/admin/findArticleRepoByStatus",
                 type: "GET",
-                data: {},
+                data: {"articleReportStatus":1},
                 beforeSend: function () {
-
+        
                 },
                 success: function (data) {
-
+                    let article_repot_list = "";
+                    console.log(data);
+                    $.each(data, function(index, item){
+                        article_repot_list += '<div class="case_list_display article">';
+                        article_repot_list += '<div id= "case_number" class="case_number" data-casenumber="' + item.article_report_id + '"><a href="#" target="">ARTICLE - ' + item.article_report_id + '</a></div>';
+                        article_repot_list += '<div class="case_content">case content</div>';
+                        article_repot_list += '<div class="case_status">NEW</div>';
+                        article_repot_list += '<div class="case_create_date">' + new Date(item.article_report_date).toLocaleDateString('fr-CA', { year: 'numeric', month: '2-digit', day: '2-digit' }) + '</div>';
+                        article_repot_list += '</div>';
+                    })
+                    $("div.case_list_body").append(article_repot_list);
                 }
             })
             break;
@@ -93,10 +102,10 @@ $(document).on("change", "select.case_status", function () {
 
                     $.each(data, function (index, item) {
 
-                        event_repot_list += '<div class="case_list_display">';
-                        event_repot_list += '<div id= "case_number" class="case_number" data-casenumber="' + item.eventReportID + '">EVENT <a href="#" target="">' + item.eventReportID + '</a></div>';
+                        event_repot_list += '<div class="case_list_display event">';
+                        event_repot_list += '<div id= "case_number" class="case_number" data-casenumber="' + item.eventReportID + '"> <a href="#" target="">EVENT - ' + item.eventReportID + '</a></div>';
                         event_repot_list += '<div class="case_content">case content</div>';
-                        event_repot_list += '<div class="case_status">NEW</div>';
+                        event_repot_list += '<div class="case_status">DONE</div>';
                         event_repot_list += '<div class="case_create_date">' + new Date(item.reportDate).toLocaleDateString('fr-CA', { year: 'numeric', month: '2-digit', day: '2-digit' }) + '</div>';
                         event_repot_list += '</div>';
 
@@ -106,27 +115,37 @@ $(document).on("change", "select.case_status", function () {
             })
 
             //GET DONE MSG REPORT
-            $.ajax({
-                url: "http://localhost:8081/shanshan//",
-                type: "GET",
-                data: {},
-                beforeSend: function () {
-
-                },
-                success: function (data) {
-
-                }
-            })
+//            $.ajax({
+//                url: "http://localhost:8081/shanshan//",
+//                type: "GET",
+//                data: {},
+//                beforeSend: function () {
+//
+//                },
+//                success: function (data) {
+//
+//                }
+//            })
             //GET DONE ARTICLE REPORT
             $.ajax({
-                url: "http://localhost:8081/shanshan//",
+                url: "http://localhost:8081/shanshan/admin/findArticleRepoByStatus",
                 type: "GET",
-                data: {},
+                data: {"articleReportStatus":2},
                 beforeSend: function () {
-
+        
                 },
                 success: function (data) {
-
+                    let article_repot_list = "";
+                    console.log(data);
+                    $.each(data, function(index, item){
+                        article_repot_list += '<div class="case_list_display article">';
+                        article_repot_list += '<div id= "case_number" class="case_number" data-casenumber="' + item.article_report_id + '"><a href="#" target="">ARTICLE - ' + item.article_report_id + '</a></div>';
+                        article_repot_list += '<div class="case_content">case content</div>';
+                        article_repot_list += '<div class="case_status">DONE</div>';
+                        article_repot_list += '<div class="case_create_date">' + new Date(item.article_report_date).toLocaleDateString('fr-CA', { year: 'numeric', month: '2-digit', day: '2-digit' }) + '</div>';
+                        article_repot_list += '</div>';
+                    })
+                    $("div.case_list_body").append(article_repot_list);
                 }
             })
 
@@ -200,7 +219,7 @@ $(document).on("click", "button.admin_info", function (e) {
 
 //===================================== CASE MANAGE =====================================
 $(document).on("click", "button.report_management", function (e) {
-    $(this).parents().find(".menu").children().remove();                 //應該會從session取回資料代入上方TAB區塊
+    $(this).parents().find(".menu").children().remove();                 
     $(this).parents().find("main").children().remove();
     let list_html = "";
     // list_html += '<div class="menu" name="menu">';
@@ -234,8 +253,8 @@ $(document).on("click", "button.report_management", function (e) {
             $.each(data, function (index, item) {
                 //  console.log(item)
                 //  event_repot_list +=         '<h1>New Cases</h1>';
-                event_repot_list += '<div class="case_list_display">';
-                event_repot_list += '<div id= "case_number" class="case_number" data-casenumber="' + item.eventReportID + '">EVENT<a href="#" target="">' + item.eventReportID + '</a></div>';
+                event_repot_list += '<div class="case_list_display event">';
+                event_repot_list += '<div id= "case_number" class="case_number" data-casenumber="' + item.eventReportID + '"><a href="#" target="">EVENT - ' + item.eventReportID + '</a></div>';
                 event_repot_list += '<div class="case_content">case content</div>';
                 event_repot_list += '<div class="case_status">NEW</div>';
                 event_repot_list += '<div class="case_create_date">' + new Date(item.reportDate).toLocaleDateString('fr-CA', { year: 'numeric', month: '2-digit', day: '2-digit' }) + '</div>';
@@ -257,32 +276,39 @@ $(document).on("click", "button.report_management", function (e) {
         },
         success: function (data) {
             let msg_repot_list = "";
-            $.each(data, function (index, time) {
+            $.each(data, function (index, item) {
 
             })
             $("div.case_list_body").append(msg_repot_list);
         }
     })
     //GET NEW ARTICLE REPORT
-    $.ajax({
-        url: "http://localhost:8081/shanshan//",
-        type: "GET",
-        data: {},
-        beforeSend: function () {
-
-        },
-        success: function (data) {
-            let article_repot_list = "";
-            $.each(data, function (index, time) {
-
+            $.ajax({
+                url: "http://localhost:8081/shanshan/admin/findArticleRepoByStatus",
+                type: "GET",
+                data: {"articleReportStatus":1},
+                beforeSend: function () {
+        
+                },
+                success: function (data) {
+                    let article_repot_list = "";
+                    console.log(data);
+                    $.each(data, function(index, item){
+                        article_repot_list += '<div class="case_list_display article">';
+                        article_repot_list += '<div id= "case_number" class="case_number" data-casenumber="' + item.article_report_id + '"><a href="#" target="">ARTICLE - ' + item.article_report_id + '</a></div>';
+                        article_repot_list += '<div class="case_content">case content</div>';
+                        article_repot_list += '<div class="case_status">NEW</div>';
+                        article_repot_list += '<div class="case_create_date">' + new Date(item.article_report_date).toLocaleDateString('fr-CA', { year: 'numeric', month: '2-digit', day: '2-digit' }) + '</div>';
+                        article_repot_list += '</div>';
+                    })
+                    $("div.case_list_body").append(article_repot_list);
+                }
             })
-            $("div.case_list_body").append(article_repot_list);
-        }
-    })
 
 })
 
 //===================================== STORE MANAGE =====================================
+
 $(document).on("click", "button.store_management", function (e) {
     $(this).parents().find(".menu").children().remove();                 //應該會從session取回資料代入上方TAB區塊
     $(this).parents().find("main").children().remove();
@@ -292,51 +318,66 @@ $(document).on("click", "button.store_management", function (e) {
     sv_menu += '<li class="store_verify" href="#store_verify" role="tab" data-toggle="tab">Store Verify</li>'
     sv_menu += '<li class="order_info" href="#order_info" role="tab" data-toggle="tab">Order Info</li>'
     sv_menu += '<li class="statistics" href="#statistics" role="tab" data-toggle="tab">Statistics</li>'
-    sv_menu += '</ul>'
-
-    // let sv_list = "";
-    // sv_list += '<div class="store_manage_body" name="store_manage_body"></div>'
-    // sv_list += '<div class="sv_selector"></div>'
-    // sv_list += '<select class="svs_container"></select>'
-    // sv_list += '<option>NEW</option>'
-    // sv_list += '<option>WAITING</option>'
-    // sv_list += '<option>DONE</option>'
-    // sv_list += '</select>'
-    // sv_list += '</div>'
-    // sv_list += '<div class="sv_body"></div>'
-    // sv_list += '<h1>New</h1>'
-    // sv_list += '<div class="sv_display"></div>'
-    // sv_list += '<div class="sv_status">NEW</div>'
-    // sv_list += '<div class="store_name">山山</div>'
-    // sv_list += '<div class="sv_create_date">2021.11.11 00:00:00</div>'
-    // sv_list += '<button class="sv_detail">詳情</button>'
-    // sv_list += '</div>'
-    // sv_list += '</div>'
-    // sv_list += '</div>'
-    let sv_list = `
-        <div class="store_manage_body" name="store_manage_body">
-            <div class="sv_selector">
-                <select class="svs_container">
-                    <option>NEW</option>
-                    <option>WAITING</option>
-                    <option>DONE</option>
-                </select>
-            </div>
-
-            <div class="sv_body">
-                <h1>New</h1>
-                <div class="sv_display">
-                    <div class="sv_status">NEW</div>
-                    <div class="store_name">山山</div>
-                    <div class="sv_create_date">2021.11.11 00:00:00</div>
-                    <button class="sv_detail">詳情</button>
-                </div>
-            </div>
-        </div>
-    `;
-
+    sv_menu += '</ul>';
     $(this).parents().find(".menu").append(sv_menu);
-    $(this).parents().find("main").html(sv_list);
+    
+    let sv_main = "";
+    sv_main += '<div class="sv_body">';
+    sv_main += '<h1>尚未審核店家</h1>';
+    sv_main += '</div>';
+    $("main").append(sv_main);
+ 
+    $.ajax({
+        url: "http://localhost:8081/shanshan/company/findAllCompany",
+        type: "GET",
+        data: {},
+        beforeSend: function () {
+
+        },
+        success: function (data) {
+            console.log(data)
+            
+            let sv_list = "";
+            $.each(data, function(index, item){
+                sv_list += '<div class="sv_display" data-companyid="'+ item.companyId +'">';
+                sv_list += '<div class="sv_status">NEW</div>';
+                sv_list += '<div class="store_name">'+ item.companyName +'</div>';
+                sv_list += '<div class="sv_create_date">'+new Date(item.companyRegisterDate) +'</div>';
+                sv_list += '<button class="sv_detail">詳情</button>';
+                sv_list += '</div>';
+            })
+            $("div.sv_body").append(sv_list);
+        }
+    })
+    
+$(document).on("click", "button.sv_detail", function(){
+    $("div.store_verify_lightbox").addClass("-on")
+    $.ajax({
+        url: "http://localhost:8081/shanshan/company/findByPK",
+        type: "GET",
+        data: {"companyId":$("div.sv_display").data("companyid")},
+        beforeSend: function () {
+
+        },
+        success: function (data) {
+            let verifyContent = `
+                        <div class="verify_content">
+                            <h3>店家申請資料</h3>
+                            <li>帳號：${data.companyEmail}</li>
+                            <li>店家名稱：${data.companyName}</li>
+                            <li>店家編號：${data.companyId}</li>
+                            <li>負責人：${data.companyId}</li>
+                            <li>手機：${data.companyCell}</li>
+                            <li>電話：${data.companyPhone}</li>
+                            <li>地址：${data.companyAddress}</li>
+                            <li>店家介紹：${data.companyIntro}</li>
+                            <li>註冊日期：${data.companyRegisterDate}</li>
+                        </div>
+                        <a class="lightbox-close" href="#"></a>
+            `
+        }
+    })
+})
 
 })
 //===================================================================================================================================
@@ -373,6 +414,7 @@ $(document).on("click", "button.send_disposal_btn", function () {
     if ($("input.report_accepted").is(":checked")) {
         let r = confirm("確認下架?")
         //=========== UPDATE EVENT REPORT STATUS AND CASE DONE ===========
+        if (r == true){
         $.ajax({
             url: "http://localhost:8081/shanshan/eventReport/updateEventReport",
             type: "PUT",
@@ -409,6 +451,7 @@ $(document).on("click", "button.send_disposal_btn", function () {
                 })
             }
         })
+    }
         //=========== UPDATE ARTICLE REPORT STATUS AND CASE DONE ===========
 
         //=========== UPDATE EVENT MSG REPORT STATUS AND CASE DONE ===========
@@ -461,53 +504,66 @@ $(document).on("click", "button.send_disposal_btn", function () {
 //======= CHOOSE CASE =======
 $(document).on("click", "div.case_list_display a", function (e) {
     let that = this;
-    $("div.event_report_lightbox").addClass("-on")
+    console.log($(this).closest("div.case_list_display"))
+    if($(this).closest("div.case_list_display").hasClass("article")){
+    	console.log("this is article report")
 
-    $.ajax({
-        url: "http://localhost:8081/shanshan/eventReport/selectByIdtest",
-        type: "GET",
-        data: { "eventReportID": $(that).closest("div").data("casenumber") },
-        beforeSend: function () {
+    }else if($(this).closest("div.case_list_display").hasClass("event")){
+    	console.log("this is event report")
+        $("div.event_report_lightbox").addClass("-on")
 
-        },
-        success: function (data) {
-            // console.log($(that).closest("div").data("casenumber"));
-            let event_report_content = `
-            <div class="case_info_block">
-            <div class="case_info_title">
-                Case Information
+        $.ajax({
+            url: "http://localhost:8081/shanshan/eventReport/selectByIdtest",
+            type: "GET",
+            data: { "eventReportID": $(that).closest("div").data("casenumber") },
+            beforeSend: function () {
+    
+            },
+            success: function (data) {
+                // console.log($(that).closest("div").data("casenumber"));
+                let event_report_content = `
+                <div class="case_info_block">
+                <div class="case_info_title">
+                    Case Information
+                </div>
+                <ul>
+                    <li data-eventreportid="${data[0].eventReportID}">檢舉編號：${data[0].eventReportID}</li>
+                    <li>檢舉原因：${data[0].reportReason}</li>
+                    <li>檢舉人：${data[0].memberName}</li>
+                    <li>案件狀態：${data[0].caseStatus}</li>
+                    <li>案件開立時間：${new Date(data[0].reportDate).toLocaleDateString('fr-CA', { year: 'numeric', month: '2-digit', day: '2-digit' })}</li>
+                    <li>案件完成時間：${new Date(data[0].caseDone).toLocaleDateString('fr-CA', { year: 'numeric', month: '2-digit', day: '2-digit' })}</li>
+                </ul>
+                <form>
+                    <p>處置：</p>
+                    <input class="report_denied" name="case_disposal" type="radio" id="report_denied">
+                    <label for="report_denied">上架</label>
+                    <input class="report_accepted" name="case_disposal" type="radio" id="report_accepted" value="0">
+                    <label for="report_accepted">下架</label>
+                </form>
+                <button class="send_disposal_btn">送出處置</button>
             </div>
-            <ul>
-                <li data-eventreportid="${data[0].eventReportID}">檢舉編號：${data[0].eventReportID}</li>
-                <li>檢舉原因：${data[0].reportReason}</li>
-                <li>檢舉人：${data[0].memberName}</li>
-                <li>案件狀態：${data[0].caseStatus}</li>
-                <li>案件開立時間：${new Date(data[0].reportDate).toLocaleDateString('fr-CA', { year: 'numeric', month: '2-digit', day: '2-digit' })}</li>
-                <li>案件完成時間：${new Date(data[0].caseDone).toLocaleDateString('fr-CA', { year: 'numeric', month: '2-digit', day: '2-digit' })}</li>
-            </ul>
-            <form>
-                <p>處置：</p>
-                <input class="report_denied" name="case_disposal" type="radio" id="report_denied">
-                <label for="report_denied">上架</label>
-                <input class="report_accepted" name="case_disposal" type="radio" id="report_accepted" value="0">
-                <label for="report_accepted">下架</label>
-            </form>
-            <button class="send_disposal_btn">送出處置</button>
-        </div>
+    
+            <div class="case_ref_block">
+                <div class="case_ref_title">
+                    Reference
+                </div>
+                <div data-eventid="${data[0].eventId}" class="case_ref_content">
+                    <textarea>${data[0].eventContent}</textarea>
+                </div>
+            </div>
+            <a class="lightbox-close" href="#"></a>
+                `;
+                $("div.event_report_lightbox").html(event_report_content)
+            }
+        })
+    }else{
+    	console.log("this is msg report")
+    }
+    
+    
 
-        <div class="case_ref_block">
-            <div class="case_ref_title">
-                Reference
-            </div>
-            <div data-eventid="${data[0].eventId}" class="case_ref_content">
-                <textarea>${data[0].eventContent}</textarea>
-            </div>
-        </div>
-        <a class="lightbox-close" href="#"></a>
-            `;
-            $("div.event_report_lightbox").html(event_report_content)
-        }
-    })
+    
 })
 
 //===================================================================================================================================
