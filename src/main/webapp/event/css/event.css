@@ -1,9 +1,13 @@
 * {
     box-sizing: border-box;
   }
-  body {
+main{
+  flex:1;
+}
+  html,body {
     margin: 0;
     padding: 0;
+    height:100%;
     width: 100%;
     color: rgb(45, 75, 77);
   }
@@ -62,15 +66,62 @@ button.icon{
     width: 35px;
     color: #1a4e81;
     font-size: 20pt;
-  }
-
-  button.create_event{
+}
+/*======================== Create Event botton ========================*/
+  /* button.create_event{
     display:inline-block;
     margin-left: 25%;
     font-size: 20px;
-  }
+  } */
+  button.create_event {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    margin-left: 25%;
+    padding: 12px 24px;
+    border: 1px solid #25722f;
+    border-radius: 8px;
+    background: #3cba4d;
+    background: -webkit-gradient(linear, left top, left bottom, from(#3cba4d), to(#25722f));
+    background: -moz-linear-gradient(top, #3cba4d, #25722f);
+    background: linear-gradient(to bottom, #3cba4d, #25722f);
+    text-shadow: #17481e 1px 1px 1px;
+    font: normal normal bold 21px arial;
+    color: #ffffff;
+    text-decoration: none;
+}
+button.create_eventn:hover,
+button.create_event:focus {
+    border: 1px solid #2e8f3b;
+    background: #48df5c;
+    background: -webkit-gradient(linear, left top, left bottom, from(#48df5c), to(#2c8938));
+    background: -moz-linear-gradient(top, #48df5c, #2c8938);
+    background: linear-gradient(to bottom, #48df5c, #2c8938);
+    color: #ffffff;
+    text-decoration: none;
+}
+button.create_event:active {
+    background: #25722f;
+    background: -webkit-gradient(linear, left top, left bottom, from(#25722f), to(#25722f));
+    background: -moz-linear-gradient(top, #25722f, #25722f);
+    background: linear-gradient(to bottom, #25722f, #25722f);
+}
+button.create_event:before{
+    content:  "\0000a0";
+    display: inline-block;
+    height: 24px;
+    width: 24px;
+    line-height: 24px;
+    margin: 0 4px -6px -4px;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAA7EAAAOxAGVKw4bAAACBUlEQVRIie2UwWsTQRTGv3lvdjfZbnNqi4eQg3iRKOLBWCJ6kYr/gKBS8CAeFMVSBKkX8eChVMFDTx4VLyKIIGIRPVgUIygIilKtBFqlipgmbrIbN5nx0FiSNrtLwZPkB4+Bbx7f994cBujRI4ynxeqp2WJ1X1yfiLqc+fQLAsCBLf0demGhltfALIBFIZDdnbbdMA+KCkgwnbOYbj2Y06vamyVfmlJMWZLIkpQxWYxHeYQGvPrqZWyDLtoGHR3q8w/+1Q0Why2mvMUCFgu4XuPsoenXmQ0HCOBy0iTHNglJg66+WKiaI1MFZ37JvWRJAYOFev+l4l+5P5cq1YLJCJ/1HLnxIU9CPB5yDGzd1Kd+NxUKxcrE92+VQRLiwmDK9L1AyXItMAUADSghsHdmfNfz2IBjNz9KJdQzDeTadaX0j9LPqg3ADhn2pQbteTi2s9EurnsikhhlppxkQnvV/cBhJpuZEFI5yRiN3ODE7fmUBt4BSEO3bjUQNJr+ctkzuw20hkUIbL93csdy1w2YaEISpSW1Jl85lecHICYiJsRUmojOd93gzN3i5tb0ifYGr97wy269Q4vBh0D2zvHs59WA00/GHN3sfwTtbFvb3WgqpbSOe5oOmGtvpXRHpvdfcyUAJDgxAA6GgdJGfKIYBhIDAFYCkjLpArj+r9xbhP5PPf4z/gCR8KA5z7LN6wAAAABJRU5ErkJggg==") no-repeat left center transparent;
+    background-size: 100% 100%;
+}
+
   /*====================== Slide Show ======================*/
-div.slidshow_container{
+/* div.slidshow_container{
   display: relative;
   border: solid red;
   height: 250px;
@@ -82,8 +133,100 @@ div.event_slide{
   border: solid blue;
   display: inline-block;
   height: 100%;
+} */
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin-left:25%;
+  margin-top:1%;
 }
 
+/* Hide the images by default */
+.mySlides {
+  display: none;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
 
   /*====================== MAIN BLOCK ======================*/
 

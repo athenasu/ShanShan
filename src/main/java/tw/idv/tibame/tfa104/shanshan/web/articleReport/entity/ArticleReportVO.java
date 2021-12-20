@@ -2,6 +2,7 @@ package tw.idv.tibame.tfa104.shanshan.web.articleReport.entity;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class ArticleReportVO implements Serializable {
 
@@ -11,7 +12,7 @@ public class ArticleReportVO implements Serializable {
 	private Integer article_id;
 	private Integer article_report_status;
 	private Integer article_report_reason;
-	private Date article_report_date ;
+	private Timestamp article_report_date ;
 	private Date case_done ;
 	
 	public Integer getArticle_report_id() {
@@ -44,10 +45,10 @@ public class ArticleReportVO implements Serializable {
 	public void setArticle_report_reason(Integer article_report_reason) {
 		this.article_report_reason = article_report_reason;
 	}
-	public Date getArticle_report_date() {
+	public Timestamp getArticle_report_date() {
 		return article_report_date;
 	}
-	public void setArticle_report_date(Date article_report_date) {
+	public void setArticle_report_date(Timestamp article_report_date) {
 		this.article_report_date = article_report_date;
 	}
 	public Date getCase_done() {
@@ -57,7 +58,29 @@ public class ArticleReportVO implements Serializable {
 		this.case_done = case_done;
 	}
 	
-	
+//	for owen
+	private String article_title;
+	private String article_content;
+	private String member_name;
+
+	public String getArticle_title() {
+		return article_title;
+	}
+	public void setArticle_title(String article_title) {
+		this.article_title = article_title;
+	}
+	public String getArticle_content() {
+		return article_content;
+	}
+	public void setArticle_content(String article_content) {
+		this.article_content = article_content;
+	}
+	public String getMember_name() {
+		return member_name;
+	}
+	public void setMember_name(String member_name) {
+		this.member_name = member_name;
+	}
 	
 
 }

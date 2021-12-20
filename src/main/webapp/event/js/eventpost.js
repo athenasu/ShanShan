@@ -39,28 +39,26 @@ $(document).on("change", "#mountain_area", function () {
             break;
     }
 })
+$(document).on("change", "#mountain_id", function () {
+    $("#mountain_id").attr("value", $(this).val());
+    console.log($(this).val())
+    $.ajax({
+        url: "http://localhost:8081/shanshan/mountain/findMtnByPk",
+        type: "GET",
+        data: {"mtnId":$(this).val()},
+        beforeSend: function () {
 
-$("#mountain_id").on("change", function () {
-    $("#mountain_id").attr("value", $(this.val()));
+        },
+        success: function (data) {
+            console.log(data.mountainId);
+
+            var bytes = new Uint8Array(data.mountainPic);
+            var blob = new Blob([bytes], { type: "image/png" });
+            var url = URL.createObjectURL(blob);
+            $("div.mountain_pic").html('<img src="'+ url +'" class="mountain_pic">');
+        }
+    })
 })
-
-
-// $(window).on("click", function(){
-//     // console.log($("input.event_name").val());
-//     // console.log($("input.event_days").val());
-//     // console.log($("#difficulty").val());
-//     // console.log($("#event_deadline").val());
-//     // console.log($("#event_start_date").val());
-//     // console.log($("#stay_type").val());
-//     console.log($("#mountain_area").val());
-//     // console.log($("#mountain_id").val());
-//     // console.log($("input.assembling_place").val());
-//     // console.log($("textarea.event_content").val());
-//     // console.log(new Date().toISOString().slice(0, 19).replace('T', ' '));
-//     // console.log("");
-//     // console.log("");
-
-// })
 
 $(document).on("click", "button.submit_btn", function () {
     console.log("123")

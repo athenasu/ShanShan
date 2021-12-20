@@ -6,203 +6,199 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="shortcut icon" href="/img/favicon.png" />
-
-  <title>山山來此|揪團首頁</title>
-  <!-- 　　　　　　↑　可更換為自己的頁面名稱 -->
+  <link rel="stylesheet" href="./css/header_footer_login.css" />
+  <title>山山來此</title>
 </head>
 
 <body>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
-  <script src="vendors/jquery/jquery-3.4.1.min.js"></script>
-  <script src="./js/event.js"></script>
-  <link rel="stylesheet" href="./css/event.css" />
-  <link rel="stylesheet" href="./css/header_footer.css" />
-  
-  <header>
-    <div id="logo">
-      <a href="index.html"><img src="img/logo.png" class="img" /></a>
+  <main>
+    <header class="header-div">
+      <div id="logo">
+        <a href="index.html"><img src="img/logo.png" class="img" /></a>
+      </div>
+      <nav id="navlist">
+        <ul>
+          <li><a href="#">找山友</a></li>
+          <li><a href="#">山友日誌</a></li>
+          <li><a href="#">攻山小物</a></li>
+          <li><a href="#">登山資訊</a></li>
+          <li><a href="#">會員中心</a></li>
+        </ul>
+      </nav>
+      <div id="memcheck">
+        <div id="ball"><i class="fas fa-bell"></i></div>
+        <a href="../member/register.html"><input type="button" class="register_button" value="註冊"></a>
+        <input type="button" class="login_modal_button" value="登入">
+        <input type="button" class="logout_modal_button -none" value="登出">
+      </div>
+    </header>
+    <div class="login_modal_bcg -none"></div>
+    <div class="login_modal -none">
+      <h1 class="login_form_title">登入</h1>
+      <div>
+        <div class="login_formbox">
+          <input class="emaillogin" type="button" value="用電子郵件登入">
+        </div>
+        <div class="login_formbox" style=" text-align: center;">
+          <p>還沒註冊?請點選這裡<a href="register.html">註冊成為新山友</a></p>
+        </div>
+      </div>
     </div>
-    <nav id="navlist">
-      <ul>
-        <li><a href="#">找山友</a></li>
-        <li><a href="#">山友日誌</a></li>
-        <li><a href="#">攻山小物</a></li>
-        <li><a href="#">登山資訊</a></li>
-        <li><a href="#">會員中心</a></li>
-      </ul>
-    </nav>
-    <div id="memcheck">
-      <div id="ball"><i class="fas fa-bell"></i></div>
-      <div id="login"><a href="#">登入</a></div>
-      <div id="register"><a href="#">註冊</a></div>
+    <!-- 燈箱郵件登入 開始 USER LOGIN-->
+    <div class="login_modal_email -none">
+      <h1 class="login_form_title">用電子郵件登入</h1>
+      <div>
+        <div class="login_formbox_2 ">
+          <label class="login_formname" for="Email">電子郵件地址</label>
+          <input class="login_formbar_email" name="Email" placeholder="請輸入您的電子郵件地址">
+          </br>
+        </div>
+        <div class="login_formbox">
+          <label class="login_formname" for="password">密碼</label>
+          <input class="login_formbar_password" type="password" name="password" placeholder="請輸入您的密碼"></br>
+        </div>
+        <div class="login_formbox">
+          <input class="login_summitbutton" type="button" value="登入">
+        </div>
+        <div class="login_formbox" style=" text-align: center;">
+          <p class="forgot_password"><a href="#">忘記密碼?</a></p>
+        </div>
+      </div>
     </div>
-  </header>
-  <div class="district_block">
-    <div class="north_area">北部地區</div>
-    <div class="mid_area">中部地區</div>
-    <div class="south_area">南部地區</div>
-    <div class="east_area">東部地區</div>
-    <div class="other_area">其他地區</div>
-  </div>
+    <!-- FORGOT PASSWORD-->
+    <div class="forgot_password_modal -none">
+      <h1 class="forgot_password_title">請輸入電子郵件</h1>
+      <div>
+        <div class="forgot_password_formbox">
+          <label class="forgot_password_formname" for="Email">電子郵件地址</label>
+          <input class="forgot_password_email" name="Email" placeholder="請輸入您的電子郵件地址"></br>
+        </div>
+        <div class="forgot_password_formbox">
+          <input class="forgot_password_summitbutton" type="button" value="發信">
+        </div>
+      </div>
+    </div>
+    <script src="https://kit.fontawesome.com/2336c06c64.js" crossorigin="anonymous"></script>
+    <!-- 載入jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- 載入index.js -->
+    <script type='text/javascript' src='./js/header_footer_login.js'></script>
+    <!-- 載入icon -->
+    <script src="https://kit.fontawesome.com/8cfc21ab70.js" crossorigin="anonymous"></script>
 
-  <div class="search_block">
-    <input class="search_bar" type="text" name="search" id="search" placeholder="搜尋">
-    <button class="icon"><i class="fa fa-search"></i></button>
-    <button class="create_event">揪團</button>
-  </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
+    <script src="vendors/jquery/jquery-3.4.1.min.js"></script>
+    <script src="./js/event.js"></script>
+    <link rel="stylesheet" href="./css/event.css" />
+    <link rel="stylesheet" href="./css/header_footer.css" />
 
+    <div class="district_block">
+      <div class="north_area">北部地區</div>
+      <div class="mid_area">中部地區</div>
+      <div class="south_area">南部地區</div>
+      <div class="east_area">東部地區</div>
+      <div class="other_area">其他地區</div>
+    </div>
 
-  <div class="slidshow_container">
-    <!-- <div class="event_slide">
+    <div class="search_block">
+      <input class="search_bar" type="text" name="search" id="search" placeholder="搜尋">
+      <button class="icon"><i class="fa fa-search"></i></button>
+      <button class="create_event">揪團</button>
+    </div>
+
+    <div class="slideshow-container">
+      <!-- <div class="mySlides fade">
       <img src="#">
+      <div class="text">合歡山當天來回</div>
+      <div>出團日期：<span>2021/01/01</span></div>
+    </div>
+    <div class="mySlides fade">
+      <img src="#">
+      <div class="text">合歡山當天來回</div>
+      <div>出團日期：<span>2021/01/01</span></div>
+    </div>
+    <div class="mySlides fade">
+      <img src="#">
+      <div class="text">合歡山當天來回</div>
+      <div>出團日期：<span>2021/01/01</span></div>
+    </div>
+    <div class="mySlides fade">
+      <img src="#">
+      <div class="text">合歡山當天來回</div>
+      <div>出團日期：<span>2021/01/01</span></div>
+    </div>
+    <div class="mySlides fade">
+      <img src="#">
+      <div class="text">合歡山當天來回</div>
+      <div>出團日期：<span>2021/01/01</span></div>
+    </div> -->
+
+      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+      <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+    <div style="text-align:center">
+      <span class="dot" onclick="currentSlide(1)"></span>
+      <span class="dot" onclick="currentSlide(2)"></span>
+      <span class="dot" onclick="currentSlide(3)"></span>
+      <span class="dot" onclick="currentSlide(4)"></span>
+      <span class="dot" onclick="currentSlide(5)"></span>
+    </div>
+
+    <div class="main_block">
+      <!-- <div class="event_display">
+      <img class="event_pic" src="#">
       <h3 class="event_name">合歡山當天來回</h3>
       <div>出團日期：<span>2021/01/01</span></div>
     </div>
-    <div class="event_slide">
-      <img src="#">
+    <div class="event_display">
+      <img class="event_pic" src="#">
       <h3 class="event_name">合歡山當天來回</h3>
       <div>出團日期：<span>2021/01/01</span></div>
     </div>
-    <div class="event_slide">
-      <img src="#">
+    <div class="event_display">
+      <img class="event_pic" src="#">
       <h3 class="event_name">合歡山當天來回</h3>
       <div>出團日期：<span>2021/01/01</span></div>
     </div>
-    <div class="event_slide">
-      <img src="#">
+    <div class="event_display">
+      <img class="event_pic" src="#">
       <h3 class="event_name">合歡山當天來回</h3>
       <div>出團日期：<span>2021/01/01</span></div>
     </div>
-    <div class="event_slide">
-      <img src="#">
+    <div class="event_display">
+      <img class="event_pic" src="#">
       <h3 class="event_name">合歡山當天來回</h3>
       <div>出團日期：<span>2021/01/01</span></div>
     </div>
-    <div class="event_slide">
-      <img src="#">
+    <div class="event_display">
+      <img class="event_pic" src="#">
+      <h3 class="event_name">合歡山當天來回</h3>
+      <div>出團日期：<span>2021/01/01</span></div>
+    </div>
+    <div class="event_display">
+      <img class="event_pic" src="#">
+      <h3 class="event_name">合歡山當天來回</h3>
+      <div>出團日期：<span>2021/01/01</span></div>
+    </div>
+    <div class="event_display">
+      <img class="event_pic" src="#">
+      <h3 class="event_name">合歡山當天來回</h3>
+      <div>出團日期：<span>2021/01/01</span></div>
+    </div>
+    <div class="event_display">
+      <img class="event_pic" src="#">
       <h3 class="event_name">合歡山當天來回</h3>
       <div>出團日期：<span>2021/01/01</span></div>
     </div> -->
-  </div>
-
-  <div class="main_block">
-    <!-- <div class="event_display">
-      <img class="event_pic" src="#">
-      <h3 class="event_name">合歡山當天來回</h3>
-      <div>出團日期：<span>2021/01/01</span></div>
-    </div>
-    <div class="event_display">
-      <img class="event_pic" src="#">
-      <h3 class="event_name">合歡山當天來回</h3>
-      <div>出團日期：<span>2021/01/01</span></div>
-    </div>
-    <div class="event_display">
-      <img class="event_pic" src="#">
-      <h3 class="event_name">合歡山當天來回</h3>
-      <div>出團日期：<span>2021/01/01</span></div>
-    </div>
-    <div class="event_display">
-      <img class="event_pic" src="#">
-      <h3 class="event_name">合歡山當天來回</h3>
-      <div>出團日期：<span>2021/01/01</span></div>
-    </div>
-    <div class="event_display">
-      <img class="event_pic" src="#">
-      <h3 class="event_name">合歡山當天來回</h3>
-      <div>出團日期：<span>2021/01/01</span></div>
-    </div>
-    <div class="event_display">
-      <img class="event_pic" src="#">
-      <h3 class="event_name">合歡山當天來回</h3>
-      <div>出團日期：<span>2021/01/01</span></div>
-    </div>
-    <div class="event_display">
-      <img class="event_pic" src="#">
-      <h3 class="event_name">合歡山當天來回</h3>
-      <div>出團日期：<span>2021/01/01</span></div>
-    </div>
-    <div class="event_display">
-      <img class="event_pic" src="#">
-      <h3 class="event_name">合歡山當天來回</h3>
-      <div>出團日期：<span>2021/01/01</span></div>
-    </div>
-    <div class="event_display">
-      <img class="event_pic" src="#">
-      <h3 class="event_name">合歡山當天來回</h3>
-      <div>出團日期：<span>2021/01/01</span></div>
-    </div> -->
-  </div>
-
-  <!-- CSS TAG -->
-  <link rel="stylesheet" type="text/css" href="./css/register_login.css">
-  <!-- SCRIPT TAG -->
-  <script type='text/javascript' src='./js/register.js'></script>
-
-  <!-- 燈箱登入方式選擇 LOGIN -->
-  <div class="login_modal_bcg -none"></div>
-  <div class="login_modal -none">
-    <h1 class="login_form_title">登入</h1>
-    <div>
-      <div class="login_formbox">
-        <input class="emaillogin" type="button" value="用電子郵件登入"></input>
-      </div>
-
-      <div class="login_formbox" style=" text-align: center;">
-        <p>還沒註冊?請點選這裡<a href="register.html">註冊成為新山友</a></p>
-      </div>
     </div>
 
-  </div>
-  <!-- 燈箱登入方式選擇 結束-->
-
-  <!-- 燈箱郵件登入 開始 USER LOGIN-->
-  <div class="login_modal_email -none">
-    <h1 class="login_form_title">用電子郵件登入</h1>
-    <div>
-      <div class="login_formbox_2 ">
-        <label class="login_formname" for="Email">電子郵件地址</label>
-        <input class="login_formbar_email" name="Email" placeholder="請輸入您的電子郵件地址"></input>
-        </br>
-      </div>
-
-      <div class="login_formbox">
-        <label class="login_formname" for="password">密碼</label>
-        <input class="login_formbar_password" type="password" name="password" placeholder="請輸入您的密碼"></input></br>
-      </div>
-
-      <div class="login_formbox">
-        <input class="login_summitbutton" type="button" value="登入"></input>
-      </div>
-
-      <div class="login_formbox" style=" text-align: center;">
-        <p class="forgot_password"><a href="#">忘記密碼?</a></p>
-      </div>
-    </div>
-  </div>
-  <!-- 燈箱郵件登入 結束-->
-
-  <!-- 燈箱忘記密碼 開始 FORGOT PASSWORD-->
-  <div class="forgot_password_modal -none">
-    <h1 class="forgot_password_title">請輸入電子郵件</h1>
-    <div>
-      <div class="forgot_password_formbox">
-        <label class="forgot_password_formname" for="Email">電子郵件地址</label>
-        <input class="forgot_password_email" name="Email" placeholder="請輸入您的電子郵件地址"></input></br>
-      </div>
-      <div class="forgot_password_formbox">
-        <input class="forgot_password_summitbutton" type="button" value="發信"></input>
-      </div>
-    </div>
-  </div>
-  <!-- 燈箱忘記密碼 結束 FORGOT PASSWORD-->
-
-
-
-  <footer>
+  </main>
+  <!-- <footer>
     <h4>Copyright <i class="far fa-copyright"></i>2021 G3 SANSAN</h4>
-  </footer>
+  </footer> -->
   <script src="js/header.js"></script>
   <script src="https://kit.fontawesome.com/2336c06c64.js" crossorigin="anonymous"></script>
+  <script src="js/slideshow.js"></script>
 </body>
 
 </html>

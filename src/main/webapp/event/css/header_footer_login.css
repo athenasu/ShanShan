@@ -1,0 +1,252 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  color: rgb(45, 75, 77);
+}
+ul {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: rgb(45, 75, 77);
+}
+.img {
+  width: 100%;
+  max-width: 100%;
+}
+/* header */
+.header-div {
+  width: 100%;
+  /* border: 1px solid yellow; */
+  position: fixed;
+  top: 0px;
+  /* z-index: 2; */
+  display: flex;
+  align-items: center;
+  font-size: 25px;
+}
+.header-div a,
+.fa-bell {
+  color: #adc2a9;
+}
+.header-div a:hover,
+.fa-bell:hover {
+  color: #718371;
+}
+
+#logo {
+  width: 8%;
+  overflow: hidden;
+  margin: 0px 80px;
+}
+
+#navlist ul {
+  display: flex;
+  justify-content: space-between;
+}
+
+#navlist {
+  width: 60%;
+  margin: 0px 50px;
+}
+#memcheck {
+  width: 25%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+#memcheck div {
+  margin: 0px 20px;
+  font-size: 20px;
+}
+
+/* 解決「高度塌陷」與「外邊距重疊」*/
+
+.clearfix::before,
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.fa-bell:hover {
+  cursor: pointer;
+}
+
+.-none {
+  display: none;
+}
+
+.login_form_title,
+.forgot_password_title,
+.change_password_title {
+  text-align: center;
+  color: rgb(59, 89, 152);
+}
+
+.login_formbox,
+.forgot_password_formbox,
+.change_password_formbox {
+  margin-top: 10px;
+}
+
+.login_formname,
+.forgot_password_formname {
+  line-height: 30px;
+  font-size: 20px;
+}
+
+.login_formbar_email,
+.login_formbar_password,
+.forgot_password_email {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 7px;
+  padding-left: 9px;
+  padding-right: 11px;
+}
+
+.horizen_gap {
+  background-color: rgb(187, 177, 147);
+  height: 2px;
+  width: 126px;
+  margin: 20px;
+  margin-bottom: 3px;
+  display: inline-block;
+}
+
+.horizen_gap_or {
+  margin-bottom: 10px;
+  display: inline-block;
+  color: rgb(187, 177, 147);
+}
+
+/* WWWWWWWWWWWWWWWWWWWWWWWWWW 燈箱：登入選擇區 結束 */
+
+/* WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW 燈箱：登入區 開始 */
+
+.login_modal_button,
+.register_button,
+.goods_login_modal_botton,
+.register_button,
+.goods_register_botton,
+.logout_modal_button {
+  position: relative;
+  font-size: 20px;
+  font-weight: bold;
+  float: right;
+  cursor: pointer;
+  margin-left: 15px;
+  height: 30px;
+  width: 60px;
+  color: rgb(87, 87, 87);
+  border: 2px solid rgb(173, 173, 173);
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 25px;
+}
+
+.login_modal_button,
+.logout_modal_button {
+  margin-top: auto;
+}
+
+.login_modal_button:hover,
+.register_button:hover,
+.goods_login_modal_botton:hover,
+.register_botton:hover,
+.goods_register_botton:hover,
+.logout_modal_button:hover {
+  color: rgb(255, 255, 255);
+  border: 2px solid transparent;
+  background-color: rgba(187, 177, 147);
+}
+
+.login_modal_bcg {
+  height: 100%;
+  /* min-width: 1200px; */
+  width: 100%;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgb(0, 0, 0, 0.3);
+  z-index: 999;
+}
+
+.login_modal,
+.login_modal_email,
+.forgot_password_modal,
+.change_password_page {
+  height: 330px;
+  width: 400px;
+  position: fixed;
+  top: -25%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgb(254, 251, 248);
+  z-index: 1001;
+  padding: 22px;
+  margin: auto;
+  box-sizing: border-box;
+  line-height: 100%;
+}
+
+.login_formbox_2 {
+  margin-top: 25px;
+}
+
+.register_summitbutton,
+.login_summitbutton,
+.summitbutton_signupemail,
+.summitbutton_signupfacebook,
+.summitbutton_signupgoogle,
+.emaillogin,
+.forgot_password_summitbutton,
+.change_password_submitbutton {
+  width: 100%;
+  background-color: rgb(187, 177, 147);
+  color: white;
+  font-size: 20px;
+  padding: 7px;
+  font-weight: bold;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.login_description,
+.register_description {
+  font-size: 12px;
+}
+
+.error-message {
+  /* border: 1px red solid; */
+  margin-left: 0.5rem;
+  color: red;
+  font-style: italic;
+}
+
+/*WWWWWWWWWWWWWWWWWWWWWWWWWWWWW 燈箱：登入區 結束 */
+
+/* footer */
+
+footer {
+  position:fixed;
+  width: 100%;
+  border: 1px solid black;
+  bottom:0;
+}
+
+footer h4 {
+  text-align: center;
+}
+
+.fa-copyright {
+  margin: 0px 3px;
+}

@@ -285,7 +285,7 @@ public class OrderDescriptionDAOImpl implements OrderDescriptionDAO{
 				orderDesBO.setOrder_status(rs.getInt("order_status"));
 				orderDesBO.setOrder_sum_after(rs.getInt("order_sum_after"));
 				orderDesBO.setOrder_shipped_date(rs.getDate("order_shipped_date"));
-				orderDesBO.setShip_number(rs.getInt("ship_number"));
+				orderDesBO.setShip_number(rs.getString("ship_number"));
 				orderDesBO.setPayment_status(rs.getInt("payment_status"));
 				orderDesBO.setProduct_id(rs.getInt("product_id"));
 				orderDesBO.setProdes_id(rs.getInt("product_des_id"));
@@ -342,7 +342,7 @@ public class OrderDescriptionDAOImpl implements OrderDescriptionDAO{
 				orderDesBO2.setOrder_status(rs.getInt("order_status"));
 				orderDesBO2.setOrder_sum_after(rs.getInt("order_sum_after"));
 				orderDesBO2.setOrder_shipped_date(rs.getDate("order_shipped_date"));
-				orderDesBO2.setShip_number(rs.getInt("ship_number"));
+				orderDesBO2.setShip_number(rs.getString("ship_number"));
 				orderDesBO2.setPayment_status(rs.getInt("payment_status"));
 				orderDesBO2.setProduct_id(rs.getInt("product_id"));
 				orderDesBO2.setProdes_id(rs.getInt("product_des_id"));
@@ -399,7 +399,7 @@ public class OrderDescriptionDAOImpl implements OrderDescriptionDAO{
 				orderDesBO3.setOrder_status(rs.getInt("order_status"));
 				orderDesBO3.setOrder_sum_after(rs.getInt("order_sum_after"));
 				orderDesBO3.setOrder_shipped_date(rs.getDate("order_shipped_date"));
-				orderDesBO3.setShip_number(rs.getInt("ship_number"));
+				orderDesBO3.setShip_number(rs.getString("ship_number"));
 				orderDesBO3.setPayment_status(rs.getInt("payment_status"));
 				orderDesBO3.setProduct_id(rs.getInt("product_id"));
 				orderDesBO3.setProdes_id(rs.getInt("product_des_id"));
@@ -410,7 +410,6 @@ public class OrderDescriptionDAOImpl implements OrderDescriptionDAO{
 				orderDesBO3.setProduct_color(rs.getString("product_color"));
 				orderDesBO3.setOrder_description_price(rs.getInt("product_price"));
 				orderDesBO3.setProduct_quantity(rs.getInt("product_quantity"));
-
 
 				listOrderDesBO3.add(orderDesBO3);
 			}
@@ -456,7 +455,7 @@ public class OrderDescriptionDAOImpl implements OrderDescriptionDAO{
 				orderDesBO3.setOrder_status(rs.getInt("order_status"));
 				orderDesBO3.setOrder_sum_after(rs.getInt("order_sum_after"));
 				orderDesBO3.setOrder_shipped_date(rs.getDate("order_shipped_date"));
-				orderDesBO3.setShip_number(rs.getInt("ship_number"));
+				orderDesBO3.setShip_number(rs.getString("ship_number"));
 				orderDesBO3.setPayment_status(rs.getInt("payment_status"));
 				orderDesBO3.setProduct_id(rs.getInt("product_id"));
 				orderDesBO3.setProdes_id(rs.getInt("product_des_id"));

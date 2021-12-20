@@ -24,6 +24,9 @@
 
 	application.getAttribute("memSvc");
 	application.getAttribute("mtnSvc");
+	
+	Integer  member_id=3;
+    pageContext.setAttribute("member_id",member_id);
 %>
 
 <!DOCTYPE html>
@@ -88,12 +91,14 @@
 					</div>
 					
 				</div>
-				<div>網誌點閱數: ${articleVO.aritcle_viewer}</div>
-				<div>目前打賞數: ${articleVO.article_points_recieved} </div>
-				<div class="icongroup">
 				
-					<i class="far fa-heart artwish"></i>
-					<i class="fab fa-product-hunt artpoint"></i>
+				<div class="icongroup">
+					<div id="point">目前文章點數: ${articleVO.article_points_recieved} </div>
+					<div id="todo" data-memid="${articleVO.member_id}" data-artid="${articleVO.article_id}">
+						<div class="repo"><i class="fas fa-exclamation-circle"></i>檢舉網誌</div>
+						<div class="artpoint"><i class="fab fa-product-hunt"></i><span >我要打賞</span></div>
+					</div>
+					
 				</div>
 			</div>
 			<div class="content">
@@ -142,36 +147,219 @@
 								</div>
 								<span class="msgmemid">${memSvc.findById(msgVO[loop.index].member_id).memberName}</span>
 							</div>
-							<div class="msginfo">
-								<div>
-									<div class="msgtime">
-									
-									${msgVO[loop.index].msg_time}
+							<div class="msginfo">							
+									<div>
+									<div class="msgtime"><span>留言時間</span>
+									<c:set var="time" value="${msgVO[loop.index].msg_time}" />
+									<span><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${time}" /></span>
 									</div>
-									<div class="msgrepo">
-										檢舉留言<i class="fas fa-exclamation-circle"></i>
-									</div>
+									<div class="msgrepo">檢舉留言<i class="fas fa-exclamation-circle msgrepo"></i></div>
 								</div>
 								<div class="msg">${msgVO[loop.index].msg_content}</div>
+								
 							</div>
+							
 						</div>
 					</c:forEach>
 				</div>
 			</div>
 			<div class="message">
-				<form method="post" action="<%=request.getContextPath()%>/ActLogMsgServlet" class="msgform">
+				<form  class="msgform">
 					<input type="text" name="msg_content" value="" class="msgarea" placeholder="有話要說"> 
 					<input type="hidden" name="action" value="sendMsg"> 
-					<input type="hidden" name="member_id" value="16"> 
+					<input type="hidden" name="member_id" value="${member_id}"> 
 					<input type="hidden" name="article_id" value="${articleVO.article_id}">
-					<input type="submit" value="送出" class="subBtn">
+					<input type="button" value="送出" class="subBtn">
 				</form>
 			</div>
 		</div>
+		<div class="overlay -none">
+      <div class="modal">
+        <form>       
+	          <div>目前您擁有<span id="havepoint">${memSvc.findMemberPoints(member_id)}</span>點</div>
+	          <div>請輸入要打賞的點數<input type="text" id="givepoint" />點</div>
+	          <div id="errormsg"></div>
+	          <input type="button" value="確定" id="giveBtn"/>
+	          <input type="button" value="取消" id="cancel"/>
+        </form>
+      </div>
+    </div>
+    <div class="overlay2 -none">
+      <div class="modal2">
+	          <div id="errormsg"></div>
+	          <input type="button" value="確定" id="cancel2"/>
+      </div>
+    </div>
+    
+        <div class="overlay3 -none">
+      <div class="modal3">
+      <form>
+      <div>請選擇檢舉原因</div>
+      	<div>
+      		<label><input type="radio" name="reason" class="reportReason" value="0" checked>色情騷擾</label>
+      		<label><input type="radio" name="reason" class="reportReason" value="1" >不實資訊</label>
+      		<label><input type="radio" name="reason" class="reportReason" value="2" >垃圾訊息</label>
+      		<label><input type="radio" name="reason" class="reportReason" value="3" >仇恨言論</label>
+      		</div>
+	          <div id="errormsg"></div>
+	          <input type="button" value="確定" id="send"/>
+	          <input type="button" value="取消" id="cancel3"/>
+      </form>
+      </div>
+    </div>
 	</main>
 	<footer>
 		<h4>Copyright <i class="far fa-copyright"></i>2021 G3 SANSAN</h4>
 	</footer>
 	<script src="https://kit.fontawesome.com/2336c06c64.js"></script>
+		<script src="<%=request.getContextPath()%>/article/vendors/jquery/jquery-3.6.0.min.js"></script>
+	
+	<script>	
+	var member_id=${member_id};
+	var artid="";
+	var memid="";
+	//打賞點數
+	$("div.artpoint").click(function () {
+		let str =`<div>目前您擁有<span id="havepoint">${memSvc.findMemberPoints(member_id)}</span>點</div><div>無法進行打賞</div>`;
+		memid = $(this).parent("#todo").data("memid");
+		artid = $(this).parent("#todo").data("artid");
+		var havepoint = $("#havepoint").text().trim();
+		if(memid == member_id){
+			$(".overlay2").removeClass("-none");
+			$(".modal2 #errormsg").html("無法打賞給自己");	
+		}else if(parseInt(havepoint)== 0){
+			$(".overlay2").removeClass("-none");
+	    	$(".modal2 #errormsg").html(str);
+	    }else{
+			$(".overlay").removeClass("-none");
+			 $("#givepoint").val("");
+			 $("#errormsg").html("");	 
+		}
+	});
+	  
+	
+	$("#cancel").click(function(){
+		$(".overlay").addClass("-none");
+	});
+	$("#cancel2").click(function(){
+		 $(".modal2 #errormsg").html("");
+		$(".overlay2").addClass("-none");
+		
+	});
+	$("#cancel3").click(function(){
+		$(".overlay3").addClass("-none");
+	});
+	
+	$("#giveBtn").click(function () {
+	  var havepoint = $("#havepoint").text().trim();
+	  var givepoint = parseInt($("#givepoint").val().trim());
+	  var clear = "";
+
+	  if (!/^[0-9]*$/.test(givepoint) | (givepoint == null)) {
+	    $("#errormsg").html("請填寫正確數字");
+	    $("#givepoint").val("");
+	  }else {
+	    if (givepoint > parseInt(havepoint)) {
+	      $("#errormsg").html("擁有的點數不足");
+	    }else {
+	      //   執行ajax
+	      $.ajax({
+	        url: "<%=request.getContextPath()%>/member/updateMemberPoints",
+	        data: {
+	          memberId: memid,
+	          points: givepoint,
+	        },
+	        method: "POST",
+	      });
+	      $.ajax({
+		        url: "<%=request.getContextPath()%>/ArticleServlet.do?action=addpoint",
+		        data: {
+		        	article_id: artid,
+		        	article_points_recieved:givepoint,
+		        },
+		        method: "POST",
+		      });
+	      $.ajax({
+		        url: "<%=request.getContextPath()%>/member/updateMemberPoints",
+		        data: {
+		          memberId: member_id,
+		          points: -givepoint,
+		        },
+		        method: "POST",
+		      });
+	      let pointsUsedArticle= JSON.stringify({
+	    		"memberId": member_id,
+		        "pointsUsed": givepoint,
+		        "articleId": artid,
+				"pointsUsedDate":$.now(),
+	      })	      
+	      $.ajax({
+		        url: "<%=request.getContextPath()%>/pointsUsedArticle/pointsSpentArticle",
+		        type: "POST",
+		        contentType: 'application/json',
+		        dataType: "json",
+		        data: pointsUsedArticle,
+		        success: function (e) {
+				$("div.overlay").addClass("-none");
+				history.go(0);
+		        },
+		      });
+	    }
+	  }
+	});
+	
+	//檢舉
+		$(".repo").click(function(){
+		$(".overlay3").removeClass("-none");
+	});
+	
+	
+		$("#send").click(function(){
+		let artreason=$("input[name='reason']:checked").val();
+		let artid=${articleVO.article_id};
+		$.ajax({
+			url: "<%=request.getContextPath()%>/ArticleReportServlet.do?action=artRepo",
+			method: "POST",       
+	        data:{
+	        	member_id:member_id,
+		        article_id:artid,
+		        article_report_reason:artreason,
+				},
+	        success: function (e) {
+			$("div.overlay").addClass("-none");
+			history.go(0);
+	        }
+      });	   
+	});
+		
+		
+		//留言
+		$(".subBtn").click(function(){
+
+			let artid=${articleVO.article_id};
+			let msg_content=$(".msgarea").val().trim();
+			if(msg_content==""){
+				$(".overlay2").removeClass("-none");
+				$(".modal2 #errormsg").html("留言無空白，請填寫留言再送出");	
+			}else{
+				$.ajax({
+					url: "<%=request.getContextPath()%>/ActLogMsgServlet?action=sendMsg",
+					method: "POST",       
+			        data:{
+			        	member_id:member_id,
+				        article_id:artid,
+				        msg_content:msg_content,
+						},
+			        success: function (e) {
+			        	history.go(0);
+			        }
+		      });	   
+			}
+			
+			
+
+		})
+	</script>
+	
 </body>
 </html>

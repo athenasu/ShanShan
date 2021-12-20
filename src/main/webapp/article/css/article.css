@@ -34,8 +34,8 @@ main {
 .artinfo {
   display: flex;
   justify-content: space-between;
-  margin-top: 50px;
-  padding-bottom: 50px;
+  margin-top: 30px;
+  padding-bottom: 30px;
   border-bottom: 3px solid rgb(119, 148, 116);
 }
 .artleft {
@@ -62,21 +62,32 @@ main {
 }
 
 .icongroup {
-  font-size: 30px;
+  font-size: 16px;
   margin-top: 20px;
-  width: 80px;
+  width: 250px;
+}
+#todo{
+	display:flex;
+	justify-content: space-around;
+    align-items: center;
+}
+#point{
+	text-align: end;
+    margin-right: 20px;
+    margin-bottom:10px;
 }
 
-.artwish {
-  color: red;
-  margin-right: 5px;
+.fa-product-hunt,.fa-exclamation-circle {
+  color: #bbbb2b;
+  font-size:20px;
+  margin-right:5px;
 }
-.artpoint {
-  color: yellow;
+.fa-exclamation-circle{
+	color:red;
 }
 
-.artwish,
-.artpoint:hover {
+
+.artpoint:hover,.repo:hover {
   cursor: pointer;
 }
 
@@ -180,23 +191,21 @@ main {
   justify-content: flex-end;
   align-items: center;
 }
-.msginfo div:first-child:hover {
-  cursor: pointer;
-}
 
-.msgrepo {
-  margin-left: 10px;
-}
 
 .msg {
   margin-top: 10px;
   margin-left: 30px;
 }
 
-.fa-exclamation-circle {
+.msgrepo {
   color: red;
   margin-left: 5px;
-  font-size: 18px;
+  font-size: 14px;
+  text-align: end;
+}
+.msgrepo:hover {
+  cursor: pointer;
 }
 
 .message{
@@ -217,7 +226,6 @@ main {
 	height:50px;
     border-radius: 5px;
     border: 1px solid #9acd32;
-	
 }
 
 .subBtn{
@@ -235,4 +243,79 @@ main {
 	border:1px solid #9acd32;
 	background-color:white;
 	color:#9acd32;
+}
+
+.msgtime{
+	text-align: end;
+	    margin-right: 10px;
+}
+
+.msgtime span{
+	margin-right:5px;
+}
+
+
+.overlay,.overlay2,.overlay3 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: hsla(0, 0%, 0%, 0.5);
+}
+
+.modal,.modal2,.modal3 {
+  background-color: white;
+  width: 400px;
+/*   max-width: 800px; */
+  border-radius: 10px;
+  box-shadow: 0 0 10px #ddd;
+  padding: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  text-align: center;
+}
+
+.modal div,.modal2 div,.modal3 form div{
+  margin: 15px 0px;
+}
+
+.modal input{
+	margin:10px 10px;
+}
+
+#havepoint {
+  color: red;
+}
+
+#givepoint {
+  width: 50px;
+  height: 30px;
+  border-style:none;
+  border-bottom: 1px solid gray;
+  margin-left: 5px;
+  outline: none;
+  text-align: center;
+}
+
+#giveBtn,#cancel,#cancel2,#cancel3,#send{
+	border-style: none;
+    width: 80px;
+    padding: 5px;
+    border-radius: 5px;	
+    cursor: pointer;	
+}
+
+
+#errormsg {
+  color: red;
+  text-align: center;
+  margin-bottom:10px;
+}
+
+.-none {
+  display: none;
 }

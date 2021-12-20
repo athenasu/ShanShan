@@ -1,6 +1,9 @@
-function init() {
+
+// function init() {
+$(document).ready(function(){
+        
     $.ajax({
-        url: "http://localhost:8081/shanshan/event/popularEvents",
+        url: "../event/popularEvents",
         type: "GET",
         data: {},
         dataType: "json",
@@ -19,19 +22,19 @@ function init() {
                 var url = URL.createObjectURL(blob);
                 // console.log(JSON.stringify(item.mountainPic));
 
-                popular_events += "<div class='event_slide'>";
-                popular_events += "<img class='event_slide_pic' src='" + url + "'>";
-                popular_events += "<input type='hidden' class='event_id' value='"+item.eventId+"'>"
-                popular_events += "<h4 class='event_slide_name'>" + item.eventName + "</h4>";
-                popular_events += "<h4 class ='slide_startdate'>出團日期：" + (new Date(item.eventStartDate).toLocaleDateString('fr-CA', { year: 'numeric', month: '2-digit', day: '2-digit' })) + "</h4>"
+                popular_events += "<div class='mySlides fade'>";
+                popular_events +=   "<img class='event_slide_pic' src='" + url + "'>";
+                popular_events +=   "<input type='hidden' class='event_id' value='"+item.eventId+"'>"
+                popular_events +=   "<div class='text'>" + item.eventName + "</div>";
+                popular_events +=   "<h4 class ='text'>出團日期：" + (new Date(item.eventStartDate).toLocaleDateString('fr-CA', { year: 'numeric', month: '2-digit', day: '2-digit' })) + "</h4>"
                 popular_events += "</div>"
             })
-            $("div.slidshow_container").html(popular_events);
+            $("div.slideshow-container").html(popular_events);
         }
     })
 
     $.ajax({
-        url: "http://localhost:8081/shanshan/event/eventList",
+        url: "../event/eventList",
         type: "GET",
         data: {},
         dataType: "json",
@@ -59,13 +62,32 @@ function init() {
             $("div.main_block").html(event_list);
         }
     })
-}
+})
+//var slideIndex = 0;
+//showSlides();
+//
+//function showSlides() {
+//  var i;
+//  var slides = $("div.mySlides");
+//  var dots = $("span.dot");
+//  for (i = 0; i < slides.length; i++) {
+//    slides[i].style.display = "none";  
+//  }
+//  slideIndex++;
+//  if (slideIndex > slides.length) {slideIndex = 1}    
+//  for (i = 0; i < dots.length; i++) {
+//    dots[i].className = dots[i].className.replace(" active", "");
+//  }
+//  slides[slideIndex-1].style.display = "block";  
+//  dots[slideIndex-1].className += " active";
+//  setTimeout(showSlides, 2000); // Change image every 2 seconds
+//}
 //============================== SELECT BY DISTRICT ============================
 $(document).on("click", "div.north_area", function () {
     console.log($(this))
     $("div.event_display").remove();
     $.ajax({
-        url: "http://localhost:8081/shanshan/event/findEventByDistrict",
+        url: "../event/findEventByDistrict",
         type: "GET",
         // contentType: 'application/json',
         data: {"mountainDistrict": 1},
@@ -76,29 +98,30 @@ $(document).on("click", "div.north_area", function () {
         success: function (data) {
             console.log(data);
             // console.log(data);
-            // let event_list = "";
-            // $.each(data, function (index, item) {
-            //     console.log(item)
+            let event_list = "";
+            $.each(data, function (index, item) {
+                console.log(item)
 
-            //     var bytes = new Uint8Array(item.mountainPic);
-            //     var blob = new Blob([bytes], { type: "image/png" });
-            //     var url = URL.createObjectURL(blob);
-            //     // console.log(url);
+                var bytes = new Uint8Array(item.mountainPic);
+                var blob = new Blob([bytes], { type: "image/png" });
+                var url = URL.createObjectURL(blob);
+                // console.log(url);
 
-            //     event_list += "<div class='event_display'>";
-            //     event_list += "<img class ='event_pic' src='" + url + "'>";
-            //     event_list += "<h3 class='event_name'>" + item.eventName + "</h3>";
-            //     event_list += "<div class='event_start_date'>出團日期：<span>" + (new Date(item.eventStartDate).toLocaleDateString('fr-CA', { year: 'numeric', month: '2-digit', day: '2-digit' })) + "</span></div>"
-            //     event_list += "</div>"
-            // })
-            // $("div.main_block").html(event_list);
+                event_list += "<div class='event_display'>";
+                event_list += "<img class ='event_pic' src='" + url + "'>";
+                event_list += "<input type='hidden' class='event_id' value='"+item.eventId+"'>"
+                event_list += "<h3 class='event_name'>" + item.eventName + "</h3>";
+                event_list += "<div class='event_start_date'>出團日期：<span>" + (new Date(item.eventStartDate).toLocaleDateString('fr-CA', { year: 'numeric', month: '2-digit', day: '2-digit' })) + "</span></div>"
+                event_list += "</div>"
+            })
+            $("div.main_block").html(event_list);
         }
     })
 })
 $(document).on("click", "div.mid_area", function () {
     $("div.event_display").remove();
     $.ajax({
-        url: "http://localhost:8081/shanshan/event/findEventByDistrict",
+        url: "../event/findEventByDistrict",
         type: "GET",
         // contentType: 'application/json',
         data: {"mountainDistrict": 2},
@@ -109,29 +132,30 @@ $(document).on("click", "div.mid_area", function () {
         success: function (data) {
             console.log(data);
             // console.log(data);
-            // let event_list = "";
-            // $.each(data, function (index, item) {
-            //     console.log(item)
+            let event_list = "";
+            $.each(data, function (index, item) {
+                console.log(item)
 
-            //     var bytes = new Uint8Array(item.mountainPic);
-            //     var blob = new Blob([bytes], { type: "image/png" });
-            //     var url = URL.createObjectURL(blob);
-            //     // console.log(url);
+                var bytes = new Uint8Array(item.mountainPic);
+                var blob = new Blob([bytes], { type: "image/png" });
+                var url = URL.createObjectURL(blob);
+                // console.log(url);
 
-            //     event_list += "<div class='event_display'>";
-            //     event_list += "<img class ='event_pic' src='" + url + "'>";
-            //     event_list += "<h3 class='event_name'>" + item.eventName + "</h3>";
-            //     event_list += "<div class='event_start_date'>出團日期：<span>" + (new Date(item.eventStartDate).toLocaleDateString('fr-CA', { year: 'numeric', month: '2-digit', day: '2-digit' })) + "</span></div>"
-            //     event_list += "</div>"
-            // })
-            // $("div.main_block").html(event_list);
+                event_list += "<div class='event_display'>";
+                event_list += "<img class ='event_pic' src='" + url + "'>";
+                event_list += "<input type='hidden' class='event_id' value='"+item.eventId+"'>"
+                event_list += "<h3 class='event_name'>" + item.eventName + "</h3>";
+                event_list += "<div class='event_start_date'>出團日期：<span>" + (new Date(item.eventStartDate).toLocaleDateString('fr-CA', { year: 'numeric', month: '2-digit', day: '2-digit' })) + "</span></div>"
+                event_list += "</div>"
+            })
+            $("div.main_block").html(event_list);
         }
     })
 })
 $(document).on("click", "div.south_area", function () {
     $("div.event_display").remove();
     $.ajax({
-        url: "http://localhost:8081/shanshan/event/findEventByDistrict",
+        url: "../event/findEventByDistrict",
         type: "GET",
         // contentType: 'application/json',
         data: {"mountainDistrict": 3},
@@ -142,29 +166,30 @@ $(document).on("click", "div.south_area", function () {
         success: function (data) {
             console.log(data);
             // console.log(data);
-            // let event_list = "";
-            // $.each(data, function (index, item) {
-            //     console.log(item)
+            let event_list = "";
+            $.each(data, function (index, item) {
+                console.log(item)
 
-            //     var bytes = new Uint8Array(item.mountainPic);
-            //     var blob = new Blob([bytes], { type: "image/png" });
-            //     var url = URL.createObjectURL(blob);
-            //     // console.log(url);
+                var bytes = new Uint8Array(item.mountainPic);
+                var blob = new Blob([bytes], { type: "image/png" });
+                var url = URL.createObjectURL(blob);
+                // console.log(url);
 
-            //     event_list += "<div class='event_display'>";
-            //     event_list += "<img class ='event_pic' src='" + url + "'>";
-            //     event_list += "<h3 class='event_name'>" + item.eventName + "</h3>";
-            //     event_list += "<div class='event_start_date'>出團日期：<span>" + (new Date(item.eventStartDate).toLocaleDateString('fr-CA', { year: 'numeric', month: '2-digit', day: '2-digit' })) + "</span></div>"
-            //     event_list += "</div>"
-            // })
-            // $("div.main_block").html(event_list);
+                event_list += "<div class='event_display'>";
+                event_list += "<img class ='event_pic' src='" + url + "'>";
+                event_list += "<input type='hidden' class='event_id' value='"+item.eventId+"'>"
+                event_list += "<h3 class='event_name'>" + item.eventName + "</h3>";
+                event_list += "<div class='event_start_date'>出團日期：<span>" + (new Date(item.eventStartDate).toLocaleDateString('fr-CA', { year: 'numeric', month: '2-digit', day: '2-digit' })) + "</span></div>"
+                event_list += "</div>"
+            })
+            $("div.main_block").html(event_list);
         }
     })
 })
 $(document).on("click", "div.east_area", function () {
     $("div.event_display").remove();
     $.ajax({
-        url: "http://localhost:8081/shanshan/event/findEventByDistrict",
+        url: "../event/findEventByDistrict",
         type: "GET",
         // contentType: 'application/json',
         data: {"mountainDistrict": 4},
@@ -175,29 +200,30 @@ $(document).on("click", "div.east_area", function () {
         success: function (data) {
             console.log(data);
             // console.log(data);
-            // let event_list = "";
-            // $.each(data, function (index, item) {
-            //     console.log(item)
+            let event_list = "";
+            $.each(data, function (index, item) {
+                console.log(item)
 
-            //     var bytes = new Uint8Array(item.mountainPic);
-            //     var blob = new Blob([bytes], { type: "image/png" });
-            //     var url = URL.createObjectURL(blob);
-            //     // console.log(url);
+                var bytes = new Uint8Array(item.mountainPic);
+                var blob = new Blob([bytes], { type: "image/png" });
+                var url = URL.createObjectURL(blob);
+                // console.log(url);
 
-            //     event_list += "<div class='event_display'>";
-            //     event_list += "<img class ='event_pic' src='" + url + "'>";
-            //     event_list += "<h3 class='event_name'>" + item.eventName + "</h3>";
-            //     event_list += "<div class='event_start_date'>出團日期：<span>" + (new Date(item.eventStartDate).toLocaleDateString('fr-CA', { year: 'numeric', month: '2-digit', day: '2-digit' })) + "</span></div>"
-            //     event_list += "</div>"
-            // })
-            // $("div.main_block").html(event_list);
+                event_list += "<div class='event_display'>";
+                event_list += "<img class ='event_pic' src='" + url + "'>";
+                event_list += "<input type='hidden' class='event_id' value='"+item.eventId+"'>"
+                event_list += "<h3 class='event_name'>" + item.eventName + "</h3>";
+                event_list += "<div class='event_start_date'>出團日期：<span>" + (new Date(item.eventStartDate).toLocaleDateString('fr-CA', { year: 'numeric', month: '2-digit', day: '2-digit' })) + "</span></div>"
+                event_list += "</div>"
+            })
+            $("div.main_block").html(event_list);
         }
     })
 })
 $(document).on("click", "div.other_area", function () {
     $("div.event_display").remove();
     $.ajax({
-        url: "http://localhost:8081/shanshan/event/findEventByDistrict",
+        url: "../event/findEventByDistrict",
         type: "GET",
         // contentType: 'application/json',
         data: {"mountainDistrict": 5},
@@ -208,22 +234,23 @@ $(document).on("click", "div.other_area", function () {
         success: function (data) {
             console.log(data);
             // console.log(data);
-            // let event_list = "";
-            // $.each(data, function (index, item) {
-            //     console.log(item)
+            let event_list = "";
+            $.each(data, function (index, item) {
+                console.log(item)
 
-            //     var bytes = new Uint8Array(item.mountainPic);
-            //     var blob = new Blob([bytes], { type: "image/png" });
-            //     var url = URL.createObjectURL(blob);
-            //     // console.log(url);
+                var bytes = new Uint8Array(item.mountainPic);
+                var blob = new Blob([bytes], { type: "image/png" });
+                var url = URL.createObjectURL(blob);
+                // console.log(url);
 
-            //     event_list += "<div class='event_display'>";
-            //     event_list += "<img class ='event_pic' src='" + url + "'>";
-            //     event_list += "<h3 class='event_name'>" + item.eventName + "</h3>";
-            //     event_list += "<div class='event_start_date'>出團日期：<span>" + (new Date(item.eventStartDate).toLocaleDateString('fr-CA', { year: 'numeric', month: '2-digit', day: '2-digit' })) + "</span></div>"
-            //     event_list += "</div>"
-            // })
-            // $("div.main_block").html(event_list);
+                event_list += "<div class='event_display'>";
+                event_list += "<img class ='event_pic' src='" + url + "'>";
+                event_list += "<input type='hidden' class='event_id' value='"+item.eventId+"'>"
+                event_list += "<h3 class='event_name'>" + item.eventName + "</h3>";
+                event_list += "<div class='event_start_date'>出團日期：<span>" + (new Date(item.eventStartDate).toLocaleDateString('fr-CA', { year: 'numeric', month: '2-digit', day: '2-digit' })) + "</span></div>"
+                event_list += "</div>"
+            })
+            $("div.main_block").html(event_list);
         }
     })
 })
@@ -233,16 +260,17 @@ $(document).on("click", "div.event_display", function(){
     // console.log($(this).find("input").val());
     window.localStorage.setItem("eventID", $(this).find("input").val());
     // window.sessionStorage.setItem("eventID", $(this).find("input").val())
-    window.location.replace("eventview.html");
+    window.location.href="eventview.html";
 })
 
 //============================== REDIRECT TO EVENTPOST PAGE ============================
 $(document).on("click", "button.create_event", function(){
-    window.location.replace("eventpost.html");
+    window.location.href="eventpost.html";
+    console.log("123")
 })
 
 
 //=======================================================================================
-$(function () {
-    init();
-})
+// $(function () {
+//     init();
+// })

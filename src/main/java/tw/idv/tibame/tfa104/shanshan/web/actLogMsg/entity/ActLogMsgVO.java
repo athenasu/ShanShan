@@ -2,6 +2,7 @@ package tw.idv.tibame.tfa104.shanshan.web.actLogMsg.entity;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class ActLogMsgVO implements Serializable{
 
@@ -9,7 +10,7 @@ public class ActLogMsgVO implements Serializable{
 	private Integer act_msg_id;
 	private Integer article_id;
 	private Integer member_id;
-	private Date msg_time;
+	private Timestamp msg_time;
 	private String msg_content;
 	private Integer msg_status;
 	
@@ -31,10 +32,10 @@ public class ActLogMsgVO implements Serializable{
 	public void setMember_id(Integer member_id) {
 		this.member_id = member_id;
 	}
-	public Date getMsg_time() {
+	public Timestamp getMsg_time() {
 		return msg_time;
 	}
-	public void setMsg_time(Date msg_time) {
+	public void setMsg_time(Timestamp msg_time) {
 		this.msg_time = msg_time;
 	}
 	public String getMsg_content() {

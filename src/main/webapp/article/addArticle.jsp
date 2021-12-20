@@ -13,6 +13,9 @@
 	
 	application.getAttribute("memSvc");
 	application.getAttribute("mtnSvc");
+	
+    Integer  member_id=1;
+    pageContext.setAttribute("member_id",member_id);
 %>
 
 <!DOCTYPE html>
@@ -23,6 +26,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <link rel="shortcut icon" href="/img/favicon.png" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/article/css/style.css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/article/css/addArt.css" />
 <title>發表日誌</title>
@@ -76,26 +80,26 @@
                 <div class="group">
                   <div class="grouptitle">活動日期</div>
                   <div class="groupcontent">
-                    <input type="date" name="event_date" />
+                  <input type="text" id="date" name="event_date" class="date">
                   </div>
                 </div>
                 <div class="group">
                   <div id="mtn">
                     <div class="grouptitle">登山地點</div>
                     <div>
-                      <select name="mountain_id">
+                      <select name="mountain_id" class="mtnId">
                         <c:forEach var="mtnVO" items="${mtnSvc.findAllMtns()}">
-                          <option value="${mtnVO.mountainId}">
-                            ${mtnVO.mountainName}
+                          <option value="${mtnVO.mountainId}">${mtnVO.mountainName}
                           </option>
                         </c:forEach>
                       </select>
                     </div>
                   </div>
+          
                   <div id="otherMtn">
                     <div class="grouptitle">其他地點</div>
                     <div id="otherMtnadd">
-                      <input type="text" name="other_mtn" />
+                      <input type="text" name="other_mtn" disabled="disabled" class="addMtn" value=""/>
                     </div>
                   </div>
                 </div>
@@ -137,83 +141,85 @@
               </div>
             </div>
             <div class="bottom">
-              <input type="hidden" name="member_id" value="1" />
-              <div><input type="submit" value="送出" id="sendbtn" /></div>
+              <input type="hidden" name="member_id" value="${member_id}" />
+              <div><input type="button" value="送出" id="sendbtn" /></div>
             </div>
           </form>
         </div>
       </main>
     </div>
-<!-- 	<div id="title"> -->
-<!-- 		<h3>發表網誌</h3> -->
-<!-- 	</div> -->
-<!-- 	<div id="content"> -->
-<!-- 		<form -->
-<%-- 			action="<%=request.getContextPath()%>/ArticleServlet.do?action=new" --%>
-<!-- 			method=post enctype="multipart/form-data"> -->
-
-<!-- 			<div> -->
-<!-- 				<div>網誌標題</div> -->
-<!-- 				<div> -->
-<!-- 					<input type="text" name="article_title" id="artTitle"> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 			<div> -->
-<!-- 				<div>活動日期</div> -->
-<!-- 				<div> -->
-<!-- 					<input type="date" name="event_date"> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 			<div> -->
-<!-- 				<div>登山地點</div> -->
-<!-- 				<div> -->
-<!-- 					<select name="mountain_id"> -->
-<%-- 						<c:forEach var="mtnVO" items="${mtnSvc.findAllMtns()}"> --%>
-<%-- 							<option value="${mtnVO.mountainId}">${mtnVO.mountainName}</option> --%>
-<%-- 						</c:forEach> --%>
-<!-- 					</select> -->
-<!-- 				</div> -->
-<!-- 				<div>其他登山地點</div> -->
-<!-- 				<div> -->
-<!-- 					<input type="text" name="other_mtn"> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 			<div> -->
-<!-- 				<div>推薦程度</div> -->
-<!-- 				<div> -->
-<!-- 					<select name="recommendation"> -->
-<!-- 						<option name="recommendation" value="1">非常不推</option> -->
-<!-- 						<option name="recommendation" value="2">不推</option> -->
-<!-- 						<option name="recommendation" value="3">普通</option> -->
-<!-- 						<option name="recommendation" value="4">推薦</option> -->
-<!-- 						<option name="recommendation" value="5">非常推薦</option> -->
-<!-- 					</select> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 			<div> -->
-<!-- 				<div>內容</div> -->
-<!-- 				<div> -->
-<!-- 					<input type="text" name="article_content" id="artContent"> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 			<div> -->
-<!-- 				<div>上傳圖片</div> -->
-<!-- 				<div> -->
-<!-- 					<input type="file" multiple="multiple" id="upimg" -->
-<!-- 						name="article_picture"> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 			<input type="hidden" name="member_id" value="1"> -->
-<!-- 			<div> -->
-<!-- 				<input type="submit" value="送出"> -->
-<!-- 			</div> -->
-<!-- 		</form> -->
-<!-- 	</div> -->
+    <div class="overlay -none">
+      <div class="modal">
+	          <div id="errormsg"></div>
+	          <input type="button" value="確定" id="cancel"/>
+      </div>
+    </div>
 	<footer>
 		<h4>
 			Copyright <i class="far fa-copyright"></i>2021 G3 SANSAN
 		</h4>
 	</footer>
 	<script src="https://kit.fontawesome.com/2336c06c64.js"></script>
+	<script src="<%=request.getContextPath()%>/article/vendors/jquery/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>	
+<script>
+
+$(function() {
+    $("#date").datepicker({
+    	maxDate: "$.now()",
+    	dateFormat: "yy-mm-dd"
+    	});
+  });
+  
+
+  
+	
+	var mtnid=1;
+	$(".mtnId").change(function(){
+		mtnid=$(this).val()
+		if(mtnid==100){
+			$(".addMtn").attr('disabled', false);
+		}
+		else{
+			$(".addMtn").attr('disabled',"disabled");
+		}
+	})
+	
+	$("#cancel").click(function(){
+		$(".overlay").addClass("-none");
+	});
+	
+	var imglength="";
+	$("#upimg").change(function(){
+		imglength=this.files.length;
+	})
+	
+	$("#sendbtn").click(function(){
+		var date =$(".date").val();
+		var artTitle =$("#artTitle").val();
+		var otherMtn =$(".addMtn").val();
+		var artContent = $("#artContent").val();
+		
+// 		  console.log(typeof($(".date").val()));
+
+		
+		if(artTitle == ""|artContent ==""|(otherMtn=="" && mtnid == 100)|date ==""){
+			$(".overlay").removeClass("-none");
+			$("#errormsg").html("有資料未填寫，請完成填寫");
+		}else if(imglength > 5){
+			$(".overlay").removeClass("-none");
+			$("#errormsg").html("圖片不可上傳超過5張，請確認重新上傳");
+		}
+		
+		else{
+			$("form").submit();
+		}
+
+	})
+	
+
+	
+	
+	</script>
 </body>
 </html>

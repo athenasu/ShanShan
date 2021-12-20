@@ -81,10 +81,10 @@ public class ArticleServlet extends HttpServlet {
 
 //		新增網誌
 		if ("new".equals(action)) {
-
+			
 			Integer member_id = new Integer(req.getParameter("member_id"));
 			String article_title = req.getParameter("article_title");
-			Date event_date = Date.valueOf(req.getParameter("event_date"));
+			Date event_date = java.sql.Date.valueOf(req.getParameter("event_date").trim());
 			Integer mountain_id = new Integer(req.getParameter("mountain_id"));
 			Integer recommendation = new Integer(req.getParameter("recommendation"));
 			String article_content = req.getParameter("article_content");
@@ -184,7 +184,6 @@ public class ArticleServlet extends HttpServlet {
 
 			ArticleService artSvc = new ArticleService();
 			List<ArticleVO> articleVO = artSvc.search(keyword, keyword, keyword, keyword);
-//			System.out.println(articleVO);
 			// 如果查無結果，停在原頁面
 			if (articleVO.isEmpty()) {
 				RequestDispatcher failureView = req.getRequestDispatcher("/article/articleList.jsp");

@@ -5,15 +5,14 @@ html,body{
     height: 100%;
 }
 span{
-    display:block;
-    margin-left:35%;
+    display:inline-block;
+    
 }
 div.post_event{
     margin-top: 10%;
 }
 
 div.post_event{
-    border: solid red;
     margin-top: 10%;
     margin-left: 10%;
     width: 80%;
@@ -32,7 +31,6 @@ img.mountain_pic{
     object-fit: fill;
 }
 div.name_event, div.event_detail, div.event_content, div.event_post_btn{
-    border: solid green;
     margin-left: 20%;
     margin-top:1%;
     width:60%;
@@ -60,4 +58,12 @@ input.event_name, input.event_days, input.event_deadline, input.event_start_date
 outline: none;
 }
 
+div.event_detail_left{
+	display:inline-block;
+	width:48%;
+}
+div.event_detail_right{
+	display:inline-block;
+	width:48%;
+}
 
