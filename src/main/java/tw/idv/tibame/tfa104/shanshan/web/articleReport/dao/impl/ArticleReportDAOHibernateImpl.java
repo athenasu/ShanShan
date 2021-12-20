@@ -21,8 +21,8 @@ public class ArticleReportDAOHibernateImpl implements ArticleReportDAOHibernate 
 //		SET article_report_status = 1, case_done = 123
 //		WHERE article_report_id = 1;
 		Session session = sessionFactory.getCurrentSession();
-		int result = session.createNativeQuery("UPDATE article_report \n" + 
-				"SET article_report_status = :reportStatus, case_done = :caseDone" + 
+		int result = session.createNativeQuery("UPDATE article_report " + 
+				"SET article_report_status = :reportStatus, case_done = :caseDone " + 
 				"WHERE article_report_id = :articleReportId")
 				.setParameter("reportStatus", reportStatus)
 				.setParameter("caseDone", caseDone)
