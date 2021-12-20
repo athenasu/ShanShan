@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import org.hibernate.Session;
@@ -39,14 +40,10 @@ public class CompanyDAOHibernate_impl implements CompanyDAOHibernate {
 		Session session = sessionFactory.getCurrentSession();
 		CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
 		CriteriaQuery<CompanyVO> criteriaQuery = criteriaBuilder.createQuery(CompanyVO.class);
-//		Root<CompanyVO>root = criteriaQuery.from(CompanyVO.class);
+		Root<CompanyVO>root = criteriaQuery.from(CompanyVO.class);
+		criteriaQuery = criteriaQuery.select(root);
 		Query<CompanyVO> query = session.createQuery(criteriaQuery);
 		List<CompanyVO> list = query.list();
-//		List <CompanyVO> companyAll = session .createSQLQuery("select company_id,company_name,company_email,"
-//															+ "company_phone,company_cell,company_banner,"
-//															+ "company_intro,company_address "
-//															+ "FROM company;")
-//															.list();
  		return list;
 	}
 	
@@ -64,12 +61,12 @@ public class CompanyDAOHibernate_impl implements CompanyDAOHibernate {
 	}
 
 	@Override
-	public CompanyVO register(byte[]file,CompanyVO company) {
+	public Integer register(CompanyVO company) {
 		Session session = sessionFactory.getCurrentSession();
-		File file2 = new File("/src/main/webapp/company/company_imgs/presetBanner");
+		File file = new File("shanshan/src/main/webapp/company/company_imgs/presetBanner");
 		byte[] bytefile = null;
 		try {
-			FileInputStream fis = new FileInputStream(file2);
+			FileInputStream fis = new FileInputStream(file);
 			bytefile = new byte[fis.available()];
 			fis.read(bytefile);
 			fis.close();
@@ -78,21 +75,19 @@ public class CompanyDAOHibernate_impl implements CompanyDAOHibernate {
 		}catch (IOException ie) {
 			ie.printStackTrace();
 		}
-		company.setCompanyCetificate(file);
-		company.setCompanyBanner(bytefile);
+//		company.setCompanyBanner(bytefile);
+		System.out.println("add company success");
 		
-		session.save(company);
-		System.out.println("add success");
-		return company;
+		return (Integer)session.save(company);
 	}
 
 
 	@Override
-	public boolean checkEmail(String email) {
+	public CompanyVO checkEmail(String email) {
 		Session session = sessionFactory.getCurrentSession();
-		Query<CompanyVO> query = session.createQuery("FROM company WHERE companyEmail = :email",CompanyVO.class)
+		Query<CompanyVO> query = session.createQuery("FROM CompanyVO WHERE companyEmail = :email",CompanyVO.class)
 													.setParameter("email", email);
-		return query.uniqueResult() != null;
+		return query.uniqueResult();
 	}
 
 
@@ -128,6 +123,22 @@ public class CompanyDAOHibernate_impl implements CompanyDAOHibernate {
 			testcompany.setCompanyBanner(file);
 		}
 		return testcompany;
+	}
+
+
+	@Override
+	public CompanyVO checkLogin(CompanyVO company) {
+		Session session = sessionFactory.getCurrentSession();
+		CriteriaBuilder cb = session.getCriteriaBuilder();
+		CriteriaQuery<CompanyVO> cq = cb.createQuery(CompanyVO.class);
+		Root<CompanyVO> root = cq.from(CompanyVO.class);
+		Predicate checkEmail = cb.equal(root.get("companyEmail"), company.getCompanyEmail());
+		Predicate checkPW = cb.equal(root.get("companyPassword"), company.getCompanyPassword());
+		Predicate check = cb.and(checkEmail,checkPW);
+		cq = cq.where(check);
+		Query<CompanyVO> query = session.createQuery(cq);
+		CompanyVO companyLoggedIn = query.uniqueResult();
+		return companyLoggedIn;
 	}
 
 

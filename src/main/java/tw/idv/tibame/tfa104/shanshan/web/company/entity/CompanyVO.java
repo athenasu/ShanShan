@@ -2,7 +2,9 @@ package tw.idv.tibame.tfa104.shanshan.web.company.entity;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.Arrays;
 
+import org.hibernate.annotations.DynamicInsert;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +14,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
+@DynamicInsert
 @Table(name = "company")
 public class CompanyVO implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -59,6 +62,9 @@ public class CompanyVO implements Serializable{
 	
 	@Transient
 	private String picStr;
+	
+	@Transient
+	private String picStr2;
 	
 	public CompanyVO() {
 		super();
@@ -188,6 +194,28 @@ public class CompanyVO implements Serializable{
 
 	public void setPicStr(String picStr) {
 		this.picStr = picStr;
+	}
+
+
+	public String getPicStr2() {
+		return picStr2;
+	}
+
+
+	public void setPicStr2(String picStr2) {
+		this.picStr2 = picStr2;
+	}
+
+
+	@Override
+	public String toString() {
+		return "CompanyVO [companyId=" + companyId + ", companyName=" + companyName + ", companyEmail=" + companyEmail
+				+ ", companyPassword=" + companyPassword + ", companyPhone=" + companyPhone + ", companyCell="
+				+ companyCell + ", companyRegisterDate=" + companyRegisterDate + ", companyCetificate="
+				+ Arrays.toString(companyCetificate) + ", companyBanner=" + Arrays.toString(companyBanner)
+				+ ", companyIntro=" + companyIntro + ", companyOwner=" + companyOwner + ", companyAddress="
+				+ companyAddress + ", companyStatus=" + companyStatus + ", picStr=" + picStr + ", picStr2=" + picStr2
+				+ "]";
 	}
 	
 	

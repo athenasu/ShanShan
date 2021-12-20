@@ -6,9 +6,10 @@ import tw.idv.tibame.tfa104.shanshan.web.company.entity.CompanyVO;
 
 public interface CompanyDAOHibernate {
 	
-	public CompanyVO register(byte[]file,CompanyVO company);
+	public Integer register(CompanyVO company);
 	public CompanyVO update(byte[]file,CompanyVO company);
-	public boolean checkEmail(String email);
+	public CompanyVO checkEmail(String email);
+	public CompanyVO checkLogin(CompanyVO company);
 	public CompanyVO findByPK(Integer companyId);//得到完整單一店家資料
 	List <CompanyVO> getAll();//得到所有店家資訊
 	List <CompanyVO> findComByString(String search);//模糊查詢店家資訊
