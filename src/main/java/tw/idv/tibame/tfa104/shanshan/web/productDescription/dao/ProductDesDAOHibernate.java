@@ -3,6 +3,7 @@ package tw.idv.tibame.tfa104.shanshan.web.productDescription.dao;
 import java.util.List;
 
 import tw.idv.tibame.tfa104.shanshan.web.productDescription.entity.FindByProductIdBO;
+import tw.idv.tibame.tfa104.shanshan.web.productDescription.entity.ProductDesVO;
 
 public interface ProductDesDAOHibernate {
 
@@ -19,4 +20,12 @@ public interface ProductDesDAOHibernate {
 	
 	//出貨更新商品庫存數
 	public Integer updateProdesStock(Integer prodesId, Integer prodesStock);
+	
+	//更新商品上下架狀態
+	public Integer updateProDesStatusOfShelf(Integer prodesStatus, Integer prodesId);
+	
+	//新增商品明細
+	public Integer addProdes(ProductDesVO productdesVO);
+	
+	
 }

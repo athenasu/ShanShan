@@ -1,12 +1,10 @@
 package tw.idv.tibame.tfa104.shanshan.web.company.service.impl;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
-
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import tw.idv.tibame.tfa104.shanshan.web.company.service.CompanyOrderService;
 import tw.idv.tibame.tfa104.shanshan.web.core.Core;
@@ -22,12 +20,9 @@ public class CompanyOrderServiceImpl implements CompanyOrderService {
 
 	@Autowired
 	private OrderDAO orderDao;
-	
-	@Autowired 
 	private OrderDescriptionDAO orderDesDao;
-	
-	@Autowired
 	private ProductDesDAOHibernate proDesDao;
+	
 	
 	
 	@Override
@@ -41,14 +36,25 @@ public class CompanyOrderServiceImpl implements CompanyOrderService {
 	}
 	
 	@Override
+	public List<Order> findAllShippedByComId(Integer companyId) {
+		return orderDao.findAllShippedByComId(companyId);
+	}
+	
+	@Override
 	public List<OrderDescriptionBO> findByOrderId(Integer orderId) {
 		return orderDesDao.BOfindByOrderIdNopic(orderId);
 	}
 
 	@Override
-	public int updateShipNum(Integer shipNumber, Date shipDate, Integer orderId) {
-		// TODO Auto-generated method stub
-		return 0;
+	public Core updateShipNum(String shipNumber,Date shipDate, Integer orderId,Core core) {
+		int result = orderDao.updateShipNumDateByOrderId(shipNumber, shipDate, orderId);
+		if(result == 1 ) {
+			core.setSuccessful(true);
+			return core;
+		}else {
+			core.setSuccessful(false);
+			return core;
+		}
 	}
 
 	@Override
@@ -58,7 +64,7 @@ public class CompanyOrderServiceImpl implements CompanyOrderService {
 			core.setSuccessful(true);
 			return core;
 		}else {
-			core.setMessage("orderStatus update false");
+			core.setSuccessful(false);
 			return core;
 		}
 	}
@@ -70,17 +76,20 @@ public class CompanyOrderServiceImpl implements CompanyOrderService {
 			core.setSuccessful(true);
 			return core;
 		}else {
-			core.setMessage("prodes stock update false");
+			core.setSuccessful(false);
 			return core;
 		}
 		
 	}
+}
+
+	
 
 	
 	
 	
 	
-}
+ 
 	
 	
 

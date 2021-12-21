@@ -327,7 +327,7 @@ public class OrderDescriptionDAOImpl implements OrderDescriptionDAO{
 			
 			con = ds.getConnection();
 			
-			pstmt = con.prepareStatement(BO_FIND_BY_ORDERID_NO_PIC_FOR_MEMBER_CENTER);
+			pstmt = con.prepareStatement(BO_FIND_BY_ORDERID_NO_PIC);
 			pstmt.setInt(1, order_id);
 			rs = pstmt.executeQuery();
 
@@ -384,7 +384,7 @@ public class OrderDescriptionDAOImpl implements OrderDescriptionDAO{
 			
 			con = ds.getConnection();
 			
-			pstmt = con.prepareStatement(BO_FIND_BY_ORDERID_NO_PIC);
+			pstmt = con.prepareStatement(BO_FIND_BY_ORDERID_NO_PIC_FOR_MEMBER_CENTER);
 			pstmt.setInt(1, order_id);
 			rs = pstmt.executeQuery();
 

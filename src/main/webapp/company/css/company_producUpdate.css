@@ -107,7 +107,11 @@ div.body_container div.product {
   width: calc(100% - 200px - 60px);
   padding: auto;
 }
-
+table.productlist {
+  max-width: 100%;
+  padding: 5px 8px;
+  font-size: 14px;
+}
 /* =====================wrapper內開始==================== */
 /* ------- nav start------- */
 .nav {
@@ -857,46 +861,49 @@ table.dataTable td {
 /* ------- body block end ------- */
 
 /* ------- 修改上下架button --------*/
-button.change,
-button.onshelf,
-button.offshelf {
+button.update,
+button.onShelf,
+button.downShelf {
   width: 100%;
   height: 100%;
   border: none;
   color: white;
-  background-color: rgb(109, 150, 173);
   cursor: pointer;
 }
-button.change:hover,
-button.onshelf:hover,
-button.offshelf:hover {
+button.update {
+  background-color: rgb(173, 160, 121);
+}
+button.update:hover {
+  background-color: rgb(150, 134, 88);
+}
+button.onShelf {
+  background-color: rgb(109, 150, 173);
+}
+button.onShelf:hover {
   background-color: rgb(40, 83, 107);
+}
+button.downShelf {
+  background-color: rgb(198, 148, 138);
+}
+button.downShelf:hover {
+  background-color: rgb(193, 124, 110);
 }
 /* ------- 修改上下架button結束--------*/
 
-/* ------- 訂單詳情開始--------*/
-table.orderlist1table {
+/* -------商品變更詳情開始--------*/
+/* table.productlist {
   border: 1px solid gray;
   border-collapse: collapse;
   width: 100%;
 }
 
-table.orderlist1table th {
+table.productlist th {
   border: 1px solid gray;
   padding: 1px 4px;
 }
-table.orderlist1table td {
+table.productlist td {
   border: 1px solid gray;
   text-align: center;
   padding: 1px 4px;
-}
-/* ------- 訂單詳情結束--------*/
-
-/* ------- footer  start------- */
-footer.footer {
-  position: relative;
-  font-size: 12px;
-  text-align: center;
-  padding-bottom: auto;
-}
-/* ------- footer  end ------- */
+} */
+/* ------- 商品詳情結束--------*/

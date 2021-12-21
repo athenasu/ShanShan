@@ -142,25 +142,37 @@ $(function(){
         title:"確認新增",
         buttons:{
           "是":function(){
-            $.ajax({
-              type: "POST",
-              url: "../product/addproduct",
-              data:$('.pinfo').serialize(),
-              dataType:"json",
-              success: function(){
-                console.log("submit product success");
-                // $.ajax({
-                //   type: "POST",
-                //   url: "../product/addproduct",
-                //   data:$('.pinfo').serialize(),
-                //   dataType:"json",
-                // })
-                $(this).dialog("close");
-              },
-              error: function(){
-                console.log("submit error")
-              }
-            })
+             // step1 帶入companyId 把product建起 回傳productId("名稱種類介紹" 價格)
+             let companyId = 8;
+             let productName = document.querySelector(".proname").value;
+             let productType = document.querySelector('input[name="pType"]:checked').value;
+             let productIntro = document.querySelector(".prointro").value;
+
+             // productDescription needed 
+             // let productId = ?
+             let productSize = document.querySelector('input[name="product"]:checked').value;
+             let productColor = document.querySelector(".color").value;
+             let productStock = document.querySelector(".stock").value;
+            
+             // let productDesId 
+            // 先試一個controller
+             
+             fetch(`/shanshan/companyProduct/addproduct` , {
+               //use await 
+               method:"POST",
+               headers:{
+                 "Content-Type":"application/json"
+               },
+               body: JSON.stringify({
+                  companyId,
+                  productName,
+                  productType,
+                  productIntro,
+
+               }),
+             })
+                // step2 帶入productId 將prodes物件建起("尺寸顏色庫存" 價格不可為空值)
+                // step3 帶入prodesId 建入img( 帶入desId圖檔)
           },
           "否":function(){
             $(this).dialog("close");

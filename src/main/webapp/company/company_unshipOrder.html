@@ -67,7 +67,7 @@
         </tr>
         <tr>
           <th width = "75px">訂單編號</th>
-          <th>訂購者編號</th>
+          <th>訂購者姓名</th>
           <th>聯絡電話</th>
           <th>訂單日期</th>
           <th>折扣前總金額</th>
@@ -94,34 +94,33 @@
     <!-- 中間body區塊結束 -->
     <!-- 訂單詳情開始 -->
     <div class="orderdetail">
-      <p>訂單編號：<input readonly class="orderid" type="text" value></p>
-      <p>訂單日期：<input readonly class="orderdate" type="text" value></p>
-      <p>訂購者姓名：<input readonly class="clientname" type="text" value></p>
-      <p>訂購者聯絡電話：<input readonly class="clientphone" type="text" value></p>
-      <p>寄送地址：<input class="shipaddress" type="text" readonly></p>
+      <p>訂單編號：<input readonly id="orderNumber" class="orderid" type="text" ></p>
+      <p>訂單日期：<input readonly class="orderdate" type="text" ></p>
+      <p>訂購者姓名：<input readonly class="clientname" type="text" ></p>
+      <p>訂購者聯絡電話：<input readonly class="clientphone" type="text" ></p>
+      <p>寄送地址：<input readonly class="shipaddress" type="text" ></p>
       <table id="orderdes" class="orderlisttable">
         <thead>
         <tr>
-          <th colspan="3">商品明細</th>
+          <th colspan="4">商品明細</th>
         </tr>
         <tr>
-          <!-- <th width = "75px">商品編號</th> -->
+          <th width = "75px" class="desId">商品編號</th>
           <th>商品名稱</th>
-          <th>數量</th>
+          <th class="desQTY">數量</th>
           <th>商品價格</th>
         </tr>
-      </thead>
+        </thead>
       <tbody>
         <tr>
-          <!-- <td>001</td> -->
+          <td></td>
           <td></td>
           <td></td>
           <td></td>
         </tr>
       </tbody>
       </table>
-      <!-- <p>折扣前訂單總金額：<input class="sumbefore" readonly></p> -->
-      <p>訂單總金額：<input class="sumafter" readonly></p>
+      <p>訂單總金額：<input readonly class="sumafter"></p>
     </div>
     <!-- 訂單詳情結束 -->
     <!-- 訂單確認出貨 -->
@@ -137,15 +136,15 @@
     <!-- 訂單確認出貨結束 -->
 
     <!-- 訂單取消出貨 -->
-    <!-- <div class="cancleorder">
-      <p>訂單編號：001</p>
-      <p>訂單日期：2021/11/10</p>
-      <p>訂購者編號：001</p>
-      <p>訂購者姓名：三三</p>
-      <p>訂購者聯絡電話：0912345678</p>
-      <p>訂購者E-mail：aaa@gmail.com</p>
-      <p>寄送地址：106台北市中山區南京東路216號</p>
-    </div> -->
+    <div class="cancleorder">
+      <p>是否取消當前此筆訂單？</p>
+      <!-- <p>訂單編號：</p>
+      <p>訂單日期：</p>
+      <p>訂購者編號：</p>
+      <p>訂購者姓名：</p>
+      <p>訂購者聯絡電話：</p>
+      <p>寄送地址：</p> -->
+    </div>
     <!-- 訂單取消出貨結束 -->
 
 

@@ -25,37 +25,57 @@ public class CompanyServiceHibernate_impl implements CompanyServiecHibernate {
 	@Override
 	public List<CompanyVO> getAll() {
 		List<CompanyVO> companyList = dao.getAll(); 
-		for (CompanyVO company : companyList) {
-			company.setPicStr(Base64.getEncoder().encodeToString(company.getCompanyBanner()));
-		}
+//		for (CompanyVO company : companyList) {
+//			company.setPicStr(Base64.getEncoder().encodeToString(company.getCompanyBanner()));
+//		}
 		return companyList;
 	}
 	
 	@Override
 	public List<CompanyVO> findComByString(String search) {
 		List<CompanyVO> companySearch = dao.findComByString(search);
-		for(CompanyVO company : companySearch) {
-			company.setPicStr(Base64.getEncoder().encodeToString(company.getCompanyBanner()));
-		}
+//		for(CompanyVO company : companySearch) {
+//			company.setPicStr(Base64.getEncoder().encodeToString(company.getCompanyBanner()));
+//		}
 		return companySearch;
 	}
 
 	@Override
-	public CompanyVO register(byte[]file,CompanyVO company) {
-		System.out.println("comapny register service");
-		boolean added = dao.checkEmail(company.getCompanyEmail());
-		if(added){
-			System.out.println("This company already registered");
-			return null ;
+	public Integer register(CompanyVO company) {
+		CompanyVO existed = dao.checkEmail(company.getCompanyEmail());
+		if(existed != null) {
+			System.out.println("this company had registered");
+			return 0;
 		}
-		System.out.println("in service register check email");
-		return dao.register(file,company);
+		byte[] bytefile2 = Base64.getDecoder().decode(company.getPicStr2());
+		company.setCompanyCetificate(bytefile2);
+		return dao.register(company);
+	}
+
+	@Override
+	public CompanyVO checkEmail(String email) {
+		return dao.checkEmail(email);
 	}
 
 	@Override
 	public CompanyVO update(byte[] file, CompanyVO company) {
-		return dao.update(file,company);
+		return dao.update(file, company);
 	}
+
+	@Override
+	public CompanyVO checkLogin(CompanyVO company) {
+		CompanyVO hadLogged = dao.checkLogin(company);
+		if(hadLogged != null) {
+			return hadLogged;
+		}else {
+			return null;
+		}
+		
+	}
+
+
+
+	
 
 	
 

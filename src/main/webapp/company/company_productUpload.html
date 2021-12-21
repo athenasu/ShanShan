@@ -60,7 +60,7 @@
   <!-- wrapper側邊結束 -->
     <!-- 新增商品開始 -->
     <div class="proinfo">
-    <form class="pinfo"  method="post" >
+    <form class="pinfo" >
       <p>新增商品</p>
       <div class="leftinfo">
       <!-- <div class="proId">
@@ -74,24 +74,24 @@
       </div>
       <div class="sizePick">
         商品尺寸：
-        <label class="sizepick"><input class="sizeF" type="radio" name="product" value> F </label>
-        <label class="sizepick"><input class="sizeS" type="radio" name="product" value> S </label>
-        <label class="sizepick"><input class="sizeM" type="radio" name="product" value> M </label>
-        <label class="sizepick"><input class="sizeL" type="radio" name="product" value> L </label>
-        <label class="sizepick"><input class="sizeXL" type="radio" name="product" value> XL </label>
+        <label class="sizepick"><input class="sizeF" type="radio" name="product" value=0> F </label>
+        <label class="sizepick"><input class="sizeS" type="radio" name="product" value=1> S </label>
+        <label class="sizepick"><input class="sizeM" type="radio" name="product" value=2> M </label>
+        <label class="sizepick"><input class="sizeL" type="radio" name="product" value=3> L </label>
+        <label class="sizepick"><input class="sizeXL" type="radio" name="product" value=4> XL </label>
       </div>
       <div class="typePick">
         商品類別：
-        <label class="typepick"><input class="1" type="radio" name="type"> 衣著 </label>
-        <label class="typepick"><input class="2" type="radio" name="type"> 工具照明 </label>
-        <label class="typepick"><input class="3" type="radio" name="type"> 炊具 </label>
-        <label class="typepick"><input class="4" type="radio" name="type"> 帳篷寢具 </label>
+        <label class="typepick"><input class="type1" type="radio" name="pType" value=1> 衣著 </label>
+        <label class="typepick"><input class="type2" type="radio" name="pType" value=2> 工具照明 </label>
+        <label class="typepick"><input class="type3" type="radio" name="pType" value=3> 炊具 </label>
+        <label class="typepick"><input class="type4" type="radio" name="pType" value=4> 帳篷寢具 </label>
       </div>
       <div class="procolor">
         商品顏色：<input class="color" type="text" name="product" placeholder="請輸入商品顏色" value>
       </div>
       <div class="prostock">
-        商品庫存：<input class="stock" type="text" maxlength="8" name="product" placeholder="請輸入商品庫存" value>
+        商品庫存：<input class="stock" type="text" maxlength="8" placeholder="請輸入商品庫存" value>
       </div>
       <div class="productintro">
         <textarea class="prointro" placeholder="請輸入商品簡介" ></textarea>

@@ -11,10 +11,12 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import org.springframework.stereotype.Repository;
+
 import tw.idv.tibame.tfa104.shanshan.web.productImg.dao.ProductImgDAO_interface;
 import tw.idv.tibame.tfa104.shanshan.web.productImg.entity.ProductImgVO;
 
-
+@Repository
 public class ProductImgDAO_impl implements ProductImgDAO_interface {
 	
 	
@@ -35,7 +37,7 @@ public class ProductImgDAO_impl implements ProductImgDAO_interface {
 		}
 	}
 	@Override
-	public void insert(ProductImgVO productImgVO) {
+	public ProductImgVO addProImg(ProductImgVO productImgVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
@@ -44,14 +46,12 @@ public class ProductImgDAO_impl implements ProductImgDAO_interface {
 			pstmt.setInt(1, productImgVO.getProductImgId());
 			pstmt.setInt(2, productImgVO.getProductDesId());
 			//setting picture >set Bytes
-			byte[] pic = getPictureByteArray("/Users/luciechen/Documents/shanshan/products/womenClothes-shop1use/8-1.jpeg");
-			pstmt.setBytes(3,pic);
+			//byte[] pic = getPictureByteArray("/Users/luciechen/Documents/shanshan/products/womenClothes-shop1use/8-1.jpeg");
+			pstmt.setBytes(3,productImgVO.getProductImg());
 			pstmt.executeUpdate();
 			
 		}catch(SQLException se) {
 			se.printStackTrace();
-		}catch(IOException ie) {
-			ie.printStackTrace();
 		}finally {
 			if (pstmt != null) {
 				try {
@@ -69,6 +69,7 @@ public class ProductImgDAO_impl implements ProductImgDAO_interface {
 				}
 			}
 		}
+		return productImgVO;
 		
 	}
 
@@ -81,15 +82,13 @@ public class ProductImgDAO_impl implements ProductImgDAO_interface {
 			pstmt = con.prepareStatement(UPDATE);
 			
 			//setting picture >set Bytes
-			byte[] pic = getPictureByteArray("/Users/luciechen/Documents/shanshan/products/womenClothes-shop1use/13-1.jpg");
-			pstmt.setBytes(1,pic);
+			//byte[] pic = getPictureByteArray("/Users/luciechen/Documents/shanshan/products/womenClothes-shop1use/13-1.jpg");
+			pstmt.setBytes(1,productImgVO.getProductImg());
 			pstmt.setInt(2, productImgVO.getProductImgId());
 			pstmt.executeUpdate();
 			
 		}catch(SQLException se) {
 			se.printStackTrace();
-		}catch(IOException ie) {
-			ie.printStackTrace();
 		}finally {
 			if (pstmt != null) {
 				try {

@@ -225,6 +225,12 @@ div.order table.orders {
   box-sizing: border-box;
   width: 100%;
 }
+div.orderdetail table.orderlisttable {
+  /*   border:1px solid black; */
+  border-collapse: collapse;
+  box-sizing: border-box;
+  width: 100%;
+}
 table.orders th {
   border: 2px solid gray;
   padding: 2px 4px;
@@ -855,163 +861,44 @@ table.dataTable td {
 
 /* =====================order結束==================== */
 
+/* ------- body block end ------- */
+
+/* ------- unshiporder button style --------*/
+button {
+  width: 100%;
+  height: 100%;
+  border: none;
+  color: white;
+  background-color: rgb(109, 150, 173);
+  cursor: pointer;
+}
+button:hover {
+  background-color: rgb(40, 83, 107);
+}
+/* ------- unshiporder button style 結束--------*/
+
 /* ------- 訂單詳情開始--------*/
-table.orderlist1table {
+table.orderlisttable {
   border: 1px solid gray;
   border-collapse: collapse;
   width: 100%;
 }
 
-table.orderlist1table th {
+table.orderlisttable th {
+  width: 50px;
   border: 1px solid gray;
   padding: 1px 4px;
 }
-table.orderlist1table td {
+table.orderlisttable td {
   border: 1px solid gray;
   text-align: center;
   padding: 1px 4px;
+}
+div.orderdetail input {
+  margin-bottom: 10px;
+}
+input.conShipaddress,
+input.shipaddress {
+  width: 50%;
 }
 /* ------- 訂單詳情結束--------*/
-/* ------- 店家資料維護------- */
-div.shopinfo {
-  max-width: 100%;
-  height: auto;
-  margin: 0 auto;
-  box-sizing: border-box;
-  padding: 10px 20px 40px 20px;
-}
-div.shopinfo p {
-  text-align: center;
-  color: rgb(40, 83, 107);
-  font-weight: bold;
-}
-div.body_container {
-  margin: 0 auto;
-  box-sizing: border-box;
-}
-div.body_container div.wrapper,
-div.body_container div.shopinfo {
-  display: inline-block;
-  vertical-align: top;
-  box-sizing: border-box;
-  font-size: 1rem;
-}
-div.body_container div.wrapper {
-  background-color: white;
-  text-align: center;
-  width: 200px;
-  margin-right: 30px;
-}
-div.body_container div.shopinfo {
-  background-color: white;
-  border: 1px solid gray;
-  border-collapse: collapse;
-  width: calc(100% - 200px - 150px);
-  padding: auto;
-}
-
-div.leftinfo div {
-  color: rgb(40, 83, 107);
-  padding: 0px 0px 0px 5px;
-  font-size: 16px;
-  height: 30px;
-  margin-top: 10px;
-  width: 505px;
-}
-input.shopaccountin,
-input.shoppasswordin,
-input.shopownerin,
-input.shopnamein,
-input.shopaddressin,
-input.shoptelin,
-input.shopcellin {
-  width: 400px;
-  font-size: 14px;
-}
-div.leftinfo,
-div.rightinfo {
-  display: inline-block;
-  /* border: 1px solid red; */
-  vertical-align: top;
-}
-div.rightinfo {
-  padding-top: 6px;
-  width: 510px;
-  height: 250px;
-}
-/* banner begin */
-div.bannerupload {
-  height: 155px;
-}
-span.bannertext {
-  position: relative;
-  /* margin: 0px 170px 0px 170px; */
-  font-size: 16px;
-  color: rgb(40, 83, 107);
-}
-
-input.upload_shopbanner {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
-}
-label.shopbanner {
-  position: relative;
-  color: rgb(109, 150, 173);
-  border: 1px solid #ccc;
-  display: inline-block;
-  padding: 2px 6px;
-  cursor: pointer;
-}
-img.shopbanner {
-  width: 505px;
-  max-height: 135px;
-  /* border: 2px dashed rgb(109, 150, 173); */
-}
-ul.sbanner {
-  list-style: none;
-  margin-top: 5px;
-  padding-top: 5px;
-  min-height: 140px;
-  color: lightgray;
-  border: 2px dashed rgb(109, 150, 173);
-}
-ul.banner li {
-  display: inline-block;
-  vertical-align: top;
-}
-span.sbtext {
-  padding: 0px 220px 0px 220px;
-}
-/* banner end  */
-textarea.shopintroin {
-  resize: none;
-  position: relative;
-  margin: 40px 0px 0px 0px;
-  width: 509px;
-  height: 80px;
-  color: rgb(40, 83, 107);
-}
-#finalbtn {
-  display: inline-block;
-  margin-left: 375px;
-}
-#shopreset,
-#shopsubmit {
-  padding: 2px 5px;
-  cursor: pointer;
-  border: none;
-  background-color: rgb(40, 83, 107);
-  color: white;
-}
-#shopreset:hover,
-#shopsubmit:hover {
-  background-color: rgb(109, 150, 173);
-}
-
-/* ------- 店家資料維護結束------- */

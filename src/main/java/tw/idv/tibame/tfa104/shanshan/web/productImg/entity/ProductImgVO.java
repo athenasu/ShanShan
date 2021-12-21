@@ -13,17 +13,22 @@ import javax.persistence.Table;
 @Table(name = "product_img")
 public class ProductImgVO implements Serializable{
 	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "product_id")
 	private Integer productImgId;
+	
+	@Column(name = "product_des_id")
 	private Integer productDesId;
+	
+	@Column(name = "product_img", columnDefinition = "LONGBLOB")
 	private byte[] productImg;
 	
 	public ProductImgVO() {
 		super();
 	}
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "product_id")
+	
 	public Integer getProductImgId() {
 		return productImgId;
 	}
@@ -32,7 +37,7 @@ public class ProductImgVO implements Serializable{
 		this.productImgId = productImgId;
 	}
 	
-	@Column(name = "product_des_id")
+	
 	public Integer getProductDesId() {
 		return productDesId;
 	}
@@ -41,7 +46,7 @@ public class ProductImgVO implements Serializable{
 		this.productDesId = productDesId;
 	}
 	
-	@Column(name = "product_img", columnDefinition = "LONGBLOB")
+	
 	public byte[] getProductImg() {
 		return productImg;
 	}

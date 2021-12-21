@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>已出貨訂單</title>
-    <link rel="stylesheet" href="./css/company.css">
+    <link rel="stylesheet" href="./css/company_alreadyship.css">
 </head>
 <body>
     <header class="header">
@@ -61,117 +61,76 @@
     <table class="orders">
       <thead>
       <tr>
-        <th colspan="6">已出貨訂單</th>
+        <th colspan="7">已出貨訂單</th>
       </tr>
       <tr>
         <th width = "75px">訂單編號</th>
-        <th>訂購者編號</th>
+        <th>訂購者姓名</th>
         <th>聯絡電話</th>
         <th>訂單日期</th>
         <th>訂單總金額</th>
+        <th>訂單狀態</th>
         <th>訂單詳情</th>
       </tr>
       </thead>
       <tbody>
       <tr>
-        <td>1</td>
-        <td>001</td>
-        <td>0912345678</td>
-        <td>2021/11/2</td>
-        <td>2000</td>
-        <td><button class="shiporder1">明細</button></td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>002</td>
-        <td>0912345678</td>
-        <td>2021/11/3</td>
-        <td>30000</td>
-        <td><button class="shiporder2">明細</button></td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td>003</td>
-        <td>0912345678</td>
-        <td>2021/11/3</td>
-        <td>30000</td>
-        <td><button class="shiporder3">明細</button></td>
-      </tr>
-      <tr>
-        <td>4</td>
-        <td>004</td>
-        <td>0912345678</td>
-        <td>2021/11/3</td>
-        <td>30000</td>
-        <td><button class="shiporder4">明細</button></td>
-      </tr>
-      <tr>
-        <td>5</td>
-        <td>005</td>
-        <td>0912345678</td>
-        <td>2021/11/3</td>
-        <td>30000</td>
-        <td><button class="shiporder5">明細</button></td>
-      </tr>
-      <tr>
-        <td>6</td>
-        <td>006</td>
-        <td>0912345678</td>
-        <td>2021/11/3</td>
-        <td>30000</td>
-        <td><button class="shiporder6">明細</button></td>
-      </tr>
-      <tr>
-        <td>7</td>
-        <td>007</td>
-        <td>0912345678</td>
-        <td>2021/11/3</td>
-        <td>30000</td>
-        <td><button class="shiporder7">明細</button></td>
-      </tr>
-      <tr>
-        <td>8</td>
-        <td>008</td>
-        <td>0912345678</td>
-        <td>2021/11/3</td>
-        <td>30000</td>
-        <td><button class="shiporder8">明細</button></td>
-      </tr>
-      <tr>
-        <td>9</td>
-        <td>009</td>
-        <td>0912345678</td>
-        <td>2021/11/3</td>
-        <td>30000</td>
-        <td><button class="shiporder9">明細</button></td>
-      </tr>
-      <tr>
-        <td>10</td>
-        <td>010</td>
-        <td>0912345678</td>
-        <td>2021/11/3</td>
-        <td>30000</td>
-        <td><button class="shiporder10">明細</button></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
       </tr>
       </tbody>
     </table>
   </div>
-  <!-- 已出貨訂單結束 -->
+  <!-- 已出貨訂單表格結束 -->
   </div>
-   
-    <!-- 中間body區塊結束 -->
-
-
-
+  <!-- 中間body區塊結束 -->
+  <!-- 已出貨訂單詳情開始 -->
+  <div class="shippedorderDetail">
+    <p>訂單編號：<input readonly class="orderid" type="text" ></p>
+    <p>訂單日期：<input readonly class="orderdate" type="text" ></p>
+    <p>訂購者姓名：<input readonly class="clientname" type="text" ></p>
+    <p>訂購者聯絡電話：<input readonly class="clientphone" type="text" ></p>
+    <p>寄送地址：<input readonly class="shipaddress" type="text" ></p>
+    <p>寄送日期：<input readonly class="shipdate" type="text" ></p>
+    <table id="shippedlisttable" class="shippedTable">
+        <thead>
+          <tr>
+            <th colspan="4">商品明細</th>
+          </tr>
+          <tr>
+            <th>商品編號</th>
+            <th>商品名稱</th>
+            <th>數量</th>
+            <th>商品價格</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+    </table>
+    <p>訂單總金額：<input readonly class="sumafter" type="text" ></p>
+  </div>
+  <!-- 已出貨訂單詳情結束 -->
     <script src ="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
     <script src ="vendors/jquery/jquery-3.6.0.min.js" ></script>
-    <!-- <script src ="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
     <script src ="vendors/jquery/jquery-ui.min.js"></script>
+
     <link rel ="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
-    <!-- DataTable links begin-->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
-    <!-- DataTable links end -->
+    <script src="https://cdn.datatables.net/datetime/1.1.1/js/dataTables.dateTime.min.js"></script>
+    <script src="https://cdn.datatables.net/plug-ins/1.10.21/dataRender/datetime.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script src ="./js/company_alreadyshiporder.js"></script>
 </body>
 </html>

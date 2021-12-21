@@ -20,7 +20,7 @@ public class ProductServiceHibernate_impl implements  ProductServiceHibernate{
 	
 	
 	@Override
-	public Product addproduct(Product product) {
+	public Integer addproduct(Product product) {
 		return dao.addproduct(product);
 	}
 	@Override

@@ -63,7 +63,21 @@ $(function(){
     		 "columns":[
     	         {'data':'productName'},
     	         {'data':'productPrice'},
-    	         {'data':'productSize'},
+    	         {'data':'productSize',
+                'render': function(data){
+                  if(data == 0){
+                    return data = 'F'
+                  }else if(data ==1){
+                    return data = 'S'
+                  }else if(data == 2){
+                    return data = 'M'
+                  }else if(data == 3){
+                    return data = 'L'
+                  }else{
+                    return data = 'XL'
+                  }
+                }
+              },
     	         {'data':'productColor'},
     	         {'data':'proDesStock'},
     	       ]

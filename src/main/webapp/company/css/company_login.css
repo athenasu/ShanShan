@@ -70,7 +70,7 @@ div.loginRegister {
 }
 form.loginRegi {
   max-width: 100%;
-  height: 250px;
+  height: 270px;
 }
 form.loginRegi p {
   margin-top: 10px;
@@ -105,13 +105,20 @@ button.middlelogin {
 button.middlelogin:hover {
   background-color: rgb(109, 150, 173);
 }
+a.goRegister,
 a.forgetPwd {
-  margin: 0px 0px 0px 215px;
-  text-align: center;
+  /* text-align: center; */
   color: rgb(40, 83, 107);
 }
+a.goRegister:hover,
 a.forgetPwd:hover {
   color: rgb(220, 227, 232);
+}
+a.goRegister {
+  margin: 0px 0px 0px 185px;
+}
+a.forgetPwd {
+  margin: 0px 0px 0px 215px;
 }
 /* a.forgetPwd:visited {
   color: rgb(109, 150, 173);

@@ -18,10 +18,10 @@ public class ProductDAOHibernate_impl implements ProductDAOHibernate {
 	private SessionFactory sessionFactory;
 	
 	@Override
-	public Product addproduct(Product product) {
+	public Integer addproduct(Product product) {
 		Session session = sessionFactory.getCurrentSession();
-		session.save(product);
-		return product;
+		int productId = (Integer) session.save(product);
+		return productId;
 	}
 	@Override
 	public List<ProductBO> findById(Integer productId) {

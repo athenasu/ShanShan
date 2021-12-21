@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import tw.idv.tibame.tfa104.shanshan.web.productDescription.dao.ProductDesDAOHibernate;
 import tw.idv.tibame.tfa104.shanshan.web.productDescription.entity.FindByProductIdBO;
+import tw.idv.tibame.tfa104.shanshan.web.productDescription.entity.ProductDesVO;
 
 @Repository
 public class ProductDesDAOHibernate_impl implements ProductDesDAOHibernate {
@@ -101,13 +102,40 @@ public class ProductDesDAOHibernate_impl implements ProductDesDAOHibernate {
 	@Override
 	public Integer updateProdesStock(Integer prodesId, Integer prodesStock) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("UPDATE ProductDesVO set "
+		return session.createQuery("UPDATE ProductDesVO SET "
 				+ "productStock = productStock - :prodesStock "
 				+ "WHERE productDesId =:prodesId")
 				.setParameter("prodesStock", prodesStock)
 				.setParameter("prodesId", prodesId)
 				.executeUpdate();
 		
+	}
+
+	@Override
+	public Integer updateProDesStatusOfShelf(Integer prodesStatus, Integer prodesId) {
+		Session session = sessionFactory.getCurrentSession();
+		session.createQuery("UPDATE ProductDesVO SET "
+				+ " status =:prodesStatus WHERE  productDesId =:prodesId")
+				.setParameter("prodesStatus", prodesStatus)
+				.setParameter("prodesId", prodesId)
+				.executeUpdate();
+		return 1 ;
+	}
+
+	@Override
+	public Integer addProdes(ProductDesVO productdesVO) {
+		Session session = sessionFactory.getCurrentSession();
+//		int result = session.createQuery("INSERT INTO ProductDesVO "
+//				+ " (productId, productSize, productColor, productStock, productPrice)"  
+//				+ "SELECT :productId, :productSize, :productColor, :productStock, :productPrice);")
+//				.setParameter("productId",productId)
+//				.setParameter("productSize", productdesVO.getProductSize())
+//				.setParameter("productColor", productdesVO.getProductColor())
+//				.setParameter("productStock", productdesVO.getProductStock())
+//				.setParameter("productPrice", productdesVO.getProductPrice())
+//				.executeUpdate();
+		return (Integer)session.save(productdesVO);
+		 
 	}
 	
 }
