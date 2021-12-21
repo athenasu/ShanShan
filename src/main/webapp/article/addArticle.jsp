@@ -1,8 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
-
-
 <%@ page import="tw.idv.tibame.tfa104.shanshan.web.article.service.impl.*"%>
 <%@ page import="tw.idv.tibame.tfa104.shanshan.web.article.entity.*"%>
 
@@ -14,8 +12,10 @@
 	application.getAttribute("memSvc");
 	application.getAttribute("mtnSvc");
 	
-    Integer  member_id=1;
-    pageContext.setAttribute("member_id",member_id);
+//     Integer  member_id=1;
+    session.getAttribute("memberId");
+    session.getAttribute("memberName");
+//     pageContext.setAttribute("member_id",member_id);
 %>
 
 <!DOCTYPE html>
@@ -27,37 +27,13 @@
 
 <link rel="shortcut icon" href="/img/favicon.png" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link rel="stylesheet" href="<%=request.getContextPath()%>/article/css/style.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/index/css/style.css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/article/css/addArt.css" />
 <title>發表日誌</title>
 </head>
 <body>
-	<header>
-		<div id="logo">
-			<a href="<%=request.getContextPath()%>/index/index.jsp"> 
-			<img src="<%=request.getContextPath()%>/index/img/logo.png" class="img" /></a>
-		</div>
-		<nav id="navlist">
-			<ul>
-				<li><a href="<%=request.getContextPath()%>/event/event.html">找山友</a></li>
-				<li><a
-					href="<%=request.getContextPath()%>/article/articleList.jsp">山友日誌</a></li>
-				<li><a
-					href="<%=request.getContextPath()%>/shop/goods_index.jsp">攻山小物</a></li>
-				<li><a href="<%=request.getContextPath()%>/cabin/mtnIndex.jsp">登山資訊</a></li>
-				<li><a
-					href="<%=request.getContextPath()%>/member/member_main.html">會員中心</a></li>
-			</ul>
-		</nav>
-		<div id="memcheck">
-			<div id="login">
-				<a href="#">登入</a>
-			</div>
-			<div id="register">
-				<a href="<%=request.getContextPath()%>/member/register.html">註冊</a>
-			</div>
-		</div>
-	</header>
+<%@ include file="/index/header.jsp" %>
+	
    <div id="wrap" style="background-image: url('<%=request.getContextPath()%>/article/img/a7.jpg')">
       <main>
         <div id="toptitle">
@@ -141,8 +117,10 @@
               </div>
             </div>
             <div class="bottom">
-              <input type="hidden" name="member_id" value="${member_id}" />
-              <div><input type="button" value="送出" id="sendbtn" /></div>
+              <input type="hidden" name="member_id" value="${memberId}" />
+              <div><input type="button" value="送出" id="sendbtn" />
+              		<input type="button" value="取消" id="cancelbtn">
+              </div>
             </div>
           </form>
         </div>
@@ -152,6 +130,7 @@
       <div class="modal">
 	          <div id="errormsg"></div>
 	          <input type="button" value="確定" id="cancel"/>
+	         
       </div>
     </div>
 	<footer>
@@ -159,67 +138,32 @@
 			Copyright <i class="far fa-copyright"></i>2021 G3 SANSAN
 		</h4>
 	</footer>
+	<script src="<%=request.getContextPath()%>/index/vendors/jquery/jquery-3.6.0.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>	
 	<script src="https://kit.fontawesome.com/2336c06c64.js"></script>
-	<script src="<%=request.getContextPath()%>/article/vendors/jquery/jquery-3.6.0.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>	
-<script>
-
-$(function() {
-    $("#date").datepicker({
-    	maxDate: "$.now()",
-    	dateFormat: "yy-mm-dd"
-    	});
-  });
-  
-
-  
+<%-- 	<script src="<%=request.getContextPath()%>/index/js/header2.js"></script> --%>
+		<script src="<%=request.getContextPath()%>/member/js/register.js"></script>
 	
-	var mtnid=1;
-	$(".mtnId").change(function(){
-		mtnid=$(this).val()
-		if(mtnid==100){
-			$(".addMtn").attr('disabled', false);
-		}
-		else{
-			$(".addMtn").attr('disabled',"disabled");
-		}
+	
+	
+	<script src="<%=request.getContextPath()%>/article/js/add.js"></script>
+	<script>
+	$(function(){
+		$.ajax({
+			url:"<%=request.getContextPath()%>/CheckAccount.do",
+			method: "GET",
+			success : function(e) {
+				if(e==="ok"){
+					$(".logout_modal_button").removeClass("-none")
+					$(".login_modal_button").addClass("-none")
+				}else{
+					$(".logout_modal_button").addClass("-none")
+					$(".login_modal_button").removeClass("-none")	
+				}
+			}			
+		})
 	})
-	
-	$("#cancel").click(function(){
-		$(".overlay").addClass("-none");
-	});
-	
-	var imglength="";
-	$("#upimg").change(function(){
-		imglength=this.files.length;
-	})
-	
-	$("#sendbtn").click(function(){
-		var date =$(".date").val();
-		var artTitle =$("#artTitle").val();
-		var otherMtn =$(".addMtn").val();
-		var artContent = $("#artContent").val();
-		
-// 		  console.log(typeof($(".date").val()));
-
-		
-		if(artTitle == ""|artContent ==""|(otherMtn=="" && mtnid == 100)|date ==""){
-			$(".overlay").removeClass("-none");
-			$("#errormsg").html("有資料未填寫，請完成填寫");
-		}else if(imglength > 5){
-			$(".overlay").removeClass("-none");
-			$("#errormsg").html("圖片不可上傳超過5張，請確認重新上傳");
-		}
-		
-		else{
-			$("form").submit();
-		}
-
-	})
-	
-
-	
-	
 	</script>
+
 </body>
 </html>

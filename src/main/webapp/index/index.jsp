@@ -8,10 +8,13 @@
 <%@ page import="tw.idv.tibame.tfa104.shanshan.web.shop.service.impl.*"%>
 <%@ page import="tw.idv.tibame.tfa104.shanshan.web.product.entity.* "%>
 
-<jsp:useBean id="artSvc" scope="page"
+<jsp:useBean id="artSvc" scope="session"
 	class="tw.idv.tibame.tfa104.shanshan.web.article.service.impl.ArticleService" />
 
 <%
+session.getAttribute("memberId");
+session.getAttribute("memberName");
+
 	List<ArticleVO> list = artSvc.orderByViewer();
 	pageContext.setAttribute("list", list);
 
@@ -32,45 +35,16 @@
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="shortcut icon"
-	href="<%=request.getContextPath()%>/index/img/favicon.png" />
-<link rel="stylesheet" type="text/css"
-	href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
-
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/index/css/style.css" />
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/index/css/index.css" />
-
+<link rel="shortcut icon" href="<%=request.getContextPath()%>/index/img/favicon.png" />
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/index/css/style.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/index/css/index.css" />
 <title>山山來此|首頁</title>
 </head>
 <body>
 
-	<!-- 導覽列 -->
-	<header>
-		<div id="logo">
-			<a href="<%=request.getContextPath()%>/index/index.jsp">
-			<img src="<%=request.getContextPath()%>/index/img/logo.png" class="img" /></a>
-		</div>
-		<nav id="navlist">
-			<ul>
-				<li><a href="<%=request.getContextPath()%>/event/event.html">找山友</a></li>
-				<li><a href="<%=request.getContextPath()%>/article/articleList.jsp">山友日誌</a></li>
-				<li><a href="<%=request.getContextPath()%>/shop/goods_index.jsp">攻山小物</a></li>
-				<li><a href="<%=request.getContextPath()%>/cabin/mtnIndex.jsp">登山資訊</a></li>
-				<li><a href="<%=request.getContextPath()%>/member/member_main.html">會員中心</a></li>
-			</ul>
-		</nav>
-		<div id="memcheck">
-			<div id="login">
-				<a href="#">登入</a>
-			</div>
-			<div id="register">
-				<a href="<%=request.getContextPath()%>/member/register.html">註冊</a>
-			</div>
-		</div>
-	</header>
- 
+<%@ include file="header.jsp" %>
+
 	<main>
 		<!-- 大圖+天氣 -->
 
@@ -107,15 +81,14 @@
 			<div id="grouplist">
 				<c:forEach var="popEventBO" items="${eventSvc.popularEvents()}">
 					<div class="groupcard">
-						<a
-							href="<%=request.getContextPath() %>/event/eventview.html?findEventByEventId?eventId=${popEventBO.eventId}">
+						<a href="<%=request.getContextPath() %>/event/eventview.html?findEventByEventId?eventId=${popEventBO.eventId}">
 							<div class="groupimg">
 								<img
 									src="<%=request.getContextPath() %>/ArticlePictureServlet.do?mountainId=${popEventBO.mountainId}&action=getMtnPic"
 									class="img" />
-								<p class="countdown">
-									倒數：<span></span>
-								</p>
+<!-- 								<p class="countdown"> -->
+<!-- 									倒數：<span></span> -->
+<!-- 								</p> -->
 							</div>
 							<div class="groupinfo">
 								<h3 class="title2 gp_name">${popEventBO.eventName}</h3>
@@ -177,34 +150,34 @@
 			</div>
 		</div>
 		<!-- 全台區域 -->
-		<h3 class="title2 areatitle">探索全台</h3>
-		<div id="group_area">
-			<div class="leftarea">
-				<a href="#">
-					<div class="north area"
-						style="background-image: url('<%=request.getContextPath()%>/index/img/01.jpg')">
-						<span>北部</span>
-					</div>
-				</a>
-			</div>
-			<div class="rightarea">
-				<a href="#"><div class="middle area"
-						style="background-image: url('<%=request.getContextPath()%>/index/img/02.jpg')">
-						<span>中部</span>
-					</div></a> <a href="#"><div class="south area"
-						style="background-image: url('<%=request.getContextPath()%>/index/img/03.jpg')">
-						<span>南部</span>
-					</div></a> <a href="#"><div class="east area"
-						style="background-image: url('<%=request.getContextPath()%>/index/img/04.jpg')">
-						<span>東部</span>
-					</div></a> <a href="#">
-					<div class="outlying area"
-						style="background-image: url('<%=request.getContextPath()%>/index/img/05.jpg')">
-						<span>外島</span>
-					</div>
-				</a>
-			</div>
-		</div>
+<!-- 		<h3 class="title2 areatitle">探索全台</h3> -->
+<!-- 		<div id="group_area"> -->
+<!-- 			<div class="leftarea"> -->
+<!-- 				<a href="#"> -->
+<!-- 					<div class="north area" -->
+<%-- 						style="background-image: url('<%=request.getContextPath()%>/index/img/01.jpg')"> --%>
+<!-- 						<span>北部</span> -->
+<!-- 					</div> -->
+<!-- 				</a> -->
+<!-- 			</div> -->
+<!-- 			<div class="rightarea"> -->
+<!-- 				<a href="#"><div class="middle area" -->
+<%-- 						style="background-image: url('<%=request.getContextPath()%>/index/img/02.jpg')"> --%>
+<!-- 						<span>中部</span> -->
+<!-- 					</div></a> <a href="#"><div class="south area" -->
+<%-- 						style="background-image: url('<%=request.getContextPath()%>/index/img/03.jpg')"> --%>
+<!-- 						<span>南部</span> -->
+<!-- 					</div></a> <a href="#"><div class="east area" -->
+<%-- 						style="background-image: url('<%=request.getContextPath()%>/index/img/04.jpg')"> --%>
+<!-- 						<span>東部</span> -->
+<!-- 					</div></a> <a href="#"> -->
+<!-- 					<div class="outlying area" -->
+<%-- 						style="background-image: url('<%=request.getContextPath()%>/index/img/05.jpg')"> --%>
+<!-- 						<span>外島</span> -->
+<!-- 					</div> -->
+<!-- 				</a> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
 		<!-- 山友日誌 -->
 		<div class="artarea">
 			<i class="fas fa-mountain title"></i>
@@ -304,7 +277,26 @@
 		src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
 	<script src="<%=request.getContextPath()%>/index/js/header.js"></script>
+	<script src="<%=request.getContextPath()%>/index/js/header2.js"></script>
 	<script src="<%=request.getContextPath()%>/index/js/index.js"></script>
+	<script src="<%=request.getContextPath()%>/member/js/register.js"></script>
 	<script src="https://kit.fontawesome.com/2336c06c64.js"></script>
+	<script>
+	$(function(){
+		$.ajax({
+			url:"<%=request.getContextPath()%>/CheckAccount.do",
+			method: "GET",
+			success : function(e) {
+				if(e==="ok"){
+					$(".logout_modal_button").removeClass("-none")
+					$(".login_modal_button").addClass("-none")
+				}else{
+					$(".logout_modal_button").addClass("-none")
+					$(".login_modal_button").removeClass("-none")	
+				}
+			}			
+		})
+	})
+</script>
 </body>
 </html>

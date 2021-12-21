@@ -10,3 +10,4 @@ window.addEventListener("scroll", function () {
   }
   $("header").css("background-color", opac);
 });
+

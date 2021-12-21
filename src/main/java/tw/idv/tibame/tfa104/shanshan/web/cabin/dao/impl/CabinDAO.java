@@ -36,6 +36,8 @@ public class CabinDAO implements CabinDAO_interface {
 
 	private static final String findByCabinId = "Select cabin_id,cabin_name,cabin_pic from cabin where cabin_id=?";
 
+
+	
 	@Override
 	public void insertCabin(CabinVO CabinVO) {
 		Connection con = null;

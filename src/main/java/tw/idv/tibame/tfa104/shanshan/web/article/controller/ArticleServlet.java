@@ -2,6 +2,7 @@ package tw.idv.tibame.tfa104.shanshan.web.article.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -15,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import org.springframework.web.context.WebApplicationContext;
@@ -42,28 +44,25 @@ public class ArticleServlet extends HttpServlet {
 	}
 
 	public void init() throws ServletException {
-		ServletContext application = this.getServletContext();
 
+		ServletContext application = this.getServletContext();
 		WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
-		
+
 		MemberService memSvc = context.getBean(MemberService.class);
 		application.setAttribute("memSvc", memSvc);
-		
 
 		MountainService mtnSvc = context.getBean(MountainService.class);
 		application.setAttribute("mtnSvc", mtnSvc);
-		
+
 		EventService eventSvc = context.getBean(EventService.class);
 		application.setAttribute("eventSvc", eventSvc);
-		
+
 		WishlistArticleService wishSvc = context.getBean(WishlistArticleService.class);
 		application.setAttribute("wishSvc", wishSvc);
-		
+
 		ShopService shopsvc = new ShopServiceImpl();
 		List<ProductBO> popular5 = shopsvc.findPopularNum(5);
-		application.setAttribute("popular5",popular5);  
-		
-		
+		application.setAttribute("popular5", popular5);
 
 	}
 
@@ -81,7 +80,7 @@ public class ArticleServlet extends HttpServlet {
 
 //		新增網誌
 		if ("new".equals(action)) {
-			
+
 			Integer member_id = new Integer(req.getParameter("member_id"));
 			String article_title = req.getParameter("article_title");
 			Date event_date = java.sql.Date.valueOf(req.getParameter("event_date").trim());
@@ -99,8 +98,7 @@ public class ArticleServlet extends HttpServlet {
 			articleVO.setArticle_content(article_content);
 			articleVO.setOther_mtn(other_mtn);
 
-			
-			//單張上傳
+			// 單張上傳
 //			byte[] article_picture = null;
 //
 //			InputStream in = req.getPart("article_picture").getInputStream();
@@ -111,37 +109,31 @@ public class ArticleServlet extends HttpServlet {
 //
 //			ArticlePictureVO articlePictureVO = new ArticlePictureVO();
 //			articlePictureVO.setArticle_picture(article_picture);
-			
-			
+
 //			將網誌及圖片放進資料庫
 //			ArticleService articleSvc = new ArticleService();
 //			String getCheck = articleSvc.insertWithPic(articleVO, articlePictureVO);
 //			=========================================================================
-			//測試多張圖片
+			// 測試多張圖片
 			Collection<Part> parts = req.getParts();
 			List<ArticlePictureVO> list = new ArrayList<ArticlePictureVO>();
 
 			byte[] article_picture = null;
 			for (Part part : parts) {
-				if (part.getContentType()!=null && part.getContentType().contains("image/")) {
+				if (part.getContentType() != null && part.getContentType().contains("image/")) {
 					InputStream in = part.getInputStream();
 					article_picture = new byte[in.available()];
-					in.read(article_picture);		
-					in.close();	
+					in.read(article_picture);
+					in.close();
 					ArticlePictureVO articlePic = new ArticlePictureVO();
 					articlePic.setArticle_picture(article_picture);
 					list.add(articlePic);
 				}
-
 			}
-			
-				ArticleService articleSvc = new ArticleService();
-				String getCheck=articleSvc.insertWithPic(articleVO, list);
+			ArticleService articleSvc = new ArticleService();
+			String getCheck = articleSvc.insertWithPic(articleVO, list);
 //			================================================================================
-
-
 			if ("ok".equals(getCheck)) {
-
 				// 發表成功給五點
 				WebApplicationContext context = WebApplicationContextUtils
 						.getWebApplicationContext(getServletContext());
@@ -157,26 +149,40 @@ public class ArticleServlet extends HttpServlet {
 				String url = "/index/index.jsp";
 				RequestDispatcher view = req.getRequestDispatcher(url);
 				view.forward(req, res);
-
 			}
 
 		}
 
 		if ("getThisArt".equals(action)) {
 			Integer article_id = new Integer(req.getParameter("article_id"));
-
 			ArticleService artSvc = new ArticleService();
-			ArticleVO articleVO = artSvc.getOneArticle(article_id);
-			req.setAttribute("articleVO", articleVO);
+			HttpSession session = req.getSession();
 
-			// 點閱數+1
-			int viewer = articleVO.getAritcle_viewer();
-			viewer+=1 ;
-			artSvc.updateviews(viewer, article_id);
+			try {
+				if (session.getAttribute("memberId") != null) {
+					ArticleVO articleVO = artSvc.getOneArticle(article_id);
+					req.setAttribute("articleVO", articleVO);
 
-			String url = "/article/article.jsp";
-			RequestDispatcher view = req.getRequestDispatcher(url);
-			view.forward(req, res);
+					// 點閱數+1
+					int viewer = articleVO.getAritcle_viewer();
+					viewer += 1;
+					artSvc.updateviews(viewer, article_id);
+
+					String url = "/article/article.jsp";
+					RequestDispatcher view = req.getRequestDispatcher(url);
+					view.forward(req, res);
+				} else { 
+//					未登入轉回網誌列表
+					String str ="<h2 style='text-align:center;margin:100px auto;color:#5a822a'>請先登入，3秒後跳轉回網誌頁面</h2>";
+					res.getWriter().write(str);
+					res.setHeader("Refresh", "3;url=article/articleList.jsp");				
+				}
+
+			} catch (ServletException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 
 		if ("search".equals(action)) {
@@ -184,30 +190,31 @@ public class ArticleServlet extends HttpServlet {
 
 			ArticleService artSvc = new ArticleService();
 			List<ArticleVO> articleVO = artSvc.search(keyword, keyword, keyword, keyword);
-			// 如果查無結果，停在原頁面
-			if (articleVO.isEmpty()) {
-				RequestDispatcher failureView = req.getRequestDispatcher("/article/articleList.jsp");
-				failureView.forward(req, res);
-			} else {
-				// 如果有結果，轉到搜尋結果頁面
-				req.setAttribute("articleVO", articleVO);
-				RequestDispatcher view = req.getRequestDispatcher("/article/searchArticle.jsp");
-				view.forward(req, res);
+
+			try {
+				// 如果查無結果，停在原頁面
+				if (articleVO.isEmpty()) {
+					RequestDispatcher failureView = req.getRequestDispatcher("/article/articleList.jsp");
+					failureView.forward(req, res);
+				} else {
+					// 如果有結果，轉到搜尋結果頁面
+					req.setAttribute("articleVO", articleVO);
+					RequestDispatcher view = req.getRequestDispatcher("/article/searchArticle.jsp");
+					view.forward(req, res);
+				}
+			} catch (ServletException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
 
 		}
-		if("addpoint".equals(action)) {
+		if ("addpoint".equals(action)) {
 			Integer article_id = new Integer(req.getParameter("article_id"));
 			Integer article_points_recieved = new Integer(req.getParameter("article_points_recieved"));
 
 			ArticleService artSvc = new ArticleService();
 			artSvc.updatepoints(article_points_recieved, article_id);
-			
 		}
-
-		
 	}
-	
-	
-
 }

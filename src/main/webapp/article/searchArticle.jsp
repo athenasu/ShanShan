@@ -19,6 +19,9 @@
 
     application.getAttribute("memSvc");
     application.getAttribute("mtnSvc");
+//     登入用
+    session.getAttribute("memberId");
+    session.getAttribute("memberName");
          
 %>
 <!DOCTYPE html>
@@ -27,35 +30,13 @@
 <meta charset="UTF-8">
 <link rel="shortcut icon" href="/img/favicon.png" />
 <link rel="stylesheet"
-	href="<%=request.getContextPath()%>/article/css/style.css" />
+	href="<%=request.getContextPath()%>/index/css/style.css" />
 <link rel="stylesheet"
-	href="<%=request.getContextPath()%>/article/css/articleList.css" />
+	href="<%=request.getContextPath()%>/article/css/searchArt.css" />
 <title>山山來此|山友日誌</title>
 </head>
 <body>
-	<header>
-		<div id="logo">
-			<a href="<%=request.getContextPath()%>/index/index.jsp">
-			<img src="<%=request.getContextPath()%>/index/img/logo.png" class="img" /></a>
-		</div>
-		<nav id="navlist">
-			<ul>
-				<li><a href="<%=request.getContextPath()%>/event/event.html">找山友</a></li>
-				<li><a href="<%=request.getContextPath()%>/article/articleList.jsp">山友日誌</a></li>
-				<li><a href="<%=request.getContextPath()%>/shop/goods_index.jsp">攻山小物</a></li>
-				<li><a href="<%=request.getContextPath()%>/cabin/mtnIndex.jsp">登山資訊</a></li>
-				<li><a href="<%=request.getContextPath()%>/member/member_main.html">會員中心</a></li>
-			</ul>
-		</nav>
-		<div id="memcheck">
-			<div id="login">
-				<a href="#">登入</a>
-			</div>
-			<div id="register">
-				<a href="<%=request.getContextPath()%>/member/register.html">註冊</a>
-			</div>
-		</div>
-	</header>
+	<%@ include file="/index/header.jsp" %>
 
 	<main>
 		<!-- 搜尋列 -->
@@ -69,11 +50,11 @@
 			</form>
 			</div>
 		<h3>搜尋如下:</h3>
+	
 		<div class="artlist">
 			<c:forEach var="ArticleVO" items="${articleVO}" varStatus="loop">
 				<div class="artcard">
-					<a
-						href="<%=request.getContextPath() %>/ArticleServlet.do?article_id=${articleVO[loop.index].article_id}&action=getThisArt"
+					<a href="<%=request.getContextPath() %>/ArticleServlet.do?article_id=${articleVO[loop.index].article_id}&action=getThisArt"
 						class="art">
 						<div class="artimg">
 							<img
@@ -83,11 +64,10 @@
 								<i class="fas fa-map-marker-alt locicon"></i> <span
 									class="artloc">${mtnSvc.findMtnByPk(articleVO[loop.index].mountain_id).mountainName}</span>
 								<span class="artloc">${articleVO[loop.index].other_mtn}</span>
-
 							</div>
 						</div>
 						<div class="artinfo">
-							<div class="arttime">發文日期：${articleVO[loop.index].article_date_created}</div>
+							<div class="arttime">發文日期：${articleVO[loop.index].article_date_created}<span class="views"><i class="far fa-eye"></i>${articleVO[loop.index].aritcle_viewer}次</span></div>
 							<div class="arttitle">${articleVO[loop.index].article_title}</div>
 							<div class="artmeminfo">
 								<div class="artmem">
@@ -101,8 +81,7 @@
 									</div>
 								</div>
 								<div class="artother">
-									<i class="far fa-heart artwish"></i> <i
-										class="fab fa-product-hunt artpoint"></i>
+									<i class="fab fa-product-hunt artpoint"></i>${articleVO[loop.index].article_points_recieved}
 								</div>
 							</div>
 						</div>
@@ -114,6 +93,27 @@
 	<footer>
 		<h4>Copyright <i class="far fa-copyright"></i>2021 G3 SANSAN</h4>
 	</footer>
+	<script src="<%=request.getContextPath()%>/index/vendors/jquery/jquery-3.6.0.min.js"></script>	
 	<script src="https://kit.fontawesome.com/2336c06c64.js"></script>
+		<script src="<%=request.getContextPath()%>/member/js/register.js"></script>
+	
+<%-- 	<script src="<%=request.getContextPath()%>/index/js/header2.js"></script> --%>
+	<script>
+	$(function(){
+		$.ajax({
+			url:"<%=request.getContextPath()%>/CheckAccount.do",
+			method: "GET",
+			success : function(e) {
+				if(e==="ok"){
+					$(".logout_modal_button").removeClass("-none")
+					$(".login_modal_button").addClass("-none")
+				}else{
+					$(".logout_modal_button").addClass("-none")
+					$(".login_modal_button").removeClass("-none")	
+				}
+			}			
+		})
+	})
+	</script>
 </body>
 </html>

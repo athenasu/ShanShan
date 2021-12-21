@@ -91,7 +91,7 @@ textarea {
   resize: none;
 }
 
-#sendbtn {
+#sendbtn,#cancelbtn {
   width: 80px;
   padding: 5px;
   cursor: pointer;

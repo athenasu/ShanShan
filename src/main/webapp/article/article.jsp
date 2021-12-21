@@ -25,8 +25,9 @@
 	application.getAttribute("memSvc");
 	application.getAttribute("mtnSvc");
 	
-	Integer  member_id=3;
-    pageContext.setAttribute("member_id",member_id);
+    session.getAttribute("memberId");
+    session.getAttribute("memberName");
+
 %>
 
 <!DOCTYPE html>
@@ -36,35 +37,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="shortcut icon" href="/img/favicon.png" />
-<link rel="stylesheet" href="<%=request.getContextPath()%>/article/css/style.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/index/css/style.css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/article/css/article.css" />
 <title>山山來此|山友日誌</title>
 </head>
 <body>
 	<!-- 導覽列 -->
-	<header>
-		<div id="logo">
-			<a href="<%=request.getContextPath()%>/index/index.jsp">
-			<img src="<%=request.getContextPath()%>/index/img/logo.png" class="img" /></a>
-		</div>
-		<nav id="navlist">
-			<ul>
-				<li><a href="<%=request.getContextPath()%>/event/event.html">找山友</a></li>
-				<li><a href="<%=request.getContextPath()%>/article/articleList.jsp">山友日誌</a></li>
-				<li><a href="<%=request.getContextPath()%>/shop/goods_index.jsp">攻山小物</a></li>
-				<li><a href="<%=request.getContextPath()%>/cabin/mtnIndex.jsp">登山資訊</a></li>
-				<li><a href="<%=request.getContextPath()%>/member/member_main.html">會員中心</a></li>
-			</ul>
-		</nav>
-		<div id="memcheck">
-			<div id="login">
-				<a href="#">登入</a>
-			</div>
-			<div id="register">
-				<a href="<%=request.getContextPath()%>/member/register.html">註冊</a>
-			</div>
-		</div>
-	</header>
+	<%@ include file="/index/header.jsp" %>
 	<main>
 		<div class="topside">
 			<ul class="breadcrumb">
@@ -103,7 +82,6 @@
 			</div>
 			<div class="content">
 				<div class="recomm">
-				
 					<c:set var="recomm"  value="${articleVO.recommendation}" /> 
  					<span>推薦度：</span><span class="recommrank"> 
  					<c:choose> 
@@ -126,8 +104,7 @@
 					<c:forEach var="ArticlePictureVO" items="${artPicVo}"
  						varStatus="loop"> 
 						<div class="imgOf5">
-							<img 
-								src="<%=request.getContextPath() %>/ArticlePictureServlet.do?article_picture_id=${artPicVo[loop.index].article_picture_id}&action=getArtPic"
+							<img  src="<%=request.getContextPath() %>/ArticlePictureServlet.do?article_picture_id=${artPicVo[loop.index].article_picture_id}&action=getArtPic"
  								class="img"> 
  						</div>
  					</c:forEach> 
@@ -166,8 +143,8 @@
 			<div class="message">
 				<form  class="msgform">
 					<input type="text" name="msg_content" value="" class="msgarea" placeholder="有話要說"> 
-					<input type="hidden" name="action" value="sendMsg"> 
-					<input type="hidden" name="member_id" value="${member_id}"> 
+					<input type="hidden" name="action" value="sendMsg">
+<%-- 					<input type="hidden" name="member_id" value="${memberId}">  --%>
 					<input type="hidden" name="article_id" value="${articleVO.article_id}">
 					<input type="button" value="送出" class="subBtn">
 				</form>
@@ -175,12 +152,13 @@
 		</div>
 		<div class="overlay -none">
       <div class="modal">
-        <form>       
-	          <div>目前您擁有<span id="havepoint">${memSvc.findMemberPoints(member_id)}</span>點</div>
-	          <div>請輸入要打賞的點數<input type="text" id="givepoint" />點</div>
-	          <div id="errormsg"></div>
-	          <input type="button" value="確定" id="giveBtn"/>
-	          <input type="button" value="取消" id="cancel"/>
+        <form>    
+		<div>目前您擁有<span id="havepoint">${memSvc.findMemberPoints(memberId)}</span>點</div> 
+	    <div id="havepoint"></div>
+	     <div>請輸入要打賞的點數<input type="text" id="givepoint" />點</div>
+	     <div id="errormsg"></div>
+	     <input type="button" value="確定" id="giveBtn"/>
+	     <input type="button" value="取消" id="cancel"/>
         </form>
       </div>
     </div>
@@ -211,16 +189,36 @@
 	<footer>
 		<h4>Copyright <i class="far fa-copyright"></i>2021 G3 SANSAN</h4>
 	</footer>
+	
+	<script src="<%=request.getContextPath()%>/index/vendors/jquery/jquery-3.6.0.min.js"></script>
 	<script src="https://kit.fontawesome.com/2336c06c64.js"></script>
-		<script src="<%=request.getContextPath()%>/article/vendors/jquery/jquery-3.6.0.min.js"></script>
+<%-- 	<script src="<%=request.getContextPath()%>/index/js/header2.js"></script> --%>
+		<script src="<%=request.getContextPath()%>/member/js/register.js"></script>
+	
 	
 	<script>	
-	var member_id=${member_id};
+	
+	$(function(){
+		$.ajax({
+			url:"<%=request.getContextPath()%>/CheckAccount.do",
+			method: "GET",
+			success : function(e) {
+				if(e==="ok"){
+					$(".logout_modal_button").removeClass("-none")
+					$(".login_modal_button").addClass("-none")
+				}else{
+					$(".logout_modal_button").addClass("-none")
+					$(".login_modal_button").removeClass("-none")	
+				}
+			}			
+		})
+	})
+	var member_id=${memberId};
 	var artid="";
 	var memid="";
 	//打賞點數
 	$("div.artpoint").click(function () {
-		let str =`<div>目前您擁有<span id="havepoint">${memSvc.findMemberPoints(member_id)}</span>點</div><div>無法進行打賞</div>`;
+		let str =`<div>目前您擁有<span id="havepoint">${memSvc.findMemberPoints(memberId)}</span>點</div><div>無法進行打賞</div>`;
 		memid = $(this).parent("#todo").data("memid");
 		artid = $(this).parent("#todo").data("artid");
 		var havepoint = $("#havepoint").text().trim();
@@ -330,9 +328,7 @@
 			history.go(0);
 	        }
       });	   
-	});
-		
-		
+	});		
 		//留言
 		$(".subBtn").click(function(){
 
@@ -340,7 +336,7 @@
 			let msg_content=$(".msgarea").val().trim();
 			if(msg_content==""){
 				$(".overlay2").removeClass("-none");
-				$(".modal2 #errormsg").html("留言無空白，請填寫留言再送出");	
+				$(".modal2 #errormsg").html("留言空白，請填寫留言再送出");	
 			}else{
 				$.ajax({
 					url: "<%=request.getContextPath()%>/ActLogMsgServlet?action=sendMsg",
@@ -355,11 +351,8 @@
 			        }
 		      });	   
 			}
-			
-			
-
 		})
 	</script>
-	
+
 </body>
 </html>

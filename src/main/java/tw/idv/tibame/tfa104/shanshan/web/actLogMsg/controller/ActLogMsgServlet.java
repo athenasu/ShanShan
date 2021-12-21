@@ -2,7 +2,6 @@ package tw.idv.tibame.tfa104.shanshan.web.actLogMsg.controller;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;

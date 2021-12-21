@@ -17,9 +17,11 @@
     application.getAttribute("memSvc");
     application.getAttribute("mtnSvc");
     application.getAttribute("wishSvc");
-      
-    Integer  member_id=1;
-    pageContext.setAttribute("member_id",member_id);
+//  登入用
+    session.getAttribute("memberId");
+    session.getAttribute("memberName");
+//     Integer  member_id=1;
+//     pageContext.setAttribute("member_id",member_id);
    
 %>
 
@@ -30,35 +32,13 @@
 <meta charset="UTF-8">
 <link rel="shortcut icon" href="/img/favicon.png" />
 <link rel="stylesheet"
-	href="<%=request.getContextPath()%>/article/css/style.css" />
+	href="<%=request.getContextPath()%>/index/css/style.css" />
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/article/css/articleList.css" />
 <title>山山來此|山友日誌</title>
 </head>
 <body>
-	<header>
-		<div id="logo">
-			<a href="<%=request.getContextPath()%>/index/index.jsp">
-			<img src="<%=request.getContextPath()%>/index/img/logo.png" class="img" /></a>
-		</div>
-		<nav id="navlist">
-			<ul>
-				<li><a href="<%=request.getContextPath()%>/event/event.html">找山友</a></li>
-				<li><a href="<%=request.getContextPath()%>/article/articleList.jsp">山友日誌</a></li>
-				<li><a href="<%=request.getContextPath()%>/shop/goods_index.jsp">攻山小物</a></li>
-				<li><a href="<%=request.getContextPath()%>/cabin/mtnIndex.jsp">登山資訊</a></li>
-				<li><a href="<%=request.getContextPath()%>/member/member_main.html">會員中心</a></li>
-			</ul>
-		</nav>
-		<div id="memcheck">
-			<div id="login">
-				<a href="#">登入</a>
-			</div>
-			<div id="register">
-				<a href="<%=request.getContextPath()%>/member/register.html">註冊</a>
-			</div>
-		</div>
-	</header>
+	<%@ include file="/index/header.jsp" %>
 	<main>	
 		<div class="wrap">
 			<!-- 搜尋列 -->
@@ -71,7 +51,8 @@
 				</div>
 			</form>
 			</div>
-			<div class="addArt"><a href="<%=request.getContextPath() %>/article/addArticle.jsp">我要發文<i class="fas fa-pencil-alt"></i></a></div>
+<%-- 			<div class="addArt"><a href="<%=request.getContextPath() %>/article/addArticle.jsp" class="addcheck">我要發文<i class="fas fa-pencil-alt"></i></a></div> --%>
+			<div class="addArt"><a class="addcheck">我要發文<i class="fas fa-pencil-alt"></i></a></div>
 			<!-- 主要內容 -->
 			<div class="wrapper">
 			 <div class="artAndPage">
@@ -81,22 +62,18 @@
 						<div class="artcard">
 							<a href="<%=request.getContextPath() %>/ArticleServlet.do?article_id=${ArticleVO.article_id}&action=getThisArt" class="art">
 								<div class="artimg">
-			  							<img src="<%=request.getContextPath() %>/ArticlePictureServlet.do?article_id=${ArticleVO.article_id}&action=getOneImage" alt="" class="img">															 
+									<img src="<%=request.getContextPath() %>/ArticlePictureServlet.do?article_id=${ArticleVO.article_id}&action=getOneImage" alt="" class="img">															 
 									<div class="locinfo">
 										<i class="fas fa-map-marker-alt locicon"></i>
 										<span class="artloc">${mtnSvc.findMtnByPk(ArticleVO.mountain_id).mountainName}</span>
-										<span class="artloc">${ArticleVO.other_mtn}</span>
-										
+										<span class="artloc">${ArticleVO.other_mtn}</span>										
 									</div>
 								</div>
 								<div class="artinfo">
 								<c:set var="time" value="${ArticleVO.article_date_created}" />
-									<div class="arttime"><span>發文日期：<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${time}" /></span><span class="views"><i class="far fa-eye"></i>${ArticleVO.aritcle_viewer}次</span></div>
-									
+									<div class="arttime"><span>發文日期：<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${time}" /></span><span class="views"><i class="far fa-eye"></i>${ArticleVO.aritcle_viewer}次</span></div>									
 									<div class="arttitle">${ArticleVO.article_title}</div>
-									</a>
-									<div class="artmeminfo">
-									
+									<div class="artmeminfo">		
 										<div class="artmem">
 											<div class="artmemimg">
 												<img src="<%=request.getContextPath() %>/ArticlePictureServlet.do?member_id=${ArticleVO.member_id}&action=getImage" class="img memimg" />
@@ -109,14 +86,13 @@
 											<i class="fab fa-product-hunt artpoint"></i><span class="point">${ArticleVO.article_points_recieved}</span>
 										</div>
 									</div>
-								</div>
-							
+								</div>	
+							</a>						
 						</div>
 					</c:forEach>
-	
 				</div>
 				<div class="page"><%@ include file="/article/pages/page2.file" %></div>	
-				</div>
+			</div>
 				<aside>
 					<div class="artranking">
 						<h3>點閱排名</h3>
@@ -142,118 +118,62 @@
 				</aside>
 			</div>
 		</div>
-		
-	</main>
-	 <div class="overlay -none">
-      <div class="modal">
-        <form>       
-	          <div>目前您擁有<span id="havepoint">${memSvc.findMemberPoints(member_id)}</span>點</div>
-	          <div>請輸入要打賞的點數<input type="text" id="givepoint" />點</div>
+		    <div class="overlay2 -none">
+      			<div class="modal2">
 	          <div id="errormsg"></div>
-	          <input type="button" value="確定" id="giveBtn"/>
-	          <input type="button" value="取消" id="cancel"/>
-        </form>
-      </div>
-    </div>
-    <div class="overlay2 -none">
-      <div class="modal2">
-	          <div id="errormsg">無法打賞給自己</div>
 	          <input type="button" value="確定" id="cancel2"/>
-      </div>
+      		</div>
     </div>
+	</main>
+
 	<!-- footer -->
 	<footer>
 		<h4>
 			Copyright <i class="far fa-copyright"></i>2021 G3 SANSAN
 		</h4>
 	</footer>
-	<script src="https://kit.fontawesome.com/2336c06c64.js"></script>
-		
-		
-	<script src="<%=request.getContextPath()%>/article/vendors/jquery/jquery-3.6.0.min.js"></script>
+	<script src="https://kit.fontawesome.com/2336c06c64.js"></script>		
+	<script src="<%=request.getContextPath()%>/index/vendors/jquery/jquery-3.6.0.min.js"></script>
+<%-- 	<script src="<%=request.getContextPath()%>/index/js/header2.js"></script> --%>
+		<script src="<%=request.getContextPath()%>/member/js/register.js"></script>
+	
 	<script>
-	var member_id=${member_id};
-	var artid="";
-	var memid="";
-	$("i.artpoint").click(function () {
-		memid = $(this).parent(".artother").data("memid");
-		artid = $(this).parent(".artother").data("artid");
-		if(memid == member_id){
-			$(".overlay2").removeClass("-none");
-		}else{
-			$(".overlay").removeClass("-none");
-			 $("#givepoint").val("");
-			 $("#errormsg").html("");	 
-		}
-	});
-	  
 	
-	$("#cancel").click(function(){
-		$(".overlay").addClass("-none");
-	});
+	$(function(){
+		$.ajax({
+			url:"<%=request.getContextPath()%>/CheckAccount.do",
+			method: "GET",
+			success : function(e) {
+				if(e==="ok"){
+					$(".logout_modal_button").removeClass("-none")
+					$(".login_modal_button").addClass("-none")
+				}else{
+					$(".logout_modal_button").addClass("-none")
+					$(".login_modal_button").removeClass("-none")	
+				}
+			}			
+		})
+	})
+	$(".addcheck").click(function(){		
+		$.ajax({
+			url:"<%=request.getContextPath()%>/CheckAccount.do",
+			method: "GET",
+			success : function(e) {
+				if(e==="ok"){
+					location.href = "<%=request.getContextPath() %>/article/addArticle.jsp"
+				}else{
+					$(".overlay2").removeClass("-none");
+					$(".modal2 #errormsg").html("請先登入帳號");	
+				}
+			}			
+		})
+	})	
 	$("#cancel2").click(function(){
-		$(".overlay2").addClass("-none");
+		$(".modal2 #errormsg").html("");
+		$(".overlay2").addClass("-none");		
 	});
-	
-	$("#giveBtn").click(function () {
-	  var havepoint = $("#havepoint").text().trim();
-	  var givepoint = parseInt($("#givepoint").val().trim());
-	  var clear = "";
+	</script>
 
-	  if (!/^[0-9]*$/.test(givepoint) | (givepoint == null)) {
-	    $("#errormsg").html("請填寫正確數字");
-	    $("#givepoint").val("");
-	  } else {
-	    if (givepoint > parseInt(havepoint)) {
-	      $("#errormsg").html("擁有的點數不足");
-	    } else {
-	      //   執行ajax
-	      $.ajax({
-	        url: "<%=request.getContextPath()%>/member/updateMemberPoints",
-	        data: {
-	          memberId: memid,
-	          points: givepoint,
-	        },
-	        method: "POST",
-	      });
-	      $.ajax({
-		        url: "<%=request.getContextPath()%>/ArticleServlet.do?action=addpoint",
-		        data: {
-		        	article_id: artid,
-		        	article_points_recieved:givepoint,
-		        },
-		        method: "POST",
-		      });
-	      $.ajax({
-		        url: "<%=request.getContextPath()%>/member/updateMemberPoints",
-		        data: {
-		          memberId: member_id,
-		          points: -givepoint,
-		        },
-		        method: "POST",
-		      });
-	      let pointsUsedArticle= JSON.stringify({
-	    		"memberId": member_id,
-		        "pointsUsed": givepoint,
-		        "articleId": artid,
-				"pointsUsedDate":$.now(),
-	      })	      
-	      $.ajax({
-		        url: "<%=request.getContextPath()%>/pointsUsedArticle/pointsSpentArticle",
-		        type: "POST",
-		        contentType: 'application/json',
-		        dataType: "json",
-		        data: pointsUsedArticle,
-		        success: function (e) {
-				$("div.overlay").addClass("-none");
-				history.go(0);
-		        },
-		      });
-	    }
-	  }
-	});
-	
-	</script>	
 </body>
 </html>
 

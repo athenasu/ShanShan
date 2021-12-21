@@ -7,7 +7,7 @@ input:focus {
 	outline: none;
 }
 
-.wrap {
+main {
 	width: 90%;
 	margin: 50px auto;
 }
@@ -15,7 +15,7 @@ input:focus {
 .artsearch {
 	position: relative;
 	width: 300px;
-	margin: 0 auto;
+	margin: 20px auto;
 }
 
 #searcharea {
@@ -64,10 +64,11 @@ input:focus {
 }
 
 .artlist {
-	/*   width: 75%; */
+	  width: 80%;
 	/* border: 1px solid red; */
 	display: flex;
 	flex-wrap: wrap;
+	margin:0 auto;
 }
 
 .artcard {
@@ -290,6 +291,9 @@ aside {
 
 .modal div,.modal2 div {
   margin: 15px 0px;
+}
+.modal input{
+	margin:10px 10px;
 }
 
 #havepoint {

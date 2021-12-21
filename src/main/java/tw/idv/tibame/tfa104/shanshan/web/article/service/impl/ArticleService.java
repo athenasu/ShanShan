@@ -59,6 +59,12 @@ public class ArticleService {
 	public List<ArticleVO> getAll() {
 		return dao.getAll();
 	}
+	
+	
+
+	public List<ArticleVO> findByMtn(Integer mountain_id) {
+		return dao.findByMtn(mountain_id);
+	}
 
 	public ArticleVO views(Integer article_id) {
 		return dao.views(article_id);

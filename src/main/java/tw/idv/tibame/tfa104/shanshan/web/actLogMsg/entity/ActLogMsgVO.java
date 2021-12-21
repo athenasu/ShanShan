@@ -1,7 +1,6 @@
 package tw.idv.tibame.tfa104.shanshan.web.actLogMsg.entity;
 
 import java.io.Serializable;
-import java.sql.Date;
 import java.sql.Timestamp;
 
 public class ActLogMsgVO implements Serializable{

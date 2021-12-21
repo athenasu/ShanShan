@@ -1,0 +1,233 @@
+* {
+	box-sizing: border-box;
+	margin: 0px;
+	padding: 0px;
+}
+
+footer {
+	padding: 10px;
+}
+
+/*     .nav{ */
+/*         background-color: #ecf1df; */
+/*         color: black; */
+/*         text-align: center; */
+/*         height: 10vh; */
+/*         font-size: 50px; */
+/*     } */
+#allMountains {
+	width: 90%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 20px auto;
+}
+
+.mountainBan {
+	background-color: #ecf1df;
+	padding: 15px;
+	text-align: center;
+	width: 100%;
+	color: #525252;
+	height: 60px;
+}
+
+/* ==============山篩選按鍵================ */
+#mountainFilter {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin: 30px 0;
+	align-items: center;
+}
+
+.list {
+	padding: 10px;
+	margin: 0px 15px;
+	border-radius: 5px;
+	font-size: 16px;
+	border: 1px solid #bbbb2b;
+	cursor: pointer;
+	color: #4d4d4d;
+	text-align: center;
+	list-style: none;
+	width: 100px;
+	transition: all ease 0.5s;
+	font-weight: bolder;
+}
+
+.list a {
+	padding: 11px 23px;
+}
+.list a:hover{
+	color:white;
+}
+
+.list:first-child:hover {
+	background-color: #00CCCC;
+	color: white;
+	border:1px solid white;
+}
+.list:nth-child(2):hover {
+	background-color: #FF5E3E;
+	color: white;
+	border:1px solid white;
+}
+.list:nth-child(3):hover {
+	background-color: #2C8182;
+	color: white;
+	border:1px solid white;
+}
+.list:nth-child(4):hover {
+	background-color: #FCCC3A;
+	color: white;
+	border:1px solid white;
+}
+.list:nth-child(5):hover {
+	background-color: #82CC00;
+	color: white;
+	border:1px solid white;
+}
+
+/* ==============山圖片區================ */
+.imgss {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+}
+
+.dis {
+	font-size: 30px;
+	color: white;
+	line-height: 180px;
+	text-align: center;
+}
+
+#dis1 {
+	background-color: #00CCCC;
+}
+#dis2 {
+	background-color: #FF5E3E;
+}
+
+#dis3 {
+	background-color: #2C8182;
+}
+
+#dis4 {
+	background-color: #FCCC3A;
+}
+
+#dis5 {
+	background-color: #82CC00;
+}
+
+
+
+.allImgs {
+	width: 285px;
+	height: 175px;
+	position: relative;
+	border-radius: 5px;
+	border-radius: 10px;
+	overflow: hidden;
+	margin-bottom: 30px;
+	display: inline-block;
+}
+
+img {
+	max-width: 100%;
+	width: 100%;
+	height: 100%;
+}
+
+.imgWords {
+	position: absolute;
+	bottom: 0%;
+	color: white;
+	font-size: 22px;
+	font-weight: bolder;
+	background-color: #3737377d;
+	width: 100%;
+	padding: 7px;
+}
+
+.giveTop {
+	margin-top: 50px;
+}
+
+.hotMountain {
+	display: flex;
+	width: 90%;
+	/*         margin-top: 50px; */
+	flex-wrap: wrap;
+	border-bottom: solid 1px rgb(206, 206, 206);
+	padding: 20px;
+}
+
+.hotMounWord {
+	padding: 0px 36px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	width: 50%;
+}
+
+.hotMountain>div {
+	margin: 0 auto;
+}
+
+.mounTitle {
+	display: flex;
+}
+
+.joinNum {
+	color: white;
+	margin-left: auto;
+	background-color: red;
+	padding: 5px;
+	border-radius: 3px;
+}
+
+.mounIntro {
+	margin-top: 10px;
+	/*         white-space: nowrap; */
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	white-space: normal;
+}
+
+.hotImg {
+	border-radius: 10px;
+	overflow: hidden;
+	width: 350px;
+	height: 250px;
+}
+
+/* ========閱讀更多按鈕======= */
+.mounButton {
+	display: flex;
+	justify-content: center;
+}
+
+.mounMore {
+	width: 150px; border-radius : 5px;
+	padding: 10px 30px;
+	background-color: white;
+	border: solid 2px #bbbb2b;
+	cursor: pointer;
+	font-weight: bolder;
+	text-align: center;
+	color: #525252;
+	border-radius: 5px;
+}
+
+.mounMore:hover {
+	/*         background-color: rgb(83, 83, 83); */
+	background-color: #bbbb2b;
+	color: white;
+}

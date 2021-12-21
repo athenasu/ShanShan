@@ -9,7 +9,7 @@ $(".bgImg").slick({
   fade: true,
   cssEase: "linear",
   autoplay: true,
-  autoplaySpeed: 5000,
+  autoplaySpeed: 3000,
 });
 
 $(".bgImg").on("afterChange", function () {
@@ -90,3 +90,5 @@ $('#artlist').slick({
 	  autoplaySpeed:3000,
 
 	});
+
+
