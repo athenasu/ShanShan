@@ -41,7 +41,7 @@ public class MailService {
 			String token = UUID.randomUUID().toString().replace("-", "");
 
 			StringBuilder messageText = new StringBuilder();
-			messageText.append("<a href='http://localhost:8080/shanshan/"); // need to change localhost once we use GCP
+			messageText.append("<a href='https://localhost:8443/shanshan/"); // need to change localhost once we use GCP
 			messageText.append(type);
 			messageText.append("?token=");
 			messageText.append(token);

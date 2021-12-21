@@ -308,3 +308,22 @@ function login() {
     { scope: "email" }
   );
 }
+
+/////////// CHECK LOGIN STATUS ON LOAD ///////////
+window.onload = function (e) {
+  console.log(e);
+  fetch(`/shanshan/sessionStatus/checkSessionStatus`)
+    .then(function (response) {
+      console.log(response);
+      return response.json();
+    })
+    .then((body) => {
+      console.log(body);
+      if (Object.keys(body).length != 0) {
+        $("input.logout_modal_button").removeClass("-none");
+        $("input.login_modal_button").addClass("-none");
+      } else {
+        return;
+      }
+    });
+};
