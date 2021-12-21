@@ -263,26 +263,28 @@ button {
   background-color: #f5f5dc;
 }
 
-.cards .event-status,
 .cards .article-type {
+  width: 5rem;
+}
+
+.cards .event-status {
   width: 6.5rem;
 }
 
-.cards .event-no,
-.cards .article-no {
-  width: 8.5rem;
+.cards .event-name {
+  width: 10rem;
 }
-.cards .event-name,
+
 .cards .article-title {
-  width: 10.5rem;
+  width: 12rem;
 }
 .cards .event-date,
 .cards .article-date {
-  width: 10.5rem;
+  width: 13.5rem;
 }
 .cards .event-mtn,
 .cards .article-points {
-  width: 6rem;
+  width: 8rem;
 }
 
 .cards .event-attendees {

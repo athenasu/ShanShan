@@ -40,13 +40,31 @@ public class MemberLoginController {
 		core.setMessage("Login unsuccessful");
 		return core;
 	}
+	
+	@PostMapping("facebookLogin")
+	public Core facebookLogin(@RequestBody Member member, HttpSession session) {
+		Core core = new Core();
+		Member existingMember = service.checkEmail(member.getMemberEmail());
+		if (existingMember != null) {
+			System.out.println(existingMember.getMemberName());
+			System.out.println(existingMember.getMemberId());
+			session.setAttribute("memberId", existingMember.getMemberId());
+			session.setAttribute("memberName", existingMember.getMemberName());
+			core.setSuccessful(true);
+			core.setMessage("Login successful");
+		} else {
+			core.setSuccessful(false);
+			core.setMessage("Email does not exist");
+		}
+		return core;
+	}
 
 	@RequestMapping("logout")
 	public ModelAndView logout(HttpSession session) {
 		if (session != null) {
 			session.invalidate();
 		}
-		return new ModelAndView("index"); // front page
+		return new ModelAndView("index/index"); // front page
 	}
 
 	@PostMapping("forgotPasswordCheckEmail")
@@ -54,7 +72,7 @@ public class MemberLoginController {
 		// check email first, use email to get memberId return Member
 		Core core = new Core();
 		Member member1 = service.checkEmail(member.getMemberEmail());
-		System.out.println(member1);
+//		System.out.println(member1);
 		if (member1 != null) {
 			MailService mailService = new MailService();
 			String subject = "山山來此-忘記密碼";
@@ -86,6 +104,6 @@ public class MemberLoginController {
 	public ModelAndView changePassword(@RequestBody Member member, HttpSession session) { //, HttpSession session
 		int memberId = (Integer) session.getAttribute("memberId");
 		service.updateMemberPassword(memberId, member.getMemberPassword());
-		return new ModelAndView("index"); // front page
+		return new ModelAndView("index"); // this isn't working, not sure why
 	}
 }

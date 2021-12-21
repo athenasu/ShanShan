@@ -16,17 +16,23 @@
     <div class="login_modal -none">
         <h1 class="login_form_title">登入</h1>
         <div>
-            <!-- <div class="login_formbox">
-                <input class="summitbutton_signupfacebook" type="button" value="用FACEBOOK登入"></input>
+             <div class="login_formbox">
+                <div class="fb-login-button" scope="public_profile, email" onlogin="checkLoginState();" data-width="355px" data-size="large" data-button-type="continue_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="false"></div>
+                <!-- <input class="summitbutton_signupfacebook" type="button" value="用FACEBOOK登入"></input> -->
             </div>
 
+            <!-- <fb:login-button scope="public_profile,email"
+                    onlogin="checkLoginState();">
+            </fb:login-button> -->
+            
+            <!--
             <div class="login_formbox">
                 <input class="summitbutton_signupgoogle" type="button" value="用GOOGLE登入"></input>
             </div>
-
+            -->
             <div class="horizen_gap"></div>
             <div class="horizen_gap_or">or</div>
-            <div class="horizen_gap"></div> -->
+            <div class="horizen_gap"></div> 
 
 
             <div class="login_formbox">
@@ -34,7 +40,7 @@
             </div>
 
             <div class="login_formbox" style=" text-align: center;">
-                <p>還沒註冊?請點選這裡<a href="register.html">註冊成為新山友</a></p>
+                <p>還沒註冊?請點選這裡<a href="../member/register.html">註冊成為新山友</a></p>
             </div>
         </div>
 
@@ -65,7 +71,7 @@
             </div>
 
             <div class="login_formbox" style=" text-align: center;">
-                <p class= "forgot_password"><a href="#">忘記密碼?</a></p>
+                <p class= "forgot_password"><a href="change_password.html">忘記密碼?</a></p>
             </div>
         </div>
     </div>
@@ -86,6 +92,28 @@
     </div>
     <!-- 燈箱忘記密碼 結束 FORGOT PASSWORD-->
 
+    <!-- ADD PASSWORD FOR FACEBOOK LOGIN-->
+    <div class="add_password_modal_bcg -none"></div>
+    <div class="add_password_modal -none">
+        <h1 class="add_password_title">請輸入會員密碼</h1>
+        <div>
+            <div class="add_password_formbox">
+                <label class="add_password_formname" for="password">密碼</label>
+                <input class="add_password_formbar add-password" type = "password" name="password" placeholder="請輸入8-15位數之間的英文或數字"></input></br>
+            </div>
+
+            <div class="add_password_formbox">
+                <label class="add_password_formname" for="repeatpassword">確認密碼</label>
+                <input class="add_password_formbar add-repeatpassword" type = "password" name="repeatpassword" placeholder="請重複輸入密碼"></input></br>
+            </div>
+            <div class="add_password_formbox">
+                <input class="add_password_submitbutton" type="button" value="發信"></input>
+            </div>
+        </div>
+    </div>
+    <!-- END OF ADD PASSWORD-->
+
+
     <!-- 註冊導覽列 -->
     <header class="register_header">
         <div class="register_titlebar">
@@ -94,13 +122,13 @@
 
           
             <!-- 山山來此 標題 -->
-            <div class="goods_header_title_shanshan" onclick="location.href='#'">山山來此</div>
+            <div class="goods_header_title_shanshan"><a href = "redirect/frontPage">山山來此</a></div>
 
             <!-- 隔線 -->
             <div class="goods_titlegap"></div>
 
             <!-- 註冊頁面 標題 -->
-            <div class="register_title_signup" onclick="location.href='#'">註冊頁面
+            <div class="register_title_signup" onclick="location.href='register.html'">註冊頁面
             </div>
             <input type="button" class="login_modal_button" value="登入"></input>
             <input type="button" class="logout_modal_button -none" value="登出"></input>
@@ -115,17 +143,18 @@
         <form class="choose_signup_form">
             <h1 class="register_form_title">註冊</h1>
             <div>
-                <!-- <div class="register_formbox">
-                    <input class="summitbutton_signupfacebook" type="button" value="用FACEBOOK註冊"></input>
+                 <div class="register_formbox">
+                    <div class="fb-login-button" scope="public_profile, email" onlogin="checkLoginState();" data-width="355px" data-size="large" data-button-type="continue_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="false"></div>
                 </div>
-
+                
+                <!--
                 <div class="register_formbox">
                     <input class="summitbutton_signupgoogle" type="button" value="用GOOGLE註冊"></input>
-                </div>
+                </div>-->
 
                 <div class="horizen_gap"></div>
                 <div class="horizen_gap_or">or</div>
-                <div class="horizen_gap"></div> -->
+                <div class="horizen_gap"></div> 
 
 
                 <div class="register_formbox">
@@ -181,9 +210,9 @@
                 </div>
 
                 <div class="register_formbox register_description">
-                    <input class="register_formcheckbox" type="checkbox">&ensp;我已閱讀並同意《隱私權保護政策》及《定型化契約條款》。</input>
+                    <a href="../member/member_privacy.html"><input class="register_formcheckbox" type="checkbox">&ensp;我已閱讀並同意《隱私權保護政策》及《定型化契約條款》。</input></a>
                 </div>
-
+                
                 <div class="register_formbox register_description">
                     <p>※&ensp;請檢查垃圾郵件過濾器以及垃圾信箱，</p>
                     <p>&ensp;&ensp;&ensp;以便接收來自 shanshan@gmail.com 的郵件。</p>
@@ -193,15 +222,19 @@
         </form>
 
         <!-- 電子郵件註冊 結束 -->
-    </div>
+  </div>
 
     <!-- 註冊內容區 結束 -->
 
+    
+    <!-- <script></script> -->
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v12.0&appId=219469793703408&autoLogAppEvents=1" nonce="JMZEDnGG"></script>
     <!-- 載入jQuery -->
     <!-- <script type='text/javascript' src='./code/jquery-3.6.0.js'></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- 載入index.js -->
-    <script type='text/javascript' src='./js/register.js'></script>
+    <script type='text/javascript' src='../member/js/register.js'></script>
     <!-- 載入icon -->
     <script src="https://kit.fontawesome.com/8cfc21ab70.js" crossorigin="anonymous"></script>
 </body>

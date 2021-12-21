@@ -156,7 +156,8 @@ a:active {
 .register_form_title,
 .login_form_title,
 .forgot_password_title,
-.change_password_title {
+.change_password_title,
+.add_password_title {
   text-align: center;
   color: rgb(59, 89, 152);
 }
@@ -164,11 +165,13 @@ a:active {
 .register_formbox,
 .login_formbox,
 .forgot_password_formbox,
+.add_password_formbox,
 .change_password_formbox {
   margin-top: 10px;
 }
 
 .register_formname,
+.add_password_formname,
 .login_formname,
 .forgot_password_formname {
   line-height: 30px;
@@ -178,7 +181,8 @@ a:active {
 .register_formbar,
 .login_formbar_email,
 .login_formbar_password,
-.forgot_password_email {
+.forgot_password_email,
+.add_password_formbar {
   box-sizing: border-box;
   width: 100%;
   padding: 7px;
@@ -197,7 +201,8 @@ a:active {
 .summitbutton_signupgoogle,
 .emaillogin,
 .forgot_password_summitbutton,
-.change_password_submitbutton {
+.change_password_submitbutton,
+.add_password_submitbutton {
   width: 100%;
   background-color: rgb(187, 177, 147);
   color: white;
@@ -254,6 +259,7 @@ a:active {
 /* WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW 燈箱：登入區 開始 */
 
 .login_modal_button,
+.register_button,
 .goods_login_modal_botton,
 .register_botton,
 .goods_register_botton,
@@ -287,7 +293,8 @@ a:active {
   background-color: rgba(187, 177, 147);
 }
 
-.login_modal_bcg {
+.login_modal_bcg,
+.add_password_modal_bcg {
   height: 100%;
   /* min-width: 1200px; */
   width: 100%;
@@ -303,6 +310,7 @@ a:active {
 .login_modal,
 .login_modal_email,
 .forgot_password_modal,
+.add_password_modal,
 .change_password_page {
   height: 330px;
   width: 400px;

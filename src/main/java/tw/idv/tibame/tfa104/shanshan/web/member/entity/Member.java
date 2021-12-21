@@ -2,6 +2,7 @@ package tw.idv.tibame.tfa104.shanshan.web.member.entity;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.Arrays;
 
 //import java.sql.Blob;
 //import java.util.Date;
@@ -29,6 +30,7 @@ public class Member implements Serializable {
 	private Integer memberId;
 	@Column(name = "member_name")
 	private String memberName;
+//	@ValidEmail
 	@Column(name = "member_email", updatable = false)
 	private String memberEmail;
 	@Column(name = "member_password")
@@ -187,5 +189,16 @@ public class Member implements Serializable {
 
 	public void setPicStr(String picStr) {
 		this.picStr = picStr;
+	}
+	
+
+	@Override
+	public String toString() {
+		return "Member [memberId=" + memberId + ", memberName=" + memberName + ", memberEmail=" + memberEmail
+				+ ", memberPassword=" + memberPassword + ", memberUsername=" + memberUsername + ", memberPhoneNum="
+				+ memberPhoneNum + ", memberRegisterDate=" + memberRegisterDate + ", memberProfilePic="
+				+ Arrays.toString(memberProfilePic) + ", memberIntro=" + memberIntro + ", memberStatus=" + memberStatus
+				+ ", memberSumPoints=" + memberSumPoints + ", memberSubscription=" + memberSubscription + ", picStr="
+				+ picStr + "]";
 	}
 }

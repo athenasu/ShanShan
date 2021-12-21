@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="/img/favicon.png" />
-    <link rel="stylesheet" href="./css/header_footer.css" />
+    <link rel="stylesheet" href="./css/header_footer_login.css" />
     <title>會員中心｜訂單</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -18,7 +18,7 @@
   <body>
     <header class="header-div">
       <div id="logo">
-        <a href="index.html"><img src="img/logo.png" class="img" /></a>
+        <a href="#"><img src="img/logo.png" class="img" /></a>
       </div>
       <nav id="navlist">
         <ul>
@@ -31,7 +31,7 @@
       </nav>
       <div id="memcheck">
         <div id="ball"><i class="fas fa-bell"></i></div>
-        <div id="logout"><a href="#">登出</a></div>
+        <div id="logout"><a href="../memberLogin/logout">登出</a></div>
       </div>
     </header>
     <main class="member-main">
@@ -49,19 +49,21 @@
           <div class="links">
             <div class="link">
               <button>
-                <a href="member.html"><h3>會員首頁</h3></a>
+                <a href="../member/member_main.html"><h3>會員首頁</h3></a>
               </button>
             </div>
             <div class="link">
               <button>
-                <a href="member_update.html"><h3>修改會員資料</h3></a>
+                <a href="../member/member_update.html"><h3>修改會員資料</h3></a>
               </button>
             </div>
             <div class="link">
               <ul class="side-bar-event">
                 <li>
                   <button class="link-btn-event">
-                    <a href="member_article_details.html"><h3>文章紀錄</h3></a>
+                    <a href="../member/member_article_details.html"
+                      ><h3>文章紀錄</h3></a
+                    >
                   </button>
                   <ul class="second-menu-event">
                     <li><a href="#">揪團紀錄</a></li>
@@ -73,14 +75,18 @@
             </div>
             <div class="link">
               <button>
-                <a href="member_order_details.html"><h3>訂單記錄</h3></a>
+                <a href="../member/member_order_details.html"
+                  ><h3>訂單記錄</h3></a
+                >
               </button>
             </div>
             <div class="link">
               <ul class="side-bar-wishlist">
                 <li>
                   <button class="link-btn-wishlist">
-                    <a href="#"><h3>收藏紀錄</h3></a>
+                    <a href="../member/member_wishlist.html"
+                      ><h3>收藏紀錄</h3></a
+                    >
                   </button>
                   <ul class="second-menu-wishlist">
                     <li><a href="#">揪團</a></li>
@@ -93,7 +99,7 @@
           </div>
           <div class="link">
             <button>
-              <a href="member_points.html"><h3>點數記錄</h3></a>
+              <a href="../member/member_points.html"><h3>點數記錄</h3></a>
             </button>
           </div>
         </div>

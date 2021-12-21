@@ -2,6 +2,8 @@ package tw.idv.tibame.tfa104.shanshan.web.wishlistArticle.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,12 +25,14 @@ public class WishlistArticleController {
 	private WishlistArticleService wishlistService;
 
 	@GetMapping("findWishlistArticlesByMemberId")
-	public List<WishlistArticleBO> findWishlistArticle (Integer memberId){
-		return wishlistService.findWishlistArticlesByMemberId(1);
+	public List<WishlistArticleBO> findWishlistArticle (HttpSession session){
+		Integer memberId = (Integer) session.getAttribute("memberId");
+		return wishlistService.findWishlistArticlesByMemberId(memberId);
 	}
 	
 	@GetMapping("findAllWishlistArticlesByMemId")
-	public List<WishlistArticle> findAllWishlistArticleByMemId(Integer memberId){
+	public List<WishlistArticle> findAllWishlistArticleByMemId(HttpSession session){
+		Integer memberId = (Integer) session.getAttribute("memberId");
 		return wishlistService.findAllWishlistArticleByMemId(memberId);
 	}
 	

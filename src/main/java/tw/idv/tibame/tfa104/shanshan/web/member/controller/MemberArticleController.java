@@ -2,6 +2,8 @@ package tw.idv.tibame.tfa104.shanshan.web.member.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,23 +23,27 @@ public class MemberArticleController {
 	private MemberArticleService service;
 	
 	@GetMapping("findAllArticlesByMemId")
-	public List<ArticleVO> findAllArticlesByMemId (Integer memberId){
-		return service.findAllArticlesByMemId(1);
+	public List<ArticleVO> findAllArticlesByMemId (HttpSession session){ //HttpSession session
+		Integer memberId = (Integer) session.getAttribute("memberId");
+		return service.findAllArticlesByMemId(memberId);
 	}
 
 	@GetMapping("findAllEventsByMemId")
-	public List<MemberEventBO> findAllEventsByMemId(Integer memberId) {
-		return service.findAllEventsByMemId(1);
+	public List<MemberEventBO> findAllEventsByMemId(HttpSession session) {
+		Integer memberId = (Integer) session.getAttribute("memberId");
+		return service.findAllEventsByMemId(memberId);
 	}
 	
 	@GetMapping("findEventByMemIdAndEventId")
-	public List<MemberEventBO> findEventByMemIdAndEventId(Integer memberId, Integer eventId) {
-		return service.findEventByMemIdAndEventId(1, eventId);
+	public List<MemberEventBO> findEventByMemIdAndEventId(HttpSession session, Integer eventId) {
+		Integer memberId = (Integer) session.getAttribute("memberId");
+		return service.findEventByMemIdAndEventId(memberId, eventId);
 	}
 	
 	@GetMapping("findPartEventByMemberId")
-	public List<ParEventBO> findPartEventByMemberId(Integer memberId) {
-		return service.findPartEventByMemberId(1);
+	public List<ParEventBO> findPartEventByMemberId(HttpSession session) {
+		Integer memberId = (Integer) session.getAttribute("memberId");
+		return service.findPartEventByMemberId(memberId);
 	}
 	
 	@GetMapping("findParEventByEventId")

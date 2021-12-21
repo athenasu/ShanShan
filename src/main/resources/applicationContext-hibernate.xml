@@ -31,4 +31,5 @@
 	
 	<context:component-scan
 		base-package="tw.idv.tibame.tfa104.shanshan.web.*.*.impl" />
+	<context:component-scan base-package="tw.idv.tibame.tfa104.shanshan.web.util" />
 </beans>

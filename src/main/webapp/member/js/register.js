@@ -133,6 +133,7 @@ registerSubmitBtn.addEventListener("click", function () {
         memberPassword,
       }),
     });
+    window.location.replace("/index/index.jsp");
   } else {
     alert("wrong password"); // can probably show something on the div
   }
@@ -167,10 +168,143 @@ forgotPasswordSubmitBtn.addEventListener("click", function () {
     });
 });
 
-/////////// LOGOUT ///////////
-const logoutBtn = document.querySelector(".logout_modal_button");
-logoutBtn.addEventListener("click", function () {
-  fetch(`/shanshan/memberLogin/logout`);
-  $("input.logout_modal_button").addClass("-none");
-  $("input.login_modal_button").removeClass("-none");
-});
+/////////// FACEBOOK LOGIN ///////////
+function statusChangeCallback(response) {
+  // Called with the results from FB.getLoginStatus().
+  console.log("statusChangeCallback");
+  // console.log(response);                   // The current login status of the person.
+  if (response.status === "connected") {
+    // Logged into your webpage and Facebook.
+    testAPI();
+  } else {
+    // Not logged into your webpage or we are unable to tell.
+    console.log("Not logged in");
+  }
+}
+
+function checkLoginState() {
+  // Called when a person is finished with the Login Button.
+  FB.getLoginStatus(function (response) {
+    // See the onlogin handler
+    statusChangeCallback(response);
+  });
+}
+
+window.fbAsyncInit = function () {
+  FB.init({
+    appId: "219469793703408",
+    cookie: true, // Enable cookies to allow the server to access the session.
+    xfbml: true, // Parse social plugins on this webpage.
+    version: "v12.0", // Use this Graph API version for this call.
+  });
+
+  FB.getLoginStatus(function (response) {
+    // Called after the JS SDK has been initialized.
+    statusChangeCallback(response); // Returns the login status.
+    if (response.status === "connected") {
+      console.log("connected");
+    } else if (response.status === "not_authorized") {
+      login();
+    } else {
+      // not_logged_in
+      login();
+    }
+  });
+};
+
+function testAPI() {
+  // Testing Graph API after login.  See statusChangeCallback() for when this call is made.
+  // console.log('Welcome!  Fetching your information.... ');
+  FB.api("/me?fields=id,name,email", function (response) {
+    console.log(response);
+    // should send this information to the db to confirm if email exists fetch(`checkEmail`)
+    fetch(`/shanshan/memberLogin/facebookLogin`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        memberEmail: response.email,
+      }),
+    })
+      .then(function (response) {
+        console.log(response);
+        return response.json();
+      })
+      .then((body) => {
+        if (body.successful) {
+          // if email already exists,
+          // then send them to front page
+          console.log("Send to index.jsp");
+        } else {
+          // if email doesn't exist
+          // create a new account:
+          // get them to add a password (so they can login via email as well)
+          const pswdModalBcg = document.querySelector(
+            ".add_password_modal_bcg"
+          );
+          const pswdModal = document.querySelector(".add_password_modal");
+          pswdModalBcg.classList.remove("-none");
+          pswdModal.classList.remove("-none");
+        }
+      });
+    const addPswdSubmitBtn = document.querySelector(
+      ".add_password_submitbutton"
+    );
+    addPswdSubmitBtn.addEventListener("click", function () {
+      let password = document.querySelector(".add-password").value;
+      let confirmPassword = document.querySelector(".add-repeatpassword").value;
+      console.log(
+        "user name: " + response.name + " user email:" + response.email
+      );
+      if (password === confirmPassword) {
+        fetch("/shanshan/memberRegister/register", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            memberName: response.name,
+            memberEmail: response.email,
+            memberPassword: password,
+          }),
+        });
+        document
+          .querySelector(".add_password_modal_bcg")
+          .classList.add("-none");
+        document.querySelector(".add_password_modal").classList.add("-none");
+        console.log("redirect to front page");
+      } else {
+        alert("wrong password"); // can probably show something on the div
+      }
+    });
+  });
+}
+
+// Load the SDK Asynchronously
+(function (d, s, id) {
+  var js,
+    fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {
+    return;
+  }
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://connect.facebook.net/en_US/sdk.js";
+  fjs.parentNode.insertBefore(js, fjs);
+})(document, "script", "facebook-jssdk");
+
+function login() {
+  FB.login(
+    function (response) {
+      if (response.authResponse) {
+        // connected
+        testAPI();
+      } else {
+        // cancelled
+        console.log("user cancelled login through facebook");
+      }
+    },
+    { scope: "email" }
+  );
+}

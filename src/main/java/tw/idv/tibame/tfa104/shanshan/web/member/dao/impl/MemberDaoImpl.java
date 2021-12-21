@@ -26,7 +26,7 @@ public class MemberDaoImpl implements MemberDao {
 	private SessionFactory sessionFactory;
 	
 	@Override
-	public Member checkLogin(Member member) {
+	public Member checkLogin(Member member) { // probably won't need this anymore
 		Session session = sessionFactory.getCurrentSession();
 		CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
 		CriteriaQuery<Member> criteriaQuery = criteriaBuilder.createQuery(Member.class);
@@ -74,7 +74,7 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public Integer register(Member member) {
 		Session session = sessionFactory.getCurrentSession(); 
-		File file = new File("/member/member_imgs/default_profile_pic.png");
+		File file = new File("default_profile_pic.png");
 		byte[] bFile= null; 
 		try {
 			FileInputStream fis = new FileInputStream(file);
@@ -96,21 +96,21 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public Member update(byte[] file, Member member) {
 		Session session = sessionFactory.getCurrentSession();
-
+		System.out.println("In dao: " + member.toString());
 		Member tempMember = session.get(Member.class, member.getMemberId());
-		if (tempMember.getMemberName() != null && tempMember.getMemberName() != "") {
+		if (tempMember.getMemberName() != null) { // && tempMember.getMemberName() != ""
 			tempMember.setMemberName(member.getMemberName());
 		}
 		
-		if (tempMember.getMemberUsername() != null && tempMember.getMemberUsername() != "") {
+		if (tempMember.getMemberUsername() != null) {
 			tempMember.setMemberUsername(member.getMemberUsername());
 		}
 		
-		if (tempMember.getMemberPhoneNum() != null && tempMember.getMemberPhoneNum() != "") {
+		if (tempMember.getMemberPhoneNum() != null) {
 			tempMember.setMemberPhoneNum(member.getMemberPhoneNum());
 		}
 		
-		if (tempMember.getMemberIntro() != null && tempMember.getMemberIntro() != "") {
+		if (tempMember.getMemberIntro() != null) {
 			tempMember.setMemberIntro(member.getMemberIntro());
 		}
 		
@@ -134,7 +134,6 @@ public class MemberDaoImpl implements MemberDao {
 		member.setMemberPassword(memberPassword);
 		return member;
 	}
-	
 }
 
 

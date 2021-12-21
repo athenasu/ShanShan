@@ -6,18 +6,16 @@ const sortBtnEvent = document.querySelector(".sort-button-event");
 const sortBtnPart = document.querySelector(".sort-button-part");
 const sortBtnArticle = document.querySelector(".sort-button-article");
 
-////////////////////////////////////////
-/////// RENDER CARDS AND MODALS ///////
-
 // Format Date
 const formatDate = function (timestamp) {
   var d = new Date(timestamp);
-
   var dateString =
     d.getFullYear() + "年" + (d.getMonth() + 1) + "月" + d.getDate() + "日";
-
   return dateString;
 };
+
+////////////////////////////////////////
+/////// RENDER CARDS AND MODALS ///////
 
 // RENDER ARTICLE
 const renderArticle = function (article) {
@@ -34,13 +32,10 @@ const renderArticle = function (article) {
   const articleUrl = URL.createObjectURL(articleBlob);
 
   let html = `
-            <a href="#" class = "article-card">
+            <a href="../ArticleServlet.do?article_id=${article.article_id}&action=getThisArt" class = "article-card">
               <div class="card-2">
                 <div class="article-type">
                   <p>日誌文章</p>
-                </div>
-                <div class="article-no">
-                  <p>文章編號: ${article.article_id}</p>
                 </div>
                 <div class="article-title">
                   <p>文章名稱: ${article.article_title}</p>
@@ -131,9 +126,6 @@ const renderPartEvent = function (part) {
                 <div class="event-status">
                   <p>狀態: ${eventStatus}</p>
                 </div>
-                <div class="event-no">
-                  <p>參團編號: ${part.eventId}</p>
-                </div>
                 <div class="event-name">
                   <p>參團名稱: ${part.eventName}</p>
                 </div>
@@ -200,13 +192,10 @@ const renderOngoingEvent = function (eventList) {
   let deadline = formatDate(eventList.eventDeadline);
 
   let html = `
-              <a href="#" class = "event-card">
+            <a href="#" class = "event-card">
               <div class="card-1">
                 <div class="event-status">
                   <p>狀態：招募中</p>
-                </div>
-                <div class="event-no">
-                  <p>揪團編號：${eventList.eventId}</p>
                 </div>
                 <div class="event-name">
                   <p>揪團名稱：${eventList.eventName}</p>
@@ -227,7 +216,7 @@ const renderOngoingEvent = function (eventList) {
               <div event-id = "${eventList.eventId}" class="modal hidden">
                 <button class="btn--close-modal">&times;</button>
                 <h2 class="modal__header">揪團詳情</h2>
-                <p class="modal-sub-header">狀態：${eventStatus}</p>
+                <p class="modal-sub-header">狀態：招募中</p>
                 <div class="modal__container">
                   <div class="modal-box1">
                     <form class="confirm-event">
@@ -284,7 +273,7 @@ const renderOngoingEvent = function (eventList) {
                           >
                         </div>
                         <div class="submit-button">
-                          <button type="submit" class="submit-cancel-event" disabled>
+                          <button type="submit" class="submit-cancel-event">
                             確定取消
                           </button>
                         </div>
@@ -293,9 +282,7 @@ const renderOngoingEvent = function (eventList) {
                   </div>
                   <div class="modal-box2">
                     <h4>參加人員</h4>
-                    <div class="attendee-list event-list-no-${eventList.eventId}">
-                      
-                    </div>
+                    <div class="attendee-list event-list-no-${eventList.eventId}"></div>
                   </div>
                 </div>
               </div>
@@ -322,13 +309,10 @@ const renderConfirmedEvent = function (eventList) {
   let deadline = formatDate(eventList.eventDeadline);
 
   let html = `
-              <a href="#" class = "event-card">
+            <a href="#" class = "event-card">
               <div class="card-1">
                 <div class="event-status">
                   <p>狀態：${eventStatus}</p>
-                </div>
-                <div class="event-no">
-                  <p>揪團編號：${eventList.eventId}</p>
                 </div>
                 <div class="event-name">
                   <p>揪團名稱：${eventList.eventName}</p>
@@ -343,7 +327,7 @@ const renderConfirmedEvent = function (eventList) {
                   <p>目前參加人數：${eventList.eventCurPart} 人</p>
                 </div>
                 <div class="event-details">
-                  <button class="btn--show-modal">詳情</button>
+                  <button class="btn--show-modal-event-done">詳情</button>
                 </div>
               </div>
               <div event-id = "${eventList.eventId}" class="modal hidden">
@@ -362,10 +346,55 @@ const renderConfirmedEvent = function (eventList) {
                         <li>成團人數：${eventList.maxNumOfPeople} 位</li>
                       </ul>
                     </form>
+                    <div class="cancel-event">
+                      <div class="cancel-title">
+                        <h3>取消原因</h3>
+                        <p>若欲取消開團，請點選原因</p>
+                      </div>
+                      <form class="form-cancel-reason" action="GET">
+                        <div class="reason group1">
+                          <label
+                            ><input
+                              type="radio"
+                              name="cancel-reason"
+                              value="weather"
+                            />天氣關係</label
+                          >
+                          <label
+                            ><input
+                              type="radio"
+                              name="cancel-reason"
+                              value="people"
+                            />人數不足</label
+                          >
+                        </div>
+                        <div class="reason group2">
+                          <label
+                            ><input
+                              type="radio"
+                              name="cancel-reason"
+                              value="sick"
+                            />身體不適</label
+                          >
+                          <label
+                            ><input
+                              type="radio"
+                              name="cancel-reason"
+                              value="other"
+                            />其他因素</label
+                          >
+                        </div>
+                        <div class="submit-button">
+                          <button type="submit" class="submit-cancel-event">
+                            確定取消
+                          </button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
                   <div class="modal-box2">
                     <h4>參加人員</h4>
-                    <div class="attendee-list event-list-no-${eventList.eventId}">
-                    </div>
+                    <div class="attendee-list event-list-no-${eventList.eventId}"></div>
                   </div>
                 </div>
               </div>
@@ -447,11 +476,11 @@ const eventList = function () {
               eventStatus,
             }),
           });
-          renderEvent(event);
+          renderConfirmedEvent(event);
         } else if (event.eventStatus == 2) {
           renderOngoingEvent(event);
         } else {
-          renderEvent(event);
+          renderConfirmedEvent(event);
         }
         const response = await fetch(
           `/shanshan/memberArticle/findParEventByEventId?eventId=${event.eventId}`
@@ -497,9 +526,58 @@ window.onload = function () {
 ////////////////////////////////////////
 // OPEN & CLOSE MODAL
 document.addEventListener("click", function (e) {
-  // card-1 event-card
+  // card-1 event-done
+  if (e.target.classList.contains("btn--show-modal-event-done")) {
+    let parent = e.target.closest(".event-card");
+    let modal = parent.querySelector(".modal");
+    let overlay = document.querySelector(".overlay");
+    let btnCloseModal = parent.querySelector(".btn--close-modal");
+    let btnCancelEvent = parent.querySelector(".submit-cancel-event");
+
+    modal.classList.remove("hidden");
+    overlay.classList.remove("hidden");
+
+    const closeModal = function () {
+      modal.classList.add("hidden");
+      overlay.classList.add("hidden");
+    };
+
+    btnCloseModal.addEventListener("click", closeModal);
+    overlay.addEventListener("click", closeModal);
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+        closeModal();
+      }
+    });
+
+    // RADIO BUTTONS
+    // let radioBtns = parent.getElementsByName("cancel-reason"); // cannot do get elements by name
+    // radioBtns.addEventListener("change", function () {
+    //   btnCancelEvent.disabled = false;
+    // });
+
+    btnCancelEvent.addEventListener("click", function () {
+      console.log("confirmed event cancel button clicked");
+      let eventId = modal.getAttribute("event-id");
+      let eventStatus = 4;
+      console.log("event-cancel clicked");
+      console.log(eventId);
+      fetch(`/shanshan/memberEvent/cancelEvent`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          eventId,
+          eventStatus,
+        }),
+      });
+    });
+  }
+  // card-1 event
   if (e.target.classList.contains("btn--show-modal")) {
-    let parent = e.target.closest("a.event-card");
+    let parent = e.target.closest(".event-card");
     let modal = parent.querySelector(".modal");
     let overlay = document.querySelector(".overlay");
     let btnCloseModal = parent.querySelector(".btn--close-modal");
@@ -522,12 +600,7 @@ document.addEventListener("click", function (e) {
         closeModal();
       }
     });
-    // event buttons
-    let radioBtns = parent.getElementsByName("cancel-reason");
-    radioBtns.addEventListener("change", function () {
-      btnCancelEvent.disabled = false;
-    });
-    // need to test if this works even when it's disabled
+
     btnConfirmEvent.addEventListener("click", function (e) {
       let eventId = modal.getAttribute("event-id");
       let eventStatus = 5;
@@ -546,8 +619,14 @@ document.addEventListener("click", function (e) {
       closeModal();
     });
 
-    btnCancelEvent.addEventListener("click", function (e) {
-      e.preventDefault();
+    // RADIO BUTTONS
+    // let radioBtns = parent.getElementsByName("cancel-reason"); // cannot do get elements by name
+    // radioBtns.addEventListener("change", function () {
+    //   btnCancelEvent.disabled = false;
+    // });
+
+    btnCancelEvent.addEventListener("click", function () {
+      console.log("event cancel button clicked");
       let eventId = modal.getAttribute("event-id");
       let eventStatus = 4;
       console.log("event-cancel clicked");
@@ -562,8 +641,10 @@ document.addEventListener("click", function (e) {
           eventStatus,
         }),
       });
+      closeModal();
     });
   }
+
   // card-2 article-card
   if (e.target.classList.contains("btn--show-modal-article")) {
     // console.log("modal-article button clicked");
@@ -593,6 +674,7 @@ document.addEventListener("click", function (e) {
   }
   // card-3 part-card
   if (e.target.classList.contains("btn--show-modal-part")) {
+    console.log("show part modal btn");
     let parent = e.target.closest("a.part-card");
     let modalPart = parent.querySelector(".modal-part");
     let overlayPart = document.querySelector(".overlay-part");
@@ -616,11 +698,10 @@ document.addEventListener("click", function (e) {
       }
     });
     // cancel participation button
-    btnCancelPart.addEventListener("click", function (e) {
-      e.preventDefault();
-      console.log("cancel button clicked");
+    btnCancelPart.addEventListener("click", function () {
+      console.log("part cancel button clicked");
       let eventId = modalPart.getAttribute("event-id");
-      console.log(eventId);
+      // console.log(eventId);
       fetch(`/shanshan/memberEvent/deleteParticipation`, {
         method: "POST",
         headers: {

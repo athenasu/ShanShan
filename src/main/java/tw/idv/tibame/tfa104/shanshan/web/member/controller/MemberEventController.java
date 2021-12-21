@@ -1,5 +1,7 @@
 package tw.idv.tibame.tfa104.shanshan.web.member.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,9 +31,10 @@ public class MemberEventController {
 	}
 	
 	@PostMapping("deleteParticipation")
-	public Core deleteParticipation(@RequestBody Participant participant) {// need to add HttpSession into this
+	public Core deleteParticipation(@RequestBody Participant participant, HttpSession session) {
 		Core core = new Core();
-		boolean result = service.deleteParticipation(1, participant.getEventId()); //participant.getMemberId()--> use session
+		Integer memberId = (Integer) session.getAttribute("memberId");
+		boolean result = service.deleteParticipation(memberId, participant.getEventId()); 
 		if (result) {
 			core.setSuccessful(true);
 		} else {

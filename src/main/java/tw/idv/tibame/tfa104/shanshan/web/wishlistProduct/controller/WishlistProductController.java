@@ -2,6 +2,8 @@ package tw.idv.tibame.tfa104.shanshan.web.wishlistProduct.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,8 +26,9 @@ public class WishlistProductController {
 	// it's not working with PostMapping (I can't put stuff in), 
 	// so I'm using GetMapping. Will this be a problem? (have to check WishlistAritcle because that one is PostMapping)
 	@GetMapping("findWishlistProductsByMemberId")
-	public List<WishlistProductBO> findWishlistProductsByMemberId(Integer memberId){
-		return wishlistService.findWishlistProductsByMemberId(1);
+	public List<WishlistProductBO> findWishlistProductsByMemberId(HttpSession session){
+		Integer memberId = (Integer) session.getAttribute("memberId");
+		return wishlistService.findWishlistProductsByMemberId(memberId);
 	}
 	
 	@PostMapping("deleteWishlistProduct")

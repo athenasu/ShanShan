@@ -13,7 +13,7 @@ let markers = [];
 
 // for events and partEvents
 const renderBoxEvent = function (eventMtn, leafletId) {
-  let startDate = new Date(eventMtn.eventStartDate).toDateString();
+  let startDate = new Date(eventMtn.eventStartDate).toLocaleString();
   let html = `
                 <div class="card" id = "${leafletId}">
                   <ul>
@@ -33,7 +33,7 @@ const renderBoxEvent = function (eventMtn, leafletId) {
 };
 
 const renderBoxArticle = function (articleMtn, leafletId) {
-  let startDate = new Date(articleMtn.event_date).toDateString();
+  let startDate = new Date(articleMtn.event_date).toLocaleString();
   let html = `
                 <div class="card" id = "${leafletId}">
                   <ul>
@@ -193,8 +193,8 @@ const renderCalendar = function () {
     .then((body) => body.json())
     .then((articles) => {
       for (let article of articles) {
-        let startDate = new Date(article.event_date).toDateString();
-        let endDate = new Date(article.event_date).toDateString();
+        let startDate = new Date(article.event_date).toLocaleString(); // test toLocaleString
+        let endDate = new Date(article.event_date).toLocaleString();
         let summary = article.article_title;
         let obj = {
           startDate: startDate,
@@ -208,8 +208,8 @@ const renderCalendar = function () {
     .then((body) => body.json())
     .then((memEvents) => {
       for (let memEvent of memEvents) {
-        let startDate = new Date(memEvent.eventStartDate).toDateString();
-        let endDate = new Date(memEvent.eventStartDate).toDateString();
+        let startDate = new Date(memEvent.eventStartDate).toLocaleString();
+        let endDate = new Date(memEvent.eventStartDate).toLocaleString();
         let summary = memEvent.eventName;
         let obj = {
           startDate: startDate,
@@ -223,8 +223,8 @@ const renderCalendar = function () {
     .then((body) => body.json())
     .then((partEvents) => {
       for (let partEvent of partEvents) {
-        let startDate = new Date(partEvent.eventStartDate).toDateString();
-        let endDate = new Date(partEvent.eventStartDate).toDateString();
+        let startDate = new Date(partEvent.eventStartDate).toLocaleString();
+        let endDate = new Date(partEvent.eventStartDate).toLocaleString();
         let summary = partEvent.eventName;
         let obj = {
           startDate: startDate,
@@ -236,21 +236,15 @@ const renderCalendar = function () {
       console.log(eventList);
     })
     .then(
-      jQuery("#container").simpleCalendar({
+      $("#container").simpleCalendar({
         displayEvent: true,
+        displayYear: true,
         // prettier-ignore
         months: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
         days: ["日", "一", "二", "三", "四", "五", "六"],
         events: eventList,
-
-        // disable showing event details
-        // disableEventDetails: false,
         // changing start day to sunday
         fixedStartDay: 0,
-
-        // disable showing empty date details
-        //        disableEmptyDetails: true,
-        displayYear: true,
       })
     );
 };
@@ -280,9 +274,10 @@ const populateMemberDashboard = function () {
     });
 };
 
+// RENDER MEMBER DASHBOARD THEN MAP
 window.onload = function () {
   populateMemberDashboard();
-  renderCalendar(); // depends on what i want to render first
+  renderMap();
 };
 
 ////////////////////////////////////////
@@ -301,10 +296,3 @@ mapIcon.addEventListener("click", function () {
   mapOrCalendarArea.insertAdjacentHTML("afterbegin", `<div id="map"></div>`);
   renderMap();
 });
-
-// let startDate = new Date(
-//   new Date().setHours(new Date().getHours() + 24)
-// ).toDateString();
-// let startDate = new Date(1625932800000).toDateString();
-// console.log(startDate);
-// console.log(typeof startDate);

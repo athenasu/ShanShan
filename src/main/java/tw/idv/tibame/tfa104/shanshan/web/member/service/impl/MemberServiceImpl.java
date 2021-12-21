@@ -1,6 +1,7 @@
 package tw.idv.tibame.tfa104.shanshan.web.member.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,6 +16,26 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private MemberDao dao;
 	
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
+
+	@Override
+	public Member registerMember(Member member) {
+		Member existingMember = dao.checkEmail(member.getMemberEmail());
+		if (existingMember != null) {
+			return null; 
+		} else {
+			Member newMember = new Member();
+			newMember.setMemberName(member.getMemberName());
+			newMember.setMemberEmail(member.getMemberEmail());
+			newMember.setMemberPassword(passwordEncoder.encode(member.getMemberPassword()));
+			int result = dao.register(newMember);
+			System.out.println(result);
+			System.out.println(newMember.getMemberPassword());
+			return newMember;
+		}
+	}
+	
 	@Override
 	public Member checkEmail(String email) {
 		return dao.checkEmail(email);
@@ -22,14 +43,27 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	public Member checkLogin(Member member) {
-		Member loggedInMember = dao.checkLogin(member);
-		if (loggedInMember != null) {
-			return loggedInMember;
+//		Member loggedInMember = new Member();
+//		loggedInMember.setMemberEmail(member.getMemberEmail());
+//		loggedInMember.setMemberPassword(member.getMemberPassword()); 
+//		Member checkedMember = dao.checkLogin(loggedInMember);
+//		System.out.println(loggedInMember.getMemberPassword());
+//		if (checkedMember != null) {
+//			return checkedMember;
+//		} else {
+//			return null;
+//		}
+		// get the Member entity
+		// get the encoded password
+		// just checking if this member exists
+		Member checkedMember = dao.checkEmail(member.getMemberEmail());
+		boolean result = passwordEncoder.matches(member.getMemberPassword(), checkedMember.getMemberPassword());
+		if (result) {
+			return checkedMember;
 		} else {
 			return null;
 		}
 	}
-	
 
 	@Override
 	public Integer findMemberPoints(Integer id) {
@@ -48,20 +82,8 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public Member updateMember(byte[] file, Member member) {
+		System.out.println("In service: " + member.toString());
 		return dao.update(file, member);
-	}
-
-	@Override
-	public Integer registerMember(Member member) {
-		System.out.println("in register service");
-		// check if email has been registered already, send to the DAO and return an int
-		Member added = dao.checkEmail(member.getMemberEmail());
-		if (added != null) {
-			System.out.println("This account already exists");
-			return 0;
-		}
-		System.out.println("in register service: checked email");
-		return dao.register(member);
 	}
 
 	@Override
@@ -71,12 +93,12 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	public Boolean updateMemberPassword(Integer memberId, String memberPassword) {
-		Member result = dao.updateMemberPassword(memberId, memberPassword);
+		Member result = dao.updateMemberPassword(memberId, passwordEncoder.encode(memberPassword));
 		if (result != null) {
 			return true;
 		} else {
 			return false;
 		}
 	}
-
+	
 }

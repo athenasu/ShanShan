@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="/img/favicon.png" />
-    <link rel="stylesheet" href="css/header_footer.css" />
+    <link rel="stylesheet" href="css/header_footer_login.css" />
     <title>會員中心</title>
     <link rel="stylesheet" href="css/member.css" />
     <link rel="stylesheet" href="./dist/simple-calendar.css" />
@@ -23,87 +23,88 @@
     ></script>
   </head>
   <body>
-    <header class="header-div">
-      <div id="logo">
-        <a href="index.html"><img src="img/logo.png" class="img" /></a>
-      </div>
-      <nav id="navlist">
-        <ul>
-          <li><a href="#">找山友</a></li>
-          <li><a href="#">山友日誌</a></li>
-          <li><a href="#">攻山小物</a></li>
-          <li><a href="#">登山資訊</a></li>
-          <li><a href="#">會員中心</a></li>
-        </ul>
-      </nav>
-      <div id="memcheck">
-        <div id="ball"><i class="fas fa-bell"></i></div>
-        <div id="logout"><a href="#">登出</a></div>
-      </div>
-    </header>
-    <section class="glass">
-      <div class="overlay-done hidden"></div>
-      <div class="dashboard">
-        <div class="user">
-          <div class="member_profile">
-            <img class="member_profile_pic" src="" alt="user_pic" />
-          </div>
-          <div class="user-info">
-            <h2 class="member-name-dashboard"></h2>
-            <p class="member-username-dashboard"></p>
-          </div>
+    <main class="member-main">
+      <header class="header-div">
+        <div id="logo">
+          <a href="#"><img src="img/logo.png" class="img" /></a>
         </div>
-        <div class="links">
+        <nav id="navlist">
+          <ul>
+            <li><a href="#">找山友</a></li>
+            <li><a href="#">山友日誌</a></li>
+            <li><a href="#">攻山小物</a></li>
+            <li><a href="#">登山資訊</a></li>
+            <li><a href="#">會員中心</a></li>
+          </ul>
+        </nav>
+        <div id="memcheck">
+          <div id="ball"><i class="fas fa-bell"></i></div>
+          <div id="logout"><a href="../memberLogin/logout">登出</a></div>
+        </div>
+      </header>
+      <section class="glass">
+        <div class="overlay-done hidden"></div>
+        <div class="dashboard">
+          <div class="user">
+            <div class="member_profile">
+              <img class="member_profile_pic" src="" alt="user_pic" />
+            </div>
+            <div class="user-info">
+              <h2 class="member-name-dashboard"></h2>
+              <p class="member-username-dashboard"></p>
+            </div>
+          </div>
+          <div class="links">
+            <div class="link">
+              <button>
+                <a href="member_main.html"><h3>會員首頁</h3></a>
+              </button>
+            </div>
+            <div class="link">
+              <button>
+                <a href="member_update.html"><h3>修改會員資料</h3></a>
+              </button>
+            </div>
+            <div class="link">
+              <ul class="side-bar-event">
+                <li>
+                  <button class="link-btn-event">
+                    <a href="member_article_details.html"><h3>文章紀錄</h3></a>
+                  </button>
+                  <ul class="second-menu-event">
+                    <li><a href="#">揪團紀錄</a></li>
+                    <li><a href="#">參團紀錄</a></li>
+                    <li><a href="#">日誌紀錄</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+            <div class="link">
+              <button>
+                <a href="member_order_details.html"><h3>訂單記錄</h3></a>
+              </button>
+            </div>
+            <div class="link">
+              <ul class="side-bar-wishlist">
+                <li>
+                  <button class="link-btn-wishlist">
+                    <a href="member_wishlist.html"><h3>收藏紀錄</h3></a>
+                  </button>
+                  <ul class="second-menu-wishlist">
+                    <li><a href="#">揪團</a></li>
+                    <li><a href="#">活動日誌</a></li>
+                    <li><a href="#">商品</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
           <div class="link">
             <button>
-              <a href="member.html"><h3>會員首頁</h3></a>
+              <a href="member_points.html"><h3>點數記錄</h3></a>
             </button>
-          </div>
-          <div class="link">
-            <button>
-              <a href="member_update.html"><h3>修改會員資料</h3></a>
-            </button>
-          </div>
-          <div class="link">
-            <ul class="side-bar-event">
-              <li>
-                <button class="link-btn-event">
-                  <a href="member_article_details.html"><h3>文章紀錄</h3></a>
-                </button>
-                <ul class="second-menu-event">
-                  <li><a href="#">揪團紀錄</a></li>
-                  <li><a href="#">參團紀錄</a></li>
-                  <li><a href="#">日誌紀錄</a></li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-          <div class="link">
-            <button>
-              <a href="member_order_details.html"><h3>訂單記錄</h3></a>
-            </button>
-          </div>
-          <div class="link">
-            <ul class="side-bar-wishlist">
-              <li>
-                <button class="link-btn-wishlist">
-                  <a href="#"><h3>收藏紀錄</h3></a>
-                </button>
-                <ul class="second-menu-wishlist">
-                  <li><a href="#">揪團</a></li>
-                  <li><a href="#">活動日誌</a></li>
-                  <li><a href="#">商品</a></li>
-                </ul>
-              </li>
-            </ul>
           </div>
         </div>
-        <div class="link">
-          <button>
-            <a href="member_points.html"><h3>點數記錄</h3></a>
-          </button>
-        </div>
-      </div>
         <div class="events">
           <div class="calendar-map">
             <div class="icons">

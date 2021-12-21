@@ -2,6 +2,8 @@ package tw.idv.tibame.tfa104.shanshan.web.wishlistEvent.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,18 +41,21 @@ public class WishlistEventController {
 	}
 	@CrossOrigin
 	@GetMapping("findAllWishlistEventByMemId")
-	public List<WishlistEvent> findAllWishlistEventByMemId(Integer memberId) {
+	public List<WishlistEvent> findAllWishlistEventByMemId(HttpSession session) {
+		Integer memberId = (Integer) session.getAttribute("memberId");
 		return wishlistService.findAllWishlistEventByMemId(memberId);
 	}
 	@CrossOrigin
 	@GetMapping("findWishlistEventByMemberIdEventId")
-	public WishlistEvent findWishlistEventByMemberIdEventId (Integer memberId, Integer eventId) {
+	public WishlistEvent findWishlistEventByMemberIdEventId (HttpSession session, Integer eventId) {
+		Integer memberId = (Integer) session.getAttribute("memberId");
 		return wishlistService.findWishlistEventByMemberIdEventId(memberId, eventId);
 	}
 	
 	@CrossOrigin
 	@GetMapping("findWishlistEventsByMemberId")
-	public List<WishlistEventBO> findWishlistEventsByMemberId(Integer memberId) { // need to change this back to Integer
-		return wishlistService.findWishlistEventsByMemberId(1);
+	public List<WishlistEventBO> findWishlistEventsByMemberId(HttpSession session) { // need to change this back to Integer
+		Integer memberId = (Integer) session.getAttribute("memberId");
+		return wishlistService.findWishlistEventsByMemberId(memberId);
 	}
 }

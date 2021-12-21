@@ -3,12 +3,16 @@ package tw.idv.tibame.tfa104.shanshan.web.member.controller;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import redis.clients.jedis.Jedis;
 import tw.idv.tibame.tfa104.shanshan.web.core.Core;
@@ -24,15 +28,19 @@ public class MemberRegisterController {
 	private MemberService service;
 	
 	@PostMapping(path = "register", consumes = { MediaType.APPLICATION_JSON_VALUE })
-	public Core register(@RequestBody Member member) {
-		Core core = new Core();
-		int result = service.registerMember(member);
+	public Core register(@RequestBody Member member, Core core) {
+		Member addedMember = service.registerMember(member); 
 		// send email
+		if (addedMember == null) {
+			core.setSuccessful(false);
+			core.setMessage("Member already exists");
+			return core;
+		}
 		MailService mailService = new MailService();
 		String subject = "山山來此-會員註冊";
-		boolean mailSent = mailService.sendMail(member.getMemberEmail(), subject, "memberRegister/authenicate", member.getMemberId());
+		boolean mailSent = mailService.sendMail(addedMember.getMemberEmail(), subject, "memberRegister/authenicate", addedMember.getMemberId());
 		
-		if (mailSent && result > 0) {
+		if (mailSent && addedMember != null) {
 			core.setSuccessful(true);
 		} else {
 			core.setSuccessful(false);
@@ -40,8 +48,8 @@ public class MemberRegisterController {
 		return core;
 	}
 	
-	@GetMapping("authenicate")
-	public String authenticate(String token, HttpSession session) {
+	@GetMapping("authenicate")  
+	public ModelAndView authenticate(String token, HttpSession session) {
 		Jedis jedis = new Jedis("localhost", 6379);
 		try {
 			// checking token if it matches with the token in Jedis
@@ -57,7 +65,13 @@ public class MemberRegisterController {
 		}
 		
 		jedis.close();
-		return "index.jsp"; // need to change to main page jsp
+		return new ModelAndView("index/index"); // need to change to main page jsp
 	}
-
+	
+	@InitBinder
+	public void initBinder(WebDataBinder dataBinder) {
+	StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
+	dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
+	}
+	
 }

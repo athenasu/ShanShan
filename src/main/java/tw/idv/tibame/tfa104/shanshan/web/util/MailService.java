@@ -62,7 +62,7 @@ public class MailService {
 			Transport.send(message);
 			Jedis jedis = new Jedis("localhost", 6379);
 			jedis.set(token, memberId.toString());
-			System.out.println(token);
+//			System.out.println(token);
 			jedis.expire(token, 120); // setting timeout time (jedis will delete this token)
 			System.out.println("傳送成功!");
 			jedis.close();
@@ -73,20 +73,5 @@ public class MailService {
 			return false;
 		}
 	}
-
-//	 public static void main (String args[]){
-//
-//      String to = "接收者的email";
-//      
-//      String subject = "密碼通知";
-//      
-//      String ch_name = "David";
-//      String passRandom = "111";
-//      String messageText = "Hello! " + ch_name + " 請謹記此密碼: " + passRandom + "\n" +" (已經啟用)"; 
-//       
-//      MailService mailService = new MailService();
-//      mailService.sendMail(to, subject, messageText);
-//
-//   }
 
 }

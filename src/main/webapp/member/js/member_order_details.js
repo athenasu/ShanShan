@@ -2,6 +2,11 @@
 ///////////// selecting elements ////////////
 const userInfo = document.querySelector(".user-info");
 const cards = document.querySelector(".cards");
+const receivedOrdersBtn = document.querySelector(".done-orders-btn");
+const intransitOrdersBtn = document.querySelector(".intransit-orders-btn");
+const cancelledOrDoneOrdersBtn = document.querySelector(
+  ".cancelled-orders-btn"
+);
 
 /////////////////////////////
 /////// RENDER CARDS & MODAL ///////
@@ -11,11 +16,10 @@ const formatDate = function (timestamp, days) {
   let d = new Date(newTimestamp);
   let dateString =
     d.getFullYear() + "年" + (d.getMonth() + 1) + "月" + d.getDate() + "日";
-
   return dateString;
 };
 
-// INTRANSIT ORDERS, STATUS 1 & 2
+// INTRANSIT ORDERS, STATUS 1 & 2 & 3
 const renderIntransitOrders = function (order) {
   let orderStatus = order.order_status == 1 ? "配送中" : "已配送";
   let createdDate = formatDate(order.order_created_date, 0);
@@ -79,7 +83,7 @@ const renderIntransitOrders = function (order) {
   cards.insertAdjacentHTML("afterbegin", card2);
 };
 
-// DONE ORDERS, STATUS 3 & 4
+// DONE ORDERS, STATUS 4
 const renderDoneOrders = function (order) {
   let createdDate = formatDate(order.order_created_date, 0);
   let shippedDate = formatDate(order.order_shipped_date, 0);
@@ -155,9 +159,19 @@ const renderDoneOrders = function (order) {
   cards.insertAdjacentHTML("afterbegin", card1);
 };
 
-// CANCELLED ORDERS, STATUS 0 & 5
-const renderCancelledOrders = function (order) {
-  let orderStatus = order.order_status == 0 ? "取消" : "退貨";
+// CANCELLED ORDERS, STATUS 0 & 5 & 6
+const renderCancelledOrConfirmedOrders = function (order) {
+  let orderStatusStr = function (orderStatus) {
+    if (orderStatus == 0) {
+      return "取消";
+    } else if (orderStatus == 5) {
+      return "已結單";
+    } else {
+      return "退貨";
+    }
+  };
+
+  let orderStatus = orderStatusStr(order.order_status);
   let createdDate = formatDate(order.order_created_date, 0);
   let card3 = `
               <div class = "card-cancelled">
@@ -205,7 +219,7 @@ const renderCancelledOrders = function (order) {
 const renderOrderDetails = function (orderDetail, orderId, itemNo) {
   let orderItem = document.querySelector(`.no-${orderId}`);
   let html = `
-              <a href="${orderDetail.prodes_id}">
+              <a href="../GetProductServlet?productId=${orderDetail.product_id}">
                 <ul class="item-${itemNo}">
                   <li class="item-name">品名：${orderDetail.product_name}</li>
                   <li class="item-size">規格：${orderDetail.product_color}${orderDetail.product_size}</li>
@@ -226,7 +240,11 @@ const allOrders = function () {
     .then((body) => body.json())
     .then(async (orders) => {
       for (let order of orders) {
-        if (order.order_status == 1 || order.order_status == 2) {
+        if (
+          order.order_status == 1 ||
+          order.order_status == 2 ||
+          order.order_status == 3
+        ) {
           renderIntransitOrders(order);
           const response = await fetch(
             `/shanshan/memberOrder/findAllOrderDesByMemId?orderId=${order.order_id}`
@@ -237,7 +255,7 @@ const allOrders = function () {
             renderOrderDetails(orderDetail, order.order_id, itemNo);
           }
         }
-        if (order.order_status == 3 || order.order_status == 4) {
+        if (order.order_status == 4) {
           renderDoneOrders(order);
           const response = await fetch(
             `/shanshan/memberOrder/findAllOrderDesByMemId?orderId=${order.order_id}`
@@ -250,8 +268,12 @@ const allOrders = function () {
             renderOrderDetails(orderDetail, order.order_id, itemNo);
           }
         }
-        if (order.order_status == 0 || order.order_status == 5) {
-          renderCancelledOrders(order);
+        if (
+          order.order_status == 0 ||
+          order.order_status == 5 ||
+          order.order_status == 6
+        ) {
+          renderCancelledOrConfirmedOrders(order);
           const response = await fetch(
             `/shanshan/memberOrder/findAllOrderDesByMemId?orderId=${order.order_id}`
           );
@@ -295,8 +317,7 @@ window.onload = function () {
 ///////////////////////////////////////
 /////// OPEN & CLOSE MODAL ///////
 document.addEventListener("click", function (e) {
-  e.preventDefault();
-  // done cases
+  // STATUS 4 (RECEIVED)
   if (e.target.classList.contains("btn--show-modal-done")) {
     let overlayDone = document.querySelector(".overlay-done");
 
@@ -324,26 +345,8 @@ document.addEventListener("click", function (e) {
     // CONFIRM ORDER
     const btnConfirmOrder = parent.querySelector(".submit-confirm-order");
     btnConfirmOrder.addEventListener("click", function () {
-      // change order status to 3
-      let orderId = modal.getAttribute("order-id");
-      let orderStatus = 3;
-      fetch(`/shanshan/memberOrder/updateOrderStatusByOrderId`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          orderStatus,
-          orderId,
-        }),
-      });
-    });
-
-    // CANCEL ORDER
-    const btnCancelOrder = parent.querySelector(".submit-cancel-order");
-    btnCancelOrder.addEventListener("click", function () {
-      // change status to 5
-      let orderId = modal.getAttribute("order-id");
+      // change order status to 5 (confirm)
+      let orderId = modalDone.getAttribute("order-id");
       let orderStatus = 5;
       fetch(`/shanshan/memberOrder/updateOrderStatusByOrderId`, {
         method: "POST",
@@ -351,14 +354,34 @@ document.addEventListener("click", function (e) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          orderStatus,
-          orderId,
+          order_status: orderStatus,
+          order_id: orderId,
         }),
       });
+      closeModalDone();
+    });
+
+    // CANCEL ORDER
+    const btnCancelOrder = parent.querySelector(".submit-cancel-order");
+    btnCancelOrder.addEventListener("click", function () {
+      // change status to 6 (cancel)
+      let orderId = modalDone.getAttribute("order-id");
+      let orderStatus = 6;
+      fetch(`/shanshan/memberOrder/updateOrderStatusByOrderId`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          order_status: orderStatus,
+          order_id: orderId,
+        }),
+      });
+      closeModalDone();
     });
   }
 
-  // IN TRANSIT
+  // 1, 2, 3 (IN TRANSIT)
   if (e.target.classList.contains("btn--show-modal-intransit")) {
     let parent = e.target.closest(".card-intransit");
     let overlay = document.querySelector(".overlay-done");
@@ -387,22 +410,24 @@ document.addEventListener("click", function (e) {
     // CONFIRM ORDER
     const btnConfirmOrder = parent.querySelector(".submit-confirm-order");
     btnConfirmOrder.addEventListener("click", function () {
-      // change order status to 3
-      let orderId = modal.getAttribute("order-id");
-      let orderStatus = 3;
+      // change order status to 4
+      let orderId = modalIntransit.getAttribute("order-id");
+      let orderStatus = 4;
       fetch(`/shanshan/memberOrder/updateOrderStatusByOrderId`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          orderStatus,
-          orderId,
+          order_status: orderStatus,
+          order_id: orderId,
         }),
       });
+      closeModalIntransit();
     });
   }
-  // CANCELLED ORDER
+
+  // STATUS 0, 5, 6 (CANCELLED OR CONFRIMED)
   if (e.target.classList.contains("btn--show-modal-returned")) {
     let overlay = document.querySelector(".overlay-done");
 
@@ -432,3 +457,82 @@ document.addEventListener("click", function (e) {
 
 ///////////////////////////////////////
 /////// SORT BY STATUS ///////
+// RECEIVED ORDERS
+receivedOrdersBtn.addEventListener("click", function () {
+  cards.innerHTML = "";
+  fetch(`/shanshan/memberOrder/findAllOrdersByMemId`)
+    .then((body) => body.json())
+    .then(async (orders) => {
+      for (let order of orders) {
+        if (order.order_status == 4) {
+          renderDoneOrders(order);
+          const response = await fetch(
+            `/shanshan/memberOrder/findAllOrderDesByMemId?orderId=${order.order_id}`
+          );
+          // will wait until the above fetch is done before continuing the code below
+          const orderDes = await response.json();
+          for (let orderDetail of orderDes) {
+            // in the case of member 1, there should be two orderDes
+            itemNo = itemNo == 2 ? 1 : 2;
+            renderOrderDetails(orderDetail, order.order_id, itemNo);
+          }
+        } else {
+          continue;
+        }
+      }
+    });
+});
+
+// IN TRANSIT ORDERS
+intransitOrdersBtn.addEventListener("click", function () {
+  cards.innerHTML = "";
+  fetch(`/shanshan/memberOrder/findAllOrdersByMemId`)
+    .then((body) => body.json())
+    .then(async (orders) => {
+      for (let order of orders) {
+        if (
+          order.order_status == 1 ||
+          order.order_status == 2 ||
+          order.order_status == 3
+        ) {
+          renderIntransitOrders(order);
+          const response = await fetch(
+            `/shanshan/memberOrder/findAllOrderDesByMemId?orderId=${order.order_id}`
+          );
+          const orderDes = await response.json();
+          for (let orderDetail of orderDes) {
+            itemNo = itemNo == 2 ? 1 : 2;
+            renderOrderDetails(orderDetail, order.order_id, itemNo);
+          }
+        } else {
+          continue;
+        }
+      }
+    });
+});
+
+cancelledOrDoneOrdersBtn.addEventListener("click", function () {
+  fetch(`/shanshan/memberOrder/findAllOrdersByMemId`)
+    .then((body) => body.json())
+    .then(async (orders) => {
+      for (let order of orders) {
+        if (
+          order.order_status == 0 ||
+          order.order_status == 5 ||
+          order.order_status == 6
+        ) {
+          renderCancelledOrConfirmedOrders(order);
+          const response = await fetch(
+            `/shanshan/memberOrder/findAllOrderDesByMemId?orderId=${order.order_id}`
+          );
+          const orderDes = await response.json();
+          for (let orderDetail of orderDes) {
+            itemNo = itemNo == 2 ? 1 : 2;
+            renderOrderDetails(orderDetail, order.order_id, itemNo);
+          }
+        } else {
+          continue;
+        }
+      }
+    });
+});
