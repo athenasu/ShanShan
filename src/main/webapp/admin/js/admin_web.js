@@ -359,6 +359,16 @@ $(document).on("click", "button.store_management", function (e) {
 //                var bytes = new Uint8Array(data.picStr);
 //                var blob = new Blob([bytes], { type: "image/png" });
                 // var url = URL.createObjectURL(data.picStr);
+
+                const bytesStr = atob(data.picStr);
+                let len = bytesStr.length;
+                const u8Array = new Uint8Array(len);
+                while (len--) {
+                    u8Array[len] = bytesStr.charCodeAt(len);
+                }
+                const blob = new Blob([u8Array]);
+                const url = URL.createObjectURL(blob);
+
                 let verifyContent = `
                         <div class="verify_content">
                             <h3>店家申請資料</h3>
@@ -374,7 +384,7 @@ $(document).on("click", "button.store_management", function (e) {
                             
                         </div>
                         <div class= "verify_pic">
-                        	<img class="store_pic" src="">
+                        	<img class="store_pic" src="${url}">
                         </div>
                         <div class="verification">
                         	<input class="pass" name="verification" type="radio" id="pass">

@@ -43,7 +43,7 @@ $(document).on("change", "#mountain_id", function () {
     $("#mountain_id").attr("value", $(this).val());
     console.log($(this).val())
     $.ajax({
-        url: "http://localhost:8081/shanshan/mountain/findMtnByPk",
+        url: "../mountain/findMtnByPk",
         type: "GET",
         data: {"mtnId":$(this).val()},
         beforeSend: function () {
@@ -52,9 +52,17 @@ $(document).on("change", "#mountain_id", function () {
         success: function (data) {
             console.log(data.mountainId);
 
-            var bytes = new Uint8Array(data.mountainPic);
-            var blob = new Blob([bytes], { type: "image/png" });
-            var url = URL.createObjectURL(blob);
+            const bytesStr = atob(data.mountainPic);
+            let len = bytesStr.length;
+            const u8Array = new Uint8Array(len);
+            while (len--) {
+                u8Array[len] = bytesStr.charCodeAt(len);
+            }
+            const blob = new Blob([u8Array]);
+            const url = URL.createObjectURL(blob);
+            // var bytes = new Uint8Array(data.mountainPic);
+            // var blob = new Blob([bytes], { type: "image/png" });
+            // var url = URL.createObjectURL(blob);
             $("div.mountain_pic").html('<img src="'+ url +'" class="mountain_pic">');
         }
     })
@@ -90,7 +98,7 @@ $(document).on("click", "button.submit_btn", function () {
 
 
         $.ajax({
-            url: "http://localhost:8081/shanshan/event/addEvent",
+            url: "../event/addEvent",
             type: "POST",
             contentType: 'application/json',
             data: event,

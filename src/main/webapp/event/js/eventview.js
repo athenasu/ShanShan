@@ -386,12 +386,21 @@ $(document).ready(function(){
                     console.log(data);
                     let event_msg_html = "";
                     $.each(data, function (index, item) {
-                        var bytes = new Uint8Array(item.memberProfilePic);
-                        var blob = new Blob([bytes], { type: "image/png" });
-                        var url = URL.createObjectURL(blob);
+                        // var bytes = new Uint8Array(item.memberProfilePic);
+                        // var blob = new Blob([bytes], { type: "image/png" });
+                        // var url = URL.createObjectURL(blob);
                         // console.log(item);
                         // console.log(item.memberProfilePic)
                         // console.log(url);
+
+                        const bytesStr = atob(item.memberProfilePic);
+                        let len = bytesStr.length;
+                        const u8Array = new Uint8Array(len);
+                        while (len--) {
+                            u8Array[len] = bytesStr.charCodeAt(len);
+                        }
+                        const blob = new Blob([u8Array]);
+                        const url = URL.createObjectURL(blob);
 
                         event_msg_html += "<div class='event_msg'>";
                         event_msg_html += "<img class='member_pic' src='" + url + "'>";
@@ -761,7 +770,9 @@ $(document).on("click", "button.add_msg_btn", function () {
         beforeSend: function () {
         },
         success: function (data) {
-            console.log("123");
+
+            //================= GET MEMBER ID, MEMBER NAME, MEMBERPIC FROM DATABASE ==============
+            // console.log("123");
             $("div.event_msg_list").prepend(`
                 <ul class="event_msg">
                     <img class="member_pic" src="#">
