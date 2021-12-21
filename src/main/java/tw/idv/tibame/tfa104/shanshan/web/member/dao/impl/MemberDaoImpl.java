@@ -9,6 +9,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import javax.servlet.ServletContext;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -24,6 +25,9 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Autowired
 	private SessionFactory sessionFactory;
+	
+	@Autowired
+	private ServletContext servletContext;
 	
 	@Override
 	public Member checkLogin(Member member) { // probably won't need this anymore
@@ -74,7 +78,7 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public Integer register(Member member) {
 		Session session = sessionFactory.getCurrentSession(); 
-		File file = new File("default_profile_pic.png");
+		File file = new File(servletContext.getRealPath("/member/member_imgs/default_profile_pic.png"));
 		byte[] bFile= null; 
 		try {
 			FileInputStream fis = new FileInputStream(file);
@@ -96,25 +100,25 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public Member update(byte[] file, Member member) {
 		Session session = sessionFactory.getCurrentSession();
-		System.out.println("In dao: " + member.toString());
+//		System.out.println("In dao: " + member.toString());
 		Member tempMember = session.get(Member.class, member.getMemberId());
-		if (tempMember.getMemberName() != null) { // && tempMember.getMemberName() != ""
+		if (member.getMemberName() != null && member.getMemberName() != "") { // && tempMember.getMemberName() != ""
 			tempMember.setMemberName(member.getMemberName());
 		}
 		
-		if (tempMember.getMemberUsername() != null) {
+		if (member.getMemberUsername() != null && member.getMemberName() != "") {
 			tempMember.setMemberUsername(member.getMemberUsername());
 		}
 		
-		if (tempMember.getMemberPhoneNum() != null) {
+		if (member.getMemberPhoneNum() != null && member.getMemberPhoneNum() != "") {
 			tempMember.setMemberPhoneNum(member.getMemberPhoneNum());
 		}
 		
-		if (tempMember.getMemberIntro() != null) {
+		if (member.getMemberIntro() != null && member.getMemberIntro() != "") {
 			tempMember.setMemberIntro(member.getMemberIntro());
 		}
 		
-		if (tempMember.getMemberProfilePic() != null) {
+		if (member.getMemberProfilePic() != null) {
 			tempMember.setMemberProfilePic(file);
 		}
 		

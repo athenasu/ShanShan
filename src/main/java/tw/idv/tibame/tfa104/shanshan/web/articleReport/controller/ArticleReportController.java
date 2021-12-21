@@ -23,11 +23,7 @@ public class ArticleReportController {
 		int result = service.changeStatus(articleReport.getArticle_report_id(),
 										  articleReport.getArticle_report_status(),
 										  articleReport.getCase_done());
-		if (result > 0) {
-			core.setSuccessful(true);
-		} else {
-			core.setSuccessful(false);
-		}
+		core.setSuccessful(result > 0);
 		return core;
 	}
 
