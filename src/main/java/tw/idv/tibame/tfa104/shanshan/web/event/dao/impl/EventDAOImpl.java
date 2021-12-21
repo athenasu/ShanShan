@@ -254,7 +254,7 @@ public class EventDAOImpl implements EventDAO{
 										 "JOIN Member c "+
 										 		"ON a.member_id = c.member_id "+
 										 "WHERE a.event_status = 2 "+
-										 "ORDER BY a.event_cur_part desc limit 5",PopularEventBO.class).list();
+										 "ORDER BY a.event_cur_part desc limit 3",PopularEventBO.class).list();
 				
 	}
 

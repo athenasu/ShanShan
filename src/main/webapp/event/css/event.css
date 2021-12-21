@@ -279,3 +279,55 @@ div.slide_startdate{
   display:inline-block;
   font-size: 12px;
 }
+
+
+/* wwwwwwwwwwww輪播圖 開始wwwwwwwwwwwwww */
+
+.goodsindex_topslideshow {
+    position: relative;
+    height: 500px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /*flex 子元素 在父塊元素內,產生置中效果*/
+}
+
+.goodsindex_topslideshow_area {
+    /* 中間放圖片區 */
+    width: 1200px;
+    overflow: hidden;
+}
+
+.slideshow_circle_area {
+    z-index: 5;
+    position: absolute;
+    top: 470px;
+}
+
+.slideshow_circle_area div {
+    width: 10px;
+    height: 10px;
+    border-radius: 10rem;
+    background-color: rgba(0, 0, 0, 0.6);
+    border: 5px solid transparent;
+    display: inline-block;
+    margin-left: 6px;
+    background-clip: content-box;
+    box-sizing:content-box;
+    /*背景只在內容區*/
+}
+
+.slideshow_circle_area div:hover, .slideshow_circle_area div:active {
+    background-color: rgb(233, 233, 233);
+    border: 5px solid rgb(179, 179, 179, 0.6);
+}
+
+/* 
+.slidepic{
+	max-width:100%
+	width:100%
+} 
+*/
+
+/* wwwwwwwwwwww輪播圖 結束wwwwwwwwwwwwww */
