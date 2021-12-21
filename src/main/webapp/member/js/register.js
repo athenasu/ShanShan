@@ -32,14 +32,14 @@ $("p.forgot_password").click(function (e) {
 /////////////////////////////////////
 // 點擊註冊頁面，回到選擇註冊方式
 $("div.registor_title_signup").click(function () {
-  $("form.signup_email_form").addClass("-none");
-  $("form.choose_signup_form").removeClass("-none");
+  $("div.signup_email_form").addClass("-none");
+  $("div.choose_signup_form").removeClass("-none");
 });
 
 // 點擊用電子郵件註冊，到電子郵件註冊
 $("input.summitbutton_signupemail").click(function () {
-  $("form.choose_signup_form").addClass("-none");
-  $("form.signup_email_form").removeClass("-none");
+  $("div.choose_signup_form").addClass("-none");
+  $("div.signup_email_form").removeClass("-none");
 });
 
 // 點擊logo圖片或註冊頁面，到山山首頁
@@ -65,108 +65,112 @@ const validateEmail = function (emailAdress) {
 /////////// LOGIN ///////////
 const loginSubmitBtn = document.querySelector(".login_summitbutton");
 const loginBtn = document.querySelector(".login_modal_button");
-loginSubmitBtn.addEventListener("click", function () {
-  const memberEmail = document.querySelector(".login_formbar_email").value;
-  const memberPassword = document.querySelector(
-    ".login_formbar_password"
-  ).value;
-  fetch("/shanshan/memberLogin/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    // setting the variables
-    // need to test this
-    body: JSON.stringify({
-      memberEmail,
-      memberPassword,
-    }),
-  })
-    .then(function (response) {
-      console.log(response);
-      return response.json();
-    })
-    .then((body) => {
-      // console.log(body.successful);
-      if (body.successful) {
-        console.log("Sign in successful");
-        $("div.login_modal_bcg").addClass("-none");
-        $("div.login_modal").addClass("-none");
-        $("div.login_modal_email").addClass("-none");
-        $("input.logout_modal_button").removeClass("-none");
-        $("input.login_modal_button").addClass("-none");
-      } else {
-        console.log("Login unsuccessful");
-      }
-    });
-});
-
-/////////// REGISTER ///////////
-let memberEmailInput = document.querySelector("input.register-email");
-let emailInputError = document.querySelector(".error-message");
-memberEmailInput.addEventListener("keyup", function () {
-  let validate = validateEmail(memberEmailInput.value);
-  if (!validate) {
-    emailInputError.innerHTML = "<p>請輸入合法信箱</p>";
-  } else {
-    emailInputError.textContent = "";
-  }
-});
-
-const registerSubmitBtn = document.querySelector(".register_summitbutton");
-registerSubmitBtn.addEventListener("click", function () {
-  const memberName = document.querySelector(".register-name").value;
-  const memberEmail = document.querySelector(".register-email").value;
-  const memberPassword = document.querySelector(".register-password").value;
-  const memberRepeatPassword = document.querySelector(
-    ".register-repeatpassword"
-  ).value;
-  if (memberPassword == memberRepeatPassword && validateEmail(memberEmail)) {
-    fetch("/shanshan/memberRegister/register", {
+loginSubmitBtn &&
+  loginSubmitBtn.addEventListener("click", function () {
+    const memberEmail = document.querySelector(".login_formbar_email").value;
+    const memberPassword = document.querySelector(
+      ".login_formbar_password"
+    ).value;
+    fetch("/shanshan/memberLogin/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
+      // setting the variables
+      // need to test this
       body: JSON.stringify({
-        memberName,
         memberEmail,
         memberPassword,
       }),
-    });
-    window.location.replace("/index/index.jsp");
-  } else {
-    alert("wrong password"); // can probably show something on the div
-  }
-});
+    })
+      .then(function (response) {
+        console.log(response);
+        return response.json();
+      })
+      .then((body) => {
+        // console.log(body.successful);
+        if (body.successful) {
+          console.log("Sign in successful");
+          $("div.login_modal_bcg").addClass("-none");
+          $("div.login_modal").addClass("-none");
+          $("div.login_modal_email").addClass("-none");
+          $("input.logout_modal_button").removeClass("-none");
+          $("input.login_modal_button").addClass("-none");
+        } else {
+          console.log("Login unsuccessful");
+        }
+      });
+  });
+
+/////////// REGISTER ///////////
+let memberEmailInput = document.querySelector("input.register-email");
+let emailInputError = document.querySelector(".error-message");
+memberEmailInput &&
+  memberEmailInput.addEventListener("keyup", function () {
+    let validate = validateEmail(memberEmailInput.value);
+    if (!validate) {
+      emailInputError.innerHTML = "<p>請輸入合法信箱</p>";
+    } else {
+      emailInputError.textContent = "";
+    }
+  });
+
+const registerSubmitBtn = document.querySelector(".register_summitbutton");
+registerSubmitBtn &&
+  registerSubmitBtn.addEventListener("click", function () {
+    const memberName = document.querySelector(".register-name").value;
+    const memberEmail = document.querySelector(".register-email").value;
+    const memberPassword = document.querySelector(".register-password").value;
+    const memberRepeatPassword = document.querySelector(
+      ".register-repeatpassword"
+    ).value;
+    if (memberPassword == memberRepeatPassword && validateEmail(memberEmail)) {
+      fetch("/shanshan/memberRegister/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          memberName,
+          memberEmail,
+          memberPassword,
+        }),
+      });
+      window.location.replace("/index/index.jsp");
+    } else {
+      alert("wrong password"); // can probably show something on the div
+    }
+  });
 
 /////////// FORGOT PASSWORD ///////////
 const forgotPasswordSubmitBtn = document.querySelector(
   ".forgot_password_summitbutton"
 );
-forgotPasswordSubmitBtn.addEventListener("click", function () {
-  let memberEmail = document.querySelector(".forgot_password_email").value;
-  fetch(`/shanshan/memberLogin/forgotPasswordCheckEmail`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      memberEmail,
-    }),
-  })
-    .then(function (response) {
-      console.log(response);
-      return response.json();
+forgotPasswordSubmitBtn &&
+  forgotPasswordSubmitBtn.addEventListener("click", function () {
+    let memberEmail = document.querySelector(".forgot_password_email").value;
+    fetch(`/shanshan/memberLogin/forgotPasswordCheckEmail`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        memberEmail,
+      }),
     })
-    .then((body) => {
-      if (body.successful) {
-        $("div.login_modal_bcg").addClass("-none");
-        $("div.login_modal").addClass("-none");
-        $("div.login_modal_email").addClass("-none");
-        $("div.forgot_password_modal").addClass("-none");
-      }
-    });
-});
+      .then(function (response) {
+        console.log(response);
+        return response.json();
+      })
+      .then((body) => {
+        if (body.successful) {
+          $("div.login_modal_bcg").addClass("-none");
+          $("div.login_modal").addClass("-none");
+          $("div.login_modal_email").addClass("-none");
+          $("div.forgot_password_modal").addClass("-none");
+        }
+      });
+  });
 
 /////////// FACEBOOK LOGIN ///////////
 function statusChangeCallback(response) {
@@ -251,33 +255,36 @@ function testAPI() {
     const addPswdSubmitBtn = document.querySelector(
       ".add_password_submitbutton"
     );
-    addPswdSubmitBtn.addEventListener("click", function () {
-      let password = document.querySelector(".add-password").value;
-      let confirmPassword = document.querySelector(".add-repeatpassword").value;
-      console.log(
-        "user name: " + response.name + " user email:" + response.email
-      );
-      if (password === confirmPassword) {
-        fetch("/shanshan/memberRegister/register", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            memberName: response.name,
-            memberEmail: response.email,
-            memberPassword: password,
-          }),
-        });
-        document
-          .querySelector(".add_password_modal_bcg")
-          .classList.add("-none");
-        document.querySelector(".add_password_modal").classList.add("-none");
-        console.log("redirect to front page");
-      } else {
-        alert("wrong password"); // can probably show something on the div
-      }
-    });
+    addPswdSubmitBtn &&
+      addPswdSubmitBtn.addEventListener("click", function () {
+        let password = document.querySelector(".add-password").value;
+        let confirmPassword = document.querySelector(
+          ".add-repeatpassword"
+        ).value;
+        console.log(
+          "user name: " + response.name + " user email:" + response.email
+        );
+        if (password === confirmPassword) {
+          fetch("/shanshan/memberRegister/register", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              memberName: response.name,
+              memberEmail: response.email,
+              memberPassword: password,
+            }),
+          });
+          document
+            .querySelector(".add_password_modal_bcg")
+            .classList.add("-none");
+          document.querySelector(".add_password_modal").classList.add("-none");
+          console.log("redirect to front page");
+        } else {
+          alert("wrong password"); // can probably show something on the div
+        }
+      });
   });
 }
 
@@ -322,6 +329,7 @@ window.onload = function (e) {
       if (Object.keys(body).length != 0) {
         $("input.logout_modal_button").removeClass("-none");
         $("input.login_modal_button").addClass("-none");
+        $("input.register_button").addClass("-none");
       } else {
         return;
       }
