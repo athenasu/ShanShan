@@ -285,7 +285,7 @@ div.slide_startdate{
 
 .goodsindex_topslideshow {
     position: relative;
-    height: 500px;
+    height: 420px;
     width: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -297,12 +297,13 @@ div.slide_startdate{
     /* 中間放圖片區 */
     width: 1200px;
     overflow: hidden;
+    padding-inline-start: 0px;
 }
 
 .slideshow_circle_area {
     z-index: 5;
     position: absolute;
-    top: 470px;
+    top: 370px;
 }
 
 .slideshow_circle_area div {
@@ -323,11 +324,60 @@ div.slide_startdate{
     border: 5px solid rgb(179, 179, 179, 0.6);
 }
 
-/* 
+.goodsindex_topslideshow_area li a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+	position: relative;	
+}
 .slidepic{
-	max-width:100%
-	width:100%
+	min-height:400px;
+	height:400px;
+	width:auto;
+	max-width:100%;
 } 
+
+.event_name_text,.event_date_text{
+	position: absolute;	
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    
+  	color: #f2f2f2;
+  	text-align: center;
+  	background-color: rgb(87, 87, 87,0.5);
+}
+.event_name_text{
+  	font-size: 25px;
+  	font-weight:bold;
+    top: -310px;
+    
+  	height: 40px;
+  	width: 300px;
+  	line-height: 40px;
+	
+}
+.event_date_text{
+  	font-size: 18px;
+  	
+    top: 230px;
+  	height: 30px;
+  	width: 400px;
+  	line-height: 30px;
+}
+/*
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
 */
 
 /* wwwwwwwwwwww輪播圖 結束wwwwwwwwwwwwww */

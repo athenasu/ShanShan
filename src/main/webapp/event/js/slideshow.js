@@ -47,7 +47,10 @@
 //    dots[slideIndex-1].className += " active";
 //    setTimeout(showSlides, 5000); // Change image every 5 seconds
 //  }
+
+
 $(document).ready(function(){
+    //WWWWWWWWWWWWWWWWWWWWWWWWW3秒自動輪播功能 開始WWWWWWWWWWWWWWWWWWWWW
   slidershow();
   setInterval(slidershow, 9000);
  
@@ -111,5 +114,6 @@ $(document).ready(function(){
           $(slider3).removeClass("-none");
       })
   }
+  //WWWWWWWWWWWWWWWWWWWWWWWWW3秒自動輪播功能 結束WWWWWWWWWWWWWWWWWWWWW
 })
  

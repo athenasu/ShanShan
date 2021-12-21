@@ -66,7 +66,7 @@ $(document).ready(function () {
     })
 
 
-    // wwwwwwwwwww輪播圖開始 wwwwwwwwwww
+    // wwwwwwwwwww輪播圖 圖片輸出 開始wwwwwwwwwww
 
     $.ajax({
         url: "../event/popularEvents",
@@ -82,87 +82,20 @@ $(document).ready(function () {
                 var blob = new Blob([bytes], { type: "image/png" });
                 var url = URL.createObjectURL(blob);
 
-                // const bytesStr = atob(data.mountainPic);
-                // let len = bytesStr.length;
-                // const u8Array = new Uint8Array(len);
-                // while (len--) {
-                //     u8Array[len] = bytesStr.charCodeAt(len);
-                // }
-                // const blob = new Blob([u8Array]);
-                // const url = URL.createObjectURL(blob);
-
                 console.log(url)
-                $("div.goodsindex_topslideshow").find(".slidepic").eq(index).attr("src", url)
+                $("div.goodsindex_topslideshow").find(".slidepic").eq(index).attr("src", url);
+                $("div.goodsindex_topslideshow").find("input.event_id").eq(index).val(`${item.eventId}`);
+                $("div.goodsindex_topslideshow").find("div.event_name_text").eq(index).text("出團地點："+`${item.eventName}`);
+                
+                let event_date = "出團日期："+ (new Date(item.eventStartDate).toLocaleDateString('fr-CA', { year: 'numeric', month: '2-digit', day: '2-digit' }))
+                $("div.goodsindex_topslideshow").find("div.event_date_text").eq(index).val(event_date);
+                
+    //             popular_events += "<h4 class ='text'>出團日期：" + (new Date(item.eventStartDate).toLocaleDateString('fr-CA', { year: 'numeric', month: '2-digit', day: '2-digit' })) + "</h4>"
             })
 
         }
     })
-
-    //WWWWWWWWWWWWWWWWWWWWWWWWW3秒自動輪播功能 開始WWWWWWWWWWWWWWWWWWWWW
-    // slidershow();
-    // setInterval(slidershow, 9000);
-
-    // var slider1 = "ul.goodsindex_topslideshow_area li:nth-child(1)";
-    // var slider2 = "ul.goodsindex_topslideshow_area li:nth-child(2)";
-    // var slider3 = "ul.goodsindex_topslideshow_area li:nth-child(3)";
-
-    // function slidershow() {
-    //     setTimeout(slidershow1, 3000);
-    //     setTimeout(slidershow2, 6000);
-    //     setTimeout(slidershow3, 9000);
-    // }
-
-    // function slidershow1() {
-    //     $(slider1).addClass("-none")
-    //     $(slider2).removeClass("-none");
-    //     $(slider3).addClass("-none")
-    // }
-
-    // function slidershow2() {
-    //     $(slider1).addClass("-none")
-    //     $(slider2).addClass("-none")
-    //     $(slider3).removeClass("-none");
-    // }
-
-    // function slidershow3() {
-    //     $(slider3).addClass("-none")
-    //     $(slider2).addClass("-none")
-    //     $(slider1).removeClass("-none");
-    // }
-
-    // // 輪播 按鈕
-    // hovercircle1();
-    // hovercircle2();
-    // hovercircle3();
-
-    // // 滑鼠hover觸發第1頁
-    // function hovercircle1() {
-    //     $("div.slideshow_circle_area div:nth-child(1)").mouseenter(function () {
-    //         console.log("觸發第1");
-    //         $(slider1).removeClass("-none");
-    //         $(slider2).addClass("-none");
-    //         $(slider3).addClass("-none");
-    //     })
-    // }
-    // // 滑鼠hover觸發第2頁
-    // function hovercircle2() {
-    //     $("div.slideshow_circle_area div:nth-child(2)").mouseenter(function () {
-    //         console.log("觸發第2");
-    //         $(slider1).addClass("-none");
-    //         $(slider2).removeClass("-none");
-    //         $(slider3).addClass("-none");
-    //     })
-    // }
-    // // 滑鼠hover觸發第3頁
-    // function hovercircle3() {
-    //     $("div.slideshow_circle_area div:nth-child(3)").mouseenter(function () {
-    //         console.log("觸發第3");
-    //         $(slider1).addClass("-none");
-    //         $(slider2).addClass("-none");
-    //         $(slider3).removeClass("-none");
-    //     })
-    // }
-    //WWWWWWWWWWWWWWWWWWWWWWWWW3秒自動輪播功能 結束WWWWWWWWWWWWWWWWWWWWW
+    // wwwwwwwwwww輪播圖 圖片輸出 結束 wwwwwwwwwww
 
 })
 //var slideIndex = 0;
