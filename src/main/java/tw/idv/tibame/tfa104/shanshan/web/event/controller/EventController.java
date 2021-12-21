@@ -77,7 +77,7 @@ public class EventController{
 	
 	@CrossOrigin
 	@GetMapping("findEventByEventId")
-	public List<DetailEventBO> findEventByEventId(@RequestParam Integer eventId) {
+	public List<DetailEventBO> findEventByEventId(Integer eventId) {
 		final List<DetailEventBO> eventdetail = eventService.findEventByEventId(eventId); //set the parameter as 1 for test
 		return eventdetail;
 	}
