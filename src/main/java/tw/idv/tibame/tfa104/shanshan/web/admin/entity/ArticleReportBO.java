@@ -10,30 +10,18 @@ import javax.persistence.Id;
 import tw.idv.tibame.tfa104.shanshan.web.core.Core;
 
 @Entity
-public class ArticleReportDetailBO extends Core{
+public class ArticleReportBO extends Core{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name = "articleId")
-	private Integer articleId;
-	
 	@Column(name = "articleReportId")
 	private Integer articleReportId;
 	
 	@Column(name = "memberId")
 	private Integer memberId;
 	
-	@Column(name = "memberName")
-	private String memberName;
-	
-	@Column(name = "memberUsername")
-	private String memberUsername;
-	
-	@Column(name = "articleTitle")
-	private String articleTitle;
-	
-	@Column(name = "articleContent")
-	private String articleContent;
+	@Column(name = "articleId")
+	private Integer articleId;
 	
 	@Column(name = "articleReportStatus")
 	private Integer articleReportStatus;
@@ -42,18 +30,10 @@ public class ArticleReportDetailBO extends Core{
 	private Integer articleReportReason;
 	
 	@Column(name = "articleReportDate")
-	private Timestamp articleReportDate ;
+	private Timestamp articleReportDate;
 	
 	@Column(name = "caseDone")
-	private Date caseDone ;
-
-	public Integer getArticleId() {
-		return articleId;
-	}
-
-	public void setArticleId(Integer articleId) {
-		this.articleId = articleId;
-	}
+	private Date caseDone;
 
 	public Integer getArticleReportId() {
 		return articleReportId;
@@ -71,36 +51,12 @@ public class ArticleReportDetailBO extends Core{
 		this.memberId = memberId;
 	}
 
-	public String getMemberName() {
-		return memberName;
+	public Integer getArticletId() {
+		return articleId;
 	}
 
-	public void setMemberName(String memberName) {
-		this.memberName = memberName;
-	}
-
-	public String getMemberUsername() {
-		return memberUsername;
-	}
-
-	public void setMemberUsername(String memberUsername) {
-		this.memberUsername = memberUsername;
-	}
-
-	public String getArticleTitle() {
-		return articleTitle;
-	}
-
-	public void setArticleTitle(String articleTitle) {
-		this.articleTitle = articleTitle;
-	}
-
-	public String getArticleContent() {
-		return articleContent;
-	}
-
-	public void setArticleContent(String articleContent) {
-		this.articleContent = articleContent;
+	public void setArticletId(Integer articletId) {
+		this.articleId = articletId;
 	}
 
 	public Integer getArticleReportStatus() {
@@ -141,12 +97,8 @@ public class ArticleReportDetailBO extends Core{
 
 	@Override
 	public String toString() {
-		return "ArticleReportDetailBO [articleId=" + articleId + ", articleReportId=" + articleReportId + ", memberId="
-				+ memberId + ", memberName=" + memberName + ", memberUsername=" + memberUsername + ", articleTitle="
-				+ articleTitle + ", articleContent=" + articleContent + ", articleReportStatus=" + articleReportStatus
-				+ ", articleReportReason=" + articleReportReason + ", articleReportDate=" + articleReportDate
-				+ ", caseDone=" + caseDone + "]";
+		return "ArticleReportBO [articleReportId=" + articleReportId + ", memberId=" + memberId + ", articleId="
+				+ articleId + ", articleReportStatus=" + articleReportStatus + ", articleReportReason="
+				+ articleReportReason + ", articleReportDate=" + articleReportDate + ", caseDone=" + caseDone + "]";
 	}
-
-
 }

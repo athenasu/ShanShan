@@ -21,15 +21,16 @@ $(document).ready(function(){
                 var blob = new Blob([bytes], { type: "image/png" });
                 var url = URL.createObjectURL(blob);
                 // console.log(JSON.stringify(item.mountainPic));
-
-                popular_events += "<div class='mySlides fade'>";
-                popular_events +=   "<img class='event_slide_pic' src='" + url + "'>";
-                popular_events +=   "<input type='hidden' class='event_id' value='"+item.eventId+"'>"
-                popular_events +=   "<div class='text'>" + item.eventName + "</div>";
-                popular_events +=   "<h4 class ='text'>出團日期：" + (new Date(item.eventStartDate).toLocaleDateString('fr-CA', { year: 'numeric', month: '2-digit', day: '2-digit' })) + "</h4>"
-                popular_events += "</div>"
+                // popular_events += "<div class='slideshow-container'>";
+                popular_events +=   "<div class='mySlides fade'>";
+                popular_events +=       "<img class='event_slide_pic' src='" + url + "'>";
+                popular_events +=       "<input type='hidden' class='event_id' value='"+item.eventId+"'>"
+                popular_events +=       "<div class='text'>" + item.eventName + "</div>";
+                popular_events +=       "<h4 class ='text'>出團日期：" + (new Date(item.eventStartDate).toLocaleDateString('fr-CA', { year: 'numeric', month: '2-digit', day: '2-digit' })) + "</h4>"
+                popular_events +=   "</div>"
+                // popular_events += "</div>"
             })
-            $("div.slideshow-container").html(popular_events);
+            $("div.slideshow-container").append(popular_events);
         }
     })
 
@@ -135,10 +136,18 @@ $(document).on("click", "div.mid_area", function () {
             let event_list = "";
             $.each(data, function (index, item) {
                 console.log(item)
+                const bytesStr = atob(item.mountainPic);
+                let len = bytesStr.length;
+                const u8Array = new Uint8Array(len);
+                while (len--) {
+                    u8Array[len] = bytesStr.charCodeAt(len);
+                }
+                const blob = new Blob([u8Array]);
+                const url = URL.createObjectURL(blob);
 
-                var bytes = new Uint8Array(item.mountainPic);
-                var blob = new Blob([bytes], { type: "image/png" });
-                var url = URL.createObjectURL(blob);
+                // var bytes = new Uint8Array(item.mountainPic);
+                // var blob = new Blob([bytes], { type: "image/png" });
+                // var url = URL.createObjectURL(blob);
                 // console.log(url);
 
                 event_list += "<div class='event_display'>";
@@ -266,7 +275,7 @@ $(document).on("click", "div.event_display", function(){
 //============================== REDIRECT TO EVENTPOST PAGE ============================
 $(document).on("click", "button.create_event", function(){
     window.location.href="eventpost.html";
-    console.log("123")
+
 })
 
 

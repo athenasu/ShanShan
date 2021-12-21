@@ -139,6 +139,7 @@ div.event_slide{
   max-width: 1000px;
   position: relative;
   margin-left:25%;
+  text-align: center;
   margin-top:1%;
 }
 
@@ -227,7 +228,16 @@ div.event_slide{
   from {opacity: .4}
   to {opacity: 1}
 }
-
+img.event_slide_pic{
+  display:inline-block;
+  border: solid black;
+  border-radius: 15px;
+  overflow: hidden;
+  /* margin-left:10%; */
+  object-fit: cover;
+  height: 70%;
+  width: 80%;
+}
   /*====================== MAIN BLOCK ======================*/
 
 div.main_block{
@@ -246,16 +256,7 @@ div.event_display{
   margin-left: 0.5%;
   cursor: pointer;
 }
-img.event_slide_pic{
-  display:inline-block;
-  border: solid black;
-  border-radius: 15px;
-  overflow: hidden;
-  margin-left:10%;
-  object-fit: fill;
-  height: 70%;
-  width: 80%;
-}
+
 img.event_pic{
   display:inline-block;
   border: solid black;

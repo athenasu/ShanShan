@@ -198,6 +198,7 @@ select.case_status{
     margin-left:0;
     height:30px;
     width:100px;
+    vertical-align: middle;
 }
 div.tab_container{
    margin-left:10px;
@@ -379,6 +380,7 @@ div.menu {
 } */
 main{
     height:980px;
+    overflow:auto;
     background-color: rgb(126, 168, 190, 100%);
 }
 
@@ -490,8 +492,8 @@ div.case_list_body{
     /* margin-right:2%;
     border:solid;
     border-color:grey;  */
-    overflow: scroll;
-    height:980px;
+    /* overflow: scroll; */
+    height:100%;
     background-color: rgb(126, 168, 190, 100%);
 }
 div.case_list_body-closed{
@@ -505,22 +507,30 @@ div.case_list_display{
     width:90%;
     margin-left:3.5%;
     font-size: 16px;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-top:1%;
+}
+div.case_list_display:hover{
+    background-color: #ddd;
 }
 div.case_number{
     display:inline-block;
-    width:5%;
+    width:20%;
     margin-left:0.5%;
-
+    vertical-align: middle;
 }
+
 div.case_content{
     display:inline-block;
     margin-left:1%;
-    width:78%;
-
+    width:40%;
+    vertical-align: middle;
 }
 div.case_status{
     display:inline-block;
-
+    width:15%;
+    vertical-align: middle;
 }
 div.case_create_date{
     display:inline-block;
@@ -556,7 +566,7 @@ div.admin_display{
     margin-top:0.5%;
     height:10%;
     width:80%;
-    margin-left:10%;
+    margin-left:1%;
 }
 /*  ======================== ADMIN NAME ========================  */
 div.admin_name{
@@ -655,24 +665,27 @@ div.sv_body{
     /* margin-right:2%;
     border:solid;
     border-color:grey;  */
-    overflow: scroll;
-    height:980px;
+    /* overflow: scroll; */
+    height:100%;
     background-color: rgb(126, 168, 190, 100%);
 }
 div.sv_display{
     display:inline-block;
     border:solid 1px;
-    margin-top:0.5%;
+    margin-top:1%;
     height:5%;
     width:90%;
     margin-left:3.5%;
     font-size: 16px;
     border-radius: 10px;
 }
+div.sv_display:hover{
+	background-color:#ddd;
+}
 div.store_name{
     display:inline-block;
-    width:5%;
-    margin-left:0.5%;
+    width:35%;
+    margin-left:1%;
     top: 50px;
 
 }
@@ -690,4 +703,10 @@ div.sv_status{
 div.sv_create_date{
     display:inline-block;
     margin-left:0.5%;
+}
+
+button.sv_detail{
+	display:inline-block;
+	margin-left:15%;
+	
 }

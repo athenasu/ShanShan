@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -76,7 +77,7 @@ public class EventController{
 	
 	@CrossOrigin
 	@GetMapping("findEventByEventId")
-	public List<DetailEventBO> findEventByEventId(Integer eventId) {
+	public List<DetailEventBO> findEventByEventId(@RequestParam Integer eventId) {
 		final List<DetailEventBO> eventdetail = eventService.findEventByEventId(eventId); //set the parameter as 1 for test
 		return eventdetail;
 	}

@@ -55,11 +55,11 @@ $(document).on("change", "#mountain_area", function () {
 // function init() {
 $(document).ready(function(){
     const eventID = window.localStorage.getItem("eventID");
-    // window.sessionStorage.getItem("eventId");
+    // const eventID = window.sessionStorage.getItem("eventId");
     // console.log(eventId)
     //=========================== GET EVENT BY EVENT_ID FROM DATABASE ===========================
     $.ajax({
-        url: "http://localhost:8081/shanshan/event/findEventByEventId",
+        url: "../event/findEventByEventId",
         type: "GET",
         data: { "eventId": eventID },
         dataType: "json",
@@ -335,7 +335,7 @@ $(document).ready(function(){
 
             //=========================== GET EVENT REPORT BY MEMBER&EVENT FROM DATABASE ===========================
             $.ajax({
-                url: "http://localhost:8081/shanshan/eventReport/selectEventReportByMemberId",
+                url: "../eventReport/selectEventReportByMemberId",
                 type: "GET",
                 data: {
                     "memberId": login_memberId,          //set as 1 for test, need to get the login memberId
@@ -355,7 +355,7 @@ $(document).ready(function(){
 
             //=========================== GET EVENT WISHLIST BY MEMBER&EVENT FROM DATABASE ===========================
             $.ajax({
-                url: "http://localhost:8081/shanshan/wishlistEvent/findWishlistEventByMemberIdEventId",
+                url: "../wishlistEvent/findWishlistEventByMemberIdEventId",
                 type: "GET",
                 data: {
                     "memberId": login_memberId,              //set as 5 for test, need to get the login memberId
@@ -375,7 +375,7 @@ $(document).ready(function(){
             })
             //=========================== GET EVENT_MSG BY EVENT_ID FROM DATABASE ===========================
             $.ajax({
-                url: "http://localhost:8081/shanshan/eventMsg/eventMsgList",
+                url: "../eventMsg/eventMsgList",
                 type: "GET",
                 data: { "eventId": eventID },
                 dataType: "json",
@@ -417,7 +417,7 @@ $(document).on("click", "div.event_wish_heart", function () {
     })
 
     $.ajax({
-        url: "http://localhost:8081/shanshan/wishlistEvent/addWishlistEvent",
+        url: "../wishlistEvent/addWishlistEvent",
         type: "POST",
         contentType: 'application/json',
         data: eventWishList,
@@ -439,7 +439,7 @@ $(document).on("click", "div.event_wish_heart_filled", function () {
     })
 
     $.ajax({
-        url: "http://localhost:8081/shanshan/wishlistEvent/deleteWishlistEventByMemIdEventId",
+        url: "../wishlistEvent/deleteWishlistEventByMemIdEventId",
         type: "POST",
         contentType: 'application/json',
         data: eventWishList,
@@ -458,7 +458,7 @@ $(document).on("click", "button.event_report_btn", function () {
     $(".lightbox-target2").addClass("-on")
     $(document).on("click", "button.send_event_report_btn", function () {
         $.ajax({
-            url: "http://localhost:8081/shanshan/eventReport/addEventReport",
+            url: "../eventReport/addEventReport",
             type: "POST",
             contentType: 'application/json',
             data: JSON.stringify({
@@ -511,7 +511,7 @@ $(document).on("click", "button.send_btn", function () {
     var event_points = 10;
 
     $.ajax({
-        url: "http://localhost:8081/shanshan/event/updateEvent",
+        url: "../event/updateEvent",
         type: "PUT",
         contentType: 'application/json',
         data: JSON.stringify({
@@ -547,7 +547,7 @@ $(document).on("click", "button.join_btn", function () {
 
     $(".lightbox-target").addClass("-on")
     $.ajax({
-        url: "http://localhost:8081/shanshan/participant/selectParticipantByMemberId",
+        url: "../participant/selectParticipantByMemberId",
         type: "GET",
         contentType: 'application/json',
         data: { "memberId": login_memberId, "eventId": $("li.event_id").val() }, //need to get the login memberId
@@ -627,7 +627,7 @@ $(document).on("click", "button.send_participants_btn", function () {
     var memberId = 2;
     $.ajax({
 
-        url: "http://localhost:8081/shanshan/participant/addParticipant",
+        url: "../participant/addParticipant",
         type: "POST",
         contentType: 'application/json',
         data: JSON.stringify({
@@ -651,7 +651,7 @@ $(document).on("click", "button.send_participants_btn", function () {
             var event_cur_part = (pre_calculate + parseInt($("input.total_participants").val()));
             //========= UPDATE EVENT_CUR_PART AFTER ADD PARTICIPANTS =========
             $.ajax({
-                url: "http://localhost:8081/shanshan/event/updateEvent",
+                url: "../event/updateEvent",
                 type: "PUT",
                 contentType: 'application/json',
                 data: JSON.stringify({
@@ -685,7 +685,7 @@ $(document).on("click", "button.edit_participants_btn", function () {
     var memberId = 2;
 
     $.ajax({
-        url: "http://localhost:8081/shanshan/participant/updateParticipant",
+        url: "../participant/updateParticipant",
         type: "PUT",
         contentType: 'application/json',
         data: JSON.stringify({
@@ -708,7 +708,7 @@ $(document).on("click", "button.edit_participants_btn", function () {
 
             //========= UPDATE EVENT_CUR_PART AFTER UPDATE PARTICIPANTS =========
             $.ajax({
-                url: "http://localhost:8081/shanshan/event/updateEvent",
+                url: "../event/updateEvent",
                 type: "PUT",
                 contentType: 'application/json',
                 data: JSON.stringify({
@@ -747,7 +747,7 @@ $(document).on("click", "button.add_msg_btn", function () {
     let msgStatus = 1;
 
     $.ajax({
-        url: "http://localhost:8081/shanshan/eventMsg/addEventMsg",
+        url: "../eventMsg/addEventMsg",
         type: "POST",
         contentType: 'application/json',
         data: JSON.stringify({
@@ -776,6 +776,6 @@ $(document).on("click", "button.add_msg_btn", function () {
 })
 
 
-$(function () {
-    init();
-})
+// $(function () {
+//     init();
+// })
