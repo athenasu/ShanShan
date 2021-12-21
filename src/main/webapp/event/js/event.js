@@ -1,4 +1,4 @@
-
+ 
 // function init() {
 $(document).ready(function(){
         
@@ -59,6 +59,7 @@ $(document).ready(function(){
                 event_list += "<h3 class='event_name'>" + item.eventName + "</h3>";
                 event_list += "<div class='event_start_date'>出團日期：<span>" + (new Date(item.eventStartDate).toLocaleDateString('fr-CA', { year: 'numeric', month: '2-digit', day: '2-digit' })) + "</span></div>"
                 event_list += "</div>"
+
             })
             $("div.main_block").html(event_list);
         }
@@ -103,10 +104,19 @@ $(document).on("click", "div.north_area", function () {
             $.each(data, function (index, item) {
                 console.log(item)
 
-                var bytes = new Uint8Array(item.mountainPic);
-                var blob = new Blob([bytes], { type: "image/png" });
-                var url = URL.createObjectURL(blob);
+                // var bytes = new Uint8Array(item.mountainPic);
+                // var blob = new Blob([bytes], { type: "image/png" });
+                // var url = URL.createObjectURL(blob);
                 // console.log(url);
+
+                const bytesStr = atob(item.mountainPic);
+                let len = bytesStr.length;
+                const u8Array = new Uint8Array(len);
+                while (len--) {
+                    u8Array[len] = bytesStr.charCodeAt(len);
+                }
+                const blob = new Blob([u8Array]);
+                const url = URL.createObjectURL(blob);
 
                 event_list += "<div class='event_display'>";
                 event_list += "<img class ='event_pic' src='" + url + "'>";
@@ -179,10 +189,19 @@ $(document).on("click", "div.south_area", function () {
             $.each(data, function (index, item) {
                 console.log(item)
 
-                var bytes = new Uint8Array(item.mountainPic);
-                var blob = new Blob([bytes], { type: "image/png" });
-                var url = URL.createObjectURL(blob);
+                // var bytes = new Uint8Array(item.mountainPic);
+                // var blob = new Blob([bytes], { type: "image/png" });
+                // var url = URL.createObjectURL(blob);
                 // console.log(url);
+
+                const bytesStr = atob(item.mountainPic);
+                let len = bytesStr.length;
+                const u8Array = new Uint8Array(len);
+                while (len--) {
+                    u8Array[len] = bytesStr.charCodeAt(len);
+                }
+                const blob = new Blob([u8Array]);
+                const url = URL.createObjectURL(blob);
 
                 event_list += "<div class='event_display'>";
                 event_list += "<img class ='event_pic' src='" + url + "'>";
@@ -213,10 +232,19 @@ $(document).on("click", "div.east_area", function () {
             $.each(data, function (index, item) {
                 console.log(item)
 
-                var bytes = new Uint8Array(item.mountainPic);
-                var blob = new Blob([bytes], { type: "image/png" });
-                var url = URL.createObjectURL(blob);
+                // var bytes = new Uint8Array(item.mountainPic);
+                // var blob = new Blob([bytes], { type: "image/png" });
+                // var url = URL.createObjectURL(blob);
                 // console.log(url);
+
+                const bytesStr = atob(item.mountainPic);
+                let len = bytesStr.length;
+                const u8Array = new Uint8Array(len);
+                while (len--) {
+                    u8Array[len] = bytesStr.charCodeAt(len);
+                }
+                const blob = new Blob([u8Array]);
+                const url = URL.createObjectURL(blob);
 
                 event_list += "<div class='event_display'>";
                 event_list += "<img class ='event_pic' src='" + url + "'>";
@@ -247,10 +275,19 @@ $(document).on("click", "div.other_area", function () {
             $.each(data, function (index, item) {
                 console.log(item)
 
-                var bytes = new Uint8Array(item.mountainPic);
-                var blob = new Blob([bytes], { type: "image/png" });
-                var url = URL.createObjectURL(blob);
+                // var bytes = new Uint8Array(item.mountainPic);
+                // var blob = new Blob([bytes], { type: "image/png" });
+                // var url = URL.createObjectURL(blob);
                 // console.log(url);
+
+                const bytesStr = atob(item.mountainPic);
+                let len = bytesStr.length;
+                const u8Array = new Uint8Array(len);
+                while (len--) {
+                    u8Array[len] = bytesStr.charCodeAt(len);
+                }
+                const blob = new Blob([u8Array]);
+                const url = URL.createObjectURL(blob);
 
                 event_list += "<div class='event_display'>";
                 event_list += "<img class ='event_pic' src='" + url + "'>";
@@ -280,6 +317,3 @@ $(document).on("click", "button.create_event", function(){
 
 
 //=======================================================================================
-// $(function () {
-//     init();
-// })
