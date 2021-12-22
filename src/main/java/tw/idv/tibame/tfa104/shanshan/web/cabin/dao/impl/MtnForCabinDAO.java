@@ -33,7 +33,7 @@ public class MtnForCabinDAO implements MtnForCabinDAO_interface{
 	//for mtn from mtn
 	private static final String findByDistrict ="select mountain_id,mountain_district,mountain_name,mountain_longitude,mountain_latitude,mountain_pic,mountain_info from mountain where mountain_district =? ";
 	//for mtn from event
-	private static final String eventByMtn ="select mountain_id ,event_name from event where mountain_id=?";
+	private static final String eventByMtn ="select mountain_id ,event_name,event_id from event where mountain_id=?";
 	@Override
 	public List<Mountain> findByDistrict(Integer moutainDistrict) {
 		List<Mountain> list = new ArrayList<Mountain>();
@@ -105,6 +105,7 @@ public class MtnForCabinDAO implements MtnForCabinDAO_interface{
 			while (rs.next()) {
 				Event event = new Event();
 				event.setMountainId(rs.getInt("mountain_id"));;
+				event.setEventId(rs.getInt("event_id"));;
 				event.setEventName(rs.getString("event_name"));
 				list.add(event);
 			}

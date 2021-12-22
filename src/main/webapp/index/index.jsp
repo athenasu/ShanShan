@@ -80,8 +80,7 @@ session.getAttribute("memberName");
 <!-- 			<!-- 揪團列表 -->
 			<div id="grouplist">
 				<c:forEach var="popEventBO" items="${eventSvc.popularEvents()}">
-					<div class="groupcard">
-						<a href="<%=request.getContextPath() %>/event/eventview.html?findEventByEventId?eventId=${popEventBO.eventId}">
+					<div class="groupcard" data-gpid="${popEventBO.eventId}">
 							<div class="groupimg">
 								<img
 									src="<%=request.getContextPath() %>/ArticlePictureServlet.do?mountainId=${popEventBO.mountainId}&action=getMtnPic"
@@ -139,7 +138,6 @@ session.getAttribute("memberName");
 									</div>
 								</div>
 							</div>
-						</a>
 					</div>
 				</c:forEach>
 

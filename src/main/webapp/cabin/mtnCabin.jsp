@@ -75,14 +75,12 @@ request.setAttribute("date",new Date());
          <jsp:useBean id="mtnForCabinSvc" class="tw.idv.tibame.tfa104.shanshan.web.cabin.service.impl.MtnForCabinService"></jsp:useBean>           
             <div class="group-section">
             <c:forEach var="event" items="${mtnForCabinSvc.eventByMtn(mtn.mountainId)}">
-                <a href="<%=request.getContextPath() %>/event/eventview.html?findEventByEventId?eventId=${popEventBO.eventId}">
-                <div class="group-card">
+                <div class="group-card"  data-gpid="${event.eventId}">
                     <div class="group-img-wrapper">
                         <img src="<%=request.getContextPath()%>/CabinServlet.do?action=getMtnImg&mountainId=${mtn.mountainId}" alt="group-mountain-img" class="group-img" />
                     </div>
                     <h3>${event.eventName}</h3>
                 </div>
-                </a>
               </c:forEach>
             </div>
         </div>

@@ -92,3 +92,8 @@ $('#artlist').slick({
 	});
 
 
+$(".groupcard").click(function(){
+	eventid= $(this).data("gpid")
+	window.localStorage.setItem("eventID", eventid);
+    location.href="../event/eventview.html";
+})
