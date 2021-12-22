@@ -64,28 +64,25 @@ header a:hover {
   font-size: 20px;
 }
 
-.fa-bell {
-  color: rgb(45, 75, 77);
-}
-
-.fa-bell:hover {
-  cursor: pointer;
+#memberCenter{
+   cursor: pointer;
 }
 
 .-none{
 	display:none;
 }
 
-.overlay2 {
+.overlayh {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100vh;
   background-color: hsla(0, 0%, 0%, 0.5);
+  z-index:999;
 }
 
-.modal2 {
+.modalh {
   background-color: white;
   width: 400px;
 /*   max-width: 800px; */
@@ -100,17 +97,21 @@ header a:hover {
   text-align: center;
 }
 
-.modal2 div {
+.modalh div {
   margin: 15px 0px;
 }
 
-#cancel2{
+#cancelh{
 	border-style: none;
     width: 80px;
     padding: 5px;
     border-radius: 5px;	
     cursor: pointer;
     
+}
+
+#errormsg{
+	font-size:16px;
 }
 
 /* footer */

@@ -72,112 +72,82 @@ session.getAttribute("memberName");
 			<div id="weather"></div>
 		</div>
 		<!-- 熱門揪團 -->
-		<div id="group">
-			<div class=>
-				<i class="fas fa-mountain title"></i>
-				<h2 class="title hottitle">熱門揪團</h2>
-			</div>
-			<!-- 揪團列表 -->
-			<div id="grouplist">
-				<c:forEach var="popEventBO" items="${eventSvc.popularEvents()}">
-					<div class="groupcard">
-						<a href="<%=request.getContextPath() %>/event/eventview.html?findEventByEventId?eventId=${popEventBO.eventId}">
-							<div class="groupimg">
-								<img
-									src="<%=request.getContextPath() %>/ArticlePictureServlet.do?mountainId=${popEventBO.mountainId}&action=getMtnPic"
-									class="img" />
-<!-- 								<p class="countdown"> -->
-<!-- 									倒數：<span></span> -->
-<!-- 								</p> -->
-							</div>
-							<div class="groupinfo">
-								<h3 class="title2 gp_name">${popEventBO.eventName}</h3>
-								<div class="infolist">
-									<div>
-										<i class="far fa-clock"></i>
-									</div>
-									<div>
-										出團日期：<span><fmt:formatDate
-												value="${popEventBO.eventStartDate}" pattern="yyyy-MM-dd" /></span>
-									</div>
-								</div>
-								<div class="infolist">
-									<div>
-										<i class="fas fa-bed"></i>
-									</div>
-									<c:set var="type" value="${popEventBO.mountainDistrict}" />
-									<div>
-										住宿種類：<span> <c:choose>
-												<c:when test="${type==0}">當天來回</c:when>
-												<c:when test="${type==1}">野營</c:when>
-												<c:when test="${type==2}">山屋</c:when>
-												<c:when test="${type==3}">飯店</c:when>
-											</c:choose>
-										</span>
-									</div>
-								</div>
-								<div class="infolist">
-									<div>
-										<i class="fas fa-hiking"></i>
-									</div>
-									<c:set var="district" value="${popEventBO.mountainDistrict}" />
-									<div>
-										<span> <c:choose>
-												<c:when test="${district==1}">北部</c:when>
-												<c:when test="${district==2}">中部</c:when>
-												<c:when test="${district==3}">南部</c:when>
-												<c:when test="${district==4}">東部</c:when>
-												<c:when test="${district==5}">外島</c:when>
-											</c:choose>
-										</span>
-									</div>
-								</div>
-								<div class="leader">
-									<div class="leaderimg">
-										<img
-											src="<%=request.getContextPath() %>/ArticlePictureServlet.do?member_id=${popEventBO.memberId}&action=getImage"
-											class="img memimg" />
-									</div>
-									<div>
-										<span>${popEventBO.memberName}</span>
-									</div>
-								</div>
-							</div>
-						</a>
-					</div>
-				</c:forEach>
-
-			</div>
-		</div>
-		<!-- 全台區域 -->
-<!-- 		<h3 class="title2 areatitle">探索全台</h3> -->
-<!-- 		<div id="group_area"> -->
-<!-- 			<div class="leftarea"> -->
-<!-- 				<a href="#"> -->
-<!-- 					<div class="north area" -->
-<%-- 						style="background-image: url('<%=request.getContextPath()%>/index/img/01.jpg')"> --%>
-<!-- 						<span>北部</span> -->
-<!-- 					</div> -->
-<!-- 				</a> -->
+<!-- 		<div id="group"> -->
+<!-- 			<div class=> -->
+<!-- 				<i class="fas fa-mountain title"></i> -->
+<!-- 				<h2 class="title hottitle">熱門揪團</h2> -->
 <!-- 			</div> -->
-<!-- 			<div class="rightarea"> -->
-<!-- 				<a href="#"><div class="middle area" -->
-<%-- 						style="background-image: url('<%=request.getContextPath()%>/index/img/02.jpg')"> --%>
-<!-- 						<span>中部</span> -->
-<!-- 					</div></a> <a href="#"><div class="south area" -->
-<%-- 						style="background-image: url('<%=request.getContextPath()%>/index/img/03.jpg')"> --%>
-<!-- 						<span>南部</span> -->
-<!-- 					</div></a> <a href="#"><div class="east area" -->
-<%-- 						style="background-image: url('<%=request.getContextPath()%>/index/img/04.jpg')"> --%>
-<!-- 						<span>東部</span> -->
-<!-- 					</div></a> <a href="#"> -->
-<!-- 					<div class="outlying area" -->
-<%-- 						style="background-image: url('<%=request.getContextPath()%>/index/img/05.jpg')"> --%>
-<!-- 						<span>外島</span> -->
+<!-- 			<!-- 揪團列表 -->
+<!-- 			<div id="grouplist"> -->
+<%-- 				<c:forEach var="popEventBO" items="${eventSvc.popularEvents()}"> --%>
+<!-- 					<div class="groupcard"> -->
+<%-- 						<a href="<%=request.getContextPath() %>/event/eventview.html?findEventByEventId?eventId=${popEventBO.eventId}"> --%>
+<!-- 							<div class="groupimg"> -->
+<!-- 								<img -->
+<%-- 									src="<%=request.getContextPath() %>/ArticlePictureServlet.do?mountainId=${popEventBO.mountainId}&action=getMtnPic" --%>
+<!-- 									class="img" /> -->
+
+<!-- 							</div> -->
+<!-- 							<div class="groupinfo"> -->
+<%-- 								<h3 class="title2 gp_name">${popEventBO.eventName}</h3> --%>
+<!-- 								<div class="infolist"> -->
+<!-- 									<div> -->
+<!-- 										<i class="far fa-clock"></i> -->
+<!-- 									</div> -->
+<!-- 									<div> -->
+<%-- 										出團日期：<span><fmt:formatDate --%>
+<%-- 												value="${popEventBO.eventStartDate}" pattern="yyyy-MM-dd" /></span> --%>
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 								<div class="infolist"> -->
+<!-- 									<div> -->
+<!-- 										<i class="fas fa-bed"></i> -->
+<!-- 									</div> -->
+<%-- 									<c:set var="type" value="${popEventBO.mountainDistrict}" /> --%>
+<!-- 									<div> -->
+<%-- 										住宿種類：<span> <c:choose> --%>
+<%-- 												<c:when test="${type==0}">當天來回</c:when> --%>
+<%-- 												<c:when test="${type==1}">野營</c:when> --%>
+<%-- 												<c:when test="${type==2}">山屋</c:when> --%>
+<%-- 												<c:when test="${type==3}">飯店</c:when> --%>
+<%-- 											</c:choose> --%>
+<!-- 										</span> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 								<div class="infolist"> -->
+<!-- 									<div> -->
+<!-- 										<i class="fas fa-hiking"></i> -->
+<!-- 									</div> -->
+<%-- 									<c:set var="district" value="${popEventBO.mountainDistrict}" /> --%>
+<!-- 									<div> -->
+<%-- 										<span> <c:choose> --%>
+<%-- 												<c:when test="${district==1}">北部</c:when> --%>
+<%-- 												<c:when test="${district==2}">中部</c:when> --%>
+<%-- 												<c:when test="${district==3}">南部</c:when> --%>
+<%-- 												<c:when test="${district==4}">東部</c:when> --%>
+<%-- 												<c:when test="${district==5}">外島</c:when> --%>
+<%-- 											</c:choose> --%>
+<!-- 										</span> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 								<div class="leader"> -->
+<!-- 									<div class="leaderimg"> -->
+<!-- 										<img -->
+<%-- 											src="<%=request.getContextPath() %>/ArticlePictureServlet.do?member_id=${popEventBO.memberId}&action=getImage" --%>
+<!-- 											class="img memimg" /> -->
+<!-- 									</div> -->
+<!-- 									<div> -->
+<%-- 										<span>${popEventBO.memberName}</span> --%>
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 						</a> -->
 <!-- 					</div> -->
-<!-- 				</a> -->
+<%-- 				</c:forEach> --%>
+
 <!-- 			</div> -->
 <!-- 		</div> -->
+
 		<!-- 山友日誌 -->
 		<div class="artarea">
 			<i class="fas fa-mountain title"></i>
@@ -273,30 +243,13 @@ session.getAttribute("memberName");
 		</h4>
 	</footer>
 	<script src="vendors/jquery/jquery-3.6.0.min.js"></script>
-	<script type="text/javascript"
-		src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+	<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
 	<script src="<%=request.getContextPath()%>/index/js/header.js"></script>
 	<script src="<%=request.getContextPath()%>/index/js/header2.js"></script>
 	<script src="<%=request.getContextPath()%>/index/js/index.js"></script>
 	<script src="<%=request.getContextPath()%>/member/js/register.js"></script>
 	<script src="https://kit.fontawesome.com/2336c06c64.js"></script>
-	<script>
-	$(function(){
-		$.ajax({
-			url:"<%=request.getContextPath()%>/CheckAccount.do",
-			method: "GET",
-			success : function(e) {
-				if(e==="ok"){
-					$(".logout_modal_button").removeClass("-none")
-					$(".login_modal_button").addClass("-none")
-				}else{
-					$(".logout_modal_button").addClass("-none")
-					$(".login_modal_button").removeClass("-none")	
-				}
-			}			
-		})
-	})
-</script>
+
 </body>
 </html>

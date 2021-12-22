@@ -134,26 +134,11 @@
 	</footer>
 	<script src="https://kit.fontawesome.com/2336c06c64.js"></script>		
 	<script src="<%=request.getContextPath()%>/index/vendors/jquery/jquery-3.6.0.min.js"></script>
-<%-- 	<script src="<%=request.getContextPath()%>/index/js/header2.js"></script> --%>
+	<script src="<%=request.getContextPath()%>/index/js/header2.js"></script>
 		<script src="<%=request.getContextPath()%>/member/js/register.js"></script>
 	
 	<script>
-	
-	$(function(){
-		$.ajax({
-			url:"<%=request.getContextPath()%>/CheckAccount.do",
-			method: "GET",
-			success : function(e) {
-				if(e==="ok"){
-					$(".logout_modal_button").removeClass("-none")
-					$(".login_modal_button").addClass("-none")
-				}else{
-					$(".logout_modal_button").addClass("-none")
-					$(".login_modal_button").removeClass("-none")	
-				}
-			}			
-		})
-	})
+
 	$(".addcheck").click(function(){		
 		$.ajax({
 			url:"<%=request.getContextPath()%>/CheckAccount.do",
@@ -169,6 +154,7 @@
 		})
 	})	
 	$("#cancel2").click(function(){
+		console.log("wwww")
 		$(".modal2 #errormsg").html("");
 		$(".overlay2").addClass("-none");		
 	});

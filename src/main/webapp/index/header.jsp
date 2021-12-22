@@ -72,9 +72,9 @@ session.getAttribute("memberName");
       </div>
   </div>
 </div>
-	<div class="overlay2 -none">
-      	<div class="modal2">
+	<div class="overlayh -none">
+      	<div class="modalh">
 	       <div id="errormsg">請先登入會員</div>
-	        <input type="button" value="確定" id="cancel2"/>
+	        <input type="button" value="確定" id="cancelh"/>
       	</div>
 	</header>

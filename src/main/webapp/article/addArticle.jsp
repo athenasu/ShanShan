@@ -141,29 +141,10 @@
 	<script src="<%=request.getContextPath()%>/index/vendors/jquery/jquery-3.6.0.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>	
 	<script src="https://kit.fontawesome.com/2336c06c64.js"></script>
-<%-- 	<script src="<%=request.getContextPath()%>/index/js/header2.js"></script> --%>
-		<script src="<%=request.getContextPath()%>/member/js/register.js"></script>
-	
-	
-	
+	<script src="<%=request.getContextPath()%>/index/js/header2.js"></script>
+	<script src="<%=request.getContextPath()%>/member/js/register.js"></script>
 	<script src="<%=request.getContextPath()%>/article/js/add.js"></script>
-	<script>
-	$(function(){
-		$.ajax({
-			url:"<%=request.getContextPath()%>/CheckAccount.do",
-			method: "GET",
-			success : function(e) {
-				if(e==="ok"){
-					$(".logout_modal_button").removeClass("-none")
-					$(".login_modal_button").addClass("-none")
-				}else{
-					$(".logout_modal_button").addClass("-none")
-					$(".login_modal_button").removeClass("-none")	
-				}
-			}			
-		})
-	})
-	</script>
+
 
 </body>
 </html>
