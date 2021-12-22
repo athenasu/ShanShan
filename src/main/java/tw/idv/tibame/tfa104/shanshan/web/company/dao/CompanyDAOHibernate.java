@@ -8,6 +8,8 @@ public interface CompanyDAOHibernate {
 	
 	public Integer register(CompanyVO company);
 	public CompanyVO update(byte[]file,CompanyVO company);
+	//更新店家狀態
+	public Integer updateStatus(Integer companyId,Integer companyStatus);
 	public CompanyVO checkEmail(String email);
 	public CompanyVO checkLogin(CompanyVO company);
 	public CompanyVO findByPK(Integer companyId);//得到完整單一店家資料

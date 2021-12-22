@@ -10,6 +10,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import javax.servlet.ServletContext;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -25,6 +26,8 @@ public class CompanyDAOHibernate_impl implements CompanyDAOHibernate {
 	
 	@Autowired
 	private SessionFactory sessionFactory;
+	@Autowired
+	private ServletContext servletContext;
 	
 	@Override
 	public CompanyVO findByPK(Integer companyId) {
@@ -63,7 +66,7 @@ public class CompanyDAOHibernate_impl implements CompanyDAOHibernate {
 	@Override
 	public Integer register(CompanyVO company) {
 		Session session = sessionFactory.getCurrentSession();
-		File file = new File("shanshan/src/main/webapp/company/company_imgs/presetBanner");
+		File file = new File(servletContext.getRealPath("/company/company_imgs/presetBanner.png"));
 		byte[] bytefile = null;
 		try {
 			FileInputStream fis = new FileInputStream(file);
@@ -75,7 +78,7 @@ public class CompanyDAOHibernate_impl implements CompanyDAOHibernate {
 		}catch (IOException ie) {
 			ie.printStackTrace();
 		}
-//		company.setCompanyBanner(bytefile);
+		company.setCompanyBanner(bytefile);
 		System.out.println("add company success");
 		
 		return (Integer)session.save(company);
@@ -90,7 +93,15 @@ public class CompanyDAOHibernate_impl implements CompanyDAOHibernate {
 		return query.uniqueResult();
 	}
 
-
+	@Override
+	public Integer updateStatus(Integer companyId,Integer companyStatus) {
+		Session session = sessionFactory.getCurrentSession();
+		CompanyVO tempcompany = session.get(CompanyVO.class,1);
+		if(tempcompany.getCompanyStatus() != null ){
+			tempcompany.setCompanyStatus(companyStatus);
+		}
+		return 1;
+	}
 	@Override
 	public CompanyVO update(byte[] file, CompanyVO company) {
 		Session session = sessionFactory.getCurrentSession();
@@ -140,6 +151,9 @@ public class CompanyDAOHibernate_impl implements CompanyDAOHibernate {
 		CompanyVO companyLoggedIn = query.uniqueResult();
 		return companyLoggedIn;
 	}
+
+
+	
 
 
 

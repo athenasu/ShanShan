@@ -27,7 +27,7 @@ public class CompanyControllerHibernate {
 	public CompanyVO findByPK (Integer companyId) {
 		CompanyVO company = service.findByPK(companyId);
 //		company.setPicStr(Base64.getEncoder().encodeToString(company.getCompanyBanner()));
-		company.setPicStr2(Base64.getEncoder().encodeToString(company.getCompanyCetificate()));
+//		company.setPicStr2(Base64.getEncoder().encodeToString(company.getCompanyCetificate()));
 		return company;
 	}
 	
@@ -53,13 +53,22 @@ public class CompanyControllerHibernate {
 		int result = service.register(company);
 		return result;
 	}
+	
+	@PostMapping("updateStatus")
+	public Core updateStatus(@RequestBody CompanyVO company,Core core) {
+		System.out.println("in update companyStatus");
+		Core core1 = service.updateStatus(company.getCompanyId(), company.getCompanyStatus(), core);
+		return core1;
+	}
+
+	
 	@PostMapping("login")
-	public Integer login(@RequestBody CompanyVO company, HttpSession session) {
+	public CompanyVO login(@RequestBody CompanyVO company, HttpSession session) {
 		CompanyVO hadLogged = service.checkLogin(company);
 		if(hadLogged != null) {
 			System.out.println(hadLogged.getCompanyId());
 			session.setAttribute("companyId", hadLogged.getCompanyId());
-			return hadLogged.getCompanyId();
+			return hadLogged;
 		}else {
 			return null;
 		}

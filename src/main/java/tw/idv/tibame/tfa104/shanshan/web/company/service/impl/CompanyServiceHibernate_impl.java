@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import tw.idv.tibame.tfa104.shanshan.web.company.dao.CompanyDAOHibernate;
 import tw.idv.tibame.tfa104.shanshan.web.company.entity.CompanyVO;
 import tw.idv.tibame.tfa104.shanshan.web.company.service.CompanyServiecHibernate;
+import tw.idv.tibame.tfa104.shanshan.web.core.Core;
 @Service
 @Transactional
 public class CompanyServiceHibernate_impl implements CompanyServiecHibernate {
@@ -47,8 +48,8 @@ public class CompanyServiceHibernate_impl implements CompanyServiecHibernate {
 			System.out.println("this company had registered");
 			return 0;
 		}
-		byte[] bytefile2 = Base64.getDecoder().decode(company.getPicStr2());
-		company.setCompanyCetificate(bytefile2);
+//		byte[] bytefile2 = Base64.getDecoder().decode(company.getPicStr2());
+//		company.setCompanyCetificate(bytefile2);
 		return dao.register(company);
 	}
 
@@ -71,6 +72,18 @@ public class CompanyServiceHibernate_impl implements CompanyServiecHibernate {
 			return null;
 		}
 		
+	}
+
+	@Override
+	public Core updateStatus(Integer companyId, Integer companyStatus, Core core) {
+		int result = dao.updateStatus(companyId, companyStatus);
+		if (result == 1) {
+			core.setSuccessful(true);
+			return core;
+		}else {
+			core.setSuccessful(false);
+			return core;
+		}
 	}
 
 
