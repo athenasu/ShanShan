@@ -136,7 +136,7 @@ registerSubmitBtn &&
           memberPassword,
         }),
       });
-      window.location.replace("/index/index.jsp");
+      window.location.replace("../index/index.jsp");
     } else {
       alert("wrong password"); // can probably show something on the div
     }
@@ -240,6 +240,7 @@ function testAPI() {
           // if email already exists,
           // then send them to front page
           console.log("Send to index.jsp");
+          window.location.href = "../index/index.jsp";
         } else {
           // if email doesn't exist
           // create a new account:
@@ -288,18 +289,18 @@ function testAPI() {
   });
 }
 
-// Load the SDK Asynchronously
-(function (d, s, id) {
-  var js,
-    fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) {
-    return;
-  }
-  js = d.createElement(s);
-  js.id = id;
-  js.src = "https://connect.facebook.net/en_US/sdk.js";
-  fjs.parentNode.insertBefore(js, fjs);
-})(document, "script", "facebook-jssdk");
+// // Load the SDK Asynchronously
+// (function (d, s, id) {
+//   var js,
+//     fjs = d.getElementsByTagName(s)[0];
+//   if (d.getElementById(id)) {
+//     return;
+//   }
+//   js = d.createElement(s);
+//   js.id = id;
+//   js.src = "https://connect.facebook.net/en_US/sdk.js";
+//   fjs.parentNode.insertBefore(js, fjs);
+// })(document, "script", "facebook-jssdk");
 
 function login() {
   FB.login(
@@ -326,7 +327,7 @@ window.onload = function (e) {
     })
     .then((body) => {
       console.log(body);
-      if (Object.keys(body).length != 0) {
+      if (body.memberId != null) {
         $("input.logout_modal_button").removeClass("-none");
         $("input.login_modal_button").addClass("-none");
         $("input.register_button").addClass("-none");

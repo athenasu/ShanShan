@@ -68,7 +68,7 @@ public class MemberLoginController {
 	}
 
 	@PostMapping("forgotPasswordCheckEmail")
-	public Core forgotPasswordCheckEmail(@RequestBody Member member, HttpSession session) { //String email
+	public Core forgotPasswordCheckEmail(@RequestBody Member member) { //HttpSession session
 		// check email first, use email to get memberId return Member
 		Core core = new Core();
 		Member member1 = service.checkEmail(member.getMemberEmail());
@@ -104,6 +104,6 @@ public class MemberLoginController {
 	public ModelAndView changePassword(@RequestBody Member member, HttpSession session) { //, HttpSession session
 		int memberId = (Integer) session.getAttribute("memberId");
 		service.updateMemberPassword(memberId, member.getMemberPassword());
-		return new ModelAndView("index"); // this isn't working, not sure why
+		return new ModelAndView("index/index"); // this isn't working, not sure why
 	}
 }

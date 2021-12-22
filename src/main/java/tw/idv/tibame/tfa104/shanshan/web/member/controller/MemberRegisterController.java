@@ -50,7 +50,7 @@ public class MemberRegisterController {
 	
 	@PostMapping(path = "fbRegister", consumes = { MediaType.APPLICATION_JSON_VALUE })
 	public Core fbRegister(@RequestBody Member member, Core core) {
-		Member addedMember = service.registerMember(member); 
+		Member addedMember = service.fbRegisterMember(member); 
 		// send email
 		if (addedMember == null) {
 			core.setSuccessful(false);
@@ -86,7 +86,7 @@ public class MemberRegisterController {
 		}
 		
 		jedis.close();
-		return new ModelAndView("index/index"); // need to change to main page jsp
+		return new ModelAndView("index/index"); 
 	}
 	
 	@InitBinder
