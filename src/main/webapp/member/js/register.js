@@ -207,11 +207,9 @@ window.fbAsyncInit = function () {
     statusChangeCallback(response); // Returns the login status.
     if (response.status === "connected") {
       console.log("connected");
-    } else if (response.status === "not_authorized") {
-      login();
     } else {
       // not_logged_in
-      login();
+      console.log("not logged in");
     }
   });
 };
@@ -258,54 +256,21 @@ function testAPI() {
           window.location.href = "../index/index.jsp";
         }
       });
-    // const addPswdSubmitBtn = document.querySelector(
-    //   ".add_password_submitbutton"
-    // );
-    // addPswdSubmitBtn &
-    //   addPswdSubmitBtn.addEventListener("click", function () {
-    //     let password = document.querySelector(".add-password").value;
-    //     let confirmPassword = document.querySelector(
-    //       ".add-repeatpassword"
-    //     ).value;
-    //     console.log(
-    //       "user name: " + response.name + " user email:" + response.email
-    //     );
-    //     if (password === confirmPassword) {
-    //       fetch("/shanshan/memberRegister/register", {
-    //         method: "POST",
-    //         headers: {
-    //           "Content-Type": "application/json",
-    //         },
-    //         body: JSON.stringify({
-    //           memberName: response.name,
-    //           memberEmail: response.email,
-    //           memberPassword: password,
-    //         }),
-    //       });
-    //       document
-    //         .querySelector(".add_password_modal_bcg")
-    //         .classList.add("-none");
-    //       document.querySelector(".add_password_modal").classList.add("-none");
-    //       console.log("redirect to front page");
-    //     } else {
-    //       alert("wrong password"); // can probably show something on the div
-    //     }
-    //   });
   });
 }
 
 // // Load the SDK Asynchronously
-// (function (d, s, id) {
-//   var js,
-//     fjs = d.getElementsByTagName(s)[0];
-//   if (d.getElementById(id)) {
-//     return;
-//   }
-//   js = d.createElement(s);
-//   js.id = id;
-//   js.src = "https://connect.facebook.net/en_US/sdk.js";
-//   fjs.parentNode.insertBefore(js, fjs);
-// })(document, "script", "facebook-jssdk");
+(function (d, s, id) {
+  var js,
+    fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {
+    return;
+  }
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://connect.facebook.net/en_US/sdk.js";
+  fjs.parentNode.insertBefore(js, fjs);
+})(document, "script", "facebook-jssdk");
 
 function login() {
   FB.login(
