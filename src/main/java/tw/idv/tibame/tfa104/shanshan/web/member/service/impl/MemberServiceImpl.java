@@ -37,6 +37,21 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
+	public Member fbRegisterMember(Member member) {
+		Member existingMember = dao.checkEmail(member.getMemberEmail());
+		if (existingMember != null) {
+			return null; 
+		} else {
+			Member newMember = new Member();
+			newMember.setMemberName(member.getMemberName());
+			newMember.setMemberEmail(member.getMemberEmail());
+			newMember.setMemberPassword("facebook");
+			dao.register(newMember);
+			return newMember;
+		}
+	}
+	
+	@Override
 	public Member checkEmail(String email) {
 		return dao.checkEmail(email);
 	}

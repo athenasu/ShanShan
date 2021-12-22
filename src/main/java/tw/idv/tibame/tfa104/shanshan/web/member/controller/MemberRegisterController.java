@@ -48,6 +48,27 @@ public class MemberRegisterController {
 		return core;
 	}
 	
+	@PostMapping(path = "fbRegister", consumes = { MediaType.APPLICATION_JSON_VALUE })
+	public Core fbRegister(@RequestBody Member member, Core core) {
+		Member addedMember = service.registerMember(member); 
+		// send email
+		if (addedMember == null) {
+			core.setSuccessful(false);
+			core.setMessage("Member already exists");
+			return core;
+		}
+		MailService mailService = new MailService();
+		String subject = "山山來此-會員註冊";
+		boolean mailSent = mailService.sendMail(addedMember.getMemberEmail(), subject, "memberRegister/authenicate", addedMember.getMemberId());
+		
+		if (mailSent && addedMember != null) {
+			core.setSuccessful(true);
+		} else {
+			core.setSuccessful(false);
+		}
+		return core;
+	}
+	
 	@GetMapping("authenicate")  
 	public ModelAndView authenticate(String token, HttpSession session) {
 		Jedis jedis = new Jedis("localhost", 6379);
