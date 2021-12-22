@@ -69,16 +69,16 @@ function getdata(num) {
 }
 
 
-$('#grouplist').slick({
-	  infinite: true,
-	  slidesToShow: 4,
-	  slidesToScroll: 1,
-	  dots: false,
-	  arrows: false,
-	  autoplay: true,
-	  autoplaySpeed:3000,
-
-	});
+//$('#grouplist').slick({
+//	  infinite: true,
+//	  slidesToShow: 4,
+//	  slidesToScroll: 1,
+//	  dots: false,
+//	  arrows: false,
+//	  autoplay: true,
+//	  autoplaySpeed:3000,
+//
+//	});
 
 $('#artlist').slick({
 	  infinite: true,

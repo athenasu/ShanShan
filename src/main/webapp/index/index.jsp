@@ -72,81 +72,79 @@ session.getAttribute("memberName");
 			<div id="weather"></div>
 		</div>
 		<!-- 熱門揪團 -->
-<!-- 		<div id="group"> -->
-<!-- 			<div class=> -->
-<!-- 				<i class="fas fa-mountain title"></i> -->
-<!-- 				<h2 class="title hottitle">熱門揪團</h2> -->
-<!-- 			</div> -->
+		<div id="group">
+			<div class=>
+				<i class="fas fa-mountain title"></i>
+				<h2 class="title hottitle">熱門揪團</h2>
+			</div>
 <!-- 			<!-- 揪團列表 -->
-<!-- 			<div id="grouplist"> -->
-<%-- 				<c:forEach var="popEventBO" items="${eventSvc.popularEvents()}"> --%>
-<!-- 					<div class="groupcard"> -->
-<%-- 						<a href="<%=request.getContextPath() %>/event/eventview.html?findEventByEventId?eventId=${popEventBO.eventId}"> --%>
-<!-- 							<div class="groupimg"> -->
-<!-- 								<img -->
-<%-- 									src="<%=request.getContextPath() %>/ArticlePictureServlet.do?mountainId=${popEventBO.mountainId}&action=getMtnPic" --%>
-<!-- 									class="img" /> -->
+			<div id="grouplist">
+				<c:forEach var="popEventBO" items="${eventSvc.popularEvents()}">
+					<div class="groupcard">
+						<a href="<%=request.getContextPath() %>/event/eventview.html?findEventByEventId?eventId=${popEventBO.eventId}">
+							<div class="groupimg">
+								<img
+									src="<%=request.getContextPath() %>/ArticlePictureServlet.do?mountainId=${popEventBO.mountainId}&action=getMtnPic"
+									class="img" />
+							</div>
+							<div class="groupinfo">
+								<h3 class="title2 gp_name">${popEventBO.eventName}</h3>
+								<div class="infolist">
+									<div>
+										<i class="far fa-clock"></i>
+									</div>
+									<div>
+										出團日期：<span><fmt:formatDate value="${popEventBO.eventStartDate}" pattern="yyyy-MM-dd" /></span> 
+									</div>
+								</div>
+								<div class="infolist">
+									<div>
+										<i class="fas fa-bed"></i>
+									</div>
+									<c:set var="type" value="${popEventBO.mountainDistrict}" />
+									<div>
+										住宿種類：<span> <c:choose>
+												<c:when test="${type==0}">當天來回</c:when>
+												<c:when test="${type==1}">野營</c:when>
+												<c:when test="${type==2}">山屋</c:when>
+												<c:when test="${type==3}">飯店</c:when>
+											</c:choose>
+										</span>
+									</div>
+								</div>
+								<div class="infolist">
+									<div>
+										<i class="fas fa-hiking"></i>
+									</div>
+									<c:set var="district" value="${popEventBO.mountainDistrict}" />
+									<div>
+										<span> <c:choose>
+												<c:when test="${district==1}">北部</c:when>
+												<c:when test="${district==2}">中部</c:when>
+												<c:when test="${district==3}">南部</c:when>
+												<c:when test="${district==4}">東部</c:when>
+												<c:when test="${district==5}">外島</c:when>
+											</c:choose>
+										</span>
+									</div>
+								</div>
+								<div class="leader">
+									<div class="leaderimg">
+										<img
+											src="<%=request.getContextPath() %>/ArticlePictureServlet.do?member_id=${popEventBO.memberId}&action=getImage"
+											class="img memimg" />
+									</div>
+									<div>
+										<span>${popEventBO.memberName}</span>
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
+				</c:forEach>
 
-<!-- 							</div> -->
-<!-- 							<div class="groupinfo"> -->
-<%-- 								<h3 class="title2 gp_name">${popEventBO.eventName}</h3> --%>
-<!-- 								<div class="infolist"> -->
-<!-- 									<div> -->
-<!-- 										<i class="far fa-clock"></i> -->
-<!-- 									</div> -->
-<!-- 									<div> -->
-<%-- 										出團日期：<span><fmt:formatDate --%>
-<%-- 												value="${popEventBO.eventStartDate}" pattern="yyyy-MM-dd" /></span> --%>
-<!-- 									</div> -->
-<!-- 								</div> -->
-<!-- 								<div class="infolist"> -->
-<!-- 									<div> -->
-<!-- 										<i class="fas fa-bed"></i> -->
-<!-- 									</div> -->
-<%-- 									<c:set var="type" value="${popEventBO.mountainDistrict}" /> --%>
-<!-- 									<div> -->
-<%-- 										住宿種類：<span> <c:choose> --%>
-<%-- 												<c:when test="${type==0}">當天來回</c:when> --%>
-<%-- 												<c:when test="${type==1}">野營</c:when> --%>
-<%-- 												<c:when test="${type==2}">山屋</c:when> --%>
-<%-- 												<c:when test="${type==3}">飯店</c:when> --%>
-<%-- 											</c:choose> --%>
-<!-- 										</span> -->
-<!-- 									</div> -->
-<!-- 								</div> -->
-<!-- 								<div class="infolist"> -->
-<!-- 									<div> -->
-<!-- 										<i class="fas fa-hiking"></i> -->
-<!-- 									</div> -->
-<%-- 									<c:set var="district" value="${popEventBO.mountainDistrict}" /> --%>
-<!-- 									<div> -->
-<%-- 										<span> <c:choose> --%>
-<%-- 												<c:when test="${district==1}">北部</c:when> --%>
-<%-- 												<c:when test="${district==2}">中部</c:when> --%>
-<%-- 												<c:when test="${district==3}">南部</c:when> --%>
-<%-- 												<c:when test="${district==4}">東部</c:when> --%>
-<%-- 												<c:when test="${district==5}">外島</c:when> --%>
-<%-- 											</c:choose> --%>
-<!-- 										</span> -->
-<!-- 									</div> -->
-<!-- 								</div> -->
-<!-- 								<div class="leader"> -->
-<!-- 									<div class="leaderimg"> -->
-<!-- 										<img -->
-<%-- 											src="<%=request.getContextPath() %>/ArticlePictureServlet.do?member_id=${popEventBO.memberId}&action=getImage" --%>
-<!-- 											class="img memimg" /> -->
-<!-- 									</div> -->
-<!-- 									<div> -->
-<%-- 										<span>${popEventBO.memberName}</span> --%>
-<!-- 									</div> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 						</a> -->
-<!-- 					</div> -->
-<%-- 				</c:forEach> --%>
-
-<!-- 			</div> -->
-<!-- 		</div> -->
+			</div>
+		</div>
 
 		<!-- 山友日誌 -->
 		<div class="artarea">
