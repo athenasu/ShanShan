@@ -1,7 +1,6 @@
 package tw.idv.tibame.tfa104.shanshan.web.msgReport.entity;
 
 import java.sql.Timestamp;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "msg_report")
-public class msgReport {
+public class msgReport{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "msg_report_id")
@@ -37,57 +36,44 @@ public class msgReport {
 	
 	@Column(name = "case_status")
 	private Integer caseStatus;
-	
-	public msgReport(int msgReportID, int memberID, int eventMsgID, int actMsgID, int reportReason,
-			Timestamp reportDate, Timestamp caseDone, int caseStatus) {
-		super();
-		this.msgReportID = msgReportID;
-		this.memberID = memberID;
-		this.eventMsgID = eventMsgID;
-		this.actMsgID = actMsgID;
-		this.reportReason = reportReason;
-		this.reportDate = reportDate;
-		this.caseDone = caseDone;
-		this.caseStatus = caseStatus;
-	}
 
-	public int getMsgReportID() {
+	public Integer getMsgReportID() {
 		return msgReportID;
 	}
 
-	public void setMsgReportID(int msgReportID) {
+	public void setMsgReportID(Integer msgReportID) {
 		this.msgReportID = msgReportID;
 	}
 
-	public int getMemberID() {
+	public Integer getMemberID() {
 		return memberID;
 	}
 
-	public void setMemberID(int memberID) {
+	public void setMemberID(Integer memberID) {
 		this.memberID = memberID;
 	}
 
-	public int getEventMsgID() {
+	public Integer getEventMsgID() {
 		return eventMsgID;
 	}
 
-	public void setEventMsgID(int eventMsgID) {
+	public void setEventMsgID(Integer eventMsgID) {
 		this.eventMsgID = eventMsgID;
 	}
 
-	public int getActMsgID() {
+	public Integer getActMsgID() {
 		return actMsgID;
 	}
 
-	public void setActMsgID(int actMsgID) {
+	public void setActMsgID(Integer actMsgID) {
 		this.actMsgID = actMsgID;
 	}
 
-	public int getReportReason() {
+	public Integer getReportReason() {
 		return reportReason;
 	}
 
-	public void setReportReason(int reportReason) {
+	public void setReportReason(Integer reportReason) {
 		this.reportReason = reportReason;
 	}
 
@@ -107,11 +93,11 @@ public class msgReport {
 		this.caseDone = caseDone;
 	}
 
-	public int getCaseStatus() {
+	public Integer getCaseStatus() {
 		return caseStatus;
 	}
 
-	public void setCaseStatus(int caseStatus) {
+	public void setCaseStatus(Integer caseStatus) {
 		this.caseStatus = caseStatus;
 	}
 
@@ -120,5 +106,7 @@ public class msgReport {
 		return "msgReport [msgReportID=" + msgReportID + ", memberID=" + memberID + ", eventMsgID=" + eventMsgID
 				+ ", actMsgID=" + actMsgID + ", reportReason=" + reportReason + ", reportDate=" + reportDate
 				+ ", caseDone=" + caseDone + ", caseStatus=" + caseStatus + "]";
-	}	
+	}
+	
+	
 }

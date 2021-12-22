@@ -297,6 +297,8 @@ window.onload = function (e) {
     })
     .then((body) => {
       console.log(body);
+      window.localStorage.setItem("LoginID", body.memberId);
+      window.localStorage.setItem("LoginNAME", body.memberName);
       if (body.memberId != null) {
         $("input.logout_modal_button").removeClass("-none");
         $("input.login_modal_button").addClass("-none");

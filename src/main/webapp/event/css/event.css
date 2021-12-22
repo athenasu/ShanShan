@@ -250,8 +250,8 @@ div.main_block{
 }
 div.event_display{
   display: inline-block;
-  height: 32.5%;
-  width: 32.5%;
+  height: 390px;
+  width: 371.08px;
   margin-top: 0.5%;
   margin-left: 0.5%;
   cursor: pointer;
@@ -310,7 +310,7 @@ div.slide_startdate{
     width: 10px;
     height: 10px;
     border-radius: 10rem;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: white;
     border: 5px solid transparent;
     display: inline-block;
     margin-left: 6px;

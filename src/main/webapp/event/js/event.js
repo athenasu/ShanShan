@@ -1,4 +1,5 @@
-
+const login_memberId = window.localStorage.getItem("LoginID");
+const login_memberName = window.localStorage.getItem("LoginNAME");
 // function init() {
 $(document).ready(function () {
 
@@ -85,12 +86,12 @@ $(document).ready(function () {
                 console.log(url)
                 $("div.goodsindex_topslideshow").find(".slidepic").eq(index).attr("src", url);
                 $("div.goodsindex_topslideshow").find("input.event_id").eq(index).val(`${item.eventId}`);
-                $("div.goodsindex_topslideshow").find("div.event_name_text").eq(index).text("出團地點："+`${item.eventName}`);
-                
-                let event_date = "出團日期："+ (new Date(item.eventStartDate).toLocaleDateString('fr-CA', { year: 'numeric', month: '2-digit', day: '2-digit' }))
+                $("div.goodsindex_topslideshow").find("div.event_name_text").eq(index).text("出團地點：" + `${item.eventName}`);
+
+                let event_date = "出團日期：" + (new Date(item.eventStartDate).toLocaleDateString('fr-CA', { year: 'numeric', month: '2-digit', day: '2-digit' }))
                 $("div.goodsindex_topslideshow").find("div.event_date_text").eq(index).val(event_date);
-                
-    //             popular_events += "<h4 class ='text'>出團日期：" + (new Date(item.eventStartDate).toLocaleDateString('fr-CA', { year: 'numeric', month: '2-digit', day: '2-digit' })) + "</h4>"
+
+                //             popular_events += "<h4 class ='text'>出團日期：" + (new Date(item.eventStartDate).toLocaleDateString('fr-CA', { year: 'numeric', month: '2-digit', day: '2-digit' })) + "</h4>"
             })
 
         }
@@ -337,6 +338,7 @@ $(document).on("click", "div.other_area", function () {
 //============================== REDIRECT TO EVENT VIEW PAGE ============================
 $(document).on("click", "div.event_display", function () {
     // console.log($(this).find("input").val());
+	console.log("123")
     window.localStorage.setItem("eventID", $(this).find("input").val());
     // window.sessionStorage.setItem("eventID", $(this).find("input").val())
     window.location.href = "eventview.html";
@@ -344,8 +346,13 @@ $(document).on("click", "div.event_display", function () {
 
 //============================== REDIRECT TO EVENTPOST PAGE ============================
 $(document).on("click", "button.create_event", function () {
-    window.location.href = "eventpost.html";
+    console.log(login_memberId)
+    console.log("123")
+    if (login_memberId == "undefined") {
 
+    } else {
+        window.location.href = "eventpost.html";
+    }
 })
 
 

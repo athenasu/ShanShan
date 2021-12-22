@@ -20,17 +20,31 @@ div.post_event{
 }
 
 div.mountain_pic{
-    border: solid blue;
-    margin-left: 20%;
-    width:60%;
-    height: 60%;
+    position: relative;
+    height: 420px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /*flex 子元素 在父塊元素內,產生置中效果*/
+}
+div.mountain_pic_area{
+    /* 中間放圖片區 */
+    border:solid black;
+    width: 913.4px;
+    overflow: hidden;
+    padding-inline-start: 0px;
 }
 img.mountain_pic{
-    border-radius: 15px;
-    overflow: hidden;
-    object-fit: fill;
+    display:block;
+    margin:auto;
+    /* margin-left:150px; */
+	min-height:400px;
+	height:400px;
+	width:auto;
+	max-width:100%;
 }
-div.name_event, div.event_detail, div.event_content, div.event_post_btn{
+div.name_event, div.event_detail, div.event_content{
     margin-left: 20%;
     margin-top:1%;
     width:60%;
@@ -66,4 +80,105 @@ div.event_detail_right{
 	display:inline-block;
 	width:48%;
 }
+div.event_post_btn{
+    margin-left: 20%;
+    margin-top:1%;
+    width:60%;
+    text-align:center;
+}
+button.cancel_btn{
 
+}
+button.submit_btn{
+    
+}
+button.cancel_btn {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    padding: 12px 24px;
+    border: 1px solid #a12727;
+    border-radius: 8px;
+    background: #ff4a4a;
+    background: -webkit-gradient(linear, left top, left bottom, from(#ff4a4a), to(#992727));
+    background: -moz-linear-gradient(top, #ff4a4a, #992727);
+    background: linear-gradient(to bottom, #ff4a4a, #992727);
+    text-shadow: #591717 1px 1px 1px;
+    font: normal normal bold 21px arial;
+    color: #ffffff;
+    text-decoration: none;
+}
+button.cancel_btn:hover,
+button.cancel_btn:focus {
+    background: #ff5959;
+    background: -webkit-gradient(linear, left top, left bottom, from(#ff5959), to(#b62f2f));
+    background: -moz-linear-gradient(top, #ff5959, #b62f2f);
+    background: linear-gradient(to bottom, #ff5959, #b62f2f);
+    color: #ffffff;
+    text-decoration: none;
+}
+button.cancel_btn:active {
+    background: #982727;
+    background: -webkit-gradient(linear, left top, left bottom, from(#982727), to(#982727));
+    background: -moz-linear-gradient(top, #982727, #982727);
+    background: linear-gradient(to bottom, #982727, #982727);
+}
+button.cancel_btn:before{
+    content:  "\0000a0";
+    display: inline-block;
+    height: 24px;
+    width: 24px;
+    line-height: 24px;
+    margin: 0 4px -6px -4px;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAA7EAAAOxAGVKw4bAAACpUlEQVRIieXUz2scRBQH8M9sFskuaXRnbJAeai1FpFQQFRQkiFKjN3/iQakeIqURvXjyH5BeFClFir1ZD+Kh6KlYaUVDtOih2CoWpCr04EGcWQmURI07HnYTbEOSrpiT7zbzfnzn++Z9H/8LiyndHVM6HlOaGDa3sZ6z0+mIKT2Dz/AEdv1nADHGZmg0DuJdFKi1rvugawbopDQuhON4FUcxAyGEYeuvBogp7Qp8jkcwU3u9GfwB/gWD5lXF9+I99PBwyfnTwX0/IIS3YkqXcAnnMFd7ve+63W5vLYARGBsbM7Zly0t4Bz8Nip9dDmq125exY8BkApN4CgdCCE+32u1mq9U6t7CwsHQ1QOjEOBpCOIwX8GHl+W7O8+vRnpiY8OfS0s4QwhT24d4Bq2m1flJKuaItp2NKf8WUXosxDt3jlFIjprQ3pnQhpvR7TGn/P/2NAe0GrquNoevLOfdKzqcq9+AUjsSUHlv2h06MzRDCm3gRJ7Cv5Pzb0EiIMY4K4TRuw+0l558DXL91q5Fe7wAO4Xs8XnK+uJzYSWl76A9AA/P4BT/ga3xVcv51BSSlnfgGx0rOM1coJ6b0IN4fHJ8sOc8O7qdwEmexiBuxHaOD8ywOq/VEKaUXU3oD+2utt6ySZqcvtA9wK16utR4dTMtJtd5fSpkdtKMphN2YwrO4A3OY1tfRBUyv+tVuzhfVOomPcSSEcMiyIENYEVQpZankfL7k/HrlLjyKbTiDm/AtHlhzuXRSagYO4hX9Gd9Ra53sljK3Vk5MKeqz34PzuGHD7RVTeg5v6/f7vpLzF+vGxzguhC/1J6lsOPgl52N4CB+p9ccN40uZ19++PYwPv3+vwTqdTiM0Gmdw58hmACwuLtZWu30z9mwKA4gpbcPuzaq/Yn8DdRTb03yrWoQAAAAASUVORK5CYII=") no-repeat left center transparent;
+    background-size: 100% 100%;
+}
+
+
+button.submit_btn {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    padding: 12px 24px;
+    border: 1px solid #a12727;
+    border-radius: 8px;
+    background: #1aa351;
+    background: -webkit-gradient(linear, left top, left bottom, from(#1aa351), to(#268299));
+    background: -moz-linear-gradient(top, #1aa351, #268299);
+    background: linear-gradient(to bottom, #1aa351, #268299);
+    text-shadow: #591717 1px 1px 1px;
+    font: normal normal bold 21px arial;
+    color: #ffffff;
+    text-decoration: none;
+}
+button.submit_btn:hover,
+button.submit_btn:focus {
+    background: #1fc461;
+    background: -webkit-gradient(linear, left top, left bottom, from(#1fc461), to(#2e9cb8));
+    background: -moz-linear-gradient(top, #1fc461, #2e9cb8);
+    background: linear-gradient(to bottom, #1fc461, #2e9cb8);
+    color: #ffffff;
+    text-decoration: none;
+}
+button.submit_btn:active {
+    background: #106231;
+    background: -webkit-gradient(linear, left top, left bottom, from(#106231), to(#268299));
+    background: -moz-linear-gradient(top, #106231, #268299);
+    background: linear-gradient(to bottom, #106231, #268299);
+}
+button.submit_btn:before{
+    content:  "\0000a0";
+    display: inline-block;
+    height: 24px;
+    width: 24px;
+    line-height: 24px;
+    margin: 0 4px -6px -4px;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAA7EAAAOxAGVKw4bAAADJ0lEQVRIiZ2W309TZxjHP+85py20tJ38sKJYGOIMF1zgcGq8c4aN2qKJsLirxT/Av6HjT1j4A7hwC8vKLtgpTWTExAtjxGZbQtAIiIAiCrVIFZi1nNeLc+gKtJyO7+X7vM/ned5fz/MKylAkMaRIiU8IagGQpBAyo4d6DTtfUcrQnYghER3ADeAS0AxoljkHzAGjwIAURjLe9V35ASKJoSDQD4QBxSZJA4gjualf7lnYN0A0GuWvs22dwCBQbQPerTTw/ekHE6N9fX35wR3ZWfDhA8CxfIYtRl75FURGhoII/j4gvFBpoF0PmdulAHTHYyDoPwjcqao0ev2FQ9VA/5V4DLBuhVREB+aBliVFCL7wV9NeG+DrhkYSC0+Zf7dWOCVsmMzk9rW7gf1tod5dxfnAUVyaxvy7NTwOjZm1VUbmn+7JwWImRXgkpgghngAtxaB+p4uzgaPUVVSytLHO/deLuDUHV5tOMpFewaEo3Hu1WMx1CkGrhhA+oKnQ4lJVvqw7QqPXTyb7gfHlJVY2NwA44fuMc4Fj/Dw9yfWWVm5NTZZacDMSnwbU8t8LxaWqRDsu8PvsFL/OPEZKmfc4c7ieI24PgzOP+OpwPePLSxgF9l3SgNo9+/5ha4sfH96jweMl0niCClVDAN8Gm3EqKvrcDKpQaPEf4vHqm1JwUxI0s3CRK1xF1thieG6auko315pP4XFo3H35nCdv0wBcPBbkzuL8/nDIIUgpQsgMZuHao5XNDX6ZnmT9Y47ptVUAvA4nPqeLl+vv7QLMgswoVskd3W/mo9UUrYdqAPjm+Ofcfj5rBwcY00O9xvYZDGBWxaKaeLNCW3UdAbeHjVyOTDZrBzcspvm4hCGTQLzU7Jw02NzKcbXpJH++eFZO9nGJSEJhsTN7QMliV1NRyfEqL/+klu3gaaRs1y/3LuwIYAW5BOhARTlpFtG/QEQP9YxtD+x4B6cfTIwBEcyS+3+VBq5YjLxKtMxYEMRPQPfuJIrIbJlwc7sH2AYACMV/Q1WUDuAHoJNSTV8yIKRM/hHuLcopGaBQ4cSQIsAH1rcFUggyeleP7bflE19AB1PRnjwLAAAAAElFTkSuQmCC") no-repeat left center transparent;
+    background-size: 100% 100%;
+}

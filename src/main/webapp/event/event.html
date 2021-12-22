@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="shortcut icon" href="/img/favicon.png" />
-  <link rel="stylesheet" href="./css/header_footer_login.css" />
+  <link rel="stylesheet" href="../member/css/header_footer_login.css" />
   <title>山山來此</title>
 </head>
 
@@ -14,28 +14,37 @@
   <main>
     <header class="header-div">
       <div id="logo">
-        <a href="index.html"><img src="img/logo.png" class="img" /></a>
+        <a href="../index/index.jsp"><img src="img/logo.png" class="img" /></a>
       </div>
       <nav id="navlist">
         <ul>
-          <li><a href="#">找山友</a></li>
-          <li><a href="#">山友日誌</a></li>
-          <li><a href="#">攻山小物</a></li>
-          <li><a href="#">登山資訊</a></li>
-          <li><a href="#">會員中心</a></li>
+          <li><a href="../event/event.html">找山友</a></li>
+          <li><a href="../article/articleList.jsp">山友日誌</a></li>
+          <li><a href="../shop/goods_index.jsp">攻山小物</a></li>
+          <li><a href="../cabin/mtnIndex.jsp">登山資訊</a></li>
+          <li><a href="../member/member_main.html">會員中心</a></li>
         </ul>
       </nav>
       <div id="memcheck">
         <div id="ball"><i class="fas fa-bell"></i></div>
         <a href="../member/register.html"><input type="button" class="register_button" value="註冊"></a>
         <input type="button" class="login_modal_button" value="登入">
-        <input type="button" class="logout_modal_button -none" value="登出">
+        <input type="button" class="logout_modal_button -none" value="登出"><a href="../memberLogin/logout"></a></input>
       </div>
     </header>
     <div class="login_modal_bcg -none"></div>
     <div class="login_modal -none">
       <h1 class="login_form_title">登入</h1>
       <div>
+        <div class="login_formbox">
+          <div class="fb-login-button" scope="public_profile, email" onlogin="checkLoginState();" data-width="355px"
+            data-size="large" data-button-type="continue_with" data-layout="default" data-auto-logout-link="false"
+            data-use-continue-as="false"></div>
+        </div>
+
+        <div class="horizen_gap"></div>
+        <div class="horizen_gap_or">or</div>
+        <div class="horizen_gap"></div>
         <div class="login_formbox">
           <input class="emaillogin" type="button" value="用電子郵件登入">
         </div>
@@ -82,7 +91,8 @@
     <!-- 載入jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- 載入index.js -->
-    <script type='text/javascript' src='./js/header_footer_login.js'></script>
+    <script src="../member/js/register.js"></script>
+    <!-- <script type='text/javascript' src='../member/js/header_footer_login.js'></script> -->
     <!-- 載入icon -->
     <script src="https://kit.fontawesome.com/8cfc21ab70.js" crossorigin="anonymous"></script>
 
@@ -136,50 +146,30 @@
       <!-- <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
       <a class="next" onclick="plusSlides(1)">&#10095;</a> -->
     </div>
-    <div style="text-align:center">
+    <!-- <div style="text-align:center">
       <span class="dot" onclick="currentSlide(1)"></span>
       <span class="dot" onclick="currentSlide(2)"></span>
       <span class="dot" onclick="currentSlide(3)"></span>
       <span class="dot" onclick="currentSlide(4)"></span>
       <span class="dot" onclick="currentSlide(5)"></span>
+    </div> -->
+
+
+    <!-- 輪播圖 開始 -->
+    <div class="goodsindex_topslideshow">
+      <ul class="goodsindex_topslideshow_area">
+        <li><a href=""><img class="slidepic " src="img\goodsindex_topslideshow_area_03.png"></a></li>
+        <li class="-none"><a href=""><img class="slidepic" src="img\goodsindex_topslideshow_area_02.png"></a></li>
+        <li class="-none"><a href=""><img class="slidepic" src="img\goodsindex_topslideshow_area_01.png"></a></li>
+      </ul>
+
+      <div class="slideshow_circle_area">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
     </div>
-
-
-        <!-- 輪播圖 開始 -->
-        <div class="goodsindex_topslideshow">
-            <ul class="goodsindex_topslideshow_area">
-                <li>
-               		<a href="">
-              			<img class="slidepic " src=""><input type='hidden' class='event_id' value=''>
-              			<div class='event_name_text'>出團地點：</div>
-              			<div class ='event_date_text'>出團日期：</div>
-              		</a>
-                </li>
-                
-                <li class="-none">
-               		<a href="">
-              			<img class="slidepic " src=""><input type='hidden' class='event_id' value=''>
-              			<div class='event_name_text'>出團地點：</div>
-              			<div class ='event_date_text'>出團日期：</div>
-              		</a>
-                </li>
-                
-                <li class="-none">
-               		<a href="">
-              			<img class="slidepic " src=""><input type='hidden' class='event_id' value=''>
-              			<div class='event_name_text'>出團地點：</div>
-              			<div class ='event_date_text'>出團日期：</div>
-              		</a>
-                </li>
-            </ul>
-
-            <div class="slideshow_circle_area">
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-        </div>
-        <!-- 輪播圖 結束-->
+    <!-- 輪播圖 結束-->
 
 
 

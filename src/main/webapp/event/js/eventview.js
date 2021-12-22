@@ -1,10 +1,39 @@
-var login_memberId = 1;
+// var login_memberId = 1;
+const login_memberId = window.localStorage.getItem("LoginID");
+const login_memberName = window.localStorage.getItem("LoginNAME");
+$(document).on("click", function(){
+    $(".lightbox-target").removeClass("-on")
+    $(".lightbox-target2").removeClass("-on")
+    $(".lightbox-target3").removeClass("-on")
+})
+
+$(document).on("click", "div.lightbox-target", function(e){
+    e.stopPropagation()
+})
+$(document).on("click", "div.lightbox-target2", function(e){
+    e.stopPropagation()
+})
+$(document).on("click", "div.lightbox-target3", function(e){
+    e.stopPropagation()
+})
+
+$(document).on("click", "#event_report_reason", function () {
+    $("div.event_report_content").attr("data-reporttype", $(this).val())
+})
+
+$(document).on("click", "#msg_report_reason", function () {
+    $("div.msg_report_content").attr("data-reporttype", $(this).val())
+})
+
+$(document).on("click", "button.cancel_msg_report", function () {
+    $(".lightbox-target3").removeClass("-on")
+})
 
 $(document).on("change", "#event_deadline", function () {
-    $("#event_deadline").attr("value", $(this.val()));
+    $("#event_deadline").attr("value", $(this).val());
 })
 $(document).on("change", "#event_start_date", function () {
-    $("#event_start_date").attr("value", $(this.val()));
+    $("#event_start_date").attr("value", $(this).val());
 })
 $(document).on("change", "#difficulty", function () {
     $("#difficulty").attr("value", $(this).val());
@@ -53,8 +82,10 @@ $(document).on("change", "#mountain_area", function () {
 })
 
 // function init() {
-$(document).ready(function(){
+$(document).ready(function () {
     const eventID = window.localStorage.getItem("eventID");
+    // console.log(login_memberId == "null")
+    // console.log(login_memberId)
     // const eventID = window.sessionStorage.getItem("eventId");
     // console.log(eventId)
     //=========================== GET EVENT BY EVENT_ID FROM DATABASE ===========================
@@ -85,7 +116,7 @@ $(document).ready(function(){
             <div class="event_detail">
                 <ul class="event_detail_left">
                     <li class="event_id" name="event_id" value="${data[0].eventId}"><span>揪團編號：${data[0].eventId}</span></li>
-                    <li class="event_owner" value="${data[0].memberName}"><span>揪團發起人：${data[0].memberName}</span></li>
+                    <li class="event_owner" data-ownerid="${data[0].memberId}" value="${data[0].memberName}"><span>揪團發起人：${data[0].memberName}</span></li>
                     <li class="mountain_district">活動地區：
                         <select class="area_option" id="mountain_area" disabled>
                             <option class="north_mountain" name="mountain_district" value="1">北部</option>
@@ -167,14 +198,16 @@ $(document).ready(function(){
     
             </div>
             <div class="event_content">
-                <textarea class="event_content" disabled>${data[0].eventContent}</textarea>
+                <textarea class="event_content" readonly>${data[0].eventContent}</textarea>
             </div>
             <div class="back_edit">
-                <button class="back_btn">BACK</button>
-                <button class="edit_btn">EDIT</button>
-                <button class="send_btn -none">SEND</button>
+                <button class="back_btn">返回</button>
+                <button class="edit_btn -none">編輯</button>
+                <button class="delete_btn -none">刪除</button>
+                <button class="send_btn -none">送出</button>
             </div>
             `
+
             $(".event_view").html(event_view_html);
 
             switch (parseInt(data[0].stayType)) {
@@ -332,7 +365,9 @@ $(document).ready(function(){
                         break;
                 }
             }
-
+            if (login_memberId == data[0].memberId) {
+                $("button.edit_btn").removeClass("-none")
+            }
             //=========================== GET EVENT REPORT BY MEMBER&EVENT FROM DATABASE ===========================
             $.ajax({
                 url: "../eventReport/selectEventReportByMemberId",
@@ -401,15 +436,25 @@ $(document).ready(function(){
                         }
                         const blob = new Blob([u8Array]);
                         const url = URL.createObjectURL(blob);
-
-                        event_msg_html += "<div class='event_msg'>";
-                        event_msg_html += "<img class='member_pic' src='" + url + "'>";
-                        event_msg_html += "<li class='member_name'>" + item.memberName + "：</li>";
-                        event_msg_html += "<li class='msg_content'>" + item.msgContent + "</li>";
-                        event_msg_html += "<button class='msg_report_btn'>Report</button>";
-                        event_msg_html += "</div>";
+                        if (login_memberId == item.memberId) {
+                            event_msg_html += "<div class='event_msg' data-eventmsgid='"+ item.eventMsgId +"'>";
+                            event_msg_html += "<img class='member_pic' src='" + url + "'>";
+                            event_msg_html += "<li class='member_name' data-msgownerid='" + item.memberId + "'>" + item.memberName + "：</li>";
+                            event_msg_html += "<li class='msg_content'>" + item.msgContent + "</li>";
+                            event_msg_html += "<button class='msg_report_btn -none'>Report</button>";
+                            event_msg_html += "</div>";
+                        } else {
+                            event_msg_html += "<div class='event_msg' data-eventmsgid='"+ item.eventMsgId +"'>";
+                            event_msg_html += "<img class='member_pic' src='" + url + "'>";
+                            event_msg_html += "<li class='member_name' data-msgownerid='" + item.memberId + "'>" + item.memberName + "：</li>";
+                            event_msg_html += "<li class='msg_content'>" + item.msgContent + "</li>";
+                            event_msg_html += "<button class='msg_report_btn'>Report</button>";
+                            event_msg_html += "</div>";
+                        }
+                        $("div.event_msg_list").html(event_msg_html);
                     })
-                    $("div.event_msg_list").html(event_msg_html);
+
+
                 }
             })
         }
@@ -419,25 +464,30 @@ $(document).ready(function(){
 //=========================== SEND EVENT_WISH_LIST TO DATABASE ===========================
 
 $(document).on("click", "div.event_wish_heart", function () {
+    console.log(login_memberId == "null")
+    if (login_memberId == "null") {
+        $("div.login_modal_bcg").removeClass("-none");
+        $("div.login_modal").removeClass("-none");
+    } else {
+        let eventWishList = JSON.stringify({
+            "memberId": login_memberId,      //set as 2 for test, need to catch login memberId
+            "eventId": $("li.event_id").val()
+        })
 
-    let eventWishList = JSON.stringify({
-        "memberId": login_memberId,      //set as 2 for test, need to catch login memberId
-        "eventId": $("li.event_id").val()
-    })
-
-    $.ajax({
-        url: "../wishlistEvent/addWishlistEvent",
-        type: "POST",
-        contentType: 'application/json',
-        data: eventWishList,
-        dataType: "json",
-        beforeSend: function () {
-        },
-        success: function (data) {
-            $("div.event_wish_heart").removeClass("-on");
-            $("div.event_wish_heart_filled").addClass("-on");
-        }
-    })
+        $.ajax({
+            url: "../wishlistEvent/addWishlistEvent",
+            type: "POST",
+            contentType: 'application/json',
+            data: eventWishList,
+            dataType: "json",
+            beforeSend: function () {
+            },
+            success: function (data) {
+                $("div.event_wish_heart").removeClass("-on");
+                $("div.event_wish_heart_filled").addClass("-on");
+            }
+        })
+    }
 })
 //=========================== DELETE EVENT_WISH_LIST FROM DATABASE ===========================
 $(document).on("click", "div.event_wish_heart_filled", function () {
@@ -463,9 +513,23 @@ $(document).on("click", "div.event_wish_heart_filled", function () {
 })
 
 //=========================== SEND EVENT_REPORT TO DATABASE ===========================
-$(document).on("click", "button.event_report_btn", function () {
-    $(".lightbox-target2").addClass("-on")
-    $(document).on("click", "button.send_event_report_btn", function () {
+$(document).on("click", "button.event_report_btn", function (e) {
+    e.stopPropagation()
+    if (login_memberId == "null") {
+        $("div.login_modal_bcg").removeClass("-none");
+        $("div.login_modal").removeClass("-none");
+    } else {
+        $(".lightbox-target2").addClass("-on")
+    }
+})
+
+$(document).on("click", "button.back_btn", function () {
+    $(".lightbox-target2").removeClass("-on");
+})
+
+$(document).on("click", "button.send_event_report_btn", function () {
+    let r = confirm("確認送出檢舉?");
+    if (r == true) {
         $.ajax({
             url: "../eventReport/addEventReport",
             type: "POST",
@@ -473,7 +537,7 @@ $(document).on("click", "button.event_report_btn", function () {
             data: JSON.stringify({
                 "eventId": $("li.event_id").val(),
                 "memberId": login_memberId,              //set as 2 for test, need to catch login memberId
-                "reportReason": 1,
+                "reportReason": $("div.event_report_content").data("reporttype"),
                 "reportDate": new Date().toISOString(),
                 "caseStatus": 1
             }),
@@ -484,12 +548,7 @@ $(document).on("click", "button.event_report_btn", function () {
                 $(".lightbox-target2").removeClass("-on")
             }
         })
-    })
-
-})
-
-$(document).on("click", "button.back_btn", function () {
-
+    }
 })
 
 //=========================== EDIT BUTTON ===========================
@@ -510,8 +569,9 @@ $(document).on("click", "button.edit_btn", function () {
     $("select.other_mountain").removeAttr("disabled");
     $("select.difficulty").removeAttr("disabled");
     $("select.stay_type").removeAttr("disabled");
-    $("textarea.event_content").removeAttr("disabled");
+    $("textarea.event_content").removeAttr("readonly");
     $("button.send_btn").removeClass("-none");
+    $("button.delete_btn").removeClass("-none");
 })
 $(document).on("click", "button.send_btn", function () {
     alert("確定送出變更?");
@@ -550,24 +610,50 @@ $(document).on("click", "button.send_btn", function () {
     })
 })
 
-
+$(document).on("click", "button.delete_btn", function(){
+    let r = confirm("確定刪除?")
+    if(r == true){
+        $.ajax({
+            url: "../event/updateEvent",
+            type: "PUT",
+            contentType: 'application/json',
+            data: JSON.stringify({
+                "eventId": $("li.event_id").val(),
+                "eventStatus": 0,
+                "eventPoints": 0,
+            }),
+            dataType: "json",
+            beforeSend: function () {
+            },
+            success: function (data) {
+                window.location.href = "event.html";
+            }
+        })
+    }
+})
 //=========================== GET PARTICIPANT INFO IF EXIST===========================
-$(document).on("click", "button.join_btn", function () {
+$(document).on("click", "button.join_btn", function (e) {
+    e.stopPropagation()
+    if (login_memberId == "null") {
+        $("div.login_modal_bcg").removeClass("-none");
+        $("div.login_modal").removeClass("-none");
+    } else {
+        console.log(login_memberId)
+        if (login_memberId != "undefined") {
+            $(".lightbox-target").addClass("-on")
+            $.ajax({
+                url: "../participant/selectParticipantByMemberId",
+                type: "GET",
+                contentType: 'application/json',
+                data: { "memberId": login_memberId, "eventId": $("li.event_id").val() }, //need to get the login memberId
+                dataType: "json",
+                beforeSend: function () {
+                },
+                success: function (data) {
 
-    $(".lightbox-target").addClass("-on")
-    $.ajax({
-        url: "../participant/selectParticipantByMemberId",
-        type: "GET",
-        contentType: 'application/json',
-        data: { "memberId": login_memberId, "eventId": $("li.event_id").val() }, //need to get the login memberId
-        dataType: "json",
-        beforeSend: function () {
-        },
-        success: function (data) {
-
-            if (data.length != 0) {
-                // console.log(data[0])
-                let has_participated = `
+                    if (data.length != 0) {
+                        // console.log(data[0])
+                        let has_participated = `
                     <div class="join_content">
                         <h3>已參團</h3>
                         <input type="hidden" class="part_id" value="${data[0].partId}">
@@ -585,30 +671,30 @@ $(document).on("click", "button.join_btn", function () {
                         <button class="cancel_participate">返回</button>
                     </div>
                     `
-                $("div.lightbox-target").html(has_participated);
-                switch (data[0].experience) {
-                    case true:
-                        $("option.has_experience").prop('selected', true);
-                        $("select.experience").attr("value", true)
-                        break;
-                    case false:
-                        $("option.no_experience").prop('selected', true);
-                        $("select.experience").attr("value", false)
-                }
+                        $("div.lightbox-target").html(has_participated);
+                        switch (data[0].experience) {
+                            case true:
+                                $("option.has_experience").prop('selected', true);
+                                $("select.experience").attr("value", true)
+                                break;
+                            case false:
+                                $("option.no_experience").prop('selected', true);
+                                $("select.experience").attr("value", false)
+                        }
 
-                // switch (data[0].participation) {
-                //     case true:
-                //         $("option.participate").prop('selected', true);
-                //         $("select.participate").attr("value", true)
-                //         break;
-                //     case false:
-                //         $("option.no_participate").prop('selected', true);
-                //         $("select.participate").attr("value", false)
-                // }
+                        // switch (data[0].participation) {
+                        //     case true:
+                        //         $("option.participate").prop('selected', true);
+                        //         $("select.participate").attr("value", true)
+                        //         break;
+                        //     case false:
+                        //         $("option.no_participate").prop('selected', true);
+                        //         $("select.participate").attr("value", false)
+                        // }
 
-            }
-            else {
-                let no_participate = `
+                    }
+                    else {
+                        let no_participate = `
                     <div class="join_content">
                         <h3>尚未參加</h3>
                         <p>是否有經驗：</p>
@@ -625,10 +711,15 @@ $(document).on("click", "button.join_btn", function () {
                         <button class="cancel_participate">返回</button>
                     </div>
                     `
-                $("div.lightbox-target").html(no_participate);
-            }
+                        $("div.lightbox-target").html(no_participate);
+                    }
+                }
+            })
+        } else {
+            $("div.login_modal_bcg").removeClass("-none");
+            $("div.login_modal").removeClass("-none");
         }
-    })
+    }
 })
 
 //============================== SEND PARTICIPANT TO DATABASE ADN UPDATE EVENT_CUR_PART ========================================
@@ -641,7 +732,7 @@ $(document).on("click", "button.send_participants_btn", function () {
         contentType: 'application/json',
         data: JSON.stringify({
             "eventId": $("li.event_id").val(),
-            "memberId": login_memberId,
+            "memberId": 63,
             "experience": $("select.experience").val(),
             "phoneNumber": $("input.phone_number").val(),
             "joinDate": new Date().toISOString(),
@@ -749,44 +840,96 @@ $(document).on("click", "button.edit_participants_btn", function () {
 
 //=========================== SEND EVENT_MSG TO DATABASE ===========================
 $(document).on("click", "button.add_msg_btn", function () {
-    let eventId = $("li.event_id").val();
-    let memberId = 2;
-    let msgDate = new Date().toISOString();
-    let msgContent = $("input.add_msg").val();
-    let msgStatus = 1;
+    if (login_memberId == "null") {
+        $("div.login_modal_bcg").removeClass("-none");
+        $("div.login_modal").removeClass("-none");
+    } else {
+        let eventId = $("li.event_id").val();
+        let memberId = 2;
+        let msgDate = new Date().toISOString();
+        let msgContent = $("input.add_msg").val();
+        let msgStatus = 1;
 
-    $.ajax({
-        url: "../eventMsg/addEventMsg",
-        type: "POST",
-        contentType: 'application/json',
-        data: JSON.stringify({
-            "eventId": eventId,
-            "memberId": login_memberId,
-            "msgDate": msgDate,
-            "msgContent": msgContent,
-            "msgStatus": msgStatus
-        }),
-        dataType: "json",
-        beforeSend: function () {
-        },
-        success: function (data) {
+        $.ajax({
+            url: "../eventMsg/addEventMsg",
+            type: "POST",
+            contentType: 'application/json',
+            data: JSON.stringify({
+                "eventId": eventId,
+                "memberId": login_memberId,
+                "msgDate": msgDate,
+                "msgContent": msgContent,
+                "msgStatus": msgStatus
+            }),
+            dataType: "json",
+            beforeSend: function () {
+            },
+            success: function (data) {
 
-            //================= GET MEMBER ID, MEMBER NAME, MEMBERPIC FROM DATABASE ==============
-            // console.log("123");
-            $("div.event_msg_list").prepend(`
-                <ul class="event_msg">
-                    <img class="member_pic" src="#">
-                    <li class="member_name">Owen：</li>
-                    <li class="msg_content">${$("input.add_msg").val()}</li>
-                    <button class="msg_report_btn">Report</button>
-            </ul>
-            `)
-            $("input.add_msg").val("");
-        }
-    })
+                //================= GET MEMBER ID, MEMBER NAME, MEMBERPIC FROM DATABASE ==============
+                // console.log("123");
+                $.ajax({
+                    url: "../member/findMemberByIdForEventMsg",
+                    type: "GET",
+                    contentType: 'application/json',
+                    data: JSON.stringify({
+                        "memberId": login_memberId,
+                    }),
+                    success: function (data) {
+                        console.log(data)
+                        $("div.event_msg_list").prepend(`
+                                <ul class="event_msg">
+                                    <img class="member_pic" src="#">
+                                    <li class="member_name">${login_memberName}：</li>
+                                    <li class="msg_content">${$("input.add_msg").val()}</li>
+                                    <button class="msg_report_btn -none">Report</button>
+                                </ul>
+                        `)
+                        $("input.add_msg").val("");
+                    }
+                })
+
+            }
+        })
+    }
 })
 
+$(document).on("click", "button.msg_report_btn", function (e) {
+    e.stopPropagation()
+    if (login_memberId != "undefined") {
+        $(".lightbox-target3").addClass("-on")
+        $("div.msg_report_content").attr("data-eventmsgid", $(this).closest("div").data("eventmsgid"))
+    }else {
+        $("div.login_modal_bcg").removeClass("-none");
+        $("div.login_modal").removeClass("-none");
+    }
+})
 
-// $(function () {
-//     init();
-// })
+$(document).on("click", "button.send_msg_report_btn", function(){
+    let that = this;
+    console.log($("div.msg_report_content").data("eventmsgid"))
+    console.log($("div.msg_report_content").data("reporttype"))
+    console.log(login_memberId)
+    let r = confirm("確認送出檢舉?");
+    if (r == true) {
+        $.ajax({
+            url: "../msgReport/addEventMsgReport",
+            type: "POST",
+            contentType: 'application/json',
+            data: JSON.stringify({
+                "memberID": login_memberId,
+                "reportReason": $("div.msg_report_content").data("reporttype"),
+                "reportDate": new Date().toISOString(),
+                "caseStatus": 1,
+                "eventMsgID":$("div.msg_report_content").data("eventmsgid"),
+                "actMsgID":1
+            }),
+            dataType: "json",
+            beforeSend: function () {
+            },
+            success: function (data) {
+                $(".lightbox-target2").removeClass("-on")
+            }
+        })
+    }
+})

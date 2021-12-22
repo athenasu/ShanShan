@@ -6,16 +6,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import tw.idv.tibame.tfa104.shanshan.web.admin.entity.Admin;
 import tw.idv.tibame.tfa104.shanshan.web.admin.entity.Article;
 import tw.idv.tibame.tfa104.shanshan.web.admin.entity.ArticleReportBO;
 import tw.idv.tibame.tfa104.shanshan.web.admin.entity.ArticleReportDetailBO;
 import tw.idv.tibame.tfa104.shanshan.web.admin.service.AdminService;
+import tw.idv.tibame.tfa104.shanshan.web.order.entity.Order;
 
 
 @RestController
@@ -24,6 +27,19 @@ import tw.idv.tibame.tfa104.shanshan.web.admin.service.AdminService;
 public class AdminController {
 	@Autowired
 	private AdminService adminService;
+	
+	@CrossOrigin
+	@GetMapping("findAll")
+	public List<Admin> findAll(){
+		final List<Admin> adminAll = adminService.findAll();
+		return adminAll;
+	}
+	
+	@CrossOrigin
+	@PostMapping("updateAdmin")
+	public Integer updateAdmin(Admin admin){
+		return adminService.updateAdmin(admin);
+	}
 	
 	@CrossOrigin
 	@GetMapping("findArticleReportByStatus")
@@ -43,5 +59,11 @@ public class AdminController {
 	@PutMapping(path = "updateArticle", consumes = { MediaType.APPLICATION_JSON_VALUE })
 	public Integer updateArticle(@RequestBody Article article) {
 		return adminService.updateArticle(article);
+	}
+	
+	@CrossOrigin
+	@GetMapping(path = "findAllByPayStatus", consumes = { MediaType.APPLICATION_JSON_VALUE })
+	public List<Order> findAllByPayStatus(Integer payment_status) {
+		return adminService.findAllByPayStatus(payment_status);
 	}
 }

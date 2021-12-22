@@ -1,3 +1,6 @@
+const login_memberId = window.localStorage.getItem("LoginID");
+const login_memberName = window.localStorage.getItem("LoginNAME");
+
 $("#event_deadline").on("change", function () {
     $("#event_deadline").attr("value", $(this).val());
 })
@@ -63,7 +66,7 @@ $(document).on("change", "#mountain_id", function () {
             // var bytes = new Uint8Array(data.mountainPic);
             // var blob = new Blob([bytes], { type: "image/png" });
             // var url = URL.createObjectURL(blob);
-            $("div.mountain_pic").html('<img src="'+ url +'" class="mountain_pic">');
+            $("div.mountain_pic_area").html('<img src="'+ url +'" class="mountain_pic">');
         }
     })
 })
@@ -78,7 +81,7 @@ $(document).on("click", "button.submit_btn", function () {
         var event_points = 10;
         var event_cur_part = 1;
         let event = JSON.stringify({
-            "memberId": member_id,                                                      //set as 1 for test
+            "memberId": login_memberId,                                                      //set as 1 for test
             "mountainId": $("#mountain_id").val(),
             "eventName": $("input.event_name").val(),
             "eventDays": $("input.event_days").val(),
@@ -95,7 +98,6 @@ $(document).on("click", "button.submit_btn", function () {
             "eventPoints": event_points,
             "eventCurPart": event_cur_part
         });
-
 
         $.ajax({
             url: "../event/addEvent",

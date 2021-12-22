@@ -17,23 +17,50 @@ public class EventMsgMemberBO extends Core {
 	
 
 	@Id
+	@Column(name = "msgDate")
+	private Timestamp msgDate;
+	
+	@Column(name = "eventMsgId")
+	private Integer eventMsgId;
+	
+	@Column(name = "msgContent")
+	private String msgContent;
+	
 	@Column(name = "memberId")
 	private Integer memberId;
 	
 	@Column(name = "eventId")
 	private Integer eventId;
-	
-	@Column(name = "msgContent")
-	private String msgContent;
-	
+		
 	@Column(name = "memberName")
 	private String memberName;
 			
 	@Column(name = "memberProfilePic")
 	private byte[] memberProfilePic;
-	
-	@Column(name = "msgDate")
-	private Timestamp msgDate;
+
+	public Timestamp getMsgDate() {
+		return msgDate;
+	}
+
+	public void setMsgDate(Timestamp msgDate) {
+		this.msgDate = msgDate;
+	}
+
+	public Integer getEventMsgId() {
+		return eventMsgId;
+	}
+
+	public void setEventMsgId(Integer eventMsgId) {
+		this.eventMsgId = eventMsgId;
+	}
+
+	public String getMsgContent() {
+		return msgContent;
+	}
+
+	public void setMsgContent(String msgContent) {
+		this.msgContent = msgContent;
+	}
 
 	public Integer getMemberId() {
 		return memberId;
@@ -67,31 +94,16 @@ public class EventMsgMemberBO extends Core {
 		this.memberProfilePic = memberProfilePic;
 	}
 
-	public String getMsgContent() {
-		return msgContent;
-	}
-
-	public void setMsgContent(String msgContent) {
-		this.msgContent = msgContent;
-	}
-
-	public Timestamp getMsgDate() {
-		return msgDate;
-	}
-
-	public void setMsgDate(Timestamp msgDate) {
-		this.msgDate = msgDate;
-	}
-
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 
 	@Override
 	public String toString() {
-		return "EventMsgMemberBO [memberId=" + memberId + ", eventId=" + eventId + ", memberName=" + memberName
-				+ ", memberProfilePic=" + Arrays.toString(memberProfilePic) + ", msgContent=" + msgContent
-				+ ", msgDate=" + msgDate + "]";
+		return "EventMsgMemberBO [msgDate=" + msgDate + ", eventMsgId=" + eventMsgId + ", msgContent=" + msgContent
+				+ ", memberId=" + memberId + ", eventId=" + eventId + ", memberName=" + memberName
+				+ ", memberProfilePic=" + Arrays.toString(memberProfilePic) + "]";
 	}
 	
+
 }

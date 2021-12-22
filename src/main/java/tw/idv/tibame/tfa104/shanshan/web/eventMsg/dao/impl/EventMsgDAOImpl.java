@@ -26,6 +26,7 @@ public class EventMsgDAOImpl implements EventMsgDAO{
 	public List<EventMsgMemberBO> eventMsgList(Integer eventId) {
 		Session session = sessionFactory.getCurrentSession();	
 		return session.createNativeQuery("SELECT "+
+												"a.event_msg_id as eventMsgId, "+
 												"a.event_id as eventId, "+
 												"a.member_id as memberId, "+
 												"b.member_profile_pic as memberProfilePic, "+

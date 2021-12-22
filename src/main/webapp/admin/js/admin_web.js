@@ -4,6 +4,25 @@ $(document).on("click", "a.lightbox-close", function () {
     $("div.msg_report_lightbox").removeClass("-on");
     $("div.store_verify_lightbox").removeClass("-on");
 })
+$(document).on("click", function(){
+    $("div.event_report_lightbox").removeClass("-on");
+    $("div.article_report_lightbox").removeClass("-on");
+    $("div.msg_report_lightbox").removeClass("-on");
+    $("div.store_verify_lightbox").removeClass("-on");
+})
+$(document).on("click","div.event_report_lightbox", function(e){
+    e.stopPropagation(); 
+})
+$(document).on("click","div.article_report_lightbox", function(e){
+    e.stopPropagation(); 
+})
+$(document).on("click","div.msg_report_lightbox", function(e){
+    e.stopPropagation(); 
+})
+$(document).on("click","div.store_verify_lightbox", function(e){
+    e.stopPropagation(); 
+})
+
 $(document).on("click", "input.report_accepted", function () {
     $(this).attr("checked", true);
     $("input.report_denied").attr("checked", false);
@@ -11,6 +30,14 @@ $(document).on("click", "input.report_accepted", function () {
 $(document).on("click", "input.report_denied", function () {
     $(this).attr("checked", true);
     $("input.report_accepted").attr("checked", false);
+})
+$(document).on("click", "input.denied", function () {
+    $(this).attr("checked", true);
+    $("input.pass").attr("checked", false);
+})
+$(document).on("click", "input.pass", function () {
+    $(this).attr("checked", true);
+    $("input.denied").attr("checked", false);
 })
 
 //================================================================================================================================
@@ -162,58 +189,58 @@ $(document).on("click", "button.admin_info", function (e) {
     $(this).parents().find("main").children().remove();
     let admin_list = "";
     admin_list += '<div class="admin_information_body" name="admin_information">';
-    admin_list += '<h1>Admin Information</h1>';
-    admin_list += '<div class="admin_display">';
-    admin_list += '<h3>Admin 1 <span class=""></span></h3>';
-    admin_list += '<div class="admin_account">帳號：</div>';
-    admin_list += '<div class="admin_name">姓名：</div>';
-    admin_list += '<div class="admin_account_status">帳號狀態：</div>';
-    admin_list += '<div class="status_slide">';
-    admin_list += '<input type="checkbox" value="None" id="1" name="check" checked />';
-    admin_list += '<label class="slide" for="1"></label>';
+    admin_list +=   '<h1>Admin Information</h1>';
+    admin_list +=   '<div class="admin_display">';
+    admin_list +=       '<h3>Admin 1 <span class=""></span></h3>';
+    admin_list +=       '<div class="admin_account">帳號：</div>';
+    admin_list +=       '<div class="admin_name">姓名：</div>';
+    admin_list +=       '<div class="admin_account_status">帳號狀態：</div>';
+    admin_list +=       '<div class="status_slide">';
+    admin_list +=           '<input type="checkbox" value="None" id="1" name="check" checked />';
+    admin_list +=           '<label class="slide" for="1"></label>';
+    admin_list +=       '</div>';
+    admin_list +=   '</div>';
+    admin_list +=   '<div class="admin_display">';
+    admin_list +=       '<h3>Admin 1 <span class=""></span></h3>';
+    admin_list +=       '<div class="admin_account">帳號：</div>';
+    admin_list +=       '<div class="admin_name">姓名：</div>';
+    admin_list +=       '<div class="admin_account_status">帳號狀態：</div>';
+    admin_list +=       '<div class="status_slide">';
+    admin_list +=           '<input type="checkbox" value="None" id="2" name="check" checked />';
+    admin_list +=           '<label class="slide" for="2"></label>';
+    admin_list +=       '</div>';
+    admin_list +=   '</div>';
+    admin_list +=   '<div class="admin_display">';
+    admin_list +=       '<h3>Admin 1 <span class=""></span></h3>';
+    admin_list +=       '<div class="admin_account">帳號：</div>';
+    admin_list +=       '<div class="admin_name">姓名：</div>';
+    admin_list +=       '<div class="admin_account_status">帳號狀態：</div>';
+    admin_list +=       '<div class="status_slide">';
+    admin_list +=           '<input type="checkbox" value="None" id="3" name="check" checked />';
+    admin_list +=           '<label class="slide" for="3"></label>';
+    admin_list +=       '</div>';
+    admin_list +=   '</div>';
+    admin_list +=   '<div class="admin_display">';
+    admin_list +=       '<h3>Admin 1 <span class=""></span></h3>';
+    admin_list +=       '<div class="admin_account">帳號：</div>';
+    admin_list +=       '<div class="admin_name">姓名：</div>';
+    admin_list +=       '<div class="admin_account_status">帳號狀態：</div>';
+    admin_list +=       '<div class="status_slide">';
+    admin_list +=           '<input type="checkbox" value="None" id="4" name="check" checked />';
+    admin_list +=           '<label class="slide" for="4"></label>';
+    admin_list +=       '</div>';
+    admin_list +=   '</div>';
+    admin_list +=   '<div class="admin_display">';
+    admin_list +=       '<h3>Admin 1 <span class=""></span></h3>';
+    admin_list +=       '<div class="admin_account">帳號：</div>';
+    admin_list +=       '<div class="admin_name">姓名：</div>';
+    admin_list +=       '<div class="admin_account_status">帳號狀態：</div>';
+    admin_list +=       '<div class="status_slide">';
+    admin_list +=           '<input type="checkbox" value="None" id="5" name="check" checked />';
+    admin_list +=           '<label class="slide" for="5"></label>';
+    admin_list +=       '</div>';
+    admin_list +=   '</div>';
     admin_list += '</div>';
-    admin_list += '</div>';
-    admin_list += '<div class="admin_display">';
-    admin_list += '<h3>Admin 1 <span class=""></span></h3>';
-    admin_list += '<div class="admin_account">帳號：</div>';
-    admin_list += '<div class="admin_name">姓名：</div>';
-    admin_list += '<div class="admin_account_status">帳號狀態：</div>';
-    admin_list += '<div class="status_slide">';
-    admin_list += '<input type="checkbox" value="None" id="2" name="check" checked />';
-    admin_list += '<label class="slide" for="2"></label>';
-    admin_list += '</div>';
-    admin_list += '</div>';
-    admin_list += '<div class="admin_display">';
-    admin_list += '<h3>Admin 1 <span class=""></span></h3>';
-    admin_list += '<div class="admin_account">帳號：</div>';
-    admin_list += '<div class="admin_name">姓名：</div>';
-    admin_list += '<div class="admin_account_status">帳號狀態：</div>';
-    admin_list += '<div class="status_slide">';
-    admin_list += '<input type="checkbox" value="None" id="3" name="check" checked />';
-    admin_list += '<label class="slide" for="3"></label>';
-    admin_list += '</div>';
-    admin_list += '</div>';
-    admin_list += '<div class="admin_display">';
-    admin_list += '<h3>Admin 1 <span class=""></span></h3>';
-    admin_list += '<div class="admin_account">帳號：</div>';
-    admin_list += '<div class="admin_name">姓名：</div>';
-    admin_list += '<div class="admin_account_status">帳號狀態：</div>';
-    admin_list += '<div class="status_slide">';
-    admin_list += '<input type="checkbox" value="None" id="4" name="check" checked />';
-    admin_list += '<label class="slide" for="4"></label>';
-    admin_list += '</div>';
-    admin_list += '</div>';
-    admin_list += '<div class="admin_display">';
-    admin_list += '<h3>Admin 1 <span class=""></span></h3>';
-    admin_list += '<div class="admin_account">帳號：</div>';
-    admin_list += '<div class="admin_name">姓名：</div>';
-    admin_list += '<div class="admin_account_status">帳號狀態：</div>';
-    admin_list += '<div class="status_slide">';
-    admin_list += '<input type="checkbox" value="None" id="5" name="check" checked />';
-    admin_list += '<label class="slide" for="5"></label>';
-    admin_list += '</div>';
-    admin_list += '</div>';
-
     $("main").append(admin_list);
 })
 
@@ -305,13 +332,13 @@ $(document).on("click", "button.report_management", function (e) {
 //===================================== STORE MANAGE =====================================
 
 $(document).on("click", "button.store_management", function (e) {
-    $(this).parents().find(".menu").children().remove();                 //應該會從session取回資料代入上方TAB區塊
+    $(this).parents().find(".menu").children().remove();
     $(this).parents().find("main").children().remove();
 
     let sv_menu = "";
     sv_menu += '<ul class="store_tabs"></ul>'
     sv_menu += '<li class="store_verify" href="#store_verify" role="tab" data-toggle="tab">Store Verify</li>'
-    sv_menu += '<li class="order_info" href="#order_info" role="tab" data-toggle="tab">Order Info</li>'
+    // sv_menu += '<li class="order_info" href="#order_info" role="tab" data-toggle="tab">Order Info</li>'
     sv_menu += '<li class="statistics" href="#statistics" role="tab" data-toggle="tab">Statistics</li>'
     sv_menu += '</ul>';
     $(this).parents().find(".menu").append(sv_menu);
@@ -345,8 +372,9 @@ $(document).on("click", "button.store_management", function (e) {
         }
     })
 
-    $(document).on("click", "button.sv_detail", function () {
+    $(document).on("click", "button.sv_detail", function (e) {
         $("div.store_verify_lightbox").addClass("-on")
+        e.stopPropagation()
         let that = this
         $.ajax({
             url: "../company/findByPK",
@@ -356,26 +384,26 @@ $(document).on("click", "button.store_management", function (e) {
 
             },
             success: function (data) {
-//                var bytes = new Uint8Array(data.picStr);
-//                var blob = new Blob([bytes], { type: "image/png" });
-                // var url = URL.createObjectURL(data.picStr);
+                var bytes = new Uint8Array(data.companyCetificate);
+                var blob = new Blob([bytes], { type: "image/png" });
+                var url = URL.createObjectURL(blob);
 
-                const bytesStr = atob(data.picStr);
-                let len = bytesStr.length;
-                const u8Array = new Uint8Array(len);
-                while (len--) {
-                    u8Array[len] = bytesStr.charCodeAt(len);
-                }
-                const blob = new Blob([u8Array]);
-                const url = URL.createObjectURL(blob);
+                // const bytesStr = atob(data.picStr);
+                // let len = bytesStr.length;
+                // const u8Array = new Uint8Array(len);
+                // while (len--) {
+                //     u8Array[len] = bytesStr.charCodeAt(len);
+                // }
+                // const blob = new Blob([u8Array]);
+                // const url = URL.createObjectURL(blob);
 
                 let verifyContent = `
                         <div class="verify_content">
                             <h3>店家申請資料</h3>
                             <li>帳號：${data.companyEmail}</li>
                             <li>店家名稱：${data.companyName}</li>
-                            <li>店家編號：${data.companyId}</li>
-                            <li>負責人：${data.companyId}</li>
+                            <li class="company_id" data-companyid="${data.companyId}">店家編號：${data.companyId}</li>
+                            <li>負責人：${data.companyOwner}</li>
                             <li>手機：${data.companyCell}</li>
                             <li>電話：${data.companyPhone}</li>
                             <li>地址：${data.companyAddress}</li>
@@ -391,43 +419,47 @@ $(document).on("click", "button.store_management", function (e) {
                     			<label for="pass">上架</label>
                     		<input class="denied" name="verification" type="radio" id="denied" value="0">
                     			<label for="denied">下架</label>
-                        	<button class = "send_virification">送出</button>
+                        	<button class = "send_verification">送出</button>
                         </div>                        
                         <a class="lightbox-close" href="#"></a>
             `
-            $("div.store_verify_lightbox").html(verifyContent);
+                $("div.store_verify_lightbox").html(verifyContent);
             }
         })
     })
+})
 
+$(document).on("click", "button.send_verification", function () {
+    console.log($("li.company_id").data("companyid"))
+    if ($("input.pass").is(":checked")) {
+        let r = confirm("確認上架?")
+
+        if (r == true) {
+            $.ajax({
+                url: "../company/updateStatus",
+                type: "POST",
+                contentType: 'application/json',
+                dataType: "json",
+                data: JSON.stringify({
+                    "companyId": $("li.company_id").data("companyid"),
+                    "companyStatus": 1
+                }),
+                beforeSend: function () {
+
+                },
+                success: function (data) {
+                    $("div.event_report_lightbox").removeClass("-on");
+                    $("div.article_report_lightbox").removeClass("-on");
+                    $("div.msg_report_lightbox").removeClass("-on");
+                }
+            })
+        }
+
+    }
 })
 //===================================================================================================================================
 //=========================================================== CASE MANAGE ===========================================================
 //===================================================================================================================================
-
-//======= TABS =======
-// $("a[href^='#']").on("click", function (e) {
-//     e.preventDefault();
-//     //return false;
-// });
-
-// $(document).on("click", "li.case_number", function (e) {
-//     $(this).parent().find("li").each(function (index) {
-//         if ($(this).parent().find("li").hasClass("-active")) {
-//             $(this).removeClass("-active");
-//         }
-//     })
-//     $(this).addClass("-active");
-//     $(".page iframe").attr("src", $(this).find("a").attr("href"));
-//     e.preventDefault();
-// })
-
-// $(document).on("click", ".tab_container li a.tab_close", function (e) {
-//     $(this).closest("li").remove();
-//     if ($(".tab_container li").size() == 0) {                         //沒有TAB時顯示所有NEW案件
-//         // $(".tab_container").append('<li><span>New Tab</span><a class="close" href="#">x</a></li>')
-//     }
-// })
 
 //======= DISPOSAL BTN =======
 $(document).on("click", "button.send_disposal_btn", function () {
@@ -565,6 +597,7 @@ $(document).on("click", "button.send_disposal_btn", function () {
 
 //======= CHOOSE CASE =======
 $(document).on("click", "div.case_list_display", function (e) {
+    e.stopPropagation()
     let that = this;
     console.log($(this).closest("div.case_list_display"))
     if ($(this).closest("div.case_list_display").hasClass("article")) {
