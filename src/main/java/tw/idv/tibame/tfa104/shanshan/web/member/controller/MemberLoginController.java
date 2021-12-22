@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import redis.clients.jedis.Jedis;
 import tw.idv.tibame.tfa104.shanshan.web.core.Core;
@@ -60,11 +61,11 @@ public class MemberLoginController {
 	}
 
 	@RequestMapping("logout")
-	public ModelAndView logout(HttpSession session) {
+	public RedirectView logout(HttpSession session) {
 		if (session != null) {
 			session.invalidate();
 		}
-		return new ModelAndView("index/index"); // front page
+		return new RedirectView("../index/index.jsp"); // front page
 	}
 
 	@PostMapping("forgotPasswordCheckEmail")

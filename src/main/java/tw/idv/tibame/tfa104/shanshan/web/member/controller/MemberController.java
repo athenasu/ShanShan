@@ -29,6 +29,13 @@ public class MemberController {
 		member.setPicStr(Base64.getEncoder().encodeToString(member.getMemberProfilePic()));
 		return member;
 	}
+	
+	@GetMapping("findMemberByIdForEventMsg")
+	public Member findMemberByIdForEventMsg(Integer memberId) {
+		final Member member = service.findById(memberId);
+		member.setPicStr(Base64.getEncoder().encodeToString(member.getMemberProfilePic()));
+		return member;
+	}
 
 	@PostMapping("findMemberPoints")
 	public Integer findMemberPoints(HttpSession session) {

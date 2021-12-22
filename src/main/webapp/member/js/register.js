@@ -244,29 +244,7 @@ function testAPI() {
         } else {
           // if email doesn't exist
           // create a new account:
-          // get them to add a password (so they can login via email as well)
-          const pswdModalBcg = document.querySelector(
-            ".add_password_modal_bcg"
-          );
-          const pswdModal = document.querySelector(".add_password_modal");
-          pswdModalBcg.classList.remove("-none");
-          pswdModal.classList.remove("-none");
-        }
-      });
-    const addPswdSubmitBtn = document.querySelector(
-      ".add_password_submitbutton"
-    );
-    addPswdSubmitBtn &&
-      addPswdSubmitBtn.addEventListener("click", function () {
-        let password = document.querySelector(".add-password").value;
-        let confirmPassword = document.querySelector(
-          ".add-repeatpassword"
-        ).value;
-        console.log(
-          "user name: " + response.name + " user email:" + response.email
-        );
-        if (password === confirmPassword) {
-          fetch("/shanshan/memberRegister/register", {
+          fetch("/shanshan/memberRegister/fbRegister", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -274,18 +252,45 @@ function testAPI() {
             body: JSON.stringify({
               memberName: response.name,
               memberEmail: response.email,
-              memberPassword: password,
             }),
           });
-          document
-            .querySelector(".add_password_modal_bcg")
-            .classList.add("-none");
-          document.querySelector(".add_password_modal").classList.add("-none");
-          console.log("redirect to front page");
-        } else {
-          alert("wrong password"); // can probably show something on the div
+          alert("登入成功");
+          window.location.href = "../index/index.jsp";
         }
       });
+    // const addPswdSubmitBtn = document.querySelector(
+    //   ".add_password_submitbutton"
+    // );
+    // addPswdSubmitBtn &
+    //   addPswdSubmitBtn.addEventListener("click", function () {
+    //     let password = document.querySelector(".add-password").value;
+    //     let confirmPassword = document.querySelector(
+    //       ".add-repeatpassword"
+    //     ).value;
+    //     console.log(
+    //       "user name: " + response.name + " user email:" + response.email
+    //     );
+    //     if (password === confirmPassword) {
+    //       fetch("/shanshan/memberRegister/register", {
+    //         method: "POST",
+    //         headers: {
+    //           "Content-Type": "application/json",
+    //         },
+    //         body: JSON.stringify({
+    //           memberName: response.name,
+    //           memberEmail: response.email,
+    //           memberPassword: password,
+    //         }),
+    //       });
+    //       document
+    //         .querySelector(".add_password_modal_bcg")
+    //         .classList.add("-none");
+    //       document.querySelector(".add_password_modal").classList.add("-none");
+    //       console.log("redirect to front page");
+    //     } else {
+    //       alert("wrong password"); // can probably show something on the div
+    //     }
+    //   });
   });
 }
 
