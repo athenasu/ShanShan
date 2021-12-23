@@ -48,7 +48,7 @@ $(function(){
 
     /* -----------訂單dataTable開始---------- */
     $.ajax({
-        url:"../companyOrder/findAllOrdersByComId?companyId=1",
+        url:"/shanshan/companyOrder/findAllOrdersByComId?companyId=1",
         type:"GET",
         dataType:"json",
         success: function(data){

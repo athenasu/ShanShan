@@ -25,6 +25,9 @@ public class FindByProductIdBO implements Serializable {
 	@Column(name = "productSize")
 	private Integer productSize;
 	
+	@Column(name = "productType")
+	private Integer productType;
+	
 	@Column(name = "productColor")
 	private String productColor;
 	
@@ -36,6 +39,9 @@ public class FindByProductIdBO implements Serializable {
 	
 	@Column(name = "productImg")
 	private byte[] productImg;
+	
+	@Column(name = "productImgId")
+	private Integer productImgId;
 	
 	@Column(name = "productIntro")
 	private String productIntro;
@@ -109,11 +115,25 @@ public class FindByProductIdBO implements Serializable {
 	public void setProductIntro(String productIntro) {
 		this.productIntro = productIntro;
 	}
+	public Integer getProductType() {
+		return productType;
+	}
+	public void setProductType(Integer productType) {
+		this.productType = productType;
+	}
 	public String getPicStr() {
 		return picStr;
 	}
+
 	public void setPicStr(String picStr) {
 		this.picStr = picStr;
+	}
+	
+	public Integer getProductImgId() {
+		return productImgId;
+	}
+	public void setProductImgId(Integer productImgId) {
+		this.productImgId = productImgId;
 	}
 	@Override
 	public String toString() {

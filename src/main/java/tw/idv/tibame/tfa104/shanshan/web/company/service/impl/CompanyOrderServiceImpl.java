@@ -20,10 +20,10 @@ public class CompanyOrderServiceImpl implements CompanyOrderService {
 
 	@Autowired
 	private OrderDAO orderDao;
+	@Autowired
 	private OrderDescriptionDAO orderDesDao;
+	@Autowired
 	private ProductDesDAOHibernate proDesDao;
-	
-	
 	
 	@Override
 	public List<Order> findAllByComId(Integer companyId) {

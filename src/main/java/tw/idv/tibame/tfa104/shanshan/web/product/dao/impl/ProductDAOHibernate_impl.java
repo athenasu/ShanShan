@@ -48,6 +48,30 @@ public class ProductDAOHibernate_impl implements ProductDAOHibernate {
 		return proid;
 		
 	}
+	@Override
+	public List<ProductBO> findByDesId(Integer prodesId) {
+		Session session = sessionFactory.getCurrentSession();
+		List <ProductBO> prodesid
+				=session.createNativeQuery("select p.product_id as productId,d.product_des_id as prodesId,"
+						+ "c.company_name as companyName,p.product_name as productName,"
+						+ "c.company_id as companyId,c.company_intro as companyIntro,"
+						+ "p.product_type as productType,d.product_size as productSize,"
+						+ "d.product_color as productColor,d.product_stock as proDesStock,"
+						+ "p.product_intro as productIntro,d.status as status,"
+						+ "p.product_price as productPrice,i.product_img as productImg "
+						+ "from ShanShan.product as p " 
+						+ "JOIN company as c on c.company_id = p.company_id "
+						+ "JOIN product_description as d on d.product_id = p.product_id " 
+						+ "JOIN product_img as i on i.product_des_id = d.product_des_id "
+						+ "WHERE i.product_img_id =(select min(product_img_id)"
+						+ "from product_img WHERE product_des_id = i.product_des_id "
+						+ "group by product_des_id)"
+						+ "and p.status = 1 " 
+						+ "and p.product_id = :id",ProductBO.class)
+						.setParameter("id", prodesId)
+						.list();
+		return prodesid;
+	}
 	
 	@Override
 	public List<ProductBO> findNew() {
@@ -152,7 +176,7 @@ public class ProductDAOHibernate_impl implements ProductDAOHibernate {
 	public List<ProductBO> findByCompanyId(Integer companyId) {
 		Session session = sessionFactory.getCurrentSession();
 		List <ProductBO> comId
-				= session.createNativeQuery("select p.product_id as productId,d.product_des_id as prodesId,"
+				= session.createNativeQuery("select d.product_id as productId,d.product_des_id as prodesId,"
 						+ "c.company_name as companyName,p.product_name as productName,"
 						+ "c.company_id as companyId,c.company_intro as companyIntro,"
 						+ "p.product_type as productType,d.product_size as productSize,"
@@ -195,6 +219,7 @@ public class ProductDAOHibernate_impl implements ProductDAOHibernate {
 						.list();
 		return allpro;
 	}
+
 
 	
 	

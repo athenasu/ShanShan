@@ -1,4 +1,4 @@
-$(function(){
+
     /* -----------店家註冊營登證上傳---------- */
       var ceti = document.getElementById("ceti");
       ceti.addEventListener("change",function(e){
@@ -23,7 +23,8 @@ $(function(){
     /* -----------店家註冊送出---------- */
     let registerBtn = document.querySelector("#regibutton");
     // const uploadCetiImg = document.querySelector(".cetiUp");
-    var register = function(){
+
+    registerBtn.addEventListener("click", function(){
       const companyName = document.querySelector(".shopName").value;
       const companyEmail = document.querySelector(".shopAcc").value;
       const companyPassword = document.querySelector(".shopPwd").value;
@@ -35,40 +36,30 @@ $(function(){
       const uploadCetiImg = document.querySelector(".cetiUp");
       const file = uploadCetiImg.files[0];//得到營登證
       const fileReader = new FileReader();//創建FileReader物件
-      let base64str;
       fileReader.onload = function(e){
-        base64str = btoa(e.target.result);
-        return base64str;
-        
+        const base64str = btoa(e.target.result);  
+        fetch("/shanshan/company/register" , {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            companyCetificate: base64str,
+            companyName,
+            companyEmail,
+            companyPassword,
+            companyOwner,
+            companyAddress,
+            companyPhone,
+            companyCell,
+          }),
+        }).then(company => {
+          alert("已遞交註冊資料,審核後將寄送email至註冊信箱。");
+        });
       };
-      fetch("/shanshan/company/register" , {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          picStr2: base64str,
-          companyName,
-          companyEmail,
-          companyPassword,
-          companyOwner,
-          companyAddress,
-          companyPhone,
-          companyCell,
-        }),
-      }).then(company => {
-        alert("已遞交註冊資料,審核後將寄送email至註冊信箱。");
-      });
       fileReader.readAsBinaryString(file);
-    };
-
-    registerBtn.addEventListener("click", function(){
-      register();
-      console.log("register finished")
-      alert("已遞交註冊資料");
     });
-    
-})
+
 
     
    

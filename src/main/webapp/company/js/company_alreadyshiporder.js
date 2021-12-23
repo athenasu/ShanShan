@@ -46,9 +46,9 @@ $(function(){
       return dateStr;
     }
 
-    /* -----------訂單dataTable開始---------- */
+    /* -----------已出貨訂單dataTable開始---------- */
     $.ajax({
-        url:"../companyOrder/findAllShipped?companyId=1",
+        url:`/shanshan/companyOrder/findAllShipped?companyId=1`,
         type:"GET",
         dataType:"json",
         success: function(data){
@@ -97,84 +97,90 @@ $(function(){
         ]
       })
     }
-    /* -----------訂單dataTable結束---------- */
+    /* -----------已出貨訂單dataTable結束---------- */
 
-    /* -----------訂單詳情顯示開始---------- */
-    $('.orders tbody').on('click','button',function(e){
-      console.log("in click order detail function")
-      $('div.shippedorderDetail').dialog("open");
-      e.preventDefault();
-    });
-
+    /* -----------單一訂單詳情顯示開始---------- */
+    // 先載入dialog並保持關閉
     $('div.shippedorderDetail').dialog({
       width:800,
       autoOpen:false,
-      open: function(){
-        fetch("../companyOrder/findAllShipped?companyId=1")
-        .then((body) => body.json())
-        .then((orderDetail) =>{
-          console.log(orderDetail);
-          $.each(orderDetail,function(index,item){
-            // console.log(item.order_id);
-            document.querySelector(".orderid").value = item.order_id;
-            document.querySelector(".orderdate").value = dateformat(item.order_created_date);
-            document.querySelector(".clientname").value = item.order_member_name;
-            document.querySelector(".clientphone").value = item.order_member_phone;
-            document.querySelector(".shipaddress").value = item.order_member_address;
-            document.querySelector(".shipdate").value = dateformat(item.order_shipped_date);
-            document.querySelector(".sumafter").value = item.order_sum_after;
-          });
-            document.getElementById("shippedlisttable").style.width='100%';
-        })
-
-      },
-      modal:true,
-      title:"訂單詳情",
-      buttons:{
-        "關閉訂單":function(){
-          $(this).dialog("close");
-        }
-      }
     });
-    $.ajax({
-      url:"../companyOrder/findDesByOrderId?orderId=1",
-      type:"GET",
-      dataType:"json",
-      success: function(data){
-        console.log("Des dataTable search success");
-        orderDesData(data);
-      },
-      error: function(){
-        console.log("Des dataTable search error ")
-      }
-    });
-    function orderDesData(data){
-      var orderdeslist = $('#shippedlisttable').dataTable({
-        "searching": false,
-        "ordering":false,
-        "autoWidth":true,
-        "paging":false,
-        "lengthMenu":[5,10,20],
-        "language":{
-          "url":"https://cdn.datatables.net/plug-ins/1.11.3/i18n/zh_Hant.json"
+    $('.orders tbody').on('click','button',function(e){
+      console.log("in click order detail function")
+      e.preventDefault();
+      let orderId = $(this).parents("tr").find("td").eq(0).text();
+      console.log(orderId);
+      $('div.shippedorderDetail').dialog({
+        open: function(){
+          fetch(`/shanshan/companyOrder/findDesByOrderId?orderId=${orderId}`)
+          .then((body) => body.json())
+          .then((orderDetail) =>{
+            console.log(orderDetail);
+            $.each(orderDetail,function(index,item){
+              // console.log(item.order_id);
+              document.querySelector(".orderid").value = item.order_id;
+              document.querySelector(".orderdate").value = dateformat(item.order_created_date);
+              document.querySelector(".clientname").value = item.order_member_name;
+              document.querySelector(".clientphone").value = item.order_member_phone;
+              document.querySelector(".shipaddress").value = item.order_member_address;
+              document.querySelector(".shipdate").value = dateformat(item.order_shipped_date);
+              document.querySelector(".sumafter").value = item.order_sum_after;
+            });
+              document.getElementById("shippedlisttable").style.width='100%';
+              ////////////////////////////單一訂單商品明細表格/////////////////////////////
+              $.ajax({
+                url:`/shanshan/companyOrder/findDesByOrderId?orderId=${orderId}`,
+                type:"GET",
+                dataType:"json",
+                success: function(data){
+                  console.log("Des dataTable search success");
+                  // console.log(data);
+                  //step1 初始化dataTable
+                  dttable = $('#shippedlisttable').dataTable();
+                  //step2 清空dataTable
+                  dttable.fnClearTable();
+                  //step3 還原已經初始化過的dataTable
+                  dttable.fnDestroy();
+                  dttable = $('#shippedlisttable').dataTable({
+                    //retrieve 設定為true避免dataTable不停警告重複初始化
+                    "retrieve":true,
+                    "searching": false,
+                    "ordering":false,
+                    "autoWidth":true,
+                    "paging":false,
+                    "lengthMenu":[5,10,20],
+                    "language":{
+                      "url":"https://cdn.datatables.net/plug-ins/1.11.3/i18n/zh_Hant.json"
+                    },
+                    "aaData":data,
+                    "columns":[
+                      {'data':'prodes_id'},
+                      {'data':'product_name'},
+                      {'data':'product_quantity'},
+                      {'data':'order_description_price'},
+                    ]
+                  }) 
+                },
+                error: function(){
+                  console.log("Des dataTable search error ")
+                }
+              });
+          })
         },
-        "aaData":data,
-        "columns":[
-          {'data':'prodes_id'},
-          {'data':'product_name'},
-          {'data':'product_quantity'},
-          {'data':'order_description_price'},
-        ]
-      }) 
-    }
-    /* -----------訂單詳情顯示結束---------- */
+        modal:true,
+        title:"訂單詳情",
+        buttons:{
+          "關閉訂單":function(){
+            $(this).dialog("close");
+          }
+        }
+      });
+      //open寫在整個dialog外,dialog open之後進行資料傳輸載入 
+      $('div.shippedorderDetail').dialog("open");
+    });
 
 
-    
-      
-      
-      
-      
+    /* -----------訂單詳情顯示結束---------- */  
 })
 
     

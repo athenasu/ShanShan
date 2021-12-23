@@ -103,17 +103,125 @@
 
   <!-- 商品上架確認 -->
   <div class="onShelfConfirm">
-    <p>商品編號：<input readonly class="conProDesId" type="text"></p>
-    <p>商品名稱：<input readonly class="conProName" type="text"></p>
-    <p>商品種類：<input readonly class="conProType" type="text"></p>
-    <p>商品尺寸：<input readonly class="conProSize" type="text"></p>
-    <p>商品顏色：<input readonly class="conProColor" type="text"></p>
-    <p>商品庫存：<input readonly class="conProStock" type="text"></p>
-    <!-- <p>是否確認將此商品上架？</p> -->
+    <table id="prodes" class="prolisttable">
+      <thead>
+      <tr>
+        <th colspan="6">商品資訊</th>
+      </tr>
+      <tr>
+        <th>商品編號</th>
+        <th>商品名稱</th>
+        <th>商品類別</th>
+        <th>商品尺寸</th>
+        <th>商品顏色</th>
+        <th>商品價格</th>
+      </tr>
+      </thead>
+    <tbody>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+    </table>
   </div>
-
-
   <!-- 商品上架確認結束 -->
+
+  <!-- 商品下架確認 -->
+  <div class="downShelfConfirm">
+    <table id="prodesDown" class="prolisttableDown">
+      <thead>
+      <tr>
+        <th colspan="6">商品資訊</th>
+      </tr>
+      <tr>
+        <th>商品編號</th>
+        <th>商品名稱</th>
+        <th>商品類別</th>
+        <th>商品尺寸</th>
+        <th>商品顏色</th>
+        <th>商品價格</th>
+      </tr>
+      </thead>
+    <tbody>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+    </table>
+  </div>
+  <!-- 商品下架確認結束 -->
+  <!-- 商品修改開始 -->
+  <div class="proinfo">
+    <!-- <form class="pinfo" > -->
+      <!-- <p>新增商品</p> -->
+      <div class="leftinfo">
+      <!-- <div class="proId">
+        商品編號：<input class="proid" type="text" readonly="value">
+      </div> -->
+      <div class="proName">
+        商品名稱：<input readonly class="proname" type="text"  placeholder="請輸入商品名稱" value>
+      </div>
+      <div class="proPrice">
+        商品價格：<input class="proprice" type="text" placeholder="請輸入商品價格" value>
+      </div>
+      <div class="sizePick">
+        商品尺寸：
+        <label class="sizepick"><input class="sizeF" type="radio" name="product" value=0> F </label>
+        <label class="sizepick"><input class="sizeS" type="radio" name="product" value=1> S </label>
+        <label class="sizepick"><input class="sizeM" type="radio" name="product" value=2> M </label>
+        <label class="sizepick"><input class="sizeL" type="radio" name="product" value=3> L </label>
+        <label class="sizepick"><input class="sizeXL" type="radio" name="product" value=4> XL </label>
+      </div>
+      <div class="typePick">
+        商品類別：
+        <label class="typepick"><input class="type1" type="radio" name="pType" value=1> 衣著 </label>
+        <label class="typepick"><input class="type2" type="radio" name="pType" value=2> 工具照明 </label>
+        <label class="typepick"><input class="type3" type="radio" name="pType" value=3> 炊具 </label>
+        <label class="typepick"><input class="type4" type="radio" name="pType" value=4> 帳篷寢具 </label>
+      </div>
+      <div class="procolor">
+        商品顏色：<input class="color" type="text" name="product" placeholder="請輸入商品顏色" value>
+      </div>
+      <div class="prostock">
+        商品庫存：<input class="stock" type="text" maxlength="8" placeholder="請輸入商品庫存" value>
+      </div>
+      <div class="productintro">
+        商品簡介：<textarea class="prointro" placeholder="請輸入商品簡介" ></textarea>
+      </div>
+      </div>
+      <!-- 右側上傳圖檔 -->
+      <div class="rightinfo">
+        <!-- 商品圖 -->
+        <span class="bannertext">商品圖片</span>
+        <label class="probanner">
+          <input id="pro" class="upload_pro" type="file" style="display:none;">
+          <i class="fa fa-photo"></i> 上傳圖片
+        </label>
+        <ul id="proimg" class="proimg">
+          <img class="proimg1" src="" alt="proimg1"/>
+          <span class="pictext">圖片預覽</span>
+          <!-- <li class="sbanner2"></li> -->
+        </ul>
+      </div>
+      <!-- 商品圖 -->
+
+      <!-- 資訊不符提醒 -->
+      <!-- <div class="errModal">
+        <div id="errMsg"></div>
+      </div> -->
+    </div>
+  <!-- 商品修改結束 -->
+  
     <script src ="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
     <script src ="vendors/jquery/jquery-3.6.0.min.js" ></script>
     <script src ="vendors/jquery/jquery-ui.min.js"></script>
