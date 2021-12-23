@@ -1,58 +1,63 @@
 /////////////////////////////////////
+/////////// SELECTING ELEMENTS ///////////
+const forgotPasswordSubmitBtn = document.querySelector(
+  ".forgot_password_summitbutton"
+);
+const loginSubmitBtn = document.querySelector(".login_summitbutton");
+const loginBtn = document.querySelector(".login_modal_button");
+const memberEmailInput = document.querySelector("input.register-email");
+const emailInputError = document.querySelector(".error-message");
+
+const registerSubmitBtn = document.querySelector(".register_summitbutton");
+
+const logoutBtn = document.querySelector(".logout_modal_button");
+/////////////////////////////////////
+/////////// MODAL AREA ///////////
+
 /////////// LOGIN MODAL ///////////
-// 點擊登入按鈕，開啟選擇登入方式的燈箱
+// OPEN LOGIN MODAL
 $("input.login_modal_button").click(function () {
   console.log("login button clicked");
   $("div.login_modal_bcg").removeClass("-none");
   $("div.login_modal").removeClass("-none");
 });
 
-// 點擊半透明黑色背景，取消登入的燈箱
+// CANCELLING LOGIN MODAL
 $("div.login_modal_bcg").click(function () {
   $("div.login_modal_bcg").addClass("-none");
   $("div.login_modal").addClass("-none");
   $("div.login_modal_email").addClass("-none");
 });
 
-// 點擊用EMAIL登入，到EMAIL登入
+// LOGIN WITH EMAIL
 $("input.emaillogin").click(function () {
   $("div.login_modal").addClass("-none");
   $("div.login_modal_email").removeClass("-none");
 });
 
-// forgot password, show email modal
+// FORGOT PASSWORD, OPEN FORGOT PASSWORD MODAL
 $("p.forgot_password").click(function (e) {
   e.preventDefault();
   $("div.login_modal_email").addClass("-none");
   $("div.forgot_password_modal").removeClass("-none");
 });
 
-// WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW 登入 結束
-
-/////////////////////////////////////
-// 點擊註冊頁面，回到選擇註冊方式
+/////////// REGISTER ///////////
+// REGISTER
 $("div.registor_title_signup").click(function () {
   $("div.signup_email_form").addClass("-none");
   $("div.choose_signup_form").removeClass("-none");
 });
 
-// 點擊用電子郵件註冊，到電子郵件註冊
+// REGISTER BY EMAIL
 $("input.summitbutton_signupemail").click(function () {
   $("div.choose_signup_form").addClass("-none");
   $("div.signup_email_form").removeClass("-none");
 });
 
-// 點擊logo圖片或註冊頁面，到山山首頁
-$("div.registor_titlepic").click(function () {
-  //超連結至首頁
-});
-$("div.registor_title_shanshan").click(function () {
-  //超連結至首頁
-});
-
-///////////////////////////////////// 註冊 結束
-
 /////////////////////////////////////
+/////////// LOGIN/REGISTER/FORGOTPASSWORD/LOGOUT FUNCTIONS ///////////
+
 // CHECK EMAIL VALIDITY
 const validateEmail = function (emailAdress) {
   let regexEmail = /\S+@\S+\.\S+/;
@@ -62,9 +67,8 @@ const validateEmail = function (emailAdress) {
     return false;
   }
 };
-/////////// LOGIN ///////////
-const loginSubmitBtn = document.querySelector(".login_summitbutton");
-const loginBtn = document.querySelector(".login_modal_button");
+
+/////////// EMAIL LOGIN ///////////
 loginSubmitBtn &&
   loginSubmitBtn.addEventListener("click", function () {
     const memberEmail = document.querySelector(".login_formbar_email").value;
@@ -102,9 +106,7 @@ loginSubmitBtn &&
       });
   });
 
-/////////// REGISTER ///////////
-let memberEmailInput = document.querySelector("input.register-email");
-let emailInputError = document.querySelector(".error-message");
+/////////// EMAIL REGISTER ///////////
 memberEmailInput &&
   memberEmailInput.addEventListener("keyup", function () {
     let validate = validateEmail(memberEmailInput.value);
@@ -115,7 +117,6 @@ memberEmailInput &&
     }
   });
 
-const registerSubmitBtn = document.querySelector(".register_summitbutton");
 registerSubmitBtn &&
   registerSubmitBtn.addEventListener("click", function () {
     const memberName = document.querySelector(".register-name").value;
@@ -143,9 +144,6 @@ registerSubmitBtn &&
   });
 
 /////////// FORGOT PASSWORD ///////////
-const forgotPasswordSubmitBtn = document.querySelector(
-  ".forgot_password_summitbutton"
-);
 forgotPasswordSubmitBtn &&
   forgotPasswordSubmitBtn.addEventListener("click", function () {
     let memberEmail = document.querySelector(".forgot_password_email").value;
@@ -287,6 +285,17 @@ function login() {
   );
 }
 
+/////////// LOGOUT ///////////
+logoutBtn &&
+  logoutBtn.addEventListener("click", function () {
+    window.localStorage.removeItem("LoginID");
+    window.localStorage.removeItem("LoginNAME");
+    fetch(`/shanshan/memberLogin/logout`).then((response) =>
+      console.log(response)
+    );
+  });
+
+/////////////////////////////////////
 /////////// CHECK LOGIN STATUS ON LOAD ///////////
 window.onload = function (e) {
   console.log(e);
@@ -298,6 +307,8 @@ window.onload = function (e) {
     .then((body) => {
       console.log(body);
       if (body.memberId != null) {
+        window.localStorage.setItem("LoginID", body.memberId);
+        window.localStorage.setItem("LoginNAME", body.memberName);
         $("input.logout_modal_button").removeClass("-none");
         $("input.login_modal_button").addClass("-none");
         $("input.register_button").addClass("-none");

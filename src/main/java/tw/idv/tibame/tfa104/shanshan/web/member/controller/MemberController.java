@@ -57,9 +57,4 @@ public class MemberController {
 		return service.updateMember(file, member);
 	}
 
-//	@GetMapping("test")
-//	public Member test(HttpSession session) {
-//		return (Member) session.getAttribute("member");
-//	}
-
 }
