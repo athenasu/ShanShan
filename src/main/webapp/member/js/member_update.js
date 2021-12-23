@@ -77,13 +77,14 @@ const populatePage = function () {
       const url = URL.createObjectURL(blob);
 
       document.querySelector(".member_profile .member_profile_pic").src = url;
-      dropArea.scr = url;
       document.querySelector(".member-name").value = member.memberName;
       document.querySelector(".member-username").value = member.memberUsername;
       document.querySelector(".member-name-dashboard").textContent =
         member.memberName;
       document.querySelector(".member-username-dashboard").textContent =
         member.memberUsername;
+      document.querySelector(".member-phone").textContent =
+        member.memberPhoneNum;
       document.querySelector(".member-email").value = member.memberEmail;
       document.querySelector(".member-intro-text").value = member.memberIntro;
     });

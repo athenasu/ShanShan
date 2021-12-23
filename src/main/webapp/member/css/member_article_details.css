@@ -76,7 +76,7 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* width: 18%; */
+  width: 18%;
 }
 
 .user-info {
@@ -91,8 +91,7 @@ button {
   /* need to check width */
   width: 85%;
   /* didn't have margin-top before */
-  margin-top: 25px; /*new*/
-  margin-top: 70px;
+  margin-top: 25px;
   background: linear-gradient(
     to right bottom,
     rgba(255, 255, 255, 0.7),
@@ -253,6 +252,12 @@ button {
   box-shadow: 5px 5px 15px rgba(122, 122, 122, 0.2);
 }
 
+.card-2 a {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
 .card-1 {
   background-color: #d3e4cd;
 }
@@ -265,31 +270,31 @@ button {
   background-color: #f5f5dc;
 }
 
-.cards .article-type {
+.article-type {
   width: 5rem;
 }
 
-.cards .event-status {
+.event-status {
   width: 6.5rem;
 }
 
-.cards .event-name {
+.event-name {
   width: 10rem;
 }
 
-.cards .article-title {
+.article-title {
   width: 12rem;
 }
-.cards .event-date,
-.cards .article-date {
+.event-date,
+.article-date {
   width: 13.5rem;
 }
-.cards .event-mtn,
-.cards .article-points {
+.event-mtn,
+.article-points {
   width: 8rem;
 }
 
-.cards .event-attendees {
+.event-attendees {
   width: 9.5rem;
 }
 
@@ -444,8 +449,8 @@ button {
 .overlay-article,
 .overlay-part {
   position: fixed;
-  top: -109px;
-  left: -109px;
+  /* top: -109px;
+  left: -109px; */
   right: 0px;
   bottom: 0px;
   width: 100%; /*new*/

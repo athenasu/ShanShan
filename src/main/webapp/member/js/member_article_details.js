@@ -32,23 +32,26 @@ const renderArticle = function (article) {
   const articleUrl = URL.createObjectURL(articleBlob);
 
   let html = `
-            <a href="../ArticleServlet.do?article_id=${article.article_id}&action=getThisArt" class = "article-card">
+            <div class = "article-card">
+            
               <div class="card-2">
-                <div class="article-type">
-                  <p>日誌文章</p>
-                </div>
-                <div class="article-title">
-                  <p>文章名稱: ${article.article_title}</p>
-                </div>
-                <div class="article-date">
-                  <p>文章日期: ${dateCreated}</p>
-                </div>
-                <div class="article-mtn">
-                  <p>地點: ${article.mountain_name}</p>
-                </div>
-                <div class="article-points">
-                  <p>總點數: ${article.article_points_recieved} 點</p>
-                </div>
+                <a href="../ArticleServlet.do?article_id=${article.article_id}&action=getThisArt">
+                  <div class="article-type">
+                    <p>日誌文章</p>
+                  </div>
+                  <div class="article-title">
+                    <p>文章名稱: ${article.article_title}</p>
+                  </div>
+                  <div class="article-date">
+                    <p>文章日期: ${dateCreated}</p>
+                  </div>
+                  <div class="article-mtn">
+                    <p>地點: ${article.mountain_name}</p>
+                  </div>
+                  <div class="article-points">
+                    <p>總點數: ${article.article_points_recieved} 點</p>
+                  </div>
+                </a>
                 <div class="event-details">
                   <button class="btn--show-modal-article">詳情</button>
                 </div>
@@ -85,7 +88,7 @@ const renderArticle = function (article) {
                     </div>
                   </div>
                 </div>
-            </a>
+              </div>
   `;
   cards.insertAdjacentHTML("afterbegin", html);
 };
@@ -121,7 +124,7 @@ const renderPartEvent = function (part) {
   const partUrl = URL.createObjectURL(partBlob);
 
   let html = `
-            <a href="#" class = "part-card">
+            <div class = "part-card">
               <div class="card-3">
                 <div class="event-status">
                   <p>狀態: ${eventStatus}</p>
@@ -181,7 +184,7 @@ const renderPartEvent = function (part) {
               </div>
             </div>
           </div> 
-          </a> 
+          </div> 
   `;
   cards.insertAdjacentHTML("afterbegin", html);
 };
@@ -192,7 +195,7 @@ const renderOngoingEvent = function (eventList) {
   let deadline = formatDate(eventList.eventDeadline);
 
   let html = `
-            <a href="#" class = "event-card">
+            <div class = "event-card">
               <div class="card-1">
                 <div class="event-status">
                   <p>狀態：招募中</p>
@@ -286,7 +289,7 @@ const renderOngoingEvent = function (eventList) {
                   </div>
                 </div>
               </div>
-            </a>
+            </div>
             `;
   cards.insertAdjacentHTML("afterbegin", html);
 };
@@ -309,7 +312,7 @@ const renderConfirmedEvent = function (eventList) {
   let deadline = formatDate(eventList.eventDeadline);
 
   let html = `
-            <a href="#" class = "event-card">
+            <div class = "event-card">
               <div class="card-1">
                 <div class="event-status">
                   <p>狀態：${eventStatus}</p>
@@ -398,7 +401,7 @@ const renderConfirmedEvent = function (eventList) {
                   </div>
                 </div>
               </div>
-            </a>
+            </div>
             `;
   cards.insertAdjacentHTML("afterbegin", html);
 };
@@ -648,7 +651,7 @@ document.addEventListener("click", function (e) {
   // card-2 article-card
   if (e.target.classList.contains("btn--show-modal-article")) {
     // console.log("modal-article button clicked");
-    let parent = e.target.closest("a.article-card");
+    let parent = e.target.closest("div.article-card");
     let modalArticle = parent.querySelector(".modal-article");
     let overlayArticle = document.querySelector(".overlay-article");
     let btnCloseModalArticle = parent.querySelector(
@@ -675,7 +678,7 @@ document.addEventListener("click", function (e) {
   // card-3 part-card
   if (e.target.classList.contains("btn--show-modal-part")) {
     console.log("show part modal btn");
-    let parent = e.target.closest("a.part-card");
+    let parent = e.target.closest("div.part-card");
     let modalPart = parent.querySelector(".modal-part");
     let overlayPart = document.querySelector(".overlay-part");
     let btnCloseModalPart = parent.querySelector(".btn--close-modal-part");

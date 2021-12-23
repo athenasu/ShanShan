@@ -43,8 +43,8 @@ button {
 
 .member_main {
   font-family: "Roboto", sans-serif;
-  min-height: 100vh;
-  background: #fef5ed;
+  min-height: calc(100% - 120px); /*new*/
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -84,11 +84,11 @@ button {
 
 .glass {
   background: white;
-  min-height: 70vh;
+  min-height: 535px; /*new*/
   /* need to check width */
   width: 85%;
   /* didn't have margin-top before */
-  margin-top: 40px;
+  margin-top: 25px; /*new*/
   background: linear-gradient(
     to right bottom,
     rgba(255, 255, 255, 0.7),

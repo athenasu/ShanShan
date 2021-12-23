@@ -50,6 +50,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: calc(100% - 120px); /*new*/
 }
 
 .member_profile {
@@ -80,9 +81,9 @@ button {
 
 .glass {
   background: white;
-  min-height: 70vh;
   width: 85%;
-  margin-top: 40px;
+  /* didn't have margin-top before */
+  margin-top: 25px;
   background: linear-gradient(
     to right bottom,
     rgba(255, 255, 255, 0.7),

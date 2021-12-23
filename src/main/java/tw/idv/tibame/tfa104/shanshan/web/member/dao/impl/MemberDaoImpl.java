@@ -100,7 +100,7 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public Member update(byte[] file, Member member) {
 		Session session = sessionFactory.getCurrentSession();
-//		System.out.println("In dao: " + member.toString());
+		System.out.println("In dao: " + member.toString());
 		Member tempMember = session.get(Member.class, member.getMemberId());
 		if (member.getMemberName() != null && member.getMemberName() != "") { // && tempMember.getMemberName() != ""
 			tempMember.setMemberName(member.getMemberName());
@@ -118,7 +118,7 @@ public class MemberDaoImpl implements MemberDao {
 			tempMember.setMemberIntro(member.getMemberIntro());
 		}
 		
-		if (member.getMemberProfilePic() != null) {
+		if (member.getPicStr() != null) {
 			tempMember.setMemberProfilePic(file);
 		}
 		

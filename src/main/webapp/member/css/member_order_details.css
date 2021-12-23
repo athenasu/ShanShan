@@ -50,6 +50,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: calc(100% - 120px); /*new*/
 }
 
 .member_profile {
@@ -86,11 +87,11 @@ button {
 
 .glass {
   background: white;
-  min-height: 70vh;
+  min-height: 535px;
   /* need to check width */
   width: 85%;
   /* didn't have margin-top before */
-  margin-top: 70px;
+  margin-top: 25px;
   background: linear-gradient(
     to right bottom,
     rgba(255, 255, 255, 0.7),
@@ -434,8 +435,8 @@ button {
   left: -109px;
   right: 0px;
   bottom: 0px;
-  width: 100vw;
-  height: 100vh;
+  width: 100%; /*new*/
+  height: 100%; /*new*/
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(4px);
   z-index: 100;
