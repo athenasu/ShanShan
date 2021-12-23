@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import redis.clients.jedis.Jedis;
 import tw.idv.tibame.tfa104.shanshan.web.core.Core;
@@ -70,7 +70,7 @@ public class MemberRegisterController {
 	}
 	
 	@GetMapping("authenicate")  
-	public ModelAndView authenticate(String token, HttpSession session) {
+	public RedirectView authenticate(String token, HttpSession session) {
 		Jedis jedis = new Jedis("localhost", 6379);
 		try {
 			// checking token if it matches with the token in Jedis
@@ -86,7 +86,7 @@ public class MemberRegisterController {
 		}
 		
 		jedis.close();
-		return new ModelAndView("index/index"); 
+		return new RedirectView("../index/index.jsp"); 
 	}
 	
 	@InitBinder

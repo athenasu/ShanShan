@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import redis.clients.jedis.Jedis;
@@ -65,15 +64,14 @@ public class MemberLoginController {
 		if (session != null) {
 			session.invalidate();
 		}
-		return new RedirectView("../index/index.jsp"); // front page
+		return new RedirectView("../index/index.jsp");
 	}
 
 	@PostMapping("forgotPasswordCheckEmail")
-	public Core forgotPasswordCheckEmail(@RequestBody Member member) { //HttpSession session
+	public Core forgotPasswordCheckEmail(@RequestBody Member member) {
 		// check email first, use email to get memberId return Member
 		Core core = new Core();
 		Member member1 = service.checkEmail(member.getMemberEmail());
-//		System.out.println(member1);
 		if (member1 != null) {
 			MailService mailService = new MailService();
 			String subject = "山山來此-忘記密碼";
@@ -88,7 +86,7 @@ public class MemberLoginController {
 	}
 
 	@GetMapping("checkTokenForgotPassword")
-	public ModelAndView checkTokenForgotPassword(String token, HttpSession session) {
+	public RedirectView checkTokenForgotPassword(String token, HttpSession session) {
 		Jedis jedis = new Jedis("localhost", 6379);
 		if (token != null && token != "") {
 			Integer memberId = Integer.parseInt(jedis.get(token));
@@ -98,13 +96,13 @@ public class MemberLoginController {
 			jedis.close();
 		} 
 		jedis.close();
-		return new ModelAndView("member/change_password"); // jsp page
+		return new RedirectView("../member/change_password.html"); // jsp or html page--> need to test this
 	}
 	
 	@PostMapping("changePassword")
-	public ModelAndView changePassword(@RequestBody Member member, HttpSession session) { //, HttpSession session
+	public RedirectView changePassword(@RequestBody Member member, HttpSession session) {
 		int memberId = (Integer) session.getAttribute("memberId");
 		service.updateMemberPassword(memberId, member.getMemberPassword());
-		return new ModelAndView("index/index"); // this isn't working, not sure why
+		return new RedirectView("../index/index.jsp");
 	}
 }
