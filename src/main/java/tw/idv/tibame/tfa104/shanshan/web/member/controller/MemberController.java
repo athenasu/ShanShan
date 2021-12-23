@@ -23,7 +23,7 @@ public class MemberController {
 	private MemberService service;
 
 	@GetMapping("findMemberById")
-	public Member findMemberById(HttpSession session) { //HttpSession session
+	public Member findMemberById(HttpSession session) {
 		Integer memberId = (Integer) session.getAttribute("memberId");
 		final Member member = service.findById(memberId);
 		member.setPicStr(Base64.getEncoder().encodeToString(member.getMemberProfilePic()));

@@ -28,8 +28,8 @@ public class MemberLoginController {
 		Member loggedInMember = service.checkLogin(member);
 		Core core = new Core();
 		if (loggedInMember != null) {
-			System.out.println(loggedInMember.getMemberName());
-			System.out.println(loggedInMember.getMemberId());
+//			System.out.println(loggedInMember.getMemberName());
+//			System.out.println(loggedInMember.getMemberId());
 			session.setAttribute("memberId", loggedInMember.getMemberId());
 			session.setAttribute("memberName", loggedInMember.getMemberName());
 			core.setSuccessful(true);

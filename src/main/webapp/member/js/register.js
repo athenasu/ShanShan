@@ -37,7 +37,7 @@ $("input.emaillogin").click(function () {
 
 // FORGOT PASSWORD, OPEN FORGOT PASSWORD MODAL
 $("p.forgot_password").click(function (e) {
-  e.preventDefault();
+  // e.preventDefault();
   $("div.login_modal_email").addClass("-none");
   $("div.forgot_password_modal").removeClass("-none");
 });
@@ -177,6 +177,7 @@ function statusChangeCallback(response) {
   // console.log(response);                   // The current login status of the person.
   if (response.status === "connected") {
     // Logged into your webpage and Facebook.
+    console.log("connected");
     testAPI();
   } else {
     // Not logged into your webpage or we are unable to tell.
@@ -213,11 +214,8 @@ window.fbAsyncInit = function () {
 };
 
 function testAPI() {
-  // Testing Graph API after login.  See statusChangeCallback() for when this call is made.
-  // console.log('Welcome!  Fetching your information.... ');
   FB.api("/me?fields=id,name,email", function (response) {
     console.log(response);
-    // should send this information to the db to confirm if email exists fetch(`checkEmail`)
     fetch(`/shanshan/memberLogin/facebookLogin`, {
       method: "POST",
       headers: {
@@ -235,11 +233,14 @@ function testAPI() {
         if (body.successful) {
           // if email already exists,
           // then send them to front page
-          console.log("Send to index.jsp");
-          window.location.href = "../index/index.jsp";
+          $("div.login_modal_bcg").addClass("-none");
+          $("div.login_modal").addClass("-none");
+          $("input.logout_modal_button").removeClass("-none");
+          $("input.login_modal_button").addClass("-none");
+          $("input.register_button").addClass("-none");
+          console.log("Logged in");
         } else {
-          // if email doesn't exist
-          // create a new account:
+          // if email doesn't exist create a new account:
           fetch("/shanshan/memberRegister/fbRegister", {
             method: "POST",
             headers: {
@@ -250,14 +251,17 @@ function testAPI() {
               memberEmail: response.email,
             }),
           });
-          alert("登入成功");
-          window.location.href = "../index/index.jsp";
+          $("div.login_modal_bcg").addClass("-none");
+          $("div.login_modal").addClass("-none");
+          $("input.logout_modal_button").removeClass("-none");
+          $("input.login_modal_button").addClass("-none");
+          $("input.register_button").addClass("-none");
         }
       });
   });
 }
 
-// // Load the SDK Asynchronously
+// Load the SDK Asynchronously
 (function (d, s, id) {
   var js,
     fjs = d.getElementsByTagName(s)[0];
@@ -288,11 +292,15 @@ function login() {
 /////////// LOGOUT ///////////
 logoutBtn &&
   logoutBtn.addEventListener("click", function () {
+    FB.logout(function (response) {
+      console.log("facebook logged out");
+    });
     window.localStorage.removeItem("LoginID");
     window.localStorage.removeItem("LoginNAME");
-    fetch(`/shanshan/memberLogin/logout`).then((response) =>
-      console.log(response)
-    );
+    fetch(`/shanshan/memberLogin/logout`).then((response) => {
+      console.log(response);
+      window.location.href = "../index/index.jsp";
+    });
   });
 
 /////////////////////////////////////

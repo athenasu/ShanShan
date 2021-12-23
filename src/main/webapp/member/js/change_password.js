@@ -17,6 +17,9 @@ changePasswordBtn.addEventListener("click", function () {
       body: JSON.stringify({
         memberPassword,
       }),
+    }).then((body) => {
+      console.log(body);
+      window.location.href = "../index/index.jsp";
     });
   }
 });
