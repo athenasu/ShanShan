@@ -5,7 +5,7 @@
   text-align: center;
   font: 15px/1em inherit;
   color: #545a5c;
-  min-height: 28rem;/*new*/
+  min-height: 23rem;/*new*/
   /*height: 28rem; new*/
   margin-top: 1.8rem;
   width: 25rem;
@@ -43,13 +43,13 @@
   transform-origin: center center;
 }
 .calendar header .btn-prev {
-  top: 0;
-  left: 0;
+  top: 15px;
+  left: 25px;
   transform: rotate(-180deg);
 }
 .calendar header .btn-next {
-  top: 0;
-  right: 0;
+  top: 15px;
+  right: 25px;
 }
 
 .calendar header .btn-next::before {
@@ -76,9 +76,12 @@
   font-size: 1.2em;
   font-weight: 600;
 }
+
 .calendar td {
-  padding: 0.8em 0.1em;
+ /*new padding: 0.8em 0.1em;*/
+  padding:0.4em 0em
 }
+
 .calendar .day {
   position: relative;
   display: inline-block;
@@ -88,6 +91,7 @@
   border-radius: 50%;
   border: 2px solid transparent;
   cursor: pointer;
+  box-sizing: border-box;
 }
 .calendar .day:hover {
   border: 2px solid #6691cc;

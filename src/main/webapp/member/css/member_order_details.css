@@ -442,6 +442,18 @@ button {
   z-index: 100;
   transition: all 0.5s;
 }
+.overlay-done{
+	top:-500px;
+    left: -1000px;
+    width: 200vw; /*new*/
+    height: 200vh; /*new*/
+	
+}
+
+.overlay_solution{
+  overflow:hidden;
+  height:100vh;
+}
 
 .btn--close-modal-done,
 .btn--close-modal-intransit,
@@ -459,7 +471,8 @@ button {
 }
 
 .hidden {
-  visibility: hidden;
+  /*visibility: hidden; new*/
+  display:none;
   opacity: 0;
 }
 
@@ -605,3 +618,4 @@ button {
 .shipping-info button {
   margin-top: 0.7rem;
 }
+
