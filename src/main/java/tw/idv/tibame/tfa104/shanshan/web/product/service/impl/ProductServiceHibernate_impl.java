@@ -26,12 +26,17 @@ public class ProductServiceHibernate_impl implements  ProductServiceHibernate{
 	@Override
 	public List<ProductBO> findById(Integer productId) {
 		List <ProductBO> proId = dao.findById(productId);
-		for(ProductBO pro :proId) {
-			pro.setPicStr(Base64.getEncoder().encodeToString(pro.getProductImg()));
-		}
+//		for(ProductBO pro :proId) {
+//			pro.setPicStr(Base64.getEncoder().encodeToString(pro.getProductImg()));
+//		}
 		return proId;
 	}
-
+	
+	@Override
+	public List<ProductBO> findByDesId(Integer prodesId) {
+		List <ProductBO> prodesIdlist = dao.findByDesId(prodesId)
+;		return prodesIdlist;
+	}
 	@Override
 	public List<ProductBO> findNew() {
 		List <ProductBO> newList = dao.findNew();
@@ -85,6 +90,7 @@ public class ProductServiceHibernate_impl implements  ProductServiceHibernate{
 		}
 		return allList;
 	}
+
 
 
 

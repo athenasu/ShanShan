@@ -1,8 +1,8 @@
-   $('input.shopPwd').on("keyup",function(e){
-        if(e.which == 13){
-            $(".middlelogin").click();
-        }
-    });
+//    $('input.shopPwd').on("keyup",function(e){
+//         if(e.which == 13){
+//             $(".middlelogin").click();
+//         }
+//     });
     // const loginBtn = document.querySelector(".middlelogin")
     $('.middlelogin').click(function(){
         const companyEmail = document.querySelector(".shopAcc").value;
@@ -27,26 +27,8 @@
             })
             .then((body) => {
                 console.log("in second then");
-                console.log(body);//didn't show in console
+                console.log(body);
             })
-        // $.ajax({
-        //     url:`/shanshan/company/login`,
-        //     type:"POST",
-        //     dataType:"json",
-        //     data:{
-        //         companyEmail,
-        //         companyPassword
-        //     },
-        //     success: function(data){
-        //         console.log("login success");
-        //         if(data.success){
-        //             var companyId = data.attr.company.companyId;
-        //             sessionStorage.companyId = companyId;
-        //             window.location.href = 'http://localhost/shanshan/company/company_backend_page.html'
-        //         }
-
-        //     }
-        // })
         
         
         }

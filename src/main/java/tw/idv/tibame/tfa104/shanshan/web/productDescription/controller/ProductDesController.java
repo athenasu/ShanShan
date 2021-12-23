@@ -22,7 +22,7 @@ public class ProductDesController {
 		
 	}
 
-	@GetMapping("findByPK")
+	@GetMapping("findByPK")//單一商品全部資訊
 	public List<FindByProductIdBO> findByPK (Integer prodesId){
 		return service.findByPK(prodesId);
 	}

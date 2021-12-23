@@ -16,9 +16,14 @@ public class ProductControllerHibernate {
 	@Autowired
 	private ProductServiceHibernate service;
 
-	@GetMapping("findById")//跟productdes proimg重複
+	@GetMapping("findById")
 	public List<ProductBO> findById(Integer productId) {
 		return service.findById(productId);
+	}
+	
+	@GetMapping("findByDesId")
+	public List<ProductBO> findByDesId(Integer prodesId){
+		return service.findByDesId(prodesId);
 	}
 	
 	@GetMapping("findNew")

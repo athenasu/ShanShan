@@ -63,9 +63,6 @@ public class CompanyVO implements Serializable{
 	@Transient
 	private String picStr;
 	
-	@Transient
-	private String picStr2;
-	
 	public CompanyVO() {
 		super();
 	}
@@ -196,27 +193,16 @@ public class CompanyVO implements Serializable{
 		this.picStr = picStr;
 	}
 
-
-	public String getPicStr2() {
-		return picStr2;
-	}
-
-
-	public void setPicStr2(String picStr2) {
-		this.picStr2 = picStr2;
-	}
-
-
-	@Override
-	public String toString() {
-		return "CompanyVO [companyId=" + companyId + ", companyName=" + companyName + ", companyEmail=" + companyEmail
-				+ ", companyPassword=" + companyPassword + ", companyPhone=" + companyPhone + ", companyCell="
-				+ companyCell + ", companyRegisterDate=" + companyRegisterDate + ", companyCetificate="
-				+ Arrays.toString(companyCetificate) + ", companyBanner=" + Arrays.toString(companyBanner)
-				+ ", companyIntro=" + companyIntro + ", companyOwner=" + companyOwner + ", companyAddress="
-				+ companyAddress + ", companyStatus=" + companyStatus + ", picStr=" + picStr + ", picStr2=" + picStr2
-				+ "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "CompanyVO [companyId=" + companyId + ", companyName=" + companyName + ", companyEmail=" + companyEmail
+//				+ ", companyPassword=" + companyPassword + ", companyPhone=" + companyPhone + ", companyCell="
+//				+ companyCell + ", companyRegisterDate=" + companyRegisterDate + ", companyCetificate="
+//				+ Arrays.toString(companyCetificate) + ", companyBanner=" + Arrays.toString(companyBanner)
+//				+ ", companyIntro=" + companyIntro + ", companyOwner=" + companyOwner + ", companyAddress="
+//				+ companyAddress + ", companyStatus=" + companyStatus + ", picStr=" + picStr
+//				+ "]";
+//	}
 	
 	
 

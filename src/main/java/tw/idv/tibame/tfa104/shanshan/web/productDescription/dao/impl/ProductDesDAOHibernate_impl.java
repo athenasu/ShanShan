@@ -41,6 +41,7 @@ public class ProductDesDAOHibernate_impl implements ProductDesDAOHibernate {
 	}
 
 	@Override
+	//單一商品全部資訊
 	public List<FindByProductIdBO> findByPK(Integer prodesId) {
 		Session session = sessionFactory.getCurrentSession();
 		List <FindByProductIdBO> prodes 
@@ -49,7 +50,9 @@ public class ProductDesDAOHibernate_impl implements ProductDesDAOHibernate {
 				+ "d.product_size as productSize, d.product_stock as proDesStock,"
 				+ "d.product_color as productColor,d.product_price as productPrice,"
 				+ "i.product_img as productImg,d.status as status,"
-				+ "p.product_intro as productIntro "
+				+ "p.product_intro as productIntro,"
+				+ "i.product_img_id as productImgId,"
+				+ "p.product_type as productType "
 				+ "from ShanShan.product_description as d "
 				+ "JOIN product as p on p.product_id = d.product_id "
 				+ "JOIN product_img as i on i.product_des_id = d.product_des_id " 

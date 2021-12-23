@@ -107,6 +107,8 @@ div.body_container div.product {
   width: calc(100% - 200px - 60px);
   padding: auto;
 }
+table.prolisttableDown,
+table.prolisttable,
 table.productlist {
   max-width: 100%;
   padding: 5px 8px;
@@ -891,19 +893,143 @@ button.downShelf:hover {
 /* ------- 修改上下架button結束--------*/
 
 /* -------商品變更詳情開始--------*/
-/* table.productlist {
+#prodes,
+#prodesDown {
   border: 1px solid gray;
   border-collapse: collapse;
   width: 100%;
 }
 
-table.productlist th {
+#prodes th,
+#prodesDown th {
   border: 1px solid gray;
   padding: 1px 4px;
 }
-table.productlist td {
+#prodes td,
+#prodesDown td {
   border: 1px solid gray;
   text-align: center;
   padding: 1px 4px;
-} */
-/* ------- 商品詳情結束--------*/
+}
+/* ------- 商品詳情結束 --------*/
+/* ------- 商品內容更新 --------- */
+div.proinfo {
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 10px 20px 80px 20px;
+}
+div.proinfo p {
+  text-align: center;
+  color: rgb(40, 83, 107);
+  font-weight: bold;
+}
+div.body_container div.wrapper {
+  background-color: white;
+  text-align: center;
+  width: 200px;
+  margin-right: 30px;
+}
+div.body_container div.proinfo {
+  background-color: white;
+  border: 1px solid gray;
+  border-collapse: collapse;
+  width: calc(100% - 200px - 150px);
+  padding: auto;
+}
+
+div.leftinfo div {
+  color: rgb(40, 83, 107);
+  padding: 0px 0px 0px 5px;
+  font-size: 16px;
+  height: 30px;
+  margin-top: 10px;
+  width: 380px;
+}
+label.sizepick {
+  padding-right: 10px;
+}
+input.proid,
+input.proname,
+input.proprice,
+input.color,
+input.stock {
+  width: 200px;
+  font-size: 14px;
+}
+div.leftinfo,
+div.rightinfo {
+  display: inline-block;
+  /* border: 1px solid red; */
+  vertical-align: top;
+}
+div.rightinfo {
+  padding-top: 6px;
+  width: 410px;
+  /* height: 1500px; */
+}
+/* banner begin */
+/* div.bannerupload,
+div.bannerupload2,
+div.bannerupload3,
+div.bannerupload4,
+div.bannerupload5 {
+  height: 150px;
+}
+div.bannerupload2,
+div.bannerupload3,
+div.bannerupload4,
+div.bannerupload5 {
+  margin-top: 150px;
+}
+*/
+span.bannertext {
+  position: relative;
+  font-size: 16px;
+  color: rgb(40, 83, 107);
+}
+
+input.upload_pro {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+label.probanner {
+  position: relative;
+  color: rgb(109, 150, 173);
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 2px 6px;
+  cursor: pointer;
+}
+li img.probanner {
+  max-height: 250px;
+}
+ul.proimg {
+  list-style: none;
+  margin-top: 5px;
+  padding-top: 5px;
+  min-height: 250px;
+  color: lightgray;
+  border: 2px dashed rgb(109, 150, 173);
+}
+span.pictext {
+  padding: 0px 120px 0px 170px;
+}
+/* banner end  */
+textarea.prointro {
+  resize: none;
+  position: relative;
+  /* margin: 20px 0px 0px 0px; */
+  width: 350px;
+  height: 150px;
+  color: rgb(40, 83, 107);
+}
+
+/* ------- 商品內容更新結束 --------- */
