@@ -10,10 +10,10 @@ html {
 body {
   margin: 0;
   padding: 0;
-  height: 100%; /*new*/
-  min-height: 100%; /*new*/
+  height: 100%;
+  min-height: 100%;
   width: 100%;
-  background: #fef5ed;
+  /* background: #fef5ed; */
   color: rgb(45, 75, 77);
 }
 ul {

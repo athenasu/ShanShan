@@ -64,7 +64,7 @@ public class MemberLoginController {
 		if (session != null) {
 			session.invalidate();
 		}
-		return new RedirectView("../index/index.jsp");
+		return new RedirectView("../index/index.jsp"); // this won't work and will only work from the front end, because we are using fetch
 	}
 
 	@PostMapping("forgotPasswordCheckEmail")

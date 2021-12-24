@@ -461,20 +461,19 @@ button {
   transition: all 0.5s;
 }
 
-
-.overlay{
-	top:-500px;
-    left: -1000px;
-    width: 200vw; /*new*/
-    height: 200vh; /*new*/
-	
+.overlay,
+.overlay-article,
+.overlay-part {
+  top: -500px;
+  left: -1000px;
+  width: 200vw; /*new*/
+  height: 200vh; /*new*/
 }
 
-.overlay_solution{
-  overflow:hidden;
-  height:100vh;
+.overlay_solution {
+  overflow: hidden;
+  height: 100vh;
 }
-
 
 .btn--close-modal,
 .btn--close-modal-article,
@@ -493,7 +492,7 @@ button {
 
 .hidden {
   /*visibility: hidden; new*/
-  display:none;
+  display: none;
   opacity: 0;
 }
 
@@ -792,4 +791,3 @@ button {
   background-color: #c5c5c5;
   color: white;
 }
-

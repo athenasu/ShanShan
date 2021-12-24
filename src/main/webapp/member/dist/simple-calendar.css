@@ -5,7 +5,7 @@
   text-align: center;
   font: 15px/1em inherit;
   color: #545a5c;
-  min-height: 23rem;/*new*/
+  min-height: 23rem; /*new*/
   /*height: 28rem; new*/
   margin-top: 1.8rem;
   width: 25rem;
@@ -78,8 +78,8 @@
 }
 
 .calendar td {
- /*new padding: 0.8em 0.1em;*/
-  padding:0.4em 0em
+  /*new padding: 0.8em 0.1em;*/
+  padding: 0.4em 0em;
 }
 
 .calendar .day {
@@ -137,6 +137,7 @@
   box-sizing: border-box;
 }
 .calendar .event-container .event-wrapper {
+  padding-top: 4rem;
   overflow-y: auto;
   max-height: 100%;
 }
@@ -167,8 +168,8 @@
 .calendar .event-container .event {
   position: relative;
   width: 100%;
-  /*padding: 1em;*/
-  /*margin-bottom: 1em;*/
+  padding: 1em;
+  margin-bottom: 0.5rem;
   background: #6691cc;
   border-radius: 4px;
   box-sizing: border-box;
@@ -177,7 +178,7 @@
   color: white;
 }
 .calendar .event-container .event-date {
-    /*margin-bottom: 1em;*/
+  /*margin-bottom: 1em;*/
 }
 .calendar .event-container .event-hour {
   float: right;

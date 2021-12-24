@@ -12,6 +12,10 @@ a:active {
   color: inherit;
 }
 
+button {
+  outline: none;
+}
+
 .user-info h2,
 .user-info p,
 .square2 h2 {
@@ -27,13 +31,14 @@ a:active {
   opacity: 0.8;
 }
 
-.member_main {
+.member-main {
   font-family: "Roboto", sans-serif;
   min-height: 100vh;
   background: #fef5ed;
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: calc(100% - 120px); /*new*/
 }
 
 .member_profile {
@@ -55,21 +60,12 @@ a:active {
 
 .user {
   /* border: 1px green solid; */
-  /*position: absolute;  */ /*new*/
-  display: flex;
-  justify-content: center; /*new*/
-  flex-direction: column;
-  width: 180px; /*new*/
-  height: 275px; /*new*/
-}
-/* .user {
-  border: 1px green solid;
-  position: absolute;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 18%;
-} */
+}
 
 .user-info {
   /* border: 1px red solid; */
@@ -78,30 +74,10 @@ a:active {
 }
 
 .glass {
-  background: blacks;
-  /*min-height: 70vh;*/ /*new*/
-  /* need to check width */
-  width: 100%; /*new*/
-  /* didn't have margin-top before */
-  /*margin-top: 115px;*/ /*new*/
-  background: linear-gradient(
-    to right bottom,
-    rgba(255, 255, 255, 0.7),
-    rgba(255, 255, 255, 0.3)
-  );
-  margin-top: 40px;
-  backdrop-filter: blur(2rem);
-  border-radius: 1rem;
-  z-index: 1;
-  display: flex;
-  justify-content: center; /*new*/
-}
-
-/* .glass {
   background: white;
-  min-height: 70vh;
   width: 85%;
-  margin-top: 40px;
+  /* didn't have margin-top before */
+  margin-top: 25px;
   background: linear-gradient(
     to right bottom,
     rgba(255, 255, 255, 0.7),
@@ -112,41 +88,22 @@ a:active {
   border-radius: 1rem;
   z-index: 1;
   display: flex;
-} */
+}
 
 .dashboard {
-  max-width: 300px; /*new*/
-  width: 300px; /*new*/
-  height: 550px; /*new*/
-  /*flex: 1;*/ /*new*/
-  display: flex; /*this is needed because we need to use align-items*/
-  /*flex-direction: column;*/ /*new*/
-  /*align-items: center;*/ /*new*/
-  justify-content: center; /*new*/
-  flex-wrap: wrap; /*new*/
-  text-align: center;
-  background: linear-gradient(
-    to right bottom,
-    rgba(255, 255, 255, 0.7),
-    rgba(255, 255, 255, 0.3)
-  );
-  border-radius: 1rem;
-  background-color: rgb(241, 235, 215); /*new*/
-  padding-bottom: 20px; /*new*/
-}
-/* .dashboard {
   flex: 1;
-  display: flex;
+  display: flex; /*this is needed because we need to use align-items*/
   flex-direction: column;
   align-items: center;
   text-align: center;
+  /* border: 1px blue solid; */
   background: linear-gradient(
     to right bottom,
     rgba(255, 255, 255, 0.7),
     rgba(255, 255, 255, 0.3)
   );
   border-radius: 1rem;
-} */
+}
 
 /* SIDE MENU */
 .links {
@@ -222,7 +179,7 @@ a:active {
   /*flex-direction: column;*/ /*new*/
   /*margin: 1.5rem;*/ /*new*/
   /*padding: 0;*/ /*new*/
-  border: 2px dashed rgb(187, 177, 147);
+  /* border: 2px dashed rgb(187, 177, 147); */
   border-left: none; /*new*/
   display: flex; /*new*/
   justify-content: left; /*new*/
@@ -284,7 +241,7 @@ a:active {
 }
 /*new*/
 .calendar {
-  border: 2px dashed rgb(187, 177, 147); /*new*/
+  border: 2px dashed rgb(187, 177, 147);
 }
 
 /*new*/
@@ -305,7 +262,7 @@ a:active {
 /*new*/
 .squares {
   position: relative; /*new*/
-  border: 2px solid rgb(187, 177, 147); /*new*/
+  /* border: 2px solid rgb(187, 177, 147); */
 }
 .square1,
 .square2 {

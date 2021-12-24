@@ -100,6 +100,7 @@ loginSubmitBtn &&
           $("div.login_modal_email").addClass("-none");
           $("input.logout_modal_button").removeClass("-none");
           $("input.login_modal_button").addClass("-none");
+          $("input.register_button").addClass("-none");
         } else {
           console.log("Login unsuccessful");
         }
