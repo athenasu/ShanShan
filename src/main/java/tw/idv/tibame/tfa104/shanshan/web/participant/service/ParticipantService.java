@@ -13,4 +13,6 @@ public interface ParticipantService {
 
 	List<Participant> selectParticipantByMemberId(Integer memberId, Integer eventId);
 
+	Boolean deleteParticipantByMemIdEventId(Integer memberId, Integer eventId);
+
 }

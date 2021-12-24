@@ -10,5 +10,4 @@ public interface ParticipantDAO {
 	Integer updateParticipant(Participant participant);
 	List<Participant> selectParticipantByMemberId(Integer memberId, Integer eventId);
 	Integer deleteParticipantByMemIdEventId(Integer memberId, Integer eventId);
-
 }

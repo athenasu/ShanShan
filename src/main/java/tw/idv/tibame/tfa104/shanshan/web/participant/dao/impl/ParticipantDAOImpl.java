@@ -37,6 +37,7 @@ public class ParticipantDAOImpl implements ParticipantDAO{
 		return 1;
 	}
 	
+	
 	@Override
 	public List<Participant> selectParticipantByMemberId(Integer memberId, Integer eventId){
 		Session session = sessionFactory.getCurrentSession();

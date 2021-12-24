@@ -110,6 +110,7 @@ $(document).on("click", "button.submit_btn", function () {
             },
             success: function (data) {
                 console.log("send data successfully")
+                window.location.href = "event.html";
             }
         })
     }

@@ -1,19 +1,19 @@
 // var login_memberId = 1;
 const login_memberId = window.localStorage.getItem("LoginID");
 const login_memberName = window.localStorage.getItem("LoginNAME");
-$(document).on("click", function(){
+$(document).on("click", function () {
     $(".lightbox-target").removeClass("-on")
     $(".lightbox-target2").removeClass("-on")
     $(".lightbox-target3").removeClass("-on")
 })
 
-$(document).on("click", "div.lightbox-target", function(e){
+$(document).on("click", "div.lightbox-target", function (e) {
     e.stopPropagation()
 })
-$(document).on("click", "div.lightbox-target2", function(e){
+$(document).on("click", "div.lightbox-target2", function (e) {
     e.stopPropagation()
 })
-$(document).on("click", "div.lightbox-target3", function(e){
+$(document).on("click", "div.lightbox-target3", function (e) {
     e.stopPropagation()
 })
 
@@ -369,24 +369,26 @@ $(document).ready(function () {
                 $("button.edit_btn").removeClass("-none")
             }
             //=========================== GET EVENT REPORT BY MEMBER&EVENT FROM DATABASE ===========================
-            $.ajax({
-                url: "../eventReport/selectEventReportByMemberId",
-                type: "GET",
-                data: {
-                    "memberId": login_memberId,          //set as 1 for test, need to get the login memberId
-                    "eventId": data[0].eventId
-                },
-                dataType: "json",
-                beforeSend: function () {
+            if (login_memberId != "null") {
+                $.ajax({
+                    url: "../eventReport/selectEventReportByMemberId",
+                    type: "GET",
+                    data: {
+                        "memberId": login_memberId,          //set as 1 for test, need to get the login memberId
+                        "eventId": data[0].eventId
+                    },
+                    dataType: "json",
+                    beforeSend: function () {
 
-                },
-                success: function (data) {
-                    // console.log(data);
-                    if (data.length != 0) {
-                        $("button.event_report_btn").attr("disabled", true)
+                    },
+                    success: function (data) {
+                        // console.log(data);
+                        if (data.length != 0) {
+                            $("button.event_report_btn").attr("disabled", true)
+                        }
                     }
-                }
-            })
+                })
+            }
 
             //=========================== GET EVENT WISHLIST BY MEMBER&EVENT FROM DATABASE ===========================
             $.ajax({
@@ -437,14 +439,14 @@ $(document).ready(function () {
                         const blob = new Blob([u8Array]);
                         const url = URL.createObjectURL(blob);
                         if (login_memberId == item.memberId) {
-                            event_msg_html += "<div class='event_msg' data-eventmsgid='"+ item.eventMsgId +"'>";
+                            event_msg_html += "<div class='event_msg' data-eventmsgid='" + item.eventMsgId + "'>";
                             event_msg_html += "<img class='member_pic' src='" + url + "'>";
                             event_msg_html += "<li class='member_name' data-msgownerid='" + item.memberId + "'>" + item.memberName + "：</li>";
                             event_msg_html += "<li class='msg_content'>" + item.msgContent + "</li>";
                             event_msg_html += "<button class='msg_report_btn -none'>Report</button>";
                             event_msg_html += "</div>";
                         } else {
-                            event_msg_html += "<div class='event_msg' data-eventmsgid='"+ item.eventMsgId +"'>";
+                            event_msg_html += "<div class='event_msg' data-eventmsgid='" + item.eventMsgId + "'>";
                             event_msg_html += "<img class='member_pic' src='" + url + "'>";
                             event_msg_html += "<li class='member_name' data-msgownerid='" + item.memberId + "'>" + item.memberName + "：</li>";
                             event_msg_html += "<li class='msg_content'>" + item.msgContent + "</li>";
@@ -610,9 +612,9 @@ $(document).on("click", "button.send_btn", function () {
     })
 })
 
-$(document).on("click", "button.delete_btn", function(){
+$(document).on("click", "button.delete_btn", function () {
     let r = confirm("確定刪除?")
-    if(r == true){
+    if (r == true) {
         $.ajax({
             url: "../event/updateEvent",
             type: "PUT",
@@ -669,6 +671,7 @@ $(document).on("click", "button.join_btn", function (e) {
                         <input type="text" class="total_participants" name="total_participants" value="${data[0].totalParticipants}">
                         <button class="edit_participants_btn">送出修改</button>
                         <button class="cancel_participate">返回</button>
+                        <button class="quit">退出</button>
                     </div>
                     `
                         $("div.lightbox-target").html(has_participated);
@@ -732,7 +735,7 @@ $(document).on("click", "button.send_participants_btn", function () {
         contentType: 'application/json',
         data: JSON.stringify({
             "eventId": $("li.event_id").val(),
-            "memberId": 63,
+            "memberId": login_memberId,
             "experience": $("select.experience").val(),
             "phoneNumber": $("input.phone_number").val(),
             "joinDate": new Date().toISOString(),
@@ -813,7 +816,7 @@ $(document).on("click", "button.edit_participants_btn", function () {
                 contentType: 'application/json',
                 data: JSON.stringify({
                     "eventId": $("li.event_id").val(),
-                    "memberId": member_id,                                                      //set as 1 for test
+                    "memberId": $("li.event_owner").data("ownerid"),                                                      //set as 1 for test
                     "mountainId": $("#mountain_id").val(),
                     "eventName": $("input.event_name").val(),
                     "eventDays": $("input.event_days").val(),
@@ -837,6 +840,61 @@ $(document).on("click", "button.edit_participants_btn", function () {
         }
     })
 })
+//========================== QUIT ============================
+$(document).on("click", "button.quit", function () {
+    let r = confirm("確定退出?");
+    if (r == true) {
+        $.ajax({
+            url: "../participant/deleteParticipantByMemIdEventId",
+            type: "POST",
+            contentType: 'application/json',
+            data: JSON.stringify({
+                "eventId": $("li.event_id").val(),
+                "memberId": login_memberId,
+            }),
+            dataType: "json",
+            beforeSend: function () {
+            },
+            success: function (data) {
+                var member_id = 1;
+                var event_status = 2;
+                var event_points = 10;
+                var pre_calculate = (parseInt($("li.event_cur_part").val()) - parseInt($("input.original_participants").val()));
+                var event_cur_part = (pre_calculate + parseInt($("input.total_participants").val()));
+
+                //========= UPDATE EVENT_CUR_PART AFTER UPDATE PARTICIPANTS =========
+                $.ajax({
+                    url: "../event/updateEvent",
+                    type: "PUT",
+                    contentType: 'application/json',
+                    data: JSON.stringify({
+                        "eventId": $("li.event_id").val(),
+                        "memberId": $("li.event_owner").data("ownerid"),                                                      //set as 1 for test
+                        "mountainId": $("#mountain_id").val(),
+                        "eventName": $("input.event_name").val(),
+                        "eventDays": $("input.event_days").val(),
+                        "difficulty": $("#difficulty").val(),
+                        "eventDeadline": $("input.event_deadline").val(),
+                        "eventStartDate": $("input.event_start_date").val(),
+                        "stayType": $("#stay_type").val(),
+                        "minNumOfPeople": $("input.min_num_of_people").val(),
+                        "maxNumOfPeople": $("input.max_num_of_people").val(),
+                        "assemblingPlace": $("input.assembling_place").val(),
+                        "eventContent": $("textarea.event_content").val(),
+                        "eventStatus": event_status,
+                        "eventPoints": event_points,
+                        "eventCurPart": pre_calculate
+                    }),
+                    success: function (data) {
+                        $(".lightbox-target").removeClass("-on")
+                        // console.log(event_cur_part)
+                    }
+                })
+            }
+        })
+    }
+})
+
 
 //=========================== SEND EVENT_MSG TO DATABASE ===========================
 $(document).on("click", "button.add_msg_btn", function () {
@@ -869,26 +927,39 @@ $(document).on("click", "button.add_msg_btn", function () {
                 //================= GET MEMBER ID, MEMBER NAME, MEMBERPIC FROM DATABASE ==============
                 // console.log("123");
                 $.ajax({
-                    url: "../member/findMemberByIdForEventMsg",
+                    url: `../member/findMemberByIdForEventMsg?memberId=${login_memberId}`,
                     type: "GET",
                     contentType: 'application/json',
-                    data: JSON.stringify({
-                        "memberId": login_memberId,
-                    }),
+                    // data: JSON.stringify({
+                    //     "memberId": login_memberId
+                    // }),
                     success: function (data) {
-                        console.log(data)
+                        console.log(typeof (data.memberProfilePic))
+
+                        var bytes = new Uint8Array(data.memberProfilePic);
+                        var blob = new Blob([bytes], { type: "image/png" });
+                        var url = URL.createObjectURL(blob);
+
+                        // const bytesStr = atob(data.mamberProfilePic);
+                        // let len = bytesStr.length;
+                        // const u8Array = new Uint8Array(len);
+                        // while (len--) {
+                        //     u8Array[len] = bytesStr.charCodeAt(len);
+                        // }
+                        // const blob = new Blob([u8Array]);
+                        // const url = URL.createObjectURL(blob);
+
                         $("div.event_msg_list").prepend(`
-                                <ul class="event_msg">
-                                    <img class="member_pic" src="#">
+                                <div class="event_msg">
+                                    <img class="member_pic" src="${url}">
                                     <li class="member_name">${login_memberName}：</li>
                                     <li class="msg_content">${$("input.add_msg").val()}</li>
                                     <button class="msg_report_btn -none">Report</button>
-                                </ul>
+                                </div>
                         `)
                         $("input.add_msg").val("");
                     }
                 })
-
             }
         })
     }
@@ -896,16 +967,16 @@ $(document).on("click", "button.add_msg_btn", function () {
 
 $(document).on("click", "button.msg_report_btn", function (e) {
     e.stopPropagation()
-    if (login_memberId != "undefined") {
+    if (login_memberId != "null") {
         $(".lightbox-target3").addClass("-on")
         $("div.msg_report_content").attr("data-eventmsgid", $(this).closest("div").data("eventmsgid"))
-    }else {
+    } else {
         $("div.login_modal_bcg").removeClass("-none");
         $("div.login_modal").removeClass("-none");
     }
 })
 
-$(document).on("click", "button.send_msg_report_btn", function(){
+$(document).on("click", "button.send_msg_report_btn", function () {
     let that = this;
     console.log($("div.msg_report_content").data("eventmsgid"))
     console.log($("div.msg_report_content").data("reporttype"))
@@ -921,8 +992,8 @@ $(document).on("click", "button.send_msg_report_btn", function(){
                 "reportReason": $("div.msg_report_content").data("reporttype"),
                 "reportDate": new Date().toISOString(),
                 "caseStatus": 1,
-                "eventMsgID":$("div.msg_report_content").data("eventmsgid"),
-                "actMsgID":1
+                "eventMsgID": $("div.msg_report_content").data("eventmsgid"),
+                "actMsgID": 1
             }),
             dataType: "json",
             beforeSend: function () {

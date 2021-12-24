@@ -348,10 +348,11 @@ $(document).on("click", "div.event_display", function () {
 $(document).on("click", "button.create_event", function () {
     console.log(login_memberId)
     console.log("123")
-    if (login_memberId == "undefined") {
-
-    } else {
+    if (login_memberId != "null") {
         window.location.href = "eventpost.html";
+    } else {
+        $("div.login_modal_bcg").removeClass("-none");
+        $("div.login_modal").removeClass("-none");
     }
 })
 
