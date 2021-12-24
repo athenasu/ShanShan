@@ -29,6 +29,10 @@ $(function(){
       buttons:{
         "是":function(){
           $(this).dialog("close");
+          fetch(`/shanshan/company/logout`)
+          .then((response) =>
+          console.log(response)
+          );
         },
         "否":function(){
           $(this).dialog("close");
@@ -50,7 +54,7 @@ $(function(){
     //登入後接收到的companyId
     // let unship = { orderStatus: 1, companyId :}
     $.ajax({
-	      url:`/shanshan/companyOrder/findByOrderStatus?orderStatus=1&companyId=1`,
+	      url:`/shanshan/companyOrder/findByOrderStatus?orderStatus=1`,
         //url:"shanshan/companyOrder/findByOrderStatus"
 	      type:"GET",
 	      dataType:"json",
@@ -71,6 +75,7 @@ $(function(){
           "url":"https://cdn.datatables.net/plug-ins/1.11.3/i18n/zh_Hant.json"
         },
         "aaData":data,
+        "order":[[ 0, "desc" ]],
         "columns":[
           {'data':'order_id'},
           {'data':'order_member_name'},
@@ -200,7 +205,7 @@ $(function(){
                 title:"確認出貨",
                 buttons:{
                   "確認出貨":function(){
-                    if($('#shipnumber') != null){
+                    if($('#shipnumber').val() != null && $('#shipnumber').val() != ""){
                         //insert shipNumber
                         let ship_number = document.querySelector("#shipnumber").value;
                         let order_id = document.querySelector(".conOrderid").value;

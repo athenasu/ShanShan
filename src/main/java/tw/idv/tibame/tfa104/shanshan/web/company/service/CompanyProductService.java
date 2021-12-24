@@ -4,12 +4,14 @@ import java.util.List;
 
 import tw.idv.tibame.tfa104.shanshan.web.core.Core;
 import tw.idv.tibame.tfa104.shanshan.web.product.entity.Product;
+import tw.idv.tibame.tfa104.shanshan.web.product.entity.ProductBO;
 import tw.idv.tibame.tfa104.shanshan.web.productDescription.entity.FindByProductIdBO;
 import tw.idv.tibame.tfa104.shanshan.web.productDescription.entity.ProductDesVO;
 import tw.idv.tibame.tfa104.shanshan.web.productImg.entity.ProductImgVO;
 
 public interface CompanyProductService {
-	
+	//單一店家商品列表
+	List<ProductBO> findByCompanyId(Integer companyId);
 	//單一店家更新商品上下架狀態
     public Core updateProDesStatusOfShelf(Integer prodesStatus, Integer prodesId, Core core);
     //=========================================================

@@ -2,6 +2,8 @@ package tw.idv.tibame.tfa104.shanshan.web.company.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,21 +24,34 @@ public class CompanyOrderController {
 	@Autowired
 	private CompanyOrderService service;
 	
-	//單一店家找所有訂單
+	//單一店家找所有訂單session
 	@GetMapping("findAllOrdersByComId")
-	public List<Order> findAllOrdersByComId(Integer companyId){
-		return service.findAllByComId(1);
+	public List<Order> findAllOrdersByComId(HttpSession session){
+		Integer companyId = (Integer)session.getAttribute("companyId");
+		System.out.println(companyId);
+		return service.findAllByComId(companyId);
+		
 	}
+	
+//	@GetMapping("findAllOrdersByComId")
+//	public List<Order> findAllOrdersByComId(Integer companyId){
+//		return service.findAllByComId(1);
+//	}
+	
 	//單一店家找未出貨訂單
 	@GetMapping("findByOrderStatus")
-	public List<Order> findAllByOrderStatus(Integer orderStatus,Integer companyId){
-		return service.findAllByOrderStatus(orderStatus, companyId);
+	public List<Order> findAllByOrderStatus(Integer orderStatus,HttpSession session){
+		Integer companyId = (Integer)session.getAttribute("companyId");
+		List<Order> company = service.findAllByOrderStatus(orderStatus, companyId);
+		return company;
 	}
 
 	//查詢單一店家已出貨訂單（非狀態0取消、1訂單成立、6退貨)
 	@GetMapping("findAllShipped")
-	public List<Order> findAllShippedByComId(Integer companyId){
-		return service.findAllShippedByComId(companyId);
+	public List<Order> findAllShippedByComId(HttpSession session){
+		Integer companyId = (Integer)session.getAttribute("companyId");
+		List<Order> company = service.findAllShippedByComId(companyId);
+		return company;
 	}
 	//查詢特定訂單的訂單明細BO
 	@GetMapping("findDesByOrderId")

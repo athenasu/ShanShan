@@ -27,6 +27,7 @@ public class CompanyOrderServiceImpl implements CompanyOrderService {
 	
 	@Override
 	public List<Order> findAllByComId(Integer companyId) {
+		System.out.println(companyId);
 		return orderDao.findAllByComId(companyId);
 	}
 

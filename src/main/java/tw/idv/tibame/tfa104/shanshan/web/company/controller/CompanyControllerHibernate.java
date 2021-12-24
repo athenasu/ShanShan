@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.view.RedirectView;
 
 import tw.idv.tibame.tfa104.shanshan.web.company.entity.CompanyVO;
 import tw.idv.tibame.tfa104.shanshan.web.company.service.CompanyServiecHibernate;
@@ -24,11 +25,15 @@ public class CompanyControllerHibernate {
 	private CompanyServiecHibernate service;
 	
 	@GetMapping("findByPK")
-	public CompanyVO findByPK (Integer companyId) {
+	public CompanyVO findByPK (HttpSession session) {
+		Integer companyId = (Integer)session.getAttribute("companyId");
 		CompanyVO company = service.findByPK(companyId);
-//		company.setPicStr(Base64.getEncoder().encodeToString(company.getCompanyBanner()));
-//		company.setPicStr2(Base64.getEncoder().encodeToString(company.getCompanyCetificate()));
 		return company;
+	}
+	//for Owen use
+	@GetMapping("findByComId")
+	public CompanyVO findByComId(Integer companyId) {
+		return service.findByPK(companyId);
 	}
 	
 	@GetMapping("findAllCompany")
@@ -42,7 +47,9 @@ public class CompanyControllerHibernate {
 	}
 	
 	@PostMapping(path = "companyUpdate" , consumes = { MediaType.APPLICATION_JSON_VALUE})
-	public CompanyVO companyUpdate(@RequestBody CompanyVO company) {
+	public CompanyVO companyUpdate(@RequestBody CompanyVO company,HttpSession session) {
+		Integer companyId = (Integer)session.getAttribute("companyId");
+		company.setCompanyId(companyId);
 		byte[] file = Base64.getDecoder().decode(company.getPicStr());
 		return service.update(file, company);
 	}
@@ -65,6 +72,7 @@ public class CompanyControllerHibernate {
 	@PostMapping("login")
 	public CompanyVO login(@RequestBody CompanyVO company, HttpSession session) {
 		CompanyVO hadLogged = service.checkLogin(company);
+		//要再加一個確認店家狀態
 		if(hadLogged != null) {
 			System.out.println(hadLogged.getCompanyId());
 			session.setAttribute("companyId", hadLogged.getCompanyId());
@@ -73,6 +81,14 @@ public class CompanyControllerHibernate {
 			return null;
 		}
 		
+	}
+	
+	@RequestMapping("logout")
+	public RedirectView logout(HttpSession session) {
+		if(session != null) {
+			session.invalidate();
+		}
+		return new RedirectView("../index/index.jsp");
 	}
 	
 	

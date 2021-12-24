@@ -27,9 +27,9 @@
             })
             .then((body) => {
                 console.log("in second then");
-                console.log(body);
+                console.log(body);   
             })
-        
+            window.location.replace("../company/company_backend_page.html");
         
         }
     })

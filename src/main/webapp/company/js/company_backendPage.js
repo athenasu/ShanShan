@@ -48,7 +48,7 @@ $(function(){
 
     /* -----------訂單dataTable開始---------- */
     $.ajax({
-        url:"/shanshan/companyOrder/findAllOrdersByComId?companyId=1",
+        url:"/shanshan/companyOrder/findAllOrdersByComId",
         type:"GET",
         dataType:"json",
         success: function(data){
@@ -66,6 +66,7 @@ $(function(){
           "url":"https://cdn.datatables.net/plug-ins/1.11.3/i18n/zh_Hant.json"
         },
         "aaData":data,
+        "order":[[ 0, "desc" ]],
         "columns":[
           {'data':'order_id'},
           {'data':'order_member_name'},

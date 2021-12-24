@@ -71,7 +71,7 @@ $(function(){
         .then((body) => body.json())
         .then((company) => {
           console.log(company);
-          const bytesStr = atob(company.picStr);
+          const bytesStr = atob(company.companyBanner);
           let len = bytesStr.length;
           const u8Array = new Uint8Array(len);
           while(len--){

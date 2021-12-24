@@ -143,47 +143,101 @@ $(function(){
         buttons:{
           "是":function(){
              // step1 帶入companyId 把product建起 回傳productId("名稱種類介紹" 價格)
-             let companyId = 8;
+             // let companyId = 8;
+             let status = 0;
+             let productPrice = document.querySelector(".proprice").value;
              let productName = document.querySelector(".proname").value;
              let productType = document.querySelector('input[name="pType"]:checked').value;
              let productIntro = document.querySelector(".prointro").value;
 
-             // productDescription needed 
-             // let productId = ?
-             let productSize = document.querySelector('input[name="product"]:checked').value;
-             let productColor = document.querySelector(".color").value;
-             let productStock = document.querySelector(".stock").value;
-            
-             // let productDesId 
-            // 先試一個controller
-             
-             fetch(`/shanshan/companyProduct/addproduct` , {
-               //use await 
-               method:"POST",
-               headers:{
-                 "Content-Type":"application/json"
-               },
-               body: JSON.stringify({
-                  companyId,
-                  productName,
-                  productType,
-                  productIntro,
+             console.log(companyId);
+              fetch(`/shanshan/companyProduct/addproduct` , {
+              //use await ? 
+              method:"POST",
+              headers:{
+                "Content-Type":"application/json"
+              },
+              body: JSON.stringify({
+                 companyId,
+                 status,
+                 productPrice,
+                 productName,
+                 productType,
+                 productIntro,
+              }) 
+            })
+            .then(function(response){
+                console.log("in first then");
+                console.log(response);
+                return response.json();
+            })
+            .then((body) => {
+                console.log(body.productId);
+                let productId = body.productId;
+                console.log(productId)
+                // step2 帶入step1建立好的productId 將prodes物件建起("尺寸顏色庫存" 價格不可為空值)
+                let productSize = document.querySelector('input[name="product"]:checked').value;
+                let productColor = document.querySelector(".color").value;
+                let productStock = document.querySelector(".stock").value;
+                let productPrice = document.querySelector(".proprice").value;
+                let status = 0;
+                fetch(`/shanshan/companyProduct/addprodes` , {
+                  method:"POST",
+                  headers:{
+                    "Content-Type":"application/json"
+                  },
+                  body: JSON.stringify({
+                    productId,
+                    productSize,
+                    productColor,
+                    productStock,
+                    productPrice,
+                    status,
+                  })
 
-               }),
-             })
-                // step2 帶入productId 將prodes物件建起("尺寸顏色庫存" 價格不可為空值)
-                // step3 帶入prodesId 建入img( 帶入desId圖檔)
-          },
+                })
+                .then(function(response){
+                  console.log("in second then");
+                  console.log(response);
+                  return response.json();
+                })
+                .then((body) => {
+                  console.log(body.productDesId);
+                  let productDesId = body.productDesId;
+                  console.log(productDesId)
+                  let productImgs = document.querySelector(".upload_pro");
+                  const file = productImgs.files[0];
+                  const fileReader = new FileReader();
+                  fileReader.onload = function(e){
+                  // step3 帶入prodesId 建入img( 帶入desId圖檔)
+                    fetch(`/shanshan/companyProduct/addproimg` , {
+                      method:"POST",
+                      headers:{
+                        "Content-Type":"application/json"
+                      },
+                      body: JSON.stringify({
+                        productDesId,
+                        productImg,
+                      }),
+                    }).then(body => body.json())
+                      .then(proImg => {
+                        console.log(proImg);
+                        alert("資料已新增")
+                      })
+                  };
+                  fileReader.readAsBinaryString(file);
+                })
+            })
+          }
+        },
           "否":function(){
             $(this).dialog("close");
           }
-        }
+        });
   
-      });
+});
 
-      
 
-})
 
     
    

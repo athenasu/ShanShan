@@ -8,6 +8,7 @@ import tw.idv.tibame.tfa104.shanshan.web.product.entity.ProductBO;
 public interface ProductDAOHibernate {
 	
 	public Integer addproduct(Product product);
+	public Product updateproduct(Product product);
 	List<ProductBO> findById (Integer productId);
 	List<ProductBO> findByDesId(Integer prodesId);
 	List<ProductBO> findNew();

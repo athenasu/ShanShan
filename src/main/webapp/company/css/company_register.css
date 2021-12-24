@@ -43,24 +43,28 @@ div.title {
   color: rgb(40, 83, 107);
   cursor: pointer;
 }
-a.backendpage {
+a.backendpage:visited,
+a.loginLink {
   color: rgb(40, 83, 107);
 }
-a.backendpage:hover {
+a.loginLink:hover {
   color: rgb(109, 150, 173);
 }
+/* a.loginLink:visited,
 a.backendpage:visited {
-  color: rgb(40, 83, 107);
-}
-button.logout {
+  color: white;
+} */
+a.loginLink {
+  padding: 15px, 5px, 5px, 5px;
+  font-weight: bold;
   position: absolute;
   cursor: pointer;
-  font-size: 16px;
+  text-align: center;
+  font-size: 14px;
   border: 0;
   width: 100px;
   height: 50px;
-  background-color: rgb(40, 83, 107);
-  color: white;
+  color: rgb(40, 83, 107);
   right: 0;
   top: 50%;
   transform: translateY(-50%);

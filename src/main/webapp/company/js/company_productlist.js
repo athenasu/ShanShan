@@ -40,7 +40,7 @@ $(function(){
 
     /* -----------商品dataTable開始---------- */
      $.ajax({
-    	 	url:"../product/findByComId?companyId=2",
+    	 	url:`/shanshan/companyProduct/findByComId`,
     	 	type:"GET",
     	 	dataType:"json",
     	 	success: function(data){
@@ -61,6 +61,7 @@ $(function(){
     	      },
     		 "aaData":data,
     		 "columns":[
+               {'data':'prodesId'},
     	         {'data':'productName'},
     	         {'data':'productPrice'},
     	         {'data':'productSize',

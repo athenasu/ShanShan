@@ -12,10 +12,11 @@ import javax.persistence.Transient;
 public class ProductBO implements Serializable{
 	private static final long serialVersionUID = 1L;
 
-	@Id
 	@Column(name = "productId")
 	private Integer productId;
 	
+	// 要取出不重複的內容設定為id
+	@Id
 	@Column(name = "prodesId")
 	private Integer prodesId;
 	

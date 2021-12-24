@@ -11,6 +11,7 @@ import tw.idv.tibame.tfa104.shanshan.web.company.service.CompanyProductService;
 import tw.idv.tibame.tfa104.shanshan.web.core.Core;
 import tw.idv.tibame.tfa104.shanshan.web.product.dao.ProductDAOHibernate;
 import tw.idv.tibame.tfa104.shanshan.web.product.entity.Product;
+import tw.idv.tibame.tfa104.shanshan.web.product.entity.ProductBO;
 import tw.idv.tibame.tfa104.shanshan.web.productDescription.dao.ProductDesDAOHibernate;
 import tw.idv.tibame.tfa104.shanshan.web.productDescription.entity.FindByProductIdBO;
 import tw.idv.tibame.tfa104.shanshan.web.productDescription.entity.ProductDesVO;
@@ -28,7 +29,7 @@ public class CompanyProductServiceImpl implements CompanyProductService {
 	@Autowired
 	private ProductImgDAO_interface proImgDao;
 	
-	
+	//商品修改=========================================================
 	@Override
 	public Core updateProDesStatusOfShelf(Integer prodesStatus, Integer prodesId, Core core) {
 		int result = proDesDao.updateProDesStatusOfShelf(prodesStatus, prodesId);
@@ -41,12 +42,12 @@ public class CompanyProductServiceImpl implements CompanyProductService {
 		}
 		
 	}
+	
+	
 	//商品新增=========================================================
 	@Override
 	public Integer addProduct(Product product) {
-		//productdesVO.setProductId(productId);
-		//Integer productDesId = proDesDao.addProdes(productdesVO);
-		 return productDao.addproduct(product);	 
+		return productDao.addproduct(product);
 	}
 
 	@Override
@@ -69,6 +70,10 @@ public class CompanyProductServiceImpl implements CompanyProductService {
 	@Override
 	public List<ProductImgVO> findByproDes(Integer productDesId) {
 		return proImgDao.findByproDes(productDesId);
+	}
+	@Override
+	public List<ProductBO> findByCompanyId(Integer companyId) {
+		return productDao.findByCompanyId(companyId);
 	}
 
 

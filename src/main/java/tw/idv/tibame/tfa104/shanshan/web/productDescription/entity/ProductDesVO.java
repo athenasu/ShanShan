@@ -10,7 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
+
 @Entity
+@DynamicInsert
 @Table(name = "product_description")
 public class ProductDesVO implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -33,6 +37,7 @@ public class ProductDesVO implements Serializable{
 	private Integer productStock;
 	
 	@Column(name = "status")
+	@ColumnDefault("0")
 	private Integer status;
 	
 	@Column(name = "product_price")

@@ -9,9 +9,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
+
 import tw.idv.tibame.tfa104.shanshan.web.core.Core;
 
 @Entity
+@DynamicInsert
 @Table(name = "product")
 public class Product extends Core {
 	
@@ -25,7 +29,10 @@ public class Product extends Core {
 	@Column(name = "product_type")
 	private Integer productType;
 	
+	
+	//如果前端傳入的預設值是0，要載入DynamicInsert 跟ColumnDefault 這兩個annotation
 	@Column(name = "status")
+	@ColumnDefault("0")
 	private Integer status;
 	
 	@Column(name = "product_price")
@@ -102,6 +109,13 @@ public class Product extends Core {
 
 	public void setCompanyId(Integer companyId) {
 		this.companyId = companyId;
+	}
+
+	@Override
+	public String toString() {
+		return "Product [productId=" + productId + ", productType=" + productType + ", status=" + status
+				+ ", productPrice=" + productPrice + ", productIntro=" + productIntro + ", productName=" + productName
+				+ ", companyId=" + companyId + "]";
 	}
 	
 	

@@ -48,7 +48,7 @@ $(function(){
 
     /* -----------已出貨訂單dataTable開始---------- */
     $.ajax({
-        url:`/shanshan/companyOrder/findAllShipped?companyId=1`,
+        url:`/shanshan/companyOrder/findAllShipped`,
         type:"GET",
         dataType:"json",
         success: function(data){

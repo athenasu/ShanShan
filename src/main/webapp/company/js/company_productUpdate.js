@@ -47,7 +47,7 @@ $(function(){
     }
     /* -----------商品dataTable開始---------- */
     $.ajax({
-        url:`/shanshan/product/findByComId?companyId=1`,
+        url:`/shanshan/companyProduct/findByComId`,
         type:"GET",
         dataType:"json",
         success: function(data){
@@ -138,6 +138,8 @@ $(function(){
         })
 
     /////////////////////////////////////單一商品修改開始///////////////////////////////////
+    /////////////////////////////////////單一商品頁面顯示///////////////////////////////////
+    let ulProimg = document.querySelector(".proimg");
     $('div.proinfo').dialog({
       width:900,
       autoOpen:false,
@@ -145,6 +147,7 @@ $(function(){
     $('.productlist tbody').on('click','.update',function(e){
       console.log("in click order update function")
       e.preventDefault();
+      ulProimg.innerHTML = "";
       var proImgLength = "";
       $("#pImgs").change(function(){
         proImgLength = this.files.length;
@@ -152,11 +155,10 @@ $(function(){
       let productDesId = $(this).parents("tr").find("td").eq(0).text();
       console.log(productDesId);
       $('div.proinfo').dialog({
+        
         open: function(){
           $.ajax({
                url:`/shanshan/companyProduct/findByproDesId?prodesId=${productDesId}`,
-            // url:`/shanshan/product_description/findByPK?prodesId=${productDesId}`,
-            // url:`/shanshan/product/findByDesId?prodesId=${productDesId}`,
             type:"GET",
             dataType:"json",
             success: function(data){
@@ -182,18 +184,18 @@ $(function(){
                 var typeValue = item.productType;
                 if(typeValue == 1){
                   $("input[name=pType][value=1]").attr("checked",true);
-                }else if(sizeValue == 2){
+                }else if(typeValue == 2){
                   $("input[name=pType][value=2]").attr("checked",true);
-                }else if(sizeValue == 3){
+                }else if(typeValue == 3){
                   $("input[name=pType][value=3]").attr("checked",true);
-                }else if(sizeValue == 4){
+                }else if(typeValue == 4){
                   $("input[name=pType][value=4]").attr("checked",true);
                 }
                 document.querySelector(".color").value = item.productColor;
                 document.querySelector(".stock").value = item.proDesStock;
                 document.querySelector(".prointro").value = item.productIntro;              
               })
-              /////////////get img /////////////////
+              /////////////get product img /////////////////
               $.ajax({
                 url:`/shanshan/companyProduct/findByproDes?productDesId=${productDesId}`,
                 type:"GET",
@@ -201,12 +203,10 @@ $(function(){
                 success: function(data){
                   console.log("in pro img");
                   console.log(data);
-                  //
+                 
+                  let imgNum = 0;
                   $.each(data,function(index,item){
-                    // var bytes = new Uint8Array(item.product_img);
-                    // var blob = new Blob([bytes], {type:"image/*"});
-                    // var url = URL.createObjectURL(blob);
-                    // console.log(url);//undefined
+                    imgNum += 1;
                     const binStr = atob(item.productImg);
                     let len = binStr.length;
                     const u8Array = new Uint8Array(len);
@@ -215,10 +215,10 @@ $(function(){
                     }
                     const blob = new Blob([u8Array]);
                     const url = URL.createObjectURL(blob);
-                    document.querySelector(".proimg1").src = url;
+                    
+                    let html = `<img class="smallimg proimg${imgNum}" src="${url}" alt="proimg${imgNum}"/>`;
+                    ulProimg.insertAdjacentHTML("afterbegin", html);
                   })
-                  
-                  
                 }
               })
             },
@@ -238,7 +238,8 @@ $(function(){
             const productColor = document.querySelector(".color").value;
             const productStock = document.querySelector(".stock").value;
             const productIntro = document.querySelector(".prointro").value;
-
+            const productImg = document.querySelector(".upload_pro")
+           // const file = 
             // //imgs
             // const productImg
             // const file1 = .files[0]

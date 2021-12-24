@@ -20,8 +20,23 @@ public class ProductDAOHibernate_impl implements ProductDAOHibernate {
 	@Override
 	public Integer addproduct(Product product) {
 		Session session = sessionFactory.getCurrentSession();
-		int productId = (Integer) session.save(product);
-		return productId;
+		return (Integer) session.save(product);
+	}
+	
+	@Override
+	public Product updateproduct(Product product) {
+		Session session = sessionFactory.getCurrentSession();
+		Product tempProduct = session.get(Product.class, product.getProductId());
+		if(tempProduct.getProductPrice() != null) {
+			tempProduct.setProductPrice(product.getProductPrice());
+		}
+		if(tempProduct.getProductType() != null) {
+			tempProduct.setProductType(product.getProductType());
+		}
+		if(tempProduct.getProductIntro() != null && tempProduct.getProductIntro() != "") {
+			tempProduct.setProductIntro(product.getProductIntro());
+		}
+		return tempProduct;
 	}
 	@Override
 	public List<ProductBO> findById(Integer productId) {
@@ -219,6 +234,7 @@ public class ProductDAOHibernate_impl implements ProductDAOHibernate {
 						.list();
 		return allpro;
 	}
+
 
 
 	
