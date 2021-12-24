@@ -5,6 +5,8 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,13 +57,13 @@ public class OrderDAOImpl implements OrderDAO{
 //	查詢 特定店家的訂單號碼 BY LIKE %?% 按order id 正序
 	private static final String FIND_ALL_BY_COMID_LIKE_INT = "select * from `order` where company id=? and order_id='%?%' order by order_id asc";
 //	查詢 特定日期範圍 特定店家的訂單 按order id 倒序
-	private static final String FIND_ALL_BY_DATERANGE_COMID = "select * from `order` where company_id =? and (order_created_date between '?' and '?') order by order_id desc";
+	private static final String FIND_ALL_BY_DATERANGE_COMID = "select * from `order` where company_id =? and (order_created_date between ? and ?) order by order_id desc";
 //	查詢 所有訂單的撥款狀態  按order id 倒序
 	private static final String FIND_ALL_BY_PAYSTATS = "select * from `order` where payment_status=? order by order_id desc";
 //	查詢 特定日期範圍的所有訂單的撥款狀態  按order id 倒序
-	private static final String FIND_ALL_BY_DATERANGE_PAYSTATS = "select * from `order` where (order_created_date between '?' and '?') and payment_status=?order by order_id desc";
+	private static final String FIND_ALL_BY_DATERANGE_PAYSTATS = "select * from `order` where (order_created_date between ? and ?) and payment_status=? order by order_id desc";
 //	查詢 特定日期範圍的特定店家的訂單撥款狀態  按order id 倒序
-	private static final String FIND_ALL_BY_DATERANGE_COMID_PAYSTATS = "select * from `order` where company_id=? and payment_status =? and (order_created_date between '?' and '?') order by order_id desc";
+	private static final String FIND_ALL_BY_DATERANGE_COMID_PAYSTATS = "select * from `order` where company_id=? and payment_status =? and (order_created_date between ? and ?) order by order_id desc";
 //	查詢 特定會員的最新一張訂單(用來 顯示結帳結果)
 	private static final String FIND_LATEST_BY_MEMID = "select * from `order` where member_id=? order by order_id desc limit 0, 1";
 	
@@ -756,11 +758,11 @@ public class OrderDAOImpl implements OrderDAO{
 //			DataSource ds = new ComboPooledDataSource();
 			
 			con = ds.getConnection();
-			
+
 			pstmt = con.prepareStatement(FIND_ALL_BY_DATERANGE_COMID);
 			pstmt.setInt(1, company_id);
-			pstmt.setString(2, from_date);
-			pstmt.setString(3, to_date);
+			pstmt.setDate(2, java.sql.Date.valueOf(from_date));
+			pstmt.setDate(3, java.sql.Date.valueOf(to_date));
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
@@ -848,7 +850,7 @@ public class OrderDAOImpl implements OrderDAO{
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-
+		
 		try {
 
 //			DataSource ds = new ComboPooledDataSource();
@@ -856,8 +858,8 @@ public class OrderDAOImpl implements OrderDAO{
 			con = ds.getConnection();
 			
 			pstmt = con.prepareStatement(FIND_ALL_BY_DATERANGE_PAYSTATS);
-			pstmt.setString(1, from_date);
-			pstmt.setString(2, to_date);
+			pstmt.setDate(1, java.sql.Date.valueOf(from_date));
+			pstmt.setDate(2, java.sql.Date.valueOf(to_date));
 			pstmt.setInt(3, payment_status);
 			rs = pstmt.executeQuery();
 
@@ -878,10 +880,7 @@ public class OrderDAOImpl implements OrderDAO{
 				order.setShip_number(rs.getString("Ship_number"));
 				order.setPayment_status(rs.getInt("Payment_status"));
 				orderList.add(order);
-				
-
 			}
-
 		} catch (SQLException se) {
 			se.printStackTrace();
 		} finally {
@@ -904,12 +903,12 @@ public class OrderDAOImpl implements OrderDAO{
 //			DataSource ds = new ComboPooledDataSource();
 			
 			con = ds.getConnection();
-			
+
 			pstmt = con.prepareStatement(FIND_ALL_BY_DATERANGE_COMID_PAYSTATS);
 			pstmt.setInt(1, company_id);
 			pstmt.setInt(2, payment_status);
-			pstmt.setString(3, from_date);
-			pstmt.setString(4, to_date);
+			pstmt.setDate(3, java.sql.Date.valueOf(from_date));
+			pstmt.setDate(4, java.sql.Date.valueOf(to_date));
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
@@ -929,7 +928,6 @@ public class OrderDAOImpl implements OrderDAO{
 				order.setShip_number(rs.getString("Ship_number"));
 				order.setPayment_status(rs.getInt("Payment_status"));
 				orderList.add(order);
-				
 
 			}
 

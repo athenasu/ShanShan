@@ -16,7 +16,6 @@ public class OrderServiceImpl implements OrderService{
 
 	@Override
 	public int add(Order order) {
-		// TODO Auto-generated method stub
 		return dao.add(order);
 	}
 
@@ -28,99 +27,84 @@ public class OrderServiceImpl implements OrderService{
 	
 	@Override
 	public int updateShipNumByOrderId(Integer ship_number, Integer order_id) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public int updatePayStatsByOrderId(Integer payment_status, Integer order_id) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public int updateOrderStatsByOrderId(Integer order_status, Integer order_id) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public Order findByOrderId(Integer order_id) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.findByOrderId(order_id);
 	}
 
 	@Override
 	public List<Order> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return dao.findAll();
 	}
 
 	@Override
 	public List<Order> findAllByComIdOrderStatus(Integer order_status, Integer company_id) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.findAllByComIdOrderStatus(order_status, company_id);
 	}
 
 	@Override
 	public List<Order> findAllByMemIdOrderStatus(Integer order_status, Integer member_id) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.findAllByMemIdOrderStatus(order_status,member_id);
 	}
 
 	@Override
 	public List<Order> findByLastest(Integer sequence) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.findByLastest(sequence);
 	}
 
 	@Override
 	public List<Order> findAllByComId(Integer company_id) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.findAllByComId(company_id) ;
 	}
 
 	@Override
 	public List<Order> findAllByMemId(Integer member_id) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.findAllByMemId(member_id);
 	}
 
 	@Override
 	public List<Order> findAllByMemIdUsePointNotZero(Integer member_id) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.findAllByMemIdUsePointNotZero(member_id);
 	}
 
 	@Override
 	public List<Order> findAllByComIdLikeInt(Integer company_id, String keyword) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.findAllByComIdLikeInt(company_id, keyword);
 	}
 
 	@Override
 	public List<Order> findAllByDateRangeComId(Integer company_id, String from_date, String to_date) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.findAllByDateRangeComId(company_id,from_date,to_date);
 	}
 
 	@Override
 	public List<Order> findAllByPayStatus(Integer payment_status) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.findAllByPayStatus(payment_status);
 	}
 
 	@Override
 	public List<Order> findAllByDateRangePayStatus(String from_date, String to_date, Integer payment_status) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.findAllByDateRangePayStatus(from_date,to_date,payment_status);
 	}
 
 	@Override
 	public List<Order> findAllByDateRangeComIdPayStatus(Integer company_id, Integer payment_status, String from_date,
 			String to_date) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.findAllByDateRangeComIdPayStatus(company_id,payment_status,from_date, to_date);
 	}
 
 	
