@@ -343,12 +343,47 @@ div.store_verify_lightbox{
 div.store_verify_lightbox.-on{
     position:fixed;
     display:block;
-    background-color:#1a4e81;
+    background-color:rgb(194 148 138);
     border-radius:15px;
-    top:25%;
-    left:25%;
-    width:50%;
-    height:50%;
+    top:12.5%;
+    left:22%;
+    width:75%;
+    height:85%;
+    /* vertical-align: top; */
+}
+div.verify_pic{
+    display:inline-block;
+    overflow: hidden;
+    width:40%;
+    height:100%;
+    position: relative;
+    margin-left:50px;
+}
+div.verify_content{
+    display:inline-block;
+    vertical-align: top;
+}
+.verify_content li{
+    margin-top:10px;
+    margin-left:10px;
+    list-style: none;
+}
+img.store_pic{
+    max-height: 100%;  
+    max-width: 100%; 
+    width: auto;
+    height: auto;
+    position: absolute;  
+    top: 0;  
+    bottom: 0;  
+    left: 0;  
+    right: 0;  
+    margin: auto;
+    display:inline-block;
+    object-fit: fill;
+}
+div.verification{
+    margin-top:20px;
 }
 /*  ======================== CASE MANAGE BODY ========================  */
 div.event_report_lightbox, div.article_report_lightbox, div.msg_report_lightbox{
@@ -710,3 +745,4 @@ button.sv_detail{
 	margin-left:15%;
 	
 }
+

@@ -11,6 +11,7 @@ import tw.idv.tibame.tfa104.shanshan.web.admin.entity.Admin;
 import tw.idv.tibame.tfa104.shanshan.web.admin.entity.Article;
 import tw.idv.tibame.tfa104.shanshan.web.admin.entity.ArticleReportBO;
 import tw.idv.tibame.tfa104.shanshan.web.admin.entity.ArticleReportDetailBO;
+import tw.idv.tibame.tfa104.shanshan.web.admin.entity.Order;
 
 @Repository
 public class AdminDAOImpl implements AdminDAO {
@@ -84,4 +85,28 @@ public class AdminDAOImpl implements AdminDAO {
 		session.update(tempArticle);
 		return 1;
 	}
+
+	@Override
+	public List<Order> findAllByDateRangePayStatus(String fromDate, String toDate, Integer paymentStatus) {
+		Session session = sessionFactory.getCurrentSession();
+		return session.createNativeQuery("SELECT * from `order` where (order_created_date between :fromDate and :toDate) and payment_status = :paymentStatus order by order_id desc", Order.class)
+				.setParameter("fromDate", fromDate)
+				.setParameter("toDate", toDate)
+				.setParameter("paymentStatus", paymentStatus).list();
+	}
+
+	@Override
+	public List<Order> findAllByPayStatus(Integer payment_status) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+//	@Override
+//	public List<Order> periodProfit(String fromDate, String toDate, Integer paymentStatus) {
+//		Session session = sessionFactory.getCurrentSession();
+//		return session.createNativeQuery("select SUM(s.order_sum_after) FROM (SELECT order_sum_after FROM `order` WHERE (order_created_date between :fromDate and :toDate) and payment_status = :paymentStatus) as s", Order.class)
+//				.setParameter("fromDate", fromDate)
+//				.setParameter("toDate", toDate)
+//				.setParameter("paymentStatus", paymentStatus).list();
+//	}
 }

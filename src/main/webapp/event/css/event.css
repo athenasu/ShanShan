@@ -32,6 +32,7 @@ main{
 
 }
 input#search{
+    visibility: hidden;
     display:inline-block;
     width: 50%;
     height: 10%;
@@ -56,6 +57,7 @@ input#search:hover, .search input#search:focus, .search input#search:active{
     background: #ebecf1;
 }
 button.icon{
+    visibility: hidden;
     display:inline-block;
     border-top-right-radius: 50%;
     border-bottom-right-radius: 50%;
@@ -247,9 +249,11 @@ div.main_block{
   margin-left:0.5%;
   width:60%;
   margin-left: 20%;
+  text-align:center; 
 }
 div.event_display{
   display: inline-block;
+  margin:auto;
   height: 390px;
   width: 371.08px;
   margin-top: 0.5%;

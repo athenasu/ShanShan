@@ -9,9 +9,10 @@ import tw.idv.tibame.tfa104.shanshan.web.admin.entity.Admin;
 import tw.idv.tibame.tfa104.shanshan.web.admin.entity.Article;
 import tw.idv.tibame.tfa104.shanshan.web.admin.entity.ArticleReportBO;
 import tw.idv.tibame.tfa104.shanshan.web.admin.entity.ArticleReportDetailBO;
+import tw.idv.tibame.tfa104.shanshan.web.admin.entity.Order;
 import tw.idv.tibame.tfa104.shanshan.web.admin.service.AdminService;
-import tw.idv.tibame.tfa104.shanshan.web.order.dao.OrderDAO;
-import tw.idv.tibame.tfa104.shanshan.web.order.entity.Order;
+
+
 
 @Service
 @Transactional
@@ -19,7 +20,7 @@ public class AdminServiceImpl implements AdminService{
 	@Autowired
 	private AdminDAO dao;
 //	private ArticleDAO artdao;
-	private OrderDAO orderdao;
+//	private OrderDAO orderdao;
 
 	@Override
 	public List<Admin> findAll() {
@@ -47,7 +48,17 @@ public class AdminServiceImpl implements AdminService{
 	
 	@Override
 	public List<Order> findAllByPayStatus(Integer payment_status) {
-		return orderdao.findAllByPayStatus(payment_status);
+		return dao.findAllByPayStatus(payment_status);
 	}
+	
+	@Override
+	public List<Order> findAllByDateRangePayStatus(String fromDate, String toDate,Integer paymentStatus) {
+		return dao.findAllByDateRangePayStatus(fromDate, toDate, paymentStatus);
+	}
+	
+//	@Override
+//	public List<Order> periodProfit(String fromDate, String toDate, Integer paymentStatus) {
+//		return dao.periodProfit(fromDate, toDate, paymentStatus);
+//	}
 
 }

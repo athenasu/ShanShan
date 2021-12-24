@@ -30,4 +30,14 @@ public class ParticipantServiceImpl implements ParticipantService{
 	public List<Participant> selectParticipantByMemberId(Integer memberId, Integer eventId){
 		return dao.selectParticipantByMemberId(memberId, eventId);
 	}
+	
+	@Override
+	public Boolean deleteParticipantByMemIdEventId (Integer memberId, Integer eventId) {
+		int result = dao.deleteParticipantByMemIdEventId(memberId, eventId);
+		if(result >= 1) {
+			return true;
+		}else {
+			return false;
+		}
+	}
 }

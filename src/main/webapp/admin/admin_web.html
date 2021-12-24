@@ -7,14 +7,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin</title>
     <link rel="stylesheet" href="./css/admin_web.css">
+    <!-- //monthpicker//
+    
+    <link href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <link href="./css/MonthPicker.css" rel="stylesheet" type="text/css" />
+    <script src="https://code.jquery.com/jquery-1.12.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <script src="https://cdn.rawgit.com/digitalBush/jquery.maskedinput/1.4.1/dist/jquery.maskedinput.min.js"></script>
+
+    <script src="./js/MonthPicker.js"></script>
+    ////////////// -->
 
 </head>
 
 <body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
     <script src=".\js\jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-ui-monthpicker@1.0.3/jquery.ui.monthpicker.min.js"></script>
     <script src="./js/admin_web.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <nav class="header">
         <div class="logo">
             <a href="#"><img src="./img/unnamed.jpeg" width="100" height="100"></a>
@@ -76,8 +88,40 @@
     <hr>
     <main>
         <!-- 首頁資訊 -->
-        <!-- <div class="admin_home">
+        <div class="static_chart">
+            <lable>Start Date： </lable>
+            <input class="start_date" type="date">
+            <lable>End Date： </lable>
+            <input class="end_date" type="date">
+            <button class="analyze">Create Chart</button>
+        </div>
+        <!-- <div class="analyze_chart">
+            <canvas class="myChart" id="myChart" width="400" height="200"></canvas>
+        </div> -->
 
+        <div class="statics">
+            <div class="current_month_profit">
+                <span>區間營收：<span class="profit"></span></span>
+            </div>
+            <div class="current_month_orders">
+                <span>區間訂單：</span>
+                <table class="order_table">
+                    <tr>
+                        <td>店家編號</td>
+                        <td>訂單編號</td>
+                        <td>購買人姓名</td>
+                        <td>折扣前金額</td>
+                        <td>折扣後金額</td>
+                        <td>使用點數</td>
+                        <td>出貨編號</td>
+                        <td>出貨時間</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+
+        <!-- <div class="admin_home">
         </div> -->
 
         <!-- 管理者資訊 -->

@@ -42,4 +42,10 @@ public class ParticipantController {
 		return participantListByMemberId;
 		
 	}
+	
+	@CrossOrigin
+	@PostMapping("deleteParticipantByMemIdEventId")
+	public Boolean deleteParticipantByMemIdEventId(@RequestBody Participant participant) {
+		return participantService.deleteParticipantByMemIdEventId(participant.getMemberId(), participant.getEventId());
+	}
 }
