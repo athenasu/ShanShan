@@ -33,14 +33,14 @@ const renderArticle = function (article) {
 
   let html = `
             <div class = "article-card">
-            
               <div class="card-2">
-                <a href="../ArticleServlet.do?article_id=${article.article_id}&action=getThisArt">
                   <div class="article-type">
                     <p>日誌文章</p>
                   </div>
                   <div class="article-title">
-                    <p>文章名稱: ${article.article_title}</p>
+                    <a href="../ArticleServlet.do?article_id=${article.article_id}&action=getThisArt">
+                      <p>文章名稱: ${article.article_title}</p>
+                    </a>
                   </div>
                   <div class="article-date">
                     <p>文章日期: ${dateCreated}</p>
@@ -51,7 +51,6 @@ const renderArticle = function (article) {
                   <div class="article-points">
                     <p>總點數: ${article.article_points_recieved} 點</p>
                   </div>
-                </a>
                 <div class="event-details">
                   <button class="btn--show-modal-article">詳情</button>
                 </div>

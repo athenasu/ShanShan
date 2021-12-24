@@ -15,116 +15,120 @@
     />
     <link rel="stylesheet" href="css/member_order_details.css" />
   </head>
-  <body>
+  <body id="body-id">
     <div class="overlay_solution">
-    <header class="header-div">
-      <div id="logo">
-        <a href="../index/index.jsp"><img src="img/logo.png" class="img" /></a>
-      </div>
-      <nav id="navlist">
-        <ul>
-          <li><a href="../event/event.html">找山友</a></li>
-          <li><a href="../article/articleList.jsp">山友日誌</a></li>
-          <li><a href="../shop/goods_index.jsp">攻山小物</a></li>
-          <li><a href="../cabin/mtnIndex.jsp">登山資訊</a></li>
-          <li><a href="../member/member_main.html">會員中心</a></li>
-        </ul>
-      </nav>
-      <div id="memcheck">
-        <div id="ball"><i class="fas fa-bell"></i></div>
-        <div id="logout"><a href="../memberLogin/logout">登出</a></div>
-      </div>
-    </header>
-    <main class="member-main">
-      <section class="glass">
-        <div class="overlay-done hidden"></div>
-        <div class="dashboard">
-          <div class="user">
-            <div class="member_profile">
-              <img class="member_profile_pic" src="" alt="user_pic" />
+      <header class="header-div">
+        <div id="logo">
+          <a href="../index/index.jsp"
+            ><img src="img/logo.png" class="img"
+          /></a>
+        </div>
+        <nav id="navlist">
+          <ul>
+            <li><a href="../event/event.html">找山友</a></li>
+            <li><a href="../article/articleList.jsp">山友日誌</a></li>
+            <li><a href="../shop/goods_index.jsp">攻山小物</a></li>
+            <li><a href="../cabin/mtnIndex.jsp">登山資訊</a></li>
+            <li><a href="../member/member_main.html">會員中心</a></li>
+          </ul>
+        </nav>
+        <div id="memcheck">
+          <div id="ball"><i class="fas fa-bell"></i></div>
+          <div id="logout"><a href="../memberLogin/logout">登出</a></div>
+        </div>
+      </header>
+      <main class="member-main">
+        <section class="glass">
+          <div class="overlay-done hidden"></div>
+          <div class="dashboard">
+            <div class="user">
+              <div class="member_profile">
+                <img class="member_profile_pic" src="" alt="user_pic" />
+              </div>
+              <div class="user-info">
+                <h2 class="member-name-dashboard"></h2>
+                <p class="member-username-dashboard"></p>
+              </div>
             </div>
-            <div class="user-info">
-              <h2 class="member-name-dashboard"></h2>
-              <p class="member-username-dashboard"></p>
-            </div>
-          </div>
-          <div class="links">
-            <div class="link">
-              <button>
-                <a href="../member/member_main.html"><h3>會員首頁</h3></a>
-              </button>
-            </div>
-            <div class="link">
-              <button>
-                <a href="../member/member_update.html"><h3>修改會員資料</h3></a>
-              </button>
-            </div>
-            <div class="link">
-              <ul class="side-bar-event">
-                <li>
-                  <button class="link-btn-event">
-                    <a href="../member/member_article_details.html"
-                      ><h3>文章紀錄</h3></a
-                    >
-                  </button>
-                  <!-- <ul class="second-menu-event">
+            <div class="links">
+              <div class="link">
+                <button>
+                  <a href="../member/member_main.html"><h3>會員首頁</h3></a>
+                </button>
+              </div>
+              <div class="link">
+                <button>
+                  <a href="../member/member_update.html"
+                    ><h3>修改會員資料</h3></a
+                  >
+                </button>
+              </div>
+              <div class="link">
+                <ul class="side-bar-event">
+                  <li>
+                    <button class="link-btn-event">
+                      <a href="../member/member_article_details.html"
+                        ><h3>文章紀錄</h3></a
+                      >
+                    </button>
+                    <!-- <ul class="second-menu-event">
                     <li><a href="#">揪團紀錄</a></li>
                     <li><a href="#">參團紀錄</a></li>
                     <li><a href="#">日誌紀錄</a></li>
                   </ul> -->
-                </li>
-              </ul>
-            </div>
-            <div class="link">
-              <button>
-                <a href="../member/member_order_details.html"
-                  ><h3>訂單記錄</h3></a
-                >
-              </button>
-            </div>
-            <div class="link">
-              <ul class="side-bar-wishlist">
-                <li>
-                  <button class="link-btn-wishlist">
-                    <a href="../member/member_wishlist.html"
-                      ><h3>收藏紀錄</h3></a
-                    >
-                  </button>
-                  <!-- <ul class="second-menu-wishlist">
+                  </li>
+                </ul>
+              </div>
+              <div class="link">
+                <button>
+                  <a href="../member/member_order_details.html"
+                    ><h3>訂單記錄</h3></a
+                  >
+                </button>
+              </div>
+              <div class="link">
+                <ul class="side-bar-wishlist">
+                  <li>
+                    <button class="link-btn-wishlist">
+                      <a href="../member/member_wishlist.html"
+                        ><h3>收藏紀錄</h3></a
+                      >
+                    </button>
+                    <!-- <ul class="second-menu-wishlist">
                     <li><a href="#">揪團</a></li>
                     <li><a href="#">活動日誌</a></li>
                     <li><a href="#">商品</a></li>
                   </ul> -->
-                </li>
-              </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="link">
+              <button>
+                <a href="../member/member_points.html"><h3>點數記錄</h3></a>
+              </button>
             </div>
           </div>
-          <div class="link">
-            <button>
-              <a href="../member/member_points.html"><h3>點數記錄</h3></a>
-            </button>
-          </div>
-        </div>
-        <div class="events">
-          <div class="event-input">
-            <h1>訂單紀錄</h1>
-          </div>
-          <div class="sort-buttons">
-            <button class="sort-button done-orders-btn">已完成</button>
-            <button class="sort-button intransit-orders-btn">配送中</button>
-            <button class="sort-button cancelled-orders-btn">
-              已結案/退貨
-            </button>
-            <div class="search-bar">
-              <i class="fas fa-search"></i
-              ><input class="search-input" type="text" placeholder="搜尋" />
+          <div class="events">
+            <div class="event-input">
+              <h1>訂單紀錄</h1>
             </div>
-          </div>
+            <div class="sort-buttons">
+              <button class="sort-button done-orders-btn">已完成</button>
+              <button class="sort-button intransit-orders-btn">配送中</button>
+              <button class="sort-button cancelled-orders-btn">
+                已結案/退貨
+              </button>
+              <div class="search-bar">
+                <i class="fas fa-search"></i
+                ><input class="search-input" type="text" placeholder="搜尋" />
+              </div>
+            </div>
 
-          <div class="cards"></div>
-        </div>
-      </section>
-    </main>
+            <div class="cards"></div>
+          </div>
+        </section>
+      </main>
     </div>
     <script src="./vendors/jquery-3.6.0.min.js"></script>
     <script src="./js/header.js"></script>

@@ -44,7 +44,7 @@ button {
 .member_main {
   font-family: "Roboto", sans-serif;
   min-height: calc(100% - 120px); /*new*/
-
+  background: #fef5ed;
   display: flex;
   align-items: center;
   justify-content: center;
