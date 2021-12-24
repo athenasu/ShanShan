@@ -82,10 +82,18 @@
 
             <!-- 隔線 -->
             <div class="goods_titlegap"></div>
+            
+            <!-- 會員中心 標題 -->
+            <div class="goods_header_title_shanshan" onclick="location.href='<%=request.getContextPath()%>/member/member_main.html'">會員中心</div>
+            
+            <!-- 隔線 -->
+            <div class="goods_titlegap"></div>
 
             <!-- 攻山小物 標題 -->
             <div class="goods_header_title_goods" onclick="location.href='<%=request.getContextPath()%>/shop/goods_index.jsp'">攻山小物</div>
 
+            
+          
             <!-- 購物車icon -->
             <div class="goods_shopcart_area" onclick="location.href='<%=request.getContextPath()%>/shop/goods_shopcart.jsp'">
                 <i class="fas fa-shopping-cart header_shopcarticon"></i>

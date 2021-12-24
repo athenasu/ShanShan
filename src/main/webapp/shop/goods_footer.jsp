@@ -15,7 +15,9 @@
                 <a href="#">門市服務</a></br>
             </div>
             <div class="goods_footer_column">
-                <a href="#">仿冒品提醒聲明</a>
+                <a href="#">仿冒品提醒聲明</a></br>
+                <a href="<%=request.getContextPath()%>/company/company_register.html">商家後台註冊</a></br>
+                <a href="<%=request.getContextPath()%>/company/company_login.html">商家後台登入</a></br>
             </div>
             <div class="goods_footer_column2" style="font-size: 12px;">Copyright © ShanShan Co., Ltd. All rights
                 reserved. </div>
