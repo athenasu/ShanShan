@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"> 
+	<title>8到16位數字與字母組合密碼校驗</title> 
+	<script src="js/jquery1.8.3.min.js"></script> 
+
+</head>
+<body>
+ <input type="password" placeholder="請輸入密碼" id="test" >
+ <input type="button" value="校驗密碼" onclick="checkPassword();" >
+
+ <script> var pwdReg = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$/;
+    //8到16位數字與字母組合 
+    function checkPassword(){
+         var value = $('#test').val(); 
+            if(!pwdReg.test(value)){ 
+                alert('密碼校驗失敗!');
+            }else{ 
+                alert('密碼合法!');}
+    }
+ </script>
+</body>
+</html> 

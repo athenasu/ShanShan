@@ -68,11 +68,11 @@ div.forgetPwd {
   box-sizing: border-box;
   width: 500px;
 }
-div.forget {
+form.forget {
   max-width: 100%;
   height: 200px;
 }
-div.forget p {
+form.forget p {
   margin-top: 10px;
   padding-top: 10px;
   font-size: 30px;
@@ -96,7 +96,7 @@ div.middle input {
   padding: 0px 0px 0px 5px;
 }
 button.submitPwd {
-  margin: 0px 0px 0px 220px;
+  margin: 0px 0px 0px 200px;
   padding: 7px 15px 7px 15px;
   text-align: center;
   background-color: rgb(40, 83, 107);
@@ -107,3 +107,12 @@ button.submitPwd:hover {
   background-color: rgb(109, 150, 173);
   cursor: pointer;
 }
+/* ------- 店家登入結束------- */
+/* ------- footer  start------- */
+/* footer.footer {
+  position: relative;
+  font-size: 12px;
+  text-align: center;
+  padding-bottom: auto;
+} */
+/* ------- footer  end ------- */

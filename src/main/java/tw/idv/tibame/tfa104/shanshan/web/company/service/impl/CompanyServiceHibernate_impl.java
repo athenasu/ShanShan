@@ -72,6 +72,16 @@ public class CompanyServiceHibernate_impl implements CompanyServiecHibernate {
 		}
 		
 	}
+	
+	@Override
+	public CompanyVO checkStatus(CompanyVO company) {
+		CompanyVO checkStatus = dao.checkStatus(company);
+		if(checkStatus != null) {
+			return checkStatus;
+		}else {
+		return null;
+		}
+	}
 
 	@Override
 	public Core updateStatus(Integer companyId, Integer companyStatus, Core core) {
@@ -84,6 +94,18 @@ public class CompanyServiceHibernate_impl implements CompanyServiecHibernate {
 			return core;
 		}
 	}
+
+	@Override
+	public Boolean updateCompanyPwd(Integer companyId, String companyPassword) {
+		CompanyVO result = dao.updateCompanyPwd(companyId, companyPassword);
+		if(result != null) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+
+
 
 
 

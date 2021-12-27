@@ -33,6 +33,7 @@ $(function(){
           .then((response) =>
           console.log(response)
           );
+          window.location.replace("../index/index.jsp")
         },
         "否":function(){
           $(this).dialog("close");

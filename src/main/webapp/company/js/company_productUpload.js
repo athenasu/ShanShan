@@ -29,6 +29,11 @@ $(function(){
       buttons:{
         "是":function(){
           $(this).dialog("close");
+          fetch(`/shanshan/company/logout`)
+          .then((response) =>
+          console.log(response)
+          );
+          window.location.replace("../index/index.jsp")
         },
         "否":function(){
           $(this).dialog("close");
@@ -142,6 +147,7 @@ $(function(){
         title:"確認新增",
         buttons:{
           "是":function(){
+            if($("#pro").val() != null ){
              // step1 帶入companyId 把product建起 回傳productId("名稱種類介紹" 價格)
              // let companyId = 8;
              let status = 0;
@@ -150,7 +156,7 @@ $(function(){
              let productType = document.querySelector('input[name="pType"]:checked').value;
              let productIntro = document.querySelector(".prointro").value;
 
-             console.log(companyId);
+            // console.log(companyId);
               fetch(`/shanshan/companyProduct/addproduct` , {
               //use await ? 
               method:"POST",
@@ -158,7 +164,7 @@ $(function(){
                 "Content-Type":"application/json"
               },
               body: JSON.stringify({
-                 companyId,
+                //  companyId,
                  status,
                  productPrice,
                  productName,
@@ -209,6 +215,7 @@ $(function(){
                   const file = productImgs.files[0];
                   const fileReader = new FileReader();
                   fileReader.onload = function(e){
+                    const base64str = btoa(e.target.result);
                   // step3 帶入prodesId 建入img( 帶入desId圖檔)
                     fetch(`/shanshan/companyProduct/addproimg` , {
                       method:"POST",
@@ -217,18 +224,24 @@ $(function(){
                       },
                       body: JSON.stringify({
                         productDesId,
-                        productImg,
+                        productImg:base64str,
                       }),
                     }).then(body => body.json())
                       .then(proImg => {
                         console.log(proImg);
-                        alert("資料已新增")
+                        alert("商品資料已新增，請前往上下架頁面確認是否上架")
                       })
                   };
                   fileReader.readAsBinaryString(file);
                 })
+                $('.dialog-confirm').dialog("close");
             })
+          }else{
+            alert('需至少上傳一張商品圖片！')
+            $('.dialog-confirm').dialog("close");
           }
+
+         }
         },
           "否":function(){
             $(this).dialog("close");

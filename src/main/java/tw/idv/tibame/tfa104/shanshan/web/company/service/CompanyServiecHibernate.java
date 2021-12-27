@@ -10,8 +10,10 @@ public interface CompanyServiecHibernate {
 	public Integer register(CompanyVO company);
 	public CompanyVO checkEmail(String email);
 	public CompanyVO checkLogin(CompanyVO company);
+	public CompanyVO checkStatus(CompanyVO company);
 	public CompanyVO update(byte[]file,CompanyVO company);
 	public Core updateStatus(Integer companyId,Integer companyStatus,Core core);
+	public Boolean updateCompanyPwd(Integer companyId, String companyPassword);
 	public CompanyVO findByPK(Integer companyId);
 	List <CompanyVO> getAll();
 	List <CompanyVO> findComByString(String search);

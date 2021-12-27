@@ -11,6 +11,10 @@ body {
 a {
   text-decoration: none;
 }
+a.shopinfoUp {
+  text-decoration: none;
+  color: white;
+}
 img {
   max-width: 100%;
 }

@@ -48,8 +48,10 @@ public class CompanyProductController {
 	
 	//商品新增step1
 	@PostMapping("addproduct")
-	public Map<String,Integer> addProduct(@RequestBody Product product) {
+	public Map<String,Integer> addProduct(@RequestBody Product product,HttpSession session) {
 		 System.out.println(product.toString());
+		 Integer companyId = (Integer)session.getAttribute("companyId");
+		 product.setCompanyId(companyId);
 		 Map<String,Integer> add = new HashMap<String,Integer>();
 		 Integer productId = service.addProduct(product);
 		 add.put("productId", productId);

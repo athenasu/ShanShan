@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>忘記密碼</title>
-    <link rel="stylesheet" href="./css/company_forgetPwd.css">
+    <title>店家更改密碼</title>
+    <link rel="stylesheet" href="./css/company_changePwd.css">
 </head>
 <body>
     <header class="header">
@@ -15,18 +15,23 @@
         </div>
     </header>
     <div class="forgetPwd">
-        <div class="forget">
-            <p>忘記密碼</p>
+        <form class="forget">
+            <p>更改密碼</p>
             <div class="middle">
                 <div class= "middleinline">
-                    輸入帳號：<input class="shopAcc" type="email" placeholder="請輸入收受密碼電子郵件" autocomplete="off">
+                    輸入密碼：<input class="shopPwd" type="password" placeholder="請輸入6-12位數之間的英文或數字" autocomplete="off">
                 </div>  
+                <div>
+                    確認密碼：<input class="shopPwdRepeat" type="password" placeholder="請再次輸入變更密碼" autocomplete="off">
+                </div>
             </div>
-            <button class="submitPwd">確認送出</button>
-        </div>
+            <button class="submitPwd">確認更改密碼</button>
+        </form>
     </div>
+
+    
     <script src ="vendors/jquery/jquery-3.6.0.min.js"></script>
     <script src ="vendors/jquery/jquery-ui.min.js"></script>
-    <script src ="./js/company_forgetPwd.js"></script>
+    <script src ="./js/company_changePwd.js"></script>
 </body>
 </html>

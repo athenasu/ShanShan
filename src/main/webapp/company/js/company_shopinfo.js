@@ -29,12 +29,16 @@ $(function(){
       buttons:{
         "是":function(){
           $(this).dialog("close");
+          fetch(`/shanshan/company/logout`)
+          .then((response) =>
+          console.log(response)
+          );
+          window.location.replace("../index/index.jsp")
         },
         "否":function(){
           $(this).dialog("close");
         }
       }
-
     });
     /* -----------登出鈕結束---------- */
 

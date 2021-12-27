@@ -151,6 +151,33 @@ public class CompanyDAOHibernate_impl implements CompanyDAOHibernate {
 		CompanyVO companyLoggedIn = query.uniqueResult();
 		return companyLoggedIn;
 	}
+	
+	@Override
+	public CompanyVO checkStatus(CompanyVO company) {
+		Session session = sessionFactory.getCurrentSession();
+		CriteriaBuilder cb = session.getCriteriaBuilder();
+		CriteriaQuery<CompanyVO> cq = cb.createQuery(CompanyVO.class);
+		Root<CompanyVO> root = cq.from(CompanyVO.class);
+		Predicate checkEmail = cb.equal(root.get("companyEmail"), company.getCompanyEmail());
+		Predicate checkStatus = cb.equal(root.get("companyStatus"), company.getCompanyStatus());
+		Predicate check = cb.and(checkEmail,checkStatus);
+		cq = cq.where(check);
+		Query<CompanyVO> query = session.createQuery(cq);
+		CompanyVO companyStatus = query.uniqueResult();
+		return companyStatus;
+	}
+
+
+	@Override
+	public CompanyVO updateCompanyPwd(Integer companyId, String companyPassword) {
+		Session session = sessionFactory.getCurrentSession();
+		CompanyVO company = session.get(CompanyVO.class, companyId);
+		company.setCompanyPassword(companyPassword);
+		return company;
+	}
+
+
+
 
 
 	

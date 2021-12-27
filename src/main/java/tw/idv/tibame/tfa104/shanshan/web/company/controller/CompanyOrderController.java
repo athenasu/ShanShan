@@ -33,11 +33,6 @@ public class CompanyOrderController {
 		
 	}
 	
-//	@GetMapping("findAllOrdersByComId")
-//	public List<Order> findAllOrdersByComId(Integer companyId){
-//		return service.findAllByComId(1);
-//	}
-	
 	//單一店家找未出貨訂單
 	@GetMapping("findByOrderStatus")
 	public List<Order> findAllByOrderStatus(Integer orderStatus,HttpSession session){
@@ -59,7 +54,7 @@ public class CompanyOrderController {
 		return service.findByOrderId(orderId);
 	}
 	
-	//提供貨運單號(9開頭,六位數字)確認出貨
+	//提供貨運單號確認出貨
 	@PostMapping("updateShip")
 	public Core updateShip(@RequestBody Order order,Core core) {
 		System.out.println("in update ShipNum");
@@ -68,7 +63,7 @@ public class CompanyOrderController {
 		return core1;
 	}
 	
-	//更新訂單狀態01訂單成立->02已出貨
+	//更新訂單狀態1訂單成立->2已出貨、1->0取消訂單
 	@PostMapping("updateOrderStatus")
 	public Core updateOrderStatusByOrderId(@RequestBody Order order, Core core) {
 		System.out.println("in update orderStatus");
