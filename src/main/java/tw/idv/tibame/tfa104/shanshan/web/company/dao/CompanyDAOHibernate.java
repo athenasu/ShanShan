@@ -16,8 +16,8 @@ public interface CompanyDAOHibernate {
 	public CompanyVO checkEmail(String email);
 	//登入確認
 	public CompanyVO checkLogin(CompanyVO company);
-	//登入店家狀態確認(1：審核通過才可登入)
-	public CompanyVO checkStatus(CompanyVO company);
+	//取得店家狀態確認(1：審核通過才可登入)
+	public CompanyVO getStatus(String email);
 	//店家更新密碼（忘記密碼用）
 	public CompanyVO updateCompanyPwd(Integer companyId, String companyPassword);
 	//得到完整單一店家資料
