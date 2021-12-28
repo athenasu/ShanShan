@@ -154,7 +154,7 @@
 		})
 	})	
 	$("#cancel2").click(function(){
-		console.log("wwww")
+// 		console.log("wwww")
 		$(".modal2 #errormsg").html("");
 		$(".overlay2").addClass("-none");		
 	});

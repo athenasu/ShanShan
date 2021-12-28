@@ -8,13 +8,14 @@
 <%@ page import="tw.idv.tibame.tfa104.shanshan.web.shop.service.impl.*"%>
 <%@ page import="tw.idv.tibame.tfa104.shanshan.web.product.entity.* "%>
 
-<jsp:useBean id="artSvc" scope="session"
-	class="tw.idv.tibame.tfa104.shanshan.web.article.service.impl.ArticleService" />
+<%-- <jsp:useBean id="artSvc" scope="session" --%>
+<%-- 	class="tw.idv.tibame.tfa104.shanshan.web.article.service.impl.ArticleService" /> --%>
 
 <%
 session.getAttribute("memberId");
 session.getAttribute("memberName");
-
+	
+	ArticleService artSvc= new ArticleService();
 	List<ArticleVO> list = artSvc.orderByViewer();
 	pageContext.setAttribute("list", list);
 

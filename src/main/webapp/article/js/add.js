@@ -34,13 +34,13 @@ $(function() {
 
 		if(artTitle == ""|artContent ==""|(otherMtn=="" && mtnid == 100)|date ==""){
 			$(".overlay").removeClass("-none");
-			$("#errormsg").html("有資料未填寫，請完成填寫");
+			$(".modal #errormsg").html("有資料未填寫，請完成填寫");
 		}else if(imglength > 5){
 			$(".overlay").removeClass("-none");
-			$("#errormsg").html("圖片不可上傳超過5張，請確認重新上傳");
+			$(".modal #errormsg").html("圖片不可上傳超過5張，請確認重新上傳");
 		}else if(imglength ==0){
 			$(".overlay").removeClass("-none");
-			$("#errormsg").html("請至少上傳一張照片");
+			$(".modal #errormsg").html("請至少上傳一張照片");
 		}else{
 			$("form").submit();
 		}

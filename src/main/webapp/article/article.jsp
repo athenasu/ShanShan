@@ -217,7 +217,7 @@
 	    }else{
 			$(".overlay").removeClass("-none");
 			 $("#givepoint").val("");
-			 $("#errormsg").html("");	 
+			 $(".modal #errormsg").html("");	 
 		}
 	});
 	  
@@ -240,11 +240,12 @@
 	  var clear = "";
 
 	  if (!/^[0-9]*$/.test(givepoint) | (givepoint == null)) {
-	    $("#errormsg").html("請填寫正確數字");
+		  console.log("111");
+	    $(".modal #errormsg").html("請填寫正確數字");
 	    $("#givepoint").val("");
 	  }else {
 	    if (givepoint > parseInt(havepoint)) {
-	      $("#errormsg").html("擁有的點數不足");
+	      $(".modal #errormsg").html("擁有的點數不足");
 	    }else {
 	      //   執行ajax
 	      $.ajax({

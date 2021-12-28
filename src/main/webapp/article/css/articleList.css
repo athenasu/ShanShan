@@ -43,6 +43,7 @@ input:focus {
 	border-radius:3px;
 	justify-content: center;
 	align-items: center;
+	  cursor: pointer;
 }
 
 .addArt a {
