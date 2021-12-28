@@ -10,26 +10,28 @@
         if(companyEmail == "" || companyPassword == ""){
             alert("帳號密碼不可空白！")
         }else{
-            fetch("/shanshan/company/login" , {
-                method:"POST",
-                headers:{
-                    "Content-Type":"application/json",
-                },
-                body: JSON.stringify({
-                    companyEmail,
-                    companyPassword,
-                }),
-            })
+            fetch(`/shanshan/company/getStatus?email=${companyEmail}`)
             .then(function(response){
                 console.log(response);
-                console.log("in first then");
                 return response.json();
             })
             .then((body) => {
-                console.log("in second then");
-                console.log(body);   
+                if (body.successful) {
+                    console.log(body.successful);
+                    fetch(`/shanshan/company/login` , {
+                        method:"POST",
+                        headers:{
+                            "Content-Type":"application/json",
+                        },
+                        body: JSON.stringify({
+                            companyEmail,
+                            companyPassword,
+                        }),
+                    })
+                    window.location.replace("../company/company_backend_page.html");
+                }else{
+                    alert("目前尚未通過審核，審核通過後才可登入：）")
+                }
             })
-            window.location.replace("../company/company_backend_page.html");
-        
         }
     })

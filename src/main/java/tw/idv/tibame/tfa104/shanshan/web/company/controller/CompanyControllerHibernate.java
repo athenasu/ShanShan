@@ -69,14 +69,17 @@ public class CompanyControllerHibernate {
 		Core core1 = service.updateStatus(company.getCompanyId(), company.getCompanyStatus(), core);
 		return core1;
 	}
-
+	
+	@GetMapping("getStatus")
+	public Core getStatus(String email,Core core) {
+		return service.getStatus(email, core);
+	}
 	
 	@PostMapping("login")
 	public CompanyVO login(@RequestBody CompanyVO company, HttpSession session) {
 		CompanyVO hadLogged = service.checkLogin(company);
-		CompanyVO checkStatus = service.checkStatus(company);
 		//要再加一個確認店家狀態
-		if(hadLogged != null && checkStatus != null) {
+		if(hadLogged != null) {
 			System.out.println(hadLogged.getCompanyId());
 			session.setAttribute("companyId", hadLogged.getCompanyId());
 			return hadLogged;

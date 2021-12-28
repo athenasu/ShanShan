@@ -94,6 +94,14 @@ public class CompanyDAOHibernate_impl implements CompanyDAOHibernate {
 	}
 
 	@Override
+	public CompanyVO getStatus(String email) {
+		Session session = sessionFactory.getCurrentSession();
+		Query<CompanyVO> query = session.createQuery("FROM CompanyVO WHERE companyEmail = :email",CompanyVO.class)
+				.setParameter("email", email);
+		return query.uniqueResult();
+	}
+	
+	@Override
 	public Integer updateStatus(Integer companyId,Integer companyStatus) {
 		Session session = sessionFactory.getCurrentSession();
 		CompanyVO tempcompany = session.get(CompanyVO.class,1);
@@ -105,7 +113,7 @@ public class CompanyDAOHibernate_impl implements CompanyDAOHibernate {
 	@Override
 	public CompanyVO update(byte[] file, CompanyVO company) {
 		Session session = sessionFactory.getCurrentSession();
-		CompanyVO testcompany = session.get(CompanyVO.class,1);//companyId先用1測試
+		CompanyVO testcompany = session.get(CompanyVO.class,company.getCompanyId());//companyId先用1測試
 		if(testcompany.getCompanyName() != null && testcompany.getCompanyName() != "") {
 			testcompany.setCompanyName(company.getCompanyName());
 		}
@@ -152,20 +160,7 @@ public class CompanyDAOHibernate_impl implements CompanyDAOHibernate {
 		return companyLoggedIn;
 	}
 	
-	@Override
-	public CompanyVO checkStatus(CompanyVO company) {
-		Session session = sessionFactory.getCurrentSession();
-		CriteriaBuilder cb = session.getCriteriaBuilder();
-		CriteriaQuery<CompanyVO> cq = cb.createQuery(CompanyVO.class);
-		Root<CompanyVO> root = cq.from(CompanyVO.class);
-		Predicate checkEmail = cb.equal(root.get("companyEmail"), company.getCompanyEmail());
-		Predicate checkStatus = cb.equal(root.get("companyStatus"), company.getCompanyStatus());
-		Predicate check = cb.and(checkEmail,checkStatus);
-		cq = cq.where(check);
-		Query<CompanyVO> query = session.createQuery(cq);
-		CompanyVO companyStatus = query.uniqueResult();
-		return companyStatus;
-	}
+
 
 
 	@Override
@@ -175,6 +170,12 @@ public class CompanyDAOHibernate_impl implements CompanyDAOHibernate {
 		company.setCompanyPassword(companyPassword);
 		return company;
 	}
+
+
+
+
+
+
 
 
 

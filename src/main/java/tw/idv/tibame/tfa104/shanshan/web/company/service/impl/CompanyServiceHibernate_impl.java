@@ -22,6 +22,7 @@ public class CompanyServiceHibernate_impl implements CompanyServiecHibernate {
 		return dao.findByPK(companyId);
 	}
 	
+
 	@Override
 	public List<CompanyVO> getAll() {
 		List<CompanyVO> companyList = dao.getAll(); 
@@ -57,6 +58,7 @@ public class CompanyServiceHibernate_impl implements CompanyServiecHibernate {
 		return dao.checkEmail(email);
 	}
 
+	
 	@Override
 	public CompanyVO update(byte[] file, CompanyVO company) {
 		return dao.update(file, company);
@@ -73,15 +75,6 @@ public class CompanyServiceHibernate_impl implements CompanyServiecHibernate {
 		
 	}
 	
-	@Override
-	public CompanyVO checkStatus(CompanyVO company) {
-		CompanyVO checkStatus = dao.checkStatus(company);
-		if(checkStatus != null) {
-			return checkStatus;
-		}else {
-		return null;
-		}
-	}
 
 	@Override
 	public Core updateStatus(Integer companyId, Integer companyStatus, Core core) {
@@ -96,6 +89,19 @@ public class CompanyServiceHibernate_impl implements CompanyServiecHibernate {
 	}
 
 	@Override
+	public Core getStatus(String email,Core core) {
+		CompanyVO result = dao.getStatus(email);
+		int status = result.getCompanyStatus();
+		if(status == 1) {
+			core.setSuccessful(true);
+			return core;
+		}else {
+			core.setSuccessful(false);
+			return core;
+		}
+	}
+	
+	@Override
 	public Boolean updateCompanyPwd(Integer companyId, String companyPassword) {
 		CompanyVO result = dao.updateCompanyPwd(companyId, companyPassword);
 		if(result != null) {
@@ -104,6 +110,8 @@ public class CompanyServiceHibernate_impl implements CompanyServiecHibernate {
 			return false;
 		}
 	}
+
+
 
 
 
