@@ -96,7 +96,7 @@ public class MemberLoginController {
 			jedis.close();
 		} 
 		jedis.close();
-		return new RedirectView("../member/change_password.html"); // jsp or html page--> need to test this
+		return new RedirectView("../member/change_password.html");
 	}
 	
 	@PostMapping("changePassword")

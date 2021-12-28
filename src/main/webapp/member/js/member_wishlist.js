@@ -36,11 +36,11 @@ const stayTypeStr = function (type) {
 };
 
 const countdownDiv = function (timestamp) {
-  let today = new Date();
-  let eventDate = new Date(timestamp);
-  let countdownDate = eventDate - today;
+  let today = new Date().getTime();
+  let countdownDate = timestamp - today;
   if (countdownDate > 0) {
-    let dateString = eventDate.getDate() + "天" + eventDate.getHours() + "小時";
+    let daysLeft = new Date(countdownDate);
+    let dateString = daysLeft.getDate() + "天" + daysLeft.getHours() + "小時";
     return `<p class="countdown">倒數：<span>${dateString}</span></p>`;
   } else {
     return `<p class="countdown-done">倒數：<span>已出發</span></p>`;
@@ -76,9 +76,9 @@ const renderWishlistEvent = function (event) {
 
   let html = `
             <div class="groupcard">
-            <a href="#?${event.wishlistEventId}">
+            <a href="#?${event.eventWishlistId}">
               <div class="groupimg">
-                <span wishlist-id="${event.wishlistEventId}" class="heart-event">
+                <span wishlist-id="${event.eventWishlistId}" class="heart-event">
                   <i class="fas fa-heart"></i>
                 </span>
                 <img src="${mtnUrl}" class="img" />
