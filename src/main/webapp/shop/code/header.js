@@ -2,7 +2,7 @@ $(document).ready(function () {
 
     // WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW 變數與方法
 	  var member_id = 0;
-// 登入 登出 切換
+// 登入 登出 按鈕 切換顯示
 	  function login_logout (){
 // 取得登入狀態
 		  member_id = $("input.member_id").val();
@@ -13,7 +13,7 @@ $(document).ready(function () {
 		  }
 
 		  if (member_id == "" ){
-			console.log("現在是未登入狀態喔!")
+//			console.log("現在是未登入狀態喔!")
 		  }
 	  }
 	  
@@ -70,7 +70,7 @@ $(document).ready(function () {
     // WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW 註冊 結束
     // WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW 商店 header 開始
 
-// 登入/登出 按鈕
+// 登入/登出 
     $("input.goods_login_modal_botton").click(function () {
 // 如果是未登入狀態
     	if (member_id == 0){
@@ -90,15 +90,9 @@ $(document).ready(function () {
         		  .then(function (response) {
 //        		           重新定向
         			  if($(".paymentPage") != null){
-        				  location.assign("shop/goods_index.jsp");
-        				  window.location.assign("shop/goods_index.jsp");
-            			  alert("111");
-        				  window.location.assign("http://localhost:8081/shanshan/shop/goods_index.jsp");
-            			  alert("11122");
-        				  document.location.href="http://localhost:8081/shanshan/shop/goods_index.jsp";
-            			  alert("222");
-        				  document.location.href="shop/goods_index.jsp";
-            			  alert("333");
+        				  location.assign("goods_index.jsp");
+//        				  window.location.assign("goods_index.jsp");
+//        				  document.location.href="goods_index.jsp";
         			  }else{
         			  location.reload();
         			  }

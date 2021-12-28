@@ -17,7 +17,10 @@
 //  提交購物車form，移除購物車項目
     function submitRemoveCartItem(){
     	$("#removeCartItem").ajaxSubmit(function(message) {
-	    	console.log("提交form,RemoveCartItem OK!!")
+//    		移除所有checkbox
+    		$("input[name='choose']").prop("checked", false)	 //更新實際頁面打勾狀況
+            $("input[name='choose']").removeAttr("checked")  	 //更新checked的值
+            $("input.selectallcart").prop("checked", false)
     	});
     	return false
     }
@@ -25,18 +28,18 @@
 //  提交購物車form，清空購物車
     function submitCleanCartItem(){
     	$("#cleanCartItem").ajaxSubmit(function(message) {
-	    	console.log("提交form,cleanCartItem OK!!")
+//    		移除所有checkbox
+    		$("input[name='choose']").prop("checked", false)	 //更新實際頁面打勾狀況
+            $("input[name='choose']").removeAttr("checked")  	 //更新checked的值
+            $("input.selectallcart").prop("checked", false)
     	});
-    	
     	return false
     }    
     
 //  提交購物車form，改數量
     function submitChangeItemQTY(){
     	$("#changeItemQTY").ajaxSubmit(function(message) {
-	    	console.log("提交form,changeItemQTY OK!!")
     	});	
-    	
     	return false
     }
     </script>

@@ -168,7 +168,6 @@ $(document).ready(function () {
 //    	console.log("本訂單 折扣後價格為 " + this_sum_after +"元")
 //      更新 總 折扣後價格
         countSumAfter();
-    	
     })
     
 //    提交訂單

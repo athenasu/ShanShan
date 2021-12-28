@@ -37,12 +37,12 @@
         <form method="post" action="<%=request.getContextPath()%>/memberLogin/login" id="loginSubmit">
             <div class="login_formbox_2 ">
                 <label class="login_formname" for="Email">電子郵件地址</label>
-                <input class="login_formbar_email login_formbar" name="Email" placeholder="請輸入您的電子郵件地址"></input></br>
+                <input class="login_formbar_email login_formbar" name="Email" placeholder="請輸入您的電子郵件地址" value="athenasu210@gmail.com"></input></br>
             </div>
 
             <div class="login_formbox">
                 <label class="login_formname" for="password">密碼</label>
-                <input class="login_formbar_password login_formbar" name="password" placeholder="請輸入您的密碼"></input></br>
+                <input class="login_formbar_password login_formbar" name="password" placeholder="請輸入您的密碼" value="P@ssword"></input></br>
             </div>
 
 		</form>
