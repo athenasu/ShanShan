@@ -100,7 +100,9 @@ public class CompanyControllerHibernate {
 	@PostMapping("forgetPwdCheckEmail")
 	public Core forgetPwdCheckEmail(@RequestBody CompanyVO company) {
 		Core core = new Core();
+		System.out.println(company.getCompanyEmail());
 		CompanyVO company1 = service.checkEmail(company.getCompanyEmail());
+		System.out.println(company1);
 		if(company1 != null) {
 			MailService mailservice = new MailService();
 			String subject = "山山來此-忘記密碼";

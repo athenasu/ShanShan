@@ -6,6 +6,7 @@
     // const loginBtn = document.querySelector(".middlelogin")
     $('.submitPwd').click(function(){
         let companyEmail = document.querySelector(".shopAcc").value;
+        console.log(companyEmail);
         if(companyEmail == ""){
             alert("信箱不可空白！")
         }else{
@@ -24,8 +25,10 @@
                 return response.json();
             })
             .then((body) => {
-                console.log("in second then");
-                console.log(body);   
+                console.log(body.successful);
+                if(body.successful){
+                    alert("變更密碼信件已寄送，請前往收信確認")
+                } 
             })
         }
     })

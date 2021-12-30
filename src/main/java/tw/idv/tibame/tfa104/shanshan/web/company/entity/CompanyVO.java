@@ -2,9 +2,7 @@ package tw.idv.tibame.tfa104.shanshan.web.company.entity;
 
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.Arrays;
 
-import org.hibernate.annotations.DynamicInsert;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
+import org.hibernate.annotations.DynamicInsert;
 
 @Entity
 @DynamicInsert

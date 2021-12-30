@@ -22,11 +22,20 @@ public interface CompanyProductService {
     //商品新增照片step3
     public ProductImgVO addProImg(ProductImgVO productImgVO);
     //==========================================================
-    
+    //商品更新 step1
+    public Integer updateProduct(Product product);
+  	//商品更新明細 step2
+  	public Integer updateProDes(ProductDesVO productdesVO);
+  	//商品更新圖片step3
+  	public ProductImgVO updateProImg(ProductImgVO productImgVO);
+    //==========================================================
 	//用ProductDesId搜尋 得到相關資訊
 	List <FindByProductIdBO> findByPK(Integer prodesId);
 	
-	//得到商品圖
+	//用ProductDesId搜尋 得到相關資訊 所有狀態 Lulu用
+	List <FindByProductIdBO> findByDesId(Integer prodesId);
+	
+	//用ProductDesId搜尋 得到商品圖
 	public List<ProductImgVO> findByproDes(Integer productDesId);
 	
 	

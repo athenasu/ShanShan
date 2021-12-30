@@ -90,7 +90,11 @@ public class CompanyDAOHibernate_impl implements CompanyDAOHibernate {
 		Session session = sessionFactory.getCurrentSession();
 		Query<CompanyVO> query = session.createQuery("FROM CompanyVO WHERE companyEmail = :email",CompanyVO.class)
 													.setParameter("email", email);
-		return query.uniqueResult();
+		try {
+			return query.getSingleResult();
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	@Override

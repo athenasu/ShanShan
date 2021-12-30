@@ -24,7 +24,7 @@ public class ProductDAOHibernate_impl implements ProductDAOHibernate {
 	}
 	
 	@Override
-	public Product updateproduct(Product product) {
+	public Integer updateProduct(Product product) {
 		Session session = sessionFactory.getCurrentSession();
 		Product tempProduct = session.get(Product.class, product.getProductId());
 		if(tempProduct.getProductPrice() != null) {
@@ -36,7 +36,7 @@ public class ProductDAOHibernate_impl implements ProductDAOHibernate {
 		if(tempProduct.getProductIntro() != null && tempProduct.getProductIntro() != "") {
 			tempProduct.setProductIntro(product.getProductIntro());
 		}
-		return tempProduct;
+		return tempProduct.getProductId();
 	}
 	@Override
 	public List<ProductBO> findById(Integer productId) {
@@ -205,7 +205,7 @@ public class ProductDAOHibernate_impl implements ProductDAOHibernate {
 						+ "WHERE i.product_img_id =(select min(product_img_id)"
 						+ "from product_img WHERE product_des_id = i.product_des_id "
 						+ "group by product_des_id)"
-						+ "and p.status = 1 " 
+//						+ "and p.status = 1 " 
 						+ "and c.company_id = :id",ProductBO.class)
 						.setParameter("id",companyId)
 						.list();

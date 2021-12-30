@@ -27,8 +27,9 @@
                             companyEmail,
                             companyPassword,
                         }),
-                    })
-                    window.location.replace("../company/company_backend_page.html");
+                    }).then(body => {
+                        window.location.replace("../company/company_backend_page.html");
+                    });
                 }else{
                     alert("目前尚未通過審核，審核通過後才可登入：）")
                 }

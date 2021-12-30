@@ -13,6 +13,9 @@ public interface ProductDesDAOHibernate {
 	//用ProductDesId搜尋 得到相關資訊
 	List <FindByProductIdBO> findByPK(Integer prodesId);
 	
+	//用ProductDesId搜尋 得到相關資訊 所有狀態 Lulu用
+	List <FindByProductIdBO> findByDesId(Integer prodesId);
+	
 	//用ProdesStock搜尋 得到有庫存的商品資訊
 	List <FindByProductIdBO> findByStock(Integer prodesStock);
 	
@@ -27,5 +30,7 @@ public interface ProductDesDAOHibernate {
 	//新增商品明細
 	public Integer addProdes(ProductDesVO productdesVO);
 	
+	//更新商品明細
+	public Integer updateProdes(ProductDesVO productdesVO);
 	
 }

@@ -45,7 +45,7 @@ public class CompanyProductController {
 		//System.out.println(prodes.getStatus());
 		return core1;
 	}
-	
+	//=================================================================
 	//商品新增step1
 	@PostMapping("addproduct")
 	public Map<String,Integer> addProduct(@RequestBody Product product,HttpSession session) {
@@ -71,11 +71,45 @@ public class CompanyProductController {
 		return service.addProImg(productImgVO);
 	}
 	
-	//查詢商品資訊，用ProductDesId搜尋 得到相關資訊
+	//=================================================================
+	
+	//商品更新 step1
+	@PostMapping("updateproduct")
+	public Map<String,Integer> updateproduct(@RequestBody Product product,HttpSession session){
+		Integer companyId = (Integer)session.getAttribute("companyId");
+		product.setCompanyId(companyId);
+		Map<String,Integer> update = new HashMap<String,Integer>();
+		Integer productId = service.updateProduct(product);
+		update.put("productId", productId);
+		return update;
+		
+	}
+	//商品更新明細 step2
+	@PostMapping("updateProDes")
+	public Map<String,Integer> updateProDes(@RequestBody ProductDesVO productdesVO){
+		Map<String,Integer> updatePro = new HashMap<String,Integer>();
+		Integer productDesId = service.updateProDes(productdesVO);
+		updatePro.put("productDesId",productDesId);
+		return updatePro;
+	}
+	//商品更新圖片step3
+	@PostMapping("updateProImg")
+	public ProductImgVO updateProImg(@RequestBody ProductImgVO productImgVO) {
+		return service.updateProImg(productImgVO);
+	}
+	
+	//=================================================================
+	//查詢商品資訊，用ProductDesId搜尋 得到相關資訊 狀態為上架
 	@GetMapping("findByproDesId")
 	public List <FindByProductIdBO> findByPK(Integer prodesId){
 		return service.findByPK(prodesId);
 	};
+	
+	//查詢商品資訊，用ProductDesId搜尋 得到相關資訊 狀態全部
+	@GetMapping("findByProDesIdAllStatus")
+	public List <FindByProductIdBO> findByDesId(Integer prodesId){
+		return service.findByDesId(prodesId);
+	}
 	
 	//得到商品圖
 	@GetMapping("findByproDes")
