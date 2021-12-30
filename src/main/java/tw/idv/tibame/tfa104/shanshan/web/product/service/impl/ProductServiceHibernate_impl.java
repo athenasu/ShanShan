@@ -32,6 +32,12 @@ public class ProductServiceHibernate_impl implements  ProductServiceHibernate{
 		return proId;
 	}
 	
+	//All Status
+	@Override
+	public List<ProductBO> findByIdAllStatus(Integer prodesId) {
+		List <ProductBO> proId = dao.findByIdAllStatus(prodesId);
+		return proId;
+	}
 	@Override
 	public List<ProductBO> findByDesId(Integer prodesId) {
 		List <ProductBO> prodesIdlist = dao.findByDesId(prodesId)
@@ -90,6 +96,7 @@ public class ProductServiceHibernate_impl implements  ProductServiceHibernate{
 		}
 		return allList;
 	}
+
 
 
 

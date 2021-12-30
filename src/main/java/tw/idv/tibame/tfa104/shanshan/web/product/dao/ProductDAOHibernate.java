@@ -10,6 +10,7 @@ public interface ProductDAOHibernate {
 	public Integer addproduct(Product product);
 	public Integer updateProduct(Product product);
 	List<ProductBO> findById (Integer productId);
+	List<ProductBO> findByIdAllStatus (Integer prodesId);
 	List<ProductBO> findByDesId(Integer prodesId);
 	List<ProductBO> findNew();
 	List<ProductBO> findByCompanyName(String search);
