@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,6 +31,7 @@ public class MemberController {
 		return member;
 	}
 	
+	@CrossOrigin // we are using the Angular 4200 port, so we need to add this
 	@GetMapping("findMemberByIdForEventMsg")
 	public Member findMemberByIdForEventMsg(Integer memberId) {
 		final Member member = service.findById(memberId);
