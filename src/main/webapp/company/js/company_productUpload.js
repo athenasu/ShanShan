@@ -216,7 +216,9 @@ $(function(){
                   const fileReader = new FileReader();
                   fileReader.onload = function(e){
                     const base64str = btoa(e.target.result);
-                  // step3 帶入prodesId 建入img( 帶入desId圖檔)
+                  //新增多張圖片
+                  // 
+                  // step3 帶入prodesId 建入img(帶入desId圖檔)
                     fetch(`/shanshan/companyProduct/addproimg` , {
                       method:"POST",
                       headers:{

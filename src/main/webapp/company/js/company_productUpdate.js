@@ -104,7 +104,16 @@ $(function(){
             }
           },
           {'data':'productColor'},
-          {'data':'proDesStock',},
+          {'data':'proDesStock'},
+          {'data':'status',
+            'render': function(data){
+              if(data == 0){
+                return data = '下架'
+              }else{
+                return data = '上架'
+              }
+              }
+          },
           {'data':null,
             'render':function(data,type,row){
               return '<button type="button" class="update">修改</button>'
@@ -160,10 +169,9 @@ $(function(){
       let productDesId = $(this).parents("tr").find("td").eq(0).text();
       console.log(productDesId);
       $('div.proinfo').dialog({
-        
         open: function(){
           $.ajax({
-               url:`/shanshan/companyProduct/findByproDesId?prodesId=${productDesId}`,
+               url:`/shanshan/companyProduct/findByProDesIdAllStatus?prodesId=${productDesId}`,
             type:"GET",
             dataType:"json",
             success: function(data){
@@ -171,6 +179,8 @@ $(function(){
               console.log("product update des")
               
               $.each(data,function(index,item){
+                document.querySelector(".proIdHidden").value = item.productId;
+                document.querySelector(".proDesIdHidden").value = item.prodesId;
                 document.querySelector(".proname").value = item.productName;
                 document.querySelector(".proprice").value = item.productPrice;
                 // console.log(item.productSize);
@@ -211,6 +221,9 @@ $(function(){
                  
                   let imgNum = 0;
                   $.each(data,function(index,item){
+                    /////// 抓Id ///////////
+                    // document.querySelector(".imgid").value = item.productImgId;
+                    //////////讀圖//////////
                     imgNum += 1;
                     const binStr = atob(item.productImg);
                     let len = binStr.length;
@@ -236,23 +249,97 @@ $(function(){
         title:"商品資料更動",
         buttons:{
           "更新資訊": function(){
-            const productName = document.querySelector(".proname").value;
-            const productPrice = document.querySelector(".proprice").value;
-            const productSize = $("input[name=product]:checked").val();
-            const productType = $("input[name=pType]:checked").val();
-            const productColor = document.querySelector(".color").value;
-            const productStock = document.querySelector(".stock").value;
-            const productIntro = document.querySelector(".prointro").value;
-            const productImg = document.querySelector(".upload_pro")
-           // const file = 
-            // //imgs
-            // const productImg
-            // const file1 = .files[0]
+            // step1 帶入companyId/productId
+            let productId = document.querySelector(".proIdHidden").value;
+            let productName = document.querySelector(".proname").value;
+            let productPrice = document.querySelector(".proprice").value;
+            let productType = $("input[name=pType]:checked").val();
+            let productIntro = document.querySelector(".prointro").value;
+              fetch(`/shanshan/companyProduct/updateproduct` , {
+                method:"POST",
+                headers: {
+                  "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                  // productImg:base64str,
+                  productId,
+                  productName,
+                  productPrice,
+                  // productSize,
+                  productType,
+                  // productColor,
+                  // productStock,
+                  productIntro,
+                })
+              })
+              .then(function(response){
+                console.log(response);
+                return response.json();
+              })
+              .then((body) => {
+                console.log(body.productId);
+                let productId = body.productId;
+                console.log(productId)
+                // step2 帶入step1建立好的productId 將prodes物件建起("尺寸顏色庫存" 價格不可為空值)
+                let productDesId = document.querySelector(".proDesIdHidden").value;
+                let productSize = $("input[name=product]:checked").val();
+                let productColor = document.querySelector(".color").value;
+                let productStock = document.querySelector(".stock").value;
+                let productPrice = document.querySelector(".proprice").value;
+                fetch(`/shanshan/companyProduct/updateProDes` , {
+                  method:"POST",
+                  headers:{
+                    "Content-Type":"application/json"
+                  },
+                  body: JSON.stringify({
+                    productId,
+                    productDesId,
+                    productSize,
+                    productColor,
+                    productStock,
+                    productPrice,
+                  })
+                })
+                .then(function(response){
+                  console.log("in prodes response");
+                  console.log(response);
+                  return response.json();
+                })
+                .then((body) => {
+                  console.log(body.productDesId);
+                  let productDesId = body.productDesId;
+                  console.log(productDesId)
 
-            // if(productName == "" || productPrice == "" || productSize == "" ||productType == ""||productColor =="" ||productIntro ==""){
-            //   $("#errMsg").html
-            // }
+                  // step3 帶入prodesId 建入img(帶入desId圖檔)
+                  // let productImgId = document.querySelector("imgid").value;
+                  let productImg = document.querySelector(".upload_pro");
+                  const file1 = productImg.files[0];
+                  const fileReader = new FileReader(); 
 
+                  fileReader.onload = function(e){
+                    const base64str = btoa(e.target.result);
+                    fetch(`/shanshan/companyProduct/updateProImg` , {
+                      method:"POST",
+                      headers:{
+                        "Content-Type":"application/json"
+                      },
+                      body: JSON.stringify({
+                        productDesId,
+                        productImg:base64str,
+                      }),
+                    }).then(body => body.json())
+                      .then(product => {
+                      console.log(product);
+                      alert("資料已更新");
+                      $(this).dialog("close");
+                    })
+                  };
+                  fileReader.readAsBinaryString(file1);
+                })
+                
+              })
+              
+            }
           },
           "清空重填": function(){
             proimg.innerHTML = '<span class="sbtext">圖片預覽</span>';
@@ -260,13 +347,12 @@ $(function(){
           "取消更新": function(){
             $(this).dialog("close");
           }
-        },
-
-      });
+        })
       //open寫在整個dialog外,dialog open之後進行資料傳輸載入 
       $('div.proinfo').dialog("open");
-
-    })
+      });
+      
+    
     /* -----------單一商品上下架開始---------- */
     $('div.onShelfConfirm').dialog({
       width:850,
@@ -282,6 +368,9 @@ $(function(){
       //設定動態productDesId
       let productDesId = $(this).parents("tr").find("td").eq(0).text();
       console.log(productDesId);
+      
+      
+      
       $('div.onShelfConfirm').dialog({
         open: function(){
           $.ajax({
@@ -485,7 +574,6 @@ $(function(){
       //open寫在整個dialog外,dialog open之後進行資料傳輸載入 
       $('div.downShelfConfirm').dialog("open");
     })
-})
 
     
-   
+})  

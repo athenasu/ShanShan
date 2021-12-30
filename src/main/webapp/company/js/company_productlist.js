@@ -69,6 +69,15 @@ $(function(){
                {'data':'prodesId'},
     	         {'data':'productName'},
     	         {'data':'productPrice'},
+               {'data':'status',
+                'render': function(data){
+                  if(data == 0){
+                    return data = '下架'
+                  }else{
+                    return data = '上架'
+                  }
+                }
+               },
     	         {'data':'productSize',
                 'render': function(data){
                   if(data == 0){

@@ -60,13 +60,32 @@ public class CompanyProductServiceImpl implements CompanyProductService {
 		return proImgDao.addProImg(productImgVO);
 	}
 	
+	//商品修改===========================================================
+	@Override
+	public Integer updateProduct(Product product) {
+		return productDao.updateProduct(product);
+	}
 	
+	@Override
+	public Integer updateProDes(ProductDesVO productdesVO) {
+		return proDesDao.updateProdes(productdesVO);
+	}
+	
+	@Override
+	public ProductImgVO updateProImg(ProductImgVO productImgVO) {
+		return proImgDao.update(productImgVO);
+	}
 	//===========================================================
 	@Override
 	public List<FindByProductIdBO> findByPK(Integer prodesId) {
 		return proDesDao.findByPK(prodesId);
 	}
 
+	@Override
+	public List<FindByProductIdBO> findByDesId(Integer prodesId) {
+		return proDesDao.findByDesId(prodesId);
+	}
+	
 	@Override
 	public List<ProductImgVO> findByproDes(Integer productDesId) {
 		return proImgDao.findByproDes(productDesId);
@@ -75,6 +94,18 @@ public class CompanyProductServiceImpl implements CompanyProductService {
 	public List<ProductBO> findByCompanyId(Integer companyId) {
 		return productDao.findByCompanyId(companyId);
 	}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

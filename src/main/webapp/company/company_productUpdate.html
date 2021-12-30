@@ -63,16 +63,17 @@
     <table id ="allProduct"class="productlist">
       <thead>
       <tr>
-        <th colspan="10">變更商品資訊</th>
+        <th colspan="11">變更商品資訊</th>
       </tr>
       <tr>
-        <th>商品編號</th>
-        <th>商品名稱</th>
-        <th>商品種類</th>
-        <th>商品價格</th>
-        <th>商品尺寸</th>
-        <th>商品顏色</th>
-        <th>商品庫存</th>
+        <th>編號</th>
+        <th>名稱</th>
+        <th>種類</th>
+        <th>價格</th>
+        <th>尺寸</th>
+        <th>顏色</th>
+        <th>庫存</th>
+        <th>狀態</th>
         <th>修改</th>
         <th>上架</th>
         <th>下架</th>
@@ -80,6 +81,7 @@
       </thead>
       <tbody>
       <tr>
+        <td></td>
         <td></td>
         <td></td>
         <td></td>
@@ -165,9 +167,8 @@
     <!-- <form class="pinfo" > -->
       <!-- <p>新增商品</p> -->
       <div class="leftinfo">
-      <!-- <div class="proId">
-        商品編號：<input class="proid" type="text" readonly="value">
-      </div> -->
+      <div class="proIdHidden" type="text" style="display:none" ></div>
+      <div class="proDesIdHidden"  type="text" style="display:none" ></div>
       <div class="proName">
         商品名稱：<input readonly class="proname" type="text"  placeholder="請輸入商品名稱" value>
       </div>
@@ -202,9 +203,10 @@
       <!-- 右側上傳圖檔 -->
       <div class="rightinfo">
         <!-- 商品圖 -->
+        <div class="imgid" type="text" style="display:none"></div>
         <span class="bannertext">商品圖片</span>
         <label class="probanner">
-          <input id="pro" class="upload_pro" type="file" style="display:none;">
+          <input id="pro" class="upload_pro" type="file" multiple="multiple" style="display:none;">
           <i class="fa fa-photo"></i> 上傳圖片
         </label>
         <ul id="proimg" class="proimg">

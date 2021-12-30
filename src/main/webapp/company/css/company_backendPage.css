@@ -10,6 +10,10 @@ body {
 }
 a {
   text-decoration: none;
+  color: rgb(40, 83, 107);
+}
+a.shopinfoUp {
+  text-decoration: none;
   color: white;
 }
 img {

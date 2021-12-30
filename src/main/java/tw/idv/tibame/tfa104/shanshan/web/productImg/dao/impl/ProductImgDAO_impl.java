@@ -26,8 +26,8 @@ public class ProductImgDAO_impl implements ProductImgDAO_interface {
 	private static final String INSERT = "INSERT INTO product_img"+
 	"(product_des_id,product_img)"+
 	"VALUES(?, ?)";
-	private static final String UPDATE = "UPDATE product_img SET product_img = ? WHERE product_img_id = ?" ;
-	private static final String DELETE = "DELETE FROM product_img WHERE product_img_id = ?" ;
+	private static final String UPDATE = "UPDATE product_img SET product_img = ? WHERE product_des_id = ?" ;
+	private static final String DELETE = "DELETE FROM product_img WHERE product_des_id = ?" ;
 	private static final String FIND_BY_PRODES = "SELECT * FROM product_img WHERE product_des_id = ?" ;
 //	private static final String GET_PRODUCT_ALL_PIC = "SELECT product_id, product_des_id, product_img_id, product_img FROM product_img JOIN product_description USING (product_des_id) WHERE product_des_id = ? ORDER BY product_img_id";
 	
@@ -78,7 +78,7 @@ public class ProductImgDAO_impl implements ProductImgDAO_interface {
 	}
 
 	@Override
-	public Integer update(ProductImgVO productImgVO) {
+	public ProductImgVO update(ProductImgVO productImgVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
@@ -88,7 +88,7 @@ public class ProductImgDAO_impl implements ProductImgDAO_interface {
 			//setting picture >set Bytes
 			//byte[] pic = getPictureByteArray("/Users/luciechen/Documents/shanshan/products/womenClothes-shop1use/13-1.jpg");
 			pstmt.setBytes(1,productImgVO.getProductImg());
-			pstmt.setInt(2, productImgVO.getProductImgId());
+			pstmt.setInt(2, productImgVO.getProductDesId());
 			pstmt.executeUpdate();
 			
 		}catch(SQLException se) {
@@ -110,7 +110,7 @@ public class ProductImgDAO_impl implements ProductImgDAO_interface {
 				}
 			}
 		}
-		return 1;
+		return productImgVO;
 	}
 
 	@Override

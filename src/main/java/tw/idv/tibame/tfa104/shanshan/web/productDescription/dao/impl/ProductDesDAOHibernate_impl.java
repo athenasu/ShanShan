@@ -61,6 +61,28 @@ public class ProductDesDAOHibernate_impl implements ProductDesDAOHibernate {
 				.list();
 		return prodes;
 	}
+	
+	//單一商品資訊lulu用 不設定上下架狀態
+	@Override
+	public List<FindByProductIdBO> findByDesId(Integer prodesId) {
+		Session session = sessionFactory.getCurrentSession();
+		List <FindByProductIdBO> prodes 
+			= session.createNativeQuery("select d.product_des_id as prodesId,"
+			+ "p.product_id as productId, p.product_name as productName,"
+			+ "d.product_size as productSize, d.product_stock as proDesStock,"
+			+ "d.product_color as productColor,d.product_price as productPrice,"
+			+ "i.product_img as productImg,d.status as status,"
+			+ "p.product_intro as productIntro,"
+			+ "i.product_img_id as productImgId,"
+			+ "p.product_type as productType "
+			+ "from ShanShan.product_description as d "
+			+ "JOIN product as p on p.product_id = d.product_id "
+			+ "JOIN product_img as i on i.product_des_id = d.product_des_id " 
+			+ "WHERE d.product_des_id = :id", FindByProductIdBO.class)
+			.setParameter("id", prodesId)
+			.list();
+		return prodes;
+	}
 
 	@Override
 	public List <FindByProductIdBO> findByStock(Integer prodesStock) {
@@ -140,5 +162,26 @@ public class ProductDesDAOHibernate_impl implements ProductDesDAOHibernate {
 		return (Integer)session.save(productdesVO);
 		 
 	}
+
+	@Override
+	public Integer updateProdes(ProductDesVO productdesVO) {
+		Session session = sessionFactory.getCurrentSession();
+		ProductDesVO tempProDes = session.get(ProductDesVO.class,productdesVO.getProductDesId());
+		if(tempProDes.getProductSize() != null) {
+			tempProDes.setProductSize(productdesVO.getProductSize());
+		}
+		if(tempProDes.getProductColor() != null &&tempProDes.getProductColor() != "" ) {
+			tempProDes.setProductColor(productdesVO.getProductColor());
+		}
+		if(tempProDes.getProductStock() != null) {
+			tempProDes.setProductStock(productdesVO.getProductStock());
+		}
+		if(tempProDes.getProductPrice() != null) {
+			tempProDes.setProductPrice(productdesVO.getProductPrice());
+		}
+		return tempProDes.getProductDesId();
+	}
+
+
 	
 }
