@@ -5,7 +5,6 @@ $(document).ready(function () {
 
     let all_checked = $("input.selectallcart");
     let single_checked = $("input[name='choose']");
-
 	// 改變購物車icon的數字
     function showCartItemQty(){
 //    	console.log("header.js/showCartItemQty()執行了");
@@ -52,18 +51,6 @@ $(document).ready(function () {
     }
 
 	decodeSize ();
-    // WWWWWwwwwwwwwwwwwwwwWWWWWW 移除/清空/改數量/總價更新方法 (用提交表格的方式)
-//  提交購物車form，移除購物車項目
-    function submitRemoveCartItem(){
-    	$("#removeCartItem").ajaxSubmit(function(message) {
-//    		移除所有checkbox
-    		$("input[name='choose']").prop("checked", false)	 //更新實際頁面打勾狀況
-            $("input[name='choose']").removeAttr("checked")  	 //更新checked的值
-            $("input.selectallcart").prop("checked", false)
-	    	
-    	});
-    	return false
-    }
     
 //  提交購物車form，清空購物車
     function submitCleanCartItem(){
@@ -77,14 +64,6 @@ $(document).ready(function () {
     	return false
     }    
     
-//  提交購物車form，改數量
-    function submitChangeItemQTY(){
-    	$("#changeItemQTY").ajaxSubmit(function(message) {
-    	});
-    	return false
-    }
-    
-//    總價格更新方法
     function updateTotalPrice(){
         // 改變/移除購物車項目時，總價格變動
         // 得到購物車項目個數
@@ -153,13 +132,20 @@ $(document).ready(function () {
 
         let check = confirm("是否要移除購物車全部商品？");
         if (check) {
-            // 提交form，執行servlet
-        	$("#cleanCartItem").submit();
             $("ul.cart_product_content_area").empty();
             // 移除購物車全部商品時，購物車總價格也要變動
             $("span.cart_total_price").text("0")
         	// 改變購物車icon的數字
             showCartItemQty();
+
+            // 提交form，執行servlet
+        	$("form.formCleanCart").ajaxSubmit(function(message) {
+//        		移除所有checkbox
+        		$("input[name='choose']").prop("checked", false)	 //更新實際頁面打勾狀況
+                $("input[name='choose']").removeAttr("checked")  	 //更新checked的值
+                $("input.selectallcart").prop("checked", false)
+        	});
+            return false
         }
         
     })
@@ -167,19 +153,26 @@ $(document).ready(function () {
     // 點擊 移除，移除該項商品 
     $("li.cart_product_content10 span").click(function () {
         // 提交form，執行servlet
-    	$("#removeCartItem").submit();
-    	
+        $(this).parents(".cart_product_content").find(".formRemoveCartItem").ajaxSubmit(function(message) {
+//    		移除所有checkbox 打勾
+    		$("input[name='choose']").prop("checked", false)	 //更新實際頁面打勾狀況
+            $("input[name='choose']").removeAttr("checked")  	 //更新checked的值
+            $("input.selectallcart").prop("checked", false)
+    	});
+        
+//    	移除項目
         $(this).closest("ul").remove()
         
         // 移除購物車全部商品時，購物車總價格也要變動
         updateTotalPrice();
     	// 改變購物車icon的數字
         showCartItemQty();
+        return false
     })
 
 
     // WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW 調整數量
-    // 點擊add，購買數增加1  (未完成)
+    // 點擊add，購買數增加1  
     $("i.fa-plus").click(function () {
         let qty_culumn = $(this).siblings("span")
         let add_qty = parseInt(qty_culumn.text()) + 1;
@@ -191,10 +184,13 @@ $(document).ready(function () {
         $(this).closest(".cart_product_content8").siblings(".cart_product_content9").children("span").text(qty_culumn.text() * item_price);
         // 改變總價
         updateTotalPrice();
-        // 更新input的值，提交form，執行servlet
-        $("input.changeItemQTY_itemQTY, input.buyDirectly_productDesId").attr("value", qty_culumn.text())
-    	$("#changeItemQTY").submit();
+        // 更新input的值
+        $(this).parents(".cart_product_content").find("input.changeItemQTY_itemQTY").attr("value", qty_culumn.text())
+        // 提交form，執行servlet
+        $(this).parents(".cart_product_content").find(".formChangeItemQTY").ajaxSubmit(function(message) {
+    	});
 
+        return false
     })
 
     // 點擊reduce，購買數減少1  
@@ -208,24 +204,38 @@ $(document).ready(function () {
             // 改變數量時，單項小計變動  單價*數量
             $(this).closest(".cart_product_content8").siblings(".cart_product_content9").children("span").text(qty_culumn.text() * item_price);
 
-            // 更新input的值，提交form，執行servlet
-            $("input.changeItemQTY_itemQTY, input.buyDirectly_productDesId").attr("value", qty_culumn.text())
-        	$("#changeItemQTY").submit();
-            
+            // 更新input的值
+            $(this).parents(".cart_product_content").find("input.changeItemQTY_itemQTY").attr("value", qty_culumn.text())
+            // 提交form，執行servlet
+            $(this).parents(".cart_product_content").find(".formChangeItemQTY").ajaxSubmit(function(message) {
+        	});
+
+            // 改變總價
+            updateTotalPrice();
+            return false
         }
         else if (qty_culumn = 1) {
             let check = confirm("目前商品數為1，是否要移除本商品？");
             if (check) {
+                // 提交form，執行servlet
+                $(this).parents(".cart_product_content").find(".formRemoveCartItem").ajaxSubmit(function(message) {
+//  	  		移除所有checkbox 打勾
+                	$("input[name='choose']").prop("checked", false)	 //更新實際頁面打勾狀況
+                	$("input[name='choose']").removeAttr("checked")  	 //更新checked的值
+                	$("input.selectallcart").prop("checked", false)
+                });
+                
                 $(this).closest("ul").remove()
 
-                // 提交form，執行servlet
-            	$("#removeCartItem").submit();
             	// 改變購物車icon的數字
                 showCartItemQty();
+                // 改變總價
+                updateTotalPrice();
+                return false
+                
             }
         }
-        // 改變總價
-        updateTotalPrice();
+       
 
     })
     
@@ -259,10 +269,10 @@ $(document).ready(function () {
     		}
 
 //  		清除其他不提交的form/input表單，提交時避免出錯
-    		$("#cleanCartItem").remove();
     		$("#cleanCartItemInput").remove();
-    		$("#removeCartItem").remove();
-    		$("#changeItemQTY").remove();
+    		$(".formCleanCart").remove();
+    		$(".formRemoveCartItem").remove();
+    		$(".formChangeItemQTY").remove();
     		$("input.cartItem_companyId").remove();
 
     		// 提交form，執行servlet

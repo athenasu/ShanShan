@@ -159,24 +159,26 @@ public class PurchaseServlet extends HttpServlet {
 			Map<String, Integer> companyIdMap = new HashMap<String, Integer>();
 
 			List<OrderDescription> ItemProDesIdList = new ArrayList<OrderDescription>();  //本次採購的ProDesId LIST	
-			
+
 			for  (count = 1 ; count <= MaxQTY ; count++) {
+				System.out.println("循環的count="+count);
 				if(request.getParameter(count+"") != null){
+					System.out.println("進來IF的count="+count);
+//					取得商品總數
+					sum += 1;
 //					取得本次採購的ProDesId LIST
 					OrderDescription oderDes = new OrderDescription();
 					oderDes.setProduct_des_id(Integer.parseInt(request.getParameter(count+"")));
 					ItemProDesIdList.add(oderDes);
 //					System.out.println("商品明細編號"+ItemProDesIdList.get(count-1).getProduct_des_id()+"加入了結帳列表");
 //					用ProDesId取出session購物車的購物車項目
-					CartItem cartItem = cart.getMapCartItem().get(ItemProDesIdList.get(count-1).getProduct_des_id()+"");
+					CartItem cartItem = cart.getMapCartItem().get(ItemProDesIdList.get(sum-1).getProduct_des_id()+"");
 //					System.out.println("購物車項目 依照Product_des_id被選了出來： "+cartItem);
 //					把購物車項目 product des id 對應的 itemQTY 存進去ItemProDesIdList
-					ItemProDesIdList.get(count-1).setProduct_quantity(cartItem.getItemQTY()); 
+					ItemProDesIdList.get(sum-1).setProduct_quantity(cartItem.getItemQTY()); 
 //					System.out.println("ItemProDesIdList列表的第"+(count)+"項，商品編號："+ItemProDesIdList.get(count-1).getProduct_des_id()+"，加入了數量屬性： "+ItemProDesIdList.get(count-1).getProduct_quantity());
 //					用map集合 檢查有多少本次採購 有多少店家的訂單 檢查有多少店家
 					companyIdMap.put(cartItem.getCompanyId()+"",0);
-//					取得商品總數
-					sum += 1;
 //					System.out.println("目前在循環中，ItemProDesIdList第"+(count)+"項，商品編號為"+ItemProDesIdList.get(count-1).getProduct_des_id());
 				}
 			}
@@ -241,8 +243,6 @@ public class PurchaseServlet extends HttpServlet {
 			}
 //			System.out.println("===============================");
 //			System.out.println("結束訂單明細歸類，目前訂單集合資料為："+orderList);
-
-			
 		}
 
 //		如果真的結帳，資料會重複用到，所以把資料存到Session

@@ -12,37 +12,11 @@
     <title>購物車</title>
     <link rel="stylesheet" type="text/css" href="<%=contextPath%>/shop/code/style.css">
 
-    <script type='text/javascript'>
-    
-//  提交購物車form，移除購物車項目
-    function submitRemoveCartItem(){
-    	$("#removeCartItem").ajaxSubmit(function(message) {
-//    		移除所有checkbox
-    		$("input[name='choose']").prop("checked", false)	 //更新實際頁面打勾狀況
-            $("input[name='choose']").removeAttr("checked")  	 //更新checked的值
-            $("input.selectallcart").prop("checked", false)
-    	});
-    	return false
-    }
-    
-//  提交購物車form，清空購物車
-    function submitCleanCartItem(){
-    	$("#cleanCartItem").ajaxSubmit(function(message) {
-//    		移除所有checkbox
-    		$("input[name='choose']").prop("checked", false)	 //更新實際頁面打勾狀況
-            $("input[name='choose']").removeAttr("checked")  	 //更新checked的值
-            $("input.selectallcart").prop("checked", false)
-    	});
-    	return false
-    }    
-    
-//  提交購物車form，改數量
-    function submitChangeItemQTY(){
-    	$("#changeItemQTY").ajaxSubmit(function(message) {
-    	});	
-    	return false
-    }
-    </script>
+    <!-- 載入jQuery -->
+    <!-- <script type='text/javascript' src='<%=contextPath%>/shop/code/jquery-3.6.0.js'></script> -->
+    <script type='text/javascript' src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- 載入jQuery form-->
+    <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.js"></script>
 
 </head>
 
@@ -55,6 +29,10 @@
 
         <div class="goodsindex_innercontent ">
 			<!-- 結帳 -->
+				<!-- 刪除全部 -->
+                <form method="get" action="<%=contextPath%>/CartServlet" class="formCleanCart">
+                    <input type="hidden" name="method" value="cleanCartItem" id="cleanCartItemInput" >
+                </form>
             <form method="get" action="<%=contextPath%>/PurchaseServlet" id="PurchaseProduct">
        			<input type="hidden" name="method" value="buyCart">
             
@@ -79,12 +57,6 @@
                     <li>小計</li>
                     <li>移除此項</li>
                 </ul>
-                       
-						<!-- 刪除全部 -->
-                        <form method="get" action="<%=contextPath%>/CartServlet" id="cleanCartItem" onsubmit="return submitCleanCartItem();">
-                            <input type="hidden" name="method" value="cleanCartItem" id="cleanCartItemInput" >
-                        </form>
-
                 <ul class="cart_product_content_area">
          		  <c:forEach items="${cart.cartItems}" var="cartItem" varStatus="s">
                     <ul class="cart_product_content">
@@ -105,27 +77,18 @@
                         <li class="cart_product_content9">NT&ensp;<span class="cart_item_price">${cartItem.subtotalPrice}</span></li>
                         <li class="cart_product_content10"><span>移除</span></li>
                         	<!-- 移除項目-->
-                         <form method="get" action="<%=contextPath%>/CartServlet" id="removeCartItem" onsubmit="return submitRemoveCartItem();">
+                         <form method="get" action="<%=contextPath%>/CartServlet" class="formRemoveCartItem" ">
                             <input type="hidden" name="method" value="removeCartItem">
                             <input type="hidden" class="removeCartItem_productDesId" name="productDesId" value="${cartItem.prodesId}">
                         </form>
                         	<!-- 改數量 -->
-                        <form method="get" action="<%=contextPath%>/CartServlet" id="changeItemQTY" onsubmit="return submitChangeItemQTY();">
+                        <form method="get" action="<%=contextPath%>/CartServlet" class="formChangeItemQTY" >
                             <input type="hidden" name="method" value="changeItemQTY">
                             <input type="hidden" class="changeItemQTY_productDesId" name="productDesId" value="${cartItem.prodesId}">
                             <input type="hidden" class="changeItemQTY_itemQTY"name="itemQTY" value="">
                         </form>
                         	<!-- 結帳 -->
-       				         <%-- <input type="hidden" class="cartItem_companyId" value="${cartItem.companyId}"> --%>
-       				         <input type="hidden" class="buyCart_cartItem_prodesId" name="${s.count}" value="prodesId"><!-- 只取每個項目的prodesId -->
-       				         <%-- <input type="hidden" class="buyCart_cartItem_itemQTY" name="${s.count}itemQTY" value="">
-       				         <input type="hidden" class="buyCart_cartItem_companyId" name="${s.count}companyId" value="">
-       				         <input type="hidden" class="buyCart_cartItem_companyId" name="${s.count}productId" value="">
-       				         <input type="hidden" class="buyCart_cartItem_companyId" name="${s.count}companyName" value="">
-       				         <input type="hidden" class="buyCart_cartItem_companyId" name="${s.count}productSize" value="">
-       				         <input type="hidden" class="buyCart_cartItem_companyId" name="${s.count}productColor" value="">
-       				         <input type="hidden" class="buyCart_cartItem_companyId" name="${s.count}productPrice" value="">
-       				         <input type="hidden" class="buyCart_cartItem_companyId" name="${s.count}subtotalPrice" value=""> --%>
+       				         <input type="hidden" class="buyCart_cartItem_prodesId" name="${s.count}" value="prodesId">
                     </ul>
                    </c:forEach> 
                    
@@ -149,16 +112,12 @@
     <!-- 插入 商城頁尾-->
 <%@ include file="goods_footer.jsp" %>
 
-    <!-- 載入jQuery -->
-    <!-- <script type='text/javascript' src='<%=contextPath%>/shop/code/jquery-3.6.0.js'></script> -->
-    <script type='text/javascript' src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <!-- 載入jQuery form-->
-    <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.js"></script>
     <!-- 載入index.js -->
     <script type='text/javascript' src='<%=contextPath%>/shop/code/header.js'></script>
     <script type='text/javascript' src='<%=contextPath%>/shop/code/cart.js'></script>
     <!-- 載入icon -->
     <script src="https://kit.fontawesome.com/8cfc21ab70.js" crossorigin="anonymous"></script>
+    
 </body>
 
 </html>
