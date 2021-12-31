@@ -16,12 +16,17 @@ public class ProductControllerHibernate {
 	@Autowired
 	private ProductServiceHibernate service;
 
-	@GetMapping("findById")
+	@GetMapping("findById")//狀態為上架
 	public List<ProductBO> findById(Integer productId) {
 		return service.findById(productId);
 	}
 	
-	@GetMapping("findByDesId")
+	@GetMapping("findByIdAllStatus")//狀態為上下架
+	public List<ProductBO> findByIdAllStatus (Integer prodesId){
+		return service.findByIdAllStatus(prodesId);
+	}
+	
+	@GetMapping("findByDesId")//狀態為上架
 	public List<ProductBO> findByDesId(Integer prodesId){
 		return service.findByDesId(prodesId);
 	}

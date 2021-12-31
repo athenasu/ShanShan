@@ -9,6 +9,7 @@ public interface ProductServiceHibernate {
 	
 	public Integer addproduct(Product product);
 	List<ProductBO> findById (Integer productId);
+	List<ProductBO> findByIdAllStatus (Integer productId);// all status
 	List<ProductBO> findByDesId(Integer prodesId);
 	List<ProductBO> findNew();
 	List<ProductBO> findByCompanyName(String search);

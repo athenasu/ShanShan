@@ -374,7 +374,7 @@ $(function(){
       $('div.onShelfConfirm').dialog({
         open: function(){
           $.ajax({
-            url:`/shanshan/product/findById?productId=${productDesId}`,
+            url:`/shanshan/product/findByIdAllStatus?prodesId=${productDesId}`,
             type:"GET",
             dataType:"json",
             success: function(data){
@@ -479,7 +479,7 @@ $(function(){
       $('div.downShelfConfirm').dialog({
         open: function(){
           $.ajax({
-            url:`/shanshan/product/findById?productId=${productDesId}`,
+            url:`/shanshan/product/findByIdAllStatus?prodesId=${productDesId}`,
             type:"GET",
             dataType:"json",
             success: function(data){
