@@ -55,7 +55,7 @@ header a:hover {
 #memcheck {
   width: 25%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
 }
 
@@ -250,7 +250,7 @@ footer h4 {
 .login_modal_email,
 .forgot_password_modal,
 .change_password_page {
-  height: 330px;
+  height: 350px;
   width: 400px;
   position: fixed;
   top: -25%;
