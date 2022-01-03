@@ -230,7 +230,7 @@ div.proinfo {
   height: auto;
   margin: 0 auto;
   box-sizing: border-box;
-  padding: 10px 20px 80px 20px;
+  padding: 10px 20px 60px 20px;
 }
 div.proinfo p {
   text-align: center;
@@ -339,7 +339,7 @@ ul.proimg5 {
   list-style: none;
   margin-top: 5px;
   padding-top: 5px;
-  min-height: 250px;
+  min-height: 400px;
   color: lightgray;
   border: 2px dashed rgb(109, 150, 173);
 }
@@ -357,20 +357,37 @@ textarea.prointro {
 }
 #finalbtn {
   display: inline-block;
-  margin-left: 275px;
+  margin-left: 250px;
+  margin-top: 80%;
 }
-#proreset,
-#prosubmit {
-  margin-top: 200px;
-  padding: 2px 5px;
+#proreset {
+  float: left;
+  padding: 5px 10px;
   cursor: pointer;
   border: none;
   background-color: rgb(40, 83, 107);
   color: white;
+  margin-right: 10px;
+}
+#prosubmit {
+  /* margin-top: 300px; */
+  float: right;
+  padding: 5px 10px;
+  cursor: pointer;
+  border: none;
+  background-color: rgb(40, 83, 107);
+  color: white;
+  /* height: 20px;
+  
+  margin: 50px 0px 10px 0px;
+  background-color: rgb(40, 83, 107);
+  color: white;
+  border: none; */
 }
 #proreset:hover,
 #prosubmit:hover {
   background-color: rgb(109, 150, 173);
+  cursor: pointer;
 }
 
 /* ------- 店家資料維護結束------- */

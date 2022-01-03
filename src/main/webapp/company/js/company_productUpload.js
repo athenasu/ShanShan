@@ -67,72 +67,68 @@ $(function(){
       })
      
       //===========================商品圖上傳二================================
-      pro2.addEventListener("change",function(e){
-        // console.log("change")
-      var proimg2 = document.getElementsByClassName("proimg2")[0];
-      proimg2.innerHTML = "";
+      // pro2.addEventListener("change",function(e){
+      //   // console.log("change")
+      // var proimg2 = document.getElementsByClassName("proimg2")[0];
+      // proimg2.innerHTML = "";
 
-        let reader2 = new FileReader();
-        reader2.readAsDataURL(this.files[0]);
-        reader2.addEventListener("load",function(){
-          console.log(reader2.result);
-          let li_html2 =`<li><img src="${reader2.result}" class="probanner2"></li>`;
-          proimg2.insertAdjacentHTML("beforeend",li_html2);
-        });
-      })
+      //   let reader2 = new FileReader();
+      //   reader2.readAsDataURL(this.files[0]);
+      //   reader2.addEventListener("load",function(){
+      //     console.log(reader2.result);
+      //     let li_html2 =`<li><img src="${reader2.result}" class="probanner2"></li>`;
+      //     proimg2.insertAdjacentHTML("beforeend",li_html2);
+      //   });
+      // })
 
       //===========================商品圖上傳三================================
-      pro3.addEventListener("change",function(e){
-        // console.log("change")
-      var proimg3 = document.getElementsByClassName("proimg3")[0];
-      proimg3.innerHTML = "";
+      // pro3.addEventListener("change",function(e){
+      //   // console.log("change")
+      // var proimg3 = document.getElementsByClassName("proimg3")[0];
+      // proimg3.innerHTML = "";
 
-        let reader3 = new FileReader();
-        reader3.readAsDataURL(this.files[0]);
-        reader3.addEventListener("load",function(){
-          console.log(reader3.result);
-          let li_html3 =`<li><img src="${reader3.result}" class="probanner3"></li>`;
-          proimg3.insertAdjacentHTML("beforeend",li_html3);
-        });
-      })
+      //   let reader3 = new FileReader();
+      //   reader3.readAsDataURL(this.files[0]);
+      //   reader3.addEventListener("load",function(){
+      //     console.log(reader3.result);
+      //     let li_html3 =`<li><img src="${reader3.result}" class="probanner3"></li>`;
+      //     proimg3.insertAdjacentHTML("beforeend",li_html3);
+      //   });
+      // })
 
       //===========================商品圖上傳四================================
-      pro4.addEventListener("change",function(e){
-        // console.log("change")
-      var proimg4 = document.getElementsByClassName("proimg4")[0];
-      proimg4.innerHTML = "";
+      // pro4.addEventListener("change",function(e){
+      //   // console.log("change")
+      // var proimg4 = document.getElementsByClassName("proimg4")[0];
+      // proimg4.innerHTML = "";
 
-        let reader4 = new FileReader();
-        reader4.readAsDataURL(this.files[0]);
-        reader4.addEventListener("load",function(){
-          console.log(reader4.result);
-          let li_html4 =`<li><img src="${reader4.result}" class="probanner4"></li>`;
-          proimg4.insertAdjacentHTML("beforeend",li_html4);
-        });
-      })
+      //   let reader4 = new FileReader();
+      //   reader4.readAsDataURL(this.files[0]);
+      //   reader4.addEventListener("load",function(){
+      //     console.log(reader4.result);
+      //     let li_html4 =`<li><img src="${reader4.result}" class="probanner4"></li>`;
+      //     proimg4.insertAdjacentHTML("beforeend",li_html4);
+      //   });
+      // })
       //===========================商品圖上傳五================================
-      pro5.addEventListener("change",function(e){
-        // console.log("change")
-      var proimg5 = document.getElementsByClassName("proimg5")[0];
-      proimg5.innerHTML = "";
+      // pro5.addEventListener("change",function(e){
+      //   // console.log("change")
+      // var proimg5 = document.getElementsByClassName("proimg5")[0];
+      // proimg5.innerHTML = "";
 
-        let reader5 = new FileReader();
-        reader5.readAsDataURL(this.files[0]);
-        reader5.addEventListener("load",function(){
-          console.log(reader5.result);
-          let li_html5 =`<li><img src="${reader5.result}" class="probanner5"></li>`;
-          proimg5.insertAdjacentHTML("beforeend",li_html5);
-        });
-      })
+      //   let reader5 = new FileReader();
+      //   reader5.readAsDataURL(this.files[0]);
+      //   reader5.addEventListener("load",function(){
+      //     console.log(reader5.result);
+      //     let li_html5 =`<li><img src="${reader5.result}" class="probanner5"></li>`;
+      //     proimg5.insertAdjacentHTML("beforeend",li_html5);
+      //   });
+      // })
       //===========================清空=======================================
       var proreset = document.getElementById("proreset");
       proreset.addEventListener("click",function(){
-        // console.log("aaa");
+        console.log("aaa");
         proimg.innerHTML = '<span class="sbtext">圖片預覽</span>';
-        proimg2.innerHTML = '<span class="sbtext">圖片預覽</span>';
-        proimg3.innerHTML = '<span class="sbtext">圖片預覽</span>';
-        proimg4.innerHTML = '<span class="sbtext">圖片預覽</span>';
-        proimg5.innerHTML = '<span class="sbtext">圖片預覽</span>';
       })
 
       //===========================新增串後端=======================================

@@ -138,9 +138,9 @@ $(function(){
         };
         fileReader.readAsBinaryString(file);
       };
-      window.onload = function(){
-        poplatePage();
-      }
+      
+      poplatePage();
+      
       
       submitBtn.addEventListener("click", function(){
     	  console.log("clicked submit");
