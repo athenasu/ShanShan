@@ -2,18 +2,29 @@ $(document).ready(function () {
 
     // WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW 變數與方法
 	  var member_id = 0;
+	  let context_path = location.protocol + "//" + location.hostname + ":" + location.port
 // 登入 登出 按鈕 切換顯示
 	  function login_logout (){
 // 取得登入狀態
 		  member_id = $("input.member_id").val();
 		  if (member_id > 0 ){
-// 登入：隱藏註冊按鈕
+// 已登入：隱藏註冊按鈕
 			$("input.goods_registor_botton").css( "visibility" , "hidden");
 		  	$("input.goods_login_modal_botton").attr("value" , "登出");
+// 已登入：顯示會員中心按鈕
+			console.log(context_path)
+		     $("div.goods_titlebar").children().eq(2).after(`
+		    <!-- 會員中心 標題 -->
+		    <div class="goods_header_title_membercenter" onclick="location.href='${context_path}/shanshan/member/member_main.html'">會員中心</div>
+		            
+		    <!-- 隔線 -->
+		    <div class="goods_titlegap"></div>
+		    `) 
+// 更改按鈕間距
+		    $("div.goods_header_title_goods").css("margin-right", "235px");  // 原始:341px
 		  }
-
 		  if (member_id == "" ){
-//			console.log("現在是未登入狀態喔!")
+			console.log("現在是未登入狀態喔!")
 		  }
 	  }
 	  

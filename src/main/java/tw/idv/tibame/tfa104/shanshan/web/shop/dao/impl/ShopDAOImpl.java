@@ -32,7 +32,7 @@ public class ShopDAOImpl implements ShopDAO{
 //		山友搜尋店家名字功能 條件company_name like '%?%'  按company_id 正序 
 	private static final String FIND_COMPANY_BY_COM_NAME = "SELECT product_id, company_name, product_price, product_name FROM product JOIN company USING (company_id) WHERE company_name LIKE '%?%' AND `status` = 1 ORDER BY product_id";
 // 		顯示全部店家 按company_id 正序 
-	private static final String FIND_ALL_COMPANY = "select company_name, company_id, company_banner,company_intro from company WHERE company_status = 0 order by company_id asc";
+	private static final String FIND_ALL_COMPANY = "select company_name, company_id, company_banner,company_intro from company WHERE company_status = 1 order by company_id asc";
 //		顯示特定商品資訊 商品單頁
 	private static final String FIND_PORDUCT_BY_PRO_ID = "SELECT pd.product_id, pd.product_des_id, pd.product_size, pd.product_color, c.company_id, c.company_name, p.product_name, p.product_type, pd.product_price, p.product_intro FROM product_description pd JOIN product p USING (product_id) JOIN company c USING (company_id) WHERE pd.product_id = ? AND pd.status = 1";
 //		顯示特定商品明細資訊 購物車
@@ -44,7 +44,7 @@ public class ShopDAOImpl implements ShopDAO{
 //		顯示全部商品?個+分頁功能 按照product_id 正序
 	private static final String FIND_ALL_PRODUCT = "SELECT product_id, company_name, product_name, product_price FROM product JOIN company USING (company_id) WHERE `status`=1 ORDER BY product_id ASC LIMIT ? , ? ";
 //		顯示特定店家的資訊
-	private static final String FIND_COMPANY_BY_COMID = "select company_id,company_name,company_intro,company_banner from company where company_id =? and company_status = 0";
+	private static final String FIND_COMPANY_BY_COMID = "select company_id,company_name,company_intro,company_banner from company where company_id =? and company_status = 1";
 
 //	取得總商品資料條數
 	private static final String FIND_TOTAL_PRODUCT_RECORD = "SELECT count(*) as totalRecord FROM product;";

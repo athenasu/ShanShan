@@ -37,12 +37,12 @@
         <form method="post" action="<%=request.getContextPath()%>/memberLogin/login" id="loginSubmit">
             <div class="login_formbox_2 ">
                 <label class="login_formname" for="Email">電子郵件地址</label>
-                <input class="login_formbar_email login_formbar" name="Email" placeholder="請輸入您的電子郵件地址" value="athenasu210@gmail.com"></input></br>
+                <input class="login_formbar_email login_formbar" name="Email" placeholder="請輸入您的電子郵件地址" value="athenasu2101@gmail.com"></input></br>
             </div>
 
             <div class="login_formbox">
                 <label class="login_formname" for="password">密碼</label>
-                <input class="login_formbar_password login_formbar" name="password" placeholder="請輸入您的密碼" value="P@ssword"></input></br>
+                <input class="login_formbar_password login_formbar" name="password" placeholder="請輸入您的密碼" value="qwerty"></input></br>
             </div>
 
 		</form>
@@ -82,18 +82,10 @@
 
             <!-- 隔線 -->
             <div class="goods_titlegap"></div>
-            
-            <!-- 會員中心 標題 -->
-            <div class="goods_header_title_shanshan" onclick="location.href='<%=request.getContextPath()%>/member/member_main.html'">會員中心</div>
-            
-            <!-- 隔線 -->
-            <div class="goods_titlegap"></div>
 
             <!-- 攻山小物 標題 -->
             <div class="goods_header_title_goods" onclick="location.href='<%=request.getContextPath()%>/shop/goods_index.jsp'">攻山小物</div>
 
-            
-          
             <!-- 購物車icon -->
             <div class="goods_shopcart_area" onclick="location.href='<%=request.getContextPath()%>/shop/goods_shopcart.jsp'">
                 <i class="fas fa-shopping-cart header_shopcarticon"></i>

@@ -80,7 +80,7 @@ input {
 
 /*文字區*/
 
-.goods_header_title_shanshan, .goods_header_title_goods, .registor_title_signup {
+.goods_header_title_shanshan, .goods_header_title_goods, .registor_title_signup,.goods_header_title_membercenter {
     font-size: 22px;
     font-weight: bold;
     cursor: pointer;
@@ -91,7 +91,7 @@ input {
     /* overflow: hidden; */
 }
 
-.goods_header_title_shanshan:hover, .goods_header_title_goods:hover, .registor_title_signup:hover {
+.goods_header_title_shanshan:hover, .goods_header_title_goods:hover, .registor_title_signup:hover,.goods_header_title_membercenter:hover {
     color: rgb(187, 177, 147);
 }
 
@@ -433,7 +433,7 @@ input {
 /*商店導覽列字體區*/
 
 .goods_header_title_goods {
-    margin-right: 235px;
+    margin-right: 341px;
 }
 
 /*商店導覽列 隔線*/
@@ -798,7 +798,7 @@ input {
 }
 
 .goods_footer_column a {
-    font-size: 5px;
+    font-size: 9px;
 }
 
 .goods_footer_column a:hover {
