@@ -67,14 +67,14 @@
         商品編號：<input class="proid" type="text" readonly="value">
       </div> -->
       <div class="proName">
-        商品名稱：<input class="proname" type="text"  placeholder="請輸入商品名稱" value>
+        商品名稱：<input required="required" class="proname" type="text"  placeholder="請輸入商品名稱" value>
       </div>
       <div class="proPrice">
-        商品價格：<input class="proprice" type="text" placeholder="請輸入商品價格" value>
+        商品價格：<input  required="required" class="proprice" type="text" placeholder="請輸入商品價格" value>
       </div>
       <div class="sizePick">
         商品尺寸：
-        <label class="sizepick"><input class="sizeF" type="radio" name="product" value=0> F </label>
+        <label class="sizepick"><input required="required" class="sizeF" type="radio" name="product" value=0> F </label>
         <label class="sizepick"><input class="sizeS" type="radio" name="product" value=1> S </label>
         <label class="sizepick"><input class="sizeM" type="radio" name="product" value=2> M </label>
         <label class="sizepick"><input class="sizeL" type="radio" name="product" value=3> L </label>
@@ -82,19 +82,19 @@
       </div>
       <div class="typePick">
         商品類別：
-        <label class="typepick"><input class="type1" type="radio" name="pType" value=1> 衣著 </label>
+        <label class="typepick"><input required="required" class="type1" type="radio" name="pType" value=1> 衣著 </label>
         <label class="typepick"><input class="type2" type="radio" name="pType" value=2> 工具照明 </label>
         <label class="typepick"><input class="type3" type="radio" name="pType" value=3> 炊具 </label>
         <label class="typepick"><input class="type4" type="radio" name="pType" value=4> 帳篷寢具 </label>
       </div>
       <div class="procolor">
-        商品顏色：<input class="color" type="text" name="product" placeholder="請輸入商品顏色" value>
+        商品顏色：<input required="required" class="color" type="text" name="product" placeholder="請輸入商品顏色" value>
       </div>
       <div class="prostock">
-        商品庫存：<input class="stock" type="text" maxlength="8" placeholder="請輸入商品庫存" value>
+        商品庫存：<input  required="required" class="stock" type="text" maxlength="8" placeholder="請輸入商品庫存" value>
       </div>
       <div class="productintro">
-        <textarea class="prointro" placeholder="請輸入商品簡介" ></textarea>
+        <textarea  required="required" class="prointro" placeholder="請輸入商品簡介" ></textarea>
       </div>
       </div>
       <!-- 右側上傳圖檔 -->
@@ -162,7 +162,7 @@
       </div>
 
       <div class="dialog-confirm">
-        <!-- <p>是否確認新增商品？</p> -->
+        <p>是否確認新增商品？</p>
       </div>
     </div>
 

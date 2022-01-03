@@ -134,7 +134,7 @@ $(function(){
       //===========================新增串後端=======================================
 
       $('.dialog-confirm').dialog({
-        width:800,
+        width:500,
         autoOpen:false,
       });
       $('#prosubmit').click(function(e){
@@ -147,15 +147,15 @@ $(function(){
         title:"確認新增",
         buttons:{
           "是":function(){
-            if($("#pro").val() != null ){
-             // step1 帶入companyId 把product建起 回傳productId("名稱種類介紹" 價格)
+            // step1 帶入companyId 把product建起 回傳productId("名稱種類介紹" 價格)
              // let companyId = 8;
+             if(document.querySelector(".proprice").value != "" && document.querySelector(".proname").value != "" && document.querySelector('input[name="pType"]:checked').value !="" && document.querySelector(".prointro").value != ""){
              let status = 0;
              let productPrice = document.querySelector(".proprice").value;
              let productName = document.querySelector(".proname").value;
              let productType = document.querySelector('input[name="pType"]:checked').value;
              let productIntro = document.querySelector(".prointro").value;
-
+            if($("#pro").val() != null){
             // console.log(companyId);
               fetch(`/shanshan/companyProduct/addproduct` , {
               //use await ? 
@@ -243,7 +243,11 @@ $(function(){
             $('.dialog-confirm').dialog("close");
           }
 
-         }
+         }else{
+          alert('請將商品資訊填寫完整');
+          $('.dialog-confirm').dialog("close");
+        }
+        }
         },
           "否":function(){
             $(this).dialog("close");
