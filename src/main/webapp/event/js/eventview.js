@@ -367,6 +367,7 @@ $(document).ready(function () {
             }
             if (login_memberId == data[0].memberId) {
                 $("button.edit_btn").removeClass("-none")
+                $("button.event_report_btn").attr("disabled", true)
             }
             //=========================== GET EVENT REPORT BY MEMBER&EVENT FROM DATABASE ===========================
             if (login_memberId != "null") {
@@ -934,24 +935,26 @@ $(document).on("click", "button.add_msg_btn", function () {
                     //     "memberId": login_memberId
                     // }),
                     success: function (data) {
-                        console.log(typeof (data.memberProfilePic))
+                        // console.log(data)
+                        // $.each(data, function (index, item) {
+                        //     console.log(item.memberProfilePic);
+                        // })
+                        // var mbytes = new Uint8Array(data.memberProfilePic);
+                        // var mblob = new Blob([mbytes], { type: "image/png" });
+                        // var murl = URL.createObjectURL(mblob);
 
-                        var bytes = new Uint8Array(data.memberProfilePic);
-                        var blob = new Blob([bytes], { type: "image/png" });
-                        var url = URL.createObjectURL(blob);
-
-                        // const bytesStr = atob(data.mamberProfilePic);
-                        // let len = bytesStr.length;
-                        // const u8Array = new Uint8Array(len);
-                        // while (len--) {
-                        //     u8Array[len] = bytesStr.charCodeAt(len);
-                        // }
-                        // const blob = new Blob([u8Array]);
-                        // const url = URL.createObjectURL(blob);
+                        const bytesStr = atob(data.memberProfilePic);
+                        let len = bytesStr.length;
+                        const u8Array = new Uint8Array(len);
+                        while (len--) {
+                            u8Array[len] = bytesStr.charCodeAt(len);
+                        }
+                        const blob = new Blob([u8Array]);
+                        const murl = URL.createObjectURL(blob);
 
                         $("div.event_msg_list").prepend(`
                                 <div class="event_msg">
-                                    <img class="member_pic" src="${url}">
+                                    <img class="member_pic" src="${murl}">
                                     <li class="member_name">${login_memberName}：</li>
                                     <li class="msg_content">${$("input.add_msg").val()}</li>
                                     <button class="msg_report_btn -none">Report</button>
@@ -983,24 +986,26 @@ $(document).on("click", "button.send_msg_report_btn", function () {
     console.log(login_memberId)
     let r = confirm("確認送出檢舉?");
     if (r == true) {
-        $.ajax({
-            url: "../msgReport/addEventMsgReport",
-            type: "POST",
-            contentType: 'application/json',
-            data: JSON.stringify({
-                "memberID": login_memberId,
-                "reportReason": $("div.msg_report_content").data("reporttype"),
-                "reportDate": new Date().toISOString(),
-                "caseStatus": 1,
-                "eventMsgID": $("div.msg_report_content").data("eventmsgid"),
-                "actMsgID": 1
-            }),
-            dataType: "json",
-            beforeSend: function () {
-            },
-            success: function (data) {
-                $(".lightbox-target2").removeClass("-on")
-            }
-        })
+        // $.ajax({
+        //     url: "../msgReport/addEventMsgReport",
+        //     type: "POST",
+        //     contentType: 'application/json',
+        //     data: JSON.stringify({
+        //         "memberID": login_memberId,
+        //         "reportReason": $("div.msg_report_content").data("reporttype"),
+        //         "reportDate": new Date().toISOString(),
+        //         "caseStatus": 1,
+        //         "eventMsgID": $("div.msg_report_content").data("eventmsgid"),
+        //         "actMsgID": 1
+        //     }),
+        //     dataType: "json",
+        //     beforeSend: function () {
+        //     },
+        //     success: function (data) {
+        //         $(".lightbox-target3").removeClass("-on")
+        //     }
+            
+        // })
+        $(".lightbox-target3").removeClass("-on")
     }
 })

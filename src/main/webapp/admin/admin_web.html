@@ -31,21 +31,21 @@
         <div class="logo">
             <a href="#"><img src="./img/unnamed.jpeg" width="100" height="100"></a>
         </div>
-        <div class="search">
+        <!-- <div class="search">
             <input class="search_bar" type="text" name="search" id="search" placeholder="搜尋">
             <button class="icon"><i class="fa fa-search"></i></button>
-        </div>
+        </div> -->
         <div class="login">
-            <div class="admin_profile"></div>
-            <div class="admin_name"> admin_name </div>
+            <!-- <div class="admin_profile"></div>
+            <div class="admin_name"> admin_name </div> -->
             <button class="log_btn"><i class="fa fa-sign-out-alt"></i></button>
         </div>
     </nav>
     <hr>
     <div class="sidebar">
-        <button class="admin_info" href="#">Admin Information</button>
-        <button class="report_management" href="#">Case Manage</button><br>
-        <button class="store_management" href="#">Store Manage</button><br>
+        <button class="admin_info" href="#">管理者資訊</button>
+        <button class="report_management" href="#">檢舉管理</button><br>
+        <button class="store_management" href="#">商家管理</button><br>
         <!-- <button class="member_management" href="#">Member Manage</button><br> -->
     </div>
     <!-- TAB MENU -->
@@ -80,20 +80,20 @@
 
         <!-- Store TABS -->
         <ul class="store_tabs">
-            <li class="store_verify" href="#store_verify" role="tab" data-toggle="tab">Store Verify</li>
+            <li class="store_verify" href="#store_verify" role="tab" data-toggle="tab">商家審核</li>
             <!-- <li class="order_info" href="#order_info" role="tab" data-toggle="tab">Order Info</li> -->
-            <li class="statistics" href="#statistics" role="tab" data-toggle="tab">Statistics</li>
+            <li class="statistics" href="#statistics" role="tab" data-toggle="tab">營收統計</li>
         </ul>
     </div>
     <hr>
     <main>
         <!-- 首頁資訊 -->
         <div class="static_chart">
-            <lable>Start Date： </lable>
+            <lable>開始日期： </lable>
             <input class="start_date" type="date">
-            <lable>End Date： </lable>
+            <lable>結束日期： </lable>
             <input class="end_date" type="date">
-            <button class="analyze">Create Chart</button>
+            <button class="analyze">開始統計</button>
         </div>
         <!-- <div class="analyze_chart">
             <canvas class="myChart" id="myChart" width="400" height="200"></canvas>

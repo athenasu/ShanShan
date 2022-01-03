@@ -89,7 +89,7 @@ public class AdminDAOImpl implements AdminDAO {
 	@Override
 	public List<Order> findAllByDateRangePayStatus(String fromDate, String toDate, Integer paymentStatus) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createNativeQuery("SELECT * from `order` where (order_created_date between :fromDate and :toDate) and payment_status = :paymentStatus order by order_id desc", Order.class)
+		return session.createNativeQuery("SELECT * from `order` where (order_created_date between :fromDate and :toDate) and payment_status = :paymentStatus", Order.class)
 				.setParameter("fromDate", fromDate)
 				.setParameter("toDate", toDate)
 				.setParameter("paymentStatus", paymentStatus).list();

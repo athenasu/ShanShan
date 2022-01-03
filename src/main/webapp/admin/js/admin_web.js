@@ -166,7 +166,7 @@ $(document).on("change", "select.case_status", function () {
                     console.log(data);
                     $.each(data, function (index, item) {
                         article_repot_list += '<div class="case_list_display article">';
-                        article_repot_list += '<div id= "case_number" class="case_number" data-casenumber="' + item.articleReportId + '">ARTICLE - ' + item.articleReportIdd + '</div>';
+                        article_repot_list += '<div id= "case_number" class="case_number" data-casenumber="' + item.articleReportId + '">ARTICLE - ' + item.articleReportId + '</div>';
                         article_repot_list += '<div class="case_content">case content</div>';
                         article_repot_list += '<div class="case_status">DONE</div>';
                         article_repot_list += '<div class="case_create_date">' + new Date(item.articleReportDate).toLocaleDateString('fr-CA', { year: 'numeric', month: '2-digit', day: '2-digit' }) + '</div>';
@@ -192,56 +192,63 @@ $(document).on("click", "button.admin_info", function (e) {
     admin_list += '<h1>Admin Information</h1>';
     admin_list += '<div class="admin_display">';
     admin_list += '<h3>Admin 1 <span class=""></span></h3>';
-    admin_list += '<div class="admin_account">帳號：</div>';
-    admin_list += '<div class="admin_name">姓名：</div>';
+    admin_list += '<div class="admin_account">帳號：shanshan01@gmail.com</div>';
+    admin_list += '<div class="admin_name">姓名：Owen</div>';
     admin_list += '<div class="admin_account_status">帳號狀態：</div>';
     admin_list += '<div class="status_slide">';
-    admin_list += '<input type="checkbox" value="None" id="1" name="check" checked />';
+    admin_list += '<input class="account_status" type="checkbox" value="None" id="1" name="check" checked />';
     admin_list += '<label class="slide" for="1"></label>';
     admin_list += '</div>';
     admin_list += '</div>';
     admin_list += '<div class="admin_display">';
-    admin_list += '<h3>Admin 1 <span class=""></span></h3>';
-    admin_list += '<div class="admin_account">帳號：</div>';
-    admin_list += '<div class="admin_name">姓名：</div>';
+    admin_list += '<h3>Admin 2 <span class=""></span></h3>';
+    admin_list += '<div class="admin_account">帳號：shanshan02@gmail.com</div>';
+    admin_list += '<div class="admin_name">姓名：Owen02</div>';
     admin_list += '<div class="admin_account_status">帳號狀態：</div>';
     admin_list += '<div class="status_slide">';
-    admin_list += '<input type="checkbox" value="None" id="2" name="check" checked />';
+    admin_list += '<input class="account_status" type="checkbox" value="None" id="2" name="check" checked />';
     admin_list += '<label class="slide" for="2"></label>';
     admin_list += '</div>';
     admin_list += '</div>';
-    admin_list += '<div class="admin_display">';
-    admin_list += '<h3>Admin 1 <span class=""></span></h3>';
-    admin_list += '<div class="admin_account">帳號：</div>';
-    admin_list += '<div class="admin_name">姓名：</div>';
-    admin_list += '<div class="admin_account_status">帳號狀態：</div>';
-    admin_list += '<div class="status_slide">';
-    admin_list += '<input type="checkbox" value="None" id="3" name="check" checked />';
-    admin_list += '<label class="slide" for="3"></label>';
-    admin_list += '</div>';
-    admin_list += '</div>';
-    admin_list += '<div class="admin_display">';
-    admin_list += '<h3>Admin 1 <span class=""></span></h3>';
-    admin_list += '<div class="admin_account">帳號：</div>';
-    admin_list += '<div class="admin_name">姓名：</div>';
-    admin_list += '<div class="admin_account_status">帳號狀態：</div>';
-    admin_list += '<div class="status_slide">';
-    admin_list += '<input type="checkbox" value="None" id="4" name="check" checked />';
-    admin_list += '<label class="slide" for="4"></label>';
-    admin_list += '</div>';
-    admin_list += '</div>';
-    admin_list += '<div class="admin_display">';
-    admin_list += '<h3>Admin 1 <span class=""></span></h3>';
-    admin_list += '<div class="admin_account">帳號：</div>';
-    admin_list += '<div class="admin_name">姓名：</div>';
-    admin_list += '<div class="admin_account_status">帳號狀態：</div>';
-    admin_list += '<div class="status_slide">';
-    admin_list += '<input type="checkbox" value="None" id="5" name="check" checked />';
-    admin_list += '<label class="slide" for="5"></label>';
-    admin_list += '</div>';
-    admin_list += '</div>';
+    // admin_list += '<div class="admin_display">';
+    // admin_list += '<h3>Admin 1 <span class=""></span></h3>';
+    // admin_list += '<div class="admin_account">帳號：</div>';
+    // admin_list += '<div class="admin_name">姓名：</div>';
+    // admin_list += '<div class="admin_account_status">帳號狀態：</div>';
+    // admin_list += '<div class="status_slide">';
+    // admin_list += '<input type="checkbox" value="None" id="3" name="check" checked />';
+    // admin_list += '<label class="slide" for="3"></label>';
+    // admin_list += '</div>';
+    // admin_list += '</div>';
+    // admin_list += '<div class="admin_display">';
+    // admin_list += '<h3>Admin 1 <span class=""></span></h3>';
+    // admin_list += '<div class="admin_account">帳號：</div>';
+    // admin_list += '<div class="admin_name">姓名：</div>';
+    // admin_list += '<div class="admin_account_status">帳號狀態：</div>';
+    // admin_list += '<div class="status_slide">';
+    // admin_list += '<input type="checkbox" value="None" id="4" name="check" checked />';
+    // admin_list += '<label class="slide" for="4"></label>';
+    // admin_list += '</div>';
+    // admin_list += '</div>';
+    // admin_list += '<div class="admin_display">';
+    // admin_list += '<h3>Admin 1 <span class=""></span></h3>';
+    // admin_list += '<div class="admin_account">帳號：</div>';
+    // admin_list += '<div class="admin_name">姓名：</div>';
+    // admin_list += '<div class="admin_account_status">帳號狀態：</div>';
+    // admin_list += '<div class="status_slide">';
+    // admin_list += '<input type="checkbox" value="None" id="5" name="check" checked />';
+    // admin_list += '<label class="slide" for="5"></label>';
+    // admin_list += '</div>';
+    // admin_list += '</div>';
     admin_list += '</div>';
     $("main").append(admin_list);
+})
+
+$(document).on("change", "input.account_status", function(){
+    let r = confirm("確認取消管理員資格?")
+    if(r == true){
+        $(this).removeAttr("checked");
+    }
 })
 
 //===================================== CASE MANAGE =====================================
@@ -377,9 +384,9 @@ $(document).on("click", "button.store_management", function (e) {
 
     let sv_menu = "";
     sv_menu += '<ul class="store_tabs"></ul>'
-    sv_menu += '<li class="store_verify" href="#store_verify" role="tab" data-toggle="tab">Store Verify</li>'
+    sv_menu += '<li class="store_verify" href="#store_verify" role="tab" data-toggle="tab">商家審核</li>'
     // sv_menu += '<li class="order_info" href="#order_info" role="tab" data-toggle="tab">Order Info</li>'
-    sv_menu += '<li class="statistics" href="#statistics" role="tab" data-toggle="tab">Statistics</li>'
+    sv_menu += '<li class="statistics" href="#statistics" role="tab" data-toggle="tab">營收統計</li>'
     sv_menu += '</ul>';
     $(this).parents().find(".menu").append(sv_menu);
 
@@ -493,6 +500,7 @@ $(document).on("click", "button.send_verification", function () {
                     $("div.event_report_lightbox").removeClass("-on");
                     $("div.article_report_lightbox").removeClass("-on");
                     $("div.msg_report_lightbox").removeClass("-on");
+                    $("div.store_verify_lightbox").removeClass("-on");
                 }
             })
         }
@@ -516,6 +524,7 @@ $(document).on("click", "button.send_verification", function () {
                     $("div.event_report_lightbox").removeClass("-on");
                     $("div.article_report_lightbox").removeClass("-on");
                     $("div.msg_report_lightbox").removeClass("-on");
+                    $("div.store_verify_lightbox").removeClass("-on");
                 }
             })
         }
@@ -607,7 +616,7 @@ $(document).on("click", "button.send_disposal_btn", function () {
                                 $("div.event_report_lightbox").removeClass("-on");
                                 $("div.article_report_lightbox").removeClass("-on");
                                 $("div.msg_report_lightbox").removeClass("-on");
-
+                                $("div.store_verify_lightbox").removeClass("-on");
                             }
                         })
                     }
@@ -774,11 +783,11 @@ $(document).on("click", "li.statistics", function () {
     $("main").children().remove();;
     $("main").append(`
         <div class="static_chart">
-            <lable>Start Date： </lable>
+            <lable>開始日期： </lable>
             <input class="start_date" type="date">
-            <lable>End Date： </lable>
+            <lable>結束日期： </lable>
             <input class="end_date" type="date">
-            <button class="analyze">Create Chart</button>
+            <button class="analyze">開始統計</button>
         </div>
 
         <div class="statics">
@@ -806,8 +815,10 @@ $(document).on("click", "li.statistics", function () {
 // $(document).ready(function () {
 $(document).on("click", "button.analyze", function () {
     //GET ORDERS OF CURRENT MONTH
-    var fromDate = $("input.start_date").val().toString();
-    var toDate = $("input.end_date").val().toString();
+    // var fromDate = $("input.start_date").val().toString();
+    // var toDate = $("input.end_date").val().toString();
+    var fromDate = $("input.start_date").val();
+    var toDate = $("input.end_date").val();
     // console.log(typeof (fromDate));
     // console.log(fromDate);
     // console.log(typeof (toDate));
@@ -826,7 +837,7 @@ $(document).on("click", "button.analyze", function () {
 
         },
         success: function (data) {
-            console.log(data[0].orderSumAfter)
+            console.log(data)
             $("table.order_table").children().remove();
             let order_list = `
                 <tr>
@@ -861,6 +872,42 @@ $(document).on("click", "button.analyze", function () {
         }
     })
 
+    // function getMonthBetween(fromDate, toDate) {
+    //     //初始化数组
+    //     var result = [];
+    //     //切割起始年月
+    //     var s = start.split("-");
+    //     //切割结束年月
+    //     var e = end.split("-");
+    //     //获取时间对象
+    //     var min = new Date();
+    //     var max = new Date();
+    //     //设置起始时间
+    //     min.setFullYear(s[0], s[1]);
+    //     //设置结束时间
+    //     max.setFullYear(e[0], e[1]);
+
+    //     //复制一份起始时间对象
+    //     var curr = min;
+    //     //定义字符串
+    //     var str = "";
+    //     //起始时间在结束时间之前
+    //     while (curr <= max) {
+    //         //获取此时间的月份
+    //         var month = curr.getMonth();
+    //         //如果月份为0，也就是代表12月份
+    //         if (month === 0) {
+    //             str = (curr.getFullYear() - 1) + "-" + 12;
+    //         } else {//正常月份
+    //             str = curr.getFullYear() + "-" + (month < 10 ? ("0" + month) : month);
+    //         }
+    //         //将此年月加入数组
+    //         result.push(str);
+    //         //更新此时间月份
+    //         curr.setMonth(month + 1);
+    //     }
+    //     return result;
+    // }
     // console.log($("input.start_date").val().slice(0, 4)); //取年
     // console.log($("input.start_date").val().slice(5, 7)); //取月
     // console.log($("input.start_date").val().slice(8, 10)); //取日
@@ -869,19 +916,6 @@ $(document).on("click", "button.analyze", function () {
     // console.log($("input.end_date").val().slice(5, 7));
     // console.log($("input.end_date").val().slice(8, 10));
 
-    // function getLastDay(year, month) {
-    //     var new_year = year;  //取當前的年份   
-    //     var new_month = month;//取下一個月的第一天，方便計算（最後一天不固定）   
-    //     if (month > 12)      //如果當前大於12月，則年份轉到下一年   
-    //     {
-    //         new_month -= 12;    //月份減   
-    //         new_year;      //年份增   
-    //     }
-    //     var new_date = new Date(new_year, new_month, 1);        //取當年當月中的第一天   
-    //     return (new Date(new_date.getTime() - 1000 * 60 * 60 * 24)).getDate();//獲取當月最後一天日期   
-    // }
-
-    // console.log(getLastDay($("input.start_date").val().slice(0, 4), $("input.start_date").val().slice(5, 7)))
 
 
     // var ctx = $("#myChart");

@@ -292,7 +292,7 @@ public class EventDAOImpl implements EventDAO{
 												"ON a.mountain_id = b.mountain_id "+
 										 "JOIN Member c "+
 												"ON a.member_id = c.member_id "+
-										 "WHERE (a.event_status != 0 AND a.event_status != 4)", DetailEventBO.class).list();
+										 "WHERE (a.event_status != 0 AND a.event_status != 4) order by a.event_id desc", DetailEventBO.class).list();
 	}
 
 	@Override

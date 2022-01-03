@@ -69,7 +69,7 @@ public class AdminController {
 	@CrossOrigin
 	@GetMapping(path = "findAllByDateRangePayStatus", consumes = { MediaType.APPLICATION_JSON_VALUE })
 	public List<Order> findAllByDateRangePayStatus(String fromDate, String toDate, Integer paymentStatus) {
-		return adminService.findAllByDateRangePayStatus(fromDate, toDate, 5);
+		return adminService.findAllByDateRangePayStatus(fromDate, toDate, paymentStatus);
 	}
 
 //	@CrossOrigin 
