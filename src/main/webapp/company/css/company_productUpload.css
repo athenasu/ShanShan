@@ -8,13 +8,13 @@ body {
   padding: 0;
   background-color: rgb(246, 240, 237);
 }
-a{
+a {
   text-decoration: none;
   color: rgb(40, 83, 107);
 }
-a.shopinfoUp{
-	text-decoration: none;
-  	color: white;
+a.shopinfoUp {
+  text-decoration: none;
+  color: white;
 }
 img {
   max-width: 100%;
@@ -279,7 +279,7 @@ div.rightinfo {
 div.rightinfo {
   padding-top: 6px;
   width: 410px;
-  height: 1500px;
+  /* height: 1500px; */
 }
 /* banner begin */
 div.bannerupload,
@@ -324,13 +324,13 @@ label.probanner5 {
   padding: 2px 6px;
   cursor: pointer;
 }
-li img.probanner,
+/* li img.probanner,
 li img.probanner2,
 li img.probanner3,
 li img.probanner4,
 li img.probanner5 {
   max-height: 250px;
-}
+} */
 ul.proimg,
 ul.proimg2,
 ul.proimg3,

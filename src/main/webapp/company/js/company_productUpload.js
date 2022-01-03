@@ -137,6 +137,10 @@ $(function(){
 
       //===========================新增串後端=======================================
 
+      $('.dialog-confirm').dialog({
+        width:800,
+        autoOpen:false,
+      });
       $('#prosubmit').click(function(e){
         $('.dialog-confirm').dialog("open");
          e.preventDefault();
