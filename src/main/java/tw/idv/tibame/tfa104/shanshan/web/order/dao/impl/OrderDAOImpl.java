@@ -25,11 +25,11 @@ import tw.idv.tibame.tfa104.shanshan.web.order.entity.Order;
 public class OrderDAOImpl implements OrderDAO{
 
 //	新增 訂單 成功返回1，失敗返回0
-	private static final String INSERT_STMT = "INSERT INTO `Order`( member_id, order_member_address, order_member_name, order_member_phone, order_status, point_used, order_sum_before, order_sum_after, payment_status ,company_id) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	private static final String INSERT_STMT = "INSERT INTO `order`( member_id, order_member_address, order_member_name, order_member_phone, order_status, point_used, order_sum_before, order_sum_after, payment_status ,company_id) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?)";
 //	刪除 訂單 成功返回1，失敗返回0
-	private static final String DELETE_STMT = "DELETE FROM `Order` WHERE order_id = ?";
+	private static final String DELETE_STMT = "DELETE FROM `order` WHERE order_id = ?";
 //	更新 訂單全部欄位 成功返回1，失敗返回0
-	private static final String UPDATE_STMT = "UPDATE `Order` SET member_id = ?, order_created_date = ?, order_member_address = ?, order_member_name = ?, order_member_phone = ?, order_status = ?, point_used = ?, order_sum_before = ?, order_sum_after = ?, order_shipped_date = ?, ship_number = ?, payment_status = ? WHERE order_id = ?";
+	private static final String UPDATE_STMT = "UPDATE `order` SET member_id = ?, order_created_date = ?, order_member_address = ?, order_member_name = ?, order_member_phone = ?, order_status = ?, point_used = ?, order_sum_before = ?, order_sum_after = ?, order_shipped_date = ?, ship_number = ?, payment_status = ? WHERE order_id = ?";
 //  更新 特定訂單的貨運單號
     private static final String UPDATE_SHIP_NUM= "update `order` SET ship_number = ?, order_shipped_date = ? where order_id =?";
 //	更新 特定訂單的撥款狀態
@@ -37,9 +37,9 @@ public class OrderDAOImpl implements OrderDAO{
 //	更新 特定訂單的訂單狀態
 	private static final String UPDATE_ORDER_STATS = "update `order` set order_status = ? where order_id = ?";
 //	查詢  特定訂單  BY 訂單編號
-	private static final String FIND_BY_PK = "SELECT * FROM `Order` WHERE order_id = ?";
+	private static final String FIND_BY_PK = "SELECT * FROM `order` WHERE order_id = ?";
 //	查詢 全部訂單
-	private static final String FIND_ALL = "SELECT * FROM `Order`";
+	private static final String FIND_ALL = "SELECT * FROM `order`";
 //	查詢 特定店家的特定訂單狀態的訂單 按order id 倒序
 	private static final String FIND_ALL_BY_COMID_ORDERSTATS = "select * from `order` where order_status=? and company_id =? order by order_id desc";
 //  **查詢 特定店家 已出貨的訂單 按order id 倒序** Lulu update
@@ -292,19 +292,19 @@ public class OrderDAOImpl implements OrderDAO{
 			while (rs.next()) {
 				order = new Order();
 				order.setOrder_id(rs.getInt("order_id"));
-				order.setMember_id(rs.getInt("Member_id"));
+				order.setMember_id(rs.getInt("member_id"));
 				order.setCompany_id(rs.getInt("company_id"));
-				order.setOrder_created_date(rs.getDate("Order_created_date"));
-				order.setOrder_member_address(rs.getString("Order_member_address"));
-				order.setOrder_member_name(rs.getString("Order_member_name"));
-				order.setOrder_member_phone(rs.getString("Order_member_phone"));
-				order.setOrder_status(rs.getInt("Order_status"));
-				order.setPoint_used(rs.getInt("Point_used"));
-				order.setOrder_sum_before(rs.getInt("Order_sum_before"));
-				order.setOrder_sum_after(rs.getInt("Order_sum_after"));
-				order.setOrder_shipped_date(rs.getDate("Order_shipped_date"));
-				order.setShip_number(rs.getString("Ship_number"));
-				order.setPayment_status(rs.getInt("Payment_status"));
+				order.setOrder_created_date(rs.getDate("order_created_date"));
+				order.setOrder_member_address(rs.getString("order_member_address"));
+				order.setOrder_member_name(rs.getString("order_member_name"));
+				order.setOrder_member_phone(rs.getString("order_member_phone"));
+				order.setOrder_status(rs.getInt("order_status"));
+				order.setPoint_used(rs.getInt("point_used"));
+				order.setOrder_sum_before(rs.getInt("order_sum_before"));
+				order.setOrder_sum_after(rs.getInt("order_sum_after"));
+				order.setOrder_shipped_date(rs.getDate("order_shipped_date"));
+				order.setShip_number(rs.getString("ship_number"));
+				order.setPayment_status(rs.getInt("payment_status"));
 				
 			}
 
@@ -338,19 +338,19 @@ public class OrderDAOImpl implements OrderDAO{
 			while (rs.next()) {
 				order = new Order();
 				order.setOrder_id(rs.getInt("order_id"));
-				order.setMember_id(rs.getInt("Member_id"));
+				order.setMember_id(rs.getInt("member_id"));
 				order.setCompany_id(rs.getInt("company_id"));
-				order.setOrder_created_date(rs.getDate("Order_created_date"));
-				order.setOrder_member_address(rs.getString("Order_member_address"));
-				order.setOrder_member_name(rs.getString("Order_member_name"));
-				order.setOrder_member_phone(rs.getString("Order_member_phone"));
-				order.setOrder_status(rs.getInt("Order_status"));
-				order.setPoint_used(rs.getInt("Point_used"));
-				order.setOrder_sum_before(rs.getInt("Order_sum_before"));
-				order.setOrder_sum_after(rs.getInt("Order_sum_after"));
-				order.setOrder_shipped_date(rs.getDate("Order_shipped_date"));
-				order.setShip_number(rs.getString("Ship_number"));
-				order.setPayment_status(rs.getInt("Payment_status"));
+				order.setOrder_created_date(rs.getDate("order_created_date"));
+				order.setOrder_member_address(rs.getString("order_member_address"));
+				order.setOrder_member_name(rs.getString("order_member_name"));
+				order.setOrder_member_phone(rs.getString("order_member_phone"));
+				order.setOrder_status(rs.getInt("order_status"));
+				order.setPoint_used(rs.getInt("point_used"));
+				order.setOrder_sum_before(rs.getInt("order_sum_before"));
+				order.setOrder_sum_after(rs.getInt("order_sum_after"));
+				order.setOrder_shipped_date(rs.getDate("order_shipped_date"));
+				order.setShip_number(rs.getString("ship_number"));
+				order.setPayment_status(rs.getInt("payment_status"));
 				orderList.add(order);
 				
 
@@ -387,19 +387,19 @@ public class OrderDAOImpl implements OrderDAO{
 			while (rs.next()) {
 				order = new Order();
 				order.setOrder_id(rs.getInt("order_id"));
-				order.setMember_id(rs.getInt("Member_id"));
+				order.setMember_id(rs.getInt("member_id"));
 				order.setCompany_id(rs.getInt("company_id"));
-				order.setOrder_created_date(rs.getDate("Order_created_date"));
-				order.setOrder_member_address(rs.getString("Order_member_address"));
-				order.setOrder_member_name(rs.getString("Order_member_name"));
-				order.setOrder_member_phone(rs.getString("Order_member_phone"));
-				order.setOrder_status(rs.getInt("Order_status"));
-				order.setPoint_used(rs.getInt("Point_used"));
-				order.setOrder_sum_before(rs.getInt("Order_sum_before"));
-				order.setOrder_sum_after(rs.getInt("Order_sum_after"));
-				order.setOrder_shipped_date(rs.getDate("Order_shipped_date"));
-				order.setShip_number(rs.getString("Ship_number"));
-				order.setPayment_status(rs.getInt("Payment_status"));
+				order.setOrder_created_date(rs.getDate("order_created_date"));
+				order.setOrder_member_address(rs.getString("order_member_address"));
+				order.setOrder_member_name(rs.getString("order_member_name"));
+				order.setOrder_member_phone(rs.getString("order_member_phone"));
+				order.setOrder_status(rs.getInt("order_status"));
+				order.setPoint_used(rs.getInt("point_used"));
+				order.setOrder_sum_before(rs.getInt("order_sum_before"));
+				order.setOrder_sum_after(rs.getInt("order_sum_after"));
+				order.setOrder_shipped_date(rs.getDate("order_shipped_date"));
+				order.setShip_number(rs.getString("ship_number"));
+				order.setPayment_status(rs.getInt("payment_status"));
 				orderList.add(order);
 				
 
@@ -430,19 +430,19 @@ public class OrderDAOImpl implements OrderDAO{
 			while (rs.next()) {
 				order = new Order();
 				order.setOrder_id(rs.getInt("order_id"));
-				order.setMember_id(rs.getInt("Member_id"));
+				order.setMember_id(rs.getInt("member_id"));
 				order.setCompany_id(rs.getInt("company_id"));
-				order.setOrder_created_date(rs.getDate("Order_created_date"));
-				order.setOrder_member_address(rs.getString("Order_member_address"));
-				order.setOrder_member_name(rs.getString("Order_member_name"));
-				order.setOrder_member_phone(rs.getString("Order_member_phone"));
-				order.setOrder_status(rs.getInt("Order_status"));
-				order.setPoint_used(rs.getInt("Point_used"));
-				order.setOrder_sum_before(rs.getInt("Order_sum_before"));
-				order.setOrder_sum_after(rs.getInt("Order_sum_after"));
-				order.setOrder_shipped_date(rs.getDate("Order_shipped_date"));
-				order.setShip_number(rs.getString("Ship_number"));
-				order.setPayment_status(rs.getInt("Payment_status"));
+				order.setOrder_created_date(rs.getDate("order_created_date"));
+				order.setOrder_member_address(rs.getString("order_member_address"));
+				order.setOrder_member_name(rs.getString("order_member_name"));
+				order.setOrder_member_phone(rs.getString("order_member_phone"));
+				order.setOrder_status(rs.getInt("order_status"));
+				order.setPoint_used(rs.getInt("point_used"));
+				order.setOrder_sum_before(rs.getInt("order_sum_before"));
+				order.setOrder_sum_after(rs.getInt("order_sum_after"));
+				order.setOrder_shipped_date(rs.getDate("order_shipped_date"));
+				order.setShip_number(rs.getString("ship_number"));
+				order.setPayment_status(rs.getInt("payment_status"));
 				orderList.add(order);
 				
 
@@ -477,19 +477,19 @@ public class OrderDAOImpl implements OrderDAO{
 			while (rs.next()) {
 				order = new Order();
 				order.setOrder_id(rs.getInt("order_id"));
-				order.setMember_id(rs.getInt("Member_id"));
+				order.setMember_id(rs.getInt("member_id"));
 				order.setCompany_id(rs.getInt("company_id"));
-				order.setOrder_created_date(rs.getDate("Order_created_date"));
-				order.setOrder_member_address(rs.getString("Order_member_address"));
-				order.setOrder_member_name(rs.getString("Order_member_name"));
-				order.setOrder_member_phone(rs.getString("Order_member_phone"));
-				order.setOrder_status(rs.getInt("Order_status"));
-				order.setPoint_used(rs.getInt("Point_used"));
-				order.setOrder_sum_before(rs.getInt("Order_sum_before"));
-				order.setOrder_sum_after(rs.getInt("Order_sum_after"));
-				order.setOrder_shipped_date(rs.getDate("Order_shipped_date"));
-				order.setShip_number(rs.getString("Ship_number"));
-				order.setPayment_status(rs.getInt("Payment_status"));
+				order.setOrder_created_date(rs.getDate("order_created_date"));
+				order.setOrder_member_address(rs.getString("order_member_address"));
+				order.setOrder_member_name(rs.getString("order_member_name"));
+				order.setOrder_member_phone(rs.getString("order_member_phone"));
+				order.setOrder_status(rs.getInt("order_status"));
+				order.setPoint_used(rs.getInt("point_used"));
+				order.setOrder_sum_before(rs.getInt("order_sum_before"));
+				order.setOrder_sum_after(rs.getInt("order_sum_after"));
+				order.setOrder_shipped_date(rs.getDate("order_shipped_date"));
+				order.setShip_number(rs.getString("ship_number"));
+				order.setPayment_status(rs.getInt("payment_status"));
 				orderList.add(order);
 				
 
@@ -523,19 +523,19 @@ public class OrderDAOImpl implements OrderDAO{
 			while (rs.next()) {
 				order = new Order();
 				order.setOrder_id(rs.getInt("order_id"));
-				order.setMember_id(rs.getInt("Member_id"));
+				order.setMember_id(rs.getInt("member_id"));
 				order.setCompany_id(rs.getInt("company_id"));
-				order.setOrder_created_date(rs.getDate("Order_created_date"));
-				order.setOrder_member_address(rs.getString("Order_member_address"));
-				order.setOrder_member_name(rs.getString("Order_member_name"));
-				order.setOrder_member_phone(rs.getString("Order_member_phone"));
-				order.setOrder_status(rs.getInt("Order_status"));
-				order.setPoint_used(rs.getInt("Point_used"));
-				order.setOrder_sum_before(rs.getInt("Order_sum_before"));
-				order.setOrder_sum_after(rs.getInt("Order_sum_after"));
-				order.setOrder_shipped_date(rs.getDate("Order_shipped_date"));
-				order.setShip_number(rs.getString("Ship_number"));
-				order.setPayment_status(rs.getInt("Payment_status"));
+				order.setOrder_created_date(rs.getDate("order_created_date"));
+				order.setOrder_member_address(rs.getString("order_member_address"));
+				order.setOrder_member_name(rs.getString("order_member_name"));
+				order.setOrder_member_phone(rs.getString("order_member_phone"));
+				order.setOrder_status(rs.getInt("order_status"));
+				order.setPoint_used(rs.getInt("point_used"));
+				order.setOrder_sum_before(rs.getInt("order_sum_before"));
+				order.setOrder_sum_after(rs.getInt("order_sum_after"));
+				order.setOrder_shipped_date(rs.getDate("order_shipped_date"));
+				order.setShip_number(rs.getString("ship_number"));
+				order.setPayment_status(rs.getInt("payment_status"));
 				
 			}
 
@@ -570,19 +570,19 @@ public class OrderDAOImpl implements OrderDAO{
 			while (rs.next()) {
 				order = new Order();
 				order.setOrder_id(rs.getInt("order_id"));
-				order.setMember_id(rs.getInt("Member_id"));
+				order.setMember_id(rs.getInt("member_id"));
 				order.setCompany_id(rs.getInt("company_id"));
-				order.setOrder_created_date(rs.getDate("Order_created_date"));
-				order.setOrder_member_address(rs.getString("Order_member_address"));
-				order.setOrder_member_name(rs.getString("Order_member_name"));
-				order.setOrder_member_phone(rs.getString("Order_member_phone"));
-				order.setOrder_status(rs.getInt("Order_status"));
-				order.setPoint_used(rs.getInt("Point_used"));
-				order.setOrder_sum_before(rs.getInt("Order_sum_before"));
-				order.setOrder_sum_after(rs.getInt("Order_sum_after"));
-				order.setOrder_shipped_date(rs.getDate("Order_shipped_date"));
-				order.setShip_number(rs.getString("Ship_number"));
-				order.setPayment_status(rs.getInt("Payment_status"));
+				order.setOrder_created_date(rs.getDate("order_created_date"));
+				order.setOrder_member_address(rs.getString("order_member_address"));
+				order.setOrder_member_name(rs.getString("order_member_name"));
+				order.setOrder_member_phone(rs.getString("order_member_phone"));
+				order.setOrder_status(rs.getInt("order_status"));
+				order.setPoint_used(rs.getInt("point_used"));
+				order.setOrder_sum_before(rs.getInt("order_sum_before"));
+				order.setOrder_sum_after(rs.getInt("order_sum_after"));
+				order.setOrder_shipped_date(rs.getDate("order_shipped_date"));
+				order.setShip_number(rs.getString("ship_number"));
+				order.setPayment_status(rs.getInt("payment_status"));
 				orderList.add(order);
 				
 
@@ -619,19 +619,19 @@ public class OrderDAOImpl implements OrderDAO{
 			while (rs.next()) {
 				order = new Order();
 				order.setOrder_id(rs.getInt("order_id"));
-				order.setMember_id(rs.getInt("Member_id"));
+				order.setMember_id(rs.getInt("member_id"));
 				order.setCompany_id(rs.getInt("company_id"));
-				order.setOrder_created_date(rs.getDate("Order_created_date"));
-				order.setOrder_member_address(rs.getString("Order_member_address"));
-				order.setOrder_member_name(rs.getString("Order_member_name"));
-				order.setOrder_member_phone(rs.getString("Order_member_phone"));
-				order.setOrder_status(rs.getInt("Order_status"));
-				order.setPoint_used(rs.getInt("Point_used"));
-				order.setOrder_sum_before(rs.getInt("Order_sum_before"));
-				order.setOrder_sum_after(rs.getInt("Order_sum_after"));
-				order.setOrder_shipped_date(rs.getDate("Order_shipped_date"));
-				order.setShip_number(rs.getString("Ship_number"));
-				order.setPayment_status(rs.getInt("Payment_status"));
+				order.setOrder_created_date(rs.getDate("order_created_date"));
+				order.setOrder_member_address(rs.getString("order_member_address"));
+				order.setOrder_member_name(rs.getString("order_member_name"));
+				order.setOrder_member_phone(rs.getString("order_member_phone"));
+				order.setOrder_status(rs.getInt("order_status"));
+				order.setPoint_used(rs.getInt("point_used"));
+				order.setOrder_sum_before(rs.getInt("order_sum_before"));
+				order.setOrder_sum_after(rs.getInt("order_sum_after"));
+				order.setOrder_shipped_date(rs.getDate("order_shipped_date"));
+				order.setShip_number(rs.getString("ship_number"));
+				order.setPayment_status(rs.getInt("payment_status"));
 				orderList.add(order);
 				
 
@@ -668,19 +668,19 @@ public class OrderDAOImpl implements OrderDAO{
 			while (rs.next()) {
 				order = new Order();
 				order.setOrder_id(rs.getInt("order_id"));
-				order.setMember_id(rs.getInt("Member_id"));
+				order.setMember_id(rs.getInt("member_id"));
 				order.setCompany_id(rs.getInt("company_id"));
-				order.setOrder_created_date(rs.getDate("Order_created_date"));
-				order.setOrder_member_address(rs.getString("Order_member_address"));
-				order.setOrder_member_name(rs.getString("Order_member_name"));
-				order.setOrder_member_phone(rs.getString("Order_member_phone"));
-				order.setOrder_status(rs.getInt("Order_status"));
-				order.setPoint_used(rs.getInt("Point_used"));
-				order.setOrder_sum_before(rs.getInt("Order_sum_before"));
-				order.setOrder_sum_after(rs.getInt("Order_sum_after"));
-				order.setOrder_shipped_date(rs.getDate("Order_shipped_date"));
-				order.setShip_number(rs.getString("Ship_number"));
-				order.setPayment_status(rs.getInt("Payment_status"));
+				order.setOrder_created_date(rs.getDate("order_created_date"));
+				order.setOrder_member_address(rs.getString("order_member_address"));
+				order.setOrder_member_name(rs.getString("order_member_name"));
+				order.setOrder_member_phone(rs.getString("order_member_phone"));
+				order.setOrder_status(rs.getInt("order_status"));
+				order.setPoint_used(rs.getInt("point_used"));
+				order.setOrder_sum_before(rs.getInt("order_sum_before"));
+				order.setOrder_sum_after(rs.getInt("order_sum_after"));
+				order.setOrder_shipped_date(rs.getDate("order_shipped_date"));
+				order.setShip_number(rs.getString("ship_number"));
+				order.setPayment_status(rs.getInt("payment_status"));
 				orderList.add(order);
 				
 
@@ -717,19 +717,19 @@ public class OrderDAOImpl implements OrderDAO{
 			while (rs.next()) {
 				order = new Order();
 				order.setOrder_id(rs.getInt("order_id"));
-				order.setMember_id(rs.getInt("Member_id"));
+				order.setMember_id(rs.getInt("member_id"));
 				order.setCompany_id(rs.getInt("company_id"));
-				order.setOrder_created_date(rs.getDate("Order_created_date"));
-				order.setOrder_member_address(rs.getString("Order_member_address"));
-				order.setOrder_member_name(rs.getString("Order_member_name"));
-				order.setOrder_member_phone(rs.getString("Order_member_phone"));
-				order.setOrder_status(rs.getInt("Order_status"));
-				order.setPoint_used(rs.getInt("Point_used"));
-				order.setOrder_sum_before(rs.getInt("Order_sum_before"));
-				order.setOrder_sum_after(rs.getInt("Order_sum_after"));
-				order.setOrder_shipped_date(rs.getDate("Order_shipped_date"));
-				order.setShip_number(rs.getString("Ship_number"));
-				order.setPayment_status(rs.getInt("Payment_status"));
+				order.setOrder_created_date(rs.getDate("order_created_date"));
+				order.setOrder_member_address(rs.getString("order_member_address"));
+				order.setOrder_member_name(rs.getString("order_member_name"));
+				order.setOrder_member_phone(rs.getString("order_member_phone"));
+				order.setOrder_status(rs.getInt("order_status"));
+				order.setPoint_used(rs.getInt("point_used"));
+				order.setOrder_sum_before(rs.getInt("order_sum_before"));
+				order.setOrder_sum_after(rs.getInt("order_sum_after"));
+				order.setOrder_shipped_date(rs.getDate("order_shipped_date"));
+				order.setShip_number(rs.getString("ship_number"));
+				order.setPayment_status(rs.getInt("payment_status"));
 				orderList.add(order);
 				
 
@@ -768,19 +768,19 @@ public class OrderDAOImpl implements OrderDAO{
 			while (rs.next()) {
 				order = new Order();
 				order.setOrder_id(rs.getInt("order_id"));
-				order.setMember_id(rs.getInt("Member_id"));
+				order.setMember_id(rs.getInt("member_id"));
 				order.setCompany_id(rs.getInt("company_id"));
-				order.setOrder_created_date(rs.getDate("Order_created_date"));
-				order.setOrder_member_address(rs.getString("Order_member_address"));
-				order.setOrder_member_name(rs.getString("Order_member_name"));
-				order.setOrder_member_phone(rs.getString("Order_member_phone"));
-				order.setOrder_status(rs.getInt("Order_status"));
-				order.setPoint_used(rs.getInt("Point_used"));
-				order.setOrder_sum_before(rs.getInt("Order_sum_before"));
-				order.setOrder_sum_after(rs.getInt("Order_sum_after"));
-				order.setOrder_shipped_date(rs.getDate("Order_shipped_date"));
-				order.setShip_number(rs.getString("Ship_number"));
-				order.setPayment_status(rs.getInt("Payment_status"));
+				order.setOrder_created_date(rs.getDate("order_created_date"));
+				order.setOrder_member_address(rs.getString("order_member_address"));
+				order.setOrder_member_name(rs.getString("order_member_name"));
+				order.setOrder_member_phone(rs.getString("order_member_phone"));
+				order.setOrder_status(rs.getInt("order_status"));
+				order.setPoint_used(rs.getInt("point_used"));
+				order.setOrder_sum_before(rs.getInt("order_sum_before"));
+				order.setOrder_sum_after(rs.getInt("order_sum_after"));
+				order.setOrder_shipped_date(rs.getDate("order_shipped_date"));
+				order.setShip_number(rs.getString("ship_number"));
+				order.setPayment_status(rs.getInt("payment_status"));
 				orderList.add(order);
 				
 
@@ -816,19 +816,19 @@ public class OrderDAOImpl implements OrderDAO{
 			while (rs.next()) {
 				order = new Order();
 				order.setOrder_id(rs.getInt("order_id"));
-				order.setMember_id(rs.getInt("Member_id"));
+				order.setMember_id(rs.getInt("member_id"));
 				order.setCompany_id(rs.getInt("company_id"));
-				order.setOrder_created_date(rs.getDate("Order_created_date"));
-				order.setOrder_member_address(rs.getString("Order_member_address"));
-				order.setOrder_member_name(rs.getString("Order_member_name"));
-				order.setOrder_member_phone(rs.getString("Order_member_phone"));
-				order.setOrder_status(rs.getInt("Order_status"));
-				order.setPoint_used(rs.getInt("Point_used"));
-				order.setOrder_sum_before(rs.getInt("Order_sum_before"));
-				order.setOrder_sum_after(rs.getInt("Order_sum_after"));
-				order.setOrder_shipped_date(rs.getDate("Order_shipped_date"));
-				order.setShip_number(rs.getString("Ship_number"));
-				order.setPayment_status(rs.getInt("Payment_status"));
+				order.setOrder_created_date(rs.getDate("order_created_date"));
+				order.setOrder_member_address(rs.getString("order_member_address"));
+				order.setOrder_member_name(rs.getString("order_member_name"));
+				order.setOrder_member_phone(rs.getString("order_member_phone"));
+				order.setOrder_status(rs.getInt("order_status"));
+				order.setPoint_used(rs.getInt("point_used"));
+				order.setOrder_sum_before(rs.getInt("order_sum_before"));
+				order.setOrder_sum_after(rs.getInt("order_sum_after"));
+				order.setOrder_shipped_date(rs.getDate("order_shipped_date"));
+				order.setShip_number(rs.getString("ship_number"));
+				order.setPayment_status(rs.getInt("payment_status"));
 				orderList.add(order);
 				
 
@@ -866,19 +866,19 @@ public class OrderDAOImpl implements OrderDAO{
 			while (rs.next()) {
 				order = new Order();
 				order.setOrder_id(rs.getInt("order_id"));
-				order.setMember_id(rs.getInt("Member_id"));
+				order.setMember_id(rs.getInt("member_id"));
 				order.setCompany_id(rs.getInt("company_id"));
-				order.setOrder_created_date(rs.getDate("Order_created_date"));
-				order.setOrder_member_address(rs.getString("Order_member_address"));
-				order.setOrder_member_name(rs.getString("Order_member_name"));
-				order.setOrder_member_phone(rs.getString("Order_member_phone"));
-				order.setOrder_status(rs.getInt("Order_status"));
-				order.setPoint_used(rs.getInt("Point_used"));
-				order.setOrder_sum_before(rs.getInt("Order_sum_before"));
-				order.setOrder_sum_after(rs.getInt("Order_sum_after"));
-				order.setOrder_shipped_date(rs.getDate("Order_shipped_date"));
-				order.setShip_number(rs.getString("Ship_number"));
-				order.setPayment_status(rs.getInt("Payment_status"));
+				order.setOrder_created_date(rs.getDate("order_created_date"));
+				order.setOrder_member_address(rs.getString("order_member_address"));
+				order.setOrder_member_name(rs.getString("order_member_name"));
+				order.setOrder_member_phone(rs.getString("order_member_phone"));
+				order.setOrder_status(rs.getInt("order_status"));
+				order.setPoint_used(rs.getInt("point_used"));
+				order.setOrder_sum_before(rs.getInt("order_sum_before"));
+				order.setOrder_sum_after(rs.getInt("order_sum_after"));
+				order.setOrder_shipped_date(rs.getDate("order_shipped_date"));
+				order.setShip_number(rs.getString("ship_number"));
+				order.setPayment_status(rs.getInt("payment_status"));
 				orderList.add(order);
 			}
 		} catch (SQLException se) {
@@ -914,19 +914,19 @@ public class OrderDAOImpl implements OrderDAO{
 			while (rs.next()) {
 				order = new Order();
 				order.setOrder_id(rs.getInt("order_id"));
-				order.setMember_id(rs.getInt("Member_id"));
+				order.setMember_id(rs.getInt("member_id"));
 				order.setCompany_id(rs.getInt("company_id"));
-				order.setOrder_created_date(rs.getDate("Order_created_date"));
-				order.setOrder_member_address(rs.getString("Order_member_address"));
-				order.setOrder_member_name(rs.getString("Order_member_name"));
-				order.setOrder_member_phone(rs.getString("Order_member_phone"));
-				order.setOrder_status(rs.getInt("Order_status"));
-				order.setPoint_used(rs.getInt("Point_used"));
-				order.setOrder_sum_before(rs.getInt("Order_sum_before"));
-				order.setOrder_sum_after(rs.getInt("Order_sum_after"));
-				order.setOrder_shipped_date(rs.getDate("Order_shipped_date"));
-				order.setShip_number(rs.getString("Ship_number"));
-				order.setPayment_status(rs.getInt("Payment_status"));
+				order.setOrder_created_date(rs.getDate("order_created_date"));
+				order.setOrder_member_address(rs.getString("order_member_address"));
+				order.setOrder_member_name(rs.getString("order_member_name"));
+				order.setOrder_member_phone(rs.getString("order_member_phone"));
+				order.setOrder_status(rs.getInt("order_status"));
+				order.setPoint_used(rs.getInt("point_used"));
+				order.setOrder_sum_before(rs.getInt("order_sum_before"));
+				order.setOrder_sum_after(rs.getInt("order_sum_after"));
+				order.setOrder_shipped_date(rs.getDate("order_shipped_date"));
+				order.setShip_number(rs.getString("ship_number"));
+				order.setPayment_status(rs.getInt("payment_status"));
 				orderList.add(order);
 
 			}
@@ -959,19 +959,19 @@ public class OrderDAOImpl implements OrderDAO{
 			while (rs.next()) {
 				order = new Order();
 				order.setOrder_id(rs.getInt("order_id"));
-				order.setMember_id(rs.getInt("Member_id"));
+				order.setMember_id(rs.getInt("member_id"));
 				order.setCompany_id(rs.getInt("company_id"));
-				order.setOrder_created_date(rs.getDate("Order_created_date"));
-				order.setOrder_member_address(rs.getString("Order_member_address"));
-				order.setOrder_member_name(rs.getString("Order_member_name"));
-				order.setOrder_member_phone(rs.getString("Order_member_phone"));
-				order.setOrder_status(rs.getInt("Order_status"));
-				order.setPoint_used(rs.getInt("Point_used"));
-				order.setOrder_sum_before(rs.getInt("Order_sum_before"));
-				order.setOrder_sum_after(rs.getInt("Order_sum_after"));
-				order.setOrder_shipped_date(rs.getDate("Order_shipped_date"));
-				order.setShip_number(rs.getString("Ship_number"));
-				order.setPayment_status(rs.getInt("Payment_status"));
+				order.setOrder_created_date(rs.getDate("order_created_date"));
+				order.setOrder_member_address(rs.getString("order_member_address"));
+				order.setOrder_member_name(rs.getString("order_member_name"));
+				order.setOrder_member_phone(rs.getString("order_member_phone"));
+				order.setOrder_status(rs.getInt("order_status"));
+				order.setPoint_used(rs.getInt("point_used"));
+				order.setOrder_sum_before(rs.getInt("order_sum_before"));
+				order.setOrder_sum_after(rs.getInt("order_sum_after"));
+				order.setOrder_shipped_date(rs.getDate("order_shipped_date"));
+				order.setShip_number(rs.getString("ship_number"));
+				order.setPayment_status(rs.getInt("payment_status"));
 			}
 
 		} catch (SQLException se) {

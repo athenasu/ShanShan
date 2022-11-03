@@ -32,7 +32,7 @@ public class CabinDAO implements CabinDAO_interface {
 	private static final String insertCabin = "INSERT INTO cabin (cabin_name,cabin_pic) VALUES (?,?,?)";
 	private static final String updateCabin = "update cabin set cabin_name=?,cabin_pic=? where cabin_id=? ";
 	private static final String deleteCabin = "delete from cabin where cabin_id=? ";
-	private static final String getAllCabin = "select cabin_id,cabin_name,cabin_pic from cabin oder by cabin_id";
+	private static final String getAllCabin = "select cabin_id,cabin_name,cabin_pic from cabin order by cabin_id";
 
 	private static final String findByCabinId = "Select cabin_id,cabin_name,cabin_pic from cabin where cabin_id=?";
 

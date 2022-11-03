@@ -31,12 +31,12 @@ public class WishlistArticleBO extends Core {
 	@Column(name = "memberProfilePicture")
 	private byte[] memberProfilePicture;
 	@Column(name = "mountainName")
-	private String mountainName; // not getting this in my JSON
+	private String mountainName;
 	@Transient
 	private String articlePictureStr;
 	@Transient
 	private String memberPictureStr;
-	
+
 	public Integer getWishlistArticleId() {
 		return wishlistArticleId;
 	}

@@ -31,7 +31,7 @@ public class ProductDesDAOHibernate_impl implements ProductDesDAOHibernate {
 				+ "d.product_price as productPrice,d.product_stock as proDesStock,"
 				+ "img.product_img as productImg,d.status as status,"
 				+ "p.product_intro as productIntro "
-				+ "from ShanShan.product p "
+				+ "from product p "
 				+ "JOIN product_description as d on p.product_id = d.product_id "
 				+ "JOIN product_img as i on i.product_des_id = d.product_des_id "
 				+ "WHERE d.status = 1 and p.product_id = :id", FindByProductIdBO.class)
@@ -53,7 +53,7 @@ public class ProductDesDAOHibernate_impl implements ProductDesDAOHibernate {
 				+ "p.product_intro as productIntro,"
 				+ "i.product_img_id as productImgId,"
 				+ "p.product_type as productType "
-				+ "from ShanShan.product_description as d "
+				+ "from product_description as d "
 				+ "JOIN product as p on p.product_id = d.product_id "
 				+ "JOIN product_img as i on i.product_des_id = d.product_des_id " 
 				+ "WHERE d.status = 1 and d.product_des_id = :id", FindByProductIdBO.class)
@@ -75,7 +75,7 @@ public class ProductDesDAOHibernate_impl implements ProductDesDAOHibernate {
 			+ "p.product_intro as productIntro,"
 			+ "i.product_img_id as productImgId,"
 			+ "p.product_type as productType "
-			+ "from ShanShan.product_description as d "
+			+ "from product_description as d "
 			+ "JOIN product as p on p.product_id = d.product_id "
 			+ "JOIN product_img as i on i.product_des_id = d.product_des_id " 
 			+ "WHERE d.product_des_id = :id", FindByProductIdBO.class)
@@ -94,7 +94,7 @@ public class ProductDesDAOHibernate_impl implements ProductDesDAOHibernate {
 				+ "d.product_color as productColor,d.product_price as productPrice," 
 				+ "i.product_img as productImg,d.status as status,"
 				+ "p.product_intro as productIntro "
-				+ "from ShanShan.product_description as d " 
+				+ "from product_description as d " 
 				+ "JOIN product as p on p.product_id = d.product_id " 
 				+ "JOIN product_img as i on i.product_des_id = d.product_des_id "
 				+ "WHERE i.product_img_id =(select min(product_img_id) from product_img WHERE product_des_id = i.product_des_id "
@@ -115,7 +115,7 @@ public class ProductDesDAOHibernate_impl implements ProductDesDAOHibernate {
 				+ "d.product_color as productColor,d.product_price as productPrice,"
 				+ "i.product_img as productImg,d.status as status,"
 				+ "p.product_intro as productIntro "
-				+ "from ShanShan.product_description as d "
+				+ "from product_description as d "
 				+ "JOIN product as p on p.product_id = d.product_id "
 				+ "JOIN product_img as i on i.product_des_id = d.product_des_id " 
 				+ "WHERE d.status = 1 ", FindByProductIdBO.class)

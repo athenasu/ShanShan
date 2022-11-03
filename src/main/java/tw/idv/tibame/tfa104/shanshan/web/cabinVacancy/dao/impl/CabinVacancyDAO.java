@@ -32,7 +32,7 @@ public class CabinVacancyDAO implements CabinVacancyDAO_interface {
 	private static final String insertCabinVacancy = "INSERT INTO cabin_vacancy (cabin_id,date, cabin_vacancy) VALUES (?,?,?)";
 	private static final String update = "update cabin_vacancy set cabin_id =? ,date=?,cabin_vacancy=? where cabin_id=? and date=? ";
 	private static final String deleteCabinVacancy = "delete from cabin_vacancy where cabin_id=? and date=?";
-	private static final String getAllCabinVacancy = "select cabin_id,date, cabin_vacancy,update_time from cabin_vacancy oder by cabin_id";
+	private static final String getAllCabinVacancy = "select cabin_id,date, cabin_vacancy,update_time from cabin_vacancy order by cabin_id";
 	private static final String findByCabin = "Select cabin_id,date, cabin_vacancy,update_time from cabin_vacancy where cabin_id=?";
 
 	@Override

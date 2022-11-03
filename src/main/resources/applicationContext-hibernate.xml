@@ -10,26 +10,32 @@
 		http://www.springframework.org/schema/context
 		http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+	<bean id="sessionFactory" destroy-method="destroy"
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</prop>
-<!-- 				<prop key="hibernate.hbm2ddl.auto">validate</prop> -->
+				<!-- <prop key="hibernate.hbm2ddl.auto">validate</prop> -->
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.format_sql">true</prop>
 			</props>
 		</property>
-		<property name="packagesToScan" value="tw.idv.tibame.tfa104.shanshan.web.*.entity" />
+		<property name="packagesToScan"
+			value="tw.idv.tibame.tfa104.shanshan.web.*.entity" />
 	</bean>
-	
-	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<!-- <constructor-arg ref="sessionFactory"></constructor-arg> constructor, or the following setter-->
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	
-	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true" />
-	
+
+	<tx:annotation-driven
+		transaction-manager="transactionManager" proxy-target-class="true" />
+
 	<context:component-scan
 		base-package="tw.idv.tibame.tfa104.shanshan.web.*.*.impl" />
-	<context:component-scan base-package="tw.idv.tibame.tfa104.shanshan.web.util" />
+	<context:component-scan
+		base-package="tw.idv.tibame.tfa104.shanshan.web.util" />
 </beans>

@@ -68,6 +68,17 @@ const validateEmail = function (emailAdress) {
   }
 };
 
+// CHECK PASSWORD VALIDITY
+const validatePwd = function(pwd){
+    let regexPwd = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$/;
+    if(pwd.match(regexPwd)){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+
 /////////// EMAIL LOGIN ///////////
 loginSubmitBtn &&
   loginSubmitBtn.addEventListener("click", function () {
@@ -80,8 +91,6 @@ loginSubmitBtn &&
       headers: {
         "Content-Type": "application/json",
       },
-      // setting the variables
-      // need to test this
       body: JSON.stringify({
         memberEmail,
         memberPassword,
@@ -92,7 +101,6 @@ loginSubmitBtn &&
         return response.json();
       })
       .then((body) => {
-        // console.log(body.successful);
         if (body.successful) {
           console.log("Sign in successful");
           $("div.login_modal_bcg").addClass("-none");

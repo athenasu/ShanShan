@@ -4,8 +4,7 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
 		http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
 	id="WebApp_ID" version="4.0">
-	<display-name>Web Application from William Archetype Web Spring +
-		Spring MVC + Hibernate</display-name>
+	<display-name>Shanshan Web Application</display-name>
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
@@ -57,8 +56,9 @@
 		<res-auth>Container</res-auth>
 	</resource-ref>
 
+
 	<!-- https -->
-	<security-constraint>
+<!-- 	<security-constraint>
 		<web-resource-collection>
 			<web-resource-name>JSP/Servelt Example</web-resource-name>
 			<url-pattern>/*</url-pattern>
@@ -66,5 +66,5 @@
 		<user-data-constraint>
 			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
 		</user-data-constraint>
-	</security-constraint>
+	</security-constraint> -->
 </web-app>

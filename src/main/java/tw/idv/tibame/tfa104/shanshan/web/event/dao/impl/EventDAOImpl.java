@@ -151,10 +151,10 @@ public class EventDAOImpl implements EventDAO{
 											"b.mountain_pic as mountainPic, "+
 											"c.member_name as memberName, "+
 											"b.mountain_district as mountainDistrict "+
-										"FROM Event a "+
-										"JOIN Mountain b "+
+										"FROM event a "+
+										"JOIN mountain b "+
 											"ON a.mountain_id = b.mountain_id "+
-										"JOIN Member c "+
+										"JOIN member c "+
 											"ON a.member_id = c.member_id "+
 										"WHERE (a.event_status = 2 AND b.mountain_district = :mountainDistrict)", DistrictEventBO.class)
 				.setParameter("mountainDistrict", mountainDistrict).list();
@@ -179,9 +179,9 @@ public class EventDAOImpl implements EventDAO{
 												"a.event_points, "+
 												"d.member_name as participantMemberName, "+
 												"d.member_email as participantMemberEmail "+
-										 "FROM Event a JOIN Mountain b "+
+										 "FROM event a JOIN mountain b "+
 												"ON a.mountain_id = b.mountain_id "+
-										 "JOIN Participant c "+
+										 "JOIN participant c "+
 												"ON a.event_id = c.event_id "+
 										 "JOIN member d "+
 												"ON c.member_id = d.member_id "+
@@ -209,7 +209,7 @@ public class EventDAOImpl implements EventDAO{
 												"a.event_points as eventPoints "+
 //												"d.member_name as participantMemberName, "+
 //												"d.member_email as participantMemberEmail "+
-										 "FROM Event a JOIN Mountain b "+
+										 "FROM event a JOIN mountain b "+
 												"ON a.mountain_id = b.mountain_id "+
 //										 "JOIN Participant c "+
 //												"ON a.event_id = c.event_id "+
@@ -223,10 +223,10 @@ public class EventDAOImpl implements EventDAO{
 	public List<DetailEventBO> selectByEventId(Integer eventId) {
 		Session session = sessionFactory.getCurrentSession();
 		return session.createNativeQuery("SELECT * "+
-										 "FROM Event a "+
-										 "JOIN Member b "+
+										 "FROM event a "+
+										 "JOIN member b "+
 												"ON a.member_id = b.member_id "+
-										 "JOIN Mountain c "+
+										 "JOIN mountain c "+
 												"ON a.mountain_id = c.mountain_id "+
 										 "WHERE (a.event_id = :eventId)", DetailEventBO.class)
 				.setParameter("eventId", eventId).list();
@@ -249,9 +249,9 @@ public class EventDAOImpl implements EventDAO{
 												"c.member_name as memberName, "+
 												"b.mountain_pic as mountainPic, "+
 												"c.member_profile_pic as memberProfilePic "+
-										 "FROM Event a JOIN Mountain b "+
+										 "FROM event a JOIN mountain b "+
 										 		"ON a.mountain_id = b.mountain_id "+
-										 "JOIN Member c "+
+										 "JOIN member c "+
 										 		"ON a.member_id = c.member_id "+
 										 "WHERE a.event_status = 2 "+
 										 "ORDER BY a.event_cur_part desc limit 3",PopularEventBO.class).list();
@@ -274,10 +274,10 @@ public class EventDAOImpl implements EventDAO{
 												"c.member_name as memberName, "+
 												"b.mountain_name as mountainName, "+
 												"c.member_profile_pic as memberProfilePic "+
-										 "FROM Event a "+
-										 "JOIN Mountain b "+
+										 "FROM event a "+
+										 "JOIN mountain b "+
 										 		"ON a.mountain_id = b.mountain_id "+
-										 "JOIN Member c "+
+										 "JOIN member c "+
 										 		"ON a.member_id = c.member_id "+
 										 "WHERE (curdate() - a.event_deadline <= 5 and a.max_num_of_people - a.event_cur_part <= 5)", OnGoingEventBO.class).list();
 		////"FROM Event where (curdate() - eventStartDate <= 5 and maxNumOfPeople - eventCurPart <= 5)"
@@ -287,10 +287,10 @@ public class EventDAOImpl implements EventDAO{
 	public List<DetailEventBO> eventList() {
 		Session session = sessionFactory.getCurrentSession();
 		return session.createNativeQuery("Select * "+
-										 "FROM Event a "+
-										 "JOIN Mountain b "+
+										 "FROM event a "+
+										 "JOIN mountain b "+
 												"ON a.mountain_id = b.mountain_id "+
-										 "JOIN Member c "+
+										 "JOIN member c "+
 												"ON a.member_id = c.member_id "+
 										 "WHERE (a.event_status != 0 AND a.event_status != 4) order by a.event_id desc", DetailEventBO.class).list();
 	}
@@ -311,10 +311,10 @@ public class EventDAOImpl implements EventDAO{
 											"b.mountain_id as mountainId, "+
 											"c.mountain_longitude as mountainLongitude, "+
 											"c.mountain_latitude as mountainLatitude "+
-										 "FROM Participant a "+
-										 "JOIN Event b "+
+										 "FROM participant a "+
+										 "JOIN event b "+
 										 	"ON a.event_id = b.event_id "+ 
-										 "JOIN Mountain c "+
+										 "JOIN mountain c "+
 										 	"ON b.mountain_id = c.mountain_id "+
 										 "WHERE a.member_id = :memberId", ParEventBO.class)
 				.setParameter("memberId", memberId).list();
@@ -325,8 +325,8 @@ public class EventDAOImpl implements EventDAO{
 	public List<Member> parEventByEventId(Integer eventId) {
 		Session session = sessionFactory.getCurrentSession();
 		return session.createNativeQuery("SELECT *"+
-										 "FROM Member a "+
-										 "JOIN Participant b "+
+										 "FROM member a "+
+										 "JOIN participant b "+
 										 	"ON a.member_id = b.member_id "+ 
 										 "WHERE b.event_id = :eventId", Member.class)
 				.setParameter("eventId", eventId).list();
@@ -343,8 +343,8 @@ public class EventDAOImpl implements EventDAO{
 											"b.mountain_name as mountainName, "+
 											"b.mountain_pic as mountainPic, "+
 											"b.mountain_info as mountainInfo "+
-										"FROM Event a "+
-										"JOIN Mountain b "+
+										"FROM event a "+
+										"JOIN mountain b "+
 											"ON a.mountain_id = b.mountain_id "+
 										"WHERE a.event_status != 4 "+
 										"GROUP BY a.mountain_id "+

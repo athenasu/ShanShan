@@ -58,16 +58,6 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	public Member checkLogin(Member member) {
-//		Member loggedInMember = new Member();
-//		loggedInMember.setMemberEmail(member.getMemberEmail());
-//		loggedInMember.setMemberPassword(member.getMemberPassword()); 
-//		Member checkedMember = dao.checkLogin(loggedInMember);
-//		System.out.println(loggedInMember.getMemberPassword());
-//		if (checkedMember != null) {
-//			return checkedMember;
-//		} else {
-//			return null;
-//		}
 		// get the Member entity
 		// get the encoded password
 		// just checking if this member exists

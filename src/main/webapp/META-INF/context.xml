@@ -3,7 +3,7 @@
 <Context>
 
     <Resource name="jdbc/ShanShan" type="javax.sql.DataSource"
-        url="jdbc:mysql://localhost:3306/ShanShan?serverTimezone=Asia/Taipei"
+        url="jdbc:mysql://shanshan-dbs-masterdb-gqcbbaqeb42k.cdvcv97laoda.us-west-2.rds.amazonaws.com:3306/ShanShan"
         username="root"
         password="password"
         driverClassName="com.mysql.cj.jdbc.Driver"

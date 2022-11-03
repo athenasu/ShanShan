@@ -49,7 +49,7 @@ public class ProductDAOHibernate_impl implements ProductDAOHibernate {
 						+ "d.product_color as productColor,d.product_stock as proDesStock,"
 						+ "p.product_intro as productIntro,d.status as status,"
 						+ "p.product_price as productPrice,i.product_img as productImg "
-						+ "from ShanShan.product as p " 
+						+ "from product as p " 
 						+ "JOIN company as c on c.company_id = p.company_id "
 						+ "JOIN product_description as d on d.product_id = p.product_id " 
 						+ "JOIN product_img as i on i.product_des_id = d.product_des_id "
@@ -76,7 +76,7 @@ public class ProductDAOHibernate_impl implements ProductDAOHibernate {
 						+ "d.product_color as productColor,d.product_stock as proDesStock,"
 						+ "p.product_intro as productIntro,d.status as status,"
 						+ "p.product_price as productPrice,i.product_img as productImg "
-						+ "from ShanShan.product as p " 
+						+ "from product as p " 
 						+ "JOIN company as c on c.company_id = p.company_id "
 						+ "JOIN product_description as d on d.product_id = p.product_id " 
 						+ "JOIN product_img as i on i.product_des_id = d.product_des_id "
@@ -99,7 +99,7 @@ public class ProductDAOHibernate_impl implements ProductDAOHibernate {
 						+ "d.product_color as productColor,d.product_stock as proDesStock,"
 						+ "p.product_intro as productIntro,d.status as status,"
 						+ "p.product_price as productPrice,i.product_img as productImg "
-						+ "from ShanShan.product as p " 
+						+ "from product as p " 
 						+ "JOIN company as c on c.company_id = p.company_id "
 						+ "JOIN product_description as d on d.product_id = p.product_id " 
 						+ "JOIN product_img as i on i.product_des_id = d.product_des_id "
@@ -124,7 +124,7 @@ public class ProductDAOHibernate_impl implements ProductDAOHibernate {
 						+ "d.product_color as productColor,d.product_stock as proDesStock,"
 						+ "p.product_intro as productIntro,d.status as status,"
 						+ "p.product_price as productPrice,i.product_img as productImg "
-						+ "from ShanShan.product as p " 
+						+ "from product as p " 
 						+ "JOIN company as c on c.company_id = p.company_id "
 						+ "JOIN product_description as d on d.product_id = p.product_id " 
 						+ "JOIN product_img as i on i.product_des_id = d.product_des_id "
@@ -148,7 +148,7 @@ public class ProductDAOHibernate_impl implements ProductDAOHibernate {
 						+ "d.product_color as productColor,d.product_stock as proDesStock,"
 						+ "p.product_intro as productIntro,d.status as status,"
 						+ "p.product_price as productPrice,i.product_img as productImg "
-						+ "from ShanShan.product as p " 
+						+ "from product as p " 
 						+ "JOIN company as c on c.company_id = p.company_id "
 						+ "JOIN product_description as d on d.product_id = p.product_id " 
 						+ "JOIN product_img as i on i.product_des_id = d.product_des_id "
@@ -173,7 +173,7 @@ public class ProductDAOHibernate_impl implements ProductDAOHibernate {
 						+ "d.product_color as productColor,d.product_stock as proDesStock,"
 						+ "p.product_intro as productIntro,d.status as status,"
 						+ "p.product_price as productPrice,i.product_img as productImg "
-						+ "from ShanShan.product as p " 
+						+ "from product as p " 
 						+ "JOIN company as c on c.company_id = p.company_id "
 						+ "JOIN product_description as d on d.product_id = p.product_id " 
 						+ "JOIN product_img as i on i.product_des_id = d.product_des_id "
@@ -198,7 +198,7 @@ public class ProductDAOHibernate_impl implements ProductDAOHibernate {
 						+ "d.product_color as productColor,d.product_stock as proDesStock,"
 						+ "p.product_intro as productIntro,d.status as status,"
 						+ "p.product_price as productPrice,i.product_img as productImg "
-						+ "from ShanShan.product as p " 
+						+ "from product as p " 
 						+ "JOIN company as c on c.company_id = p.company_id "
 						+ "JOIN product_description as d on d.product_id = p.product_id " 
 						+ "JOIN product_img as i on i.product_des_id = d.product_des_id "
@@ -223,7 +223,7 @@ public class ProductDAOHibernate_impl implements ProductDAOHibernate {
 						+ "d.product_color as productColor,d.product_stock as proDesStock,"
 						+ "p.product_intro as productIntro,d.status as status,"
 						+ "p.product_price as productPrice,i.product_img as productImg "
-						+ "from ShanShan.product as p " 
+						+ "from product as p " 
 						+ "JOIN company as c on c.company_id = p.company_id "
 						+ "JOIN product_description as d on d.product_id = p.product_id " 
 						+ "JOIN product_img as i on i.product_des_id = d.product_des_id "
@@ -248,7 +248,7 @@ public class ProductDAOHibernate_impl implements ProductDAOHibernate {
 						+ "d.product_color as productColor,d.product_stock as proDesStock,"
 						+ "p.product_intro as productIntro,d.status as status,"
 						+ "p.product_price as productPrice,i.product_img as productImg "
-						+ "from ShanShan.product as p " 
+						+ "from product as p " 
 						+ "JOIN company as c on c.company_id = p.company_id "
 						+ "JOIN product_description as d on d.product_id = p.product_id " 
 						+ "JOIN product_img as i on i.product_des_id = d.product_des_id "
@@ -259,13 +259,4 @@ public class ProductDAOHibernate_impl implements ProductDAOHibernate {
 						.list();
 		return allpro;
 	}
-
-
-
-
-
-	
-	
-	
-
 }

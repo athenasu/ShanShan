@@ -60,7 +60,7 @@ public class ShopDAOImpl implements ShopDAO{
 //	查詢特定商品編號的全部圖片 按product_img_id 正序
 	private static final String GET_PRODUCT_ALL_PIC = "SELECT product_id, product_des_id, product_img_id, product_img FROM product_img JOIN product_description USING (product_des_id) WHERE product_id = ? ORDER BY product_img_id";
 //  查詢特定會員的WishlistProduct list
-	private static final String GET_ALL_WISH_PRODUCT_BY_MEMID ="SELECT * FROM ShanShan.wishlist_product WHERE member_id = ?";
+	private static final String GET_ALL_WISH_PRODUCT_BY_MEMID ="SELECT * FROM wishlist_product WHERE member_id = ?";
 	
 	
 	
@@ -599,38 +599,6 @@ public class ShopDAOImpl implements ShopDAO{
 		return productImgBO;
 	}
 
-////	查詢特定商品明細編號的全部圖片 按product_img_id 正序
-//	@Override
-//	public List<ProductImgBO> getAllProDesPic(Integer product_des_id) {
-//		List<ProductImgBO> listProductImgBO = new ArrayList<>();
-//		ProductImgBO productImgBO = null;
-//		Connection con = null;
-//		PreparedStatement pstmt = null;
-//		ResultSet rs = null;
-//
-//		try {
-//
-//			con = ds.getConnection();
-//			pstmt = con.prepareStatement(GET_PRODUCT_DES_ALL_PIC);
-//			pstmt.setInt(1, product_des_id);
-//			rs = pstmt.executeQuery();
-//
-//			while (rs.next()) {
-//				productImgBO = new ProductImgBO();
-//				productImgBO.setProduct_id(rs.getInt("product_id"));
-//				productImgBO.setProduct_des_id(rs.getInt("product_des_id"));
-//				productImgBO.setProduct_img_id(rs.getInt("product_img_id"));
-//				productImgBO.setProduct_the_pic(rs.getBytes("product_img"));
-//			}
-//
-//		} catch (SQLException se) {
-//			se.printStackTrace();
-//		} finally {
-//			JDBCUtil.close(pstmt,con);
-//		}
-//		return listProductImgBO;
-//	}
-//
 //	查詢特定商品編號的全部圖片 按product_img_id 正序
 	@Override
 	public List<ProductImgBO> getAllProPic(Integer product_id) {
@@ -695,25 +663,4 @@ public class ShopDAOImpl implements ShopDAO{
 		}
 		return listWishlistProduct;
 	}
-
-	
-	
-	
-
-
-////更新 山山點數 欄位member_points_sum 條件member_id="?" 
-//@Override
-//public void UpdateMembPointsByMemId(Integer member_id) {
-//	
-//}
-//
-////查詢點數 選擇member_points_sum 條件member_id = "?" 
-//@Override
-//public Member findMembPointsByMemId(Integer member_id) {
-//	return null;
-//}
-	
-	
-	
-	
 }

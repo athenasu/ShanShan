@@ -33,7 +33,7 @@ public class MtnCabinCombineDAO implements MtnCabinCombineDAO_interface {
 	private static final String insert = "INSERT INTO mtn_cabin_combine (mountain_id,cabin_id) VALUES (?,?)";
 	private static final String update = "update mtn_cabin_combine set mountain_id=?,cabin_id=? where combine_id=? ";
 	private static final String delete = "delete from mtn_cabin_combine where combine_id=? ";
-	private static final String getAll = "select combine_id,mountain_id,cabin_id from mtn_cabin_combine oder by combine_id";
+	private static final String getAll = "select combine_id,mountain_id,cabin_id from mtn_cabin_combine order by combine_id";
 	private static final String findByPK = "Select ccombine_id,mountain_id,cabin_id from mtn_cabin_combine where combine_id=?";
 
 	@Override

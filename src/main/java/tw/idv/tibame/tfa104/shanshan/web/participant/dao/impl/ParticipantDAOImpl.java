@@ -42,7 +42,7 @@ public class ParticipantDAOImpl implements ParticipantDAO{
 	public List<Participant> selectParticipantByMemberId(Integer memberId, Integer eventId){
 		Session session = sessionFactory.getCurrentSession();
 		return session.createNativeQuery("SELECT * "+
-											"FROM Participant "+
+											"FROM participant "+
 											"WHERE member_id = :memberId AND event_id = :eventId", Participant.class)
 										.setParameter("memberId", memberId)
 										.setParameter("eventId", eventId).list();

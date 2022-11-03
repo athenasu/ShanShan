@@ -23,17 +23,17 @@ import tw.idv.tibame.tfa104.shanshan.web.orderDescription.entity.OrderDescriptio
 @Repository
 public class OrderDescriptionDAOImpl implements OrderDescriptionDAO{
 //	新增 訂單明細 成功返回1，失敗返回0
-	private static final String INSERT_STMT = "INSERT INTO Order_description(product_des_id, order_id, product_quantity, product_price) VALUES (?, ?, ?, ?) ";
+	private static final String INSERT_STMT = "INSERT INTO order_description(product_des_id, order_id, product_quantity, product_price) VALUES (?, ?, ?, ?) ";
 //	更新 訂單明細 成功返回1，失敗返回0
-	private static final String UPDATE_STMT = "UPDATE Order_description SET product_des_id = ?, order_id = ?, product_quantity = ?, product_price = ? WHERE order_des_id = ?";
+	private static final String UPDATE_STMT = "UPDATE order_description SET product_des_id = ?, order_id = ?, product_quantity = ?, product_price = ? WHERE order_des_id = ?";
 //	刪除 訂單明細 成功返回1，失敗返回0
-	private static final String DELETE_STMT = "DELETE FROM Order_description WHERE order_des_id = ?";
+	private static final String DELETE_STMT = "DELETE FROM order_description WHERE order_des_id = ?";
 //	查詢 訂單明細 BY PK
-	private static final String FIND_BY_PK = "SELECT * FROM Order_description WHERE order_des_id = ?";
+	private static final String FIND_BY_PK = "SELECT * FROM order_description WHERE order_des_id = ?";
 //	查詢 全部訂單 按order_des_id倒序
-	private static final String FIND_ALL = "SELECT * FROM Order_description Order by order_des_id desc";
+	private static final String FIND_ALL = "SELECT * FROM order_description Order by order_des_id desc";
 //	查詢 特定訂單的訂單明細 按訂單明細編號 正序
-	private static final String FIND_BY_ORDERID = "SELECT * FROM Order_description WHERE order_id = ? by order_des_id asc";
+	private static final String FIND_BY_ORDERID = "SELECT * FROM order_description WHERE order_id = ? by order_des_id asc";
 //	查詢 特定訂單的訂單明細BO 按訂單明細編號 正序
 	private static final String BO_FIND_BY_ORDERID = "SELECT b.order_id, b.member_id, b.order_created_date, b.order_member_address, b.order_member_name, b.order_member_phone, b.order_status, a.product_quantity, a.product_price, b.order_sum_after, b.order_shipped_date, b.ship_number, b.payment_status, d.product_name, c.product_id, c.product_des_id, c.product_size, c.product_color, d.company_id, e.company_name, h.product_des_img FROM order_description a JOIN `order` b USING (order_id) JOIN product_description c USING (product_des_id) JOIN product d USING (product_id) JOIN company e USING (company_id) JOIN (select f.product_img_id, f.product_des_id, g.product_img product_des_img from ( select min(product_img_id) product_img_id , product_des_id from product_img group by product_des_id ) f join product_img g using (product_img_id)) h USING (product_des_id) WHERE order_id = ?";
 //	查詢 特定訂單的訂單明細BO 按訂單明細編號 正序 (沒有圖片)
@@ -163,11 +163,11 @@ public class OrderDescriptionDAOImpl implements OrderDescriptionDAO{
 
 			while (rs.next()) {
 				order_description = new OrderDescription();
-				order_description.setOrder_des_id(rs.getInt("Order_des_id"));
-				order_description.setProduct_des_id(rs.getInt("Product_des_id"));
-				order_description.setOrder_id(rs.getInt("Order_id"));
-				order_description.setProduct_quantity(rs.getInt("Product_quantity"));
-				order_description.setProduct_price(rs.getInt("Product_price"));
+				order_description.setOrder_des_id(rs.getInt("order_des_id"));
+				order_description.setProduct_des_id(rs.getInt("product_des_id"));
+				order_description.setOrder_id(rs.getInt("order_id"));
+				order_description.setProduct_quantity(rs.getInt("product_quantity"));
+				order_description.setProduct_price(rs.getInt("product_price"));
 			}
 
 			
@@ -200,11 +200,11 @@ public class OrderDescriptionDAOImpl implements OrderDescriptionDAO{
 
 			while (rs.next()) {
 				order_description = new OrderDescription();
-				order_description.setOrder_des_id(rs.getInt("Order_des_id"));
-				order_description.setProduct_des_id(rs.getInt("Product_des_id"));
-				order_description.setOrder_id(rs.getInt("Order_id"));
-				order_description.setProduct_quantity(rs.getInt("Product_quantity"));
-				order_description.setProduct_price(rs.getInt("Product_price"));
+				order_description.setOrder_des_id(rs.getInt("order_des_id"));
+				order_description.setProduct_des_id(rs.getInt("product_des_id"));
+				order_description.setOrder_id(rs.getInt("order_id"));
+				order_description.setProduct_quantity(rs.getInt("product_quantity"));
+				order_description.setProduct_price(rs.getInt("product_price"));
 				order_descriptionList.add(order_description);
 			}
 
@@ -236,11 +236,11 @@ public class OrderDescriptionDAOImpl implements OrderDescriptionDAO{
 
 			while (rs.next()) {
 				order_description = new OrderDescription();
-				order_description.setOrder_des_id(rs.getInt("Order_des_id"));
-				order_description.setProduct_des_id(rs.getInt("Product_des_id"));
-				order_description.setOrder_id(rs.getInt("Order_id"));
-				order_description.setProduct_quantity(rs.getInt("Product_quantity"));
-				order_description.setProduct_price(rs.getInt("Product_price"));
+				order_description.setOrder_des_id(rs.getInt("order_des_id"));
+				order_description.setProduct_des_id(rs.getInt("product_des_id"));
+				order_description.setOrder_id(rs.getInt("order_id"));
+				order_description.setProduct_quantity(rs.getInt("product_quantity"));
+				order_description.setProduct_price(rs.getInt("product_price"));
 			}
 
 			

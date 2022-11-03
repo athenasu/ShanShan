@@ -20,12 +20,12 @@ public class ArticleJDBCDAO implements ArticleDAO_interface {
 	String userid = "root";
 	String passwd = "password";
 
-	private static final String INSERT_STMT = "INSERT INTO Article (member_id, mountain_id, article_title, article_content, event_date,recommendation,other_mtn) VALUES (?,?, ?, ?, ?,?,?)";
-	private static final String UPDATE = "UPDATE Article set mountain_id=?, article_title=?, article_content=?, event_date=?,recommendation=?,other_mtn=? WHERE article_id = ?";
+	private static final String INSERT_STMT = "INSERT INTO article (member_id, mountain_id, article_title, article_content, event_date,recommendation,other_mtn) VALUES (?,?, ?, ?, ?,?,?)";
+	private static final String UPDATE = "UPDATE article set mountain_id=?, article_title=?, article_content=?, event_date=?,recommendation=?,other_mtn=? WHERE article_id = ?";
 	private static final String GET_ONE_STMT = "SELECT article_id,member_id,mountain_id, article_title, article_content, article_date_created,event_date,recommendation,other_mtn,aritcle_viewer,article_points_recieved FROM article WHERE article_id = ?";
 
-//	private static final String GET_ONE_STMT = "SELECT mountain_id, article_title, article_content, article_date_created,event_date,recommendation,other_mtn,article_points_recieved FROM Article WHERE article_id = ?";
-	private static final String GET_ALL_STMT = "SELECT mountain_id, article_title, article_content, article_date_created,event_date,recommendation,other_mtn,article_points_recieved FROM Article ORDER BY article_id";
+//	private static final String GET_ONE_STMT = "SELECT mountain_id, article_title, article_content, article_date_created,event_date,recommendation,other_mtn,article_points_recieved FROM article WHERE article_id = ?";
+	private static final String GET_ALL_STMT = "SELECT mountain_id, article_title, article_content, article_date_created,event_date,recommendation,other_mtn,article_points_recieved FROM article ORDER BY article_id";
 	private static final String DELETE = "DELETE FROM article where article_id = ?";
 	private static final String updatepoints = "UPDATE article set article_points_recieved = ? where article_id = ?";
 
@@ -35,13 +35,13 @@ public class ArticleJDBCDAO implements ArticleDAO_interface {
 	private static final String recievedPoints = "SELECT article_points_recieved FROM article where article_id = ?";
 
 	// 排序:日期、瀏覽數、打賞數、推薦度
-	private static final String orderByDate = "SELECT article_id,mountain_id, article_title, article_content, article_date_created,event_date,recommendation,other_mtn FROM Article ORDER BY article_date_created desc";
-	private static final String orderByViewer = "SELECT article_id,mountain_id, article_title, article_content, article_date_created,event_date,recommendation,other_mtn FROM Article ORDER BY aritcle_viewer desc";
-	private static final String orderByRecievedPoints = "SELECT article_id,mountain_id, article_title, article_content, article_date_created,event_date,recommendation,other_mtn FROM Article ORDER BY article_points_recieved desc";
-	private static final String orderByRecomm = "SELECT article_id,mountain_id, article_title, article_content, article_date_created,event_date,recommendation,other_mtn FROM Article ORDER BY recommendation desc";
+	private static final String orderByDate = "SELECT article_id,mountain_id, article_title, article_content, article_date_created,event_date,recommendation,other_mtn FROM article ORDER BY article_date_created desc";
+	private static final String orderByViewer = "SELECT article_id,mountain_id, article_title, article_content, article_date_created,event_date,recommendation,other_mtn FROM article ORDER BY aritcle_viewer desc";
+	private static final String orderByRecievedPoints = "SELECT article_id,mountain_id, article_title, article_content, article_date_created,event_date,recommendation,other_mtn FROM article ORDER BY article_points_recieved desc";
+	private static final String orderByRecomm = "SELECT article_id,mountain_id, article_title, article_content, article_date_created,event_date,recommendation,other_mtn FROM article ORDER BY recommendation desc";
 
 	// 複合查詢後補
-	private static final String search ="SELECT * FROM Article a join member m on a.member_id = m.member_id join mountain mt on a.mountain_id = mt.mountain_id WHERE article_title like ? or article_content like ? or member_name like ? or mountain_name like ?";
+	private static final String search ="SELECT * FROM article a join member m on a.member_id = m.member_id join mountain mt on a.mountain_id = mt.mountain_id WHERE article_title like ? or article_content like ? or member_name like ? or mountain_name like ?";
 
 	// 給member後台使用 to athnea
 //	private static final String findByMemIdGiveAll ="select a.member_id, a.article_id, a.article_title,a.article_date_created,a.event_date,a.mountain_id,a.other_mtn,m.mountain_name,m.mountain_district,m.mountain_latitude,m.mountain_longitude,a.article_points_recieved,a.article_content,min(p.article_picture)from article a  join article_picture p on a.article_id = p.article_id join mountain m on a.mountain_id = m.mountain_id  where a.member_id= ?  group by a.article_id " ;
@@ -49,7 +49,7 @@ public class ArticleJDBCDAO implements ArticleDAO_interface {
 	private static final String memIdRecievedPoints = "select member_id,sum(article_points_recieved) from article group by member_id=? ";
 
 	// 網誌狀態 to owen
-	private static final String updateArticleStatus = "UPDATE Article set article_status=? WHERE article_id = ?";
+	private static final String updateArticleStatus = "UPDATE article set article_status=? WHERE article_id = ?";
 	
 	@Override
 	public void insert(ArticleVO ArticleVO) {
@@ -712,7 +712,7 @@ public class ArticleJDBCDAO implements ArticleDAO_interface {
 				ArticleVO.setMountain_name(rs.getString("mountain_name"));
 				ArticleVO.setMountain_longitude(rs.getBigDecimal("mountain_longitude"));
 				ArticleVO.setMountain_latitude(rs.getBigDecimal("mountain_latitude"));
-				// Article picture table
+				// article picture table
 				ArticleVO.setArticle_picture_id(rs.getInt("article_picture_id"));
 				ArticleVO.setArticle_picture(rs.getBytes("article_picture"));
 				list.add(ArticleVO);
@@ -974,7 +974,7 @@ public class ArticleJDBCDAO implements ArticleDAO_interface {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	private static final String findByMtn = "SELECT article_id,member_id,mountain_id, article_title, article_content, article_date_created,event_date,recommendation,other_mtn,aritcle_viewer,article_points_recieved FROM Article WHERE mountain_id = ?";
+	private static final String findByMtn = "SELECT article_id,member_id,mountain_id, article_title, article_content, article_date_created,event_date,recommendation,other_mtn,aritcle_viewer,article_points_recieved FROM article WHERE mountain_id = ?";
 
 	@Override
 	public List<ArticleVO> findByMtn(Integer mountain_id) {
